@@ -43,11 +43,11 @@ public static class SpaceAddWebHookExtensions
         services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<SpaceWebHookOptions>, SpaceSpaceWebHookPostConfigureOptions>());
 
         services.AddOptions<SpaceWebHookOptions>(optionsName)
-            .Validate(o => o.VerifySigningKey == null || !o.VerifySigningKey.IsEnabled || !string.IsNullOrEmpty(o.VerifySigningKey.EndpointSigningKey), "Space.VerifySigningKey.EndpointSigningKey is required.")
-            .Validate(o => o.VerifyHttpBearerToken == null || !o.VerifyHttpBearerToken.IsEnabled || !string.IsNullOrEmpty(o.VerifyHttpBearerToken.BearerToken), "Space.VerifyHttpBearerToken.BearerToken is required.")
-            .Validate(o => o.VerifyHttpBasicAuthentication == null || !o.VerifyHttpBasicAuthentication.IsEnabled || !string.IsNullOrEmpty(o.VerifyHttpBasicAuthentication.Username), "Space.VerifyHttpBasicAuthentication.Username is required.")
-            .Validate(o => o.VerifyHttpBasicAuthentication == null || !o.VerifyHttpBasicAuthentication.IsEnabled || !string.IsNullOrEmpty(o.VerifyHttpBasicAuthentication.Password), "Space.VerifyHttpBasicAuthentication.Password is required.")
-            .Validate(o => o.VerifyVerificationToken == null || !o.VerifyVerificationToken.IsEnabled || !string.IsNullOrEmpty(o.VerifyVerificationToken.EndpointVerificationToken), "Space.VerifyVerificationToken.EndpointVerificationToken is required.");
+            .Validate(o => o.VerifySigningKey is not { IsEnabled: true } || !string.IsNullOrEmpty(o.VerifySigningKey.EndpointSigningKey), "Space.VerifySigningKey.EndpointSigningKey is required.")
+            .Validate(o => o.VerifyHttpBearerToken is not { IsEnabled: true } || !string.IsNullOrEmpty(o.VerifyHttpBearerToken.BearerToken), "Space.VerifyHttpBearerToken.BearerToken is required.")
+            .Validate(o => o.VerifyHttpBasicAuthentication is not { IsEnabled: true } || !string.IsNullOrEmpty(o.VerifyHttpBasicAuthentication.Username), "Space.VerifyHttpBasicAuthentication.Username is required.")
+            .Validate(o => o.VerifyHttpBasicAuthentication is not { IsEnabled: true } || !string.IsNullOrEmpty(o.VerifyHttpBasicAuthentication.Password), "Space.VerifyHttpBasicAuthentication.Password is required.")
+            .Validate(o => o.VerifyVerificationToken is not { IsEnabled: true } || !string.IsNullOrEmpty(o.VerifyVerificationToken.EndpointVerificationToken), "Space.VerifyVerificationToken.EndpointVerificationToken is required.");
 
         // Add webhook handler types
         services.AddScoped<TWebHookHandler>();

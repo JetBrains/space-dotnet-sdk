@@ -12,7 +12,7 @@ namespace JetBrains.Space.Samples.CommandLine;
 public class Program
 {
     // ReSharper disable once UnusedParameter.Local
-    public static async Task Main(string[] args)
+    public static async Task Main()
     {
         // Create a connection using a service account.
         // NOTE: Service accounts do not have access to all operations in Space!

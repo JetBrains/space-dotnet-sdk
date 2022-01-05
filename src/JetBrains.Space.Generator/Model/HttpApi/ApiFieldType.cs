@@ -45,7 +45,7 @@ public abstract class ApiFieldType
         public List<ApiField> Fields { get; set; } = new();
             
         [JsonPropertyName("kind")]
-        public ObjectKind Kind { get; set; } = default!;
+        public ObjectKind Kind { get; set; }
 
         [JsonConverter(typeof(EnumStringConverter))]
         [SuppressMessage("ReSharper", "InconsistentNaming")]

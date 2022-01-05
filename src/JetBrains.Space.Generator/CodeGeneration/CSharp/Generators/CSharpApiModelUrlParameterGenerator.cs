@@ -184,7 +184,7 @@ public class CSharpApiModelUrlParameterGenerator
                 {
                     builder.Append("}}");
                 }
-                builder.AppendLine($"\";");
+                builder.AppendLine("\";");
                     
                 indent.Decrement();
                     

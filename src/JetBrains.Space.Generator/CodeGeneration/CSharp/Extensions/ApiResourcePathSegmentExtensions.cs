@@ -12,8 +12,8 @@ public static class ApiResourcePathSegmentExtensions
             return it switch
             {
                 ApiResourcePathSegment.Const constSegment => constSegment.Value,
-                ApiResourcePathSegment.PrefixedVar prefixedVarSegment => (prefixedVarSegment.Prefix + ":{" + prefixedVarSegment.Name + "}"),
-                ApiResourcePathSegment.Var varSegment => ("{" + varSegment.Name + "}"),
+                ApiResourcePathSegment.PrefixedVar prefixedVarSegment => prefixedVarSegment.Prefix + ":{" + prefixedVarSegment.Name + "}",
+                ApiResourcePathSegment.Var varSegment => "{" + varSegment.Name + "}",
                 _ => null
             };
         }).Where(it => !string.IsNullOrEmpty(it)));

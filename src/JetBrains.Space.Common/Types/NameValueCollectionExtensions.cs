@@ -58,7 +58,7 @@ public static class NameValueCollectionExtensions
             var values = subject.GetValues(key);
             if (values == null) continue;
 
-            foreach (string value in values)
+            foreach (var value in values)
             {
                 sb.Append(sb.Length == 0 ? "?" : "&");
                 sb.Append($"{Uri.EscapeDataString(key)}={Uri.EscapeDataString(value)}");

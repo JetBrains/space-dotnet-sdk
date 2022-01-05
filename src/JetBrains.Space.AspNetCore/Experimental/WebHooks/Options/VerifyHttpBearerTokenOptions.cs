@@ -5,7 +5,7 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.Options;
 /// <summary>
 /// Space sends the provided bearer token in the Authorization header.
 /// </summary>
-[UsedImplicitly]
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public class VerifyHttpBearerTokenOptions
 {
     /// <summary>

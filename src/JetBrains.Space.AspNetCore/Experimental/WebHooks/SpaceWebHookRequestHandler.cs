@@ -189,10 +189,10 @@ public class SpaceWebHookRequestHandler<TWebHookHandler>
         }
     }
 
-    private Task WriteApplicationExecutionResultAsync(HttpResponse response, ApplicationExecutionResult executionResult) 
+    private static Task WriteApplicationExecutionResultAsync(HttpResponse response, ApplicationExecutionResult executionResult) 
         => WriteTextResponse(response, executionResult.StatusCode, executionResult.Message);
 
-    private async Task WriteTextResponse(HttpResponse response, int statusCode, string? body = null)
+    private static async Task WriteTextResponse(HttpResponse response, int statusCode, string? body = null)
     {
         response.StatusCode = statusCode;
         if (!string.IsNullOrEmpty(body))
@@ -202,7 +202,7 @@ public class SpaceWebHookRequestHandler<TWebHookHandler>
         }
     }
 
-    private async Task WriteJsonResponse<TResponsePayload>(HttpResponse response, int statusCode, TResponsePayload payload)
+    private static async Task WriteJsonResponse<TResponsePayload>(HttpResponse response, int statusCode, TResponsePayload payload)
     {
         response.StatusCode = statusCode;
 

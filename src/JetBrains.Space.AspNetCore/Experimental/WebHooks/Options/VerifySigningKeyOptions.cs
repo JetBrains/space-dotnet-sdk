@@ -5,7 +5,7 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.Options;
 /// <summary>
 /// When the application receives a request from Space, it must calculate a hash for this request using the Signing key. The calculated hash value must be equal to the hash value from the request.
 /// </summary>
-[UsedImplicitly]
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public class VerifySigningKeyOptions
 {
     /// <summary>

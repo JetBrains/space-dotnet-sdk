@@ -14,5 +14,5 @@ public enum HierarchyRole2
     [EnumMember(Value = "FINAL_CLASS")] FINAL_CLASS,
     [EnumMember(Value = "ABSTRACT_CLASS")] ABSTRACT_CLASS,
     [EnumMember(Value = "INTERFACE")] INTERFACE,
-    [EnumMember(Value = "SEALED_INTERFACE")] SEALED_INTERFACE,
+    [EnumMember(Value = "SEALED_INTERFACE")] SEALED_INTERFACE
 }

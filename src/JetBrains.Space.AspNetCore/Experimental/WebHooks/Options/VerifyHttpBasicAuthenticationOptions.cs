@@ -5,7 +5,7 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.Options;
 /// <summary>
 /// Space sends the Base64-encoded username and password in the Authorization header.
 /// </summary>
-[UsedImplicitly]
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public class VerifyHttpBasicAuthenticationOptions
 {
     /// <summary>
