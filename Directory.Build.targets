@@ -29,7 +29,7 @@
         <Product>JetBrains.Space</Product>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(JB_SPACE_API_URL)'!= ''">
+    <PropertyGroup Condition="'$(JB_SPACE_API_URL)' != ''">
         <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     </PropertyGroup>
 
