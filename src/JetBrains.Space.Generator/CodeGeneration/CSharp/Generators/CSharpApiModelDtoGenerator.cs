@@ -217,7 +217,7 @@ public class CSharpApiModelDtoGenerator
         var overrideDefaultValue = !apiField.Type.Nullable && apiField.DefaultValue == null;
         if (overrideDefaultValue)
         {
-            // TODO When switching to records (.NET 6 LTS), replace this construct to be immutable.
+            // REVIEW: This is a mutation, might be good to consider making this immutable.
             apiField.DefaultValue = apiField.Type switch
             {
                 ApiFieldType.Array => new ApiDefaultValue.Collection(),
