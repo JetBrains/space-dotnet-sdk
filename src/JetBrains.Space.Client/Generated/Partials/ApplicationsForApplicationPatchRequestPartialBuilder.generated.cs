@@ -67,12 +67,15 @@ public static class ApplicationsForApplicationPatchRequestPartialExtensions
     public static Partial<ApplicationsForApplicationPatchRequest> WithIsEndpointSslVerification(this Partial<ApplicationsForApplicationPatchRequest> it)
         => it.AddFieldName("endpointSslVerification");
     
+    [Obsolete("VerificationToken is an obsolete auth method - use it to turn it off (since 2021-09-02) (will be removed in a future version)")]
     public static Partial<ApplicationsForApplicationPatchRequest> WithIsHasVerificationToken(this Partial<ApplicationsForApplicationPatchRequest> it)
         => it.AddFieldName("hasVerificationToken");
     
+    [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
     public static Partial<ApplicationsForApplicationPatchRequest> WithIsHasPublicKeySignature(this Partial<ApplicationsForApplicationPatchRequest> it)
         => it.AddFieldName("hasPublicKeySignature");
     
+    [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
     public static Partial<ApplicationsForApplicationPatchRequest> WithIsHasSigningKey(this Partial<ApplicationsForApplicationPatchRequest> it)
         => it.AddFieldName("hasSigningKey");
     

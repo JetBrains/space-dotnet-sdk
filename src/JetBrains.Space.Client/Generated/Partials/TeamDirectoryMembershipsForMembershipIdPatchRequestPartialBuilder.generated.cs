@@ -37,6 +37,7 @@ public static class TeamDirectoryMembershipsForMembershipIdPatchRequestPartialEx
     public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithRoleId(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
         => it.AddFieldName("roleId");
     
+    [Obsolete("The property is deprecated (since 2020-12-01) (will be removed in a future version)")]
     public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithIsLead(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
         => it.AddFieldName("lead");
     

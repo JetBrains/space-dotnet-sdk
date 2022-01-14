@@ -46,6 +46,7 @@ public static class CustomFieldPartialExtensions
     public static Partial<CustomField> WithDescription(this Partial<CustomField> it)
         => it.AddFieldName("description");
     
+    [Obsolete("Use name instead (since 2020-09-28) (will be removed in a future version)")]
     public static Partial<CustomField> WithKey(this Partial<CustomField> it)
         => it.AddFieldName("key");
     

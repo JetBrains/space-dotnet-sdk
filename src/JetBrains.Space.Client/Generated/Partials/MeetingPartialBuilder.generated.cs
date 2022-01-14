@@ -73,6 +73,7 @@ public static class MeetingPartialExtensions
     public static Partial<Meeting> WithOrigin(this Partial<Meeting> it, Func<Partial<MeetingOrigin>, Partial<MeetingOrigin>> partialBuilder)
         => it.AddFieldName("origin", partialBuilder(new Partial<MeetingOrigin>(it)));
     
+    [Obsolete("Use conferenceData instead (since 2021-12-21) (will be removed in a future version)")]
     public static Partial<Meeting> WithConferenceLink(this Partial<Meeting> it)
         => it.AddFieldName("conferenceLink");
     
@@ -118,6 +119,7 @@ public static class MeetingPartialExtensions
     public static Partial<Meeting> WithExternalParticipants(this Partial<Meeting> it)
         => it.AddFieldName("externalParticipants");
     
+    [Obsolete("Use externalSource instead (since 2021-12-21) (will be removed in a future version)")]
     public static Partial<Meeting> WithLinkToExternalSource(this Partial<Meeting> it)
         => it.AddFieldName("linkToExternalSource");
     

@@ -76,45 +76,59 @@ public static class ESAppPartialExtensions
     public static Partial<ESApp> WithApplicationType(this Partial<ESApp> it, Func<Partial<ApplicationType>, Partial<ApplicationType>> partialBuilder)
         => it.AddFieldName("applicationType", partialBuilder(new Partial<ApplicationType>(it)));
     
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
     public static Partial<ESApp> WithIsClientCredentialsFlowEnabled(this Partial<ESApp> it)
         => it.AddFieldName("clientCredentialsFlowEnabled");
     
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
     public static Partial<ESApp> WithIsCodeFlowEnabled(this Partial<ESApp> it)
         => it.AddFieldName("codeFlowEnabled");
     
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
     public static Partial<ESApp> WithCodeFlowRedirectURIs(this Partial<ESApp> it)
         => it.AddFieldName("codeFlowRedirectURIs");
     
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
     public static Partial<ESApp> WithIsPkceRequired(this Partial<ESApp> it)
         => it.AddFieldName("pkceRequired");
     
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
     public static Partial<ESApp> WithIsImplicitFlowEnabled(this Partial<ESApp> it)
         => it.AddFieldName("implicitFlowEnabled");
     
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
     public static Partial<ESApp> WithImplicitFlowRedirectURIs(this Partial<ESApp> it)
         => it.AddFieldName("implicitFlowRedirectURIs");
     
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
     public static Partial<ESApp> WithEndpointURI(this Partial<ESApp> it)
         => it.AddFieldName("endpointURI");
     
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
     public static Partial<ESApp> WithIsHasVerificationToken(this Partial<ESApp> it)
         => it.AddFieldName("hasVerificationToken");
     
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
     public static Partial<ESApp> WithIsHasSigningKey(this Partial<ESApp> it)
         => it.AddFieldName("hasSigningKey");
     
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
     public static Partial<ESApp> WithIsHasPublicKeySignature(this Partial<ESApp> it)
         => it.AddFieldName("hasPublicKeySignature");
     
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
     public static Partial<ESApp> WithIsEndpointSslVerification(this Partial<ESApp> it)
         => it.AddFieldName("endpointSslVerification");
     
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
     public static Partial<ESApp> WithBasicAuthUsername(this Partial<ESApp> it)
         => it.AddFieldName("basicAuthUsername");
     
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
     public static Partial<ESApp> WithIsHasBearerToken(this Partial<ESApp> it)
         => it.AddFieldName("hasBearerToken");
     
+    [Obsolete("Use settings instead (since 2021-08-20) (will be removed in a future version)")]
     public static Partial<ESApp> WithSslKeystoreAuth(this Partial<ESApp> it)
         => it.AddFieldName("sslKeystoreAuth");
     

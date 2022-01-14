@@ -37,9 +37,11 @@ public static class TDLocationPartialExtensions
     public static Partial<TDLocation> WithName(this Partial<TDLocation> it)
         => it.AddFieldName("name");
     
+    [Obsolete("Use tz field that contains no specific offset for a timezone. Field timezone is always null (since 2019.0.1) (will be removed in a future version)")]
     public static Partial<TDLocation> WithTimezone(this Partial<TDLocation> it)
         => it.AddFieldName("timezone");
     
+    [Obsolete("Use tz field that contains no specific offset for a timezone. Field timezone is always null (since 2019.0.1) (will be removed in a future version)")]
     public static Partial<TDLocation> WithTimezone(this Partial<TDLocation> it, Func<Partial<ATimeZoneWithOffset>, Partial<ATimeZoneWithOffset>> partialBuilder)
         => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZoneWithOffset>(it)));
     

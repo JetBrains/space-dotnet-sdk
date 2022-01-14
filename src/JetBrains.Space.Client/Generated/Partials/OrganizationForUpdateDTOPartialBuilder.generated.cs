@@ -46,6 +46,7 @@ public static class OrganizationForUpdateDTOPartialExtensions
     public static Partial<OrganizationForUpdateDTO> WithLogoId(this Partial<OrganizationForUpdateDTO> it)
         => it.AddFieldName("logoId");
     
+    [Obsolete("Is no longer supported (since 2021-10-13) (will be removed in a future version)")]
     public static Partial<OrganizationForUpdateDTO> WithSlackWorkspace(this Partial<OrganizationForUpdateDTO> it)
         => it.AddFieldName("slackWorkspace");
     

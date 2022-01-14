@@ -61,9 +61,11 @@ public static class CustomFieldsForTypeKeyFieldsForIdPatchRequestPartialExtensio
     public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithDefaultValue(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it, Func<Partial<CFInputValue>, Partial<CFInputValue>> partialBuilder)
         => it.AddFieldName("defaultValue", partialBuilder(new Partial<CFInputValue>(it)));
     
+    [Obsolete("Use cfParameters instead (since 2020-09-07) (will be removed in a future version)")]
     public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithEnumValues(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it)
         => it.AddFieldName("enumValues");
     
+    [Obsolete("Use cfParameters instead (since 2020-09-07) (will be removed in a future version)")]
     public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithEnumValues(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it, Func<Partial<EnumValueData>, Partial<EnumValueData>> partialBuilder)
         => it.AddFieldName("enumValues", partialBuilder(new Partial<EnumValueData>(it)));
     

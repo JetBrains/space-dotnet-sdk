@@ -31,9 +31,11 @@ namespace JetBrains.Space.Client.HAUrlParameterOptionVarPartialBuilder;
 
 public static class HAUrlParameterOptionVarPartialExtensions
 {
+    [Obsolete("Use 'parameters' (since 2021-08-17)")]
     public static Partial<HAUrlParameterOptionVar> WithParameter(this Partial<HAUrlParameterOptionVar> it)
         => it.AddFieldName("parameter");
     
+    [Obsolete("Use 'parameters' (since 2021-08-17)")]
     public static Partial<HAUrlParameterOptionVar> WithParameter(this Partial<HAUrlParameterOptionVar> it, Func<Partial<HAField>, Partial<HAField>> partialBuilder)
         => it.AddFieldName("parameter", partialBuilder(new Partial<HAField>(it)));
     

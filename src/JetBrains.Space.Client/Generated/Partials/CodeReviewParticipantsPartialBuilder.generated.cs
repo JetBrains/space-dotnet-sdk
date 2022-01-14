@@ -40,21 +40,27 @@ public static class CodeReviewParticipantsPartialExtensions
     public static Partial<CodeReviewParticipants> WithParticipants(this Partial<CodeReviewParticipants> it, Func<Partial<CodeReviewParticipant>, Partial<CodeReviewParticipant>> partialBuilder)
         => it.AddFieldName("participants", partialBuilder(new Partial<CodeReviewParticipant>(it)));
     
+    [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<CodeReviewParticipants> WithReviewers(this Partial<CodeReviewParticipants> it)
         => it.AddFieldName("reviewers");
     
+    [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<CodeReviewParticipants> WithReviewers(this Partial<CodeReviewParticipants> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
         => it.AddFieldName("reviewers", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
     
+    [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<CodeReviewParticipants> WithAuthors(this Partial<CodeReviewParticipants> it)
         => it.AddFieldName("authors");
     
+    [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<CodeReviewParticipants> WithAuthors(this Partial<CodeReviewParticipants> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
         => it.AddFieldName("authors", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
     
+    [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<CodeReviewParticipants> WithWatchers(this Partial<CodeReviewParticipants> it)
         => it.AddFieldName("watchers");
     
+    [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<CodeReviewParticipants> WithWatchers(this Partial<CodeReviewParticipants> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
         => it.AddFieldName("watchers", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
     

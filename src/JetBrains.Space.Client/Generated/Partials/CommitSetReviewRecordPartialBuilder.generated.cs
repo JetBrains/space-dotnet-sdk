@@ -76,9 +76,11 @@ public static class CommitSetReviewRecordPartialExtensions
     public static Partial<CommitSetReviewRecord> WithFeedChannel(this Partial<CommitSetReviewRecord> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
         => it.AddFieldName("feedChannel", partialBuilder(new Partial<M2ChannelRecord>(it)));
     
+    [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<CommitSetReviewRecord> WithAuthors(this Partial<CommitSetReviewRecord> it)
         => it.AddFieldName("authors");
     
+    [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<CommitSetReviewRecord> WithAuthors(this Partial<CommitSetReviewRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
         => it.AddFieldName("authors", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
     
@@ -103,15 +105,19 @@ public static class CommitSetReviewRecordPartialExtensions
     public static Partial<CommitSetReviewRecord> WithParticipants(this Partial<CommitSetReviewRecord> it, Func<Partial<CodeReviewParticipant>, Partial<CodeReviewParticipant>> partialBuilder)
         => it.AddFieldName("participants", partialBuilder(new Partial<CodeReviewParticipant>(it)));
     
+    [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<CommitSetReviewRecord> WithReviewers(this Partial<CommitSetReviewRecord> it)
         => it.AddFieldName("reviewers");
     
+    [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<CommitSetReviewRecord> WithReviewers(this Partial<CommitSetReviewRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
         => it.AddFieldName("reviewers", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
     
+    [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<CommitSetReviewRecord> WithWatchers(this Partial<CommitSetReviewRecord> it)
         => it.AddFieldName("watchers");
     
+    [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<CommitSetReviewRecord> WithWatchers(this Partial<CommitSetReviewRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
         => it.AddFieldName("watchers", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
     

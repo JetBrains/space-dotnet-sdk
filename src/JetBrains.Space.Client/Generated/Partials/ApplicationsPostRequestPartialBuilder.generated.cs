@@ -79,21 +79,27 @@ public static class ApplicationsPostRequestPartialExtensions
     public static Partial<ApplicationsPostRequest> WithSslKeystoreAuth(this Partial<ApplicationsPostRequest> it)
         => it.AddFieldName("sslKeystoreAuth");
     
+    [Obsolete("It's an obsolete auth type - please use another one (since 2021-09-02) (will be removed in a future version)")]
     public static Partial<ApplicationsPostRequest> WithIsHasVerificationToken(this Partial<ApplicationsPostRequest> it)
         => it.AddFieldName("hasVerificationToken");
     
+    [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
     public static Partial<ApplicationsPostRequest> WithIsHasSigningKey(this Partial<ApplicationsPostRequest> it)
         => it.AddFieldName("hasSigningKey");
     
+    [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
     public static Partial<ApplicationsPostRequest> WithIsHasPublicKeySignature(this Partial<ApplicationsPostRequest> it)
         => it.AddFieldName("hasPublicKeySignature");
     
+    [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
     public static Partial<ApplicationsPostRequest> WithBasicAuthUsername(this Partial<ApplicationsPostRequest> it)
         => it.AddFieldName("basicAuthUsername");
     
+    [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
     public static Partial<ApplicationsPostRequest> WithBasicAuthPassword(this Partial<ApplicationsPostRequest> it)
         => it.AddFieldName("basicAuthPassword");
     
+    [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
     public static Partial<ApplicationsPostRequest> WithBearerAuthToken(this Partial<ApplicationsPostRequest> it)
         => it.AddFieldName("bearerAuthToken");
     

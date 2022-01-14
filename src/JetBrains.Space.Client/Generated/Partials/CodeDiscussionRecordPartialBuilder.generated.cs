@@ -34,6 +34,7 @@ public static class CodeDiscussionRecordPartialExtensions
     public static Partial<CodeDiscussionRecord> WithId(this Partial<CodeDiscussionRecord> it)
         => it.AddFieldName("id");
     
+    [Obsolete("Use project instead (since 2020-01-18)")]
     public static Partial<CodeDiscussionRecord> WithProjectId(this Partial<CodeDiscussionRecord> it)
         => it.AddFieldName("projectId");
     

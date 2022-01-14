@@ -64,9 +64,11 @@ public static class TeamDirectoryProfilesForProfileSettingsPatchRequestPartialEx
     public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithCalendarView(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)
         => it.AddFieldName("calendarView");
     
+    [Obsolete("Use notification-settings (since 24 Feb 2021) (will be removed in a future version)")]
     public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithIsEmailNotificationsEnabled(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)
         => it.AddFieldName("emailNotificationsEnabled");
     
+    [Obsolete("Use notification-settings (since 24 Feb 2021) (will be removed in a future version)")]
     public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithNotificationEmail(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)
         => it.AddFieldName("notificationEmail");
     

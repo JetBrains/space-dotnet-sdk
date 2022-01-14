@@ -31,9 +31,11 @@ namespace JetBrains.Space.Client.ChatsMessagesSendMessagePostRequestPartialBuild
 
 public static class ChatsMessagesSendMessagePostRequestPartialExtensions
 {
+    [Obsolete("Use channel instead (since 2021-12-13) (will be removed in a future version)")]
     public static Partial<ChatsMessagesSendMessagePostRequest> WithRecipient(this Partial<ChatsMessagesSendMessagePostRequest> it)
         => it.AddFieldName("recipient");
     
+    [Obsolete("Use channel instead (since 2021-12-13) (will be removed in a future version)")]
     public static Partial<ChatsMessagesSendMessagePostRequest> WithRecipient(this Partial<ChatsMessagesSendMessagePostRequest> it, Func<Partial<MessageRecipient>, Partial<MessageRecipient>> partialBuilder)
         => it.AddFieldName("recipient", partialBuilder(new Partial<MessageRecipient>(it)));
     

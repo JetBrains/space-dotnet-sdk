@@ -43,9 +43,11 @@ public static class HADtoPartialExtensions
     public static Partial<HADto> WithFields(this Partial<HADto> it, Func<Partial<HADtoField>, Partial<HADtoField>> partialBuilder)
         => it.AddFieldName("fields", partialBuilder(new Partial<HADtoField>(it)));
     
+    [Obsolete("Use hierarchyRole2 (since 20-07-2021)")]
     public static Partial<HADto> WithHierarchyRole(this Partial<HADto> it)
         => it.AddFieldName("hierarchyRole");
     
+    [Obsolete("Use hierarchyRole2 (since 20-07-2021)")]
     public static Partial<HADto> WithHierarchyRole(this Partial<HADto> it, Func<Partial<HierarchyRole>, Partial<HierarchyRole>> partialBuilder)
         => it.AddFieldName("hierarchyRole", partialBuilder(new Partial<HierarchyRole>(it)));
     

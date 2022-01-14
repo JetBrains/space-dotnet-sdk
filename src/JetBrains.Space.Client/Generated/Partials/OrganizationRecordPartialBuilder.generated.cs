@@ -61,6 +61,7 @@ public static class OrganizationRecordPartialExtensions
     public static Partial<OrganizationRecord> WithTimezone(this Partial<OrganizationRecord> it, Func<Partial<ATimeZone>, Partial<ATimeZone>> partialBuilder)
         => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZone>(it)));
     
+    [Obsolete("Slack integration is no longer supported (since 2021-10-13) (will be removed in a future version)")]
     public static Partial<OrganizationRecord> WithSlackWorkspace(this Partial<OrganizationRecord> it)
         => it.AddFieldName("slackWorkspace");
     

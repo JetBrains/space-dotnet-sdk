@@ -31,9 +31,11 @@ namespace JetBrains.Space.Client.WorkingDaysSpecPartialBuilder;
 
 public static class WorkingDaysSpecPartialExtensions
 {
+    [Obsolete("Use workingHours and notificationHours instead (since 2020-11-10)")]
     public static Partial<WorkingDaysSpec> WithDays(this Partial<WorkingDaysSpec> it)
         => it.AddFieldName("days");
     
+    [Obsolete("Use workingHours and notificationHours instead (since 2020-11-10)")]
     public static Partial<WorkingDaysSpec> WithDays(this Partial<WorkingDaysSpec> it, Func<Partial<Workday>, Partial<Workday>> partialBuilder)
         => it.AddFieldName("days", partialBuilder(new Partial<Workday>(it)));
     
