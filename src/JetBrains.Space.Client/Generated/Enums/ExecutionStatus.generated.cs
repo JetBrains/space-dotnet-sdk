@@ -50,6 +50,9 @@ public enum ExecutionStatus
     [EnumMember(Value = "FINISHED")]
     FINISHED,
     
+    [EnumMember(Value = "TERMINATING")]
+    TERMINATING,
+    
     [EnumMember(Value = "TERMINATED")]
     TERMINATED,
     

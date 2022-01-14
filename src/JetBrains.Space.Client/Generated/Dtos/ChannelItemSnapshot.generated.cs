@@ -37,7 +37,7 @@ public sealed class ChannelItemSnapshot
     
     public ChannelItemSnapshot() { }
     
-    public ChannelItemSnapshot(string id, string text, CPrincipal author, DateTime created, long time, string? channelId = null, M2ItemContentDetails? details = null, List<AttachmentInfo>? attachments = null)
+    public ChannelItemSnapshot(string id, string text, CPrincipal author, DateTime created, long time, string? channelId = null, M2ItemContentDetails? details = null, List<AttachmentInfo>? attachments = null, List<EntityMention>? mentions = null)
     {
         Id = id;
         ChannelId = channelId;
@@ -47,6 +47,7 @@ public sealed class ChannelItemSnapshot
         Created = created;
         Time = time;
         Attachments = attachments;
+        Mentions = mentions;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(ChannelItemSnapshot), nameof(Id), "id");
@@ -127,6 +128,15 @@ public sealed class ChannelItemSnapshot
         set => _attachments.SetValue(value);
     }
 
+    private PropertyValue<List<EntityMention>?> _mentions = new PropertyValue<List<EntityMention>?>(nameof(ChannelItemSnapshot), nameof(Mentions), "mentions");
+    
+    [JsonPropertyName("mentions")]
+    public List<EntityMention>? Mentions
+    {
+        get => _mentions.GetValue(InlineErrors);
+        set => _mentions.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -137,6 +147,7 @@ public sealed class ChannelItemSnapshot
         _created.SetAccessPath(parentChainPath, validateHasBeenSet);
         _time.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mentions.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

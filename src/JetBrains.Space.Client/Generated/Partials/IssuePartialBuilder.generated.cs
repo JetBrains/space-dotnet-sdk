@@ -97,6 +97,15 @@ public static class IssuePartialExtensions
     public static Partial<Issue> WithAttachmentsCount(this Partial<Issue> it)
         => it.AddFieldName("attachmentsCount");
     
+    public static Partial<Issue> WithDeletedBy(this Partial<Issue> it)
+        => it.AddFieldName("deletedBy");
+    
+    public static Partial<Issue> WithDeletedBy(this Partial<Issue> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("deletedBy", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<Issue> WithDeletedTime(this Partial<Issue> it)
+        => it.AddFieldName("deletedTime");
+    
     public static Partial<Issue> WithAttachments(this Partial<Issue> it)
         => it.AddFieldName("attachments");
     

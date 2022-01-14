@@ -41,8 +41,8 @@ public interface UnfurlDetails
     public static CallSessionUnfurlDetails CallSession(CallSession session)
         => new CallSessionUnfurlDetails(session: session);
     
-    public static ChannelItemSnapshot ChannelItemSnapshot(string id, string text, CPrincipal author, DateTime created, long time, string? channelId = null, M2ItemContentDetails? details = null, List<AttachmentInfo>? attachments = null)
-        => new ChannelItemSnapshot(id: id, text: text, author: author, created: created, time: time, channelId: channelId, details: details, attachments: attachments);
+    public static ChannelItemSnapshot ChannelItemSnapshot(string id, string text, CPrincipal author, DateTime created, long time, string? channelId = null, M2ItemContentDetails? details = null, List<AttachmentInfo>? attachments = null, List<EntityMention>? mentions = null)
+        => new ChannelItemSnapshot(id: id, text: text, author: author, created: created, time: time, channelId: channelId, details: details, attachments: attachments, mentions: mentions);
     
     public static DocumentHistoryUnfurlDetails DocumentHistory(string document, string title, DateTime? version = null, DateTime? @base = null, DateTime? preview = null)
         => new DocumentHistoryUnfurlDetails(document: document, title: title, version: version, @base: @base, preview: preview);

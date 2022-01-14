@@ -2700,7 +2700,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             }
             
         
-            public async Task SetSpacePersonalizationDataForAProfileAsync(ProfileIdentifier profile, DarkTheme? darkTheme = null, string? themeName = null, Weekday? firstDayOfWeek = null, DraftDocumentType? draftType = null, bool? fontLigaturesEnabled = null, bool? todoFilters = null, string? calendarView = null, bool? emailNotificationsEnabled = null, string? notificationEmail = null, string? preferredLanguage = null, ProjectIdentifier? defaultProject = null, CancellationToken cancellationToken = default)
+            public async Task SetSpacePersonalizationDataForAProfileAsync(ProfileIdentifier profile, DarkTheme? darkTheme = null, string? themeName = null, Weekday? firstDayOfWeek = null, DraftDocumentType? draftType = null, TypographySettings? typographySettings = null, bool? todoFilters = null, string? calendarView = null, bool? emailNotificationsEnabled = null, string? notificationEmail = null, string? preferredLanguage = null, ProjectIdentifier? defaultProject = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -2711,7 +2711,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                         ThemeName = themeName,
                         FirstDayOfWeek = firstDayOfWeek,
                         DraftType = draftType,
-                        IsFontLigaturesEnabled = fontLigaturesEnabled,
+                        TypographySettings = typographySettings,
                         IsTodoFilters = todoFilters,
                         CalendarView = calendarView,
                         IsEmailNotificationsEnabled = emailNotificationsEnabled,

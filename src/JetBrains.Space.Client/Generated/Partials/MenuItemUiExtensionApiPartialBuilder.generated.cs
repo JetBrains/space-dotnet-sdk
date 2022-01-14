@@ -46,8 +46,8 @@ public static class MenuItemUiExtensionApiPartialExtensions
     public static Partial<MenuItemUiExtensionApi> WithDescription(this Partial<MenuItemUiExtensionApi> it)
         => it.AddFieldName("description");
     
-    public static Partial<MenuItemUiExtensionApi> WithUniqueCode(this Partial<MenuItemUiExtensionApi> it)
-        => it.AddFieldName("uniqueCode");
+    public static Partial<MenuItemUiExtensionApi> WithMenuItemUniqueCode(this Partial<MenuItemUiExtensionApi> it)
+        => it.AddFieldName("menuItemUniqueCode");
     
     public static Partial<MenuItemUiExtensionApi> WithVisibilityFilters(this Partial<MenuItemUiExtensionApi> it)
         => it.AddFieldName("visibilityFilters");

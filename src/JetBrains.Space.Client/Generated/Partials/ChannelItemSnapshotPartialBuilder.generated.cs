@@ -64,5 +64,11 @@ public static class ChannelItemSnapshotPartialExtensions
     public static Partial<ChannelItemSnapshot> WithAttachments(this Partial<ChannelItemSnapshot> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
         => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentInfo>(it)));
     
+    public static Partial<ChannelItemSnapshot> WithMentions(this Partial<ChannelItemSnapshot> it)
+        => it.AddFieldName("mentions");
+    
+    public static Partial<ChannelItemSnapshot> WithMentions(this Partial<ChannelItemSnapshot> it, Func<Partial<EntityMention>, Partial<EntityMention>> partialBuilder)
+        => it.AddFieldName("mentions", partialBuilder(new Partial<EntityMention>(it)));
+    
 }
 

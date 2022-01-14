@@ -36,6 +36,9 @@ public abstract class ESPackageRepositorySettings
     [JsonPropertyName("className")]
     public virtual string? ClassName => "ES_PackageRepositorySettings";
     
+    public static ESComposerRepositorySettings ESComposerRepositorySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
+        => new ESComposerRepositorySettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
+    
     public static ESContainerRegistrySettings ESContainerRegistrySettings(bool immutableTags, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
         => new ESContainerRegistrySettings(immutableTags: immutableTags, retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
     

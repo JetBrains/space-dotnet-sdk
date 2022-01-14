@@ -34,19 +34,21 @@ public class ChatsMessagesEditMessagePostRequest
 {
     public ChatsMessagesEditMessagePostRequest() { }
     
-    public ChatsMessagesEditMessagePostRequest(string channel, ChatMessageIdentifier message, ChatMessage content, bool? unfurlLinks = null)
+    public ChatsMessagesEditMessagePostRequest(ChannelIdentifier channel, ChatMessageIdentifier message, ChatMessage content, List<AttachmentIn>? attachments = null, bool? unfurlLinks = null, bool? resolveNames = null)
     {
         Channel = channel;
         Message = message;
         Content = content;
+        Attachments = attachments;
         IsUnfurlLinks = unfurlLinks;
+        IsResolveNames = resolveNames;
     }
     
-    private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Channel), "channel");
+    private PropertyValue<ChannelIdentifier> _channel = new PropertyValue<ChannelIdentifier>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Channel), "channel");
     
     [Required]
     [JsonPropertyName("channel")]
-    public string Channel
+    public ChannelIdentifier Channel
     {
         get => _channel.GetValue(InlineErrors);
         set => _channel.SetValue(value);
@@ -72,6 +74,15 @@ public class ChatsMessagesEditMessagePostRequest
         set => _content.SetValue(value);
     }
 
+    private PropertyValue<List<AttachmentIn>?> _attachments = new PropertyValue<List<AttachmentIn>?>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Attachments), "attachments");
+    
+    [JsonPropertyName("attachments")]
+    public List<AttachmentIn>? Attachments
+    {
+        get => _attachments.GetValue(InlineErrors);
+        set => _attachments.SetValue(value);
+    }
+
     private PropertyValue<bool?> _unfurlLinks = new PropertyValue<bool?>(nameof(ChatsMessagesEditMessagePostRequest), nameof(IsUnfurlLinks), "unfurlLinks");
     
     [JsonPropertyName("unfurlLinks")]
@@ -81,12 +92,23 @@ public class ChatsMessagesEditMessagePostRequest
         set => _unfurlLinks.SetValue(value);
     }
 
+    private PropertyValue<bool?> _resolveNames = new PropertyValue<bool?>(nameof(ChatsMessagesEditMessagePostRequest), nameof(IsResolveNames), "resolveNames");
+    
+    [JsonPropertyName("resolveNames")]
+    public bool? IsResolveNames
+    {
+        get => _resolveNames.GetValue(InlineErrors);
+        set => _resolveNames.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
         _message.SetAccessPath(parentChainPath, validateHasBeenSet);
         _content.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
         _unfurlLinks.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _resolveNames.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

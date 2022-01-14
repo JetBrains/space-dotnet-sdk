@@ -37,9 +37,10 @@ public sealed class M2TextItemContent
     
     public M2TextItemContent() { }
     
-    public M2TextItemContent(bool? markdown = null)
+    public M2TextItemContent(bool? markdown = null, List<EntityMention>? mentions = null)
     {
         IsMarkdown = markdown;
+        Mentions = mentions;
     }
     
     private PropertyValue<bool?> _markdown = new PropertyValue<bool?>(nameof(M2TextItemContent), nameof(IsMarkdown), "markdown");
@@ -51,9 +52,19 @@ public sealed class M2TextItemContent
         set => _markdown.SetValue(value);
     }
 
+    private PropertyValue<List<EntityMention>?> _mentions = new PropertyValue<List<EntityMention>?>(nameof(M2TextItemContent), nameof(Mentions), "mentions");
+    
+    [JsonPropertyName("mentions")]
+    public List<EntityMention>? Mentions
+    {
+        get => _mentions.GetValue(InlineErrors);
+        set => _mentions.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _markdown.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mentions.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

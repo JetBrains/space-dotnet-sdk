@@ -34,7 +34,7 @@ public sealed class Meeting
 {
     public Meeting() { }
     
-    public Meeting(string id, bool archived, string summary, List<TDLocation> locations, List<TDMemberProfile> profiles, List<TDTeam> teams, CalendarEventSpec occurrenceRule, MeetingOrigin origin, MeetingVisibility visibility, MeetingModificationPreference modificationPreference, long etag, bool privateDataSubstituted, bool canModify, bool canDelete, bool canJoin, List<string> externalParticipants, string? description = null, string? conferenceLink = null, MeetingJoiningPreference? joiningPreference = null, MeetingOrganizer? organizer = null, string? linkToExternalSource = null, List<MeetingAttachment>? eventAttachments = null, EventConferenceData? conferenceData = null, M2ChannelRecord? channelRef = null)
+    public Meeting(string id, bool archived, string summary, List<TDLocation> locations, List<TDMemberProfile> profiles, List<TDTeam> teams, CalendarEventSpec occurrenceRule, MeetingOrigin origin, MeetingVisibility visibility, MeetingModificationPreference modificationPreference, long etag, bool privateDataSubstituted, bool canModify, bool canDelete, bool canJoin, List<string> externalParticipants, string? description = null, string? conferenceLink = null, MeetingJoiningPreference? joiningPreference = null, MeetingOrganizer? organizer = null, string? linkToExternalSource = null, List<MeetingAttachment>? eventAttachments = null, EventConferenceData? conferenceData = null, M2ChannelRecord? channelRef = null, EventExternalSource? externalSource = null)
     {
         Id = id;
         IsArchived = archived;
@@ -60,6 +60,7 @@ public sealed class Meeting
         EventAttachments = eventAttachments;
         ConferenceData = conferenceData;
         ChannelRef = channelRef;
+        ExternalSource = externalSource;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(Meeting), nameof(Id), "id");
@@ -153,6 +154,7 @@ public sealed class Meeting
 
     private PropertyValue<string?> _conferenceLink = new PropertyValue<string?>(nameof(Meeting), nameof(ConferenceLink), "conferenceLink");
     
+    [Obsolete("Use conferenceData instead (since 2021-12-21) (will be removed in a future version)")]
     [JsonPropertyName("conferenceLink")]
     public string? ConferenceLink
     {
@@ -260,6 +262,7 @@ public sealed class Meeting
 
     private PropertyValue<string?> _linkToExternalSource = new PropertyValue<string?>(nameof(Meeting), nameof(LinkToExternalSource), "linkToExternalSource");
     
+    [Obsolete("Use externalSource instead (since 2021-12-21) (will be removed in a future version)")]
     [JsonPropertyName("linkToExternalSource")]
     public string? LinkToExternalSource
     {
@@ -294,6 +297,15 @@ public sealed class Meeting
         set => _channelRef.SetValue(value);
     }
 
+    private PropertyValue<EventExternalSource?> _externalSource = new PropertyValue<EventExternalSource?>(nameof(Meeting), nameof(ExternalSource), "externalSource");
+    
+    [JsonPropertyName("externalSource")]
+    public EventExternalSource? ExternalSource
+    {
+        get => _externalSource.GetValue(InlineErrors);
+        set => _externalSource.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -320,6 +332,7 @@ public sealed class Meeting
         _eventAttachments.SetAccessPath(parentChainPath, validateHasBeenSet);
         _conferenceData.SetAccessPath(parentChainPath, validateHasBeenSet);
         _channelRef.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalSource.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

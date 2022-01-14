@@ -52,8 +52,11 @@ public static class TeamDirectoryProfilesForProfileSettingsPatchRequestPartialEx
     public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithDraftType(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
         => it.AddFieldName("draftType", partialBuilder(new Partial<DraftDocumentType>(it)));
     
-    public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithIsFontLigaturesEnabled(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)
-        => it.AddFieldName("fontLigaturesEnabled");
+    public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithTypographySettings(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)
+        => it.AddFieldName("typographySettings");
+    
+    public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithTypographySettings(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it, Func<Partial<TypographySettings>, Partial<TypographySettings>> partialBuilder)
+        => it.AddFieldName("typographySettings", partialBuilder(new Partial<TypographySettings>(it)));
     
     public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithIsTodoFilters(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)
         => it.AddFieldName("todoFilters");

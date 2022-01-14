@@ -34,17 +34,17 @@ public class ChatsMessagesDeleteMessagePostRequest
 {
     public ChatsMessagesDeleteMessagePostRequest() { }
     
-    public ChatsMessagesDeleteMessagePostRequest(string channel, ChatMessageIdentifier id)
+    public ChatsMessagesDeleteMessagePostRequest(ChannelIdentifier channel, ChatMessageIdentifier id)
     {
         Channel = channel;
         Id = id;
     }
     
-    private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatsMessagesDeleteMessagePostRequest), nameof(Channel), "channel");
+    private PropertyValue<ChannelIdentifier> _channel = new PropertyValue<ChannelIdentifier>(nameof(ChatsMessagesDeleteMessagePostRequest), nameof(Channel), "channel");
     
     [Required]
     [JsonPropertyName("channel")]
-    public string Channel
+    public ChannelIdentifier Channel
     {
         get => _channel.GetValue(InlineErrors);
         set => _channel.SetValue(value);

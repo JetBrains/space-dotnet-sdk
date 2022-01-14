@@ -32,8 +32,8 @@ namespace JetBrains.Space.Client;
 public interface M2ItemContentDetails
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static CodeSuggestedEditHeadContentDetails CodeSuggestedEditHeadContentDetails(CodeDiscussionRecord codeDiscussion, string text)
-        => new CodeSuggestedEditHeadContentDetails(codeDiscussion: codeDiscussion, text: text);
+    public static CodeSuggestedEditHeadContentDetails CodeSuggestedEditHeadContentDetails(CodeDiscussionRecord codeDiscussion, bool? accepted = null)
+        => new CodeSuggestedEditHeadContentDetails(codeDiscussion: codeDiscussion, accepted: accepted);
     
     public static IssueCodeChangesMCExtension IssueCodeChangesMCExtension()
         => new IssueCodeChangesMCExtension();
@@ -95,8 +95,8 @@ public interface M2ItemContentDetails
     public static M2TaskExecutionSucceedItemContent M2TaskExecutionSucceedItemContent(string taskExecutionId, string taskExecutionName, string repoName, string branchName, string commit, string shortCommitMessage, ProjectKey project, long finishDateTime, string triggerInfo, string details)
         => new M2TaskExecutionSucceedItemContent(taskExecutionId: taskExecutionId, taskExecutionName: taskExecutionName, repoName: repoName, branchName: branchName, commit: commit, shortCommitMessage: shortCommitMessage, project: project, finishDateTime: finishDateTime, triggerInfo: triggerInfo, details: details);
     
-    public static M2TextItemContent M2TextItemContent(bool? markdown = null)
-        => new M2TextItemContent(markdown: markdown);
+    public static M2TextItemContent M2TextItemContent(bool? markdown = null, List<EntityMention>? mentions = null)
+        => new M2TextItemContent(markdown: markdown, mentions: mentions);
     
     public static M2UserLeftChannel M2UserLeftChannel()
         => new M2UserLeftChannel();

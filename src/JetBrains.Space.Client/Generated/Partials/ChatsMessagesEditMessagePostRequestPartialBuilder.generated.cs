@@ -34,6 +34,9 @@ public static class ChatsMessagesEditMessagePostRequestPartialExtensions
     public static Partial<ChatsMessagesEditMessagePostRequest> WithChannel(this Partial<ChatsMessagesEditMessagePostRequest> it)
         => it.AddFieldName("channel");
     
+    public static Partial<ChatsMessagesEditMessagePostRequest> WithChannel(this Partial<ChatsMessagesEditMessagePostRequest> it, Func<Partial<ChannelIdentifier>, Partial<ChannelIdentifier>> partialBuilder)
+        => it.AddFieldName("channel", partialBuilder(new Partial<ChannelIdentifier>(it)));
+    
     public static Partial<ChatsMessagesEditMessagePostRequest> WithMessage(this Partial<ChatsMessagesEditMessagePostRequest> it)
         => it.AddFieldName("message");
     
@@ -46,8 +49,17 @@ public static class ChatsMessagesEditMessagePostRequestPartialExtensions
     public static Partial<ChatsMessagesEditMessagePostRequest> WithContent(this Partial<ChatsMessagesEditMessagePostRequest> it, Func<Partial<ChatMessage>, Partial<ChatMessage>> partialBuilder)
         => it.AddFieldName("content", partialBuilder(new Partial<ChatMessage>(it)));
     
+    public static Partial<ChatsMessagesEditMessagePostRequest> WithAttachments(this Partial<ChatsMessagesEditMessagePostRequest> it)
+        => it.AddFieldName("attachments");
+    
+    public static Partial<ChatsMessagesEditMessagePostRequest> WithAttachments(this Partial<ChatsMessagesEditMessagePostRequest> it, Func<Partial<AttachmentIn>, Partial<AttachmentIn>> partialBuilder)
+        => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentIn>(it)));
+    
     public static Partial<ChatsMessagesEditMessagePostRequest> WithIsUnfurlLinks(this Partial<ChatsMessagesEditMessagePostRequest> it)
         => it.AddFieldName("unfurlLinks");
+    
+    public static Partial<ChatsMessagesEditMessagePostRequest> WithIsResolveNames(this Partial<ChatsMessagesEditMessagePostRequest> it)
+        => it.AddFieldName("resolveNames");
     
 }
 

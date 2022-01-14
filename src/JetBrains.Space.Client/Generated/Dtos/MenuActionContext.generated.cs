@@ -38,17 +38,5 @@ public interface MenuActionContext
     public static IssueMenuActionContext Issue(ProjectIdentifier projectIdentifier, IssueIdentifier issueIdentifier)
         => new IssueMenuActionContext(projectIdentifier: projectIdentifier, issueIdentifier: issueIdentifier);
     
-    public static LocationMenuActionContext Location(TDLocation location)
-        => new LocationMenuActionContext(location: location);
-    
-    public static ProjectMenuActionContext Project(PRProject project)
-        => new ProjectMenuActionContext(project: project);
-    
-    public static RepositoryMenuActionContext Repository(PRProject project, string repo)
-        => new RepositoryMenuActionContext(project: project, repo: repo);
-    
-    public static TeamMenuActionContext Team(TDTeam team)
-        => new TeamMenuActionContext(team: team);
-    
 }
 

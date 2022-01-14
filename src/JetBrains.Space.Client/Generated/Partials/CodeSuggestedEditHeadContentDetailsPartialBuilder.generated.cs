@@ -37,8 +37,8 @@ public static class CodeSuggestedEditHeadContentDetailsPartialExtensions
     public static Partial<CodeSuggestedEditHeadContentDetails> WithCodeDiscussion(this Partial<CodeSuggestedEditHeadContentDetails> it, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>> partialBuilder)
         => it.AddFieldName("codeDiscussion", partialBuilder(new Partial<CodeDiscussionRecord>(it)));
     
-    public static Partial<CodeSuggestedEditHeadContentDetails> WithText(this Partial<CodeSuggestedEditHeadContentDetails> it)
-        => it.AddFieldName("text");
+    public static Partial<CodeSuggestedEditHeadContentDetails> WithIsAccepted(this Partial<CodeSuggestedEditHeadContentDetails> it)
+        => it.AddFieldName("accepted");
     
 }
 

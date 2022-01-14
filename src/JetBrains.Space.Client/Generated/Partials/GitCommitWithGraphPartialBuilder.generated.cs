@@ -58,6 +58,9 @@ public static class GitCommitWithGraphPartialExtensions
     public static Partial<GitCommitWithGraph> WithDeployments(this Partial<GitCommitWithGraph> it)
         => it.AddFieldName("deployments");
     
+    public static Partial<GitCommitWithGraph> WithDeployments(this Partial<GitCommitWithGraph> it, Func<Partial<Pair<string, string>>, Partial<Pair<string, string>>> partialBuilder)
+        => it.AddFieldName("deployments", partialBuilder(new Partial<Pair<string, string>>(it)));
+    
     public static Partial<GitCommitWithGraph> WithLayout(this Partial<GitCommitWithGraph> it)
         => it.AddFieldName("layout");
     

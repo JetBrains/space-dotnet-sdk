@@ -38,17 +38,5 @@ public interface MenuIdentifier
     public static IssueMenuIdentifier Issue()
         => new IssueMenuIdentifier();
     
-    public static LocationMenuIdentifier Location()
-        => new LocationMenuIdentifier();
-    
-    public static NavigationBarMenuIdentifier NavigationBar()
-        => new NavigationBarMenuIdentifier();
-    
-    public static ProfileSidebarMenuIdentifier ProfileSidebar()
-        => new ProfileSidebarMenuIdentifier();
-    
-    public static TeamMenuIdentifier Team()
-        => new TeamMenuIdentifier();
-    
 }
 

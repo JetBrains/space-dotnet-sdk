@@ -49,9 +49,33 @@ public partial class ChatClient : ISpaceClient
             _connection = connection;
         }
         
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Add new channels</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<M2ChannelRecord> AddNewChannelAsync(string name, string description, bool @private, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<M2ChannelRecord>()) : Partial<M2ChannelRecord>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ChatsChannelsPostRequest, M2ChannelRecord>("POST", $"api/http/chats/channels{queryParameters.ToQueryString()}", 
+                new ChatsChannelsPostRequest
+                { 
+                    Name = name,
+                    Description = description,
+                    IsPrivate = @private,
+                }, cancellationToken);
+        }
+        
+    
         /// <summary>
         /// Create or get a direct messages channel with a profile
         /// </summary>
+        [Obsolete("Use POST chats/channels/{channel} (since 2021-12-13) (will be removed in a future version)")]
         public async Task<M2ChannelRecord> GetOrCreateDirectMessagesChannelAsync(string profile, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -80,21 +104,17 @@ public partial class ChatClient : ISpaceClient
         }
         
     
-        public async Task<List<string>> ImportMessageHistoryAsync(string channel, List<MessageForImport> messages, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            
-            return await _connection.RequestResourceAsync<ChatsChannelsForChannelImportPostRequest, List<string>>("POST", $"api/http/chats/channels/{channel}/import{queryParameters.ToQueryString()}", 
-                new ChatsChannelsForChannelImportPostRequest
-                { 
-                    Messages = messages,
-                }, cancellationToken);
-        }
-        
-    
         /// <summary>
-        /// Restore an archived channel and allow new messages to be added again
+        /// Restore an archived channel and allow new messages to be added again.
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Manage channel</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task RestoreArchivedChannelAsync(ChannelIdentifier channel, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -103,6 +123,14 @@ public partial class ChatClient : ISpaceClient
         }
         
     
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Browse channels</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<Batch<AllChannelsListEntry>> ListAllChannelsAsync(string query, string? skip = null, int? top = 100, string? quickFilter = null, string? sortColumn = null, ColumnSortOrder? sortOrder = ColumnSortOrder.ASC, Func<Partial<Batch<AllChannelsListEntry>>, Partial<Batch<AllChannelsListEntry>>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -118,12 +146,45 @@ public partial class ChatClient : ISpaceClient
         }
         
         
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Browse channels</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public IAsyncEnumerable<AllChannelsListEntry> ListAllChannelsAsyncEnumerable(string query, string? skip = null, int? top = 100, string? quickFilter = null, string? sortColumn = null, ColumnSortOrder? sortOrder = ColumnSortOrder.ASC, Func<Partial<AllChannelsListEntry>, Partial<AllChannelsListEntry>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListAllChannelsAsync(query: query, top: top, quickFilter: quickFilter, sortColumn: sortColumn, sortOrder: sortOrder, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AllChannelsListEntry>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AllChannelsListEntry>.Default())), skip, cancellationToken);
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View channel info</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<M2ChannelRecord> GetChannelAsync(ChannelIdentifier channel, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<M2ChannelRecord>()) : Partial<M2ChannelRecord>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<M2ChannelRecord>("GET", $"api/http/chats/channels/{channel}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
         /// <summary>
         /// Delete a channel. No one will be able to view this channel or its threads. This action cannot be undone.
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Manage channel</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task DeleteChannelAsync(ChannelIdentifier channel, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -135,6 +196,14 @@ public partial class ChatClient : ISpaceClient
         /// <summary>
         /// Archive a channel and reject new messages being added. It is still possible to view messages from an archived channel. It is possible to restore the channel later.
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Manage channel</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task ArchiveChannelAsync(ChannelIdentifier channel, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -142,6 +211,426 @@ public partial class ChatClient : ISpaceClient
             await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channel}/archive{queryParameters.ToQueryString()}", cancellationToken);
         }
         
+    
+        public ConversationClient Conversations => new ConversationClient(_connection);
+        
+        public partial class ConversationClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public ConversationClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Start new conversations</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<M2ChannelRecord> CreateConversationAsync(List<string> profileIds, string? subject = null, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<M2ChannelRecord>()) : Partial<M2ChannelRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ChatsChannelsConversationsPostRequest, M2ChannelRecord>("POST", $"api/http/chats/channels/conversations{queryParameters.ToQueryString()}", 
+                    new ChatsChannelsConversationsPostRequest
+                    { 
+                        ProfileIds = profileIds,
+                        Subject = subject,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Manage channel</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<M2ChannelRecord> ConvertConversationToPrivateChannelAsync(ChannelIdentifier channel, string channelName, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<M2ChannelRecord>()) : Partial<M2ChannelRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ChatsChannelsConversationsForChannelConvertPostRequest, M2ChannelRecord>("POST", $"api/http/chats/channels/conversations/{channel}/convert{queryParameters.ToQueryString()}", 
+                    new ChatsChannelsConversationsForChannelConvertPostRequest
+                    { 
+                        ChannelName = channelName,
+                    }, cancellationToken);
+            }
+            
+        
+            public SubjectClient Subject => new SubjectClient(_connection);
+            
+            public partial class SubjectClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public SubjectClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Update channel info</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task ChangeConversationSubjectAsync(ChannelIdentifier channel, string subject, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/chats/channels/conversations/{channel}/subject{queryParameters.ToQueryString()}", 
+                        new ChatsChannelsConversationsForChannelSubjectPatchRequest
+                        { 
+                            Subject = subject,
+                        }, cancellationToken);
+                }
+                
+            
+            }
+        
+        }
+    
+        public AdministratorClient Administrator => new AdministratorClient(_connection);
+        
+        public partial class AdministratorClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public AdministratorClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View channel participants</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<CPrincipal> GetChannelAdministratorAsync(ChannelIdentifier channel, Func<Partial<CPrincipal>, Partial<CPrincipal>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<CPrincipal>()) : Partial<CPrincipal>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<CPrincipal>("GET", $"api/http/chats/channels/{channel}/administrator{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Manage channel</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task AssignChannelAdministratorAsync(ChannelIdentifier channel, ProfileIdentifier profile, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/chats/channels/{channel}/administrator{queryParameters.ToQueryString()}", 
+                    new ChatsChannelsForChannelAdministratorPatchRequest
+                    { 
+                        Profile = profile,
+                    }, cancellationToken);
+            }
+            
+        
+        }
+    
+        public AttachmentClient Attachments => new AttachmentClient(_connection);
+        
+        public partial class AttachmentClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public AttachmentClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View messages</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Batch<ChannelInfoAttachment>> ListAttachmentsInChannelAsync(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<Batch<ChannelInfoAttachment>>, Partial<Batch<ChannelInfoAttachment>>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ChannelInfoAttachment>>()) : Partial<Batch<ChannelInfoAttachment>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<ChannelInfoAttachment>>("GET", $"api/http/chats/channels/{channel}/attachments{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View messages</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public IAsyncEnumerable<ChannelInfoAttachment> ListAttachmentsInChannelAsyncEnumerable(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<ChannelInfoAttachment>, Partial<ChannelInfoAttachment>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListAttachmentsInChannelAsync(channel: channel, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ChannelInfoAttachment>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ChannelInfoAttachment>.Default())), skip, cancellationToken);
+        
+            public FileClient Files => new FileClient(_connection);
+            
+            public partial class FileClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public FileClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View messages</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<Batch<ChannelInfoAttachment>> ListFileAttachmentsInChannelAsync(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<Batch<ChannelInfoAttachment>>, Partial<Batch<ChannelInfoAttachment>>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ChannelInfoAttachment>>()) : Partial<Batch<ChannelInfoAttachment>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<ChannelInfoAttachment>>("GET", $"api/http/chats/channels/{channel}/attachments/files{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View messages</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public IAsyncEnumerable<ChannelInfoAttachment> ListFileAttachmentsInChannelAsyncEnumerable(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<ChannelInfoAttachment>, Partial<ChannelInfoAttachment>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListFileAttachmentsInChannelAsync(channel: channel, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ChannelInfoAttachment>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ChannelInfoAttachment>.Default())), skip, cancellationToken);
+            
+            }
+        
+            public ImageClient Images => new ImageClient(_connection);
+            
+            public partial class ImageClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public ImageClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View messages</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<Batch<ChannelInfoAttachment>> ListImagesInChannelAsync(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<Batch<ChannelInfoAttachment>>, Partial<Batch<ChannelInfoAttachment>>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ChannelInfoAttachment>>()) : Partial<Batch<ChannelInfoAttachment>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<ChannelInfoAttachment>>("GET", $"api/http/chats/channels/{channel}/attachments/images{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View messages</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public IAsyncEnumerable<ChannelInfoAttachment> ListImagesInChannelAsyncEnumerable(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<ChannelInfoAttachment>, Partial<ChannelInfoAttachment>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListImagesInChannelAsync(channel: channel, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ChannelInfoAttachment>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ChannelInfoAttachment>.Default())), skip, cancellationToken);
+            
+            }
+        
+            public LinkClient Links => new LinkClient(_connection);
+            
+            public partial class LinkClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public LinkClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View messages</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<Batch<ChannelInfoAttachment>> ListLinksInChannelAsync(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<Batch<ChannelInfoAttachment>>, Partial<Batch<ChannelInfoAttachment>>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ChannelInfoAttachment>>()) : Partial<Batch<ChannelInfoAttachment>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<ChannelInfoAttachment>>("GET", $"api/http/chats/channels/{channel}/attachments/links{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View messages</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public IAsyncEnumerable<ChannelInfoAttachment> ListLinksInChannelAsyncEnumerable(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<ChannelInfoAttachment>, Partial<ChannelInfoAttachment>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListLinksInChannelAsync(channel: channel, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ChannelInfoAttachment>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ChannelInfoAttachment>.Default())), skip, cancellationToken);
+            
+            }
+        
+            public VideoClient Videos => new VideoClient(_connection);
+            
+            public partial class VideoClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public VideoClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View messages</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<Batch<ChannelInfoAttachment>> ListVideosInChannelAsync(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<Batch<ChannelInfoAttachment>>, Partial<Batch<ChannelInfoAttachment>>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ChannelInfoAttachment>>()) : Partial<Batch<ChannelInfoAttachment>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<ChannelInfoAttachment>>("GET", $"api/http/chats/channels/{channel}/attachments/videos{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View messages</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public IAsyncEnumerable<ChannelInfoAttachment> ListVideosInChannelAsyncEnumerable(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<ChannelInfoAttachment>, Partial<ChannelInfoAttachment>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListVideosInChannelAsync(channel: channel, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ChannelInfoAttachment>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ChannelInfoAttachment>.Default())), skip, cancellationToken);
+            
+            }
+        
+        }
+    
+        public DescriptionClient Description => new DescriptionClient(_connection);
+        
+        public partial class DescriptionClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public DescriptionClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Update channel info</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task ChangeChannelDescriptionAsync(ChannelIdentifier channel, string description, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/chats/channels/{channel}/description{queryParameters.ToQueryString()}", 
+                    new ChatsChannelsForChannelDescriptionPatchRequest
+                    { 
+                        Description = description,
+                    }, cancellationToken);
+            }
+            
+        
+        }
+    
+        public IconClient Icon => new IconClient(_connection);
+        
+        public partial class IconClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public IconClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Update channel info</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task ChangeChannelIconAsync(ChannelIdentifier channel, string? icon = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/chats/channels/{channel}/icon{queryParameters.ToQueryString()}", 
+                    new ChatsChannelsForChannelIconPatchRequest
+                    { 
+                        Icon = icon,
+                    }, cancellationToken);
+            }
+            
+        
+        }
     
         public MessageClient Messages => new MessageClient(_connection);
         
@@ -157,6 +646,18 @@ public partial class ChatClient : ISpaceClient
             /// <summary>
             /// Send a message to a channel. Message text is a string.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Post messages</term>
+            /// </item>
+            /// <item>
+            /// <term>Post messages in threads</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            [Obsolete("Use POST chats/messages/send-message (since 2020-01-17) (will be removed in a future version)")]
             public async Task<ChannelItemRecord> SendTextMessageAsync(string channel, string text, string? temporaryId = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -170,6 +671,214 @@ public partial class ChatClient : ISpaceClient
                     }, cancellationToken);
             }
             
+        
+        }
+    
+        public NameClient Name => new NameClient(_connection);
+        
+        public partial class NameClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public NameClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Manage channel</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task RenameChannelAsync(ChannelIdentifier channel, string name, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/chats/channels/{channel}/name{queryParameters.ToQueryString()}", 
+                    new ChatsChannelsForChannelNamePatchRequest
+                    { 
+                        Name = name,
+                    }, cancellationToken);
+            }
+            
+        
+        }
+    
+        public SubscriberClient Subscribers => new SubscriberClient(_connection);
+        
+        public partial class SubscriberClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public SubscriberClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public TeamClient Teams => new TeamClient(_connection);
+            
+            public partial class TeamClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public TeamClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Add members or teams to participant list</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task AddTeamsToChannelAsync(ChannelIdentifier channel, List<TeamIdentifier> teams, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channel}/subscribers/teams{queryParameters.ToQueryString()}", 
+                        new ChatsChannelsForChannelSubscribersTeamsPostRequest
+                        { 
+                            Teams = teams,
+                        }, cancellationToken);
+                }
+                
+            
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View channel participants</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<Batch<TDTeam>> ListTeamsSubscribedToChannelAsync(ChannelIdentifier channel, string query, string? skip = null, int? top = 100, Func<Partial<Batch<TDTeam>>, Partial<Batch<TDTeam>>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("query", query);
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDTeam>>()) : Partial<Batch<TDTeam>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<TDTeam>>("GET", $"api/http/chats/channels/{channel}/subscribers/teams{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View channel participants</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public IAsyncEnumerable<TDTeam> ListTeamsSubscribedToChannelAsyncEnumerable(ChannelIdentifier channel, string query, string? skip = null, int? top = 100, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListTeamsSubscribedToChannelAsync(channel: channel, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDTeam>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDTeam>.Default())), skip, cancellationToken);
+            
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Remove members or teams from participant list</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task RemoveTeamsFromChannelAsync(ChannelIdentifier channel, List<TeamIdentifier> teams, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("teams", teams.Select(it => it.ToString()));
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channel}/subscribers/teams{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+            public UserClient Users => new UserClient(_connection);
+            
+            public partial class UserClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public UserClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Add members or teams to participant list</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task AddUsersToChannelAsync(ChannelIdentifier channel, List<ProfileIdentifier> profiles, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channel}/subscribers/users{queryParameters.ToQueryString()}", 
+                        new ChatsChannelsForChannelSubscribersUsersPostRequest
+                        { 
+                            Profiles = profiles,
+                        }, cancellationToken);
+                }
+                
+            
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View channel participants</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<Batch<TDMemberProfile>> ListUsersSubscribedToChannelAsync(ChannelIdentifier channel, string query, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("query", query);
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/chats/channels/{channel}/subscribers/users{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View channel participants</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public IAsyncEnumerable<TDMemberProfile> ListUsersSubscribedToChannelAsyncEnumerable(ChannelIdentifier channel, string query, string? skip = null, int? top = 100, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListUsersSubscribedToChannelAsync(channel: channel, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
+            
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Remove members or teams from participant list</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task RemoveUsersFromChannelAsync(ChannelIdentifier channel, List<ProfileIdentifier> profiles, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("profiles", profiles.Select(it => it.ToString()));
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channel}/subscribers/users{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
         
         }
     
@@ -187,9 +896,20 @@ public partial class ChatClient : ISpaceClient
         }
         
         /// <summary>
-        /// Delete a message from a channel
+        /// Delete a message from a channel.
         /// </summary>
-        public async Task DeleteMessageAsync(string channel, ChatMessageIdentifier id, CancellationToken cancellationToken = default)
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Post messages</term>
+        /// </item>
+        /// <item>
+        /// <term>Post messages in threads</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task DeleteMessageAsync(ChannelIdentifier channel, ChatMessageIdentifier id, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -205,7 +925,18 @@ public partial class ChatClient : ISpaceClient
         /// <summary>
         /// Edit an existing message. Message content can be a string, or a block with one or several sections of information.
         /// </summary>
-        public async Task EditMessageAsync(string channel, ChatMessageIdentifier message, ChatMessage content, bool? unfurlLinks = null, CancellationToken cancellationToken = default)
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Post messages</term>
+        /// </item>
+        /// <item>
+        /// <term>Post messages in threads</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task EditMessageAsync(ChannelIdentifier channel, ChatMessageIdentifier message, ChatMessage content, List<AttachmentIn>? attachments = null, bool? unfurlLinks = null, bool? resolveNames = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -215,11 +946,24 @@ public partial class ChatClient : ISpaceClient
                     Channel = channel,
                     Message = message,
                     Content = content,
+                    Attachments = attachments,
                     IsUnfurlLinks = unfurlLinks,
+                    IsResolveNames = resolveNames,
                 }, cancellationToken);
         }
         
     
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Post messages</term>
+        /// </item>
+        /// <item>
+        /// <term>Post messages in threads</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         [Obsolete("Use POST chats/messages/edit-message (since 2020-06-06) (will be removed in a future version)")]
         public async Task EditTextMessageAsync(string channelId, string text, string messageId, CancellationToken cancellationToken = default)
         {
@@ -235,7 +979,18 @@ public partial class ChatClient : ISpaceClient
         }
         
     
-        [Obsolete("Use POST chats/channels/{channel}/messages (since 2020-01-17) (will be removed in a future version)")]
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Post messages</term>
+        /// </item>
+        /// <item>
+        /// <term>Post messages in threads</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        [Obsolete("Use POST chats/messages/send-message (since 2020-01-17) (will be removed in a future version)")]
         public async Task<ChannelItemRecord> SendTextMessageAsync(string channel, string text, bool pending = false, string? temporaryId = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -253,9 +1008,20 @@ public partial class ChatClient : ISpaceClient
         
     
         /// <summary>
-        /// Send a message to a recipient, such as a channel, member, issue, code review, ... Message content can be a string, or a block with one or several sections of information.
+        /// Send a message to a channel, thread, member, issue, code review, etc. Message content can be a string, or a block with one or several sections of information.
         /// </summary>
-        public async Task<ChannelItemRecord> SendMessageAsync(MessageRecipient recipient, ChatMessage content, bool? unfurlLinks = null, List<AttachmentIn>? attachments = null, string? externalId = null, bool? resolveNames = null, bool? pending = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Post messages</term>
+        /// </item>
+        /// <item>
+        /// <term>Post messages in threads</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<ChannelItemRecord> SendMessageAsync(ChatMessage content, MessageRecipient? recipient = null, List<AttachmentIn>? attachments = null, bool? unfurlLinks = null, string? externalId = null, bool? resolveNames = null, bool? pending = null, ChannelIdentifier? channel = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ChannelItemRecord>()) : Partial<ChannelItemRecord>.Default()).ToString());
@@ -265,14 +1031,143 @@ public partial class ChatClient : ISpaceClient
                 { 
                     Recipient = recipient,
                     Content = content,
-                    IsUnfurlLinks = unfurlLinks,
                     Attachments = attachments,
+                    IsUnfurlLinks = unfurlLinks,
                     ExternalId = externalId,
                     IsResolveNames = resolveNames,
                     IsPending = pending,
+                    Channel = channel,
                 }, cancellationToken);
         }
         
+    
+        /// <summary>
+        /// Retrieve a batch of messages from a channel. Messages are divided into batches by providing `sorting`, `startFromDate` and `batchSize` parameters. If the retrieved number of messages is less than `batchSize`, there are currently no more messages to return. Return data also contains next value for `startFromDate` as well as the `orgLimitReached` flag indicating whether part of messages could not be retrieved because of organization plan limitation.
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View messages</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<GetMessagesResponse> GetChannelMessagesAsync(ChannelIdentifier channel, MessagesSorting sorting, int batchSize, DateTime? startFromDate = null, Func<Partial<GetMessagesResponse>, Partial<GetMessagesResponse>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("channel", channel.ToString());
+            queryParameters.Append("sorting", sorting.ToEnumString());
+            if (startFromDate != null) queryParameters.Append("startFromDate", startFromDate?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
+            queryParameters.Append("batchSize", batchSize.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<GetMessagesResponse>()) : Partial<GetMessagesResponse>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<GetMessagesResponse>("GET", $"api/http/chats/messages{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View messages</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<ChannelItemRecord> GetMessageAsync(ChatMessageIdentifier message, ChannelIdentifier channel, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("channel", channel.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ChannelItemRecord>()) : Partial<ChannelItemRecord>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ChannelItemRecord>("GET", $"api/http/chats/messages/{message}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Pin or unpin messages</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task PinMessageAsync(ChannelIdentifier channel, ChatMessageIdentifier message, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PATCH", $"api/http/chats/messages/pin{queryParameters.ToQueryString()}", 
+                new ChatsMessagesPinPatchRequest
+                { 
+                    Channel = channel,
+                    Message = message,
+                }, cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Pin or unpin messages</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task UnpinMessageAsync(ChannelIdentifier channel, ChatMessageIdentifier message, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PATCH", $"api/http/chats/messages/unpin{queryParameters.ToQueryString()}", 
+                new ChatsMessagesUnpinPatchRequest
+                { 
+                    Channel = channel,
+                    Message = message,
+                }, cancellationToken);
+        }
+        
+    
+        public PinnedMessageClient PinnedMessages => new PinnedMessageClient(_connection);
+        
+        public partial class PinnedMessageClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public PinnedMessageClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View messages</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Batch<ChannelItemRecord>> ListPinnedMessagesInChannelAsync(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<Batch<ChannelItemRecord>>, Partial<Batch<ChannelItemRecord>>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("channel", channel.ToString());
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ChannelItemRecord>>()) : Partial<Batch<ChannelItemRecord>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<ChannelItemRecord>>("GET", $"api/http/chats/messages/pinned-messages{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View messages</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public IAsyncEnumerable<ChannelItemRecord> ListPinnedMessagesInChannelAsyncEnumerable(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListPinnedMessagesInChannelAsync(channel: channel, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ChannelItemRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ChannelItemRecord>.Default())), skip, cancellationToken);
+        
+        }
     
     }
 

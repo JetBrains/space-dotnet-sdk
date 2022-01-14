@@ -34,7 +34,7 @@ public sealed class ChannelItemRecord
 {
     public ChannelItemRecord() { }
     
-    public ChannelItemRecord(string text, CPrincipal author, DateTime created, long time, string id, bool archived, List<Issue> issues, M2ItemContentDetails? details = null, AllReactionsToItemRecord? reactions = null, M2ChannelRecord? thread = null, ChannelItemRecord? projectedItem = null, List<AttachmentInfo>? attachments = null, bool? pending = null, DateTime? edited = null, bool? pinned = null, List<CPrincipal>? suggestedParticipants = null)
+    public ChannelItemRecord(string text, CPrincipal author, DateTime created, long time, string id, bool archived, List<Issue> issues, M2ItemContentDetails? details = null, AllReactionsToItemRecord? reactions = null, M2ChannelRecord? thread = null, ChannelItemRecord? projectedItem = null, List<AttachmentInfo>? attachments = null, bool? pending = null, DateTime? edited = null, bool? pinned = null, List<CPrincipal>? suggestedParticipants = null, List<EntityMention>? mentions = null, string? channelId = null)
     {
         Text = text;
         Details = details;
@@ -51,6 +51,8 @@ public sealed class ChannelItemRecord
         Edited = edited;
         IsPinned = pinned;
         SuggestedParticipants = suggestedParticipants;
+        Mentions = mentions;
+        ChannelId = channelId;
         Issues = issues;
     }
     
@@ -197,6 +199,24 @@ public sealed class ChannelItemRecord
         set => _suggestedParticipants.SetValue(value);
     }
 
+    private PropertyValue<List<EntityMention>?> _mentions = new PropertyValue<List<EntityMention>?>(nameof(ChannelItemRecord), nameof(Mentions), "mentions");
+    
+    [JsonPropertyName("mentions")]
+    public List<EntityMention>? Mentions
+    {
+        get => _mentions.GetValue(InlineErrors);
+        set => _mentions.SetValue(value);
+    }
+
+    private PropertyValue<string?> _channelId = new PropertyValue<string?>(nameof(ChannelItemRecord), nameof(ChannelId), "channelId");
+    
+    [JsonPropertyName("channelId")]
+    public string? ChannelId
+    {
+        get => _channelId.GetValue(InlineErrors);
+        set => _channelId.SetValue(value);
+    }
+
     private PropertyValue<List<Issue>> _issues = new PropertyValue<List<Issue>>(nameof(ChannelItemRecord), nameof(Issues), "issues", new List<Issue>());
     
     [Required]
@@ -224,6 +244,8 @@ public sealed class ChannelItemRecord
         _edited.SetAccessPath(parentChainPath, validateHasBeenSet);
         _pinned.SetAccessPath(parentChainPath, validateHasBeenSet);
         _suggestedParticipants.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mentions.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _issues.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

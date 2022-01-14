@@ -43,14 +43,14 @@ public static class ChatsMessagesSendMessagePostRequestPartialExtensions
     public static Partial<ChatsMessagesSendMessagePostRequest> WithContent(this Partial<ChatsMessagesSendMessagePostRequest> it, Func<Partial<ChatMessage>, Partial<ChatMessage>> partialBuilder)
         => it.AddFieldName("content", partialBuilder(new Partial<ChatMessage>(it)));
     
-    public static Partial<ChatsMessagesSendMessagePostRequest> WithIsUnfurlLinks(this Partial<ChatsMessagesSendMessagePostRequest> it)
-        => it.AddFieldName("unfurlLinks");
-    
     public static Partial<ChatsMessagesSendMessagePostRequest> WithAttachments(this Partial<ChatsMessagesSendMessagePostRequest> it)
         => it.AddFieldName("attachments");
     
     public static Partial<ChatsMessagesSendMessagePostRequest> WithAttachments(this Partial<ChatsMessagesSendMessagePostRequest> it, Func<Partial<AttachmentIn>, Partial<AttachmentIn>> partialBuilder)
         => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentIn>(it)));
+    
+    public static Partial<ChatsMessagesSendMessagePostRequest> WithIsUnfurlLinks(this Partial<ChatsMessagesSendMessagePostRequest> it)
+        => it.AddFieldName("unfurlLinks");
     
     public static Partial<ChatsMessagesSendMessagePostRequest> WithExternalId(this Partial<ChatsMessagesSendMessagePostRequest> it)
         => it.AddFieldName("externalId");
@@ -60,6 +60,12 @@ public static class ChatsMessagesSendMessagePostRequestPartialExtensions
     
     public static Partial<ChatsMessagesSendMessagePostRequest> WithIsPending(this Partial<ChatsMessagesSendMessagePostRequest> it)
         => it.AddFieldName("pending");
+    
+    public static Partial<ChatsMessagesSendMessagePostRequest> WithChannel(this Partial<ChatsMessagesSendMessagePostRequest> it)
+        => it.AddFieldName("channel");
+    
+    public static Partial<ChatsMessagesSendMessagePostRequest> WithChannel(this Partial<ChatsMessagesSendMessagePostRequest> it, Func<Partial<ChannelIdentifier>, Partial<ChannelIdentifier>> partialBuilder)
+        => it.AddFieldName("channel", partialBuilder(new Partial<ChannelIdentifier>(it)));
     
 }
 

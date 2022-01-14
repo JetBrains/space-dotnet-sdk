@@ -853,6 +853,26 @@ public partial class ProjectClient : ISpaceClient
             }
             
         
+            /// <summary>
+            /// Delete an existing board. This operation can be performed by board owners or other members who are granted permission to manage boards in a project.
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Manage boards</term>
+            /// <description>Update issue board settings and delete issue boards</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task DeleteBoardAsync(BoardIdentifier board, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/planning/boards/{board}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
             public SprintClient Sprints => new SprintClient(_connection);
             
             public partial class SprintClient : ISpaceClient
@@ -905,7 +925,7 @@ public partial class ProjectClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task LaunchPlannedSprintAsync(SprintIdentifier sprint, bool moveUnresolvedIssuesFromCurrentSprint, CancellationToken cancellationToken = default)
+                public async Task LaunchPlannedSprintAsync(SprintIdentifier sprint, bool moveUnresolvedIssuesFromCurrentSprint, bool notifySubscribers = true, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -913,6 +933,7 @@ public partial class ProjectClient : ISpaceClient
                         new ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest
                         { 
                             IsMoveUnresolvedIssuesFromCurrentSprint = moveUnresolvedIssuesFromCurrentSprint,
+                            IsNotifySubscribers = notifySubscribers,
                         }, cancellationToken);
                 }
                 
@@ -1020,11 +1041,12 @@ public partial class ProjectClient : ISpaceClient
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task<Batch<Issue>> GetAllIssuesInSprintAsync(SprintIdentifier sprint, string? skip = null, int? top = 100, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
+                    public async Task<Batch<Issue>> GetAllIssuesInSprintAsync(SprintIdentifier sprint, bool unresolvedOnly = false, string? skip = null, int? top = 100, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
                         if (skip != null) queryParameters.Append("$skip", skip);
                         if (top != null) queryParameters.Append("$top", top?.ToString());
+                        queryParameters.Append("unresolvedOnly", unresolvedOnly.ToString("l"));
                         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Issue>>()) : Partial<Batch<Issue>>.Default()).ToString());
                         
                         return await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/planning/boards/sprints/{sprint}/issues{queryParameters.ToQueryString()}", cancellationToken);
@@ -1043,8 +1065,8 @@ public partial class ProjectClient : ISpaceClient
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public IAsyncEnumerable<Issue> GetAllIssuesInSprintAsyncEnumerable(SprintIdentifier sprint, string? skip = null, int? top = 100, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
-                        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesInSprintAsync(sprint: sprint, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
+                    public IAsyncEnumerable<Issue> GetAllIssuesInSprintAsyncEnumerable(SprintIdentifier sprint, bool unresolvedOnly = false, string? skip = null, int? top = 100, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+                        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesInSprintAsync(sprint: sprint, unresolvedOnly: unresolvedOnly, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
                 
                     /// <summary>
                     /// Remove an existing issue in a project from a sprint.
@@ -1335,6 +1357,7 @@ public partial class ProjectClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
+                [Obsolete("Use DELETE /projects/planning/boards/{board} instead (since 2021-12-22)")]
                 public async Task ArchiveBoardAsync(ProjectIdentifier project, BoardIdentifier board, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2814,6 +2837,122 @@ public partial class ProjectClient : ISpaceClient
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRTag>()) : Partial<PRTag>.Default()).ToString());
             
             return await _connection.RequestResourceAsync<List<PRTag>>("GET", $"api/http/projects/tags{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+    }
+
+    public VaultClient Vault => new VaultClient(_connection);
+    
+    public partial class VaultClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public VaultClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <summary>
+        /// Create a new Vault connection for the project. Vault's AppRole Secret Id must be provided as base64 encoded string
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Modify Vault connections</term>
+        /// <description>Create or edit Vault connections</description>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<string> CreateVaultAsync(ProjectIdentifier project, string url, string name, string appRoleEndpointPath, string appRoleId, string appRoleSecretIdBase64, string? @namespace = null, string? vaultNamespace = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            return await _connection.RequestResourceAsync<ProjectsVaultPostRequest, string>("POST", $"api/http/projects/vault{queryParameters.ToQueryString()}", 
+                new ProjectsVaultPostRequest
+                { 
+                    Project = project,
+                    Url = url,
+                    Name = name,
+                    Namespace = @namespace,
+                    VaultNamespace = vaultNamespace,
+                    AppRoleEndpointPath = appRoleEndpointPath,
+                    AppRoleId = appRoleId,
+                    AppRoleSecretIdBase64 = appRoleSecretIdBase64,
+                }, cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Get an existing Vault connections for project
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View Vault connections</term>
+        /// <description>View Vault connections</description>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<List<VaultConnectionRecord>> GetVaultAsync(ProjectIdentifier project, Func<Partial<VaultConnectionRecord>, Partial<VaultConnectionRecord>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("project", project.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<VaultConnectionRecord>()) : Partial<VaultConnectionRecord>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<VaultConnectionRecord>>("GET", $"api/http/projects/vault{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Update an existing Vault connection
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Modify Vault connections</term>
+        /// <description>Create or edit Vault connections</description>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task UpdateVaultAsync(string id, string url, string name, string appRoleEndpointPath, string appRoleId, string? @namespace = null, string? vaultNamespace = null, string? appRoleSecretIdBase64 = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PATCH", $"api/http/projects/vault/{id}{queryParameters.ToQueryString()}", 
+                new ProjectsVaultForIdPatchRequest
+                { 
+                    Url = url,
+                    Name = name,
+                    Namespace = @namespace,
+                    VaultNamespace = vaultNamespace,
+                    AppRoleEndpointPath = appRoleEndpointPath,
+                    AppRoleId = appRoleId,
+                    AppRoleSecretIdBase64 = appRoleSecretIdBase64,
+                }, cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Delete an existing Vault connection
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Delete Vault connections</term>
+        /// <description>Delete Vault connections</description>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task DeleteVaultAsync(string id, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/vault/{id}{queryParameters.ToQueryString()}", cancellationToken);
         }
         
     

@@ -34,22 +34,23 @@ public class ChatsMessagesSendMessagePostRequest
 {
     public ChatsMessagesSendMessagePostRequest() { }
     
-    public ChatsMessagesSendMessagePostRequest(MessageRecipient recipient, ChatMessage content, bool? unfurlLinks = null, List<AttachmentIn>? attachments = null, string? externalId = null, bool? resolveNames = null, bool? pending = null)
+    public ChatsMessagesSendMessagePostRequest(ChatMessage content, MessageRecipient? recipient = null, List<AttachmentIn>? attachments = null, bool? unfurlLinks = null, string? externalId = null, bool? resolveNames = null, bool? pending = null, ChannelIdentifier? channel = null)
     {
         Recipient = recipient;
         Content = content;
-        IsUnfurlLinks = unfurlLinks;
         Attachments = attachments;
+        IsUnfurlLinks = unfurlLinks;
         ExternalId = externalId;
         IsResolveNames = resolveNames;
         IsPending = pending;
+        Channel = channel;
     }
     
-    private PropertyValue<MessageRecipient> _recipient = new PropertyValue<MessageRecipient>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Recipient), "recipient");
+    private PropertyValue<MessageRecipient?> _recipient = new PropertyValue<MessageRecipient?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Recipient), "recipient");
     
-    [Required]
+    [Obsolete("Use channel instead (since 2021-12-13) (will be removed in a future version)")]
     [JsonPropertyName("recipient")]
-    public MessageRecipient Recipient
+    public MessageRecipient? Recipient
     {
         get => _recipient.GetValue(InlineErrors);
         set => _recipient.SetValue(value);
@@ -65,15 +66,6 @@ public class ChatsMessagesSendMessagePostRequest
         set => _content.SetValue(value);
     }
 
-    private PropertyValue<bool?> _unfurlLinks = new PropertyValue<bool?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(IsUnfurlLinks), "unfurlLinks");
-    
-    [JsonPropertyName("unfurlLinks")]
-    public bool? IsUnfurlLinks
-    {
-        get => _unfurlLinks.GetValue(InlineErrors);
-        set => _unfurlLinks.SetValue(value);
-    }
-
     private PropertyValue<List<AttachmentIn>?> _attachments = new PropertyValue<List<AttachmentIn>?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Attachments), "attachments");
     
     [JsonPropertyName("attachments")]
@@ -81,6 +73,15 @@ public class ChatsMessagesSendMessagePostRequest
     {
         get => _attachments.GetValue(InlineErrors);
         set => _attachments.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _unfurlLinks = new PropertyValue<bool?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(IsUnfurlLinks), "unfurlLinks");
+    
+    [JsonPropertyName("unfurlLinks")]
+    public bool? IsUnfurlLinks
+    {
+        get => _unfurlLinks.GetValue(InlineErrors);
+        set => _unfurlLinks.SetValue(value);
     }
 
     private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(ExternalId), "externalId");
@@ -110,15 +111,25 @@ public class ChatsMessagesSendMessagePostRequest
         set => _pending.SetValue(value);
     }
 
+    private PropertyValue<ChannelIdentifier?> _channel = new PropertyValue<ChannelIdentifier?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Channel), "channel");
+    
+    [JsonPropertyName("channel")]
+    public ChannelIdentifier? Channel
+    {
+        get => _channel.GetValue(InlineErrors);
+        set => _channel.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _recipient.SetAccessPath(parentChainPath, validateHasBeenSet);
         _content.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _unfurlLinks.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _unfurlLinks.SetAccessPath(parentChainPath, validateHasBeenSet);
         _externalId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _resolveNames.SetAccessPath(parentChainPath, validateHasBeenSet);
         _pending.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -34,5 +34,8 @@ public static class ProjectsPlanningBoardsSprintsForSprintLaunchPostRequestParti
     public static Partial<ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest> WithIsMoveUnresolvedIssuesFromCurrentSprint(this Partial<ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest> it)
         => it.AddFieldName("moveUnresolvedIssuesFromCurrentSprint");
     
+    public static Partial<ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest> WithIsNotifySubscribers(this Partial<ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest> it)
+        => it.AddFieldName("notifySubscribers");
+    
 }
 

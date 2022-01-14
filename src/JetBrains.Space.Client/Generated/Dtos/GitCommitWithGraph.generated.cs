@@ -34,7 +34,7 @@ public sealed class GitCommitWithGraph
 {
     public GitCommitWithGraph() { }
     
-    public GitCommitWithGraph(string repositoryName, GitCommitInfo commit, List<Unfurl> commitMessageUnfurls, List<CodeReviewRecord> reviews, List<string> issueIds, List<string> deployments, bool unreachable, GitGraphLayoutLine? layout = null)
+    public GitCommitWithGraph(string repositoryName, GitCommitInfo commit, List<Unfurl> commitMessageUnfurls, List<CodeReviewRecord> reviews, List<string> issueIds, List<Pair<string, string>> deployments, bool unreachable, GitGraphLayoutLine? layout = null)
     {
         RepositoryName = repositoryName;
         Commit = commit;
@@ -96,11 +96,11 @@ public sealed class GitCommitWithGraph
         set => _issueIds.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _deployments = new PropertyValue<List<string>>(nameof(GitCommitWithGraph), nameof(Deployments), "deployments", new List<string>());
+    private PropertyValue<List<Pair<string, string>>> _deployments = new PropertyValue<List<Pair<string, string>>>(nameof(GitCommitWithGraph), nameof(Deployments), "deployments", new List<Pair<string, string>>());
     
     [Required]
     [JsonPropertyName("deployments")]
-    public List<string> Deployments
+    public List<Pair<string, string>> Deployments
     {
         get => _deployments.GetValue(InlineErrors);
         set => _deployments.SetValue(value);

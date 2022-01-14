@@ -34,9 +34,10 @@ public class ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest
 {
     public ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest() { }
     
-    public ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest(bool moveUnresolvedIssuesFromCurrentSprint)
+    public ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest(bool moveUnresolvedIssuesFromCurrentSprint, bool notifySubscribers = true)
     {
         IsMoveUnresolvedIssuesFromCurrentSprint = moveUnresolvedIssuesFromCurrentSprint;
+        IsNotifySubscribers = notifySubscribers;
     }
     
     private PropertyValue<bool> _moveUnresolvedIssuesFromCurrentSprint = new PropertyValue<bool>(nameof(ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest), nameof(IsMoveUnresolvedIssuesFromCurrentSprint), "moveUnresolvedIssuesFromCurrentSprint");
@@ -49,9 +50,19 @@ public class ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest
         set => _moveUnresolvedIssuesFromCurrentSprint.SetValue(value);
     }
 
+    private PropertyValue<bool> _notifySubscribers = new PropertyValue<bool>(nameof(ProjectsPlanningBoardsSprintsForSprintLaunchPostRequest), nameof(IsNotifySubscribers), "notifySubscribers");
+    
+    [JsonPropertyName("notifySubscribers")]
+    public bool IsNotifySubscribers
+    {
+        get => _notifySubscribers.GetValue(InlineErrors);
+        set => _notifySubscribers.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _moveUnresolvedIssuesFromCurrentSprint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notifySubscribers.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

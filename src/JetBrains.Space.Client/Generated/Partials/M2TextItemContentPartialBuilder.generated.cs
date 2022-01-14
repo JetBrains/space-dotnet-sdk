@@ -34,5 +34,11 @@ public static class M2TextItemContentPartialExtensions
     public static Partial<M2TextItemContent> WithIsMarkdown(this Partial<M2TextItemContent> it)
         => it.AddFieldName("markdown");
     
+    public static Partial<M2TextItemContent> WithMentions(this Partial<M2TextItemContent> it)
+        => it.AddFieldName("mentions");
+    
+    public static Partial<M2TextItemContent> WithMentions(this Partial<M2TextItemContent> it, Func<Partial<EntityMention>, Partial<EntityMention>> partialBuilder)
+        => it.AddFieldName("mentions", partialBuilder(new Partial<EntityMention>(it)));
+    
 }
 

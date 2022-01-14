@@ -67,7 +67,7 @@ public class CateringWebHookHandler : SpaceWebHookHandler
         Sessions[userId] = cateringSession;
             
         await SendOrEditMessageAsync(
-            channelId: null,
+            channelIdentifier: null,
             recipient: MessageRecipient.Member(ProfileIdentifier.Id(userId)),
             content: ChatMessage.Block(
                 outline: new MessageOutline("Anything to eat or drink while we are on our way to Space?"),
@@ -126,7 +126,7 @@ public class CateringWebHookHandler : SpaceWebHookHandler
         if (string.IsNullOrEmpty(cateringSession.SelectedFood))
         {
             await SendOrEditMessageAsync(
-                channelId: payload.Message.ChannelId,
+                channelIdentifier: ChannelIdentifier.Profile(ProfileIdentifier.Id(payload.UserId)), 
                 recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
                 content: ChatMessage.Block(
                     outline: new MessageOutline("Would you prefer chicken or pasta?"),
@@ -157,7 +157,7 @@ public class CateringWebHookHandler : SpaceWebHookHandler
         else if (string.IsNullOrEmpty(cateringSession.SelectedDrinks))
         {
             await SendOrEditMessageAsync(
-                channelId: payload.Message.ChannelId,
+                channelIdentifier: ChannelIdentifier.Profile(ProfileIdentifier.Id(payload.UserId)),
                 recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
                 content: ChatMessage.Block(
                     outline: new MessageOutline("Any drinks? Coffee or tea?"),
@@ -192,7 +192,7 @@ public class CateringWebHookHandler : SpaceWebHookHandler
                  && string.IsNullOrEmpty(cateringSession.SelectedDrinkAdditions))
         {
             await SendOrEditMessageAsync(
-                channelId: payload.Message.ChannelId,
+                channelIdentifier: ChannelIdentifier.Profile(ProfileIdentifier.Id(payload.UserId)),
                 recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
                 content: ChatMessage.Block(
                     outline: new MessageOutline("How would you like your coffee?"),
@@ -223,7 +223,7 @@ public class CateringWebHookHandler : SpaceWebHookHandler
         else
         {
             await SendOrEditMessageAsync(
-                channelId: payload.Message.ChannelId,
+                channelIdentifier: ChannelIdentifier.Profile(ProfileIdentifier.Id(payload.UserId)),
                 recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
                 content: ChatMessage.Block(
                     outline: new MessageOutline("Thank you, we'll be right there!"),
@@ -267,12 +267,12 @@ public class CateringWebHookHandler : SpaceWebHookHandler
     }
 
     private async Task SendOrEditMessageAsync(
-        string? channelId, 
+        ChannelIdentifier? channelIdentifier, 
         MessageRecipient recipient, 
         ChatMessage content,
         CateringSession cateringSession)
     {
-        if (string.IsNullOrEmpty(cateringSession.ExistingMessageId) || string.IsNullOrEmpty(channelId))
+        if (string.IsNullOrEmpty(cateringSession.ExistingMessageId) || channelIdentifier == null)
         {
             // Send
             var message = await _chatClient.Messages.SendMessageAsync(
@@ -286,7 +286,7 @@ public class CateringWebHookHandler : SpaceWebHookHandler
         {
             // Edit
             await _chatClient.Messages.EditMessageAsync(
-                channel: channelId,
+                channel: channelIdentifier,
                 message: ChatMessageIdentifier.InternalId(cateringSession.ExistingMessageId),
                 content: content,
                 unfurlLinks: false);

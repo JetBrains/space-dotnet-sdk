@@ -34,6 +34,9 @@ public static class ChatsMessagesDeleteMessagePostRequestPartialExtensions
     public static Partial<ChatsMessagesDeleteMessagePostRequest> WithChannel(this Partial<ChatsMessagesDeleteMessagePostRequest> it)
         => it.AddFieldName("channel");
     
+    public static Partial<ChatsMessagesDeleteMessagePostRequest> WithChannel(this Partial<ChatsMessagesDeleteMessagePostRequest> it, Func<Partial<ChannelIdentifier>, Partial<ChannelIdentifier>> partialBuilder)
+        => it.AddFieldName("channel", partialBuilder(new Partial<ChannelIdentifier>(it)));
+    
     public static Partial<ChatsMessagesDeleteMessagePostRequest> WithId(this Partial<ChatsMessagesDeleteMessagePostRequest> it)
         => it.AddFieldName("id");
     

@@ -34,13 +34,13 @@ public class TeamDirectoryProfilesForProfileSettingsPatchRequest
 {
     public TeamDirectoryProfilesForProfileSettingsPatchRequest() { }
     
-    public TeamDirectoryProfilesForProfileSettingsPatchRequest(DarkTheme? darkTheme = null, string? themeName = null, Weekday? firstDayOfWeek = null, DraftDocumentType? draftType = null, bool? fontLigaturesEnabled = null, bool? todoFilters = null, string? calendarView = null, bool? emailNotificationsEnabled = null, string? notificationEmail = null, string? preferredLanguage = null, ProjectIdentifier? defaultProject = null)
+    public TeamDirectoryProfilesForProfileSettingsPatchRequest(DarkTheme? darkTheme = null, string? themeName = null, Weekday? firstDayOfWeek = null, DraftDocumentType? draftType = null, TypographySettings? typographySettings = null, bool? todoFilters = null, string? calendarView = null, bool? emailNotificationsEnabled = null, string? notificationEmail = null, string? preferredLanguage = null, ProjectIdentifier? defaultProject = null)
     {
         DarkTheme = darkTheme;
         ThemeName = themeName;
         FirstDayOfWeek = firstDayOfWeek;
         DraftType = draftType;
-        IsFontLigaturesEnabled = fontLigaturesEnabled;
+        TypographySettings = typographySettings;
         IsTodoFilters = todoFilters;
         CalendarView = calendarView;
         IsEmailNotificationsEnabled = emailNotificationsEnabled;
@@ -85,13 +85,13 @@ public class TeamDirectoryProfilesForProfileSettingsPatchRequest
         set => _draftType.SetValue(value);
     }
 
-    private PropertyValue<bool?> _fontLigaturesEnabled = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(IsFontLigaturesEnabled), "fontLigaturesEnabled");
+    private PropertyValue<TypographySettings?> _typographySettings = new PropertyValue<TypographySettings?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(TypographySettings), "typographySettings");
     
-    [JsonPropertyName("fontLigaturesEnabled")]
-    public bool? IsFontLigaturesEnabled
+    [JsonPropertyName("typographySettings")]
+    public TypographySettings? TypographySettings
     {
-        get => _fontLigaturesEnabled.GetValue(InlineErrors);
-        set => _fontLigaturesEnabled.SetValue(value);
+        get => _typographySettings.GetValue(InlineErrors);
+        set => _typographySettings.SetValue(value);
     }
 
     private PropertyValue<bool?> _todoFilters = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(IsTodoFilters), "todoFilters");
@@ -156,7 +156,7 @@ public class TeamDirectoryProfilesForProfileSettingsPatchRequest
         _themeName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _firstDayOfWeek.SetAccessPath(parentChainPath, validateHasBeenSet);
         _draftType.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _fontLigaturesEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _typographySettings.SetAccessPath(parentChainPath, validateHasBeenSet);
         _todoFilters.SetAccessPath(parentChainPath, validateHasBeenSet);
         _calendarView.SetAccessPath(parentChainPath, validateHasBeenSet);
         _emailNotificationsEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);

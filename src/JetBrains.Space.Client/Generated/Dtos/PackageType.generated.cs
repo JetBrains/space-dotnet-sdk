@@ -32,6 +32,9 @@ namespace JetBrains.Space.Client;
 public interface PackageType
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
+    public static ComposerPackageType Composer(string id)
+        => new ComposerPackageType(id: id);
+    
     public static ContainerPackageType Container(string id)
         => new ContainerPackageType(id: id);
     

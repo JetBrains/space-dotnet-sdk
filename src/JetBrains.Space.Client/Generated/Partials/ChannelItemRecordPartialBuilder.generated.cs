@@ -100,6 +100,15 @@ public static class ChannelItemRecordPartialExtensions
     public static Partial<ChannelItemRecord> WithSuggestedParticipants(this Partial<ChannelItemRecord> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
         => it.AddFieldName("suggestedParticipants", partialBuilder(new Partial<CPrincipal>(it)));
     
+    public static Partial<ChannelItemRecord> WithMentions(this Partial<ChannelItemRecord> it)
+        => it.AddFieldName("mentions");
+    
+    public static Partial<ChannelItemRecord> WithMentions(this Partial<ChannelItemRecord> it, Func<Partial<EntityMention>, Partial<EntityMention>> partialBuilder)
+        => it.AddFieldName("mentions", partialBuilder(new Partial<EntityMention>(it)));
+    
+    public static Partial<ChannelItemRecord> WithChannelId(this Partial<ChannelItemRecord> it)
+        => it.AddFieldName("channelId");
+    
     public static Partial<ChannelItemRecord> WithIssues(this Partial<ChannelItemRecord> it)
         => it.AddFieldName("issues");
     

@@ -37,10 +37,10 @@ public sealed class CodeSuggestedEditHeadContentDetails
     
     public CodeSuggestedEditHeadContentDetails() { }
     
-    public CodeSuggestedEditHeadContentDetails(CodeDiscussionRecord codeDiscussion, string text)
+    public CodeSuggestedEditHeadContentDetails(CodeDiscussionRecord codeDiscussion, bool? accepted = null)
     {
         CodeDiscussion = codeDiscussion;
-        Text = text;
+        IsAccepted = accepted;
     }
     
     private PropertyValue<CodeDiscussionRecord> _codeDiscussion = new PropertyValue<CodeDiscussionRecord>(nameof(CodeSuggestedEditHeadContentDetails), nameof(CodeDiscussion), "codeDiscussion");
@@ -53,20 +53,19 @@ public sealed class CodeSuggestedEditHeadContentDetails
         set => _codeDiscussion.SetValue(value);
     }
 
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(CodeSuggestedEditHeadContentDetails), nameof(Text), "text");
+    private PropertyValue<bool?> _accepted = new PropertyValue<bool?>(nameof(CodeSuggestedEditHeadContentDetails), nameof(IsAccepted), "accepted");
     
-    [Required]
-    [JsonPropertyName("text")]
-    public string Text
+    [JsonPropertyName("accepted")]
+    public bool? IsAccepted
     {
-        get => _text.GetValue(InlineErrors);
-        set => _text.SetValue(value);
+        get => _accepted.GetValue(InlineErrors);
+        set => _accepted.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _codeDiscussion.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _accepted.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

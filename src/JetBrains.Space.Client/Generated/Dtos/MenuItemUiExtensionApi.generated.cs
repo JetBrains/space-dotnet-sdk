@@ -30,20 +30,20 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class MenuItemUiExtensionApi
-     : ApplicationUiExtensionApi, IClassNameConvertible, IPropagatePropertyAccessPath
+     : AppUiExtensionApi, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "MenuItemUiExtensionApi";
     
     public MenuItemUiExtensionApi() { }
     
-    public MenuItemUiExtensionApi(string typeName, MenuIdentifier menuIdentifier, string displayName, string uniqueCode, List<MenuItemVisibilityFilter> visibilityFilters, string? description = null)
+    public MenuItemUiExtensionApi(string typeName, MenuIdentifier menuIdentifier, string displayName, string menuItemUniqueCode, List<MenuItemVisibilityFilter> visibilityFilters, string? description = null)
     {
         TypeName = typeName;
         MenuIdentifier = menuIdentifier;
         DisplayName = displayName;
         Description = description;
-        UniqueCode = uniqueCode;
+        MenuItemUniqueCode = menuItemUniqueCode;
         VisibilityFilters = visibilityFilters;
     }
     
@@ -86,14 +86,14 @@ public sealed class MenuItemUiExtensionApi
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<string> _uniqueCode = new PropertyValue<string>(nameof(MenuItemUiExtensionApi), nameof(UniqueCode), "uniqueCode");
+    private PropertyValue<string> _menuItemUniqueCode = new PropertyValue<string>(nameof(MenuItemUiExtensionApi), nameof(MenuItemUniqueCode), "menuItemUniqueCode");
     
     [Required]
-    [JsonPropertyName("uniqueCode")]
-    public string UniqueCode
+    [JsonPropertyName("menuItemUniqueCode")]
+    public string MenuItemUniqueCode
     {
-        get => _uniqueCode.GetValue(InlineErrors);
-        set => _uniqueCode.SetValue(value);
+        get => _menuItemUniqueCode.GetValue(InlineErrors);
+        set => _menuItemUniqueCode.SetValue(value);
     }
 
     private PropertyValue<List<MenuItemVisibilityFilter>> _visibilityFilters = new PropertyValue<List<MenuItemVisibilityFilter>>(nameof(MenuItemUiExtensionApi), nameof(VisibilityFilters), "visibilityFilters", new List<MenuItemVisibilityFilter>());
@@ -112,7 +112,7 @@ public sealed class MenuItemUiExtensionApi
         _menuIdentifier.SetAccessPath(parentChainPath, validateHasBeenSet);
         _displayName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _uniqueCode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _menuItemUniqueCode.SetAccessPath(parentChainPath, validateHasBeenSet);
         _visibilityFilters.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

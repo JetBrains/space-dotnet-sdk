@@ -139,5 +139,11 @@ public static class MeetingPartialExtensions
     public static Partial<Meeting> WithChannelRef(this Partial<Meeting> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
         => it.AddFieldName("channelRef", partialBuilder(new Partial<M2ChannelRecord>(it)));
     
+    public static Partial<Meeting> WithExternalSource(this Partial<Meeting> it)
+        => it.AddFieldName("externalSource");
+    
+    public static Partial<Meeting> WithExternalSource(this Partial<Meeting> it, Func<Partial<EventExternalSource>, Partial<EventExternalSource>> partialBuilder)
+        => it.AddFieldName("externalSource", partialBuilder(new Partial<EventExternalSource>(it)));
+    
 }
 

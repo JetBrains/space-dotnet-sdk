@@ -32,8 +32,24 @@ namespace JetBrains.Space.Client;
 [JsonConverter(typeof(UrlParameterConverter))]
 public abstract class SprintIdentifier : IUrlParameter
 {
+    public static SprintIdentifier Current(BoardIdentifier board)
+        => new SprintIdentifierCurrent(board);
+    
     public static SprintIdentifier Id(string id)
         => new SprintIdentifierId(id);
+    
+    private class SprintIdentifierCurrent : SprintIdentifier
+    {
+        private readonly BoardIdentifier _board;
+        
+        public SprintIdentifierCurrent(BoardIdentifier board)
+        {
+            _board = board;
+        }
+        
+        public override string ToString()
+            => $"board:{_board}";
+    }
     
     private class SprintIdentifierId : SprintIdentifier
     {
