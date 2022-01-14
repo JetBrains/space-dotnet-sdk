@@ -25,7 +25,7 @@ public class CSharpApiModelUrlParameterGenerator
             
         if (apiUrlParameter.Deprecation != null)
         {
-            builder.AppendLine(apiUrlParameter.Deprecation.ToCSharpDeprecation());
+            builder.AppendLine($"{indent}{apiUrlParameter.Deprecation.ToCSharpDeprecation()}");
         }
 
         // Parameter type
@@ -67,7 +67,7 @@ public class CSharpApiModelUrlParameterGenerator
         // Option method deprecation
         if (apiUrlParameterOption.Deprecation != null)
         {
-            builder.AppendLine(apiUrlParameterOption.Deprecation.ToCSharpDeprecation());
+            builder.AppendLine($"{indent}{apiUrlParameterOption.Deprecation.ToCSharpDeprecation()}");
         }
             
         // Option method
@@ -109,7 +109,7 @@ public class CSharpApiModelUrlParameterGenerator
         // Option type deprecation
         if (apiUrlParameterOption.Deprecation != null)
         {
-            builder.AppendLine(apiUrlParameterOption.Deprecation.ToCSharpDeprecation());
+            builder.AppendLine($"{indent}{apiUrlParameterOption.Deprecation.ToCSharpDeprecation()}");
         }
             
         // Option type

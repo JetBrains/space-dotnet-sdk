@@ -25,7 +25,7 @@ public class CSharpApiModelDtoGenerator
             
         if (apiDto.Deprecation != null)
         {
-            builder.AppendLine(apiDto.Deprecation.ToCSharpDeprecation());
+            builder.AppendLine($"{indent}{apiDto.Deprecation.ToCSharpDeprecation()}");
         }
                 
         if (apiDto.HierarchyRole2 != HierarchyRole2.INTERFACE && apiDto.HierarchyRole2 != HierarchyRole2.SEALED_INTERFACE && apiDto.Extends == null && apiDto.Inheritors.Count > 0)
@@ -250,7 +250,7 @@ public class CSharpApiModelDtoGenerator
         }
         if (apiField.Deprecation != null)
         {
-            builder.AppendLine(apiField.Deprecation.ToCSharpDeprecation());
+            builder.AppendLine($"{indent}{apiField.Deprecation.ToCSharpDeprecation()}");
         }
         builder.AppendLine($"{indent}[JsonPropertyName(\"{apiField.Name}\")]");
 

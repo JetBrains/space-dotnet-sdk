@@ -15,7 +15,7 @@ public class CSharpApiModelEnumGenerator
             
         if (apiEnum.Deprecation != null)
         {
-            builder.AppendLine(apiEnum.Deprecation.ToCSharpDeprecation());
+            builder.AppendLine($"{indent}{apiEnum.Deprecation.ToCSharpDeprecation()}");
         }
             
         builder.AppendLine($"{indent}[JsonConverter(typeof(EnumStringConverter))]");

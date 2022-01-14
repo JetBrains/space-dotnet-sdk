@@ -458,7 +458,7 @@ public class CSharpApiModelResourceGenerator
         // Attributes
         if (apiEndpoint.Deprecation != null)
         {
-            builder.AppendLine(apiEndpoint.Deprecation.ToCSharpDeprecation());
+            builder.AppendLine($"{indent}{apiEndpoint.Deprecation.ToCSharpDeprecation()}");
         }
 
         return builder.ToString();

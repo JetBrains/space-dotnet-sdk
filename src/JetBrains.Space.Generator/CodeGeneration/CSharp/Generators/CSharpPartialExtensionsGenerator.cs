@@ -49,6 +49,10 @@ public class CSharpPartialExtensionsGenerator
         var apiFieldName = apiField.Name;
             
         // Field
+        if (apiField.Deprecation != null)
+        {
+            builder.AppendLine($"{indent}{apiField.Deprecation.ToCSharpDeprecation()}");
+        }
         builder.AppendLine($"{indent}public static {currentPartialType} With{propertyName}(this {currentPartialType} it)");
         indent.Increment();
         builder.AppendLine($"{indent}=> it.AddFieldName(\"{apiFieldName}\");");
@@ -64,6 +68,10 @@ public class CSharpPartialExtensionsGenerator
             // Recursive field?
             if (currentDtoType == currentFieldInnerType)
             {
+                if (apiField.Deprecation != null)
+                {
+                    builder.AppendLine($"{indent}{apiField.Deprecation.ToCSharpDeprecation()}");
+                }
                 builder.AppendLine($"{indent}public static {currentPartialType} With{propertyName}Recursive(this {currentPartialType} it)");
                 indent.Increment();
                 builder.AppendLine($"{indent}=> it.AddFieldName(\"{apiFieldName}!\");");
@@ -72,6 +80,10 @@ public class CSharpPartialExtensionsGenerator
             }
 
             // Field with partial builder
+            if (apiField.Deprecation != null)
+            {
+                builder.AppendLine($"{indent}{apiField.Deprecation.ToCSharpDeprecation()}");
+            }
             builder.AppendLine($"{indent}public static {currentPartialType} With{propertyName}(this {currentPartialType} it, Func<Partial<{currentFieldInnerType}>, Partial<{currentFieldInnerType}>> partialBuilder)");
             indent.Increment();
             builder.AppendLine($"{indent}=> it.AddFieldName(\"{apiFieldName}\", partialBuilder(new Partial<{currentFieldInnerType}>(it)));");
