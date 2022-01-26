@@ -34,12 +34,13 @@ public sealed class ESPersonalToken
 {
     public ESPersonalToken() { }
     
-    public ESPersonalToken(string id, string name, TDMemberProfile profile, string scope, DateTime created, DateTime? expires = null, AccessRecord? lastAccess = null)
+    public ESPersonalToken(string id, string name, TDMemberProfile profile, string scope, XScopeApi apiScope, DateTime created, DateTime? expires = null, AccessRecord? lastAccess = null)
     {
         Id = id;
         Name = name;
         Profile = profile;
         Scope = scope;
+        ApiScope = apiScope;
         Created = created;
         Expires = expires;
         LastAccess = lastAccess;
@@ -85,6 +86,16 @@ public sealed class ESPersonalToken
         set => _scope.SetValue(value);
     }
 
+    private PropertyValue<XScopeApi> _apiScope = new PropertyValue<XScopeApi>(nameof(ESPersonalToken), nameof(ApiScope), "apiScope");
+    
+    [Required]
+    [JsonPropertyName("apiScope")]
+    public XScopeApi ApiScope
+    {
+        get => _apiScope.GetValue(InlineErrors);
+        set => _apiScope.SetValue(value);
+    }
+
     private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ESPersonalToken), nameof(Created), "created");
     
     [Required]
@@ -121,6 +132,7 @@ public sealed class ESPersonalToken
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
         _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _apiScope.SetAccessPath(parentChainPath, validateHasBeenSet);
         _created.SetAccessPath(parentChainPath, validateHasBeenSet);
         _expires.SetAccessPath(parentChainPath, validateHasBeenSet);
         _lastAccess.SetAccessPath(parentChainPath, validateHasBeenSet);

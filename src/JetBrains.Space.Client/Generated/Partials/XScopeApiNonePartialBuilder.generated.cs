@@ -27,19 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.XScopeApiNonePartialBuilder;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum CodeDiscussionSuggestedEditState
+public static class XScopeApiNonePartialExtensions
 {
-    [EnumMember(Value = "Accepted")]
-    Accepted,
-    
-    [EnumMember(Value = "Rejected")]
-    Rejected,
-    
-    [EnumMember(Value = "Deleted")]
-    Deleted,
-    
 }
 

@@ -34,8 +34,8 @@ public static class ESOAuthConsentPartialExtensions
     public static Partial<ESOAuthConsent> WithClientApplication(this Partial<ESOAuthConsent> it)
         => it.AddFieldName("clientApplication");
     
-    public static Partial<ESOAuthConsent> WithClientApplication(this Partial<ESOAuthConsent> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
-        => it.AddFieldName("clientApplication", partialBuilder(new Partial<ESApp>(it)));
+    public static Partial<ESOAuthConsent> WithClientApplication(this Partial<ESOAuthConsent> it, Func<Partial<ESOAuthApp>, Partial<ESOAuthApp>> partialBuilder)
+        => it.AddFieldName("clientApplication", partialBuilder(new Partial<ESOAuthApp>(it)));
     
     public static Partial<ESOAuthConsent> WithApprovedScopes(this Partial<ESOAuthConsent> it)
         => it.AddFieldName("approvedScopes");

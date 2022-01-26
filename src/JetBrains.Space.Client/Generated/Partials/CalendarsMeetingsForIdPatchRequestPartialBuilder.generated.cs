@@ -106,5 +106,11 @@ public static class CalendarsMeetingsForIdPatchRequestPartialExtensions
     public static Partial<CalendarsMeetingsForIdPatchRequest> WithConferenceData(this Partial<CalendarsMeetingsForIdPatchRequest> it, Func<Partial<EventConferenceData>, Partial<EventConferenceData>> partialBuilder)
         => it.AddFieldName("conferenceData", partialBuilder(new Partial<EventConferenceData>(it)));
     
+    public static Partial<CalendarsMeetingsForIdPatchRequest> WithAttachments(this Partial<CalendarsMeetingsForIdPatchRequest> it)
+        => it.AddFieldName("attachments");
+    
+    public static Partial<CalendarsMeetingsForIdPatchRequest> WithAttachments(this Partial<CalendarsMeetingsForIdPatchRequest> it, Func<Partial<MeetingAttachment>, Partial<MeetingAttachment>> partialBuilder)
+        => it.AddFieldName("attachments", partialBuilder(new Partial<MeetingAttachment>(it)));
+    
 }
 

@@ -64,6 +64,14 @@ public partial class NotificationClient : ISpaceClient
         /// <summary>
         /// Add subscription for a channel
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Update channel subscriptions</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<SubscriptionDTO> CreateChannelSubscriptionAsync(ChatChannel channel, string name, CustomGenericSubscriptionIn subscription, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -82,6 +90,14 @@ public partial class NotificationClient : ISpaceClient
         /// <summary>
         /// Ensures that all permissions required for this subscription are requested in the corresponding permission role
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Update channel subscriptions</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task RequestMissingRightsAsync(string id, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -93,6 +109,14 @@ public partial class NotificationClient : ISpaceClient
         /// <summary>
         /// List subscriptions for a channel
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View channel info</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<List<SubscriptionDTO>> GetAllChannelSubscriptionsAsync(ChatChannel channel, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -106,6 +130,14 @@ public partial class NotificationClient : ISpaceClient
         /// <summary>
         /// Update subscription for a channel
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Update channel subscriptions</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<SubscriptionDTO> UpdateChannelSubscriptionAsync(string id, string? name = null, bool? enabled = null, CustomGenericSubscriptionIn? subscription = null, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -124,6 +156,14 @@ public partial class NotificationClient : ISpaceClient
         /// <summary>
         /// Delete channel subscription
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Update channel subscriptions</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task DeleteChannelSubscriptionAsync(string id, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -152,7 +192,7 @@ public partial class NotificationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit notification settings</term>
+        /// <term>Update notification settings</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -200,7 +240,7 @@ public partial class NotificationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit notification settings</term>
+        /// <term>Update notification settings</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -227,7 +267,7 @@ public partial class NotificationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit notification settings</term>
+        /// <term>Update notification settings</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -358,7 +398,7 @@ public partial class NotificationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit notification settings</term>
+        /// <term>Update notification settings</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -406,7 +446,7 @@ public partial class NotificationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit notification settings</term>
+        /// <term>Update notification settings</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -432,7 +472,7 @@ public partial class NotificationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit notification settings</term>
+        /// <term>Update notification settings</term>
         /// </item>
         /// </list>
         /// </remarks>

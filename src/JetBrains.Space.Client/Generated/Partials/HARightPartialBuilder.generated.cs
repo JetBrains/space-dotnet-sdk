@@ -31,6 +31,9 @@ namespace JetBrains.Space.Client.HARightPartialBuilder;
 
 public static class HARightPartialExtensions
 {
+    public static Partial<HARight> WithRightUniqueCode(this Partial<HARight> it)
+        => it.AddFieldName("rightUniqueCode");
+    
     public static Partial<HARight> WithTitle(this Partial<HARight> it)
         => it.AddFieldName("title");
     

@@ -37,10 +37,10 @@ public sealed class PackageRepositoryConnectionSpace
     
     public PackageRepositoryConnectionSpace() { }
     
-    public PackageRepositoryConnectionSpace(string id, bool enableCaching, bool rememberDownloaded, ProjectPackageRepository repository, List<string>? packageNameFilters = null)
+    public PackageRepositoryConnectionSpace(string id, bool enabled, bool rememberDownloaded, ProjectPackageRepository repository, List<string>? packageNameFilters = null)
     {
         Id = id;
-        IsEnableCaching = enableCaching;
+        IsEnabled = enabled;
         IsRememberDownloaded = rememberDownloaded;
         PackageNameFilters = packageNameFilters;
         Repository = repository;
@@ -56,14 +56,14 @@ public sealed class PackageRepositoryConnectionSpace
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _enableCaching = new PropertyValue<bool>(nameof(PackageRepositoryConnectionSpace), nameof(IsEnableCaching), "enableCaching");
+    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(PackageRepositoryConnectionSpace), nameof(IsEnabled), "enabled");
     
     [Required]
-    [JsonPropertyName("enableCaching")]
-    public bool IsEnableCaching
+    [JsonPropertyName("enabled")]
+    public bool IsEnabled
     {
-        get => _enableCaching.GetValue(InlineErrors);
-        set => _enableCaching.SetValue(value);
+        get => _enabled.GetValue(InlineErrors);
+        set => _enabled.SetValue(value);
     }
 
     private PropertyValue<bool> _rememberDownloaded = new PropertyValue<bool>(nameof(PackageRepositoryConnectionSpace), nameof(IsRememberDownloaded), "rememberDownloaded");
@@ -98,7 +98,7 @@ public sealed class PackageRepositoryConnectionSpace
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _enableCaching.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _enabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _rememberDownloaded.SetAccessPath(parentChainPath, validateHasBeenSet);
         _packageNameFilters.SetAccessPath(parentChainPath, validateHasBeenSet);
         _repository.SetAccessPath(parentChainPath, validateHasBeenSet);

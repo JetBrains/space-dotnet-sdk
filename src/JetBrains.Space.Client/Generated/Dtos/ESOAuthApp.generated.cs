@@ -29,17 +29,14 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum CodeDiscussionSuggestedEditState
+public interface ESOAuthApp
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [EnumMember(Value = "Accepted")]
-    Accepted,
+    public static ESOAuthInternalApp ESOAuthInternalApp(string name, string clientId)
+        => new ESOAuthInternalApp(name: name, clientId: clientId);
     
-    [EnumMember(Value = "Rejected")]
-    Rejected,
-    
-    [EnumMember(Value = "Deleted")]
-    Deleted,
+    public static ESOAuthUserApp ESOAuthUserApp(ESApp app)
+        => new ESOAuthUserApp(app: app);
     
 }
 

@@ -29,53 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ESApprovedScope
+public sealed class XScopeGrantApi
      : IPropagatePropertyAccessPath
 {
-    public ESApprovedScope() { }
+    public XScopeGrantApi() { }
     
-    public ESApprovedScope(string id, XScopeApi scope, bool offlineAllowed)
+    public XScopeGrantApi(PermissionContextApi context, RightDescriptorDTO right)
     {
-        Id = id;
-        Scope = scope;
-        IsOfflineAllowed = offlineAllowed;
+        Context = context;
+        Right = right;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESApprovedScope), nameof(Id), "id");
+    private PropertyValue<PermissionContextApi> _context = new PropertyValue<PermissionContextApi>(nameof(XScopeGrantApi), nameof(Context), "context");
     
     [Required]
-    [JsonPropertyName("id")]
-    public string Id
+    [JsonPropertyName("context")]
+    public PermissionContextApi Context
     {
-        get => _id.GetValue(InlineErrors);
-        set => _id.SetValue(value);
-    }
-
-    private PropertyValue<XScopeApi> _scope = new PropertyValue<XScopeApi>(nameof(ESApprovedScope), nameof(Scope), "scope");
-    
-    [Required]
-    [JsonPropertyName("scope")]
-    public XScopeApi Scope
-    {
-        get => _scope.GetValue(InlineErrors);
-        set => _scope.SetValue(value);
+        get => _context.GetValue(InlineErrors);
+        set => _context.SetValue(value);
     }
 
-    private PropertyValue<bool> _offlineAllowed = new PropertyValue<bool>(nameof(ESApprovedScope), nameof(IsOfflineAllowed), "offlineAllowed");
+    private PropertyValue<RightDescriptorDTO> _right = new PropertyValue<RightDescriptorDTO>(nameof(XScopeGrantApi), nameof(Right), "right");
     
     [Required]
-    [JsonPropertyName("offlineAllowed")]
-    public bool IsOfflineAllowed
+    [JsonPropertyName("right")]
+    public RightDescriptorDTO Right
     {
-        get => _offlineAllowed.GetValue(InlineErrors);
-        set => _offlineAllowed.SetValue(value);
+        get => _right.GetValue(InlineErrors);
+        set => _right.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _offlineAllowed.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _context.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _right.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

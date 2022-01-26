@@ -46,6 +46,9 @@ public static class ESApplicationPasswordPartialExtensions
     public static Partial<ESApplicationPassword> WithScope(this Partial<ESApplicationPassword> it)
         => it.AddFieldName("scope");
     
+    public static Partial<ESApplicationPassword> WithScope(this Partial<ESApplicationPassword> it, Func<Partial<XScopeApi>, Partial<XScopeApi>> partialBuilder)
+        => it.AddFieldName("scope", partialBuilder(new Partial<XScopeApi>(it)));
+    
     public static Partial<ESApplicationPassword> WithCreated(this Partial<ESApplicationPassword> it)
         => it.AddFieldName("created");
     

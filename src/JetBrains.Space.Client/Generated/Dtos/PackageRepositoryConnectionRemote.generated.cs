@@ -37,11 +37,10 @@ public sealed class PackageRepositoryConnectionRemote
     
     public PackageRepositoryConnectionRemote() { }
     
-    public PackageRepositoryConnectionRemote(string id, bool enableCaching, bool enablePublishing, bool rememberDownloaded, string url, PackageRepositoryCredentials credentials, List<string>? packageNameFilters = null, string? secretId = null, string? secretValue = null, PackageRepositoryConnectionSettings? settings = null)
+    public PackageRepositoryConnectionRemote(string id, bool enabled, bool rememberDownloaded, string url, PackageRepositoryCredentials credentials, List<string>? packageNameFilters = null, string? secretId = null, string? secretValue = null, PackageRepositoryConnectionSettings? settings = null)
     {
         Id = id;
-        IsEnableCaching = enableCaching;
-        IsEnablePublishing = enablePublishing;
+        IsEnabled = enabled;
         IsRememberDownloaded = rememberDownloaded;
         PackageNameFilters = packageNameFilters;
         Url = url;
@@ -61,24 +60,14 @@ public sealed class PackageRepositoryConnectionRemote
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _enableCaching = new PropertyValue<bool>(nameof(PackageRepositoryConnectionRemote), nameof(IsEnableCaching), "enableCaching");
+    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(PackageRepositoryConnectionRemote), nameof(IsEnabled), "enabled");
     
     [Required]
-    [JsonPropertyName("enableCaching")]
-    public bool IsEnableCaching
+    [JsonPropertyName("enabled")]
+    public bool IsEnabled
     {
-        get => _enableCaching.GetValue(InlineErrors);
-        set => _enableCaching.SetValue(value);
-    }
-
-    private PropertyValue<bool> _enablePublishing = new PropertyValue<bool>(nameof(PackageRepositoryConnectionRemote), nameof(IsEnablePublishing), "enablePublishing");
-    
-    [Required]
-    [JsonPropertyName("enablePublishing")]
-    public bool IsEnablePublishing
-    {
-        get => _enablePublishing.GetValue(InlineErrors);
-        set => _enablePublishing.SetValue(value);
+        get => _enabled.GetValue(InlineErrors);
+        set => _enabled.SetValue(value);
     }
 
     private PropertyValue<bool> _rememberDownloaded = new PropertyValue<bool>(nameof(PackageRepositoryConnectionRemote), nameof(IsRememberDownloaded), "rememberDownloaded");
@@ -150,8 +139,7 @@ public sealed class PackageRepositoryConnectionRemote
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _enableCaching.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _enablePublishing.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _enabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _rememberDownloaded.SetAccessPath(parentChainPath, validateHasBeenSet);
         _packageNameFilters.SetAccessPath(parentChainPath, validateHasBeenSet);
         _url.SetAccessPath(parentChainPath, validateHasBeenSet);

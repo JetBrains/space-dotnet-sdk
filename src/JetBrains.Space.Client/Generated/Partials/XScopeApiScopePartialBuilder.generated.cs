@@ -27,19 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.XScopeApiScopePartialBuilder;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum CodeDiscussionSuggestedEditState
+public static class XScopeApiScopePartialExtensions
 {
-    [EnumMember(Value = "Accepted")]
-    Accepted,
+    public static Partial<XScopeApiScope> WithGrants(this Partial<XScopeApiScope> it)
+        => it.AddFieldName("grants");
     
-    [EnumMember(Value = "Rejected")]
-    Rejected,
-    
-    [EnumMember(Value = "Deleted")]
-    Deleted,
+    public static Partial<XScopeApiScope> WithGrants(this Partial<XScopeApiScope> it, Func<Partial<XScopeGrantApi>, Partial<XScopeGrantApi>> partialBuilder)
+        => it.AddFieldName("grants", partialBuilder(new Partial<XScopeGrantApi>(it)));
     
 }
 

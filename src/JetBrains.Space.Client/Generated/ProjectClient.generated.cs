@@ -206,7 +206,7 @@ public partial class ProjectClient : ISpaceClient
     /// Required permissions:
     /// <list type="bullet">
     /// <item>
-    /// <term>Change permissions for the project</term>
+    /// <term>Manage project permission scheme</term>
     /// </item>
     /// </list>
     /// </remarks>
@@ -247,7 +247,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Stop</term>
+            /// <term>Stop automation jobs</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -263,7 +263,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View</term>
+            /// <term>View automation jobs</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -293,7 +293,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View</term>
+            /// <term>View automation jobs</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -323,7 +323,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View</term>
+            /// <term>View automation jobs</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -463,7 +463,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View</term>
+            /// <term>View automation jobs</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -489,7 +489,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View</term>
+            /// <term>View automation jobs</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -507,7 +507,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Start</term>
+            /// <term>Start automation jobs</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -531,7 +531,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View</term>
+            /// <term>View automation jobs</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -556,7 +556,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View</term>
+            /// <term>View automation jobs</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -585,8 +585,7 @@ public partial class ProjectClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Modify parameters</term>
-        /// <description>Create or edit project parameters</description>
+        /// <term>Modify project parameters</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -610,8 +609,7 @@ public partial class ProjectClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Delete parameters</term>
-        /// <description>Delete project parameters</description>
+        /// <term>Delete project parameters</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -641,8 +639,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Modify parameters</term>
-            /// <description>Create or edit project parameters</description>
+            /// <term>Modify project parameters</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -668,8 +665,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View parameters</term>
-            /// <description>View project parameters</description>
+            /// <term>View project parameters</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -692,8 +688,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View parameters</term>
-            /// <description>View project parameters</description>
+            /// <term>View project parameters</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -717,8 +712,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Modify parameters</term>
-            /// <description>Create or edit project parameters</description>
+            /// <term>Modify project parameters</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -744,8 +738,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View parameters</term>
-            /// <description>View project parameters</description>
+            /// <term>View project parameters</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -769,8 +762,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View parameters</term>
-            /// <description>View project parameters</description>
+            /// <term>View project parameters</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -1644,8 +1636,8 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit issues</term>
-            /// <description>Edit issues that were created by other users</description>
+            /// <term>Update issues</term>
+            /// <description>Update issues that were created by other users</description>
             /// </item>
             /// </list>
             /// </remarks>
@@ -1766,8 +1758,8 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit issues</term>
-            /// <description>Edit issues that were created by other users</description>
+            /// <term>Update issues</term>
+            /// <description>Update issues that were created by other users</description>
             /// </item>
             /// </list>
             /// </remarks>
@@ -1796,8 +1788,8 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit issues</term>
-            /// <description>Edit issues that were created by other users</description>
+            /// <term>Update issues</term>
+            /// <description>Update issues that were created by other users</description>
             /// </item>
             /// </list>
             /// </remarks>
@@ -1977,8 +1969,8 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Edit issues</term>
-                /// <description>Edit issues that were created by other users</description>
+                /// <term>Update issues</term>
+                /// <description>Update issues that were created by other users</description>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -2001,8 +1993,8 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Edit issues</term>
-                /// <description>Edit issues that were created by other users</description>
+                /// <term>Update issues</term>
+                /// <description>Update issues that were created by other users</description>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -2035,15 +2027,15 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Edit issues</term>
-                /// <description>Edit issues that were created by other users</description>
+                /// <term>Update issues</term>
+                /// <description>Update issues that were created by other users</description>
                 /// </item>
                 /// <item>
                 /// <term>Manage checklists</term>
                 /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
                 /// </item>
                 /// <item>
-                /// <term>Edit content</term>
+                /// <term>Edit folder content</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -2062,15 +2054,15 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Edit issues</term>
-                /// <description>Edit issues that were created by other users</description>
+                /// <term>Update issues</term>
+                /// <description>Update issues that were created by other users</description>
                 /// </item>
                 /// <item>
                 /// <term>Manage checklists</term>
                 /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
                 /// </item>
                 /// <item>
-                /// <term>Edit content</term>
+                /// <term>Edit folder content</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -2102,8 +2094,8 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Edit issues</term>
-                /// <description>Edit issues that were created by other users</description>
+                /// <term>Update issues</term>
+                /// <description>Update issues that were created by other users</description>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -2126,8 +2118,8 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Edit issues</term>
-                /// <description>Edit issues that were created by other users</description>
+                /// <term>Update issues</term>
+                /// <description>Update issues that were created by other users</description>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -2194,8 +2186,8 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Edit issues</term>
-                /// <description>Edit issues that were created by other users</description>
+                /// <term>Update issues</term>
+                /// <description>Update issues that were created by other users</description>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -2219,8 +2211,8 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Edit issues</term>
-                /// <description>Edit issues that were created by other users</description>
+                /// <term>Update issues</term>
+                /// <description>Update issues that were created by other users</description>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -2254,8 +2246,8 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Edit issues</term>
-                /// <description>Edit issues that were created by other users</description>
+                /// <term>Update issues</term>
+                /// <description>Update issues that were created by other users</description>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -2274,8 +2266,8 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Edit issues</term>
-                /// <description>Edit issues that were created by other users</description>
+                /// <term>Update issues</term>
+                /// <description>Update issues that were created by other users</description>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -2335,7 +2327,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View project data</term>
+            /// <term>View project details</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2358,7 +2350,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View project data</term>
+            /// <term>View project details</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2608,8 +2600,7 @@ public partial class ProjectClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit secrets</term>
-        /// <description>Edit project secrets</description>
+        /// <term>Update project secrets</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -2634,8 +2625,7 @@ public partial class ProjectClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Delete secrets</term>
-        /// <description>Delete project secrets</description>
+        /// <term>Delete project secrets</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -2665,8 +2655,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Create secrets</term>
-            /// <description>Create project secrets</description>
+            /// <term>Create project secrets</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2693,8 +2682,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View keys of secrets</term>
-            /// <description>View keys of project secrets</description>
+            /// <term>View keys of project secrets</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2717,8 +2705,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View keys of secrets</term>
-            /// <description>View keys of project secrets</description>
+            /// <term>View keys of project secrets</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2742,8 +2729,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Create secrets</term>
-            /// <description>Create project secrets</description>
+            /// <term>Create project secrets</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2767,8 +2753,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View keys of secrets</term>
-            /// <description>View keys of project secrets</description>
+            /// <term>View keys of project secrets</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2789,8 +2774,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View keys of secrets</term>
-            /// <description>View keys of project secrets</description>
+            /// <term>View keys of project secrets</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -3198,7 +3182,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View project data</term>
+            /// <term>View project details</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -3222,7 +3206,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View project data</term>
+            /// <term>View project details</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -3370,6 +3354,14 @@ public partial class ProjectClient : ISpaceClient
             _connection = connection;
         }
         
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Create suggested edit</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<CodeDiscussionRecord> CreateCodeDiscussionAsync(ProjectIdentifier project, string text, string repository, string revision, bool pending = false, DiffContext? diffContext = null, string? filename = null, int? line = null, int? oldLine = null, ReviewIdentifier? reviewId = null, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3653,7 +3645,7 @@ public partial class ProjectClient : ISpaceClient
         /// <term>View code reviews</term>
         /// </item>
         /// <item>
-        /// <term>Write</term>
+        /// <term>Write git repositories</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -3678,7 +3670,7 @@ public partial class ProjectClient : ISpaceClient
         /// <term>View code reviews</term>
         /// </item>
         /// <item>
-        /// <term>Write</term>
+        /// <term>Write git repositories</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -3829,7 +3821,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Create</term>
+            /// <term>Create package repositories</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -3859,7 +3851,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Read</term>
+            /// <term>Read package repositories</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -3881,7 +3873,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Read</term>
+            /// <term>Read package repositories</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -3901,7 +3893,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Admin</term>
+            /// <term>Admin package repositories</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -3927,7 +3919,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Admin</term>
+            /// <term>Admin package repositories</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -3957,7 +3949,7 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Admin</term>
+                /// <term>Admin package repositories</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -3992,7 +3984,7 @@ public partial class ProjectClient : ISpaceClient
                     /// Required permissions:
                     /// <list type="bullet">
                     /// <item>
-                    /// <term>Admin</term>
+                    /// <term>Admin package repositories</term>
                     /// </item>
                     /// </list>
                     /// </remarks>
@@ -4031,7 +4023,7 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Read</term>
+                /// <term>Read package repositories</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -4062,7 +4054,7 @@ public partial class ProjectClient : ISpaceClient
                     /// Required permissions:
                     /// <list type="bullet">
                     /// <item>
-                    /// <term>Write</term>
+                    /// <term>Write package repositories</term>
                     /// </item>
                     /// </list>
                     /// </remarks>
@@ -4085,7 +4077,7 @@ public partial class ProjectClient : ISpaceClient
                     /// Required permissions:
                     /// <list type="bullet">
                     /// <item>
-                    /// <term>Read</term>
+                    /// <term>Read package repositories</term>
                     /// </item>
                     /// </list>
                     /// </remarks>
@@ -4107,7 +4099,7 @@ public partial class ProjectClient : ISpaceClient
                     /// Required permissions:
                     /// <list type="bullet">
                     /// <item>
-                    /// <term>Read</term>
+                    /// <term>Read package repositories</term>
                     /// </item>
                     /// </list>
                     /// </remarks>
@@ -4136,7 +4128,7 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Read</term>
+                /// <term>Read package repositories</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -4160,7 +4152,7 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Read</term>
+                /// <term>Read package repositories</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -4174,7 +4166,7 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Write</term>
+                /// <term>Write package repositories</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -4260,7 +4252,7 @@ public partial class ProjectClient : ISpaceClient
                     /// Required permissions:
                     /// <list type="bullet">
                     /// <item>
-                    /// <term>Read</term>
+                    /// <term>Read package repositories</term>
                     /// </item>
                     /// </list>
                     /// </remarks>
@@ -4286,7 +4278,7 @@ public partial class ProjectClient : ISpaceClient
                     /// Required permissions:
                     /// <list type="bullet">
                     /// <item>
-                    /// <term>Read</term>
+                    /// <term>Read package repositories</term>
                     /// </item>
                     /// </list>
                     /// </remarks>
@@ -4300,7 +4292,7 @@ public partial class ProjectClient : ISpaceClient
                     /// Required permissions:
                     /// <list type="bullet">
                     /// <item>
-                    /// <term>Read</term>
+                    /// <term>Read package repositories</term>
                     /// </item>
                     /// </list>
                     /// </remarks>
@@ -4320,7 +4312,7 @@ public partial class ProjectClient : ISpaceClient
                     /// Required permissions:
                     /// <list type="bullet">
                     /// <item>
-                    /// <term>Write</term>
+                    /// <term>Write package repositories</term>
                     /// </item>
                     /// </list>
                     /// </remarks>
@@ -4345,7 +4337,7 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Read</term>
+                /// <term>Read package repositories</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -4369,7 +4361,7 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Read</term>
+                /// <term>Read package repositories</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -4386,7 +4378,7 @@ public partial class ProjectClient : ISpaceClient
                     /// Required permissions:
                     /// <list type="bullet">
                     /// <item>
-                    /// <term>Read</term>
+                    /// <term>Read package repositories</term>
                     /// </item>
                     /// </list>
                     /// </remarks>
@@ -4412,7 +4404,7 @@ public partial class ProjectClient : ISpaceClient
                     /// Required permissions:
                     /// <list type="bullet">
                     /// <item>
-                    /// <term>Read</term>
+                    /// <term>Read package repositories</term>
                     /// </item>
                     /// </list>
                     /// </remarks>
@@ -4427,7 +4419,7 @@ public partial class ProjectClient : ISpaceClient
                     /// Required permissions:
                     /// <list type="bullet">
                     /// <item>
-                    /// <term>Read</term>
+                    /// <term>Read package repositories</term>
                     /// </item>
                     /// </list>
                     /// </remarks>
@@ -4448,7 +4440,7 @@ public partial class ProjectClient : ISpaceClient
                     /// Required permissions:
                     /// <list type="bullet">
                     /// <item>
-                    /// <term>Write</term>
+                    /// <term>Write package repositories</term>
                     /// </item>
                     /// </list>
                     /// </remarks>
@@ -4483,7 +4475,7 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Read</term>
+                /// <term>Read package repositories</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -4517,7 +4509,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Read</term>
+            /// <term>Read package repositories</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -4542,7 +4534,7 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Read</term>
+            /// <term>Read package repositories</term>
             /// </item>
             /// </list>
             /// </remarks>

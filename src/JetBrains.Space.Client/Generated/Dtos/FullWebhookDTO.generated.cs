@@ -29,41 +29,40 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class VcsHostingPassword
+public sealed class FullWebhookDTO
      : IPropagatePropertyAccessPath
 {
-    public VcsHostingPassword() { }
+    public FullWebhookDTO() { }
     
-    public VcsHostingPassword(string fingerprint, DateTime? lastUsed = null)
+    public FullWebhookDTO(WebhookRecord webhook, WebhookDeliveryStatusDTO? status = null)
     {
-        Fingerprint = fingerprint;
-        LastUsed = lastUsed;
+        Webhook = webhook;
+        Status = status;
     }
     
-    private PropertyValue<string> _fingerprint = new PropertyValue<string>(nameof(VcsHostingPassword), nameof(Fingerprint), "fingerprint");
+    private PropertyValue<WebhookRecord> _webhook = new PropertyValue<WebhookRecord>(nameof(FullWebhookDTO), nameof(Webhook), "webhook");
     
     [Required]
-    [JsonPropertyName("fingerprint")]
-    public string Fingerprint
+    [JsonPropertyName("webhook")]
+    public WebhookRecord Webhook
     {
-        get => _fingerprint.GetValue(InlineErrors);
-        set => _fingerprint.SetValue(value);
+        get => _webhook.GetValue(InlineErrors);
+        set => _webhook.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _lastUsed = new PropertyValue<DateTime?>(nameof(VcsHostingPassword), nameof(LastUsed), "lastUsed");
+    private PropertyValue<WebhookDeliveryStatusDTO?> _status = new PropertyValue<WebhookDeliveryStatusDTO?>(nameof(FullWebhookDTO), nameof(Status), "status");
     
-    [JsonPropertyName("lastUsed")]
-    [JsonConverter(typeof(SpaceDateTimeConverter))]
-    public DateTime? LastUsed
+    [JsonPropertyName("status")]
+    public WebhookDeliveryStatusDTO? Status
     {
-        get => _lastUsed.GetValue(InlineErrors);
-        set => _lastUsed.SetValue(value);
+        get => _status.GetValue(InlineErrors);
+        set => _status.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _fingerprint.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _lastUsed.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _webhook.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

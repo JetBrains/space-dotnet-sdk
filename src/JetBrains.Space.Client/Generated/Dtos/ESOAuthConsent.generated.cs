@@ -34,18 +34,18 @@ public sealed class ESOAuthConsent
 {
     public ESOAuthConsent() { }
     
-    public ESOAuthConsent(ESApp clientApplication, List<ESApprovedScope> approvedScopes, List<ESRefreshToken> refreshTokens)
+    public ESOAuthConsent(ESOAuthApp clientApplication, List<ESApprovedScope> approvedScopes, List<ESRefreshToken> refreshTokens)
     {
         ClientApplication = clientApplication;
         ApprovedScopes = approvedScopes;
         RefreshTokens = refreshTokens;
     }
     
-    private PropertyValue<ESApp> _clientApplication = new PropertyValue<ESApp>(nameof(ESOAuthConsent), nameof(ClientApplication), "clientApplication");
+    private PropertyValue<ESOAuthApp> _clientApplication = new PropertyValue<ESOAuthApp>(nameof(ESOAuthConsent), nameof(ClientApplication), "clientApplication");
     
     [Required]
     [JsonPropertyName("clientApplication")]
-    public ESApp ClientApplication
+    public ESOAuthApp ClientApplication
     {
         get => _clientApplication.GetValue(InlineErrors);
         set => _clientApplication.SetValue(value);

@@ -38,9 +38,6 @@ public interface DocumentContainerInfo
     public static InaccessibleContainerInfo InaccessibleContainerInfo()
         => new InaccessibleContainerInfo();
     
-    public static KbDocumentContainerInfo Kb(KBBook book, KBArticle? article = null)
-        => new KbDocumentContainerInfo(book: book, article: article);
-    
     public static PersonalDocumentContainerInfo Personal(TDMemberProfile owner)
         => new PersonalDocumentContainerInfo(owner: owner);
     

@@ -27,12 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileVcsPasswordPatchRequestPartialBuilder;
+namespace JetBrains.Space.Client.XScopeGrantApiPartialBuilder;
 
-public static class TeamDirectoryProfilesForProfileVcsPasswordPatchRequestPartialExtensions
+public static class XScopeGrantApiPartialExtensions
 {
-    public static Partial<TeamDirectoryProfilesForProfileVcsPasswordPatchRequest> WithPassword(this Partial<TeamDirectoryProfilesForProfileVcsPasswordPatchRequest> it)
-        => it.AddFieldName("password");
+    public static Partial<XScopeGrantApi> WithContext(this Partial<XScopeGrantApi> it)
+        => it.AddFieldName("context");
+    
+    public static Partial<XScopeGrantApi> WithContext(this Partial<XScopeGrantApi> it, Func<Partial<PermissionContextApi>, Partial<PermissionContextApi>> partialBuilder)
+        => it.AddFieldName("context", partialBuilder(new Partial<PermissionContextApi>(it)));
+    
+    public static Partial<XScopeGrantApi> WithRight(this Partial<XScopeGrantApi> it)
+        => it.AddFieldName("right");
+    
+    public static Partial<XScopeGrantApi> WithRight(this Partial<XScopeGrantApi> it, Func<Partial<RightDescriptorDTO>, Partial<RightDescriptorDTO>> partialBuilder)
+        => it.AddFieldName("right", partialBuilder(new Partial<RightDescriptorDTO>(it)));
     
 }
 

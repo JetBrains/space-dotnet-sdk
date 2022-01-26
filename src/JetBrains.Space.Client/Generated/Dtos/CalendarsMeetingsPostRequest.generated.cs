@@ -34,7 +34,7 @@ public class CalendarsMeetingsPostRequest
 {
     public CalendarsMeetingsPostRequest() { }
     
-    public CalendarsMeetingsPostRequest(string summary, CalendarEventSpec occurrenceRule, List<string>? locations = null, List<string>? profiles = null, List<string>? externalParticipants = null, List<string>? teams = null, MeetingVisibility visibility = MeetingVisibility.EVERYONE, MeetingModificationPreference modificationPreference = MeetingModificationPreference.PARTICIPANTS, MeetingJoiningPreference joiningPreference = MeetingJoiningPreference.NOBODY, bool notifyOnExport = true, string? description = null, string? organizer = null, EventConferenceData? conferenceData = null)
+    public CalendarsMeetingsPostRequest(string summary, CalendarEventSpec occurrenceRule, List<string>? locations = null, List<string>? profiles = null, List<string>? externalParticipants = null, List<string>? teams = null, MeetingVisibility visibility = MeetingVisibility.EVERYONE, MeetingModificationPreference modificationPreference = MeetingModificationPreference.PARTICIPANTS, MeetingJoiningPreference joiningPreference = MeetingJoiningPreference.NOBODY, bool notifyOnExport = true, string? description = null, string? organizer = null, EventConferenceData? conferenceData = null, List<MeetingAttachment>? attachments = null)
     {
         Summary = summary;
         Description = description;
@@ -49,6 +49,7 @@ public class CalendarsMeetingsPostRequest
         IsNotifyOnExport = notifyOnExport;
         Organizer = organizer;
         ConferenceData = conferenceData;
+        Attachments = attachments;
     }
     
     private PropertyValue<string> _summary = new PropertyValue<string>(nameof(CalendarsMeetingsPostRequest), nameof(Summary), "summary");
@@ -170,6 +171,15 @@ public class CalendarsMeetingsPostRequest
         set => _conferenceData.SetValue(value);
     }
 
+    private PropertyValue<List<MeetingAttachment>?> _attachments = new PropertyValue<List<MeetingAttachment>?>(nameof(CalendarsMeetingsPostRequest), nameof(Attachments), "attachments");
+    
+    [JsonPropertyName("attachments")]
+    public List<MeetingAttachment>? Attachments
+    {
+        get => _attachments.GetValue(InlineErrors);
+        set => _attachments.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _summary.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -185,6 +195,7 @@ public class CalendarsMeetingsPostRequest
         _notifyOnExport.SetAccessPath(parentChainPath, validateHasBeenSet);
         _organizer.SetAccessPath(parentChainPath, validateHasBeenSet);
         _conferenceData.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

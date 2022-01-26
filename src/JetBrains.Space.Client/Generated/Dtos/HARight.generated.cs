@@ -34,12 +34,23 @@ public sealed class HARight
 {
     public HARight() { }
     
-    public HARight(string title, string? description = null)
+    public HARight(string rightUniqueCode, string title, string? description = null)
     {
+        RightUniqueCode = rightUniqueCode;
         Title = title;
         Description = description;
     }
     
+    private PropertyValue<string> _rightUniqueCode = new PropertyValue<string>(nameof(HARight), nameof(RightUniqueCode), "rightUniqueCode");
+    
+    [Required]
+    [JsonPropertyName("rightUniqueCode")]
+    public string RightUniqueCode
+    {
+        get => _rightUniqueCode.GetValue(InlineErrors);
+        set => _rightUniqueCode.SetValue(value);
+    }
+
     private PropertyValue<string> _title = new PropertyValue<string>(nameof(HARight), nameof(Title), "title");
     
     [Required]
@@ -61,6 +72,7 @@ public sealed class HARight
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
+        _rightUniqueCode.SetAccessPath(parentChainPath, validateHasBeenSet);
         _title.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

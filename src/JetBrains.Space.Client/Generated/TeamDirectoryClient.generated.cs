@@ -551,7 +551,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit member profile</term>
+        /// <term>Update member profiles</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -616,7 +616,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit member profile</term>
+        /// <term>Update member profiles</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -641,7 +641,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit member profile</term>
+        /// <term>Update member profiles</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -674,7 +674,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit locations</term>
+        /// <term>Update locations</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -708,7 +708,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit locations</term>
+        /// <term>Update locations</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -732,7 +732,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit locations</term>
+        /// <term>Update locations</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -795,7 +795,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit locations</term>
+        /// <term>Update locations</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -831,7 +831,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit locations</term>
+        /// <term>Update locations</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -882,7 +882,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit locations</term>
+            /// <term>Update locations</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -954,7 +954,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit member profile</term>
+        /// <term>Update member profiles</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -1043,7 +1043,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit member profile</term>
+        /// <term>Update member profiles</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -1069,7 +1069,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit member profile</term>
+        /// <term>Update member profiles</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -1138,7 +1138,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit team</term>
+        /// <term>Update teams</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -1216,7 +1216,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit team</term>
+        /// <term>Update teams</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -1247,7 +1247,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit team</term>
+        /// <term>Update teams</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -1267,7 +1267,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit team</term>
+        /// <term>Update teams</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -1334,7 +1334,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit team</term>
+            /// <term>Update teams</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -1358,7 +1358,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit team</term>
+            /// <term>Update teams</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -1372,7 +1372,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit team</term>
+            /// <term>Update teams</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -1395,7 +1395,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit member profile</term>
+            /// <term>Update member profiles</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -1428,7 +1428,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit team</term>
+            /// <term>Update teams</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -1466,7 +1466,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Add new members</term>
+        /// <term>Add members</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -1509,7 +1509,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>View member profile</term>
+        /// <term>View member profiles</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -1539,7 +1539,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>View member profile</term>
+        /// <term>View member profiles</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -1553,7 +1553,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>View member profile</term>
+        /// <term>View member profiles</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -1574,7 +1574,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>View member profile</term>
+        /// <term>View member profiles</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -1606,7 +1606,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit member profile</term>
+        /// <term>Update member profiles</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -1647,7 +1647,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit member profile</term>
+        /// <term>Update member profiles</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -1671,7 +1671,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Superadmin</term>
+        /// <term>Grant permissions to other members</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -1691,7 +1691,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit member profile</term>
+        /// <term>Update member profiles</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -1723,7 +1723,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View and remove authentication sessions</term>
+            /// <term>Manage authentication sessions</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -1743,7 +1743,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View and remove authentication sessions</term>
+            /// <term>Manage authentication sessions</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -1780,6 +1780,30 @@ public partial class TeamDirectoryClient : ISpaceClient
             }
             
         
+            public ApplicationClient Applications => new ApplicationClient(_connection);
+            
+            public partial class ApplicationClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public ApplicationClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Remove a previously approved application
+                /// </summary>
+                public async Task DeleteApplicationAsync(ProfileIdentifier owner, ApplicationIdentifier application, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/oauth-consents/{owner}/applications/{application}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
             public ApprovedScopeClient ApprovedScopes => new ApprovedScopeClient(_connection);
             
             public partial class ApprovedScopeClient : ISpaceClient
@@ -1799,6 +1823,30 @@ public partial class TeamDirectoryClient : ISpaceClient
                     var queryParameters = new NameValueCollection();
                     
                     await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/oauth-consents/{owner}/approved-scopes/{id}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+            public InternalApplicationClient InternalApplications => new InternalApplicationClient(_connection);
+            
+            public partial class InternalApplicationClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public InternalApplicationClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Remove a previously approved internal application
+                /// </summary>
+                public async Task DeleteInternalApplicationAsync(ProfileIdentifier owner, string clientId, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/oauth-consents/{owner}/internal-applications/{clientId}{queryParameters.ToQueryString()}", cancellationToken);
                 }
                 
             
@@ -1888,7 +1936,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit working hours</term>
+            /// <term>Update working hours</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -1941,7 +1989,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit working hours</term>
+            /// <term>Update working hours</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -1964,7 +2012,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit working hours</term>
+            /// <term>Update working hours</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2314,7 +2362,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit member profile</term>
+            /// <term>Update member profiles</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2348,7 +2396,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit member profile</term>
+            /// <term>Update member profiles</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2368,7 +2416,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit member profile</term>
+            /// <term>Update member profiles</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2578,7 +2626,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View, update, and revoke permanent tokens</term>
+            /// <term>Manage permanent tokens</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2600,7 +2648,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View, update, and revoke permanent tokens</term>
+            /// <term>Manage permanent tokens</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2614,7 +2662,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View, update, and revoke permanent tokens</term>
+            /// <term>Manage permanent tokens</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2639,7 +2687,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View, update, and revoke permanent tokens</term>
+            /// <term>Manage permanent tokens</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2742,7 +2790,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit languages</term>
+            /// <term>Update languages</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2788,7 +2836,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit languages</term>
+            /// <term>Update languages</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2820,7 +2868,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit member profile</term>
+            /// <term>Update member profiles</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2856,7 +2904,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit member profile</term>
+            /// <term>Update member profiles</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2888,7 +2936,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View member profile</term>
+            /// <term>View member profiles</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -2898,57 +2946,6 @@ public partial class TeamDirectoryClient : ISpaceClient
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<ATimeZone>()) : Partial<ATimeZone>.Default()).ToString());
                 
                 return await _connection.RequestResourceAsync<ATimeZone>("GET", $"api/http/team-directory/profiles/{profile}/timezone{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-        }
-    
-        public VcsPasswordClient VcsPassword => new VcsPasswordClient(_connection);
-        
-        public partial class VcsPasswordClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public VcsPasswordClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            /// <summary>
-            /// Get VCS password for a profile
-            /// </summary>
-            public async Task<VcsHostingPassword> GetVcsPasswordAsync(ProfileIdentifier profile, Func<Partial<VcsHostingPassword>, Partial<VcsHostingPassword>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<VcsHostingPassword>()) : Partial<VcsHostingPassword>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<VcsHostingPassword>("GET", $"api/http/team-directory/profiles/{profile}/vcs-password{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-            /// <summary>
-            /// Set VCS password for a profile. This password can be used to access Space repositories over HTTPS.
-            /// </summary>
-            public async Task SetVcsPasswordAsync(ProfileIdentifier profile, string password, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/vcs-password{queryParameters.ToQueryString()}", 
-                    new TeamDirectoryProfilesForProfileVcsPasswordPatchRequest
-                    { 
-                        Password = password,
-                    }, cancellationToken);
-            }
-            
-        
-            /// <summary>
-            /// Delete VCS password for a profile
-            /// </summary>
-            public async Task DeleteVcsPasswordAsync(ProfileIdentifier profile, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/vcs-password{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
@@ -2974,7 +2971,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit positions</term>
+        /// <term>Update positions</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -2999,7 +2996,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit positions</term>
+        /// <term>Update positions</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -3061,7 +3058,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit positions</term>
+        /// <term>Update positions</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -3086,7 +3083,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit positions</term>
+        /// <term>Update positions</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -3160,7 +3157,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit team</term>
+        /// <term>Update teams</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -3190,7 +3187,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit team</term>
+        /// <term>Update teams</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -3209,7 +3206,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit team</term>
+        /// <term>Update teams</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -3287,7 +3284,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit team</term>
+        /// <term>Update teams</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -3317,7 +3314,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit team</term>
+        /// <term>Update teams</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -3337,7 +3334,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit team</term>
+        /// <term>Update teams</term>
         /// </item>
         /// </list>
         /// </remarks>

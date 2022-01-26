@@ -29,43 +29,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class KbDocumentContainerInfo
-     : DocumentContainerInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class ESOAuthUserApp
+     : ESOAuthApp, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public  string? ClassName => "KbDocumentContainerInfo";
+    public  string? ClassName => "ES_OAuthUserApp";
     
-    public KbDocumentContainerInfo() { }
+    public ESOAuthUserApp() { }
     
-    public KbDocumentContainerInfo(KBBook book, KBArticle? article = null)
+    public ESOAuthUserApp(ESApp app)
     {
-        Book = book;
-        Article = article;
+        App = app;
     }
     
-    private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(KbDocumentContainerInfo), nameof(Book), "book");
+    private PropertyValue<ESApp> _app = new PropertyValue<ESApp>(nameof(ESOAuthUserApp), nameof(App), "app");
     
     [Required]
-    [JsonPropertyName("book")]
-    public KBBook Book
+    [JsonPropertyName("app")]
+    public ESApp App
     {
-        get => _book.GetValue(InlineErrors);
-        set => _book.SetValue(value);
-    }
-
-    private PropertyValue<KBArticle?> _article = new PropertyValue<KBArticle?>(nameof(KbDocumentContainerInfo), nameof(Article), "article");
-    
-    [JsonPropertyName("article")]
-    public KBArticle? Article
-    {
-        get => _article.GetValue(InlineErrors);
-        set => _article.SetValue(value);
+        get => _app.GetValue(InlineErrors);
+        set => _app.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _book.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _article.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _app.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

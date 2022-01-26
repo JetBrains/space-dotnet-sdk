@@ -34,13 +34,14 @@ public sealed class MeetingAttachment
 {
     public MeetingAttachment() { }
     
-    public MeetingAttachment(string? fileUrl = null, string? title = null, string? mimeType = null, string? fileId = null, string? source = null)
+    public MeetingAttachment(string? fileUrl = null, string? title = null, string? mimeType = null, string? fileId = null, string? source = null, string? iconLink = null)
     {
         FileUrl = fileUrl;
         Title = title;
         MimeType = mimeType;
         FileId = fileId;
         Source = source;
+        IconLink = iconLink;
     }
     
     private PropertyValue<string?> _fileUrl = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(FileUrl), "fileUrl");
@@ -88,6 +89,15 @@ public sealed class MeetingAttachment
         set => _source.SetValue(value);
     }
 
+    private PropertyValue<string?> _iconLink = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(IconLink), "iconLink");
+    
+    [JsonPropertyName("iconLink")]
+    public string? IconLink
+    {
+        get => _iconLink.GetValue(InlineErrors);
+        set => _iconLink.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _fileUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -95,6 +105,7 @@ public sealed class MeetingAttachment
         _mimeType.SetAccessPath(parentChainPath, validateHasBeenSet);
         _fileId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _source.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _iconLink.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -85,5 +85,11 @@ public static class CalendarsMeetingsPostRequestPartialExtensions
     public static Partial<CalendarsMeetingsPostRequest> WithConferenceData(this Partial<CalendarsMeetingsPostRequest> it, Func<Partial<EventConferenceData>, Partial<EventConferenceData>> partialBuilder)
         => it.AddFieldName("conferenceData", partialBuilder(new Partial<EventConferenceData>(it)));
     
+    public static Partial<CalendarsMeetingsPostRequest> WithAttachments(this Partial<CalendarsMeetingsPostRequest> it)
+        => it.AddFieldName("attachments");
+    
+    public static Partial<CalendarsMeetingsPostRequest> WithAttachments(this Partial<CalendarsMeetingsPostRequest> it, Func<Partial<MeetingAttachment>, Partial<MeetingAttachment>> partialBuilder)
+        => it.AddFieldName("attachments", partialBuilder(new Partial<MeetingAttachment>(it)));
+    
 }
 

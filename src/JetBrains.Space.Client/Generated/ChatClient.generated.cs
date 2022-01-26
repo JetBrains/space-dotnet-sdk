@@ -111,7 +111,7 @@ public partial class ChatClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Manage channel</term>
+        /// <term>Manage channels</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -181,7 +181,7 @@ public partial class ChatClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Manage channel</term>
+        /// <term>Manage channels</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -200,7 +200,7 @@ public partial class ChatClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Manage channel</term>
+        /// <term>Manage channels</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -249,7 +249,7 @@ public partial class ChatClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Manage channel</term>
+            /// <term>Manage channels</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -333,7 +333,7 @@ public partial class ChatClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Manage channel</term>
+            /// <term>Manage channels</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -689,7 +689,7 @@ public partial class ChatClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Manage channel</term>
+            /// <term>Manage channels</term>
             /// </item>
             /// </list>
             /// </remarks>

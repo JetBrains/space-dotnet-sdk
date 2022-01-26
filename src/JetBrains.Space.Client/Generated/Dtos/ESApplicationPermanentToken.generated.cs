@@ -34,12 +34,13 @@ public sealed class ESApplicationPermanentToken
 {
     public ESApplicationPermanentToken() { }
     
-    public ESApplicationPermanentToken(string id, string name, ESApp application, string scope, DateTime created, DateTime? expires = null, AccessRecord? lastAccess = null)
+    public ESApplicationPermanentToken(string id, string name, ESApp application, string scope, XScopeApi apiScope, DateTime created, DateTime? expires = null, AccessRecord? lastAccess = null)
     {
         Id = id;
         Name = name;
         Application = application;
         Scope = scope;
+        ApiScope = apiScope;
         Created = created;
         Expires = expires;
         LastAccess = lastAccess;
@@ -85,6 +86,16 @@ public sealed class ESApplicationPermanentToken
         set => _scope.SetValue(value);
     }
 
+    private PropertyValue<XScopeApi> _apiScope = new PropertyValue<XScopeApi>(nameof(ESApplicationPermanentToken), nameof(ApiScope), "apiScope");
+    
+    [Required]
+    [JsonPropertyName("apiScope")]
+    public XScopeApi ApiScope
+    {
+        get => _apiScope.GetValue(InlineErrors);
+        set => _apiScope.SetValue(value);
+    }
+
     private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ESApplicationPermanentToken), nameof(Created), "created");
     
     [Required]
@@ -121,6 +132,7 @@ public sealed class ESApplicationPermanentToken
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _application.SetAccessPath(parentChainPath, validateHasBeenSet);
         _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _apiScope.SetAccessPath(parentChainPath, validateHasBeenSet);
         _created.SetAccessPath(parentChainPath, validateHasBeenSet);
         _expires.SetAccessPath(parentChainPath, validateHasBeenSet);
         _lastAccess.SetAccessPath(parentChainPath, validateHasBeenSet);

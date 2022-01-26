@@ -46,5 +46,8 @@ public static class MeetingAttachmentPartialExtensions
     public static Partial<MeetingAttachment> WithSource(this Partial<MeetingAttachment> it)
         => it.AddFieldName("source");
     
+    public static Partial<MeetingAttachment> WithIconLink(this Partial<MeetingAttachment> it)
+        => it.AddFieldName("iconLink");
+    
 }
 

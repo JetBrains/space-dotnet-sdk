@@ -29,29 +29,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class TeamDirectoryProfilesForProfileVcsPasswordPatchRequest
-     : IPropagatePropertyAccessPath
+public sealed class XScopeApiScope
+     : XScopeApi, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public TeamDirectoryProfilesForProfileVcsPasswordPatchRequest() { }
+    [JsonPropertyName("className")]
+    public override string? ClassName => "XScopeApi.Scope";
     
-    public TeamDirectoryProfilesForProfileVcsPasswordPatchRequest(string password)
+    public XScopeApiScope() { }
+    
+    public XScopeApiScope(List<XScopeGrantApi> grants)
     {
-        Password = password;
+        Grants = grants;
     }
     
-    private PropertyValue<string> _password = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileVcsPasswordPatchRequest), nameof(Password), "password");
+    private PropertyValue<List<XScopeGrantApi>> _grants = new PropertyValue<List<XScopeGrantApi>>(nameof(XScopeApiScope), nameof(Grants), "grants", new List<XScopeGrantApi>());
     
     [Required]
-    [JsonPropertyName("password")]
-    public string Password
+    [JsonPropertyName("grants")]
+    public List<XScopeGrantApi> Grants
     {
-        get => _password.GetValue(InlineErrors);
-        set => _password.SetValue(value);
+        get => _grants.GetValue(InlineErrors);
+        set => _grants.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _password.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _grants.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

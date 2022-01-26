@@ -30,19 +30,22 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-public class PackageRepositoryConnection
+public class XScopeApi
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public virtual string? ClassName => "PackageRepositoryConnection";
+    public virtual string? ClassName => "XScopeApi";
     
-    public static PackageRepositoryConnectionRemote Remote(string id, bool enabled, bool rememberDownloaded, string url, PackageRepositoryCredentials credentials, List<string>? packageNameFilters = null, string? secretId = null, string? secretValue = null, PackageRepositoryConnectionSettings? settings = null)
-        => new PackageRepositoryConnectionRemote(id: id, enabled: enabled, rememberDownloaded: rememberDownloaded, url: url, credentials: credentials, packageNameFilters: packageNameFilters, secretId: secretId, secretValue: secretValue, settings: settings);
+    public static XScopeApiAll All()
+        => new XScopeApiAll();
     
-    public static PackageRepositoryConnectionSpace Space(string id, bool enabled, bool rememberDownloaded, ProjectPackageRepository repository, List<string>? packageNameFilters = null)
-        => new PackageRepositoryConnectionSpace(id: id, enabled: enabled, rememberDownloaded: rememberDownloaded, repository: repository, packageNameFilters: packageNameFilters);
+    public static XScopeApiNone None()
+        => new XScopeApiNone();
     
-    public PackageRepositoryConnection() { }
+    public static XScopeApiScope Scope(List<XScopeGrantApi> grants)
+        => new XScopeApiScope(grants: grants);
+    
+    public XScopeApi() { }
     
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {

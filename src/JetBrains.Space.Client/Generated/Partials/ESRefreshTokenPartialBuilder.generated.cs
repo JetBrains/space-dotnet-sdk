@@ -37,6 +37,9 @@ public static class ESRefreshTokenPartialExtensions
     public static Partial<ESRefreshToken> WithScope(this Partial<ESRefreshToken> it)
         => it.AddFieldName("scope");
     
+    public static Partial<ESRefreshToken> WithScope(this Partial<ESRefreshToken> it, Func<Partial<XScopeApi>, Partial<XScopeApi>> partialBuilder)
+        => it.AddFieldName("scope", partialBuilder(new Partial<XScopeApi>(it)));
+    
     public static Partial<ESRefreshToken> WithLastAccess(this Partial<ESRefreshToken> it)
         => it.AddFieldName("lastAccess");
     

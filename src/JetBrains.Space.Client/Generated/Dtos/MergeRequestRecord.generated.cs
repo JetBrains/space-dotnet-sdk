@@ -37,7 +37,7 @@ public sealed class MergeRequestRecord
     
     public MergeRequestRecord() { }
     
-    public MergeRequestRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null)
+    public MergeRequestRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool safeMergeInProgress, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null)
     {
         Project = project;
         ProjectId = projectId;
@@ -50,6 +50,7 @@ public sealed class MergeRequestRecord
         IsTurnBased = turnBased;
         FeedChannel = feedChannel;
         BranchPairs = branchPairs;
+        IsSafeMergeInProgress = safeMergeInProgress;
     }
     
     private PropertyValue<ProjectKey> _project = new PropertyValue<ProjectKey>(nameof(MergeRequestRecord), nameof(Project), "project");
@@ -158,6 +159,16 @@ public sealed class MergeRequestRecord
         set => _branchPairs.SetValue(value);
     }
 
+    private PropertyValue<bool> _safeMergeInProgress = new PropertyValue<bool>(nameof(MergeRequestRecord), nameof(IsSafeMergeInProgress), "safeMergeInProgress");
+    
+    [Required]
+    [JsonPropertyName("safeMergeInProgress")]
+    public bool IsSafeMergeInProgress
+    {
+        get => _safeMergeInProgress.GetValue(InlineErrors);
+        set => _safeMergeInProgress.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -171,6 +182,7 @@ public sealed class MergeRequestRecord
         _turnBased.SetAccessPath(parentChainPath, validateHasBeenSet);
         _feedChannel.SetAccessPath(parentChainPath, validateHasBeenSet);
         _branchPairs.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _safeMergeInProgress.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

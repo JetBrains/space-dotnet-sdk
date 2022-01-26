@@ -34,8 +34,8 @@ public static class PackageRepositoryConnectionSpacePartialExtensions
     public static Partial<PackageRepositoryConnectionSpace> WithId(this Partial<PackageRepositoryConnectionSpace> it)
         => it.AddFieldName("id");
     
-    public static Partial<PackageRepositoryConnectionSpace> WithIsEnableCaching(this Partial<PackageRepositoryConnectionSpace> it)
-        => it.AddFieldName("enableCaching");
+    public static Partial<PackageRepositoryConnectionSpace> WithIsEnabled(this Partial<PackageRepositoryConnectionSpace> it)
+        => it.AddFieldName("enabled");
     
     public static Partial<PackageRepositoryConnectionSpace> WithIsRememberDownloaded(this Partial<PackageRepositoryConnectionSpace> it)
         => it.AddFieldName("rememberDownloaded");

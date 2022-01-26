@@ -46,6 +46,12 @@ public static class ESPersonalTokenPartialExtensions
     public static Partial<ESPersonalToken> WithScope(this Partial<ESPersonalToken> it)
         => it.AddFieldName("scope");
     
+    public static Partial<ESPersonalToken> WithApiScope(this Partial<ESPersonalToken> it)
+        => it.AddFieldName("apiScope");
+    
+    public static Partial<ESPersonalToken> WithApiScope(this Partial<ESPersonalToken> it, Func<Partial<XScopeApi>, Partial<XScopeApi>> partialBuilder)
+        => it.AddFieldName("apiScope", partialBuilder(new Partial<XScopeApi>(it)));
+    
     public static Partial<ESPersonalToken> WithCreated(this Partial<ESPersonalToken> it)
         => it.AddFieldName("created");
     

@@ -34,11 +34,8 @@ public static class PackageRepositoryConnectionRemotePartialExtensions
     public static Partial<PackageRepositoryConnectionRemote> WithId(this Partial<PackageRepositoryConnectionRemote> it)
         => it.AddFieldName("id");
     
-    public static Partial<PackageRepositoryConnectionRemote> WithIsEnableCaching(this Partial<PackageRepositoryConnectionRemote> it)
-        => it.AddFieldName("enableCaching");
-    
-    public static Partial<PackageRepositoryConnectionRemote> WithIsEnablePublishing(this Partial<PackageRepositoryConnectionRemote> it)
-        => it.AddFieldName("enablePublishing");
+    public static Partial<PackageRepositoryConnectionRemote> WithIsEnabled(this Partial<PackageRepositoryConnectionRemote> it)
+        => it.AddFieldName("enabled");
     
     public static Partial<PackageRepositoryConnectionRemote> WithIsRememberDownloaded(this Partial<PackageRepositoryConnectionRemote> it)
         => it.AddFieldName("rememberDownloaded");

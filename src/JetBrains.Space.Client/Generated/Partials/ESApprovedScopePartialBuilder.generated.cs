@@ -37,6 +37,9 @@ public static class ESApprovedScopePartialExtensions
     public static Partial<ESApprovedScope> WithScope(this Partial<ESApprovedScope> it)
         => it.AddFieldName("scope");
     
+    public static Partial<ESApprovedScope> WithScope(this Partial<ESApprovedScope> it, Func<Partial<XScopeApi>, Partial<XScopeApi>> partialBuilder)
+        => it.AddFieldName("scope", partialBuilder(new Partial<XScopeApi>(it)));
+    
     public static Partial<ESApprovedScope> WithIsOfflineAllowed(this Partial<ESApprovedScope> it)
         => it.AddFieldName("offlineAllowed");
     

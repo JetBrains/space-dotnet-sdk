@@ -45,7 +45,7 @@ public partial class ToDoItemClient : ISpaceClient
     /// Required permissions:
     /// <list type="bullet">
     /// <item>
-    /// <term>Edit todo</term>
+    /// <term>Update to-dos</term>
     /// </item>
     /// </list>
     /// </remarks>
@@ -109,7 +109,7 @@ public partial class ToDoItemClient : ISpaceClient
     /// Required permissions:
     /// <list type="bullet">
     /// <item>
-    /// <term>Edit todo</term>
+    /// <term>Update to-dos</term>
     /// </item>
     /// </list>
     /// </remarks>
@@ -134,7 +134,7 @@ public partial class ToDoItemClient : ISpaceClient
     /// Required permissions:
     /// <list type="bullet">
     /// <item>
-    /// <term>Edit todo</term>
+    /// <term>Update to-dos</term>
     /// </item>
     /// </list>
     /// </remarks>

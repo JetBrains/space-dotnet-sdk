@@ -82,6 +82,9 @@ public static class MergeRequestRecordPartialExtensions
     public static Partial<MergeRequestRecord> WithBranchPairs(this Partial<MergeRequestRecord> it, Func<Partial<MergeRequestBranchPair>, Partial<MergeRequestBranchPair>> partialBuilder)
         => it.AddFieldName("branchPairs", partialBuilder(new Partial<MergeRequestBranchPair>(it)));
     
+    public static Partial<MergeRequestRecord> WithIsSafeMergeInProgress(this Partial<MergeRequestRecord> it)
+        => it.AddFieldName("safeMergeInProgress");
+    
     [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<MergeRequestRecord> WithAuthors(this Partial<MergeRequestRecord> it)
         => it.AddFieldName("authors");

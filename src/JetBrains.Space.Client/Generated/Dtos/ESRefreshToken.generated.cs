@@ -34,7 +34,7 @@ public sealed class ESRefreshToken
 {
     public ESRefreshToken() { }
     
-    public ESRefreshToken(string id, string scope, AccessRecord? lastAccess = null)
+    public ESRefreshToken(string id, XScopeApi scope, AccessRecord? lastAccess = null)
     {
         Id = id;
         Scope = scope;
@@ -51,11 +51,11 @@ public sealed class ESRefreshToken
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESRefreshToken), nameof(Scope), "scope");
+    private PropertyValue<XScopeApi> _scope = new PropertyValue<XScopeApi>(nameof(ESRefreshToken), nameof(Scope), "scope");
     
     [Required]
     [JsonPropertyName("scope")]
-    public string Scope
+    public XScopeApi Scope
     {
         get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);

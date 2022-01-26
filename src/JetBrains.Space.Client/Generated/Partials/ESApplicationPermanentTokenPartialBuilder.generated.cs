@@ -46,6 +46,12 @@ public static class ESApplicationPermanentTokenPartialExtensions
     public static Partial<ESApplicationPermanentToken> WithScope(this Partial<ESApplicationPermanentToken> it)
         => it.AddFieldName("scope");
     
+    public static Partial<ESApplicationPermanentToken> WithApiScope(this Partial<ESApplicationPermanentToken> it)
+        => it.AddFieldName("apiScope");
+    
+    public static Partial<ESApplicationPermanentToken> WithApiScope(this Partial<ESApplicationPermanentToken> it, Func<Partial<XScopeApi>, Partial<XScopeApi>> partialBuilder)
+        => it.AddFieldName("apiScope", partialBuilder(new Partial<XScopeApi>(it)));
+    
     public static Partial<ESApplicationPermanentToken> WithCreated(this Partial<ESApplicationPermanentToken> it)
         => it.AddFieldName("created");
     

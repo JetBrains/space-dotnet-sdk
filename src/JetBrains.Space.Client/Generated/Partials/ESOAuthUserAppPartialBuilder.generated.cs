@@ -27,19 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.ESOAuthUserAppPartialBuilder;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum CodeDiscussionSuggestedEditState
+public static class ESOAuthUserAppPartialExtensions
 {
-    [EnumMember(Value = "Accepted")]
-    Accepted,
+    public static Partial<ESOAuthUserApp> WithApp(this Partial<ESOAuthUserApp> it)
+        => it.AddFieldName("app");
     
-    [EnumMember(Value = "Rejected")]
-    Rejected,
-    
-    [EnumMember(Value = "Deleted")]
-    Deleted,
+    public static Partial<ESOAuthUserApp> WithApp(this Partial<ESOAuthUserApp> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
+        => it.AddFieldName("app", partialBuilder(new Partial<ESApp>(it)));
     
 }
 

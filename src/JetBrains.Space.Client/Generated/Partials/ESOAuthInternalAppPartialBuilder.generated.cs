@@ -27,15 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.VcsHostingPasswordPartialBuilder;
+namespace JetBrains.Space.Client.ESOAuthInternalAppPartialBuilder;
 
-public static class VcsHostingPasswordPartialExtensions
+public static class ESOAuthInternalAppPartialExtensions
 {
-    public static Partial<VcsHostingPassword> WithFingerprint(this Partial<VcsHostingPassword> it)
-        => it.AddFieldName("fingerprint");
+    public static Partial<ESOAuthInternalApp> WithName(this Partial<ESOAuthInternalApp> it)
+        => it.AddFieldName("name");
     
-    public static Partial<VcsHostingPassword> WithLastUsed(this Partial<VcsHostingPassword> it)
-        => it.AddFieldName("lastUsed");
+    public static Partial<ESOAuthInternalApp> WithClientId(this Partial<ESOAuthInternalApp> it)
+        => it.AddFieldName("clientId");
     
 }
 

@@ -27,19 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.RightDescriptorDTOPartialBuilder;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum CodeDiscussionSuggestedEditState
+public static class RightDescriptorDTOPartialExtensions
 {
-    [EnumMember(Value = "Accepted")]
-    Accepted,
+    public static Partial<RightDescriptorDTO> WithRightCode(this Partial<RightDescriptorDTO> it)
+        => it.AddFieldName("rightCode");
     
-    [EnumMember(Value = "Rejected")]
-    Rejected,
+    public static Partial<RightDescriptorDTO> WithName(this Partial<RightDescriptorDTO> it)
+        => it.AddFieldName("name");
     
-    [EnumMember(Value = "Deleted")]
-    Deleted,
+    public static Partial<RightDescriptorDTO> WithGroup(this Partial<RightDescriptorDTO> it)
+        => it.AddFieldName("group");
+    
+    public static Partial<RightDescriptorDTO> WithDescription(this Partial<RightDescriptorDTO> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<RightDescriptorDTO> WithTargetName(this Partial<RightDescriptorDTO> it)
+        => it.AddFieldName("targetName");
+    
+    public static Partial<RightDescriptorDTO> WithDependencies(this Partial<RightDescriptorDTO> it)
+        => it.AddFieldName("dependencies");
     
 }
 

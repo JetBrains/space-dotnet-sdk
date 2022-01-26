@@ -42,7 +42,7 @@ public partial class ApplicationClient : ISpaceClient
     /// Required permissions:
     /// <list type="bullet">
     /// <item>
-    /// <term>Create application</term>
+    /// <term>Create applications</term>
     /// </item>
     /// </list>
     /// </remarks>
@@ -85,7 +85,7 @@ public partial class ApplicationClient : ISpaceClient
     /// Required permissions:
     /// <list type="bullet">
     /// <item>
-    /// <term>Edit application</term>
+    /// <term>Update applications</term>
     /// </item>
     /// </list>
     /// </remarks>
@@ -101,7 +101,7 @@ public partial class ApplicationClient : ISpaceClient
     /// Required permissions:
     /// <list type="bullet">
     /// <item>
-    /// <term>View application</term>
+    /// <term>View applications</term>
     /// </item>
     /// </list>
     /// </remarks>
@@ -121,7 +121,7 @@ public partial class ApplicationClient : ISpaceClient
     /// Required permissions:
     /// <list type="bullet">
     /// <item>
-    /// <term>View application</term>
+    /// <term>View applications</term>
     /// </item>
     /// </list>
     /// </remarks>
@@ -145,7 +145,7 @@ public partial class ApplicationClient : ISpaceClient
     /// Required permissions:
     /// <list type="bullet">
     /// <item>
-    /// <term>View application</term>
+    /// <term>View applications</term>
     /// </item>
     /// </list>
     /// </remarks>
@@ -156,7 +156,7 @@ public partial class ApplicationClient : ISpaceClient
     /// Required permissions:
     /// <list type="bullet">
     /// <item>
-    /// <term>View application</term>
+    /// <term>View applications</term>
     /// </item>
     /// </list>
     /// </remarks>
@@ -189,7 +189,7 @@ public partial class ApplicationClient : ISpaceClient
     /// Required permissions:
     /// <list type="bullet">
     /// <item>
-    /// <term>View application</term>
+    /// <term>View applications</term>
     /// </item>
     /// </list>
     /// </remarks>
@@ -225,7 +225,7 @@ public partial class ApplicationClient : ISpaceClient
     /// Required permissions:
     /// <list type="bullet">
     /// <item>
-    /// <term>Edit application</term>
+    /// <term>Update applications</term>
     /// </item>
     /// </list>
     /// </remarks>
@@ -265,7 +265,7 @@ public partial class ApplicationClient : ISpaceClient
     /// Required permissions:
     /// <list type="bullet">
     /// <item>
-    /// <term>Delete application</term>
+    /// <term>Delete applications</term>
     /// </item>
     /// </list>
     /// </remarks>
@@ -295,7 +295,7 @@ public partial class ApplicationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>View application</term>
+        /// <term>View applications</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -320,7 +320,7 @@ public partial class ApplicationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>View application</term>
+        /// <term>View applications</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -351,7 +351,7 @@ public partial class ApplicationClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View application</term>
+            /// <term>View applications</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -388,7 +388,7 @@ public partial class ApplicationClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit application</term>
+            /// <term>Update applications</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -437,7 +437,7 @@ public partial class ApplicationClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View application</term>
+            /// <term>View applications</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -457,7 +457,7 @@ public partial class ApplicationClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit application</term>
+            /// <term>Update applications</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -494,7 +494,7 @@ public partial class ApplicationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit application</term>
+        /// <term>Update applications</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -542,7 +542,7 @@ public partial class ApplicationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit application</term>
+        /// <term>Update applications</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -604,7 +604,7 @@ public partial class ApplicationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit application</term>
+        /// <term>Update applications</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -629,7 +629,7 @@ public partial class ApplicationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit application</term>
+        /// <term>Update applications</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -682,7 +682,7 @@ public partial class ApplicationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit application</term>
+        /// <term>Update applications</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -727,7 +727,7 @@ public partial class ApplicationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit application</term>
+        /// <term>Update applications</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -748,7 +748,7 @@ public partial class ApplicationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>View application</term>
+        /// <term>View applications</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -765,7 +765,7 @@ public partial class ApplicationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit application</term>
+        /// <term>Update applications</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -794,7 +794,7 @@ public partial class ApplicationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit application</term>
+        /// <term>Update applications</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -842,7 +842,7 @@ public partial class ApplicationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit application</term>
+        /// <term>Update applications</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -872,7 +872,7 @@ public partial class ApplicationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit application</term>
+        /// <term>Update applications</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -891,20 +891,36 @@ public partial class ApplicationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>View application</term>
+        /// <term>View applications</term>
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<List<WebhookRecord>> GetAllWebhooksAsync(ApplicationIdentifier application, bool withArchived = false, string query = "", Func<Partial<WebhookRecord>, Partial<WebhookRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<FullWebhookDTO>> GetAllWebhooksAsync(ApplicationIdentifier application, bool withArchived = false, string query = "", string? skip = null, int? top = 100, Func<Partial<Batch<FullWebhookDTO>>, Partial<Batch<FullWebhookDTO>>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("withArchived", withArchived.ToString("l"));
             queryParameters.Append("query", query);
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<WebhookRecord>()) : Partial<WebhookRecord>.Default()).ToString());
+            if (skip != null) queryParameters.Append("$skip", skip);
+            if (top != null) queryParameters.Append("$top", top?.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<FullWebhookDTO>>()) : Partial<Batch<FullWebhookDTO>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<WebhookRecord>>("GET", $"api/http/applications/{application}/webhooks{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<FullWebhookDTO>>("GET", $"api/http/applications/{application}/webhooks{queryParameters.ToQueryString()}", cancellationToken);
         }
         
+        
+        /// <summary>
+        /// Get application webhooks
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View applications</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public IAsyncEnumerable<FullWebhookDTO> GetAllWebhooksAsyncEnumerable(ApplicationIdentifier application, bool withArchived = false, string query = "", string? skip = null, int? top = 100, Func<Partial<FullWebhookDTO>, Partial<FullWebhookDTO>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllWebhooksAsync(application: application, withArchived: withArchived, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<FullWebhookDTO>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<FullWebhookDTO>.Default())), skip, cancellationToken);
     
         /// <remarks>
         /// Required permissions:
@@ -929,7 +945,7 @@ public partial class ApplicationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit application</term>
+        /// <term>Update applications</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -958,7 +974,7 @@ public partial class ApplicationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit application</term>
+        /// <term>Update applications</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -985,7 +1001,7 @@ public partial class ApplicationClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit application</term>
+            /// <term>Update applications</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -1005,7 +1021,7 @@ public partial class ApplicationClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View application</term>
+            /// <term>View application secrets</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -1035,7 +1051,7 @@ public partial class ApplicationClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit application</term>
+            /// <term>Update applications</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -1083,7 +1099,7 @@ public partial class ApplicationClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit application</term>
+            /// <term>Update applications</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -1119,7 +1135,7 @@ public partial class ApplicationClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>View application</term>
+            /// <term>View applications</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -1139,7 +1155,7 @@ public partial class ApplicationClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit application</term>
+            /// <term>Update applications</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -1165,7 +1181,7 @@ public partial class ApplicationClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Edit application</term>
+            /// <term>Update applications</term>
             /// </item>
             /// </list>
             /// </remarks>

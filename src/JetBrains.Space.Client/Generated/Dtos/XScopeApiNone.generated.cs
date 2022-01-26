@@ -27,21 +27,23 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.KbDocumentContainerInfoPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class KbDocumentContainerInfoPartialExtensions
+public sealed class XScopeApiNone
+     : XScopeApi, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static Partial<KbDocumentContainerInfo> WithBook(this Partial<KbDocumentContainerInfo> it)
-        => it.AddFieldName("book");
+    [JsonPropertyName("className")]
+    public override string? ClassName => "XScopeApi.None";
     
-    public static Partial<KbDocumentContainerInfo> WithBook(this Partial<KbDocumentContainerInfo> it, Func<Partial<KBBook>, Partial<KBBook>> partialBuilder)
-        => it.AddFieldName("book", partialBuilder(new Partial<KBBook>(it)));
+    public XScopeApiNone() { }
     
-    public static Partial<KbDocumentContainerInfo> WithArticle(this Partial<KbDocumentContainerInfo> it)
-        => it.AddFieldName("article");
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+    }
     
-    public static Partial<KbDocumentContainerInfo> WithArticle(this Partial<KbDocumentContainerInfo> it, Func<Partial<KBArticle>, Partial<KBArticle>> partialBuilder)
-        => it.AddFieldName("article", partialBuilder(new Partial<KBArticle>(it)));
-    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

@@ -56,7 +56,7 @@ public partial class AdministrationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Superadmin</term>
+        /// <term>Grant permissions to other members</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -95,7 +95,7 @@ public partial class AdministrationClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Superadmin</term>
+        /// <term>Grant permissions to other members</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -128,7 +128,7 @@ public partial class AdministrationClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Superadmin</term>
+            /// <term>Grant permissions to other members</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -169,7 +169,7 @@ public partial class AdministrationClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Superadmin</term>
+            /// <term>Grant permissions to other members</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -191,7 +191,7 @@ public partial class AdministrationClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Superadmin</term>
+            /// <term>Grant permissions to other members</term>
             /// </item>
             /// </list>
             /// </remarks>
@@ -202,7 +202,7 @@ public partial class AdministrationClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Superadmin</term>
+            /// <term>Grant permissions to other members</term>
             /// </item>
             /// </list>
             /// </remarks>

@@ -27,19 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.FullWebhookDTOPartialBuilder;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum CodeDiscussionSuggestedEditState
+public static class FullWebhookDTOPartialExtensions
 {
-    [EnumMember(Value = "Accepted")]
-    Accepted,
+    public static Partial<FullWebhookDTO> WithWebhook(this Partial<FullWebhookDTO> it)
+        => it.AddFieldName("webhook");
     
-    [EnumMember(Value = "Rejected")]
-    Rejected,
+    public static Partial<FullWebhookDTO> WithWebhook(this Partial<FullWebhookDTO> it, Func<Partial<WebhookRecord>, Partial<WebhookRecord>> partialBuilder)
+        => it.AddFieldName("webhook", partialBuilder(new Partial<WebhookRecord>(it)));
     
-    [EnumMember(Value = "Deleted")]
-    Deleted,
+    public static Partial<FullWebhookDTO> WithStatus(this Partial<FullWebhookDTO> it)
+        => it.AddFieldName("status");
+    
+    public static Partial<FullWebhookDTO> WithStatus(this Partial<FullWebhookDTO> it, Func<Partial<WebhookDeliveryStatusDTO>, Partial<WebhookDeliveryStatusDTO>> partialBuilder)
+        => it.AddFieldName("status", partialBuilder(new Partial<WebhookDeliveryStatusDTO>(it)));
     
 }
 

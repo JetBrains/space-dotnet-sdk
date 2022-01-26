@@ -82,11 +82,5 @@ public static class WebhookRecordPartialExtensions
     public static Partial<WebhookRecord> WithIsDoRetries(this Partial<WebhookRecord> it)
         => it.AddFieldName("doRetries");
     
-    public static Partial<WebhookRecord> WithStatus(this Partial<WebhookRecord> it)
-        => it.AddFieldName("status");
-    
-    public static Partial<WebhookRecord> WithStatus(this Partial<WebhookRecord> it, Func<Partial<WebhookDeliveryStatusDTO>, Partial<WebhookDeliveryStatusDTO>> partialBuilder)
-        => it.AddFieldName("status", partialBuilder(new Partial<WebhookDeliveryStatusDTO>(it)));
-    
 }
 

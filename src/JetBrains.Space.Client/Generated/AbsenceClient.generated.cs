@@ -45,7 +45,7 @@ public partial class AbsenceClient : ISpaceClient
     /// Required permissions:
     /// <list type="bullet">
     /// <item>
-    /// <term>Edit absences</term>
+    /// <term>Update absences</term>
     /// </item>
     /// </list>
     /// </remarks>
@@ -184,7 +184,7 @@ public partial class AbsenceClient : ISpaceClient
     /// Required permissions:
     /// <list type="bullet">
     /// <item>
-    /// <term>Edit absences</term>
+    /// <term>Update absences</term>
     /// </item>
     /// </list>
     /// </remarks>
@@ -216,10 +216,10 @@ public partial class AbsenceClient : ISpaceClient
     /// Required permissions:
     /// <list type="bullet">
     /// <item>
-    /// <term>Edit absences</term>
+    /// <term>Update absences</term>
     /// </item>
     /// <item>
-    /// <term>Create or edit past absences</term>
+    /// <term>Manage historical absences</term>
     /// </item>
     /// </list>
     /// </remarks>
@@ -269,7 +269,7 @@ public partial class AbsenceClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit absence types</term>
+        /// <term>Manage absence types</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -338,7 +338,7 @@ public partial class AbsenceClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit absence types</term>
+        /// <term>Manage absence types</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -366,7 +366,7 @@ public partial class AbsenceClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Edit absence types</term>
+        /// <term>Manage absence types</term>
         /// </item>
         /// </list>
         /// </remarks>

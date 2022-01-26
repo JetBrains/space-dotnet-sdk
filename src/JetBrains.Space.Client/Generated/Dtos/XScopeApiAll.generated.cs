@@ -29,17 +29,21 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum CodeDiscussionSuggestedEditState
+public sealed class XScopeApiAll
+     : XScopeApi, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [EnumMember(Value = "Accepted")]
-    Accepted,
+    [JsonPropertyName("className")]
+    public override string? ClassName => "XScopeApi.All";
     
-    [EnumMember(Value = "Rejected")]
-    Rejected,
+    public XScopeApiAll() { }
     
-    [EnumMember(Value = "Deleted")]
-    Deleted,
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+    }
     
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

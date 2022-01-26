@@ -34,7 +34,7 @@ public sealed class ESApplicationPassword
 {
     public ESApplicationPassword() { }
     
-    public ESApplicationPassword(string id, TDMemberProfile profile, string name, string scope, DateTime created, AccessRecord? lastAccess = null)
+    public ESApplicationPassword(string id, TDMemberProfile profile, string name, XScopeApi scope, DateTime created, AccessRecord? lastAccess = null)
     {
         Id = id;
         Profile = profile;
@@ -74,11 +74,11 @@ public sealed class ESApplicationPassword
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESApplicationPassword), nameof(Scope), "scope");
+    private PropertyValue<XScopeApi> _scope = new PropertyValue<XScopeApi>(nameof(ESApplicationPassword), nameof(Scope), "scope");
     
     [Required]
     [JsonPropertyName("scope")]
-    public string Scope
+    public XScopeApi Scope
     {
         get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);
