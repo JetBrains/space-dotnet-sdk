@@ -36,7 +36,7 @@ public static class PropagatePropertyAccessPathHelper
     /// <param name="validateHasBeenSet"><see langword="true" /> when the current instance should validate whether a value has been set; <see langword="false" /> otherwise.</param>
     /// <param name="value">The value to set the full property access path on.</param>
     /// <typeparam name="T">Any type. When the type is a <see cref="IPropagatePropertyAccessPath"/>, the logic will be executed.</typeparam>
-    public static void SetAccessPathForValue<T>(string parentChainPath, bool validateHasBeenSet, T value)
+    public static void SetAccessPathForValue<T>(string parentChainPath, bool validateHasBeenSet, T? value)
     {
         if (value == null) return;
 
@@ -46,11 +46,11 @@ public static class PropagatePropertyAccessPathHelper
                 valueWithPropertyAccessValidation.SetAccessPath(parentChainPath, validateHasBeenSet);
                 break;
 
-            case IEnumerable<IPropagatePropertyAccessPath> enumerable:
+            case IEnumerable<IPropagatePropertyAccessPath?> enumerable:
             {
                 foreach (var item in enumerable)
                 {
-                    item.SetAccessPath(parentChainPath, validateHasBeenSet);
+                    item?.SetAccessPath(parentChainPath, validateHasBeenSet);
                 }
 
                 break;
