@@ -8,28 +8,32 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp;
 public class CodeGenerationContext
 {
     public ApiModel ApiModel { get; }
+    public DeploymentInfo DeploymentInfo { get; }
     private readonly SortedDictionary<string, ApiEnum> _idToEnumMap;
     private readonly SortedDictionary<string, ApiDto> _idToDtoMap;
     private readonly SortedDictionary<string, ApiUrlParameter> _idToUrlParameterMap;
 
     private CodeGenerationContext(
         ApiModel apiModel,
+        DeploymentInfo deploymentInfo,
         SortedDictionary<string, ApiEnum> idToEnumMap,
         SortedDictionary<string, ApiDto> idToDtoMap,
         SortedDictionary<string, ApiUrlParameter> idToUrlParameterMap)
     {
         ApiModel = apiModel;
+        DeploymentInfo = deploymentInfo;
         _idToEnumMap = idToEnumMap;
         _idToDtoMap = idToDtoMap;
         _idToUrlParameterMap = idToUrlParameterMap;
     }
 
-    public static CodeGenerationContext CreateFrom(ApiModel apiModel)
+    public static CodeGenerationContext CreateFrom(ApiModel apiModel, DeploymentInfo deploymentInfo)
     {
         // Build context
 #pragma warning disable 8619
         var context = new CodeGenerationContext(
             apiModel: apiModel,
+            deploymentInfo: deploymentInfo,
             idToEnumMap: new SortedDictionary<string, ApiEnum>(
                 apiModel.Enums.ToImmutableSortedDictionary(
                     it => it.Id,

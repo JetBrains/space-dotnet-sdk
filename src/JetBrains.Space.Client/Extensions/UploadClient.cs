@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using JetBrains.Space.Common;
+using JetBrains.Space.Common.Utilities;
 
 // ReSharper disable once CheckNamespace
 namespace JetBrains.Space.Client;
@@ -43,7 +44,7 @@ public partial class UploadClient
         var request = new HttpRequestMessage(HttpMethod.Put, _connection.ServerUrl + uploadPath.TrimStart('/') + "/" + fileName.TrimStart('/'))
         {
             Content = new StreamContent(uploadStream)
-        };
+        }.WithClientAndSdkHeaders(SdkInfo.Version);;
             
         var response = await uploadHttpClient.SendAsync(request, cancellationToken);
         if (response.IsSuccessStatusCode)

@@ -16,6 +16,7 @@ namespace JetBrains.Space.Generator;
 public class Program
 {
     private const string OutputPath = "../../../../JetBrains.Space.Client/Generated/";
+    private const string SdkInfoOutputPath = "../../../../JetBrains.Space.Common/Generated/";
 
     public static async Task<int> Main(string[] args)
     {
@@ -65,9 +66,9 @@ public class Program
 
     private static async Task<int> RunGenerateFromOrganizationUrl(Dictionary<string, string?> namedArguments)
     {
-        if (!namedArguments.TryGetValue("organizationUrl", out var organizationUrl) || string.IsNullOrEmpty(organizationUrl)
-            || !namedArguments.TryGetValue("clientId", out var clientId) || string.IsNullOrEmpty(clientId)
-            || !namedArguments.TryGetValue("clientSecret", out var clientSecret) || string.IsNullOrEmpty(clientSecret))
+        if (!namedArguments.TryGetValue("organizationUrl", out var organizationUrl) || string.IsNullOrEmpty(organizationUrl) ||
+            !namedArguments.TryGetValue("clientId", out var clientId) || string.IsNullOrEmpty(clientId) ||
+            !namedArguments.TryGetValue("clientSecret", out var clientSecret) || string.IsNullOrEmpty(clientSecret))
         {
             return await RunHelpAsync();
         }
@@ -102,14 +103,16 @@ public class Program
                 Console.WriteLine("Server information:");
                 Console.WriteLine(deploymentInfo);
 
-                return deploymentInfo.Version;
+                return deploymentInfo;
             });
     }
         
     private static async Task<int> RunGenerateFromModel(Dictionary<string, string?> namedArguments)
     {
-        if (!namedArguments.TryGetValue("model", out var model) || string.IsNullOrEmpty(model)
-                                                                || !namedArguments.TryGetValue("version", out var version) || string.IsNullOrEmpty(version))
+        if (!namedArguments.TryGetValue("model", out var model) ||
+            string.IsNullOrEmpty(model) ||
+            !namedArguments.TryGetValue("version", out var version) ||
+            string.IsNullOrEmpty(version))
         {
             return await RunHelpAsync();
         }
@@ -128,10 +131,11 @@ public class Program
                     
                 return apiModel;
             },
-            () => Task.FromResult(version)!);
+            () => Task.FromResult(
+                new DeploymentInfo { Version = version })!);
     }
 
-    private static async Task<int> ExecuteCodeGenerator(Func<Task<ApiModel?>> retrieveModel, Func<Task<string?>> retrieveVersion)
+    private static async Task<int> ExecuteCodeGenerator(Func<Task<ApiModel?>> retrieveModel, Func<Task<DeploymentInfo?>> retrieveDeploymentInfo)
     {
         var stopwatch = new Stopwatch();
         stopwatch.Start();
@@ -145,11 +149,11 @@ public class Program
             return -1;
         }
             
-        var version = await retrieveVersion();
-        if (string.IsNullOrEmpty(version))
+        var deploymentInfo = await retrieveDeploymentInfo();
+        if (deploymentInfo == null || string.IsNullOrEmpty(deploymentInfo.Version))
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("ERROR: Version information is not available.");
+            Console.WriteLine("ERROR: Deployment and version information is not available.");
             return -1;
         }
             
@@ -161,11 +165,13 @@ public class Program
         }
 
         // Build code
-        var codeGenerationContext = CodeGenerationContext.CreateFrom(apiModel);
-        var csharpApiModelVisitor = new CSharpApiModelGenerator(codeGenerationContext);
-        csharpApiModelVisitor.GenerateFiles(
+        var codeGenerationContext = CodeGenerationContext.CreateFrom(apiModel, deploymentInfo);
+        var csharpApiModelGenerator = new CSharpApiModelGenerator(codeGenerationContext);
+        csharpApiModelGenerator.GenerateFiles(
             new CSharpDocumentWriter(
-                new DirectoryInfo(Path.GetFullPath(OutputPath))));
+                new DirectoryInfo(Path.GetFullPath(OutputPath))),
+            new CSharpDocumentWriter(
+                new DirectoryInfo(Path.GetFullPath(SdkInfoOutputPath))));
             
         // Report
         stopwatch.Stop();
@@ -175,7 +181,7 @@ public class Program
         Console.WriteLine($"  Number of Resources (top level): {codeGenerationContext.GetResources().Count()}");
             
         // Write version marker
-        await File.WriteAllTextAsync("../../../../../version-info.txt", version);
+        await File.WriteAllTextAsync("../../../../../version-info.txt", deploymentInfo.Version.Trim());
             
         return 0;
     }

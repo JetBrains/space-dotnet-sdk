@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JetBrains.Space.Generator;
 
-internal class DeploymentInfo
+public class DeploymentInfo
 {
     public string? Version { get; set; }
     public DateTimeOffset? BuildDate { get; set; }

@@ -11,13 +11,15 @@ public class CSharpApiModelGenerator
         _codeGenerationContext = codeGenerationContext;
     }
         
-    public void GenerateFiles(IDocumentWriter documentWriter)
+    public void GenerateFiles(
+        IDocumentWriter clientDocumentWriter,
+        IDocumentWriter commonDocumentWriter)
     {
         // API clients/endpoints
         var resourcesGenerator = new CSharpApiModelResourceGenerator(_codeGenerationContext);
         foreach (var apiResource in _codeGenerationContext.GetResources())
         {
-            WriteToDocument(documentWriter, 
+            WriteToDocument(clientDocumentWriter, 
                 apiResource.ToCSharpIdentifierSingular() + "Client.generated.cs",
                 resourcesGenerator.GenerateResourceDefinition(apiResource));
         }
@@ -26,7 +28,7 @@ public class CSharpApiModelGenerator
         var urlParametersGenerator = new CSharpApiModelUrlParameterGenerator(_codeGenerationContext);
         foreach (var apiUrlParameter in _codeGenerationContext.GetUrlParameters())
         {
-            WriteToDocument(documentWriter, 
+            WriteToDocument(clientDocumentWriter, 
                 "UrlParams/" + apiUrlParameter.ToCSharpClassName() + ".generated.cs",
                 urlParametersGenerator.GenerateUrlParameterDefinition(apiUrlParameter));
         }
@@ -35,7 +37,7 @@ public class CSharpApiModelGenerator
         var enumGenerator = new CSharpApiModelEnumGenerator();
         foreach (var apiEnum in _codeGenerationContext.GetEnums())
         {
-            WriteToDocument(documentWriter, 
+            WriteToDocument(clientDocumentWriter, 
                 "Enums/" + apiEnum.ToCSharpClassName() + ".generated.cs",
                 enumGenerator.GenerateEnumDefinition(apiEnum));
         }
@@ -44,7 +46,7 @@ public class CSharpApiModelGenerator
         var dtoGenerator = new CSharpApiModelDtoGenerator(_codeGenerationContext);
         foreach (var apiDto in _codeGenerationContext.GetDtos())
         {
-            WriteToDocument(documentWriter, 
+            WriteToDocument(clientDocumentWriter, 
                 "Dtos/" + apiDto.ToCSharpClassName() + ".generated.cs",
                 dtoGenerator.GenerateDtoDefinition(apiDto));
         }
@@ -53,7 +55,7 @@ public class CSharpApiModelGenerator
         var partialExtensionsGenerator = new CSharpPartialExtensionsGenerator(_codeGenerationContext);
         foreach (var apiDto in _codeGenerationContext.GetDtos())
         {
-            WriteToDocument(documentWriter, 
+            WriteToDocument(clientDocumentWriter, 
                 "Partials/" + apiDto.ToCSharpClassName() + "PartialBuilder.generated.cs",
                 partialExtensionsGenerator.GeneratePartialClassFor(apiDto),
                 apiDto.ToCSharpClassName() + "PartialBuilder");
@@ -61,9 +63,15 @@ public class CSharpApiModelGenerator
             
         // Menu ids
         var menuIdsGenerator = new CSharpApiModelMenuIdGenerator(_codeGenerationContext);
-        WriteToDocument(documentWriter, 
+        WriteToDocument(clientDocumentWriter, 
             "MenuIds.generated.cs",
             menuIdsGenerator.GenerateMenuIds(_codeGenerationContext.GetMenuIds()));
+        
+        // Version info
+        var deploymentInfoGenerator = new CSharpDeploymentInfoGenerator();
+        WriteToDocument(commonDocumentWriter, 
+            "SdkInfo.generated.cs",
+            deploymentInfoGenerator.GenerateSdkInfo(_codeGenerationContext.DeploymentInfo));
     }
 
     private static void WriteToDocument(

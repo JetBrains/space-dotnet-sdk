@@ -7,7 +7,9 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using JetBrains.Space.Client;
 using JetBrains.Space.Common.Json.Serialization;
+using JetBrains.Space.Common.Utilities;
 
 namespace JetBrains.Space.Common;
 
@@ -67,7 +69,7 @@ public class RefreshTokenConnection
                     new KeyValuePair<string?, string?>("refresh_token", AuthenticationTokens.RefreshToken),
                     new KeyValuePair<string?, string?>("scope", string.Join(" ", Scope))
                 })
-            };
+            }.WithClientAndSdkHeaders(SdkInfo.Version);
 
             var spaceTokenResponse = await HttpClient.SendAsync(spaceTokenRequest, cancellationToken);
             if (!spaceTokenResponse.IsSuccessStatusCode)

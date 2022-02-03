@@ -9,7 +9,9 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using JetBrains.Space.Client;
 using JetBrains.Space.Common.Json.Serialization;
+using JetBrains.Space.Common.Utilities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Logging;
@@ -110,7 +112,7 @@ public class SpaceTokenManagementCookieEvents : CookieAuthenticationEvents
                             new KeyValuePair<string?, string?>("refresh_token", refreshToken.Value),
                             new KeyValuePair<string?, string?>("scope", string.Join(" ", spaceOptions.Scope))
                         })
-                    };
+                    }.WithClientAndSdkHeaders(SdkInfo.Version);
 
                     var spaceTokenResponse = await httpClient.SendAsync(spaceTokenRequest);
                     if (!spaceTokenResponse.IsSuccessStatusCode)

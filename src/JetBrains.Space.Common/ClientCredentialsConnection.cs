@@ -7,7 +7,9 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using JetBrains.Space.Client;
 using JetBrains.Space.Common.Json.Serialization;
+using JetBrains.Space.Common.Utilities;
 
 namespace JetBrains.Space.Common;
 
@@ -60,7 +62,7 @@ public class ClientCredentialsConnection
                     new KeyValuePair<string?, string?>("grant_type", "client_credentials"),
                     new KeyValuePair<string?, string?>("scope", Scope)
                 })
-            };
+            }.WithClientAndSdkHeaders(SdkInfo.Version);
 
             var spaceTokenResponse = await HttpClient.SendAsync(spaceTokenRequest, cancellationToken);
             if (!spaceTokenResponse.IsSuccessStatusCode)

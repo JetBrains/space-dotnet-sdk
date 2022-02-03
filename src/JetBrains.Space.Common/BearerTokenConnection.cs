@@ -7,8 +7,10 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using JetBrains.Space.Client;
 using JetBrains.Space.Common.RetryPolicies;
 using JetBrains.Space.Common.Types;
+using JetBrains.Space.Common.Utilities;
 
 namespace JetBrains.Space.Common;
 
@@ -70,7 +72,7 @@ public class BearerTokenConnection
             {
                 Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
             }
-        };
+        }.WithClientAndSdkHeaders(SdkInfo.Version);
             
         await SendRequestAsync(request, cancellationToken);
     }
@@ -84,7 +86,7 @@ public class BearerTokenConnection
             {
                 Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
             }
-        };
+        }.WithClientAndSdkHeaders(SdkInfo.Version);
             
         var response = await SendRequestAsync(request, cancellationToken);
 
@@ -107,7 +109,7 @@ public class BearerTokenConnection
                 Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
             },
             Content = new StringContent(JsonSerializer.Serialize(payload, JsonSerializerOptions), Encoding.UTF8, "application/json")
-        };
+        }.WithClientAndSdkHeaders(SdkInfo.Version);
             
         await SendRequestAsync(request, cancellationToken);
     }
@@ -122,7 +124,7 @@ public class BearerTokenConnection
                 Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
             },
             Content = new StringContent(JsonSerializer.Serialize(payload, JsonSerializerOptions), Encoding.UTF8, "application/json")
-        };
+        }.WithClientAndSdkHeaders(SdkInfo.Version);
             
         var response = await SendRequestAsync(request, cancellationToken);
             
@@ -138,7 +140,8 @@ public class BearerTokenConnection
     /// <inheritdoc />
     protected override async Task<SpaceBlob> RequestBlobResourceInternalAsync(string httpMethod, string urlPath, CancellationToken cancellationToken)
     {
-        var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath);
+        var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
+            .WithClientAndSdkHeaders(SdkInfo.Version);
             
         var response = await SendRequestAsync(request, cancellationToken);
 

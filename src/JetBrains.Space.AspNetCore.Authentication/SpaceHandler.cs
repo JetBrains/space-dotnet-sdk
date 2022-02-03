@@ -9,7 +9,9 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using JetBrains.Space.Client;
 using JetBrains.Space.Common.Types;
+using JetBrains.Space.Common.Utilities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.WebUtilities;
@@ -44,7 +46,9 @@ public class SpaceHandler : OAuthHandler<SpaceOptions>
         OAuthTokenResponse tokens)
     {
         // Get the Space user
-        var request = new HttpRequestMessage(HttpMethod.Get, Options.UserInformationEndpoint);
+        var request = new HttpRequestMessage(HttpMethod.Get, Options.UserInformationEndpoint)
+            .WithClientAndSdkHeaders(SdkInfo.Version);
+        
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", tokens.AccessToken);
         request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                             
@@ -123,7 +127,9 @@ public class SpaceHandler : OAuthHandler<SpaceOptions>
         var requestContent = new FormUrlEncodedContent(tokenRequestParameters);
 #pragma warning restore 8620
 
-        var requestMessage = new HttpRequestMessage(HttpMethod.Post, Options.TokenEndpoint);
+        var requestMessage = new HttpRequestMessage(HttpMethod.Post, Options.TokenEndpoint)
+            .WithClientAndSdkHeaders(SdkInfo.Version);
+
         requestMessage.Headers.Authorization = AuthenticationHeaderValue.Parse(
             "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes($"{Options.ClientId}:{Options.ClientSecret}")));
         requestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

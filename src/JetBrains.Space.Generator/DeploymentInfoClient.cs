@@ -6,7 +6,9 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using JetBrains.Space.Client;
 using JetBrains.Space.Common;
+using JetBrains.Space.Common.Utilities;
 
 namespace JetBrains.Space.Generator;
 
@@ -29,7 +31,11 @@ internal class DeploymentInfoClient
         
     public async Task<DeploymentInfo> GetDeploymentInfoAsync()
     {
-        var body = await _httpClient.GetStringAsync(_serverUrl + "about");
+        var request = new HttpRequestMessage(HttpMethod.Get, _serverUrl + "about")
+                .WithClientAndSdkHeaders(SdkInfo.Version);
+
+        var response = await _httpClient.SendAsync(request);
+        var body = await response.Content.ReadAsStringAsync();
 
         var deploymentInfo = new DeploymentInfo();
 
