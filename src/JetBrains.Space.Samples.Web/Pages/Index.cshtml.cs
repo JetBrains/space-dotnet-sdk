@@ -239,7 +239,7 @@ public class IndexModel : PageModel
                 .WithId()
                 .WithSummary()
                 .WithDescription()
-                .WithConferenceLink()))
+                .WithConferenceData(_ => _.WithAllFieldsWildcard())))
             {
                 meetingsThisWeek++;
             

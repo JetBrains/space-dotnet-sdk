@@ -110,9 +110,9 @@
                                 <small>@meeting.OccurrenceRule.Start.ToString("hh:mm tt") - @meeting.OccurrenceRule.End.ToString("hh:mm tt") (@meeting.OccurrenceRule.Timezone.Id)</small><br/>
                                 @meeting.Summary
                                 
-                                @if (!string.IsNullOrEmpty(meeting.ConferenceLink))
+                                @if (meeting.ConferenceData?.Url != null)
                                 {
-                                    <a href="@Html.Raw(meeting.ConferenceLink.TrimEnd('/'))/" class="btn-sm btn-secondary">join</a>
+                                    <a href="@Html.Raw(meeting.ConferenceData.Url.TrimEnd('/'))/" class="btn-sm btn-secondary">join</a>
                                 }
                             </li>
                         }
