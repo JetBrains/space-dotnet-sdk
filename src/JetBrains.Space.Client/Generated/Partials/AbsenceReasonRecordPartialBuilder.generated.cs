@@ -52,5 +52,8 @@ public static class AbsenceReasonRecordPartialExtensions
     public static Partial<AbsenceReasonRecord> WithIcon(this Partial<AbsenceReasonRecord> it)
         => it.AddFieldName("icon");
     
+    public static Partial<AbsenceReasonRecord> WithEtag(this Partial<AbsenceReasonRecord> it)
+        => it.AddFieldName("etag");
+    
 }
 

@@ -27,13 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.DocumentFolderInListMenuIdentifierPartialBuilder;
 
-public interface AppUiExtensionApi
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+public static class DocumentFolderInListMenuIdentifierPartialExtensions
 {
-    public static ChatBotUiExtensionApi ChatBotUiExtensionApi()
-        => new ChatBotUiExtensionApi();
-    
 }
 

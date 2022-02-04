@@ -34,14 +34,14 @@ public static class ApplicationUnfurlPartialExtensions
     public static Partial<ApplicationUnfurl> WithQueueItemId(this Partial<ApplicationUnfurl> it)
         => it.AddFieldName("queueItemId");
     
-    public static Partial<ApplicationUnfurl> WithLink(this Partial<ApplicationUnfurl> it)
-        => it.AddFieldName("link");
-    
     public static Partial<ApplicationUnfurl> WithContent(this Partial<ApplicationUnfurl> it)
         => it.AddFieldName("content");
     
     public static Partial<ApplicationUnfurl> WithContent(this Partial<ApplicationUnfurl> it, Func<Partial<ApplicationUnfurlContent>, Partial<ApplicationUnfurlContent>> partialBuilder)
         => it.AddFieldName("content", partialBuilder(new Partial<ApplicationUnfurlContent>(it)));
+    
+    public static Partial<ApplicationUnfurl> WithLink(this Partial<ApplicationUnfurl> it)
+        => it.AddFieldName("link");
     
 }
 

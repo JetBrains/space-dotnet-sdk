@@ -34,7 +34,7 @@ public sealed class AllReactionsToItemRecord
 {
     public AllReactionsToItemRecord() { }
     
-    public AllReactionsToItemRecord(string id, List<CertainReactionToItemRecord> reactions, List<EmojiReactionRecord>? emojiReactions = null)
+    public AllReactionsToItemRecord(string id, List<CertainReactionToItemRecord>? reactions = null, List<EmojiReactionRecord>? emojiReactions = null)
     {
         Id = id;
         Reactions = reactions;
@@ -51,11 +51,10 @@ public sealed class AllReactionsToItemRecord
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<List<CertainReactionToItemRecord>> _reactions = new PropertyValue<List<CertainReactionToItemRecord>>(nameof(AllReactionsToItemRecord), nameof(Reactions), "reactions", new List<CertainReactionToItemRecord>());
+    private PropertyValue<List<CertainReactionToItemRecord>?> _reactions = new PropertyValue<List<CertainReactionToItemRecord>?>(nameof(AllReactionsToItemRecord), nameof(Reactions), "reactions");
     
-    [Required]
     [JsonPropertyName("reactions")]
-    public List<CertainReactionToItemRecord> Reactions
+    public List<CertainReactionToItemRecord>? Reactions
     {
         get => _reactions.GetValue(InlineErrors);
         set => _reactions.SetValue(value);

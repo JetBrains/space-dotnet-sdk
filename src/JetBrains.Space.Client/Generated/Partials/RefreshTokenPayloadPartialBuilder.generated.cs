@@ -27,13 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.RefreshTokenPayloadPartialBuilder;
 
-public interface AppUiExtensionApi
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+public static class RefreshTokenPayloadPartialExtensions
 {
-    public static ChatBotUiExtensionApi ChatBotUiExtensionApi()
-        => new ChatBotUiExtensionApi();
+    public static Partial<RefreshTokenPayload> WithRefreshToken(this Partial<RefreshTokenPayload> it)
+        => it.AddFieldName("refreshToken");
+    
+    public static Partial<RefreshTokenPayload> WithScope(this Partial<RefreshTokenPayload> it)
+        => it.AddFieldName("scope");
+    
+    public static Partial<RefreshTokenPayload> WithClientId(this Partial<RefreshTokenPayload> it)
+        => it.AddFieldName("clientId");
+    
+    public static Partial<RefreshTokenPayload> WithUserId(this Partial<RefreshTokenPayload> it)
+        => it.AddFieldName("userId");
+    
+    public static Partial<RefreshTokenPayload> WithVerificationToken(this Partial<RefreshTokenPayload> it)
+        => it.AddFieldName("verificationToken");
     
 }
 

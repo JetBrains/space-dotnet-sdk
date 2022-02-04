@@ -29,15 +29,15 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class AuthCodeFlowTokensPayload
+public sealed class RefreshTokenPayload
      : ApplicationPayload, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public  string? ClassName => "AuthCodeFlowTokensPayload";
+    public  string? ClassName => "RefreshTokenPayload";
     
-    public AuthCodeFlowTokensPayload() { }
+    public RefreshTokenPayload() { }
     
-    public AuthCodeFlowTokensPayload(string refreshToken, string scope, string clientId, string userId, string? verificationToken = null)
+    public RefreshTokenPayload(string refreshToken, string scope, string clientId, string userId, string? verificationToken = null)
     {
         RefreshToken = refreshToken;
         Scope = scope;
@@ -46,7 +46,7 @@ public sealed class AuthCodeFlowTokensPayload
         VerificationToken = verificationToken;
     }
     
-    private PropertyValue<string> _refreshToken = new PropertyValue<string>(nameof(AuthCodeFlowTokensPayload), nameof(RefreshToken), "refreshToken");
+    private PropertyValue<string> _refreshToken = new PropertyValue<string>(nameof(RefreshTokenPayload), nameof(RefreshToken), "refreshToken");
     
     [Required]
     [JsonPropertyName("refreshToken")]
@@ -56,7 +56,7 @@ public sealed class AuthCodeFlowTokensPayload
         set => _refreshToken.SetValue(value);
     }
 
-    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(AuthCodeFlowTokensPayload), nameof(Scope), "scope");
+    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(RefreshTokenPayload), nameof(Scope), "scope");
     
     [Required]
     [JsonPropertyName("scope")]
@@ -66,7 +66,7 @@ public sealed class AuthCodeFlowTokensPayload
         set => _scope.SetValue(value);
     }
 
-    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(AuthCodeFlowTokensPayload), nameof(ClientId), "clientId");
+    private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(RefreshTokenPayload), nameof(ClientId), "clientId");
     
     [Required]
     [JsonPropertyName("clientId")]
@@ -76,7 +76,7 @@ public sealed class AuthCodeFlowTokensPayload
         set => _clientId.SetValue(value);
     }
 
-    private PropertyValue<string> _userId = new PropertyValue<string>(nameof(AuthCodeFlowTokensPayload), nameof(UserId), "userId");
+    private PropertyValue<string> _userId = new PropertyValue<string>(nameof(RefreshTokenPayload), nameof(UserId), "userId");
     
     [Required]
     [JsonPropertyName("userId")]
@@ -86,7 +86,7 @@ public sealed class AuthCodeFlowTokensPayload
         set => _userId.SetValue(value);
     }
 
-    private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(AuthCodeFlowTokensPayload), nameof(VerificationToken), "verificationToken");
+    private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(RefreshTokenPayload), nameof(VerificationToken), "verificationToken");
     
     [JsonPropertyName("verificationToken")]
     public string? VerificationToken

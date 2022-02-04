@@ -29,11 +29,23 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public interface AppUiExtensionApi
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public abstract class DocumentFolderMenuItemVisibilityFilter
+     : MenuItemVisibilityFilter, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static ChatBotUiExtensionApi ChatBotUiExtensionApi()
-        => new ChatBotUiExtensionApi();
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "DocumentFolderMenuItemVisibilityFilter";
     
+    public static DocumentFolderMenuItemVisibilityFilterDocumentFolderEditableByMe DocumentFolderEditableByMe()
+        => new DocumentFolderMenuItemVisibilityFilterDocumentFolderEditableByMe();
+    
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

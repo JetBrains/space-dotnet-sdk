@@ -29,96 +29,11 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class MenuItemUiExtensionApi
+public interface MenuItemUiExtensionApi
      : AppUiExtensionApi, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public  string? ClassName => "MenuItemUiExtensionApi";
+    public static ContextMenuItemUiExtensionApi Context(string typeName, ContextMenuIdentifier menuIdentifier, string displayName, string menuItemUniqueCode, List<MenuItemVisibilityFilter> visibilityFilters, string? description = null)
+        => new ContextMenuItemUiExtensionApi(typeName: typeName, menuIdentifier: menuIdentifier, displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
     
-    public MenuItemUiExtensionApi() { }
-    
-    public MenuItemUiExtensionApi(string typeName, MenuIdentifier menuIdentifier, string displayName, string menuItemUniqueCode, List<MenuItemVisibilityFilter> visibilityFilters, string? description = null)
-    {
-        TypeName = typeName;
-        MenuIdentifier = menuIdentifier;
-        DisplayName = displayName;
-        Description = description;
-        MenuItemUniqueCode = menuItemUniqueCode;
-        VisibilityFilters = visibilityFilters;
-    }
-    
-    private PropertyValue<string> _typeName = new PropertyValue<string>(nameof(MenuItemUiExtensionApi), nameof(TypeName), "typeName");
-    
-    [Required]
-    [JsonPropertyName("typeName")]
-    public string TypeName
-    {
-        get => _typeName.GetValue(InlineErrors);
-        set => _typeName.SetValue(value);
-    }
-
-    private PropertyValue<MenuIdentifier> _menuIdentifier = new PropertyValue<MenuIdentifier>(nameof(MenuItemUiExtensionApi), nameof(MenuIdentifier), "menuIdentifier");
-    
-    [Required]
-    [JsonPropertyName("menuIdentifier")]
-    public MenuIdentifier MenuIdentifier
-    {
-        get => _menuIdentifier.GetValue(InlineErrors);
-        set => _menuIdentifier.SetValue(value);
-    }
-
-    private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(MenuItemUiExtensionApi), nameof(DisplayName), "displayName");
-    
-    [Required]
-    [JsonPropertyName("displayName")]
-    public string DisplayName
-    {
-        get => _displayName.GetValue(InlineErrors);
-        set => _displayName.SetValue(value);
-    }
-
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(MenuItemUiExtensionApi), nameof(Description), "description");
-    
-    [JsonPropertyName("description")]
-    public string? Description
-    {
-        get => _description.GetValue(InlineErrors);
-        set => _description.SetValue(value);
-    }
-
-    private PropertyValue<string> _menuItemUniqueCode = new PropertyValue<string>(nameof(MenuItemUiExtensionApi), nameof(MenuItemUniqueCode), "menuItemUniqueCode");
-    
-    [Required]
-    [JsonPropertyName("menuItemUniqueCode")]
-    public string MenuItemUniqueCode
-    {
-        get => _menuItemUniqueCode.GetValue(InlineErrors);
-        set => _menuItemUniqueCode.SetValue(value);
-    }
-
-    private PropertyValue<List<MenuItemVisibilityFilter>> _visibilityFilters = new PropertyValue<List<MenuItemVisibilityFilter>>(nameof(MenuItemUiExtensionApi), nameof(VisibilityFilters), "visibilityFilters", new List<MenuItemVisibilityFilter>());
-    
-    [Required]
-    [JsonPropertyName("visibilityFilters")]
-    public List<MenuItemVisibilityFilter> VisibilityFilters
-    {
-        get => _visibilityFilters.GetValue(InlineErrors);
-        set => _visibilityFilters.SetValue(value);
-    }
-
-    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-        _typeName.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _menuIdentifier.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _displayName.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _menuItemUniqueCode.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _visibilityFilters.SetAccessPath(parentChainPath, validateHasBeenSet);
-    }
-    
-    /// <inheritdoc />
-    [JsonPropertyName("$errors")]
-    public List<ApiInlineError> InlineErrors { get; set; } = new();
-
 }
 

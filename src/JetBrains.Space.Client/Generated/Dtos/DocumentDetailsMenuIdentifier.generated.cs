@@ -29,11 +29,21 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public interface AppUiExtensionApi
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class DocumentDetailsMenuIdentifier
+     : ContextMenuIdentifier, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static ChatBotUiExtensionApi ChatBotUiExtensionApi()
-        => new ChatBotUiExtensionApi();
+    [JsonPropertyName("className")]
+    public  string? ClassName => "DocumentDetailsMenuIdentifier";
     
+    public DocumentDetailsMenuIdentifier() { }
+    
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

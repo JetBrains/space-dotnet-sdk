@@ -87,9 +87,9 @@ public interface ISpaceWebHookHandler
     Task<ApplicationExecutionResult> HandleAppPublicationCheckAsync(AppPublicationCheckPayload payload);
 
     /// <summary>
-    /// Handle event when application auth code flow is updated in Space organization.
+    /// Handle event when refresh token is updated in Space organization.
     /// </summary>
-    /// <param name="payload">The <see cref="AuthCodeFlowTokensPayload"/>.</param>
+    /// <param name="payload">The <see cref="RefreshTokenPayload"/>.</param>
     /// <returns>The result of executing this action.</returns>
-    Task<ApplicationExecutionResult> HandleAuthCodeFlowTokensAsync(AuthCodeFlowTokensPayload payload);
+    Task<ApplicationExecutionResult> HandleRefreshTokenAsync(RefreshTokenPayload payload);
 }

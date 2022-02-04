@@ -29,11 +29,33 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public interface AppUiExtensionApi
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class FolderIdentifier : IUrlParameter
 {
-    public static ChatBotUiExtensionApi ChatBotUiExtensionApi()
-        => new ChatBotUiExtensionApi();
+    public static FolderIdentifier Id(string id)
+        => new FolderIdentifierId(id);
+    
+    public static FolderIdentifier Root
+        => new FolderIdentifierRoot();
+    
+    private class FolderIdentifierId : FolderIdentifier
+    {
+        private readonly string _id;
+        
+        public FolderIdentifierId(string id)
+        {
+            _id = id;
+        }
+        
+        public override string ToString()
+            => $"id:{_id}";
+    }
+    
+    private class FolderIdentifierRoot : FolderIdentifier
+    {
+        public override string ToString()
+            => "root";
+    }
     
 }
 

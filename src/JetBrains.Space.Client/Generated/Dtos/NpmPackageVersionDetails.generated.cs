@@ -37,7 +37,7 @@ public sealed class NpmPackageVersionDetails
     
     public NpmPackageVersionDetails() { }
     
-    public NpmPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, bool pinned, long diskSize, List<NpmPackageDependency> dependencies, List<string> keywords, List<string>? tags = null, long? accessed = null, string? comment = null, CPrincipal? author = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, Dictionary<string, string>? metadata = null, string? description = null, string? license = null, string? projectUrl = null, string? repositoryUrl = null, string? repositoryRevision = null, string? readme = null)
+    public NpmPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, bool pinned, long diskSize, List<NpmPackageDependency> dependencies, List<string> keywords, List<string>? tags = null, long? accessed = null, string? comment = null, CPrincipal? author = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, Dictionary<string, string>? metadata = null, string? description = null, string? license = null, string? projectUrl = null, string? repositoryUrl = null, string? repositoryRevision = null, string? readme = null, string? unityVersion = null)
     {
         Type = type;
         Repository = repository;
@@ -62,6 +62,7 @@ public sealed class NpmPackageVersionDetails
         RepositoryUrl = repositoryUrl;
         RepositoryRevision = repositoryRevision;
         Readme = readme;
+        UnityVersion = unityVersion;
     }
     
     private PropertyValue<PackageType> _type = new PropertyValue<PackageType>(nameof(NpmPackageVersionDetails), nameof(Type), "type");
@@ -281,6 +282,15 @@ public sealed class NpmPackageVersionDetails
         set => _readme.SetValue(value);
     }
 
+    private PropertyValue<string?> _unityVersion = new PropertyValue<string?>(nameof(NpmPackageVersionDetails), nameof(UnityVersion), "unityVersion");
+    
+    [JsonPropertyName("unityVersion")]
+    public string? UnityVersion
+    {
+        get => _unityVersion.GetValue(InlineErrors);
+        set => _unityVersion.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _type.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -306,6 +316,7 @@ public sealed class NpmPackageVersionDetails
         _repositoryUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
         _repositoryRevision.SetAccessPath(parentChainPath, validateHasBeenSet);
         _readme.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _unityVersion.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

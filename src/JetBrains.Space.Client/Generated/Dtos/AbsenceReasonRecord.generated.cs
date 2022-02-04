@@ -34,7 +34,7 @@ public sealed class AbsenceReasonRecord
 {
     public AbsenceReasonRecord() { }
     
-    public AbsenceReasonRecord(string id, bool archived, string name, string description, bool defaultAvailability, bool approvalRequired, string icon)
+    public AbsenceReasonRecord(string id, bool archived, string name, string description, bool defaultAvailability, bool approvalRequired, string icon, long? etag = null)
     {
         Id = id;
         IsArchived = archived;
@@ -43,6 +43,7 @@ public sealed class AbsenceReasonRecord
         IsDefaultAvailability = defaultAvailability;
         IsApprovalRequired = approvalRequired;
         Icon = icon;
+        Etag = etag;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(AbsenceReasonRecord), nameof(Id), "id");
@@ -115,6 +116,15 @@ public sealed class AbsenceReasonRecord
         set => _icon.SetValue(value);
     }
 
+    private PropertyValue<long?> _etag = new PropertyValue<long?>(nameof(AbsenceReasonRecord), nameof(Etag), "etag");
+    
+    [JsonPropertyName("etag")]
+    public long? Etag
+    {
+        get => _etag.GetValue(InlineErrors);
+        set => _etag.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -124,6 +134,7 @@ public sealed class AbsenceReasonRecord
         _defaultAvailability.SetAccessPath(parentChainPath, validateHasBeenSet);
         _approvalRequired.SetAccessPath(parentChainPath, validateHasBeenSet);
         _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _etag.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -1468,6 +1468,9 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// <item>
         /// <term>Add members</term>
         /// </item>
+        /// <item>
+        /// <term>Add new external user</term>
+        /// </item>
         /// </list>
         /// </remarks>
         public async Task<TDMemberProfile> CreateProfileAsync(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? externalId = null, string? location = null, bool? external = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
@@ -2344,6 +2347,43 @@ public partial class TeamDirectoryClient : ISpaceClient
                 
             
             }
+        
+        }
+    
+        public DashboardItemClient DashboardItems => new DashboardItemClient(_connection);
+        
+        public partial class DashboardItemClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public DashboardItemClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<List<DashboardItem>> GetAllDashboardItemsAsync(ProfileIdentifier profile, Func<Partial<DashboardItem>, Partial<DashboardItem>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<DashboardItem>()) : Partial<DashboardItem>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<DashboardItem>>("GET", $"api/http/team-directory/profiles/{profile}/dashboard-items{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Update dashboard item state
+            /// </summary>
+            public async Task UpdateDashboardItemAsync(ProfileIdentifier profile, DashboardItem item, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/dashboard-items{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryProfilesForProfileDashboardItemsPatchRequest
+                    { 
+                        Item = item,
+                    }, cancellationToken);
+            }
+            
         
         }
     

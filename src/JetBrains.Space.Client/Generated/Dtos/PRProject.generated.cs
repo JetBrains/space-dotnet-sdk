@@ -34,7 +34,7 @@ public sealed class PRProject
 {
     public PRProject() { }
     
-    public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> collaboratorsProfiles, List<TDTeam> collaboratorsTeams, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, ProjectTeamType type, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null, List<ProjectTeamMemberRecord>? members = null, TDTeam? team = null, List<TDTeam>? teams = null)
+    public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> collaboratorsProfiles, List<TDTeam> collaboratorsTeams, List<TDMemberProfile> externalUserProfiles, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, ProjectTeamType type, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null, List<ProjectTeamMemberRecord>? members = null, TDTeam? team = null, List<TDTeam>? teams = null)
     {
         Id = id;
         Key = key;
@@ -49,6 +49,7 @@ public sealed class PRProject
         Boards = boards;
         CollaboratorsProfiles = collaboratorsProfiles;
         CollaboratorsTeams = collaboratorsTeams;
+        ExternalUserProfiles = externalUserProfiles;
         MemberProfiles = memberProfiles;
         MemberTeams = memberTeams;
         Members = members;
@@ -189,6 +190,16 @@ public sealed class PRProject
         set => _collaboratorsTeams.SetValue(value);
     }
 
+    private PropertyValue<List<TDMemberProfile>> _externalUserProfiles = new PropertyValue<List<TDMemberProfile>>(nameof(PRProject), nameof(ExternalUserProfiles), "externalUserProfiles", new List<TDMemberProfile>());
+    
+    [Required]
+    [JsonPropertyName("externalUserProfiles")]
+    public List<TDMemberProfile> ExternalUserProfiles
+    {
+        get => _externalUserProfiles.GetValue(InlineErrors);
+        set => _externalUserProfiles.SetValue(value);
+    }
+
     private PropertyValue<List<TDMemberProfile>> _memberProfiles = new PropertyValue<List<TDMemberProfile>>(nameof(PRProject), nameof(MemberProfiles), "memberProfiles", new List<TDMemberProfile>());
     
     [Required]
@@ -301,6 +312,7 @@ public sealed class PRProject
         _boards.SetAccessPath(parentChainPath, validateHasBeenSet);
         _collaboratorsProfiles.SetAccessPath(parentChainPath, validateHasBeenSet);
         _collaboratorsTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalUserProfiles.SetAccessPath(parentChainPath, validateHasBeenSet);
         _memberProfiles.SetAccessPath(parentChainPath, validateHasBeenSet);
         _memberTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _members.SetAccessPath(parentChainPath, validateHasBeenSet);

@@ -29,16 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ChatMessageMenuIdentifier
-     : ContextMenuIdentifier, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class MeetingWithOccurrenceTime
+     : IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public  string? ClassName => "ChatMessageMenuIdentifier";
+    public MeetingWithOccurrenceTime() { }
     
-    public ChatMessageMenuIdentifier() { }
+    public MeetingWithOccurrenceTime(string meetingId, MeetingOccurrenceTime occurrenceTime)
+    {
+        MeetingId = meetingId;
+        OccurrenceTime = occurrenceTime;
+    }
     
+    private PropertyValue<string> _meetingId = new PropertyValue<string>(nameof(MeetingWithOccurrenceTime), nameof(MeetingId), "meetingId");
+    
+    [Required]
+    [JsonPropertyName("meetingId")]
+    public string MeetingId
+    {
+        get => _meetingId.GetValue(InlineErrors);
+        set => _meetingId.SetValue(value);
+    }
+
+    private PropertyValue<MeetingOccurrenceTime> _occurrenceTime = new PropertyValue<MeetingOccurrenceTime>(nameof(MeetingWithOccurrenceTime), nameof(OccurrenceTime), "occurrenceTime");
+    
+    [Required]
+    [JsonPropertyName("occurrenceTime")]
+    public MeetingOccurrenceTime OccurrenceTime
+    {
+        get => _occurrenceTime.GetValue(InlineErrors);
+        set => _occurrenceTime.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
+        _meetingId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _occurrenceTime.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

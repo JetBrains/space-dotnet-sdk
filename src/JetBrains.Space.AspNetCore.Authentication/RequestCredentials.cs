@@ -10,7 +10,7 @@ namespace JetBrains.Space.AspNetCore.Authentication;
 public enum RequestCredentials
 {
     /// <summary>
-    /// Use when the client application does not allow anonymous access.
+    /// Default behaviour.
     ///
     /// <list type="bullet">
     /// <item><description>If the user is already logged in to Space, the user is granted access to the client application.</description></item>
@@ -21,7 +21,7 @@ public enum RequestCredentials
     Default,
         
     /// <summary>
-    /// Same as <see cref="Skip"/>, but redirects the user to the client application in all cases.
+    /// Same as <see cref="Default"/>, but redirects the user to the client application in all cases.
     /// </summary>
     [EnumMember(Value = "silent")]
     Silent,

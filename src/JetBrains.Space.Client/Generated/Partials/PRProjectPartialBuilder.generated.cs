@@ -88,6 +88,12 @@ public static class PRProjectPartialExtensions
     public static Partial<PRProject> WithCollaboratorsTeams(this Partial<PRProject> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
         => it.AddFieldName("collaboratorsTeams", partialBuilder(new Partial<TDTeam>(it)));
     
+    public static Partial<PRProject> WithExternalUserProfiles(this Partial<PRProject> it)
+        => it.AddFieldName("externalUserProfiles");
+    
+    public static Partial<PRProject> WithExternalUserProfiles(this Partial<PRProject> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("externalUserProfiles", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
     public static Partial<PRProject> WithMemberProfiles(this Partial<PRProject> it)
         => it.AddFieldName("memberProfiles");
     

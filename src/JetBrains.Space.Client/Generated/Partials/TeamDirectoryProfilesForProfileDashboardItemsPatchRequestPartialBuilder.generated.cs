@@ -27,13 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileDashboardItemsPatchRequestPartialBuilder;
 
-public interface AppUiExtensionApi
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+public static class TeamDirectoryProfilesForProfileDashboardItemsPatchRequestPartialExtensions
 {
-    public static ChatBotUiExtensionApi ChatBotUiExtensionApi()
-        => new ChatBotUiExtensionApi();
+    public static Partial<TeamDirectoryProfilesForProfileDashboardItemsPatchRequest> WithItem(this Partial<TeamDirectoryProfilesForProfileDashboardItemsPatchRequest> it)
+        => it.AddFieldName("item");
+    
+    public static Partial<TeamDirectoryProfilesForProfileDashboardItemsPatchRequest> WithItem(this Partial<TeamDirectoryProfilesForProfileDashboardItemsPatchRequest> it, Func<Partial<DashboardItem>, Partial<DashboardItem>> partialBuilder)
+        => it.AddFieldName("item", partialBuilder(new Partial<DashboardItem>(it)));
     
 }
 

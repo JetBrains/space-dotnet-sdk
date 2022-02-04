@@ -366,6 +366,30 @@ public partial class CalendarClient : ISpaceClient
         }
         
     
+        /// <summary>
+        /// Search for occurrences of a meeting that start in the provided time interval. Interval limits are inclusive, response is limited by the first 1_000 results by default (per meeting).
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View meetings</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<List<MeetingWithOccurrenceTime>> GetMeetingOccurrencesForPeriodForMultipleMeetingsAsync(List<string> meetingIds, DateTime since, DateTime until, int? limit = null, Func<Partial<MeetingWithOccurrenceTime>, Partial<MeetingWithOccurrenceTime>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("meetingIds", meetingIds.Select(it => it));
+            queryParameters.Append("since", since.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
+            queryParameters.Append("until", until.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
+            if (limit != null) queryParameters.Append("limit", limit?.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<MeetingWithOccurrenceTime>()) : Partial<MeetingWithOccurrenceTime>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<MeetingWithOccurrenceTime>>("GET", $"api/http/calendars/meetings/occurrences-by-meeting{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
         /// <remarks>
         /// Required permissions:
         /// <list type="bullet">

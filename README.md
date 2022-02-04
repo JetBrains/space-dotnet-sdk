@@ -433,7 +433,7 @@ An application webhook handler can be created by extending the `SpaceWebHookHand
 * `HandleChangeClientSecretRequestAsync` is called when the application client secret is updated in Space organization.
 * `HandleChangeServerUrlAsync` is called when the application server URL is updated.
 * `HandleAppPublicationCheckAsync` is called when a Space organization verifies the application publication.
-* `AuthCodeFlowTokensPayloadHandleAuthCodeFlowTokensAsync` is called when auth code flow is updated in Space organization.  
+* `HandleRefreshTokenAsync` is called when refresh token is updated in Space organization.  
 
 The `CateringWebHookHandler` class is an example application that implements the above, and provides an interactive means of ordering (virtual) food and beverages.
 

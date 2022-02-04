@@ -27,24 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AuthCodeFlowTokensPayloadPartialBuilder;
+namespace JetBrains.Space.Client.DocumentInListMenuIdentifierPartialBuilder;
 
-public static class AuthCodeFlowTokensPayloadPartialExtensions
+public static class DocumentInListMenuIdentifierPartialExtensions
 {
-    public static Partial<AuthCodeFlowTokensPayload> WithRefreshToken(this Partial<AuthCodeFlowTokensPayload> it)
-        => it.AddFieldName("refreshToken");
-    
-    public static Partial<AuthCodeFlowTokensPayload> WithScope(this Partial<AuthCodeFlowTokensPayload> it)
-        => it.AddFieldName("scope");
-    
-    public static Partial<AuthCodeFlowTokensPayload> WithClientId(this Partial<AuthCodeFlowTokensPayload> it)
-        => it.AddFieldName("clientId");
-    
-    public static Partial<AuthCodeFlowTokensPayload> WithUserId(this Partial<AuthCodeFlowTokensPayload> it)
-        => it.AddFieldName("userId");
-    
-    public static Partial<AuthCodeFlowTokensPayload> WithVerificationToken(this Partial<AuthCodeFlowTokensPayload> it)
-        => it.AddFieldName("verificationToken");
-    
 }
 

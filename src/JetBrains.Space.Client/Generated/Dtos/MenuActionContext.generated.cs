@@ -35,6 +35,12 @@ public interface MenuActionContext
     public static ChannelMessageMenuActionContext ChannelMessage(ChannelIdentifier channelIdentifier, ChatMessageIdentifier messageIdentifier)
         => new ChannelMessageMenuActionContext(channelIdentifier: channelIdentifier, messageIdentifier: messageIdentifier);
     
+    public static DocumentFolderMenuActionContext DocumentFolder(FolderIdentifier folderIdentifier, ProjectIdentifier? projectIdentifier = null)
+        => new DocumentFolderMenuActionContext(folderIdentifier: folderIdentifier, projectIdentifier: projectIdentifier);
+    
+    public static DocumentMenuActionContext Document(string documentId, ProjectIdentifier? projectIdentifier = null)
+        => new DocumentMenuActionContext(documentId: documentId, projectIdentifier: projectIdentifier);
+    
     public static IssueMenuActionContext Issue(ProjectIdentifier projectIdentifier, IssueIdentifier issueIdentifier)
         => new IssueMenuActionContext(projectIdentifier: projectIdentifier, issueIdentifier: issueIdentifier);
     

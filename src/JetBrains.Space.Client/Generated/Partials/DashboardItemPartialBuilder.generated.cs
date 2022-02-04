@@ -27,13 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.DashboardItemPartialBuilder;
 
-public interface AppUiExtensionApi
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+public static class DashboardItemPartialExtensions
 {
-    public static ChatBotUiExtensionApi ChatBotUiExtensionApi()
-        => new ChatBotUiExtensionApi();
+    public static Partial<DashboardItem> WithName(this Partial<DashboardItem> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<DashboardItem> WithIsEnabled(this Partial<DashboardItem> it)
+        => it.AddFieldName("enabled");
+    
+    public static Partial<DashboardItem> WithColumn(this Partial<DashboardItem> it)
+        => it.AddFieldName("column");
+    
+    public static Partial<DashboardItem> WithPosition(this Partial<DashboardItem> it)
+        => it.AddFieldName("position");
     
 }
 

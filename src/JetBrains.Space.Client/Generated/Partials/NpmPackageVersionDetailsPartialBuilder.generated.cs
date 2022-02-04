@@ -118,5 +118,8 @@ public static class NpmPackageVersionDetailsPartialExtensions
     public static Partial<NpmPackageVersionDetails> WithReadme(this Partial<NpmPackageVersionDetails> it)
         => it.AddFieldName("readme");
     
+    public static Partial<NpmPackageVersionDetails> WithUnityVersion(this Partial<NpmPackageVersionDetails> it)
+        => it.AddFieldName("unityVersion");
+    
 }
 

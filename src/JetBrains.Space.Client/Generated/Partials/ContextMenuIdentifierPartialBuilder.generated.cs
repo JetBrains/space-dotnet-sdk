@@ -27,16 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.ContextMenuIdentifierPartialBuilder;
 
-public interface MenuIdentifier
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+public static class ContextMenuIdentifierPartialExtensions
 {
-    public static ChatMessageMenuIdentifier ChatMessage()
-        => new ChatMessageMenuIdentifier();
-    
-    public static IssueMenuIdentifier Issue()
-        => new IssueMenuIdentifier();
-    
 }
 

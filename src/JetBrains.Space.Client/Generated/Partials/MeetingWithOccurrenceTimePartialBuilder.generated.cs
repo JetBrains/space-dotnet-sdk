@@ -27,13 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.MeetingWithOccurrenceTimePartialBuilder;
 
-public interface AppUiExtensionApi
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+public static class MeetingWithOccurrenceTimePartialExtensions
 {
-    public static ChatBotUiExtensionApi ChatBotUiExtensionApi()
-        => new ChatBotUiExtensionApi();
+    public static Partial<MeetingWithOccurrenceTime> WithMeetingId(this Partial<MeetingWithOccurrenceTime> it)
+        => it.AddFieldName("meetingId");
+    
+    public static Partial<MeetingWithOccurrenceTime> WithOccurrenceTime(this Partial<MeetingWithOccurrenceTime> it)
+        => it.AddFieldName("occurrenceTime");
+    
+    public static Partial<MeetingWithOccurrenceTime> WithOccurrenceTime(this Partial<MeetingWithOccurrenceTime> it, Func<Partial<MeetingOccurrenceTime>, Partial<MeetingOccurrenceTime>> partialBuilder)
+        => it.AddFieldName("occurrenceTime", partialBuilder(new Partial<MeetingOccurrenceTime>(it)));
     
 }
 

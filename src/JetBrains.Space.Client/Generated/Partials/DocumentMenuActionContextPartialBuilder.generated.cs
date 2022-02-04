@@ -27,13 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.DocumentMenuActionContextPartialBuilder;
 
-public interface AppUiExtensionApi
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+public static class DocumentMenuActionContextPartialExtensions
 {
-    public static ChatBotUiExtensionApi ChatBotUiExtensionApi()
-        => new ChatBotUiExtensionApi();
+    public static Partial<DocumentMenuActionContext> WithDocumentId(this Partial<DocumentMenuActionContext> it)
+        => it.AddFieldName("documentId");
+    
+    public static Partial<DocumentMenuActionContext> WithProjectIdentifier(this Partial<DocumentMenuActionContext> it)
+        => it.AddFieldName("projectIdentifier");
+    
+    public static Partial<DocumentMenuActionContext> WithProjectIdentifier(this Partial<DocumentMenuActionContext> it, Func<Partial<ProjectIdentifier>, Partial<ProjectIdentifier>> partialBuilder)
+        => it.AddFieldName("projectIdentifier", partialBuilder(new Partial<ProjectIdentifier>(it)));
     
 }
 

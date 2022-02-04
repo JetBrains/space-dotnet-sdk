@@ -27,9 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MenuIdentifierPartialBuilder;
+namespace JetBrains.Space.Client.DocumentFolderMenuItemVisibilityFilterPartialBuilder;
 
-public static class MenuIdentifierPartialExtensions
+public static class DocumentFolderMenuItemVisibilityFilterPartialExtensions
 {
 }
 

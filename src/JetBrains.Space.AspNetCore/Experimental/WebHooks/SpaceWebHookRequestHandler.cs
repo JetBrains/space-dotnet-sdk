@@ -133,10 +133,10 @@ public class SpaceWebHookRequestHandler<TWebHookHandler>
                 await WriteApplicationExecutionResultAsync(context.Response, publicationCheckPayloadActionResult);
                 return;
                 
-            // Auth code flow updated?
-            case AuthCodeFlowTokensPayload authCodeFlowTokensPayload:
-                var authCodeFlowTokensResult = await handler.HandleAuthCodeFlowTokensAsync(authCodeFlowTokensPayload);
-                await WriteApplicationExecutionResultAsync(context.Response, authCodeFlowTokensResult);
+            // Refresh token updated?
+            case RefreshTokenPayload refreshTokenPayload:
+                var refreshTokenResult = await handler.HandleRefreshTokenAsync(refreshTokenPayload);
+                await WriteApplicationExecutionResultAsync(context.Response, refreshTokenResult);
                 return;
         }
 

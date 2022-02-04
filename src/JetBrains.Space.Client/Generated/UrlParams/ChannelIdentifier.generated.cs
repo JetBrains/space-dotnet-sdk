@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client;
 [JsonConverter(typeof(UrlParameterConverter))]
 public abstract class ChannelIdentifier : IUrlParameter
 {
-    public static ChannelIdentifier Application(string application)
+    public static ChannelIdentifier Application(ApplicationIdentifier application)
         => new ChannelIdentifierApplication(application);
     
     public static ChannelIdentifier Article(string article)
@@ -61,9 +61,9 @@ public abstract class ChannelIdentifier : IUrlParameter
     
     private class ChannelIdentifierApplication : ChannelIdentifier
     {
-        private readonly string _application;
+        private readonly ApplicationIdentifier _application;
         
-        public ChannelIdentifierApplication(string application)
+        public ChannelIdentifierApplication(ApplicationIdentifier application)
         {
             _application = application;
         }

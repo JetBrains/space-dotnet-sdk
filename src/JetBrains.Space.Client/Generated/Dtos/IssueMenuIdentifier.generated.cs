@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class IssueMenuIdentifier
-     : MenuIdentifier, IClassNameConvertible, IPropagatePropertyAccessPath
+     : ContextMenuIdentifier, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "IssueMenuIdentifier";

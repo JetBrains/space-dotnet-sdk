@@ -53,6 +53,6 @@ public abstract class SpaceWebHookHandler
         => Task.FromResult(new ApplicationExecutionResult());
     
     /// <inheritdoc/>
-    public virtual Task<ApplicationExecutionResult> HandleAuthCodeFlowTokensAsync(AuthCodeFlowTokensPayload payload)
+    public virtual Task<ApplicationExecutionResult> HandleRefreshTokenAsync(RefreshTokenPayload payload)
         => Task.FromResult(new ApplicationExecutionResult());
 }

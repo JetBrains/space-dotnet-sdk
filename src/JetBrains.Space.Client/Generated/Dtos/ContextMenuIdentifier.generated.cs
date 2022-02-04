@@ -29,11 +29,26 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public interface AppUiExtensionApi
+public interface ContextMenuIdentifier
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static ChatBotUiExtensionApi ChatBotUiExtensionApi()
-        => new ChatBotUiExtensionApi();
+    public static ChatMessageMenuIdentifier ChatMessageMenuIdentifier()
+        => new ChatMessageMenuIdentifier();
+    
+    public static DocumentDetailsMenuIdentifier DocumentDetailsMenuIdentifier()
+        => new DocumentDetailsMenuIdentifier();
+    
+    public static DocumentFolderDetailsMenuIdentifier DocumentFolderDetailsMenuIdentifier()
+        => new DocumentFolderDetailsMenuIdentifier();
+    
+    public static DocumentFolderInListMenuIdentifier DocumentFolderInListMenuIdentifier()
+        => new DocumentFolderInListMenuIdentifier();
+    
+    public static DocumentInListMenuIdentifier DocumentInListMenuIdentifier()
+        => new DocumentInListMenuIdentifier();
+    
+    public static IssueMenuIdentifier IssueMenuIdentifier()
+        => new IssueMenuIdentifier();
     
 }
 
