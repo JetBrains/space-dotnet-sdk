@@ -21,12 +21,6 @@ public enum RequestCredentials
     Default,
         
     /// <summary>
-    /// Same as <see cref="Default"/>, but redirects the user to the client application in all cases.
-    /// </summary>
-    [EnumMember(Value = "silent")]
-    Silent,
-        
-    /// <summary>
     /// Logs the user out of Space and redirects them to the login page.
     /// Use as a response to a logout request in the client application.
     /// </summary>
