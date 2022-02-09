@@ -23,7 +23,11 @@ public class Startup
     {
         // Razor
         services.AddRouting(options => options.LowercaseUrls = true);
-        services.AddRazorPages();
+        services.AddRazorPages()
+            .AddMvcOptions(options =>
+            {
+                options.Filters.AddService<SpaceAuthenticationExceptionErrorFilter>();
+            });
             
         // Space authentication
         services.AddAuthentication(options =>
@@ -50,6 +54,10 @@ public class Startup
             
         // Space client API
         services.AddSpaceClientApi();
+        
+        // Space authentication exception filter to challenge sign-in again
+        // when authentication with the API fails
+        services.AddScoped<SpaceAuthenticationExceptionErrorFilter>();
             
         // CORS
         services.AddCors(setup =>
