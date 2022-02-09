@@ -568,15 +568,16 @@ The next step is to add configuration details. In `appsettings.json`, add the `"
 
 ```json             
 {
- "ConnectionStrings": { },
- "Logging": { },
- "AllowedHosts": "*",
+  "ConnectionStrings": { },
+  "Logging": { },
+  "AllowedHosts": "*",
 
- "Space": {
-   "ServerUrl": "https://{organization}.jetbrains.space",
-   "ClientId": "{client-id}",
-   "ClientSecret": "{client-secret}"
- }
+  "Space": {
+    "ServerUrl": "https://{organization}.jetbrains.space",
+    "ClientId": "{client-id}",
+    "ClientSecret": "{client-secret}",
+    "UsePkce": true
+  }
 }
 ```
 
