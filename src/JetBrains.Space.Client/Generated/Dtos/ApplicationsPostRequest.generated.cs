@@ -34,7 +34,7 @@ public class ApplicationsPostRequest
 {
     public ApplicationsPostRequest() { }
     
-    public ApplicationsPostRequest(string name, bool endpointSslVerification = true, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? connectToSpace = false, string? state = null)
+    public ApplicationsPostRequest(string name, bool endpointSslVerification = true, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? connectToSpace = false, string? state = null)
     {
         Name = name;
         PictureAttachmentId = pictureAttachmentId;
@@ -51,7 +51,6 @@ public class ApplicationsPostRequest
         IsEndpointSslVerification = endpointSslVerification;
         AppLevelAuth = appLevelAuth;
         SslKeystoreAuth = sslKeystoreAuth;
-        IsHasVerificationToken = hasVerificationToken;
         IsHasSigningKey = hasSigningKey;
         IsHasPublicKeySignature = hasPublicKeySignature;
         BasicAuthUsername = basicAuthUsername;
@@ -197,16 +196,6 @@ public class ApplicationsPostRequest
         set => _sslKeystoreAuth.SetValue(value);
     }
 
-    private PropertyValue<bool?> _hasVerificationToken = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsHasVerificationToken), "hasVerificationToken");
-    
-    [Obsolete("It's an obsolete auth type - please use another one (since 2021-09-02) (will be removed in a future version)")]
-    [JsonPropertyName("hasVerificationToken")]
-    public bool? IsHasVerificationToken
-    {
-        get => _hasVerificationToken.GetValue(InlineErrors);
-        set => _hasVerificationToken.SetValue(value);
-    }
-
     private PropertyValue<bool?> _hasSigningKey = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsHasSigningKey), "hasSigningKey");
     
     [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
@@ -292,7 +281,6 @@ public class ApplicationsPostRequest
         _endpointSslVerification.SetAccessPath(parentChainPath, validateHasBeenSet);
         _appLevelAuth.SetAccessPath(parentChainPath, validateHasBeenSet);
         _sslKeystoreAuth.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _hasVerificationToken.SetAccessPath(parentChainPath, validateHasBeenSet);
         _hasSigningKey.SetAccessPath(parentChainPath, validateHasBeenSet);
         _hasPublicKeySignature.SetAccessPath(parentChainPath, validateHasBeenSet);
         _basicAuthUsername.SetAccessPath(parentChainPath, validateHasBeenSet);

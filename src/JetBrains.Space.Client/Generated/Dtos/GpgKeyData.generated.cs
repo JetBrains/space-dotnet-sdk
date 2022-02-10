@@ -34,7 +34,7 @@ public sealed class GpgKeyData
 {
     public GpgKeyData() { }
     
-    public GpgKeyData(string fingerprint, string publicKey, string userId, bool verified, string comment, DateTime created, DateTime added, bool revoked, DateTime? expires = null, string? revokeComment = null)
+    public GpgKeyData(string fingerprint, string publicKey, string userId, bool verified, string comment, DateTime created, DateTime added, bool revoked, DateTime? expires = null, DateTime? revokedAt = null, string? revokeComment = null)
     {
         Fingerprint = fingerprint;
         PublicKey = publicKey;
@@ -45,6 +45,7 @@ public sealed class GpgKeyData
         Added = added;
         Expires = expires;
         IsRevoked = revoked;
+        RevokedAt = revokedAt;
         RevokeComment = revokeComment;
     }
     
@@ -140,6 +141,16 @@ public sealed class GpgKeyData
         set => _revoked.SetValue(value);
     }
 
+    private PropertyValue<DateTime?> _revokedAt = new PropertyValue<DateTime?>(nameof(GpgKeyData), nameof(RevokedAt), "revokedAt");
+    
+    [JsonPropertyName("revokedAt")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? RevokedAt
+    {
+        get => _revokedAt.GetValue(InlineErrors);
+        set => _revokedAt.SetValue(value);
+    }
+
     private PropertyValue<string?> _revokeComment = new PropertyValue<string?>(nameof(GpgKeyData), nameof(RevokeComment), "revokeComment");
     
     [JsonPropertyName("revokeComment")]
@@ -160,6 +171,7 @@ public sealed class GpgKeyData
         _added.SetAccessPath(parentChainPath, validateHasBeenSet);
         _expires.SetAccessPath(parentChainPath, validateHasBeenSet);
         _revoked.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _revokedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
         _revokeComment.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

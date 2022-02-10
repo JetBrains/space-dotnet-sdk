@@ -37,6 +37,12 @@ public static class UnfurlDetailsDraftPartialExtensions
     public static Partial<UnfurlDetailsDraft> WithTitle(this Partial<UnfurlDetailsDraft> it)
         => it.AddFieldName("title");
     
+    public static Partial<UnfurlDetailsDraft> WithDocument(this Partial<UnfurlDetailsDraft> it)
+        => it.AddFieldName("document");
+    
+    public static Partial<UnfurlDetailsDraft> WithDocument(this Partial<UnfurlDetailsDraft> it, Func<Partial<Document>, Partial<Document>> partialBuilder)
+        => it.AddFieldName("document", partialBuilder(new Partial<Document>(it)));
+    
     public static Partial<UnfurlDetailsDraft> WithIsStrikeThrough(this Partial<UnfurlDetailsDraft> it)
         => it.AddFieldName("strikeThrough");
     

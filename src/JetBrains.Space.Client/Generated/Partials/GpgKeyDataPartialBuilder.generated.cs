@@ -58,6 +58,9 @@ public static class GpgKeyDataPartialExtensions
     public static Partial<GpgKeyData> WithIsRevoked(this Partial<GpgKeyData> it)
         => it.AddFieldName("revoked");
     
+    public static Partial<GpgKeyData> WithRevokedAt(this Partial<GpgKeyData> it)
+        => it.AddFieldName("revokedAt");
+    
     public static Partial<GpgKeyData> WithRevokeComment(this Partial<GpgKeyData> it)
         => it.AddFieldName("revokeComment");
     

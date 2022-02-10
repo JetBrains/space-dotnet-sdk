@@ -40,11 +40,8 @@ public static class ApplicationUnfurlContentImagePartialExtensions
     public static Partial<ApplicationUnfurlContentImage> WithTitle(this Partial<ApplicationUnfurlContentImage> it)
         => it.AddFieldName("title");
     
-    public static Partial<ApplicationUnfurlContentImage> WithSource(this Partial<ApplicationUnfurlContentImage> it)
-        => it.AddFieldName("source");
-    
-    public static Partial<ApplicationUnfurlContentImage> WithSource(this Partial<ApplicationUnfurlContentImage> it, Func<Partial<ApplicationUnfurlContentImageSource>, Partial<ApplicationUnfurlContentImageSource>> partialBuilder)
-        => it.AddFieldName("source", partialBuilder(new Partial<ApplicationUnfurlContentImageSource>(it)));
+    public static Partial<ApplicationUnfurlContentImage> WithUrl(this Partial<ApplicationUnfurlContentImage> it)
+        => it.AddFieldName("url");
     
 }
 

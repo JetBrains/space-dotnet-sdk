@@ -80,8 +80,8 @@ public interface UnfurlDetails
     public static UnfurlDetailsDateTimeRange DateTimeRange(long since, long till, DateTimeViewParams? @params = null)
         => new UnfurlDetailsDateTimeRange(since: since, till: till, @params: @params);
     
-    public static UnfurlDetailsDraft Draft(string draft, string title, bool? strikeThrough = null)
-        => new UnfurlDetailsDraft(draft: draft, title: title, strikeThrough: strikeThrough);
+    public static UnfurlDetailsDraft Draft(string draft, string title, Document? document = null, bool? strikeThrough = null)
+        => new UnfurlDetailsDraft(draft: draft, title: title, document: document, strikeThrough: strikeThrough);
     
     public static UnfurlDetailsFolder Folder(string name, bool root)
         => new UnfurlDetailsFolder(name: name, root: root);

@@ -27,12 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationUnfurlContentImageSourceAttachmentPartialBuilder;
+namespace JetBrains.Space.Client.ProjectFeatureStatePartialBuilder;
 
-public static class ApplicationUnfurlContentImageSourceAttachmentPartialExtensions
+public static class ProjectFeatureStatePartialExtensions
 {
-    public static Partial<ApplicationUnfurlContentImageSourceAttachment> WithId(this Partial<ApplicationUnfurlContentImageSourceAttachment> it)
-        => it.AddFieldName("id");
+    public static Partial<ProjectFeatureState> WithFeature(this Partial<ProjectFeatureState> it)
+        => it.AddFieldName("feature");
+    
+    public static Partial<ProjectFeatureState> WithFeature(this Partial<ProjectFeatureState> it, Func<Partial<ProjectFeature>, Partial<ProjectFeature>> partialBuilder)
+        => it.AddFieldName("feature", partialBuilder(new Partial<ProjectFeature>(it)));
+    
+    public static Partial<ProjectFeatureState> WithIsEnabled(this Partial<ProjectFeatureState> it)
+        => it.AddFieldName("enabled");
     
 }
 

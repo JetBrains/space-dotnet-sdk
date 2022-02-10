@@ -94,6 +94,12 @@ public static class PRProjectPartialExtensions
     public static Partial<PRProject> WithExternalUserProfiles(this Partial<PRProject> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
         => it.AddFieldName("externalUserProfiles", partialBuilder(new Partial<TDMemberProfile>(it)));
     
+    public static Partial<PRProject> WithFeatures(this Partial<PRProject> it)
+        => it.AddFieldName("features");
+    
+    public static Partial<PRProject> WithFeatures(this Partial<PRProject> it, Func<Partial<ProjectFeatureState>, Partial<ProjectFeatureState>> partialBuilder)
+        => it.AddFieldName("features", partialBuilder(new Partial<ProjectFeatureState>(it)));
+    
     public static Partial<PRProject> WithMemberProfiles(this Partial<PRProject> it)
         => it.AddFieldName("memberProfiles");
     
@@ -117,6 +123,9 @@ public static class PRProjectPartialExtensions
     
     public static Partial<PRProject> WithPackages(this Partial<PRProject> it, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>> partialBuilder)
         => it.AddFieldName("packages", partialBuilder(new Partial<ProjectPackageRepository>(it)));
+    
+    public static Partial<PRProject> WithProjectId(this Partial<PRProject> it)
+        => it.AddFieldName("projectId");
     
     public static Partial<PRProject> WithRepos(this Partial<PRProject> it)
         => it.AddFieldName("repos");

@@ -34,7 +34,7 @@ public sealed class PRProject
 {
     public PRProject() { }
     
-    public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> collaboratorsProfiles, List<TDTeam> collaboratorsTeams, List<TDMemberProfile> externalUserProfiles, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, ProjectTeamType type, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null, List<ProjectTeamMemberRecord>? members = null, TDTeam? team = null, List<TDTeam>? teams = null)
+    public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> collaboratorsProfiles, List<TDTeam> collaboratorsTeams, List<TDMemberProfile> externalUserProfiles, List<ProjectFeatureState> features, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, string projectId, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, ProjectTeamType type, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null, List<ProjectTeamMemberRecord>? members = null, TDTeam? team = null, List<TDTeam>? teams = null)
     {
         Id = id;
         Key = key;
@@ -50,10 +50,12 @@ public sealed class PRProject
         CollaboratorsProfiles = collaboratorsProfiles;
         CollaboratorsTeams = collaboratorsTeams;
         ExternalUserProfiles = externalUserProfiles;
+        Features = features;
         MemberProfiles = memberProfiles;
         MemberTeams = memberTeams;
         Members = members;
         Packages = packages;
+        ProjectId = projectId;
         Repos = repos;
         Tags = tags;
         Team = team;
@@ -200,6 +202,16 @@ public sealed class PRProject
         set => _externalUserProfiles.SetValue(value);
     }
 
+    private PropertyValue<List<ProjectFeatureState>> _features = new PropertyValue<List<ProjectFeatureState>>(nameof(PRProject), nameof(Features), "features", new List<ProjectFeatureState>());
+    
+    [Required]
+    [JsonPropertyName("features")]
+    public List<ProjectFeatureState> Features
+    {
+        get => _features.GetValue(InlineErrors);
+        set => _features.SetValue(value);
+    }
+
     private PropertyValue<List<TDMemberProfile>> _memberProfiles = new PropertyValue<List<TDMemberProfile>>(nameof(PRProject), nameof(MemberProfiles), "memberProfiles", new List<TDMemberProfile>());
     
     [Required]
@@ -237,6 +249,16 @@ public sealed class PRProject
     {
         get => _packages.GetValue(InlineErrors);
         set => _packages.SetValue(value);
+    }
+
+    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(PRProject), nameof(ProjectId), "projectId");
+    
+    [Required]
+    [JsonPropertyName("projectId")]
+    public string ProjectId
+    {
+        get => _projectId.GetValue(InlineErrors);
+        set => _projectId.SetValue(value);
     }
 
     private PropertyValue<List<PRRepositoryInfo>> _repos = new PropertyValue<List<PRRepositoryInfo>>(nameof(PRProject), nameof(Repos), "repos", new List<PRRepositoryInfo>());
@@ -313,10 +335,12 @@ public sealed class PRProject
         _collaboratorsProfiles.SetAccessPath(parentChainPath, validateHasBeenSet);
         _collaboratorsTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _externalUserProfiles.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _features.SetAccessPath(parentChainPath, validateHasBeenSet);
         _memberProfiles.SetAccessPath(parentChainPath, validateHasBeenSet);
         _memberTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _members.SetAccessPath(parentChainPath, validateHasBeenSet);
         _packages.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _repos.SetAccessPath(parentChainPath, validateHasBeenSet);
         _tags.SetAccessPath(parentChainPath, validateHasBeenSet);
         _team.SetAccessPath(parentChainPath, validateHasBeenSet);

@@ -37,10 +37,11 @@ public sealed class UnfurlDetailsDraft
     
     public UnfurlDetailsDraft() { }
     
-    public UnfurlDetailsDraft(string draft, string title, bool? strikeThrough = null)
+    public UnfurlDetailsDraft(string draft, string title, Document? document = null, bool? strikeThrough = null)
     {
         Draft = draft;
         Title = title;
+        Document = document;
         IsStrikeThrough = strikeThrough;
     }
     
@@ -64,6 +65,15 @@ public sealed class UnfurlDetailsDraft
         set => _title.SetValue(value);
     }
 
+    private PropertyValue<Document?> _document = new PropertyValue<Document?>(nameof(UnfurlDetailsDraft), nameof(Document), "document");
+    
+    [JsonPropertyName("document")]
+    public Document? Document
+    {
+        get => _document.GetValue(InlineErrors);
+        set => _document.SetValue(value);
+    }
+
     private PropertyValue<bool?> _strikeThrough = new PropertyValue<bool?>(nameof(UnfurlDetailsDraft), nameof(IsStrikeThrough), "strikeThrough");
     
     [JsonPropertyName("strikeThrough")]
@@ -77,6 +87,7 @@ public sealed class UnfurlDetailsDraft
     {
         _draft.SetAccessPath(parentChainPath, validateHasBeenSet);
         _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _document.SetAccessPath(parentChainPath, validateHasBeenSet);
         _strikeThrough.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

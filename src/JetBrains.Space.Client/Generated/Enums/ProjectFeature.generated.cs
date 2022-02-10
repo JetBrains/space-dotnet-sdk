@@ -27,9 +27,34 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationUnfurlContentImageSourcePartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class ApplicationUnfurlContentImageSourcePartialExtensions
+[JsonConverter(typeof(EnumStringConverter))]
+public enum ProjectFeature
 {
+    [EnumMember(Value = "DOCUMENTS")]
+    DOCUMENTS,
+    
+    [EnumMember(Value = "ISSUES")]
+    ISSUES,
+    
+    [EnumMember(Value = "BOARDS")]
+    BOARDS,
+    
+    [EnumMember(Value = "REPOSITORIES")]
+    REPOSITORIES,
+    
+    [EnumMember(Value = "CODE_REVIEWS")]
+    CODEREVIEWS,
+    
+    [EnumMember(Value = "JOBS")]
+    JOBS,
+    
+    [EnumMember(Value = "PACKAGES")]
+    PACKAGES,
+    
+    [EnumMember(Value = "DEV_ENVIRONMENTS")]
+    DEVENVIRONMENTS,
+    
 }
 

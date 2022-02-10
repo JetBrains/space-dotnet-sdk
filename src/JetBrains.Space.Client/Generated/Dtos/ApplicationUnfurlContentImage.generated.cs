@@ -37,11 +37,11 @@ public sealed class ApplicationUnfurlContentImage
     
     public ApplicationUnfurlContentImage() { }
     
-    public ApplicationUnfurlContentImage(string title, ApplicationUnfurlContentImageSource source, ApiIcon? icon = null)
+    public ApplicationUnfurlContentImage(string title, string url, ApiIcon? icon = null)
     {
         Icon = icon;
         Title = title;
-        Source = source;
+        Url = url;
     }
     
     private PropertyValue<ApiIcon?> _icon = new PropertyValue<ApiIcon?>(nameof(ApplicationUnfurlContentImage), nameof(Icon), "icon");
@@ -63,21 +63,21 @@ public sealed class ApplicationUnfurlContentImage
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<ApplicationUnfurlContentImageSource> _source = new PropertyValue<ApplicationUnfurlContentImageSource>(nameof(ApplicationUnfurlContentImage), nameof(Source), "source");
+    private PropertyValue<string> _url = new PropertyValue<string>(nameof(ApplicationUnfurlContentImage), nameof(Url), "url");
     
     [Required]
-    [JsonPropertyName("source")]
-    public ApplicationUnfurlContentImageSource Source
+    [JsonPropertyName("url")]
+    public string Url
     {
-        get => _source.GetValue(InlineErrors);
-        set => _source.SetValue(value);
+        get => _url.GetValue(InlineErrors);
+        set => _url.SetValue(value);
     }
 
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
         _title.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _source.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _url.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -39,8 +39,8 @@ public class ApplicationUnfurlContent
     public static ApplicationUnfurlContentBlockMarkdown BlockMarkdown(string title, string markdown, ApiIcon? icon = null)
         => new ApplicationUnfurlContentBlockMarkdown(title: title, markdown: markdown, icon: icon);
     
-    public static ApplicationUnfurlContentImage Image(string title, ApplicationUnfurlContentImageSource source, ApiIcon? icon = null)
-        => new ApplicationUnfurlContentImage(title: title, source: source, icon: icon);
+    public static ApplicationUnfurlContentImage Image(string title, string url, ApiIcon? icon = null)
+        => new ApplicationUnfurlContentImage(title: title, url: url, icon: icon);
     
     public static ApplicationUnfurlContentInlineMarkdown InlineMarkdown(string markdown)
         => new ApplicationUnfurlContentInlineMarkdown(markdown: markdown);

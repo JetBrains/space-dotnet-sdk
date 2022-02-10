@@ -29,32 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ApplicationUnfurlContentImageSourceAttachment
-     : ApplicationUnfurlContentImageSource, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class ProjectFeatureState
+     : IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public override string? ClassName => "ApplicationUnfurlContentImageSource.Attachment";
+    public ProjectFeatureState() { }
     
-    public ApplicationUnfurlContentImageSourceAttachment() { }
-    
-    public ApplicationUnfurlContentImageSourceAttachment(string id)
+    public ProjectFeatureState(ProjectFeature feature, bool enabled)
     {
-        Id = id;
+        Feature = feature;
+        IsEnabled = enabled;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ApplicationUnfurlContentImageSourceAttachment), nameof(Id), "id");
+    private PropertyValue<ProjectFeature> _feature = new PropertyValue<ProjectFeature>(nameof(ProjectFeatureState), nameof(Feature), "feature");
     
     [Required]
-    [JsonPropertyName("id")]
-    public string Id
+    [JsonPropertyName("feature")]
+    public ProjectFeature Feature
     {
-        get => _id.GetValue(InlineErrors);
-        set => _id.SetValue(value);
+        get => _feature.GetValue(InlineErrors);
+        set => _feature.SetValue(value);
     }
 
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(ProjectFeatureState), nameof(IsEnabled), "enabled");
+    
+    [Required]
+    [JsonPropertyName("enabled")]
+    public bool IsEnabled
     {
-        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        get => _enabled.GetValue(InlineErrors);
+        set => _enabled.SetValue(value);
+    }
+
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _feature.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _enabled.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />
