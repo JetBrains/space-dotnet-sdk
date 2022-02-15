@@ -4,6 +4,8 @@
         <TargetFrameworks>netcoreapp3.1;net6.0</TargetFrameworks>
 
         <IsPackable>false</IsPackable>
+
+        <RootNamespace>JetBrains.Space.Client.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -23,6 +25,10 @@
       <ProjectReference Include="..\..\src\JetBrains.Space.Client\JetBrains.Space.Client.csproj" />
       <ProjectReference Include="..\..\src\JetBrains.Space.Common\JetBrains.Space.Common.csproj" />
       <ProjectReference Include="..\..\src\JetBrains.Space.Generator\JetBrains.Space.Generator.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Applications" />
     </ItemGroup>
 
 </Project>
