@@ -478,6 +478,165 @@ public partial class ApplicationClient : ISpaceClient
     
     }
 
+    public UnfurlClient Unfurls => new UnfurlClient(_connection);
+    
+    public partial class UnfurlClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public UnfurlClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        public DomainClient Domains => new DomainClient(_connection);
+        
+        public partial class DomainClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public DomainClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Update list of domains for unfurling by the application. Method is to be called by the application providing unfurls.
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Update applications</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task UpdateUnfurledDomainsAsync(List<string> domains, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/applications/unfurls/domains{queryParameters.ToQueryString()}", 
+                    new ApplicationsUnfurlsDomainsPatchRequest
+                    { 
+                        Domains = domains,
+                    }, cancellationToken);
+            }
+            
+        
+        }
+    
+        public PatternClient Patterns => new PatternClient(_connection);
+        
+        public partial class PatternClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public PatternClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Update list of patterns for unfurling by the application. Method is to be called by the application providing unfurls.
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Update applications</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task UpdateUnfurledPatternsAsync(List<ApplicationUnfurlPatternRequest> patterns, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/applications/unfurls/patterns{queryParameters.ToQueryString()}", 
+                    new ApplicationsUnfurlsPatternsPatchRequest
+                    { 
+                        Patterns = patterns,
+                    }, cancellationToken);
+            }
+            
+        
+        }
+    
+        public QueueClient Queue => new QueueClient(_connection);
+        
+        public partial class QueueClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public QueueClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Provide Space with unfurls content. Method is to be called by the application providing unfurls.
+            /// </summary>
+            public async Task<List<PostUnfurlContentResult>> PostUnfurlsContentAsync(List<ApplicationUnfurl> unfurls, Func<Partial<PostUnfurlContentResult>, Partial<PostUnfurlContentResult>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<PostUnfurlContentResult>()) : Partial<PostUnfurlContentResult>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ApplicationsUnfurlsQueueContentPostRequest, List<PostUnfurlContentResult>>("POST", $"api/http/applications/unfurls/queue/content{queryParameters.ToQueryString()}", 
+                    new ApplicationsUnfurlsQueueContentPostRequest
+                    { 
+                        Unfurls = unfurls,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Request user to authenticate in external system to provide unfurls from it. Method is to be called by the application providing unfurls.
+            /// </summary>
+            public async Task RequestExternalSystemAuthenticationAsync(string queueItemId, ApplicationUnfurlContentMC message, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/applications/unfurls/queue/request-external-auth{queryParameters.ToQueryString()}", 
+                    new ApplicationsUnfurlsQueueRequestExternalAuthPostRequest
+                    { 
+                        QueueItemId = queueItemId,
+                        Message = message,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Clear all external system authentication requests for the specified user. Method is to be called by the application providing unfurls.
+            /// </summary>
+            public async Task ClearExternalSystemAuthenticationRequestsAsync(ProfileIdentifier userId, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/applications/unfurls/queue/reset-external-auth-requests{queryParameters.ToQueryString()}", 
+                    new ApplicationsUnfurlsQueueResetExternalAuthRequestsPostRequest
+                    { 
+                        UserId = userId,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Get links for unfurling by the application. Method is to be called by the application providing unfurls.
+            /// </summary>
+            public async Task<List<ApplicationUnfurlQueueItem>> GetUnfurlQueueItemsAsync(int batchSize, long? fromEtag = null, Func<Partial<ApplicationUnfurlQueueItem>, Partial<ApplicationUnfurlQueueItem>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                if (fromEtag != null) queryParameters.Append("fromEtag", fromEtag?.ToString());
+                queryParameters.Append("batchSize", batchSize.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<ApplicationUnfurlQueueItem>()) : Partial<ApplicationUnfurlQueueItem>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<ApplicationUnfurlQueueItem>>("GET", $"api/http/applications/unfurls/queue{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+        }
+    
+    }
+
     public ClientSecretClient ClientSecret => new ClientSecretClient(_connection);
     
     public partial class ClientSecretClient : ISpaceClient
@@ -773,6 +932,120 @@ public partial class ApplicationClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             
             await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/ssh-keys/{fingerprint}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+    }
+
+    public UnfurlDomainClient UnfurlDomains => new UnfurlDomainClient(_connection);
+    
+    public partial class UnfurlDomainClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public UnfurlDomainClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <summary>
+        /// Authorize domains for unfurling by the application
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Authorize domains and patterns for app-powered previews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task AuthorizeUnfurledDomainsAsync(ApplicationIdentifier application, List<string> domains, bool approve, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/unfurl-domains/authorize{queryParameters.ToQueryString()}", 
+                new ApplicationsForApplicationUnfurlDomainsAuthorizePostRequest
+                { 
+                    Domains = domains,
+                    IsApprove = approve,
+                }, cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// List domains for unfurling by the application
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View applications</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<List<ApplicationUnfurlDomain>> GetAllUnfurlDomainsAsync(ApplicationIdentifier application, Func<Partial<ApplicationUnfurlDomain>, Partial<ApplicationUnfurlDomain>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ApplicationUnfurlDomain>()) : Partial<ApplicationUnfurlDomain>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<ApplicationUnfurlDomain>>("GET", $"api/http/applications/{application}/unfurl-domains{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+    }
+
+    public UnfurlPatternClient UnfurlPatterns => new UnfurlPatternClient(_connection);
+    
+    public partial class UnfurlPatternClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public UnfurlPatternClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <summary>
+        /// Authorize patterns for unfurling by the application
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Authorize domains and patterns for app-powered previews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task AuthorizeUnfurledPatternsAsync(ApplicationIdentifier application, List<string> patterns, bool approve, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/unfurl-patterns/authorize{queryParameters.ToQueryString()}", 
+                new ApplicationsForApplicationUnfurlPatternsAuthorizePostRequest
+                { 
+                    Patterns = patterns,
+                    IsApprove = approve,
+                }, cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// List patterns for unfurling by the application
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View applications</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<List<ApplicationUnfurlPattern>> GetAllUnfurlPatternsAsync(ApplicationIdentifier application, Func<Partial<ApplicationUnfurlPattern>, Partial<ApplicationUnfurlPattern>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ApplicationUnfurlPattern>()) : Partial<ApplicationUnfurlPattern>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<ApplicationUnfurlPattern>>("GET", $"api/http/applications/{application}/unfurl-patterns{queryParameters.ToQueryString()}", cancellationToken);
         }
         
     

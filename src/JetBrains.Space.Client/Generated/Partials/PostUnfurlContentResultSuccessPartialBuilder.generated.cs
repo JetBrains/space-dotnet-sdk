@@ -27,9 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelContentMembershipPartialBuilder;
+namespace JetBrains.Space.Client.PostUnfurlContentResultSuccessPartialBuilder;
 
-public static class M2ChannelContentMembershipPartialExtensions
+public static class PostUnfurlContentResultSuccessPartialExtensions
 {
+    public static Partial<PostUnfurlContentResultSuccess> WithQueueItemId(this Partial<PostUnfurlContentResultSuccess> it)
+        => it.AddFieldName("queueItemId");
+    
 }
 

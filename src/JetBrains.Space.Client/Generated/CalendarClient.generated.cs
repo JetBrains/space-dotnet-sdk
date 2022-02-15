@@ -542,6 +542,46 @@ public partial class CalendarClient : ISpaceClient
         }
         
     
+        public ParticipationStatuClient ParticipationStatus => new ParticipationStatuClient(_connection);
+        
+        public partial class ParticipationStatuClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public ParticipationStatuClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Update profile participation status for a meeting
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Update meetings</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Meeting> UpdateProfileParticipationStatusAsync(string id, string profileId, EventParticipationStatus status, RecurrentModification modificationKind = RecurrentModification.All, DateTime? targetDate = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<CalendarsMeetingsForIdParticipationStatusPatchRequest, Meeting>("PATCH", $"api/http/calendars/meetings/{id}/participation-status{queryParameters.ToQueryString()}", 
+                    new CalendarsMeetingsForIdParticipationStatusPatchRequest
+                    { 
+                        ProfileId = profileId,
+                        Status = status,
+                        TargetDate = targetDate,
+                        ModificationKind = modificationKind,
+                    }, cancellationToken);
+            }
+            
+        
+        }
+    
     }
 
     public MembershipEventClient MembershipEvents => new MembershipEventClient(_connection);

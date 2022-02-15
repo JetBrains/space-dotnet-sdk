@@ -29,14 +29,21 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public interface ChannelContactThread
-     : M2ChannelContactInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class IssueMenuItemVisibilityFilterIssueEditableByMe
+     : IssueMenuItemVisibilityFilter, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static M2ChannelContactThread M2(M2ChannelRecord parent, string? text = null, string? messageId = null, CPrincipal? messageAuthor = null, string? attachments = null)
-        => new M2ChannelContactThread(parent: parent, text: text, messageId: messageId, messageAuthor: messageAuthor, attachments: attachments);
+    [JsonPropertyName("className")]
+    public override string? ClassName => "IssueMenuItemVisibilityFilter.IssueEditableByMe";
     
-    public static M2ChannelContentCodeDiscussionInReview M2ChannelContentCodeDiscussionInReview(ChannelSpecificDefaults notificationDefaults, CodeDiscussionRecord codeDiscussion, M2ChannelRecord parent, string messageId)
-        => new M2ChannelContentCodeDiscussionInReview(notificationDefaults: notificationDefaults, codeDiscussion: codeDiscussion, parent: parent, messageId: messageId);
+    public IssueMenuItemVisibilityFilterIssueEditableByMe() { }
     
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

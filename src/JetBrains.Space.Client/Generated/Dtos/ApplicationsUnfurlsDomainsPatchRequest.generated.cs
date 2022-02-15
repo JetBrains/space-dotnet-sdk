@@ -29,14 +29,34 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public interface ChannelContactThread
-     : M2ChannelContactInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+public class ApplicationsUnfurlsDomainsPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public static M2ChannelContactThread M2(M2ChannelRecord parent, string? text = null, string? messageId = null, CPrincipal? messageAuthor = null, string? attachments = null)
-        => new M2ChannelContactThread(parent: parent, text: text, messageId: messageId, messageAuthor: messageAuthor, attachments: attachments);
+    public ApplicationsUnfurlsDomainsPatchRequest() { }
     
-    public static M2ChannelContentCodeDiscussionInReview M2ChannelContentCodeDiscussionInReview(ChannelSpecificDefaults notificationDefaults, CodeDiscussionRecord codeDiscussion, M2ChannelRecord parent, string messageId)
-        => new M2ChannelContentCodeDiscussionInReview(notificationDefaults: notificationDefaults, codeDiscussion: codeDiscussion, parent: parent, messageId: messageId);
+    public ApplicationsUnfurlsDomainsPatchRequest(List<string> domains)
+    {
+        Domains = domains;
+    }
     
+    private PropertyValue<List<string>> _domains = new PropertyValue<List<string>>(nameof(ApplicationsUnfurlsDomainsPatchRequest), nameof(Domains), "domains", new List<string>());
+    
+    [Required]
+    [JsonPropertyName("domains")]
+    public List<string> Domains
+    {
+        get => _domains.GetValue(InlineErrors);
+        set => _domains.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _domains.SetAccessPath(parentChainPath, validateHasBeenSet);
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

@@ -27,9 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChatMessageMenuItemVisibilityFilterEditableByMePartialBuilder;
+namespace JetBrains.Space.Client.IssueMenuItemVisibilityFilterPartialBuilder;
 
-public static class ChatMessageMenuItemVisibilityFilterEditableByMePartialExtensions
+public static class IssueMenuItemVisibilityFilterPartialExtensions
 {
 }
 

@@ -34,7 +34,7 @@ public sealed class SprintRecord
 {
     public SprintRecord() { }
     
-    public SprintRecord(string id, bool archived, BoardRecord board, string name, SprintState state, DateTime from, DateTime to, string? description = null)
+    public SprintRecord(string id, bool archived, BoardRecord board, string name, SprintState state, DateTime from, DateTime to, SprintLaunch launch, string? description = null)
     {
         Id = id;
         IsArchived = archived;
@@ -44,6 +44,7 @@ public sealed class SprintRecord
         From = from;
         To = to;
         Description = description;
+        Launch = launch;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(SprintRecord), nameof(Id), "id");
@@ -127,6 +128,16 @@ public sealed class SprintRecord
         set => _description.SetValue(value);
     }
 
+    private PropertyValue<SprintLaunch> _launch = new PropertyValue<SprintLaunch>(nameof(SprintRecord), nameof(Launch), "launch");
+    
+    [Required]
+    [JsonPropertyName("launch")]
+    public SprintLaunch Launch
+    {
+        get => _launch.GetValue(InlineErrors);
+        set => _launch.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -137,6 +148,7 @@ public sealed class SprintRecord
         _from.SetAccessPath(parentChainPath, validateHasBeenSet);
         _to.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _launch.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

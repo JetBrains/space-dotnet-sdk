@@ -29,14 +29,34 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public interface ChannelContactThread
-     : M2ChannelContactInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+public class ApplicationsUnfurlsQueueResetExternalAuthRequestsPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public static M2ChannelContactThread M2(M2ChannelRecord parent, string? text = null, string? messageId = null, CPrincipal? messageAuthor = null, string? attachments = null)
-        => new M2ChannelContactThread(parent: parent, text: text, messageId: messageId, messageAuthor: messageAuthor, attachments: attachments);
+    public ApplicationsUnfurlsQueueResetExternalAuthRequestsPostRequest() { }
     
-    public static M2ChannelContentCodeDiscussionInReview M2ChannelContentCodeDiscussionInReview(ChannelSpecificDefaults notificationDefaults, CodeDiscussionRecord codeDiscussion, M2ChannelRecord parent, string messageId)
-        => new M2ChannelContentCodeDiscussionInReview(notificationDefaults: notificationDefaults, codeDiscussion: codeDiscussion, parent: parent, messageId: messageId);
+    public ApplicationsUnfurlsQueueResetExternalAuthRequestsPostRequest(ProfileIdentifier userId)
+    {
+        UserId = userId;
+    }
     
+    private PropertyValue<ProfileIdentifier> _userId = new PropertyValue<ProfileIdentifier>(nameof(ApplicationsUnfurlsQueueResetExternalAuthRequestsPostRequest), nameof(UserId), "userId");
+    
+    [Required]
+    [JsonPropertyName("userId")]
+    public ProfileIdentifier UserId
+    {
+        get => _userId.GetValue(InlineErrors);
+        set => _userId.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _userId.SetAccessPath(parentChainPath, validateHasBeenSet);
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

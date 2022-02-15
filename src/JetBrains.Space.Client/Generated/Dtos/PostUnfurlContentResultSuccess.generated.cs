@@ -29,16 +29,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ChatMessageMenuItemVisibilityFilterEditableByMe
-     : ChatMessageMenuItemVisibilityFilter, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class PostUnfurlContentResultSuccess
+     : PostUnfurlContentResult, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "ChatMessageMenuItemVisibilityFilter.EditableByMe";
+    public override string? ClassName => "PostUnfurlContentResult.Success";
     
-    public ChatMessageMenuItemVisibilityFilterEditableByMe() { }
+    public PostUnfurlContentResultSuccess() { }
     
+    public PostUnfurlContentResultSuccess(string queueItemId)
+    {
+        QueueItemId = queueItemId;
+    }
+    
+    private PropertyValue<string> _queueItemId = new PropertyValue<string>(nameof(PostUnfurlContentResultSuccess), nameof(QueueItemId), "queueItemId");
+    
+    [Required]
+    [JsonPropertyName("queueItemId")]
+    public string QueueItemId
+    {
+        get => _queueItemId.GetValue(InlineErrors);
+        set => _queueItemId.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
+        _queueItemId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

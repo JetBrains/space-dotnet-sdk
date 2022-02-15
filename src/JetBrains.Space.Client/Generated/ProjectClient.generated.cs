@@ -888,7 +888,7 @@ public partial class ProjectClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<SprintRecord> CreateSprintAsync(BoardIdentifier board, string name, DateTime from, DateTime to, string? description = null, Func<Partial<SprintRecord>, Partial<SprintRecord>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<SprintRecord> CreateSprintAsync(BoardIdentifier board, string name, DateTime from, DateTime to, SprintLaunch launch, string? description = null, Func<Partial<SprintRecord>, Partial<SprintRecord>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<SprintRecord>()) : Partial<SprintRecord>.Default()).ToString());
@@ -901,6 +901,7 @@ public partial class ProjectClient : ISpaceClient
                             Description = description,
                             From = from,
                             To = to,
+                            Launch = launch,
                         }, cancellationToken);
                 }
                 
@@ -942,7 +943,7 @@ public partial class ProjectClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task UpdateSprintAsync(SprintIdentifier sprint, string? name = null, string? description = null, DateTime? from = null, DateTime? to = null, CancellationToken cancellationToken = default)
+                public async Task UpdateSprintAsync(SprintIdentifier sprint, string? name = null, string? description = null, DateTime? from = null, DateTime? to = null, SprintLaunch? launch = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -953,6 +954,7 @@ public partial class ProjectClient : ISpaceClient
                             Description = description,
                             From = from,
                             To = to,
+                            Launch = launch,
                         }, cancellationToken);
                 }
                 

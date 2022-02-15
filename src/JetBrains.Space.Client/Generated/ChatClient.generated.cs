@@ -632,48 +632,6 @@ public partial class ChatClient : ISpaceClient
         
         }
     
-        public MessageClient Messages => new MessageClient(_connection);
-        
-        public partial class MessageClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public MessageClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            /// <summary>
-            /// Send a message to a channel. Message text is a string.
-            /// </summary>
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>Post messages</term>
-            /// </item>
-            /// <item>
-            /// <term>Post messages in threads</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            [Obsolete("Use POST chats/messages/send-message (since 2020-01-17) (will be removed in a future version)")]
-            public async Task<ChannelItemRecord> SendTextMessageAsync(string channel, string text, string? temporaryId = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<ChannelItemRecord>()) : Partial<ChannelItemRecord>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<ChatsChannelsForChannelMessagesPostRequest, ChannelItemRecord>("POST", $"api/http/chats/channels/{channel}/messages{queryParameters.ToQueryString()}", 
-                    new ChatsChannelsForChannelMessagesPostRequest
-                    { 
-                        Text = text,
-                        TemporaryId = temporaryId,
-                    }, cancellationToken);
-            }
-            
-        
-        }
-    
         public NameClient Name => new NameClient(_connection);
         
         public partial class NameClient : ISpaceClient
@@ -949,60 +907,6 @@ public partial class ChatClient : ISpaceClient
                     Attachments = attachments,
                     IsUnfurlLinks = unfurlLinks,
                     IsResolveNames = resolveNames,
-                }, cancellationToken);
-        }
-        
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Post messages</term>
-        /// </item>
-        /// <item>
-        /// <term>Post messages in threads</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        [Obsolete("Use POST chats/messages/edit-message (since 2020-06-06) (will be removed in a future version)")]
-        public async Task EditTextMessageAsync(string channelId, string text, string messageId, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            
-            await _connection.RequestResourceAsync("POST", $"api/http/chats/messages/edit-text-message{queryParameters.ToQueryString()}", 
-                new ChatsMessagesEditTextMessagePostRequest
-                { 
-                    ChannelId = channelId,
-                    Text = text,
-                    MessageId = messageId,
-                }, cancellationToken);
-        }
-        
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Post messages</term>
-        /// </item>
-        /// <item>
-        /// <term>Post messages in threads</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        [Obsolete("Use POST chats/messages/send-message (since 2020-01-17) (will be removed in a future version)")]
-        public async Task<ChannelItemRecord> SendTextMessageAsync(string channel, string text, bool pending = false, string? temporaryId = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ChannelItemRecord>()) : Partial<ChannelItemRecord>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<ChatsMessagesSendPostRequest, ChannelItemRecord>("POST", $"api/http/chats/messages/send{queryParameters.ToQueryString()}", 
-                new ChatsMessagesSendPostRequest
-                { 
-                    Channel = channel,
-                    Text = text,
-                    IsPending = pending,
-                    TemporaryId = temporaryId,
                 }, cancellationToken);
         }
         

@@ -27,15 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelContactQuickInfoDefaultPartialBuilder;
+namespace JetBrains.Space.Client.ExternalLinkPatternPartialBuilder;
 
-public static class M2ChannelContactQuickInfoDefaultPartialExtensions
+public static class ExternalLinkPatternPartialExtensions
 {
-    public static Partial<M2ChannelContactQuickInfoDefault> WithName(this Partial<M2ChannelContactQuickInfoDefault> it)
-        => it.AddFieldName("name");
+    public static Partial<ExternalLinkPattern> WithId(this Partial<ExternalLinkPattern> it)
+        => it.AddFieldName("id");
     
-    public static Partial<M2ChannelContactQuickInfoDefault> WithKey(this Partial<M2ChannelContactQuickInfoDefault> it)
-        => it.AddFieldName("key");
+    public static Partial<ExternalLinkPattern> WithIsArchived(this Partial<ExternalLinkPattern> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<ExternalLinkPattern> WithPrefix(this Partial<ExternalLinkPattern> it)
+        => it.AddFieldName("prefix");
+    
+    public static Partial<ExternalLinkPattern> WithLinkReplacement(this Partial<ExternalLinkPattern> it)
+        => it.AddFieldName("linkReplacement");
     
 }
 

@@ -34,13 +34,14 @@ public class ProjectsPlanningBoardsSprintsPostRequest
 {
     public ProjectsPlanningBoardsSprintsPostRequest() { }
     
-    public ProjectsPlanningBoardsSprintsPostRequest(BoardIdentifier board, string name, DateTime from, DateTime to, string? description = null)
+    public ProjectsPlanningBoardsSprintsPostRequest(BoardIdentifier board, string name, DateTime from, DateTime to, SprintLaunch launch, string? description = null)
     {
         Board = board;
         Name = name;
         Description = description;
         From = from;
         To = to;
+        Launch = launch;
     }
     
     private PropertyValue<BoardIdentifier> _board = new PropertyValue<BoardIdentifier>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(Board), "board");
@@ -94,6 +95,15 @@ public class ProjectsPlanningBoardsSprintsPostRequest
         set => _to.SetValue(value);
     }
 
+    private PropertyValue<SprintLaunch> _launch = new PropertyValue<SprintLaunch>(nameof(ProjectsPlanningBoardsSprintsPostRequest), nameof(Launch), "launch");
+    
+    [JsonPropertyName("launch")]
+    public SprintLaunch Launch
+    {
+        get => _launch.GetValue(InlineErrors);
+        set => _launch.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _board.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -101,6 +111,7 @@ public class ProjectsPlanningBoardsSprintsPostRequest
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _from.SetAccessPath(parentChainPath, validateHasBeenSet);
         _to.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _launch.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

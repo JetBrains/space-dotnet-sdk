@@ -29,44 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class M2ChannelContentMention
-     : M2ChannelContactInfo, M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class ApplicationUnfurlPatternRequest
+     : IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public  string? ClassName => "M2ChannelContentMention";
+    public ApplicationUnfurlPatternRequest() { }
     
-    public M2ChannelContentMention() { }
-    
-    public M2ChannelContentMention(ChannelItemRecord record, M2ChannelRecord parent)
+    public ApplicationUnfurlPatternRequest(string prefix, string linkReplacement)
     {
-        Record = record;
-        Parent = parent;
+        Prefix = prefix;
+        LinkReplacement = linkReplacement;
     }
     
-    private PropertyValue<ChannelItemRecord> _record = new PropertyValue<ChannelItemRecord>(nameof(M2ChannelContentMention), nameof(Record), "record");
+    private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(ApplicationUnfurlPatternRequest), nameof(Prefix), "prefix");
     
     [Required]
-    [JsonPropertyName("record")]
-    public ChannelItemRecord Record
+    [JsonPropertyName("prefix")]
+    public string Prefix
     {
-        get => _record.GetValue(InlineErrors);
-        set => _record.SetValue(value);
+        get => _prefix.GetValue(InlineErrors);
+        set => _prefix.SetValue(value);
     }
 
-    private PropertyValue<M2ChannelRecord> _parent = new PropertyValue<M2ChannelRecord>(nameof(M2ChannelContentMention), nameof(Parent), "parent");
+    private PropertyValue<string> _linkReplacement = new PropertyValue<string>(nameof(ApplicationUnfurlPatternRequest), nameof(LinkReplacement), "linkReplacement");
     
     [Required]
-    [JsonPropertyName("parent")]
-    public M2ChannelRecord Parent
+    [JsonPropertyName("linkReplacement")]
+    public string LinkReplacement
     {
-        get => _parent.GetValue(InlineErrors);
-        set => _parent.SetValue(value);
+        get => _linkReplacement.GetValue(InlineErrors);
+        set => _linkReplacement.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _record.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _parent.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _prefix.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _linkReplacement.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

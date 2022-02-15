@@ -34,13 +34,14 @@ public sealed class CodeDiscussionSuggestedEdit
 {
     public CodeDiscussionSuggestedEdit() { }
     
-    public CodeDiscussionSuggestedEdit(string suggestionCommitId, string filePath, bool hasConflicts, int startLineIndex, int endLineIndexInclusive, CodeDiscussionSuggestedEditState? status = null, CPrincipal? resolvedBy = null)
+    public CodeDiscussionSuggestedEdit(string suggestionCommitId, string filePath, bool hasConflicts, int startLineIndex, int endLineIndexInclusive, CodeDiscussionSuggestedEditState? status = null, CPrincipal? resolvedBy = null, bool? identicalContents = null)
     {
         SuggestionCommitId = suggestionCommitId;
         Status = status;
         ResolvedBy = resolvedBy;
         FilePath = filePath;
         IsHasConflicts = hasConflicts;
+        IsIdenticalContents = identicalContents;
         StartLineIndex = startLineIndex;
         EndLineIndexInclusive = endLineIndexInclusive;
     }
@@ -93,6 +94,15 @@ public sealed class CodeDiscussionSuggestedEdit
         set => _hasConflicts.SetValue(value);
     }
 
+    private PropertyValue<bool?> _identicalContents = new PropertyValue<bool?>(nameof(CodeDiscussionSuggestedEdit), nameof(IsIdenticalContents), "identicalContents");
+    
+    [JsonPropertyName("identicalContents")]
+    public bool? IsIdenticalContents
+    {
+        get => _identicalContents.GetValue(InlineErrors);
+        set => _identicalContents.SetValue(value);
+    }
+
     private PropertyValue<int> _startLineIndex = new PropertyValue<int>(nameof(CodeDiscussionSuggestedEdit), nameof(StartLineIndex), "startLineIndex");
     
     [Required]
@@ -120,6 +130,7 @@ public sealed class CodeDiscussionSuggestedEdit
         _resolvedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _filePath.SetAccessPath(parentChainPath, validateHasBeenSet);
         _hasConflicts.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _identicalContents.SetAccessPath(parentChainPath, validateHasBeenSet);
         _startLineIndex.SetAccessPath(parentChainPath, validateHasBeenSet);
         _endLineIndexInclusive.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

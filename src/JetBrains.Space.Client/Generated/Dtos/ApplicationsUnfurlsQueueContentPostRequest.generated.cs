@@ -29,14 +29,34 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public interface ChannelContactThread
-     : M2ChannelContactInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+public class ApplicationsUnfurlsQueueContentPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public static M2ChannelContactThread M2(M2ChannelRecord parent, string? text = null, string? messageId = null, CPrincipal? messageAuthor = null, string? attachments = null)
-        => new M2ChannelContactThread(parent: parent, text: text, messageId: messageId, messageAuthor: messageAuthor, attachments: attachments);
+    public ApplicationsUnfurlsQueueContentPostRequest() { }
     
-    public static M2ChannelContentCodeDiscussionInReview M2ChannelContentCodeDiscussionInReview(ChannelSpecificDefaults notificationDefaults, CodeDiscussionRecord codeDiscussion, M2ChannelRecord parent, string messageId)
-        => new M2ChannelContentCodeDiscussionInReview(notificationDefaults: notificationDefaults, codeDiscussion: codeDiscussion, parent: parent, messageId: messageId);
+    public ApplicationsUnfurlsQueueContentPostRequest(List<ApplicationUnfurl> unfurls)
+    {
+        Unfurls = unfurls;
+    }
     
+    private PropertyValue<List<ApplicationUnfurl>> _unfurls = new PropertyValue<List<ApplicationUnfurl>>(nameof(ApplicationsUnfurlsQueueContentPostRequest), nameof(Unfurls), "unfurls", new List<ApplicationUnfurl>());
+    
+    [Required]
+    [JsonPropertyName("unfurls")]
+    public List<ApplicationUnfurl> Unfurls
+    {
+        get => _unfurls.GetValue(InlineErrors);
+        set => _unfurls.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _unfurls.SetAccessPath(parentChainPath, validateHasBeenSet);
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

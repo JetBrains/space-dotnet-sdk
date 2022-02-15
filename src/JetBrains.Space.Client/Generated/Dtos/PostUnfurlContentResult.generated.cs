@@ -30,14 +30,25 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-public abstract class ChatMessageMenuItemVisibilityFilter
-     : MenuItemVisibilityFilter, IClassNameConvertible, IPropagatePropertyAccessPath
+public class PostUnfurlContentResult
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public virtual string? ClassName => "ChatMessageMenuItemVisibilityFilter";
+    public virtual string? ClassName => "PostUnfurlContentResult";
     
-    public static ChatMessageMenuItemVisibilityFilterMessageEditableByMe MessageEditableByMe()
-        => new ChatMessageMenuItemVisibilityFilterMessageEditableByMe();
+    public static PostUnfurlContentResultEntityNotFound EntityNotFound(string queueItemId)
+        => new PostUnfurlContentResultEntityNotFound(queueItemId: queueItemId);
+    
+    public static PostUnfurlContentResultNotApproved NotApproved(string queueItemId)
+        => new PostUnfurlContentResultNotApproved(queueItemId: queueItemId);
+    
+    public static PostUnfurlContentResultQueueItemNotFound QueueItemNotFound(string queueItemId)
+        => new PostUnfurlContentResultQueueItemNotFound(queueItemId: queueItemId);
+    
+    public static PostUnfurlContentResultSuccess Success(string queueItemId)
+        => new PostUnfurlContentResultSuccess(queueItemId: queueItemId);
+    
+    public PostUnfurlContentResult() { }
     
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {

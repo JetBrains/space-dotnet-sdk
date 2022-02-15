@@ -27,15 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChatsChannelsForChannelMessagesPostRequestPartialBuilder;
+namespace JetBrains.Space.Client.ApplicationsForApplicationUnfurlPatternsAuthorizePostRequestPartialBuilder;
 
-public static class ChatsChannelsForChannelMessagesPostRequestPartialExtensions
+public static class ApplicationsForApplicationUnfurlPatternsAuthorizePostRequestPartialExtensions
 {
-    public static Partial<ChatsChannelsForChannelMessagesPostRequest> WithText(this Partial<ChatsChannelsForChannelMessagesPostRequest> it)
-        => it.AddFieldName("text");
+    public static Partial<ApplicationsForApplicationUnfurlPatternsAuthorizePostRequest> WithPatterns(this Partial<ApplicationsForApplicationUnfurlPatternsAuthorizePostRequest> it)
+        => it.AddFieldName("patterns");
     
-    public static Partial<ChatsChannelsForChannelMessagesPostRequest> WithTemporaryId(this Partial<ChatsChannelsForChannelMessagesPostRequest> it)
-        => it.AddFieldName("temporaryId");
+    public static Partial<ApplicationsForApplicationUnfurlPatternsAuthorizePostRequest> WithIsApprove(this Partial<ApplicationsForApplicationUnfurlPatternsAuthorizePostRequest> it)
+        => it.AddFieldName("approve");
     
 }
 

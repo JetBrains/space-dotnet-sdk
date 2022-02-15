@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.SprintLaunchImmediatePartialBuilder;
 
-public interface ChannelContactThread
-     : M2ChannelContactInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+public static class SprintLaunchImmediatePartialExtensions
 {
-    public static M2ChannelContactThread M2(M2ChannelRecord parent, string? text = null, string? messageId = null, CPrincipal? messageAuthor = null, string? attachments = null)
-        => new M2ChannelContactThread(parent: parent, text: text, messageId: messageId, messageAuthor: messageAuthor, attachments: attachments);
+    public static Partial<SprintLaunchImmediate> WithIsMoveUnresolvedIssues(this Partial<SprintLaunchImmediate> it)
+        => it.AddFieldName("moveUnresolvedIssues");
     
-    public static M2ChannelContentCodeDiscussionInReview M2ChannelContentCodeDiscussionInReview(ChannelSpecificDefaults notificationDefaults, CodeDiscussionRecord codeDiscussion, M2ChannelRecord parent, string messageId)
-        => new M2ChannelContentCodeDiscussionInReview(notificationDefaults: notificationDefaults, codeDiscussion: codeDiscussion, parent: parent, messageId: messageId);
+    public static Partial<SprintLaunchImmediate> WithIsNotifySubscribers(this Partial<SprintLaunchImmediate> it)
+        => it.AddFieldName("notifySubscribers");
     
 }
 

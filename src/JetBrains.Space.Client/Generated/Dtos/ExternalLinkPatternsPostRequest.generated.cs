@@ -29,18 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-[JsonConverter(typeof(ClassNameDtoTypeConverter))]
-public abstract class ChatMessageMenuItemVisibilityFilter
-     : MenuItemVisibilityFilter, IClassNameConvertible, IPropagatePropertyAccessPath
+public class ExternalLinkPatternsPostRequest
+     : IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public virtual string? ClassName => "ChatMessageMenuItemVisibilityFilter";
+    public ExternalLinkPatternsPostRequest() { }
     
-    public static ChatMessageMenuItemVisibilityFilterMessageEditableByMe MessageEditableByMe()
-        => new ChatMessageMenuItemVisibilityFilterMessageEditableByMe();
+    public ExternalLinkPatternsPostRequest(string pattern, string linkReplacement)
+    {
+        Pattern = pattern;
+        LinkReplacement = linkReplacement;
+    }
     
+    private PropertyValue<string> _pattern = new PropertyValue<string>(nameof(ExternalLinkPatternsPostRequest), nameof(Pattern), "pattern");
+    
+    [Required]
+    [JsonPropertyName("pattern")]
+    public string Pattern
+    {
+        get => _pattern.GetValue(InlineErrors);
+        set => _pattern.SetValue(value);
+    }
+
+    private PropertyValue<string> _linkReplacement = new PropertyValue<string>(nameof(ExternalLinkPatternsPostRequest), nameof(LinkReplacement), "linkReplacement");
+    
+    [Required]
+    [JsonPropertyName("linkReplacement")]
+    public string LinkReplacement
+    {
+        get => _linkReplacement.GetValue(InlineErrors);
+        set => _linkReplacement.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
+        _pattern.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _linkReplacement.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

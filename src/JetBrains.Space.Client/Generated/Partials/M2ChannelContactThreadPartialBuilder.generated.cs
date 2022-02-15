@@ -43,12 +43,6 @@ public static class M2ChannelContactThreadPartialExtensions
     public static Partial<M2ChannelContactThread> WithMessageId(this Partial<M2ChannelContactThread> it)
         => it.AddFieldName("messageId");
     
-    public static Partial<M2ChannelContactThread> WithAuthor(this Partial<M2ChannelContactThread> it)
-        => it.AddFieldName("author");
-    
-    public static Partial<M2ChannelContactThread> WithAuthor(this Partial<M2ChannelContactThread> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-        => it.AddFieldName("author", partialBuilder(new Partial<TDMemberProfile>(it)));
-    
     public static Partial<M2ChannelContactThread> WithMessageAuthor(this Partial<M2ChannelContactThread> it)
         => it.AddFieldName("messageAuthor");
     

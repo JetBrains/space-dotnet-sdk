@@ -29,40 +29,29 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class ChatsChannelsForChannelMessagesPostRequest
+public class ApplicationsUnfurlsPatternsPatchRequest
      : IPropagatePropertyAccessPath
 {
-    public ChatsChannelsForChannelMessagesPostRequest() { }
+    public ApplicationsUnfurlsPatternsPatchRequest() { }
     
-    public ChatsChannelsForChannelMessagesPostRequest(string text, string? temporaryId = null)
+    public ApplicationsUnfurlsPatternsPatchRequest(List<ApplicationUnfurlPatternRequest> patterns)
     {
-        Text = text;
-        TemporaryId = temporaryId;
+        Patterns = patterns;
     }
     
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChatsChannelsForChannelMessagesPostRequest), nameof(Text), "text");
+    private PropertyValue<List<ApplicationUnfurlPatternRequest>> _patterns = new PropertyValue<List<ApplicationUnfurlPatternRequest>>(nameof(ApplicationsUnfurlsPatternsPatchRequest), nameof(Patterns), "patterns", new List<ApplicationUnfurlPatternRequest>());
     
     [Required]
-    [JsonPropertyName("text")]
-    public string Text
+    [JsonPropertyName("patterns")]
+    public List<ApplicationUnfurlPatternRequest> Patterns
     {
-        get => _text.GetValue(InlineErrors);
-        set => _text.SetValue(value);
-    }
-
-    private PropertyValue<string?> _temporaryId = new PropertyValue<string?>(nameof(ChatsChannelsForChannelMessagesPostRequest), nameof(TemporaryId), "temporaryId");
-    
-    [JsonPropertyName("temporaryId")]
-    public string? TemporaryId
-    {
-        get => _temporaryId.GetValue(InlineErrors);
-        set => _temporaryId.SetValue(value);
+        get => _patterns.GetValue(InlineErrors);
+        set => _patterns.SetValue(value);
     }
 
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _temporaryId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _patterns.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

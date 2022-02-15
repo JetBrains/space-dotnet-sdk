@@ -37,12 +37,11 @@ public sealed class M2ChannelContactThread
     
     public M2ChannelContactThread() { }
     
-    public M2ChannelContactThread(M2ChannelRecord parent, string? text = null, string? messageId = null, TDMemberProfile? author = null, CPrincipal? messageAuthor = null, string? attachments = null)
+    public M2ChannelContactThread(M2ChannelRecord parent, string? text = null, string? messageId = null, CPrincipal? messageAuthor = null, string? attachments = null)
     {
         Parent = parent;
         Text = text;
         MessageId = messageId;
-        Author = author;
         MessageAuthor = messageAuthor;
         Attachments = attachments;
     }
@@ -75,15 +74,6 @@ public sealed class M2ChannelContactThread
         set => _messageId.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile?> _author = new PropertyValue<TDMemberProfile?>(nameof(M2ChannelContactThread), nameof(Author), "author");
-    
-    [JsonPropertyName("author")]
-    public TDMemberProfile? Author
-    {
-        get => _author.GetValue(InlineErrors);
-        set => _author.SetValue(value);
-    }
-
     private PropertyValue<CPrincipal?> _messageAuthor = new PropertyValue<CPrincipal?>(nameof(M2ChannelContactThread), nameof(MessageAuthor), "messageAuthor");
     
     [JsonPropertyName("messageAuthor")]
@@ -107,7 +97,6 @@ public sealed class M2ChannelContactThread
         _parent.SetAccessPath(parentChainPath, validateHasBeenSet);
         _text.SetAccessPath(parentChainPath, validateHasBeenSet);
         _messageId.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _author.SetAccessPath(parentChainPath, validateHasBeenSet);
         _messageAuthor.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

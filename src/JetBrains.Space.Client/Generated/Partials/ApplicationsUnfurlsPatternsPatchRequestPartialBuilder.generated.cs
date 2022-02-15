@@ -27,18 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ChatsMessagesEditTextMessagePostRequestPartialBuilder;
+namespace JetBrains.Space.Client.ApplicationsUnfurlsPatternsPatchRequestPartialBuilder;
 
-public static class ChatsMessagesEditTextMessagePostRequestPartialExtensions
+public static class ApplicationsUnfurlsPatternsPatchRequestPartialExtensions
 {
-    public static Partial<ChatsMessagesEditTextMessagePostRequest> WithChannelId(this Partial<ChatsMessagesEditTextMessagePostRequest> it)
-        => it.AddFieldName("channelId");
+    public static Partial<ApplicationsUnfurlsPatternsPatchRequest> WithPatterns(this Partial<ApplicationsUnfurlsPatternsPatchRequest> it)
+        => it.AddFieldName("patterns");
     
-    public static Partial<ChatsMessagesEditTextMessagePostRequest> WithText(this Partial<ChatsMessagesEditTextMessagePostRequest> it)
-        => it.AddFieldName("text");
-    
-    public static Partial<ChatsMessagesEditTextMessagePostRequest> WithMessageId(this Partial<ChatsMessagesEditTextMessagePostRequest> it)
-        => it.AddFieldName("messageId");
+    public static Partial<ApplicationsUnfurlsPatternsPatchRequest> WithPatterns(this Partial<ApplicationsUnfurlsPatternsPatchRequest> it, Func<Partial<ApplicationUnfurlPatternRequest>, Partial<ApplicationUnfurlPatternRequest>> partialBuilder)
+        => it.AddFieldName("patterns", partialBuilder(new Partial<ApplicationUnfurlPatternRequest>(it)));
     
 }
 

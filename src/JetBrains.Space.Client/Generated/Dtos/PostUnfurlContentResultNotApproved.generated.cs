@@ -29,44 +29,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class M2ChannelContactQuickInfoDefault
-     : M2ChannelContactInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class PostUnfurlContentResultNotApproved
+     : PostUnfurlContentResult, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public  string? ClassName => "M2ChannelContactQuickInfoDefault";
+    public override string? ClassName => "PostUnfurlContentResult.NotApproved";
     
-    public M2ChannelContactQuickInfoDefault() { }
+    public PostUnfurlContentResultNotApproved() { }
     
-    public M2ChannelContactQuickInfoDefault(string name, string key)
+    public PostUnfurlContentResultNotApproved(string queueItemId)
     {
-        Name = name;
-        Key = key;
+        QueueItemId = queueItemId;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(M2ChannelContactQuickInfoDefault), nameof(Name), "name");
+    private PropertyValue<string> _queueItemId = new PropertyValue<string>(nameof(PostUnfurlContentResultNotApproved), nameof(QueueItemId), "queueItemId");
     
     [Required]
-    [JsonPropertyName("name")]
-    public string Name
+    [JsonPropertyName("queueItemId")]
+    public string QueueItemId
     {
-        get => _name.GetValue(InlineErrors);
-        set => _name.SetValue(value);
+        get => _queueItemId.GetValue(InlineErrors);
+        set => _queueItemId.SetValue(value);
     }
 
-    private PropertyValue<string> _key = new PropertyValue<string>(nameof(M2ChannelContactQuickInfoDefault), nameof(Key), "key");
-    
-    [Required]
-    [JsonPropertyName("key")]
-    public string Key
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        get => _key.GetValue(InlineErrors);
-        set => _key.SetValue(value);
-    }
-
-    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _key.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _queueItemId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

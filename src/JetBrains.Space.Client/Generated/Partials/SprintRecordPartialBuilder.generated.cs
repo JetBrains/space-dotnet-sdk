@@ -61,5 +61,11 @@ public static class SprintRecordPartialExtensions
     public static Partial<SprintRecord> WithDescription(this Partial<SprintRecord> it)
         => it.AddFieldName("description");
     
+    public static Partial<SprintRecord> WithLaunch(this Partial<SprintRecord> it)
+        => it.AddFieldName("launch");
+    
+    public static Partial<SprintRecord> WithLaunch(this Partial<SprintRecord> it, Func<Partial<SprintLaunch>, Partial<SprintLaunch>> partialBuilder)
+        => it.AddFieldName("launch", partialBuilder(new Partial<SprintLaunch>(it)));
+    
 }
 

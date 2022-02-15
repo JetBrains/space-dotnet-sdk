@@ -30,14 +30,22 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-public abstract class ChatMessageMenuItemVisibilityFilter
-     : MenuItemVisibilityFilter, IClassNameConvertible, IPropagatePropertyAccessPath
+public class SprintLaunch
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public virtual string? ClassName => "ChatMessageMenuItemVisibilityFilter";
+    public virtual string? ClassName => "SprintLaunch";
     
-    public static ChatMessageMenuItemVisibilityFilterMessageEditableByMe MessageEditableByMe()
-        => new ChatMessageMenuItemVisibilityFilterMessageEditableByMe();
+    public static SprintLaunchImmediate Immediate(bool moveUnresolvedIssues, bool notifySubscribers)
+        => new SprintLaunchImmediate(moveUnresolvedIssues: moveUnresolvedIssues, notifySubscribers: notifySubscribers);
+    
+    public static SprintLaunchManual Manual()
+        => new SprintLaunchManual();
+    
+    public static SprintLaunchScheduled Scheduled(DateTime time, bool moveUnresolvedIssues, bool notifySubscribers)
+        => new SprintLaunchScheduled(time: time, moveUnresolvedIssues: moveUnresolvedIssues, notifySubscribers: notifySubscribers);
+    
+    public SprintLaunch() { }
     
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {

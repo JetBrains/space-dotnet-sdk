@@ -56,23 +56,11 @@ public interface M2ChannelContentInfo
     public static M2ChannelContentCodeReviewFeed M2ChannelContentCodeReviewFeed(string codeReviewId, ChannelSpecificDefaults notificationDefaults, CodeReviewRecord? codeReview = null, CodeReviewParticipants? participants = null, CodeReviewPendingMessageCounter? pendingMessageCounter = null, PRProject? project = null)
         => new M2ChannelContentCodeReviewFeed(codeReviewId: codeReviewId, notificationDefaults: notificationDefaults, codeReview: codeReview, participants: participants, pendingMessageCounter: pendingMessageCounter, project: project);
     
-    public static M2ChannelContentLocation M2ChannelContentLocation(TDLocation location, ChannelSpecificDefaults notificationDefaults)
-        => new M2ChannelContentLocation(location: location, notificationDefaults: notificationDefaults);
-    
     public static M2ChannelContentMember M2ChannelContentMember(TDMemberProfile member, ChannelSpecificDefaults notificationDefaults, ProfileMembershipRecord? memberTeams = null)
         => new M2ChannelContentMember(member: member, notificationDefaults: notificationDefaults, memberTeams: memberTeams);
     
-    public static M2ChannelContentMembership M2ChannelContentMembership()
-        => new M2ChannelContentMembership();
-    
-    public static M2ChannelContentMention M2ChannelContentMention(ChannelItemRecord record, M2ChannelRecord parent)
-        => new M2ChannelContentMention(record: record, parent: parent);
-    
     public static M2ChannelContentNamedPrivateChannel M2ChannelContentNamedPrivateChannel(string name, bool canHaveThreads, ChannelSpecificDefaults? notificationDefaults = null, PrivateFeedColor? color = null, string? icon = null)
         => new M2ChannelContentNamedPrivateChannel(name: name, canHaveThreads: canHaveThreads, notificationDefaults: notificationDefaults, color: color, icon: icon);
-    
-    public static M2ChannelContentTeam M2ChannelContentTeam(TDTeam team, ChannelSpecificDefaults notificationDefaults)
-        => new M2ChannelContentTeam(team: team, notificationDefaults: notificationDefaults);
     
     public static M2ChannelContentThread M2ChannelContentThread(ChannelItemRecord record, M2ChannelRecord parent)
         => new M2ChannelContentThread(record: record, parent: parent);

@@ -49,5 +49,11 @@ public static class ProjectsPlanningBoardsSprintsPostRequestPartialExtensions
     public static Partial<ProjectsPlanningBoardsSprintsPostRequest> WithTo(this Partial<ProjectsPlanningBoardsSprintsPostRequest> it)
         => it.AddFieldName("to");
     
+    public static Partial<ProjectsPlanningBoardsSprintsPostRequest> WithLaunch(this Partial<ProjectsPlanningBoardsSprintsPostRequest> it)
+        => it.AddFieldName("launch");
+    
+    public static Partial<ProjectsPlanningBoardsSprintsPostRequest> WithLaunch(this Partial<ProjectsPlanningBoardsSprintsPostRequest> it, Func<Partial<SprintLaunch>, Partial<SprintLaunch>> partialBuilder)
+        => it.AddFieldName("launch", partialBuilder(new Partial<SprintLaunch>(it)));
+    
 }
 

@@ -27,21 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelContentMentionPartialBuilder;
+namespace JetBrains.Space.Client.SprintLaunchScheduledPartialBuilder;
 
-public static class M2ChannelContentMentionPartialExtensions
+public static class SprintLaunchScheduledPartialExtensions
 {
-    public static Partial<M2ChannelContentMention> WithRecord(this Partial<M2ChannelContentMention> it)
-        => it.AddFieldName("record");
+    public static Partial<SprintLaunchScheduled> WithTime(this Partial<SprintLaunchScheduled> it)
+        => it.AddFieldName("time");
     
-    public static Partial<M2ChannelContentMention> WithRecord(this Partial<M2ChannelContentMention> it, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>> partialBuilder)
-        => it.AddFieldName("record", partialBuilder(new Partial<ChannelItemRecord>(it)));
+    public static Partial<SprintLaunchScheduled> WithIsMoveUnresolvedIssues(this Partial<SprintLaunchScheduled> it)
+        => it.AddFieldName("moveUnresolvedIssues");
     
-    public static Partial<M2ChannelContentMention> WithParent(this Partial<M2ChannelContentMention> it)
-        => it.AddFieldName("parent");
-    
-    public static Partial<M2ChannelContentMention> WithParent(this Partial<M2ChannelContentMention> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
-        => it.AddFieldName("parent", partialBuilder(new Partial<M2ChannelRecord>(it)));
+    public static Partial<SprintLaunchScheduled> WithIsNotifySubscribers(this Partial<SprintLaunchScheduled> it)
+        => it.AddFieldName("notifySubscribers");
     
 }
 

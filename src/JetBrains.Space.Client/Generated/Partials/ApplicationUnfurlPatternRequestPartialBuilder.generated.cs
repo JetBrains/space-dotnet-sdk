@@ -27,23 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.ApplicationUnfurlPatternRequestPartialBuilder;
 
-public sealed class M2ChannelContentMembership
-     : M2ChannelContentInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+public static class ApplicationUnfurlPatternRequestPartialExtensions
 {
-    [JsonPropertyName("className")]
-    public  string? ClassName => "M2ChannelContentMembership";
+    public static Partial<ApplicationUnfurlPatternRequest> WithPrefix(this Partial<ApplicationUnfurlPatternRequest> it)
+        => it.AddFieldName("prefix");
     
-    public M2ChannelContentMembership() { }
+    public static Partial<ApplicationUnfurlPatternRequest> WithLinkReplacement(this Partial<ApplicationUnfurlPatternRequest> it)
+        => it.AddFieldName("linkReplacement");
     
-    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-    }
-    
-    /// <inheritdoc />
-    [JsonPropertyName("$errors")]
-    public List<ApiInlineError> InlineErrors { get; set; } = new();
-
 }
 

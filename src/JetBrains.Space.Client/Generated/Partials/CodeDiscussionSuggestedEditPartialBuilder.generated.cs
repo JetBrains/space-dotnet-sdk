@@ -52,6 +52,9 @@ public static class CodeDiscussionSuggestedEditPartialExtensions
     public static Partial<CodeDiscussionSuggestedEdit> WithIsHasConflicts(this Partial<CodeDiscussionSuggestedEdit> it)
         => it.AddFieldName("hasConflicts");
     
+    public static Partial<CodeDiscussionSuggestedEdit> WithIsIdenticalContents(this Partial<CodeDiscussionSuggestedEdit> it)
+        => it.AddFieldName("identicalContents");
+    
     public static Partial<CodeDiscussionSuggestedEdit> WithStartLineIndex(this Partial<CodeDiscussionSuggestedEdit> it)
         => it.AddFieldName("startLineIndex");
     

@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.ApplicationsUnfurlsQueueResetExternalAuthRequestsPostRequestPartialBuilder;
 
-public interface ChannelContactThread
-     : M2ChannelContactInfo, IClassNameConvertible, IPropagatePropertyAccessPath
+public static class ApplicationsUnfurlsQueueResetExternalAuthRequestsPostRequestPartialExtensions
 {
-    public static M2ChannelContactThread M2(M2ChannelRecord parent, string? text = null, string? messageId = null, CPrincipal? messageAuthor = null, string? attachments = null)
-        => new M2ChannelContactThread(parent: parent, text: text, messageId: messageId, messageAuthor: messageAuthor, attachments: attachments);
+    public static Partial<ApplicationsUnfurlsQueueResetExternalAuthRequestsPostRequest> WithUserId(this Partial<ApplicationsUnfurlsQueueResetExternalAuthRequestsPostRequest> it)
+        => it.AddFieldName("userId");
     
-    public static M2ChannelContentCodeDiscussionInReview M2ChannelContentCodeDiscussionInReview(ChannelSpecificDefaults notificationDefaults, CodeDiscussionRecord codeDiscussion, M2ChannelRecord parent, string messageId)
-        => new M2ChannelContentCodeDiscussionInReview(notificationDefaults: notificationDefaults, codeDiscussion: codeDiscussion, parent: parent, messageId: messageId);
+    public static Partial<ApplicationsUnfurlsQueueResetExternalAuthRequestsPostRequest> WithUserId(this Partial<ApplicationsUnfurlsQueueResetExternalAuthRequestsPostRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+        => it.AddFieldName("userId", partialBuilder(new Partial<ProfileIdentifier>(it)));
     
 }
 

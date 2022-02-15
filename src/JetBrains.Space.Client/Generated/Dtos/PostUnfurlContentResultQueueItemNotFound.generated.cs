@@ -29,18 +29,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-[JsonConverter(typeof(ClassNameDtoTypeConverter))]
-public abstract class ChatMessageMenuItemVisibilityFilter
-     : MenuItemVisibilityFilter, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class PostUnfurlContentResultQueueItemNotFound
+     : PostUnfurlContentResult, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public virtual string? ClassName => "ChatMessageMenuItemVisibilityFilter";
+    public override string? ClassName => "PostUnfurlContentResult.QueueItemNotFound";
     
-    public static ChatMessageMenuItemVisibilityFilterMessageEditableByMe MessageEditableByMe()
-        => new ChatMessageMenuItemVisibilityFilterMessageEditableByMe();
+    public PostUnfurlContentResultQueueItemNotFound() { }
     
-    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public PostUnfurlContentResultQueueItemNotFound(string queueItemId)
     {
+        QueueItemId = queueItemId;
+    }
+    
+    private PropertyValue<string> _queueItemId = new PropertyValue<string>(nameof(PostUnfurlContentResultQueueItemNotFound), nameof(QueueItemId), "queueItemId");
+    
+    [Required]
+    [JsonPropertyName("queueItemId")]
+    public string QueueItemId
+    {
+        get => _queueItemId.GetValue(InlineErrors);
+        set => _queueItemId.SetValue(value);
+    }
+
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _queueItemId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

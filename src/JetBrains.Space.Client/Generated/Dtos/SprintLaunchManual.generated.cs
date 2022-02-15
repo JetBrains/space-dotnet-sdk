@@ -27,21 +27,23 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.M2ChannelContentTeamPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class M2ChannelContentTeamPartialExtensions
+public sealed class SprintLaunchManual
+     : SprintLaunch, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static Partial<M2ChannelContentTeam> WithTeam(this Partial<M2ChannelContentTeam> it)
-        => it.AddFieldName("team");
+    [JsonPropertyName("className")]
+    public override string? ClassName => "SprintLaunch.Manual";
     
-    public static Partial<M2ChannelContentTeam> WithTeam(this Partial<M2ChannelContentTeam> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
-        => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
+    public SprintLaunchManual() { }
     
-    public static Partial<M2ChannelContentTeam> WithNotificationDefaults(this Partial<M2ChannelContentTeam> it)
-        => it.AddFieldName("notificationDefaults");
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+    }
     
-    public static Partial<M2ChannelContentTeam> WithNotificationDefaults(this Partial<M2ChannelContentTeam> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
-        => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
-    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 
