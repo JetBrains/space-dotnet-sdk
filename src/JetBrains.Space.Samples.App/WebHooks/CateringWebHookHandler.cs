@@ -30,12 +30,6 @@ public class CateringWebHookHandler : SpaceWebHookHandler
             new("help", "Get more info about this application.")
         });
     }
-        
-    public override async Task<ApplicationExecutionResult> HandleMenuActionAsync(MenuActionPayload payload)
-    {
-        await StartNewSession(payload.UserId);
-        return new ApplicationExecutionResult("Catering request created.");
-    }
 
     public override async Task HandleMessageAsync(MessagePayload payload)
     {
