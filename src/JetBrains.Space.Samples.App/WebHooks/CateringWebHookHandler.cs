@@ -86,15 +86,12 @@ public class CateringWebHookHandler : SpaceWebHookHandler
             cateringSession: cateringSession);
     }
 
-    public override async Task<ApplicationExecutionResult> HandleMessageActionAsync(MessageActionPayload payload)
+    public override async Task<AppUserActionExecutionResult?> HandleMessageActionAsync(MessageActionPayload payload)
     {
         Sessions.TryGetValue(payload.UserId, out var cateringSession);
 
         // Start session
-        if (payload.ActionId == ActionId.Skip)
-        {
-            return new ApplicationExecutionResult("Catering request has been skipped.");
-        }
+        if (payload.ActionId == ActionId.Skip) return null;
 
         if (cateringSession == null)
         {
@@ -247,7 +244,7 @@ public class CateringWebHookHandler : SpaceWebHookHandler
             Sessions.TryRemove(payload.UserId, out _);
         }
 
-        return new ApplicationExecutionResult("Catering choice was received.");
+        return null;
     }
 
     public override async Task<ApplicationExecutionResult> HandleWebhookRequestAsync(WebhookRequestPayload payload)
