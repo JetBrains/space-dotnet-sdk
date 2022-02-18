@@ -40,15 +40,15 @@ public abstract class ExtendedTypeScope : IUrlParameter
     
     public class ExtendedTypeScopeContainer : ExtendedTypeScope
     {
-        private readonly string _containerId;
+        public string ContainerId { get; }
         
         public ExtendedTypeScopeContainer(string containerId)
         {
-            _containerId = containerId;
+            ContainerId = containerId;
         }
         
         public override string ToString()
-            => $"containerId:{_containerId}";
+            => $"containerId:{ContainerId}";
     }
     
     public class ExtendedTypeScopeOrg : ExtendedTypeScope

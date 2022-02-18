@@ -55,15 +55,15 @@ public abstract class CFEntityTypeIdentifier : IUrlParameter
     
     public class CFIssueTrackerEntityType : CFEntityTypeIdentifier
     {
-        private readonly IssueTrackerIdentifier _issueTracker;
+        public IssueTrackerIdentifier IssueTracker { get; }
         
         public CFIssueTrackerEntityType(IssueTrackerIdentifier issueTracker)
         {
-            _issueTracker = issueTracker;
+            IssueTracker = issueTracker;
         }
         
         public override string ToString()
-            => $"issueTracker:{_issueTracker}";
+            => $"issueTracker:{IssueTracker}";
     }
     
     public class CFMembershipEntityType : CFEntityTypeIdentifier

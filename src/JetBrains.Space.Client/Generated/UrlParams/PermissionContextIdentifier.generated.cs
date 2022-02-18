@@ -43,15 +43,15 @@ public abstract class PermissionContextIdentifier : IUrlParameter
     
     public class ChannelPermissionContextIdentifier : PermissionContextIdentifier
     {
-        private readonly string _channel;
+        public string Channel { get; }
         
         public ChannelPermissionContextIdentifier(string channel)
         {
-            _channel = channel;
+            Channel = channel;
         }
         
         public override string ToString()
-            => $"channel:{_channel}";
+            => $"channel:{Channel}";
     }
     
     public class GlobalPermissionContextIdentifier : PermissionContextIdentifier
@@ -62,15 +62,15 @@ public abstract class PermissionContextIdentifier : IUrlParameter
     
     public class ProjectPermissionContextIdentifier : PermissionContextIdentifier
     {
-        private readonly ProjectIdentifier _project;
+        public ProjectIdentifier Project { get; }
         
         public ProjectPermissionContextIdentifier(ProjectIdentifier project)
         {
-            _project = project;
+            Project = project;
         }
         
         public override string ToString()
-            => $"project:{_project}";
+            => $"project:{Project}";
     }
     
 }

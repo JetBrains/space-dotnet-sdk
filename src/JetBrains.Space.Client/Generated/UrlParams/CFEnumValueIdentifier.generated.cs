@@ -40,28 +40,28 @@ public abstract class CFEnumValueIdentifier : IUrlParameter
     
     public class CFEnumValueIdentifierId : CFEnumValueIdentifier
     {
-        private readonly string _id;
+        public string Id { get; }
         
         public CFEnumValueIdentifierId(string id)
         {
-            _id = id;
+            Id = id;
         }
         
         public override string ToString()
-            => $"id:{_id}";
+            => $"id:{Id}";
     }
     
     public class CFEnumValueIdentifierName : CFEnumValueIdentifier
     {
-        private readonly string _name;
+        public string Name { get; }
         
         public CFEnumValueIdentifierName(string name)
         {
-            _name = name;
+            Name = name;
         }
         
         public override string ToString()
-            => $"name:{_name}";
+            => $"name:{Name}";
     }
     
 }

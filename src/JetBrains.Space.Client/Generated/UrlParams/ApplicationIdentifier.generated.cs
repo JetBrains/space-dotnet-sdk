@@ -43,28 +43,28 @@ public abstract class ApplicationIdentifier : IUrlParameter
     
     public class ApplicationIdentifierClientId : ApplicationIdentifier
     {
-        private readonly string _clientId;
+        public string ClientId { get; }
         
         public ApplicationIdentifierClientId(string clientId)
         {
-            _clientId = clientId;
+            ClientId = clientId;
         }
         
         public override string ToString()
-            => $"clientId:{_clientId}";
+            => $"clientId:{ClientId}";
     }
     
     public class ApplicationIdentifierId : ApplicationIdentifier
     {
-        private readonly string _id;
+        public string Id { get; }
         
         public ApplicationIdentifierId(string id)
         {
-            _id = id;
+            Id = id;
         }
         
         public override string ToString()
-            => $"id:{_id}";
+            => $"id:{Id}";
     }
     
     public class ApplicationIdentifierMe : ApplicationIdentifier

@@ -43,41 +43,41 @@ public abstract class ReviewIdentifier : IUrlParameter
     
     public class ReviewIdentifierId : ReviewIdentifier
     {
-        private readonly string _id;
+        public string Id { get; }
         
         public ReviewIdentifierId(string id)
         {
-            _id = id;
+            Id = id;
         }
         
         public override string ToString()
-            => $"id:{_id}";
+            => $"id:{Id}";
     }
     
     public class ReviewIdentifierKey : ReviewIdentifier
     {
-        private readonly string _key;
+        public string Key { get; }
         
         public ReviewIdentifierKey(string key)
         {
-            _key = key;
+            Key = key;
         }
         
         public override string ToString()
-            => $"key:{_key}";
+            => $"key:{Key}";
     }
     
     public class ReviewIdentifierNumber : ReviewIdentifier
     {
-        private readonly int _number;
+        public int Number { get; }
         
         public ReviewIdentifierNumber(int number)
         {
-            _number = number;
+            Number = number;
         }
         
         public override string ToString()
-            => $"number:{_number}";
+            => $"number:{Number}";
     }
     
 }

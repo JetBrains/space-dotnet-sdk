@@ -49,67 +49,67 @@ public abstract class CFEntityIdentifier : IUrlParameter
     
     public class CFAbsenceIdentifier : CFEntityIdentifier
     {
-        private readonly AbsenceIdentifier _absence;
+        public AbsenceIdentifier Absence { get; }
         
         public CFAbsenceIdentifier(AbsenceIdentifier absence)
         {
-            _absence = absence;
+            Absence = absence;
         }
         
         public override string ToString()
-            => $"absence:{_absence}";
+            => $"absence:{Absence}";
     }
     
     public class CFIssueIdentifier : CFEntityIdentifier
     {
-        private readonly IssueIdentifier _issue;
+        public IssueIdentifier Issue { get; }
         
         public CFIssueIdentifier(IssueIdentifier issue)
         {
-            _issue = issue;
+            Issue = issue;
         }
         
         public override string ToString()
-            => $"issue:{_issue}";
+            => $"issue:{Issue}";
     }
     
     public class CFMembershipIdentifier : CFEntityIdentifier
     {
-        private readonly TeamMembershipIdentifier _membership;
+        public TeamMembershipIdentifier Membership { get; }
         
         public CFMembershipIdentifier(TeamMembershipIdentifier membership)
         {
-            _membership = membership;
+            Membership = membership;
         }
         
         public override string ToString()
-            => $"membership:{_membership}";
+            => $"membership:{Membership}";
     }
     
     public class CFProfileIdentifier : CFEntityIdentifier
     {
-        private readonly ProfileIdentifier _profile;
+        public ProfileIdentifier Profile { get; }
         
         public CFProfileIdentifier(ProfileIdentifier profile)
         {
-            _profile = profile;
+            Profile = profile;
         }
         
         public override string ToString()
-            => $"profile:{_profile}";
+            => $"profile:{Profile}";
     }
     
     public class CFTeamIdentifier : CFEntityIdentifier
     {
-        private readonly TeamIdentifier _team;
+        public TeamIdentifier Team { get; }
         
         public CFTeamIdentifier(TeamIdentifier team)
         {
-            _team = team;
+            Team = team;
         }
         
         public override string ToString()
-            => $"team:{_team}";
+            => $"team:{Team}";
     }
     
 }

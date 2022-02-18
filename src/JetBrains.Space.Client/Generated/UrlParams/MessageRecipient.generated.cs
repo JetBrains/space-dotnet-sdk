@@ -46,54 +46,54 @@ public abstract class MessageRecipient : IUrlParameter
     
     public class MessageRecipientChannel : MessageRecipient
     {
-        private readonly ChatChannel _channel;
+        public ChatChannel Channel { get; }
         
         public MessageRecipientChannel(ChatChannel channel)
         {
-            _channel = channel;
+            Channel = channel;
         }
         
         public override string ToString()
-            => $"channel:{_channel}";
+            => $"channel:{Channel}";
     }
     
     public class MessageRecipientCodeReview : MessageRecipient
     {
-        private readonly string _codeReview;
+        public string CodeReview { get; }
         
         public MessageRecipientCodeReview(string codeReview)
         {
-            _codeReview = codeReview;
+            CodeReview = codeReview;
         }
         
         public override string ToString()
-            => $"codeReview:{_codeReview}";
+            => $"codeReview:{CodeReview}";
     }
     
     public class MessageRecipientIssue : MessageRecipient
     {
-        private readonly string _issue;
+        public string Issue { get; }
         
         public MessageRecipientIssue(string issue)
         {
-            _issue = issue;
+            Issue = issue;
         }
         
         public override string ToString()
-            => $"issue:{_issue}";
+            => $"issue:{Issue}";
     }
     
     public class MessageRecipientMember : MessageRecipient
     {
-        private readonly ProfileIdentifier _member;
+        public ProfileIdentifier Member { get; }
         
         public MessageRecipientMember(ProfileIdentifier member)
         {
-            _member = member;
+            Member = member;
         }
         
         public override string ToString()
-            => $"member:{_member}";
+            => $"member:{Member}";
     }
     
 }

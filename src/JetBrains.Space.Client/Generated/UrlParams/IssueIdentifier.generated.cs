@@ -40,28 +40,28 @@ public abstract class IssueIdentifier : IUrlParameter
     
     public class IssueIdentifierId : IssueIdentifier
     {
-        private readonly string _id;
+        public string Id { get; }
         
         public IssueIdentifierId(string id)
         {
-            _id = id;
+            Id = id;
         }
         
         public override string ToString()
-            => $"id:{_id}";
+            => $"id:{Id}";
     }
     
     public class IssueIdentifierKey : IssueIdentifier
     {
-        private readonly string _key;
+        public string Key { get; }
         
         public IssueIdentifierKey(string key)
         {
-            _key = key;
+            Key = key;
         }
         
         public override string ToString()
-            => $"key:{_key}";
+            => $"key:{Key}";
     }
     
 }

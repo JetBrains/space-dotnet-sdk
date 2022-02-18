@@ -43,44 +43,44 @@ public abstract class WorkspaceIdentifier : IUrlParameter
     
     public class WorkspaceIdentifierByProject : WorkspaceIdentifier
     {
-        private readonly ProjectIdentifier _project;
+        public ProjectIdentifier Project { get; }
         
-        private readonly int _number;
+        public int Number { get; }
         
         public WorkspaceIdentifierByProject(ProjectIdentifier project, int number)
         {
-            _project = project;
-            _number = number;
+            Project = project;
+            Number = number;
         }
         
         public override string ToString()
-            => $"{{project:{_project},number:{_number}}}";
+            => $"{{project:{Project},number:{Number}}}";
     }
     
     public class WorkspaceIdentifierExternalId : WorkspaceIdentifier
     {
-        private readonly string _externalId;
+        public string ExternalId { get; }
         
         public WorkspaceIdentifierExternalId(string externalId)
         {
-            _externalId = externalId;
+            ExternalId = externalId;
         }
         
         public override string ToString()
-            => $"externalId:{_externalId}";
+            => $"externalId:{ExternalId}";
     }
     
     public class WorkspaceIdentifierId : WorkspaceIdentifier
     {
-        private readonly string _id;
+        public string Id { get; }
         
         public WorkspaceIdentifierId(string id)
         {
-            _id = id;
+            Id = id;
         }
         
         public override string ToString()
-            => $"id:{_id}";
+            => $"id:{Id}";
     }
     
 }

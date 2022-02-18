@@ -43,44 +43,44 @@ public abstract class PackageRepositoryIdentifier : IUrlParameter
     
     public class PackageRepositoryIdentifierId : PackageRepositoryIdentifier
     {
-        private readonly string _id;
+        public string Id { get; }
         
         public PackageRepositoryIdentifierId(string id)
         {
-            _id = id;
+            Id = id;
         }
         
         public override string ToString()
-            => $"id:{_id}";
+            => $"id:{Id}";
     }
     
     public class PackageRepositoryIdentifierKey : PackageRepositoryIdentifier
     {
-        private readonly string _key;
+        public string Key { get; }
         
         public PackageRepositoryIdentifierKey(string key)
         {
-            _key = key;
+            Key = key;
         }
         
         public override string ToString()
-            => $"key:{_key}";
+            => $"key:{Key}";
     }
     
     public class PackageRepositoryIdentifierTypeAndName : PackageRepositoryIdentifier
     {
-        private readonly string _type;
+        public string Type { get; }
         
-        private readonly string _name;
+        public string Name { get; }
         
         public PackageRepositoryIdentifierTypeAndName(string type, string name)
         {
-            _type = type;
-            _name = name;
+            Type = type;
+            Name = name;
         }
         
         public override string ToString()
-            => $"{{type:{_type},name:{_name}}}";
+            => $"{{type:{Type},name:{Name}}}";
     }
     
 }

@@ -40,31 +40,31 @@ public abstract class ReactionItemIdentifier : IUrlParameter
     
     public class ReactionItemIdentifierArticleReaction : ReactionItemIdentifier
     {
-        private readonly string _article;
+        public string Article { get; }
         
         public ReactionItemIdentifierArticleReaction(string article)
         {
-            _article = article;
+            Article = article;
         }
         
         public override string ToString()
-            => $"article:{_article}";
+            => $"article:{Article}";
     }
     
     public class ReactionItemIdentifierChatMessageReaction : ReactionItemIdentifier
     {
-        private readonly ChannelIdentifier _channel;
+        public ChannelIdentifier Channel { get; }
         
-        private readonly ChatMessageIdentifier _message;
+        public ChatMessageIdentifier Message { get; }
         
         public ReactionItemIdentifierChatMessageReaction(ChannelIdentifier channel, ChatMessageIdentifier message)
         {
-            _channel = channel;
-            _message = message;
+            Channel = channel;
+            Message = message;
         }
         
         public override string ToString()
-            => $"{{channel:{_channel},message:{_message}}}";
+            => $"{{channel:{Channel},message:{Message}}}";
     }
     
 }

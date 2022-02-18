@@ -37,15 +37,15 @@ public abstract class AbsenceIdentifier : IUrlParameter
     
     public class AbsenceIdentifierId : AbsenceIdentifier
     {
-        private readonly string _id;
+        public string Id { get; }
         
         public AbsenceIdentifierId(string id)
         {
-            _id = id;
+            Id = id;
         }
         
         public override string ToString()
-            => $"id:{_id}";
+            => $"id:{Id}";
     }
     
 }

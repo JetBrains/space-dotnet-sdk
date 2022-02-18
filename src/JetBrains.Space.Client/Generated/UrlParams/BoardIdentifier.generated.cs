@@ -37,15 +37,15 @@ public abstract class BoardIdentifier : IUrlParameter
     
     public class BoardIdentifierId : BoardIdentifier
     {
-        private readonly string _id;
+        public string Id { get; }
         
         public BoardIdentifierId(string id)
         {
-            _id = id;
+            Id = id;
         }
         
         public override string ToString()
-            => $"id:{_id}";
+            => $"id:{Id}";
     }
     
 }

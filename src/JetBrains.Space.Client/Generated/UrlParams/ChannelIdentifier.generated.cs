@@ -61,119 +61,119 @@ public abstract class ChannelIdentifier : IUrlParameter
     
     public class ChannelIdentifierApplication : ChannelIdentifier
     {
-        private readonly ApplicationIdentifier _application;
+        public ApplicationIdentifier Application { get; }
         
         public ChannelIdentifierApplication(ApplicationIdentifier application)
         {
-            _application = application;
+            Application = application;
         }
         
         public override string ToString()
-            => $"application:{_application}";
+            => $"application:{Application}";
     }
     
     public class ChannelIdentifierArticle : ChannelIdentifier
     {
-        private readonly string _article;
+        public string Article { get; }
         
         public ChannelIdentifierArticle(string article)
         {
-            _article = article;
+            Article = article;
         }
         
         public override string ToString()
-            => $"article:{_article}";
+            => $"article:{Article}";
     }
     
     public class ChannelIdentifierChannel : ChannelIdentifier
     {
-        private readonly ChatChannel _channel;
+        public ChatChannel Channel { get; }
         
         public ChannelIdentifierChannel(ChatChannel channel)
         {
-            _channel = channel;
+            Channel = channel;
         }
         
         public override string ToString()
-            => $"channel:{_channel}";
+            => $"channel:{Channel}";
     }
     
     public class ChannelIdentifierContactKey : ChannelIdentifier
     {
-        private readonly string _contactKey;
+        public string ContactKey { get; }
         
         public ChannelIdentifierContactKey(string contactKey)
         {
-            _contactKey = contactKey;
+            ContactKey = contactKey;
         }
         
         public override string ToString()
-            => $"contactKey:{_contactKey}";
+            => $"contactKey:{ContactKey}";
     }
     
     public class ChannelIdentifierId : ChannelIdentifier
     {
-        private readonly string _id;
+        public string Id { get; }
         
         public ChannelIdentifierId(string id)
         {
-            _id = id;
+            Id = id;
         }
         
         public override string ToString()
-            => $"id:{_id}";
+            => $"id:{Id}";
     }
     
     public class ChannelIdentifierIssue : ChannelIdentifier
     {
-        private readonly IssueIdentifier _issue;
+        public IssueIdentifier Issue { get; }
         
         public ChannelIdentifierIssue(IssueIdentifier issue)
         {
-            _issue = issue;
+            Issue = issue;
         }
         
         public override string ToString()
-            => $"issue:{_issue}";
+            => $"issue:{Issue}";
     }
     
     public class ChannelIdentifierProfile : ChannelIdentifier
     {
-        private readonly ProfileIdentifier _member;
+        public ProfileIdentifier Member { get; }
         
         public ChannelIdentifierProfile(ProfileIdentifier member)
         {
-            _member = member;
+            Member = member;
         }
         
         public override string ToString()
-            => $"member:{_member}";
+            => $"member:{Member}";
     }
     
     public class ChannelIdentifierReview : ChannelIdentifier
     {
-        private readonly ReviewIdentifier _codeReview;
+        public ReviewIdentifier CodeReview { get; }
         
         public ChannelIdentifierReview(ReviewIdentifier codeReview)
         {
-            _codeReview = codeReview;
+            CodeReview = codeReview;
         }
         
         public override string ToString()
-            => $"codeReview:{_codeReview}";
+            => $"codeReview:{CodeReview}";
     }
     
     public class ChannelIdentifierThread : ChannelIdentifier
     {
-        private readonly string _message;
+        public string Message { get; }
         
         public ChannelIdentifierThread(string message)
         {
-            _message = message;
+            Message = message;
         }
         
         public override string ToString()
-            => $"message:{_message}";
+            => $"message:{Message}";
     }
     
 }

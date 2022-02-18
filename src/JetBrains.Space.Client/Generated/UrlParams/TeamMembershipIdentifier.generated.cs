@@ -37,15 +37,15 @@ public abstract class TeamMembershipIdentifier : IUrlParameter
     
     public class TeamMembershipIdentifierId : TeamMembershipIdentifier
     {
-        private readonly string _id;
+        public string Id { get; }
         
         public TeamMembershipIdentifierId(string id)
         {
-            _id = id;
+            Id = id;
         }
         
         public override string ToString()
-            => $"id:{_id}";
+            => $"id:{Id}";
     }
     
 }

@@ -43,41 +43,41 @@ public abstract class TeamIdentifier : IUrlParameter
     
     public class TeamIdentifierExternalId : TeamIdentifier
     {
-        private readonly string _externalId;
+        public string ExternalId { get; }
         
         public TeamIdentifierExternalId(string externalId)
         {
-            _externalId = externalId;
+            ExternalId = externalId;
         }
         
         public override string ToString()
-            => $"externalId:{_externalId}";
+            => $"externalId:{ExternalId}";
     }
     
     public class TeamIdentifierId : TeamIdentifier
     {
-        private readonly string _id;
+        public string Id { get; }
         
         public TeamIdentifierId(string id)
         {
-            _id = id;
+            Id = id;
         }
         
         public override string ToString()
-            => $"id:{_id}";
+            => $"id:{Id}";
     }
     
     public class TeamIdentifierName : TeamIdentifier
     {
-        private readonly string _name;
+        public string Name { get; }
         
         public TeamIdentifierName(string name)
         {
-            _name = name;
+            Name = name;
         }
         
         public override string ToString()
-            => $"name:{_name}";
+            => $"name:{Name}";
     }
     
 }

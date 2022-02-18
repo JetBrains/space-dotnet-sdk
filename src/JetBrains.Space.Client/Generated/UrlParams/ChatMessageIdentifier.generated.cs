@@ -40,28 +40,28 @@ public abstract class ChatMessageIdentifier : IUrlParameter
     
     public class ChatMessageIdentifierExternalId : ChatMessageIdentifier
     {
-        private readonly string _externalId;
+        public string ExternalId { get; }
         
         public ChatMessageIdentifierExternalId(string externalId)
         {
-            _externalId = externalId;
+            ExternalId = externalId;
         }
         
         public override string ToString()
-            => $"externalId:{_externalId}";
+            => $"externalId:{ExternalId}";
     }
     
     public class ChatMessageIdentifierInternalId : ChatMessageIdentifier
     {
-        private readonly string _id;
+        public string Id { get; }
         
         public ChatMessageIdentifierInternalId(string id)
         {
-            _id = id;
+            Id = id;
         }
         
         public override string ToString()
-            => $"id:{_id}";
+            => $"id:{Id}";
     }
     
 }

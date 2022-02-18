@@ -40,28 +40,28 @@ public abstract class SprintIdentifier : IUrlParameter
     
     public class SprintIdentifierCurrent : SprintIdentifier
     {
-        private readonly BoardIdentifier _board;
+        public BoardIdentifier Board { get; }
         
         public SprintIdentifierCurrent(BoardIdentifier board)
         {
-            _board = board;
+            Board = board;
         }
         
         public override string ToString()
-            => $"board:{_board}";
+            => $"board:{Board}";
     }
     
     public class SprintIdentifierId : SprintIdentifier
     {
-        private readonly string _id;
+        public string Id { get; }
         
         public SprintIdentifierId(string id)
         {
-            _id = id;
+            Id = id;
         }
         
         public override string ToString()
-            => $"id:{_id}";
+            => $"id:{Id}";
     }
     
 }

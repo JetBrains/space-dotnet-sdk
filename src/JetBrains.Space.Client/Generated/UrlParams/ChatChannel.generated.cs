@@ -40,28 +40,28 @@ public abstract class ChatChannel : IUrlParameter
     
     public class ChatChannelFromId : ChatChannel
     {
-        private readonly string _id;
+        public string Id { get; }
         
         public ChatChannelFromId(string id)
         {
-            _id = id;
+            Id = id;
         }
         
         public override string ToString()
-            => $"id:{_id}";
+            => $"id:{Id}";
     }
     
     public class ChatChannelFromName : ChatChannel
     {
-        private readonly string _name;
+        public string Name { get; }
         
         public ChatChannelFromName(string name)
         {
-            _name = name;
+            Name = name;
         }
         
         public override string ToString()
-            => $"name:{_name}";
+            => $"name:{Name}";
     }
     
 }

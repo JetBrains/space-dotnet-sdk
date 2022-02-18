@@ -40,15 +40,15 @@ public abstract class FolderIdentifier : IUrlParameter
     
     public class FolderIdentifierId : FolderIdentifier
     {
-        private readonly string _id;
+        public string Id { get; }
         
         public FolderIdentifierId(string id)
         {
-            _id = id;
+            Id = id;
         }
         
         public override string ToString()
-            => $"id:{_id}";
+            => $"id:{Id}";
     }
     
     public class FolderIdentifierRoot : FolderIdentifier

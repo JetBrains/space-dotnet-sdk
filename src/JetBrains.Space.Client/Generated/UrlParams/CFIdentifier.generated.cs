@@ -40,28 +40,28 @@ public abstract class CFIdentifier : IUrlParameter
     
     public class CFIdentifierId : CFIdentifier
     {
-        private readonly string _id;
+        public string Id { get; }
         
         public CFIdentifierId(string id)
         {
-            _id = id;
+            Id = id;
         }
         
         public override string ToString()
-            => $"id:{_id}";
+            => $"id:{Id}";
     }
     
     public class CFIdentifierName : CFIdentifier
     {
-        private readonly string _name;
+        public string Name { get; }
         
         public CFIdentifierName(string name)
         {
-            _name = name;
+            Name = name;
         }
         
         public override string ToString()
-            => $"name:{_name}";
+            => $"name:{Name}";
     }
     
 }

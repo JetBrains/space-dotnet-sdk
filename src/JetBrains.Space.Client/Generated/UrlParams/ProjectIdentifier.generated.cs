@@ -40,28 +40,28 @@ public abstract class ProjectIdentifier : IUrlParameter
     
     public class ProjectIdentifierId : ProjectIdentifier
     {
-        private readonly string _id;
+        public string Id { get; }
         
         public ProjectIdentifierId(string id)
         {
-            _id = id;
+            Id = id;
         }
         
         public override string ToString()
-            => $"id:{_id}";
+            => $"id:{Id}";
     }
     
     public class ProjectIdentifierKey : ProjectIdentifier
     {
-        private readonly string _key;
+        public string Key { get; }
         
         public ProjectIdentifierKey(string key)
         {
-            _key = key;
+            Key = key;
         }
         
         public override string ToString()
-            => $"key:{_key}";
+            => $"key:{Key}";
     }
     
 }

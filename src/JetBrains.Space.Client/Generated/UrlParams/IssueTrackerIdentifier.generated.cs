@@ -40,28 +40,28 @@ public abstract class IssueTrackerIdentifier : IUrlParameter
     
     public class IssueTrackerIdentifierDefaultProjectTracker : IssueTrackerIdentifier
     {
-        private readonly ProjectIdentifier _project;
+        public ProjectIdentifier Project { get; }
         
         public IssueTrackerIdentifierDefaultProjectTracker(ProjectIdentifier project)
         {
-            _project = project;
+            Project = project;
         }
         
         public override string ToString()
-            => $"project:{_project}";
+            => $"project:{Project}";
     }
     
     public class IssueTrackerIdentifierId : IssueTrackerIdentifier
     {
-        private readonly string _id;
+        public string Id { get; }
         
         public IssueTrackerIdentifierId(string id)
         {
-            _id = id;
+            Id = id;
         }
         
         public override string ToString()
-            => $"id:{_id}";
+            => $"id:{Id}";
     }
     
 }
