@@ -136,15 +136,15 @@ public class CSharpApiModelUrlParameterGenerator
                 foreach (var field in orderedFields)
                 {
                     var valueTypeName = field.Type.ToCSharpType(_codeGenerationContext);
-                    var backingFieldName = field.ToCSharpBackingFieldName();
+                    var propertyName = field.ToCSharpPropertyName(typeNameForUrlParameterOption);
                     var urlParameterFieldName = field.Name;
                     
-                    // Backing field
-                    builder.AppendLine($"{indent}private readonly {valueTypeName} {backingFieldName};");
+                    // Property
+                    builder.AppendLine($"{indent}public {valueTypeName} {propertyName} {{ get; }}");
                     builder.AppendLine($"{indent}");
                         
                     // ToString() override preparation
-                    toStringInterpolatedFields.Add($"{urlParameterFieldName}:{{{backingFieldName}}}");
+                    toStringInterpolatedFields.Add($"{urlParameterFieldName}:{{{propertyName}}}");
                 }
 
                 var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
@@ -157,10 +157,10 @@ public class CSharpApiModelUrlParameterGenerator
 
                 foreach (var field in orderedFields)
                 {
-                    var backingFieldName = field.ToCSharpBackingFieldName();
+                    var propertyName = field.ToCSharpPropertyName(typeNameForUrlParameterOption);
                     var variableName = field.ToCSharpVariableName();
                     
-                    builder.AppendLine($"{indent}{backingFieldName} = {variableName};");
+                    builder.AppendLine($"{indent}{propertyName} = {variableName};");
                 }
                     
                 indent.Decrement();
