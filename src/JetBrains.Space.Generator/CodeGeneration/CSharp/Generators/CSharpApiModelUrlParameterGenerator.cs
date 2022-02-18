@@ -111,9 +111,9 @@ public class CSharpApiModelUrlParameterGenerator
         {
             builder.AppendLine($"{indent}{apiUrlParameterOption.Deprecation.ToCSharpDeprecation()}");
         }
-            
+
         // Option type
-        builder.AppendLine($"{indent}private class {typeNameForUrlParameterOption} : {typeNameForUrlParameter}");
+        builder.AppendLine($"{indent}public class {typeNameForUrlParameterOption} : {typeNameForUrlParameter}");
         builder.AppendLine($"{indent}{{");
         indent.Increment();
             
