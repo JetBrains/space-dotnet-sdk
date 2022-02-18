@@ -23,7 +23,7 @@ public abstract class SpaceAuthFlow
     /// Authorization code flow.
     /// </summary>
     /// <param name="redirectUris">Redirect URI(s) for the application.</param>
-    /// <param name="pkceRequired">Is PKCE required? Use <value>true</value to enable; <value>false</value> otherwise.</param>
+    /// <param name="pkceRequired">Is PKCE required? Use <value>true</value> to enable; <value>false</value> otherwise.</param>
     /// <returns>A <see cref="SpaceAuthFlow"/> instance that represents the authorization code flow.</returns>
     public static SpaceAuthFlow AuthorizationCode(IEnumerable<Uri> redirectUris, bool pkceRequired)
         => new AuthorizationCodeAuthFlow(redirectUris, pkceRequired);
