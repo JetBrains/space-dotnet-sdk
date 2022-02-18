@@ -38,7 +38,7 @@ public abstract class ChatChannel : IUrlParameter
     public static ChatChannel FromName(string name)
         => new ChatChannelFromName(name);
     
-    private class ChatChannelFromId : ChatChannel
+    public class ChatChannelFromId : ChatChannel
     {
         private readonly string _id;
         
@@ -51,7 +51,7 @@ public abstract class ChatChannel : IUrlParameter
             => $"id:{_id}";
     }
     
-    private class ChatChannelFromName : ChatChannel
+    public class ChatChannelFromName : ChatChannel
     {
         private readonly string _name;
         

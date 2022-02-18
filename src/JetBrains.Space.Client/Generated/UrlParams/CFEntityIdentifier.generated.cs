@@ -47,7 +47,7 @@ public abstract class CFEntityIdentifier : IUrlParameter
     public static CFEntityIdentifier CFTeam(TeamIdentifier team)
         => new CFTeamIdentifier(team);
     
-    private class CFAbsenceIdentifier : CFEntityIdentifier
+    public class CFAbsenceIdentifier : CFEntityIdentifier
     {
         private readonly AbsenceIdentifier _absence;
         
@@ -60,7 +60,7 @@ public abstract class CFEntityIdentifier : IUrlParameter
             => $"absence:{_absence}";
     }
     
-    private class CFIssueIdentifier : CFEntityIdentifier
+    public class CFIssueIdentifier : CFEntityIdentifier
     {
         private readonly IssueIdentifier _issue;
         
@@ -73,7 +73,7 @@ public abstract class CFEntityIdentifier : IUrlParameter
             => $"issue:{_issue}";
     }
     
-    private class CFMembershipIdentifier : CFEntityIdentifier
+    public class CFMembershipIdentifier : CFEntityIdentifier
     {
         private readonly TeamMembershipIdentifier _membership;
         
@@ -86,7 +86,7 @@ public abstract class CFEntityIdentifier : IUrlParameter
             => $"membership:{_membership}";
     }
     
-    private class CFProfileIdentifier : CFEntityIdentifier
+    public class CFProfileIdentifier : CFEntityIdentifier
     {
         private readonly ProfileIdentifier _profile;
         
@@ -99,7 +99,7 @@ public abstract class CFEntityIdentifier : IUrlParameter
             => $"profile:{_profile}";
     }
     
-    private class CFTeamIdentifier : CFEntityIdentifier
+    public class CFTeamIdentifier : CFEntityIdentifier
     {
         private readonly TeamIdentifier _team;
         

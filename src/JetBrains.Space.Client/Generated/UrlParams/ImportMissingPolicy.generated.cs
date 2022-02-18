@@ -38,13 +38,13 @@ public abstract class ImportMissingPolicy : IUrlParameter
     public static ImportMissingPolicy Skip
         => new ImportMissingPolicySkip();
     
-    private class ImportMissingPolicyReplaceWithDefault : ImportMissingPolicy
+    public class ImportMissingPolicyReplaceWithDefault : ImportMissingPolicy
     {
         public override string ToString()
             => "replace-with-default";
     }
     
-    private class ImportMissingPolicySkip : ImportMissingPolicy
+    public class ImportMissingPolicySkip : ImportMissingPolicy
     {
         public override string ToString()
             => "skip";

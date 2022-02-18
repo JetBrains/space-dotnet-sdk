@@ -38,7 +38,7 @@ public abstract class SprintIdentifier : IUrlParameter
     public static SprintIdentifier Id(string id)
         => new SprintIdentifierId(id);
     
-    private class SprintIdentifierCurrent : SprintIdentifier
+    public class SprintIdentifierCurrent : SprintIdentifier
     {
         private readonly BoardIdentifier _board;
         
@@ -51,7 +51,7 @@ public abstract class SprintIdentifier : IUrlParameter
             => $"board:{_board}";
     }
     
-    private class SprintIdentifierId : SprintIdentifier
+    public class SprintIdentifierId : SprintIdentifier
     {
         private readonly string _id;
         

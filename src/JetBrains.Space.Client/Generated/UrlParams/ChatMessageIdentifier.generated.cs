@@ -38,7 +38,7 @@ public abstract class ChatMessageIdentifier : IUrlParameter
     public static ChatMessageIdentifier InternalId(string id)
         => new ChatMessageIdentifierInternalId(id);
     
-    private class ChatMessageIdentifierExternalId : ChatMessageIdentifier
+    public class ChatMessageIdentifierExternalId : ChatMessageIdentifier
     {
         private readonly string _externalId;
         
@@ -51,7 +51,7 @@ public abstract class ChatMessageIdentifier : IUrlParameter
             => $"externalId:{_externalId}";
     }
     
-    private class ChatMessageIdentifierInternalId : ChatMessageIdentifier
+    public class ChatMessageIdentifierInternalId : ChatMessageIdentifier
     {
         private readonly string _id;
         

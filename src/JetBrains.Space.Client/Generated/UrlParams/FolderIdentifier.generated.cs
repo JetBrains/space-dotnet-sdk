@@ -38,7 +38,7 @@ public abstract class FolderIdentifier : IUrlParameter
     public static FolderIdentifier Root
         => new FolderIdentifierRoot();
     
-    private class FolderIdentifierId : FolderIdentifier
+    public class FolderIdentifierId : FolderIdentifier
     {
         private readonly string _id;
         
@@ -51,7 +51,7 @@ public abstract class FolderIdentifier : IUrlParameter
             => $"id:{_id}";
     }
     
-    private class FolderIdentifierRoot : FolderIdentifier
+    public class FolderIdentifierRoot : FolderIdentifier
     {
         public override string ToString()
             => "root";

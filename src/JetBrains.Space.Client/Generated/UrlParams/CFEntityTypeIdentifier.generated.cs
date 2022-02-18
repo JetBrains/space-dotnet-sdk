@@ -47,13 +47,13 @@ public abstract class CFEntityTypeIdentifier : IUrlParameter
     public static CFEntityTypeIdentifier ForCFTeamEntityType
         => new CFTeamEntityType();
     
-    private class CFAbsenceEntityType : CFEntityTypeIdentifier
+    public class CFAbsenceEntityType : CFEntityTypeIdentifier
     {
         public override string ToString()
             => "absence";
     }
     
-    private class CFIssueTrackerEntityType : CFEntityTypeIdentifier
+    public class CFIssueTrackerEntityType : CFEntityTypeIdentifier
     {
         private readonly IssueTrackerIdentifier _issueTracker;
         
@@ -66,19 +66,19 @@ public abstract class CFEntityTypeIdentifier : IUrlParameter
             => $"issueTracker:{_issueTracker}";
     }
     
-    private class CFMembershipEntityType : CFEntityTypeIdentifier
+    public class CFMembershipEntityType : CFEntityTypeIdentifier
     {
         public override string ToString()
             => "membership";
     }
     
-    private class CFProfileEntityType : CFEntityTypeIdentifier
+    public class CFProfileEntityType : CFEntityTypeIdentifier
     {
         public override string ToString()
             => "profile";
     }
     
-    private class CFTeamEntityType : CFEntityTypeIdentifier
+    public class CFTeamEntityType : CFEntityTypeIdentifier
     {
         public override string ToString()
             => "team";

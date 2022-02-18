@@ -38,7 +38,7 @@ public abstract class ReactionItemIdentifier : IUrlParameter
     public static ReactionItemIdentifier ChatMessageReaction(ChannelIdentifier channel, ChatMessageIdentifier message)
         => new ReactionItemIdentifierChatMessageReaction(channel, message);
     
-    private class ReactionItemIdentifierArticleReaction : ReactionItemIdentifier
+    public class ReactionItemIdentifierArticleReaction : ReactionItemIdentifier
     {
         private readonly string _article;
         
@@ -51,7 +51,7 @@ public abstract class ReactionItemIdentifier : IUrlParameter
             => $"article:{_article}";
     }
     
-    private class ReactionItemIdentifierChatMessageReaction : ReactionItemIdentifier
+    public class ReactionItemIdentifierChatMessageReaction : ReactionItemIdentifier
     {
         private readonly ChannelIdentifier _channel;
         

@@ -41,7 +41,7 @@ public abstract class TeamIdentifier : IUrlParameter
     public static TeamIdentifier Name(string name)
         => new TeamIdentifierName(name);
     
-    private class TeamIdentifierExternalId : TeamIdentifier
+    public class TeamIdentifierExternalId : TeamIdentifier
     {
         private readonly string _externalId;
         
@@ -54,7 +54,7 @@ public abstract class TeamIdentifier : IUrlParameter
             => $"externalId:{_externalId}";
     }
     
-    private class TeamIdentifierId : TeamIdentifier
+    public class TeamIdentifierId : TeamIdentifier
     {
         private readonly string _id;
         
@@ -67,7 +67,7 @@ public abstract class TeamIdentifier : IUrlParameter
             => $"id:{_id}";
     }
     
-    private class TeamIdentifierName : TeamIdentifier
+    public class TeamIdentifierName : TeamIdentifier
     {
         private readonly string _name;
         

@@ -35,7 +35,7 @@ public abstract class BoardIdentifier : IUrlParameter
     public static BoardIdentifier Id(string id)
         => new BoardIdentifierId(id);
     
-    private class BoardIdentifierId : BoardIdentifier
+    public class BoardIdentifierId : BoardIdentifier
     {
         private readonly string _id;
         

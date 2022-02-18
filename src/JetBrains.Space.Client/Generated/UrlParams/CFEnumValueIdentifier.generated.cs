@@ -38,7 +38,7 @@ public abstract class CFEnumValueIdentifier : IUrlParameter
     public static CFEnumValueIdentifier Name(string name)
         => new CFEnumValueIdentifierName(name);
     
-    private class CFEnumValueIdentifierId : CFEnumValueIdentifier
+    public class CFEnumValueIdentifierId : CFEnumValueIdentifier
     {
         private readonly string _id;
         
@@ -51,7 +51,7 @@ public abstract class CFEnumValueIdentifier : IUrlParameter
             => $"id:{_id}";
     }
     
-    private class CFEnumValueIdentifierName : CFEnumValueIdentifier
+    public class CFEnumValueIdentifierName : CFEnumValueIdentifier
     {
         private readonly string _name;
         

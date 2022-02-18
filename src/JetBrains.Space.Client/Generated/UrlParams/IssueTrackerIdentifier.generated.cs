@@ -38,7 +38,7 @@ public abstract class IssueTrackerIdentifier : IUrlParameter
     public static IssueTrackerIdentifier Id(string id)
         => new IssueTrackerIdentifierId(id);
     
-    private class IssueTrackerIdentifierDefaultProjectTracker : IssueTrackerIdentifier
+    public class IssueTrackerIdentifierDefaultProjectTracker : IssueTrackerIdentifier
     {
         private readonly ProjectIdentifier _project;
         
@@ -51,7 +51,7 @@ public abstract class IssueTrackerIdentifier : IUrlParameter
             => $"project:{_project}";
     }
     
-    private class IssueTrackerIdentifierId : IssueTrackerIdentifier
+    public class IssueTrackerIdentifierId : IssueTrackerIdentifier
     {
         private readonly string _id;
         

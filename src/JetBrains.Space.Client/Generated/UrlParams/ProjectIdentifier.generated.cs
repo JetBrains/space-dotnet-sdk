@@ -38,7 +38,7 @@ public abstract class ProjectIdentifier : IUrlParameter
     public static ProjectIdentifier Key(string key)
         => new ProjectIdentifierKey(key);
     
-    private class ProjectIdentifierId : ProjectIdentifier
+    public class ProjectIdentifierId : ProjectIdentifier
     {
         private readonly string _id;
         
@@ -51,7 +51,7 @@ public abstract class ProjectIdentifier : IUrlParameter
             => $"id:{_id}";
     }
     
-    private class ProjectIdentifierKey : ProjectIdentifier
+    public class ProjectIdentifierKey : ProjectIdentifier
     {
         private readonly string _key;
         

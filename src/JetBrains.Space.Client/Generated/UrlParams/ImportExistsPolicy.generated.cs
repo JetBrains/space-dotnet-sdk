@@ -38,13 +38,13 @@ public abstract class ImportExistsPolicy : IUrlParameter
     public static ImportExistsPolicy Update
         => new ImportExistsPolicyUpdate();
     
-    private class ImportExistsPolicySkip : ImportExistsPolicy
+    public class ImportExistsPolicySkip : ImportExistsPolicy
     {
         public override string ToString()
             => "skip";
     }
     
-    private class ImportExistsPolicyUpdate : ImportExistsPolicy
+    public class ImportExistsPolicyUpdate : ImportExistsPolicy
     {
         public override string ToString()
             => "update";

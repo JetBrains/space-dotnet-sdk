@@ -44,7 +44,7 @@ public abstract class ProfileIdentifier : IUrlParameter
     public static ProfileIdentifier Username(string username)
         => new ProfileIdentifierUsername(username);
     
-    private class ProfileIdentifierExternalId : ProfileIdentifier
+    public class ProfileIdentifierExternalId : ProfileIdentifier
     {
         private readonly string _externalId;
         
@@ -57,7 +57,7 @@ public abstract class ProfileIdentifier : IUrlParameter
             => $"externalId:{_externalId}";
     }
     
-    private class ProfileIdentifierId : ProfileIdentifier
+    public class ProfileIdentifierId : ProfileIdentifier
     {
         private readonly string _id;
         
@@ -70,13 +70,13 @@ public abstract class ProfileIdentifier : IUrlParameter
             => $"id:{_id}";
     }
     
-    private class ProfileIdentifierMe : ProfileIdentifier
+    public class ProfileIdentifierMe : ProfileIdentifier
     {
         public override string ToString()
             => "me";
     }
     
-    private class ProfileIdentifierUsername : ProfileIdentifier
+    public class ProfileIdentifierUsername : ProfileIdentifier
     {
         private readonly string _username;
         

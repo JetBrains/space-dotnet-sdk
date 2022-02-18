@@ -38,7 +38,7 @@ public abstract class IssueIdentifier : IUrlParameter
     public static IssueIdentifier Key(string key)
         => new IssueIdentifierKey(key);
     
-    private class IssueIdentifierId : IssueIdentifier
+    public class IssueIdentifierId : IssueIdentifier
     {
         private readonly string _id;
         
@@ -51,7 +51,7 @@ public abstract class IssueIdentifier : IUrlParameter
             => $"id:{_id}";
     }
     
-    private class IssueIdentifierKey : IssueIdentifier
+    public class IssueIdentifierKey : IssueIdentifier
     {
         private readonly string _key;
         

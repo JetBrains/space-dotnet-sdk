@@ -38,7 +38,7 @@ public abstract class CFIdentifier : IUrlParameter
     public static CFIdentifier Name(string name)
         => new CFIdentifierName(name);
     
-    private class CFIdentifierId : CFIdentifier
+    public class CFIdentifierId : CFIdentifier
     {
         private readonly string _id;
         
@@ -51,7 +51,7 @@ public abstract class CFIdentifier : IUrlParameter
             => $"id:{_id}";
     }
     
-    private class CFIdentifierName : CFIdentifier
+    public class CFIdentifierName : CFIdentifier
     {
         private readonly string _name;
         

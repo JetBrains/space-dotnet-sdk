@@ -38,7 +38,7 @@ public abstract class ExtendedTypeScope : IUrlParameter
     public static ExtendedTypeScope Org
         => new ExtendedTypeScopeOrg();
     
-    private class ExtendedTypeScopeContainer : ExtendedTypeScope
+    public class ExtendedTypeScopeContainer : ExtendedTypeScope
     {
         private readonly string _containerId;
         
@@ -51,7 +51,7 @@ public abstract class ExtendedTypeScope : IUrlParameter
             => $"containerId:{_containerId}";
     }
     
-    private class ExtendedTypeScopeOrg : ExtendedTypeScope
+    public class ExtendedTypeScopeOrg : ExtendedTypeScope
     {
         public override string ToString()
             => "org";

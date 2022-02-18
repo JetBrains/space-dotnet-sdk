@@ -41,7 +41,7 @@ public abstract class ReviewIdentifier : IUrlParameter
     public static ReviewIdentifier Number(int number)
         => new ReviewIdentifierNumber(number);
     
-    private class ReviewIdentifierId : ReviewIdentifier
+    public class ReviewIdentifierId : ReviewIdentifier
     {
         private readonly string _id;
         
@@ -54,7 +54,7 @@ public abstract class ReviewIdentifier : IUrlParameter
             => $"id:{_id}";
     }
     
-    private class ReviewIdentifierKey : ReviewIdentifier
+    public class ReviewIdentifierKey : ReviewIdentifier
     {
         private readonly string _key;
         
@@ -67,7 +67,7 @@ public abstract class ReviewIdentifier : IUrlParameter
             => $"key:{_key}";
     }
     
-    private class ReviewIdentifierNumber : ReviewIdentifier
+    public class ReviewIdentifierNumber : ReviewIdentifier
     {
         private readonly int _number;
         

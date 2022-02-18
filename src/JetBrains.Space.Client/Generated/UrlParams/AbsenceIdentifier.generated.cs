@@ -35,7 +35,7 @@ public abstract class AbsenceIdentifier : IUrlParameter
     public static AbsenceIdentifier Id(string id)
         => new AbsenceIdentifierId(id);
     
-    private class AbsenceIdentifierId : AbsenceIdentifier
+    public class AbsenceIdentifierId : AbsenceIdentifier
     {
         private readonly string _id;
         

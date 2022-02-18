@@ -41,7 +41,7 @@ public abstract class WorkspaceIdentifier : IUrlParameter
     public static WorkspaceIdentifier Id(string id)
         => new WorkspaceIdentifierId(id);
     
-    private class WorkspaceIdentifierByProject : WorkspaceIdentifier
+    public class WorkspaceIdentifierByProject : WorkspaceIdentifier
     {
         private readonly ProjectIdentifier _project;
         
@@ -57,7 +57,7 @@ public abstract class WorkspaceIdentifier : IUrlParameter
             => $"{{project:{_project},number:{_number}}}";
     }
     
-    private class WorkspaceIdentifierExternalId : WorkspaceIdentifier
+    public class WorkspaceIdentifierExternalId : WorkspaceIdentifier
     {
         private readonly string _externalId;
         
@@ -70,7 +70,7 @@ public abstract class WorkspaceIdentifier : IUrlParameter
             => $"externalId:{_externalId}";
     }
     
-    private class WorkspaceIdentifierId : WorkspaceIdentifier
+    public class WorkspaceIdentifierId : WorkspaceIdentifier
     {
         private readonly string _id;
         

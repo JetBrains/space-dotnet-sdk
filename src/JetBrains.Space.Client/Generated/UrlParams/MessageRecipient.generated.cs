@@ -44,7 +44,7 @@ public abstract class MessageRecipient : IUrlParameter
     public static MessageRecipient Member(ProfileIdentifier member)
         => new MessageRecipientMember(member);
     
-    private class MessageRecipientChannel : MessageRecipient
+    public class MessageRecipientChannel : MessageRecipient
     {
         private readonly ChatChannel _channel;
         
@@ -57,7 +57,7 @@ public abstract class MessageRecipient : IUrlParameter
             => $"channel:{_channel}";
     }
     
-    private class MessageRecipientCodeReview : MessageRecipient
+    public class MessageRecipientCodeReview : MessageRecipient
     {
         private readonly string _codeReview;
         
@@ -70,7 +70,7 @@ public abstract class MessageRecipient : IUrlParameter
             => $"codeReview:{_codeReview}";
     }
     
-    private class MessageRecipientIssue : MessageRecipient
+    public class MessageRecipientIssue : MessageRecipient
     {
         private readonly string _issue;
         
@@ -83,7 +83,7 @@ public abstract class MessageRecipient : IUrlParameter
             => $"issue:{_issue}";
     }
     
-    private class MessageRecipientMember : MessageRecipient
+    public class MessageRecipientMember : MessageRecipient
     {
         private readonly ProfileIdentifier _member;
         

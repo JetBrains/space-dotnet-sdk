@@ -41,7 +41,7 @@ public abstract class ApplicationIdentifier : IUrlParameter
     public static ApplicationIdentifier Me
         => new ApplicationIdentifierMe();
     
-    private class ApplicationIdentifierClientId : ApplicationIdentifier
+    public class ApplicationIdentifierClientId : ApplicationIdentifier
     {
         private readonly string _clientId;
         
@@ -54,7 +54,7 @@ public abstract class ApplicationIdentifier : IUrlParameter
             => $"clientId:{_clientId}";
     }
     
-    private class ApplicationIdentifierId : ApplicationIdentifier
+    public class ApplicationIdentifierId : ApplicationIdentifier
     {
         private readonly string _id;
         
@@ -67,7 +67,7 @@ public abstract class ApplicationIdentifier : IUrlParameter
             => $"id:{_id}";
     }
     
-    private class ApplicationIdentifierMe : ApplicationIdentifier
+    public class ApplicationIdentifierMe : ApplicationIdentifier
     {
         public override string ToString()
             => "me";

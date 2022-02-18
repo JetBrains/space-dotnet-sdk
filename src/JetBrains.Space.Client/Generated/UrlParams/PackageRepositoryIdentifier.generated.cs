@@ -41,7 +41,7 @@ public abstract class PackageRepositoryIdentifier : IUrlParameter
     public static PackageRepositoryIdentifier TypeAndName(string type, string name)
         => new PackageRepositoryIdentifierTypeAndName(type, name);
     
-    private class PackageRepositoryIdentifierId : PackageRepositoryIdentifier
+    public class PackageRepositoryIdentifierId : PackageRepositoryIdentifier
     {
         private readonly string _id;
         
@@ -54,7 +54,7 @@ public abstract class PackageRepositoryIdentifier : IUrlParameter
             => $"id:{_id}";
     }
     
-    private class PackageRepositoryIdentifierKey : PackageRepositoryIdentifier
+    public class PackageRepositoryIdentifierKey : PackageRepositoryIdentifier
     {
         private readonly string _key;
         
@@ -67,7 +67,7 @@ public abstract class PackageRepositoryIdentifier : IUrlParameter
             => $"key:{_key}";
     }
     
-    private class PackageRepositoryIdentifierTypeAndName : PackageRepositoryIdentifier
+    public class PackageRepositoryIdentifierTypeAndName : PackageRepositoryIdentifier
     {
         private readonly string _type;
         

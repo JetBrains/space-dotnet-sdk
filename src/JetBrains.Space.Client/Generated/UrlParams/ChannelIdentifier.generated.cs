@@ -59,7 +59,7 @@ public abstract class ChannelIdentifier : IUrlParameter
     public static ChannelIdentifier Thread(string message)
         => new ChannelIdentifierThread(message);
     
-    private class ChannelIdentifierApplication : ChannelIdentifier
+    public class ChannelIdentifierApplication : ChannelIdentifier
     {
         private readonly ApplicationIdentifier _application;
         
@@ -72,7 +72,7 @@ public abstract class ChannelIdentifier : IUrlParameter
             => $"application:{_application}";
     }
     
-    private class ChannelIdentifierArticle : ChannelIdentifier
+    public class ChannelIdentifierArticle : ChannelIdentifier
     {
         private readonly string _article;
         
@@ -85,7 +85,7 @@ public abstract class ChannelIdentifier : IUrlParameter
             => $"article:{_article}";
     }
     
-    private class ChannelIdentifierChannel : ChannelIdentifier
+    public class ChannelIdentifierChannel : ChannelIdentifier
     {
         private readonly ChatChannel _channel;
         
@@ -98,7 +98,7 @@ public abstract class ChannelIdentifier : IUrlParameter
             => $"channel:{_channel}";
     }
     
-    private class ChannelIdentifierContactKey : ChannelIdentifier
+    public class ChannelIdentifierContactKey : ChannelIdentifier
     {
         private readonly string _contactKey;
         
@@ -111,7 +111,7 @@ public abstract class ChannelIdentifier : IUrlParameter
             => $"contactKey:{_contactKey}";
     }
     
-    private class ChannelIdentifierId : ChannelIdentifier
+    public class ChannelIdentifierId : ChannelIdentifier
     {
         private readonly string _id;
         
@@ -124,7 +124,7 @@ public abstract class ChannelIdentifier : IUrlParameter
             => $"id:{_id}";
     }
     
-    private class ChannelIdentifierIssue : ChannelIdentifier
+    public class ChannelIdentifierIssue : ChannelIdentifier
     {
         private readonly IssueIdentifier _issue;
         
@@ -137,7 +137,7 @@ public abstract class ChannelIdentifier : IUrlParameter
             => $"issue:{_issue}";
     }
     
-    private class ChannelIdentifierProfile : ChannelIdentifier
+    public class ChannelIdentifierProfile : ChannelIdentifier
     {
         private readonly ProfileIdentifier _member;
         
@@ -150,7 +150,7 @@ public abstract class ChannelIdentifier : IUrlParameter
             => $"member:{_member}";
     }
     
-    private class ChannelIdentifierReview : ChannelIdentifier
+    public class ChannelIdentifierReview : ChannelIdentifier
     {
         private readonly ReviewIdentifier _codeReview;
         
@@ -163,7 +163,7 @@ public abstract class ChannelIdentifier : IUrlParameter
             => $"codeReview:{_codeReview}";
     }
     
-    private class ChannelIdentifierThread : ChannelIdentifier
+    public class ChannelIdentifierThread : ChannelIdentifier
     {
         private readonly string _message;
         

@@ -35,7 +35,7 @@ public abstract class TeamMembershipIdentifier : IUrlParameter
     public static TeamMembershipIdentifier Id(string id)
         => new TeamMembershipIdentifierId(id);
     
-    private class TeamMembershipIdentifierId : TeamMembershipIdentifier
+    public class TeamMembershipIdentifierId : TeamMembershipIdentifier
     {
         private readonly string _id;
         
