@@ -2350,43 +2350,6 @@ public partial class TeamDirectoryClient : ISpaceClient
         
         }
     
-        public DashboardItemClient DashboardItems => new DashboardItemClient(_connection);
-        
-        public partial class DashboardItemClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public DashboardItemClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            public async Task<List<DashboardItem>> GetAllDashboardItemsAsync(ProfileIdentifier profile, Func<Partial<DashboardItem>, Partial<DashboardItem>>? partial = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<DashboardItem>()) : Partial<DashboardItem>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<List<DashboardItem>>("GET", $"api/http/team-directory/profiles/{profile}/dashboard-items{queryParameters.ToQueryString()}", cancellationToken);
-            }
-            
-        
-            /// <summary>
-            /// Update dashboard item state
-            /// </summary>
-            public async Task UpdateDashboardItemAsync(ProfileIdentifier profile, DashboardItem item, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/dashboard-items{queryParameters.ToQueryString()}", 
-                    new TeamDirectoryProfilesForProfileDashboardItemsPatchRequest
-                    { 
-                        Item = item,
-                    }, cancellationToken);
-            }
-            
-        
-        }
-    
         public GpgKeyClient GpgKeys => new GpgKeyClient(_connection);
         
         public partial class GpgKeyClient : ISpaceClient

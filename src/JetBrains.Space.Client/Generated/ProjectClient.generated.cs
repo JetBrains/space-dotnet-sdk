@@ -3648,7 +3648,7 @@ public partial class ProjectClient : ISpaceClient
         /// <term>View code reviews</term>
         /// </item>
         /// <item>
-        /// <term>Write git repositories</term>
+        /// <term>Write Git repositories</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -3673,7 +3673,7 @@ public partial class ProjectClient : ISpaceClient
         /// <term>View code reviews</term>
         /// </item>
         /// <item>
-        /// <term>Write git repositories</term>
+        /// <term>Write Git repositories</term>
         /// </item>
         /// </list>
         /// </remarks>

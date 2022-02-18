@@ -67,5 +67,11 @@ public static class CallSessionPartialExtensions
     public static Partial<CallSession> WithIsResourcesPrepared(this Partial<CallSession> it)
         => it.AddFieldName("resourcesPrepared");
     
+    public static Partial<CallSession> WithParticipations(this Partial<CallSession> it)
+        => it.AddFieldName("participations");
+    
+    public static Partial<CallSession> WithParticipations(this Partial<CallSession> it, Func<Partial<SessionParticipationRecord>, Partial<SessionParticipationRecord>> partialBuilder)
+        => it.AddFieldName("participations", partialBuilder(new Partial<SessionParticipationRecord>(it)));
+    
 }
 

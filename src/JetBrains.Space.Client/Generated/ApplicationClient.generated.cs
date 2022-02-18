@@ -208,7 +208,7 @@ public partial class ApplicationClient : ISpaceClient
     /// Required permissions:
     /// <list type="bullet">
     /// <item>
-    /// <term>View application secrets</term>
+    /// <term>View applications</term>
     /// </item>
     /// </list>
     /// </remarks>

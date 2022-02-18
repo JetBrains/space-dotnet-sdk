@@ -27,21 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DashboardItemPartialBuilder;
+namespace JetBrains.Space.Client.SFUProducerParametersPartialBuilder;
 
-public static class DashboardItemPartialExtensions
+public static class SFUProducerParametersPartialExtensions
 {
-    public static Partial<DashboardItem> WithName(this Partial<DashboardItem> it)
-        => it.AddFieldName("name");
+    public static Partial<SFUProducerParameters> WithMediaKind(this Partial<SFUProducerParameters> it)
+        => it.AddFieldName("mediaKind");
     
-    public static Partial<DashboardItem> WithIsEnabled(this Partial<DashboardItem> it)
-        => it.AddFieldName("enabled");
+    public static Partial<SFUProducerParameters> WithMediaKind(this Partial<SFUProducerParameters> it, Func<Partial<SFUMediaKind>, Partial<SFUMediaKind>> partialBuilder)
+        => it.AddFieldName("mediaKind", partialBuilder(new Partial<SFUMediaKind>(it)));
     
-    public static Partial<DashboardItem> WithColumn(this Partial<DashboardItem> it)
-        => it.AddFieldName("column");
+    public static Partial<SFUProducerParameters> WithRtpParameters(this Partial<SFUProducerParameters> it)
+        => it.AddFieldName("rtpParameters");
     
-    public static Partial<DashboardItem> WithPosition(this Partial<DashboardItem> it)
-        => it.AddFieldName("position");
+    public static Partial<SFUProducerParameters> WithIsPaused(this Partial<SFUProducerParameters> it)
+        => it.AddFieldName("paused");
+    
+    public static Partial<SFUProducerParameters> WithIsClosed(this Partial<SFUProducerParameters> it)
+        => it.AddFieldName("closed");
     
 }
 

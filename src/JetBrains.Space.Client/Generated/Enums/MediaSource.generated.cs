@@ -29,34 +29,14 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class TeamDirectoryProfilesForProfileDashboardItemsPatchRequest
-     : IPropagatePropertyAccessPath
+[JsonConverter(typeof(EnumStringConverter))]
+public enum MediaSource
 {
-    public TeamDirectoryProfilesForProfileDashboardItemsPatchRequest() { }
+    [EnumMember(Value = "USER")]
+    USER,
     
-    public TeamDirectoryProfilesForProfileDashboardItemsPatchRequest(DashboardItem item)
-    {
-        Item = item;
-    }
+    [EnumMember(Value = "SCREEN")]
+    SCREEN,
     
-    private PropertyValue<DashboardItem> _item = new PropertyValue<DashboardItem>(nameof(TeamDirectoryProfilesForProfileDashboardItemsPatchRequest), nameof(Item), "item");
-    
-    [Required]
-    [JsonPropertyName("item")]
-    public DashboardItem Item
-    {
-        get => _item.GetValue(InlineErrors);
-        set => _item.SetValue(value);
-    }
-
-    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-        _item.SetAccessPath(parentChainPath, validateHasBeenSet);
-    }
-    
-    /// <inheritdoc />
-    [JsonPropertyName("$errors")]
-    public List<ApiInlineError> InlineErrors { get; set; } = new();
-
 }
 

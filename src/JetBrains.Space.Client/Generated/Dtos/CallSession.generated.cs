@@ -34,7 +34,7 @@ public sealed class CallSession
 {
     public CallSession() { }
     
-    public CallSession(string id, bool archived, Room room, string description, DateTime start, bool resourcesPrepared, DateTime? end = null, M2ChannelRecord? channel = null, ConnectionTopology? topology = null)
+    public CallSession(string id, bool archived, Room room, string description, DateTime start, bool resourcesPrepared, List<SessionParticipationRecord> participations, DateTime? end = null, M2ChannelRecord? channel = null, ConnectionTopology? topology = null)
     {
         Id = id;
         IsArchived = archived;
@@ -45,6 +45,7 @@ public sealed class CallSession
         Channel = channel;
         Topology = topology;
         IsResourcesPrepared = resourcesPrepared;
+        Participations = participations;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(CallSession), nameof(Id), "id");
@@ -136,6 +137,16 @@ public sealed class CallSession
         set => _resourcesPrepared.SetValue(value);
     }
 
+    private PropertyValue<List<SessionParticipationRecord>> _participations = new PropertyValue<List<SessionParticipationRecord>>(nameof(CallSession), nameof(Participations), "participations", new List<SessionParticipationRecord>());
+    
+    [Required]
+    [JsonPropertyName("participations")]
+    public List<SessionParticipationRecord> Participations
+    {
+        get => _participations.GetValue(InlineErrors);
+        set => _participations.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -147,6 +158,7 @@ public sealed class CallSession
         _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
         _topology.SetAccessPath(parentChainPath, validateHasBeenSet);
         _resourcesPrepared.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _participations.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

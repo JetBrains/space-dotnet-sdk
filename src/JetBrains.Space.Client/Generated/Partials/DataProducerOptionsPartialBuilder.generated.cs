@@ -27,15 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileDashboardItemsPatchRequestPartialBuilder;
+namespace JetBrains.Space.Client.DataProducerOptionsPartialBuilder;
 
-public static class TeamDirectoryProfilesForProfileDashboardItemsPatchRequestPartialExtensions
+public static class DataProducerOptionsPartialExtensions
 {
-    public static Partial<TeamDirectoryProfilesForProfileDashboardItemsPatchRequest> WithItem(this Partial<TeamDirectoryProfilesForProfileDashboardItemsPatchRequest> it)
-        => it.AddFieldName("item");
+    public static Partial<DataProducerOptions> WithSfuOptions(this Partial<DataProducerOptions> it)
+        => it.AddFieldName("sfuOptions");
     
-    public static Partial<TeamDirectoryProfilesForProfileDashboardItemsPatchRequest> WithItem(this Partial<TeamDirectoryProfilesForProfileDashboardItemsPatchRequest> it, Func<Partial<DashboardItem>, Partial<DashboardItem>> partialBuilder)
-        => it.AddFieldName("item", partialBuilder(new Partial<DashboardItem>(it)));
+    public static Partial<DataProducerOptions> WithSfuOptions(this Partial<DataProducerOptions> it, Func<Partial<SFUDataProducerOptions>, Partial<SFUDataProducerOptions>> partialBuilder)
+        => it.AddFieldName("sfuOptions", partialBuilder(new Partial<SFUDataProducerOptions>(it)));
+    
+    public static Partial<DataProducerOptions> WithIsClosed(this Partial<DataProducerOptions> it)
+        => it.AddFieldName("closed");
+    
+    public static Partial<DataProducerOptions> WithUserConnectionId(this Partial<DataProducerOptions> it)
+        => it.AddFieldName("userConnectionId");
     
 }
 

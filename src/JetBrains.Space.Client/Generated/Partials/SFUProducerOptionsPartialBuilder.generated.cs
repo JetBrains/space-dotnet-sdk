@@ -27,16 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.SFUProducerOptionsPartialBuilder;
 
-public static class SdkInfo
+public static class SFUProducerOptionsPartialExtensions
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2021.1.0-EAP.93279";
+    public static Partial<SFUProducerOptions> WithId(this Partial<SFUProducerOptions> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<SFUProducerOptions> WithParameters(this Partial<SFUProducerOptions> it)
+        => it.AddFieldName("parameters");
+    
+    public static Partial<SFUProducerOptions> WithParameters(this Partial<SFUProducerOptions> it, Func<Partial<SFUProducerParameters>, Partial<SFUProducerParameters>> partialBuilder)
+        => it.AddFieldName("parameters", partialBuilder(new Partial<SFUProducerParameters>(it)));
+    
 }
 
