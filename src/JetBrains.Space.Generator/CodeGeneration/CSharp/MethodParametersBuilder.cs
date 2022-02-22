@@ -52,7 +52,7 @@ public class MethodParametersBuilder
 
             if (!field.Type.Nullable)
             {
-                if (field.IsPrimitiveAndRequiresAddedNullability())
+                if (field.RequiresAddedNullability())
                 {
                     parameterType += "?";
                 }
@@ -87,7 +87,7 @@ public class MethodParametersBuilder
 
             if (!parameter.Field.Type.Nullable)
             {
-                if (parameter.Field.IsPrimitiveAndRequiresAddedNullability())
+                if (parameter.Field.RequiresAddedNullability())
                 {
                     parameterType += "?";
                 }

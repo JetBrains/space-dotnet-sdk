@@ -57,7 +57,7 @@ public class QueryStringParameterConversionGenerator
                 parameterConditionBuilder.Append($"{csharpVariableName} != null");
             }
                 
-            if (apiEndpointParameter.Field.IsPrimitiveAndRequiresAddedNullability())
+            if (apiEndpointParameter.Field.RequiresAddedNullability())
             {
                 parameterConditionBuilder.Append($"{csharpVariableName} != null");
             }

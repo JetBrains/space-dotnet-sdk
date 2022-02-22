@@ -201,7 +201,12 @@ public class CSharpApiModelDtoGenerator
         builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
         if (apiField.Type.Nullable)
         {
-            builder.Append("?");
+            builder.Append('?');
+        }
+        
+        if (!apiField.Type.Nullable && apiField.RequiresAddedNullability())
+        {
+            builder.Append('?');
         }
 
         builder.Append("> ");
@@ -209,7 +214,12 @@ public class CSharpApiModelDtoGenerator
         builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
         if (apiField.Type.Nullable)
         {
-            builder.Append("?");
+            builder.Append('?');
+        }
+        
+        if (!apiField.Type.Nullable && apiField.RequiresAddedNullability())
+        {
+            builder.Append('?');
         }
             
         // For non-nullable List<> and Dictionary<>, make sure the field is initialized.
@@ -267,8 +277,14 @@ public class CSharpApiModelDtoGenerator
         builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
         if (apiField.Type.Nullable)
         {
-            builder.Append("?");
+            builder.Append('?');
         }
+        
+        if (!apiField.Type.Nullable && apiField.RequiresAddedNullability())
+        {
+            builder.Append('?');
+        }
+        
         builder.Append(" ");
         builder.AppendLine($"{indent}{propertyNameForField}");
             

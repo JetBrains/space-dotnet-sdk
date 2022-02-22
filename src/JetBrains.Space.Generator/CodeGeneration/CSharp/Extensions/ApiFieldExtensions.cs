@@ -69,7 +69,7 @@ public static class ApiFieldExtensions
             }
         } 
             
-        if (subject.IsPrimitiveAndRequiresAddedNullability())
+        if (subject.RequiresAddedNullability())
         {
             return CSharpExpression.NullLiteral;
         }
@@ -81,11 +81,6 @@ public static class ApiFieldExtensions
         
     public static string? ToCSharpDefaultValueForAssignment(this ApiField subject, CodeGenerationContext context)
     {
-        if (subject.IsPrimitiveAndRequiresAddedNullability())
-        {
-            return "string.Empty";
-        }
-
         if (subject.DefaultValue == null) return null;
             
         if (subject.DefaultValue is ApiDefaultValue.Const.EnumEntry enumEntry)
@@ -140,13 +135,21 @@ public static class ApiFieldExtensions
         return null;
     }
         
-    public static bool IsPrimitiveAndRequiresAddedNullability(this ApiField subject)
+    public static bool RequiresAddedNullability(this ApiField subject)
     {
-        // For optional strings, add nullability if not present
-        return subject.Optional && 
-               !subject.Type.Nullable &&
-               subject.DefaultValue == null && 
-               subject.Type is ApiFieldType.Primitive primitiveType &&
-               primitiveType.ToCSharpPrimitiveType() == CSharpType.String;
+        // For certain optional types, add nullability if not present
+        // Note this logic is different from the Kotlin SDK generator,
+        // to make sure the resulting code is C#-friendly.
+        return subject.Optional &&
+               subject.DefaultValue == null &&
+               !subject.Type.Nullable && (
+                   (subject.Type is ApiFieldType.Primitive primitiveType && (
+                       primitiveType.ToCSharpPrimitiveType() == CSharpType.String ||
+                       primitiveType.ToCSharpPrimitiveType() == CSharpType.Bool))
+                   
+                   ||
+                   
+                   subject.Type is ApiFieldType.Enum
+               );
     }
 }
