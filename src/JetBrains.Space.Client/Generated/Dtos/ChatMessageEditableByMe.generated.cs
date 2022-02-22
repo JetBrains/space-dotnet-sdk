@@ -27,15 +27,23 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AppUserActionExecutionResultAuthCodeFlowRequiredPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class AppUserActionExecutionResultAuthCodeFlowRequiredPartialExtensions
+public sealed class ChatMessageEditableByMe
+     : ChatMessageMenuItemVisibilityFilterApi, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static Partial<AppUserActionExecutionResultAuthCodeFlowRequired> WithPermissionsToRequest(this Partial<AppUserActionExecutionResultAuthCodeFlowRequired> it)
-        => it.AddFieldName("permissionsToRequest");
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ChatMessageEditableByMe";
     
-    public static Partial<AppUserActionExecutionResultAuthCodeFlowRequired> WithPermissionsToRequest(this Partial<AppUserActionExecutionResultAuthCodeFlowRequired> it, Func<Partial<AuthCodeFlowPermissionsRequest>, Partial<AuthCodeFlowPermissionsRequest>> partialBuilder)
-        => it.AddFieldName("permissionsToRequest", partialBuilder(new Partial<AuthCodeFlowPermissionsRequest>(it)));
+    public ChatMessageEditableByMe() { }
     
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

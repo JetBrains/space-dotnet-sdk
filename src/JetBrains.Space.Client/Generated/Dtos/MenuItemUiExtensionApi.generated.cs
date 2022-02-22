@@ -29,11 +29,20 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public interface MenuItemUiExtensionApi
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public abstract class MenuItemUiExtensionApi
      : AppUiExtensionApi, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static ContextMenuItemUiExtensionApi Context(string typeName, ContextMenuIdentifier menuIdentifier, string displayName, string menuItemUniqueCode, List<MenuItemVisibilityFilter> visibilityFilters, string? description = null)
-        => new ContextMenuItemUiExtensionApi(typeName: typeName, menuIdentifier: menuIdentifier, displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "MenuItemUiExtensionApi";
     
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

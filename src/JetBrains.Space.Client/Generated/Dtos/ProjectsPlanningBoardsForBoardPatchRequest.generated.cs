@@ -34,10 +34,11 @@ public class ProjectsPlanningBoardsForBoardPatchRequest
 {
     public ProjectsPlanningBoardsForBoardPatchRequest() { }
     
-    public ProjectsPlanningBoardsForBoardPatchRequest(string? name = null, string? description = null, BoardColumns? columns = null, List<string>? memberOwners = null, List<string>? teamOwners = null)
+    public ProjectsPlanningBoardsForBoardPatchRequest(string? name = null, string? description = null, string? swimlaneKey = null, BoardColumns? columns = null, List<string>? memberOwners = null, List<string>? teamOwners = null)
     {
         Name = name;
         Description = description;
+        SwimlaneKey = swimlaneKey;
         Columns = columns;
         MemberOwners = memberOwners;
         TeamOwners = teamOwners;
@@ -59,6 +60,15 @@ public class ProjectsPlanningBoardsForBoardPatchRequest
     {
         get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
+    }
+
+    private PropertyValue<string?> _swimlaneKey = new PropertyValue<string?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(SwimlaneKey), "swimlaneKey");
+    
+    [JsonPropertyName("swimlaneKey")]
+    public string? SwimlaneKey
+    {
+        get => _swimlaneKey.GetValue(InlineErrors);
+        set => _swimlaneKey.SetValue(value);
     }
 
     private PropertyValue<BoardColumns?> _columns = new PropertyValue<BoardColumns?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(Columns), "columns");
@@ -92,6 +102,7 @@ public class ProjectsPlanningBoardsForBoardPatchRequest
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _swimlaneKey.SetAccessPath(parentChainPath, validateHasBeenSet);
         _columns.SetAccessPath(parentChainPath, validateHasBeenSet);
         _memberOwners.SetAccessPath(parentChainPath, validateHasBeenSet);
         _teamOwners.SetAccessPath(parentChainPath, validateHasBeenSet);

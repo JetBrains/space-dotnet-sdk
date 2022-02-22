@@ -29,26 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-[JsonConverter(typeof(ClassNameDtoTypeConverter))]
-public class AppUserActionExecutionResult
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class AuthCodeFlowPermissionsRequest
+     : IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public virtual string? ClassName => "AppUserActionExecutionResult";
+    public AuthCodeFlowPermissionsRequest() { }
     
-    public static AppUserActionExecutionResultAuthCodeFlowRequired AuthCodeFlowRequired(List<AuthCodeFlowPermissionsRequest> permissionsToRequest)
-        => new AppUserActionExecutionResultAuthCodeFlowRequired(permissionsToRequest: permissionsToRequest);
-    
-    public static AppUserActionExecutionResultFailure Failure(string message)
-        => new AppUserActionExecutionResultFailure(message: message);
-    
-    public static AppUserActionExecutionResultSuccess Success(string? message = null)
-        => new AppUserActionExecutionResultSuccess(message: message);
-    
-    public AppUserActionExecutionResult() { }
-    
-    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public AuthCodeFlowPermissionsRequest(string scope, string purpose)
     {
+        Scope = scope;
+        Purpose = purpose;
+    }
+    
+    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(AuthCodeFlowPermissionsRequest), nameof(Scope), "scope");
+    
+    [Required]
+    [JsonPropertyName("scope")]
+    public string Scope
+    {
+        get => _scope.GetValue(InlineErrors);
+        set => _scope.SetValue(value);
+    }
+
+    private PropertyValue<string> _purpose = new PropertyValue<string>(nameof(AuthCodeFlowPermissionsRequest), nameof(Purpose), "purpose");
+    
+    [Required]
+    [JsonPropertyName("purpose")]
+    public string Purpose
+    {
+        get => _purpose.GetValue(InlineErrors);
+        set => _purpose.SetValue(value);
+    }
+
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _purpose.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

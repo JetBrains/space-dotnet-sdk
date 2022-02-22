@@ -29,91 +29,35 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ContextMenuItemUiExtensionApi
+public abstract class ContextMenuItemUiExtensionApi
      : MenuItemUiExtensionApi, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public  string? ClassName => "ContextMenuItemUiExtensionApi";
+    public override string? ClassName => "ContextMenuItemUiExtensionApi";
     
-    public ContextMenuItemUiExtensionApi() { }
+    public static ChatMessageMenuItemUiExtensionApi ChatMessageMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<ChatMessageMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
+        => new ChatMessageMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
     
-    public ContextMenuItemUiExtensionApi(string typeName, ContextMenuIdentifier menuIdentifier, string displayName, string menuItemUniqueCode, List<MenuItemVisibilityFilter> visibilityFilters, string? description = null)
+    public static DocumentDetailsMenuItemUiExtensionApi DocumentDetailsMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<DocumentMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
+        => new DocumentDetailsMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
+    
+    public static DocumentFolderDetailsMenuItemUiExtensionApi DocumentFolderDetailsMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<DocumentFolderMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
+        => new DocumentFolderDetailsMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
+    
+    public static DocumentFolderInListMenuItemUiExtensionApi DocumentFolderInListMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<DocumentFolderMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
+        => new DocumentFolderInListMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
+    
+    public static DocumentInListMenuItemUiExtensionApi DocumentInListMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<DocumentMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
+        => new DocumentInListMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
+    
+    public static IssueMenuItemUiExtensionApi IssueMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<IssueMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
+        => new IssueMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
+    
+    public static MeetingPreviewMenuItemUiExtensionApi MeetingPreviewMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, string? description = null)
+        => new MeetingPreviewMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, description: description);
+    
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        TypeName = typeName;
-        MenuIdentifier = menuIdentifier;
-        DisplayName = displayName;
-        Description = description;
-        MenuItemUniqueCode = menuItemUniqueCode;
-        VisibilityFilters = visibilityFilters;
-    }
-    
-    private PropertyValue<string> _typeName = new PropertyValue<string>(nameof(ContextMenuItemUiExtensionApi), nameof(TypeName), "typeName");
-    
-    [Required]
-    [JsonPropertyName("typeName")]
-    public string TypeName
-    {
-        get => _typeName.GetValue(InlineErrors);
-        set => _typeName.SetValue(value);
-    }
-
-    private PropertyValue<ContextMenuIdentifier> _menuIdentifier = new PropertyValue<ContextMenuIdentifier>(nameof(ContextMenuItemUiExtensionApi), nameof(MenuIdentifier), "menuIdentifier");
-    
-    [Required]
-    [JsonPropertyName("menuIdentifier")]
-    public ContextMenuIdentifier MenuIdentifier
-    {
-        get => _menuIdentifier.GetValue(InlineErrors);
-        set => _menuIdentifier.SetValue(value);
-    }
-
-    private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(ContextMenuItemUiExtensionApi), nameof(DisplayName), "displayName");
-    
-    [Required]
-    [JsonPropertyName("displayName")]
-    public string DisplayName
-    {
-        get => _displayName.GetValue(InlineErrors);
-        set => _displayName.SetValue(value);
-    }
-
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ContextMenuItemUiExtensionApi), nameof(Description), "description");
-    
-    [JsonPropertyName("description")]
-    public string? Description
-    {
-        get => _description.GetValue(InlineErrors);
-        set => _description.SetValue(value);
-    }
-
-    private PropertyValue<string> _menuItemUniqueCode = new PropertyValue<string>(nameof(ContextMenuItemUiExtensionApi), nameof(MenuItemUniqueCode), "menuItemUniqueCode");
-    
-    [Required]
-    [JsonPropertyName("menuItemUniqueCode")]
-    public string MenuItemUniqueCode
-    {
-        get => _menuItemUniqueCode.GetValue(InlineErrors);
-        set => _menuItemUniqueCode.SetValue(value);
-    }
-
-    private PropertyValue<List<MenuItemVisibilityFilter>> _visibilityFilters = new PropertyValue<List<MenuItemVisibilityFilter>>(nameof(ContextMenuItemUiExtensionApi), nameof(VisibilityFilters), "visibilityFilters", new List<MenuItemVisibilityFilter>());
-    
-    [Required]
-    [JsonPropertyName("visibilityFilters")]
-    public List<MenuItemVisibilityFilter> VisibilityFilters
-    {
-        get => _visibilityFilters.GetValue(InlineErrors);
-        set => _visibilityFilters.SetValue(value);
-    }
-
-    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-        _typeName.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _menuIdentifier.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _displayName.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _menuItemUniqueCode.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _visibilityFilters.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

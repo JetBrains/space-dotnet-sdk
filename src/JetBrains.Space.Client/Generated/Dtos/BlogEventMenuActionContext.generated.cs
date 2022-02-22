@@ -29,32 +29,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class AppUserActionExecutionResultAuthCodeFlowRequired
-     : AppUserActionExecutionResult, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class BlogEventMenuActionContext
+     : MenuActionContext, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "AppUserActionExecutionResult.AuthCodeFlowRequired";
+    public  string? ClassName => "BlogEventMenuActionContext";
     
-    public AppUserActionExecutionResultAuthCodeFlowRequired() { }
+    public BlogEventMenuActionContext() { }
     
-    public AppUserActionExecutionResultAuthCodeFlowRequired(List<AuthCodeFlowPermissionsRequest> permissionsToRequest)
+    public BlogEventMenuActionContext(string blogEventId)
     {
-        PermissionsToRequest = permissionsToRequest;
+        BlogEventId = blogEventId;
     }
     
-    private PropertyValue<List<AuthCodeFlowPermissionsRequest>> _permissionsToRequest = new PropertyValue<List<AuthCodeFlowPermissionsRequest>>(nameof(AppUserActionExecutionResultAuthCodeFlowRequired), nameof(PermissionsToRequest), "permissionsToRequest", new List<AuthCodeFlowPermissionsRequest>());
+    private PropertyValue<string> _blogEventId = new PropertyValue<string>(nameof(BlogEventMenuActionContext), nameof(BlogEventId), "blogEventId");
     
     [Required]
-    [JsonPropertyName("permissionsToRequest")]
-    public List<AuthCodeFlowPermissionsRequest> PermissionsToRequest
+    [JsonPropertyName("blogEventId")]
+    public string BlogEventId
     {
-        get => _permissionsToRequest.GetValue(InlineErrors);
-        set => _permissionsToRequest.SetValue(value);
+        get => _blogEventId.GetValue(InlineErrors);
+        set => _blogEventId.SetValue(value);
     }
 
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _permissionsToRequest.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _blogEventId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

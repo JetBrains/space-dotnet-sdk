@@ -34,12 +34,13 @@ public sealed class SessionParticipationRecord
 {
     public SessionParticipationRecord() { }
     
-    public SessionParticipationRecord(string id, long connectionId, string sessionId, TDMemberProfile member, List<DataProducerOptions> dataProducers, List<ProducerOptions> producers)
+    public SessionParticipationRecord(string id, long connectionId, string sessionId, TDMemberProfile member, ParticipationState state, List<DataProducerOptions> dataProducers, List<ProducerOptions> producers)
     {
         Id = id;
         ConnectionId = connectionId;
         SessionId = sessionId;
         Member = member;
+        State = state;
         DataProducers = dataProducers;
         Producers = producers;
     }
@@ -84,6 +85,16 @@ public sealed class SessionParticipationRecord
         set => _member.SetValue(value);
     }
 
+    private PropertyValue<ParticipationState> _state = new PropertyValue<ParticipationState>(nameof(SessionParticipationRecord), nameof(State), "state");
+    
+    [Required]
+    [JsonPropertyName("state")]
+    public ParticipationState State
+    {
+        get => _state.GetValue(InlineErrors);
+        set => _state.SetValue(value);
+    }
+
     private PropertyValue<List<DataProducerOptions>> _dataProducers = new PropertyValue<List<DataProducerOptions>>(nameof(SessionParticipationRecord), nameof(DataProducers), "dataProducers", new List<DataProducerOptions>());
     
     [Required]
@@ -110,6 +121,7 @@ public sealed class SessionParticipationRecord
         _connectionId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _sessionId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _member.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _state.SetAccessPath(parentChainPath, validateHasBeenSet);
         _dataProducers.SetAccessPath(parentChainPath, validateHasBeenSet);
         _producers.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

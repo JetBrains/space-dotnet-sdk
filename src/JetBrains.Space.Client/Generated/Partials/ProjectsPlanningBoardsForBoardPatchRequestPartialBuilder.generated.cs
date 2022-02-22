@@ -37,6 +37,9 @@ public static class ProjectsPlanningBoardsForBoardPatchRequestPartialExtensions
     public static Partial<ProjectsPlanningBoardsForBoardPatchRequest> WithDescription(this Partial<ProjectsPlanningBoardsForBoardPatchRequest> it)
         => it.AddFieldName("description");
     
+    public static Partial<ProjectsPlanningBoardsForBoardPatchRequest> WithSwimlaneKey(this Partial<ProjectsPlanningBoardsForBoardPatchRequest> it)
+        => it.AddFieldName("swimlaneKey");
+    
     public static Partial<ProjectsPlanningBoardsForBoardPatchRequest> WithColumns(this Partial<ProjectsPlanningBoardsForBoardPatchRequest> it)
         => it.AddFieldName("columns");
     

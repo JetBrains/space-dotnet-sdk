@@ -31,29 +31,5 @@ namespace JetBrains.Space.Client.ContextMenuItemUiExtensionApiPartialBuilder;
 
 public static class ContextMenuItemUiExtensionApiPartialExtensions
 {
-    public static Partial<ContextMenuItemUiExtensionApi> WithTypeName(this Partial<ContextMenuItemUiExtensionApi> it)
-        => it.AddFieldName("typeName");
-    
-    public static Partial<ContextMenuItemUiExtensionApi> WithMenuIdentifier(this Partial<ContextMenuItemUiExtensionApi> it)
-        => it.AddFieldName("menuIdentifier");
-    
-    public static Partial<ContextMenuItemUiExtensionApi> WithMenuIdentifier(this Partial<ContextMenuItemUiExtensionApi> it, Func<Partial<ContextMenuIdentifier>, Partial<ContextMenuIdentifier>> partialBuilder)
-        => it.AddFieldName("menuIdentifier", partialBuilder(new Partial<ContextMenuIdentifier>(it)));
-    
-    public static Partial<ContextMenuItemUiExtensionApi> WithDisplayName(this Partial<ContextMenuItemUiExtensionApi> it)
-        => it.AddFieldName("displayName");
-    
-    public static Partial<ContextMenuItemUiExtensionApi> WithDescription(this Partial<ContextMenuItemUiExtensionApi> it)
-        => it.AddFieldName("description");
-    
-    public static Partial<ContextMenuItemUiExtensionApi> WithMenuItemUniqueCode(this Partial<ContextMenuItemUiExtensionApi> it)
-        => it.AddFieldName("menuItemUniqueCode");
-    
-    public static Partial<ContextMenuItemUiExtensionApi> WithVisibilityFilters(this Partial<ContextMenuItemUiExtensionApi> it)
-        => it.AddFieldName("visibilityFilters");
-    
-    public static Partial<ContextMenuItemUiExtensionApi> WithVisibilityFilters(this Partial<ContextMenuItemUiExtensionApi> it, Func<Partial<MenuItemVisibilityFilter>, Partial<MenuItemVisibilityFilter>> partialBuilder)
-        => it.AddFieldName("visibilityFilters", partialBuilder(new Partial<MenuItemVisibilityFilter>(it)));
-    
 }
 

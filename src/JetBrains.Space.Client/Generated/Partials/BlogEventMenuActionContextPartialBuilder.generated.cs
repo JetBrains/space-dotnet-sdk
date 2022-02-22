@@ -27,15 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AppUserActionExecutionResultAuthCodeFlowRequiredPartialBuilder;
+namespace JetBrains.Space.Client.BlogEventMenuActionContextPartialBuilder;
 
-public static class AppUserActionExecutionResultAuthCodeFlowRequiredPartialExtensions
+public static class BlogEventMenuActionContextPartialExtensions
 {
-    public static Partial<AppUserActionExecutionResultAuthCodeFlowRequired> WithPermissionsToRequest(this Partial<AppUserActionExecutionResultAuthCodeFlowRequired> it)
-        => it.AddFieldName("permissionsToRequest");
-    
-    public static Partial<AppUserActionExecutionResultAuthCodeFlowRequired> WithPermissionsToRequest(this Partial<AppUserActionExecutionResultAuthCodeFlowRequired> it, Func<Partial<AuthCodeFlowPermissionsRequest>, Partial<AuthCodeFlowPermissionsRequest>> partialBuilder)
-        => it.AddFieldName("permissionsToRequest", partialBuilder(new Partial<AuthCodeFlowPermissionsRequest>(it)));
+    public static Partial<BlogEventMenuActionContext> WithBlogEventId(this Partial<BlogEventMenuActionContext> it)
+        => it.AddFieldName("blogEventId");
     
 }
 

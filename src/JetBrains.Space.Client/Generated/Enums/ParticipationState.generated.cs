@@ -27,15 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AppUserActionExecutionResultAuthCodeFlowRequiredPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class AppUserActionExecutionResultAuthCodeFlowRequiredPartialExtensions
+[JsonConverter(typeof(EnumStringConverter))]
+public enum ParticipationState
 {
-    public static Partial<AppUserActionExecutionResultAuthCodeFlowRequired> WithPermissionsToRequest(this Partial<AppUserActionExecutionResultAuthCodeFlowRequired> it)
-        => it.AddFieldName("permissionsToRequest");
+    [EnumMember(Value = "NONE")]
+    NONE,
     
-    public static Partial<AppUserActionExecutionResultAuthCodeFlowRequired> WithPermissionsToRequest(this Partial<AppUserActionExecutionResultAuthCodeFlowRequired> it, Func<Partial<AuthCodeFlowPermissionsRequest>, Partial<AuthCodeFlowPermissionsRequest>> partialBuilder)
-        => it.AddFieldName("permissionsToRequest", partialBuilder(new Partial<AuthCodeFlowPermissionsRequest>(it)));
+    [EnumMember(Value = "CONNECTED")]
+    CONNECTED,
+    
+    [EnumMember(Value = "DISCONNECTED")]
+    DISCONNECTED,
     
 }
 

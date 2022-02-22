@@ -46,5 +46,8 @@ public static class BoardInfoPartialExtensions
     public static Partial<BoardInfo> WithDescription(this Partial<BoardInfo> it)
         => it.AddFieldName("description");
     
+    public static Partial<BoardInfo> WithSwimlaneKey(this Partial<BoardInfo> it)
+        => it.AddFieldName("swimlaneKey");
+    
 }
 

@@ -34,11 +34,12 @@ public sealed class BoardInfo
 {
     public BoardInfo() { }
     
-    public BoardInfo(BoardOwners owners, BoardColumns columns, string? description = null)
+    public BoardInfo(BoardOwners owners, BoardColumns columns, string? description = null, string? swimlaneKey = null)
     {
         Owners = owners;
         Columns = columns;
         Description = description;
+        SwimlaneKey = swimlaneKey;
     }
     
     private PropertyValue<BoardOwners> _owners = new PropertyValue<BoardOwners>(nameof(BoardInfo), nameof(Owners), "owners");
@@ -70,11 +71,21 @@ public sealed class BoardInfo
         set => _description.SetValue(value);
     }
 
+    private PropertyValue<string?> _swimlaneKey = new PropertyValue<string?>(nameof(BoardInfo), nameof(SwimlaneKey), "swimlaneKey");
+    
+    [JsonPropertyName("swimlaneKey")]
+    public string? SwimlaneKey
+    {
+        get => _swimlaneKey.GetValue(InlineErrors);
+        set => _swimlaneKey.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _owners.SetAccessPath(parentChainPath, validateHasBeenSet);
         _columns.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _swimlaneKey.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -32,6 +32,9 @@ namespace JetBrains.Space.Client;
 public interface MenuActionContext
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
+    public static BlogEventMenuActionContext BlogEvent(string blogEventId)
+        => new BlogEventMenuActionContext(blogEventId: blogEventId);
+    
     public static ChannelMessageMenuActionContext ChannelMessage(ChannelIdentifier channelIdentifier, ChatMessageIdentifier messageIdentifier)
         => new ChannelMessageMenuActionContext(channelIdentifier: channelIdentifier, messageIdentifier: messageIdentifier);
     
@@ -43,6 +46,9 @@ public interface MenuActionContext
     
     public static IssueMenuActionContext Issue(ProjectIdentifier projectIdentifier, IssueIdentifier issueIdentifier)
         => new IssueMenuActionContext(projectIdentifier: projectIdentifier, issueIdentifier: issueIdentifier);
+    
+    public static MeetingMenuActionContext Meeting(string meetingId)
+        => new MeetingMenuActionContext(meetingId: meetingId);
     
 }
 

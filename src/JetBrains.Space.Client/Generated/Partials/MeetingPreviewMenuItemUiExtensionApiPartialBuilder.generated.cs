@@ -27,15 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.AppUserActionExecutionResultAuthCodeFlowRequiredPartialBuilder;
+namespace JetBrains.Space.Client.MeetingPreviewMenuItemUiExtensionApiPartialBuilder;
 
-public static class AppUserActionExecutionResultAuthCodeFlowRequiredPartialExtensions
+public static class MeetingPreviewMenuItemUiExtensionApiPartialExtensions
 {
-    public static Partial<AppUserActionExecutionResultAuthCodeFlowRequired> WithPermissionsToRequest(this Partial<AppUserActionExecutionResultAuthCodeFlowRequired> it)
-        => it.AddFieldName("permissionsToRequest");
+    public static Partial<MeetingPreviewMenuItemUiExtensionApi> WithDisplayName(this Partial<MeetingPreviewMenuItemUiExtensionApi> it)
+        => it.AddFieldName("displayName");
     
-    public static Partial<AppUserActionExecutionResultAuthCodeFlowRequired> WithPermissionsToRequest(this Partial<AppUserActionExecutionResultAuthCodeFlowRequired> it, Func<Partial<AuthCodeFlowPermissionsRequest>, Partial<AuthCodeFlowPermissionsRequest>> partialBuilder)
-        => it.AddFieldName("permissionsToRequest", partialBuilder(new Partial<AuthCodeFlowPermissionsRequest>(it)));
+    public static Partial<MeetingPreviewMenuItemUiExtensionApi> WithDescription(this Partial<MeetingPreviewMenuItemUiExtensionApi> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<MeetingPreviewMenuItemUiExtensionApi> WithMenuItemUniqueCode(this Partial<MeetingPreviewMenuItemUiExtensionApi> it)
+        => it.AddFieldName("menuItemUniqueCode");
     
 }
 

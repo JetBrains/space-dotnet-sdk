@@ -829,7 +829,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task UpdateBoardAsync(BoardIdentifier board, string? name = null, string? description = null, BoardColumns? columns = null, List<string>? memberOwners = null, List<string>? teamOwners = null, CancellationToken cancellationToken = default)
+            public async Task UpdateBoardAsync(BoardIdentifier board, string? name = null, string? description = null, string? swimlaneKey = null, BoardColumns? columns = null, List<string>? memberOwners = null, List<string>? teamOwners = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -838,6 +838,7 @@ public partial class ProjectClient : ISpaceClient
                     { 
                         Name = name,
                         Description = description,
+                        SwimlaneKey = swimlaneKey,
                         Columns = columns,
                         MemberOwners = memberOwners,
                         TeamOwners = teamOwners,

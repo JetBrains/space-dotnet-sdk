@@ -29,32 +29,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class AppUserActionExecutionResultAuthCodeFlowRequired
-     : AppUserActionExecutionResult, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class MeetingMenuActionContext
+     : MenuActionContext, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "AppUserActionExecutionResult.AuthCodeFlowRequired";
+    public  string? ClassName => "MeetingMenuActionContext";
     
-    public AppUserActionExecutionResultAuthCodeFlowRequired() { }
+    public MeetingMenuActionContext() { }
     
-    public AppUserActionExecutionResultAuthCodeFlowRequired(List<AuthCodeFlowPermissionsRequest> permissionsToRequest)
+    public MeetingMenuActionContext(string meetingId)
     {
-        PermissionsToRequest = permissionsToRequest;
+        MeetingId = meetingId;
     }
     
-    private PropertyValue<List<AuthCodeFlowPermissionsRequest>> _permissionsToRequest = new PropertyValue<List<AuthCodeFlowPermissionsRequest>>(nameof(AppUserActionExecutionResultAuthCodeFlowRequired), nameof(PermissionsToRequest), "permissionsToRequest", new List<AuthCodeFlowPermissionsRequest>());
+    private PropertyValue<string> _meetingId = new PropertyValue<string>(nameof(MeetingMenuActionContext), nameof(MeetingId), "meetingId");
     
     [Required]
-    [JsonPropertyName("permissionsToRequest")]
-    public List<AuthCodeFlowPermissionsRequest> PermissionsToRequest
+    [JsonPropertyName("meetingId")]
+    public string MeetingId
     {
-        get => _permissionsToRequest.GetValue(InlineErrors);
-        set => _permissionsToRequest.SetValue(value);
+        get => _meetingId.GetValue(InlineErrors);
+        set => _meetingId.SetValue(value);
     }
 
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _permissionsToRequest.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _meetingId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />
