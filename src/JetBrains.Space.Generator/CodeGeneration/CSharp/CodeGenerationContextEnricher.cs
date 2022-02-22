@@ -43,7 +43,7 @@ public static class CodeGenerationContextEnricher
                             Fields = apiEndpoint.RequestBody.Fields.Select(it => new ApiDtoField { Field = it }).ToList()
                         };
         
-                        context.AddDto(classIdForRequestBody, requestBodyClass);
+                        context.AddDto(classIdForRequestBody, requestBodyClass, isRequestBodyDto: true);
                     }
                 }
             }

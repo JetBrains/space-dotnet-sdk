@@ -36,7 +36,11 @@ public class Indent
         var line = reader.ReadLine();
         while (line != null)
         {
-            builder.AppendLine(ToString() + line.TrimEnd(Environment.NewLine.ToCharArray()));
+            if (!line.StartsWith("#")) // no indent for lines that are a directive
+            {
+                builder.Append(ToString());
+            }
+            builder.AppendLine(line.TrimEnd(Environment.NewLine.ToCharArray()));
             line = reader.ReadLine();
         }
         return builder.ToString();

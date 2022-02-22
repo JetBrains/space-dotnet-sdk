@@ -145,7 +145,7 @@ public class CSharpApiModelDtoGenerator
         // Generate properties for fields
         foreach (var apiDtoField in apiDtoFields)
         {
-            builder.AppendLine(indent.Wrap(GenerateDtoFieldDefinition(typeNameForDto, apiDtoField.Field)));
+            builder.AppendLine(indent.Wrap(GenerateDtoFieldDefinition(apiDto.Id, typeNameForDto, apiDtoField.Field)));
         }
             
         // Implement IPropagatePropertyAccessPath?
@@ -188,7 +188,7 @@ public class CSharpApiModelDtoGenerator
         return apiDtoFields;
     }
 
-    private string GenerateDtoFieldDefinition(string typeNameForDto, ApiField apiField)
+    private string GenerateDtoFieldDefinition(string dtoId, string typeNameForDto, ApiField apiField)
     {
         var indent = new Indent();
         var builder = new StringBuilder();
@@ -257,6 +257,15 @@ public class CSharpApiModelDtoGenerator
         if (!apiField.Optional && !apiField.Type.Nullable)
         {
             builder.AppendLine($"{indent}[Required]");
+        }
+        if (apiField.Optional && _codeGenerationContext.IsRequestBodyDto(dtoId))
+        {
+            // REMARK: This only works well in .NET6+.
+            // Since .NET3.1 will go out of support relatively soon (December 3, 2022 - https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core),
+            // we decided to only add optional request body properties in supported .NET versions.
+            builder.AppendLine($"#if NET6_0_OR_GREATER");
+            builder.AppendLine($"{indent}[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]");
+            builder.AppendLine($"#endif");
         }
         if (apiField.Deprecation != null)
         {

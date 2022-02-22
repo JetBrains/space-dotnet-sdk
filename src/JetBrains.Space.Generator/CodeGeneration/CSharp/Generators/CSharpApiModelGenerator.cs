@@ -1,3 +1,4 @@
+using System.Linq;
 using JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions;
 
 namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators;
@@ -53,7 +54,8 @@ public class CSharpApiModelGenerator
             
         // Partial extensions
         var partialExtensionsGenerator = new CSharpPartialExtensionsGenerator(_codeGenerationContext);
-        foreach (var apiDto in _codeGenerationContext.GetDtos())
+        foreach (var apiDto in _codeGenerationContext.GetDtos()
+                     .Where(dto => !_codeGenerationContext.IsRequestBodyDto(dto.Id)))
         {
             WriteToDocument(clientDocumentWriter, 
                 "Partials/" + apiDto.ToCSharpClassName() + "PartialBuilder.generated.cs",

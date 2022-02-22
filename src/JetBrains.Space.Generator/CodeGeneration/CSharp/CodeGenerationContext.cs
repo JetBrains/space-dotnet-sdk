@@ -11,6 +11,7 @@ public class CodeGenerationContext
     public DeploymentInfo DeploymentInfo { get; }
     private readonly SortedDictionary<string, ApiEnum> _idToEnumMap;
     private readonly SortedDictionary<string, ApiDto> _idToDtoMap;
+    private readonly SortedDictionary<string, bool> _idToIsRequestBodyDtoMap;
     private readonly SortedDictionary<string, ApiUrlParameter> _idToUrlParameterMap;
 
     private CodeGenerationContext(
@@ -24,6 +25,7 @@ public class CodeGenerationContext
         DeploymentInfo = deploymentInfo;
         _idToEnumMap = idToEnumMap;
         _idToDtoMap = idToDtoMap;
+        _idToIsRequestBodyDtoMap = new SortedDictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
         _idToUrlParameterMap = idToUrlParameterMap;
     }
 
@@ -66,7 +68,15 @@ public class CodeGenerationContext
         
     public IEnumerable<ApiDto> GetDtos() => _idToDtoMap.Values;
     public bool TryGetDto(string id, out ApiDto? apiDto) => _idToDtoMap.TryGetValue(id, out apiDto);
-    public void AddDto(string id, ApiDto apiDto) => _idToDtoMap[id] = apiDto;
+
+    public void AddDto(string id, ApiDto apiDto, bool isRequestBodyDto)
+    {
+        _idToDtoMap[id] = apiDto;
+        
+        if (isRequestBodyDto) _idToIsRequestBodyDtoMap[id] = true;
+    }
+    
+    public bool IsRequestBodyDto(string id) => _idToIsRequestBodyDtoMap.TryGetValue(id, out var isRequestBodyDto) && isRequestBodyDto;
         
     public IEnumerable<ApiUrlParameter> GetUrlParameters() => _idToUrlParameterMap.Values;
     public bool TryGetUrlParameter(string id, out ApiUrlParameter? apiUrlParameter) => _idToUrlParameterMap.TryGetValue(id, out apiUrlParameter);
