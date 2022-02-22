@@ -43,6 +43,9 @@ public class ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
     public string? Name
     {
@@ -52,6 +55,9 @@ public class ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest
 
     private PropertyValue<string?> _scope = new PropertyValue<string?>(nameof(ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest), nameof(Scope), "scope");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("scope")]
     public string? Scope
     {
@@ -61,6 +67,9 @@ public class ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest
 
     private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest), nameof(Expires), "expires");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("expires")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? Expires

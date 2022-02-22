@@ -61,6 +61,9 @@ public class CustomFieldsForTypeKeyFieldsPostRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {
@@ -80,6 +83,9 @@ public class CustomFieldsForTypeKeyFieldsPostRequest
 
     private PropertyValue<CFConstraint?> _constraint = new PropertyValue<CFConstraint?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Constraint), "constraint");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("constraint")]
     public CFConstraint? Constraint
     {
@@ -109,6 +115,9 @@ public class CustomFieldsForTypeKeyFieldsPostRequest
 
     private PropertyValue<AccessType?> _access = new PropertyValue<AccessType?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Access), "access");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("access")]
     public AccessType? Access
     {
@@ -128,6 +137,9 @@ public class CustomFieldsForTypeKeyFieldsPostRequest
 
     private PropertyValue<CFEnumValuesModification?> _openEnumValuesModification = new PropertyValue<CFEnumValuesModification?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(OpenEnumValuesModification), "openEnumValuesModification");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("openEnumValuesModification")]
     public CFEnumValuesModification? OpenEnumValuesModification
     {
@@ -137,6 +149,9 @@ public class CustomFieldsForTypeKeyFieldsPostRequest
 
     private PropertyValue<CFCreateParameters?> _cfParameters = new PropertyValue<CFCreateParameters?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(CfParameters), "cfParameters");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("cfParameters")]
     public CFCreateParameters? CfParameters
     {

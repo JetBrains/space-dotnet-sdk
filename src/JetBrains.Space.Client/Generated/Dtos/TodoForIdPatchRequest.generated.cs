@@ -43,6 +43,9 @@ public class TodoForIdPatchRequest
     
     private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(TodoForIdPatchRequest), nameof(Text), "text");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("text")]
     public string? Text
     {
@@ -52,6 +55,9 @@ public class TodoForIdPatchRequest
 
     private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(TodoForIdPatchRequest), nameof(DueDate), "dueDate");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("dueDate")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? DueDate
@@ -62,6 +68,9 @@ public class TodoForIdPatchRequest
 
     private PropertyValue<bool?> _open = new PropertyValue<bool?>(nameof(TodoForIdPatchRequest), nameof(IsOpen), "open");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("open")]
     public bool? IsOpen
     {

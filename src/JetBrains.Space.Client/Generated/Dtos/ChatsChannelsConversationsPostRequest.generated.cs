@@ -52,6 +52,9 @@ public class ChatsChannelsConversationsPostRequest
 
     private PropertyValue<string?> _subject = new PropertyValue<string?>(nameof(ChatsChannelsConversationsPostRequest), nameof(Subject), "subject");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("subject")]
     public string? Subject
     {

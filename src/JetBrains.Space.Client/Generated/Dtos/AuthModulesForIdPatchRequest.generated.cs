@@ -44,6 +44,9 @@ public class AuthModulesForIdPatchRequest
     
     private PropertyValue<string?> _key = new PropertyValue<string?>(nameof(AuthModulesForIdPatchRequest), nameof(Key), "key");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("key")]
     public string? Key
     {
@@ -53,6 +56,9 @@ public class AuthModulesForIdPatchRequest
 
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(AuthModulesForIdPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
     public string? Name
     {
@@ -62,6 +68,9 @@ public class AuthModulesForIdPatchRequest
 
     private PropertyValue<bool?> _enabled = new PropertyValue<bool?>(nameof(AuthModulesForIdPatchRequest), nameof(IsEnabled), "enabled");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("enabled")]
     public bool? IsEnabled
     {
@@ -71,6 +80,9 @@ public class AuthModulesForIdPatchRequest
 
     private PropertyValue<ESAuthModuleSettings?> _settings = new PropertyValue<ESAuthModuleSettings?>(nameof(AuthModulesForIdPatchRequest), nameof(Settings), "settings");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("settings")]
     public ESAuthModuleSettings? Settings
     {

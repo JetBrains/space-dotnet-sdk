@@ -64,6 +64,9 @@ public class ProjectsForProjectCodeReviewsCommitSetReviewPostRequest
 
     private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(Title), "title");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("title")]
     public string? Title
     {
@@ -73,6 +76,9 @@ public class ProjectsForProjectCodeReviewsCommitSetReviewPostRequest
 
     private PropertyValue<List<string>?> _authorProfileIds = new PropertyValue<List<string>?>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(AuthorProfileIds), "authorProfileIds");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("authorProfileIds")]
     public List<string>? AuthorProfileIds
     {

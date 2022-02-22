@@ -58,6 +58,9 @@ public class TeamDirectoryProfilesForProfilePatchRequest
     
     private PropertyValue<string?> _username = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(Username), "username");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("username")]
     public string? Username
     {
@@ -67,6 +70,9 @@ public class TeamDirectoryProfilesForProfilePatchRequest
 
     private PropertyValue<string?> _firstName = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(FirstName), "firstName");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("firstName")]
     public string? FirstName
     {
@@ -76,6 +82,9 @@ public class TeamDirectoryProfilesForProfilePatchRequest
 
     private PropertyValue<string?> _lastName = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(LastName), "lastName");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("lastName")]
     public string? LastName
     {
@@ -85,6 +94,9 @@ public class TeamDirectoryProfilesForProfilePatchRequest
 
     private PropertyValue<List<string>?> _emails = new PropertyValue<List<string>?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(Emails), "emails");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("emails")]
     public List<string>? Emails
     {
@@ -94,6 +106,9 @@ public class TeamDirectoryProfilesForProfilePatchRequest
 
     private PropertyValue<List<string>?> _phones = new PropertyValue<List<string>?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(Phones), "phones");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("phones")]
     public List<string>? Phones
     {
@@ -103,6 +118,9 @@ public class TeamDirectoryProfilesForProfilePatchRequest
 
     private PropertyValue<DateTime?> _birthday = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(Birthday), "birthday");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("birthday")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Birthday
@@ -113,6 +131,9 @@ public class TeamDirectoryProfilesForProfilePatchRequest
 
     private PropertyValue<string?> _about = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(About), "about");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("about")]
     public string? About
     {
@@ -122,6 +143,9 @@ public class TeamDirectoryProfilesForProfilePatchRequest
 
     private PropertyValue<List<string>?> _messengers = new PropertyValue<List<string>?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(Messengers), "messengers");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("messengers")]
     public List<string>? Messengers
     {
@@ -131,6 +155,9 @@ public class TeamDirectoryProfilesForProfilePatchRequest
 
     private PropertyValue<List<string>?> _links = new PropertyValue<List<string>?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(Links), "links");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("links")]
     public List<string>? Links
     {
@@ -140,6 +167,9 @@ public class TeamDirectoryProfilesForProfilePatchRequest
 
     private PropertyValue<bool?> _notAMember = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(IsNotAMember), "notAMember");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("notAMember")]
     public bool? IsNotAMember
     {
@@ -149,6 +179,9 @@ public class TeamDirectoryProfilesForProfilePatchRequest
 
     private PropertyValue<DateTime?> _joined = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(Joined), "joined");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("joined")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Joined
@@ -159,6 +192,9 @@ public class TeamDirectoryProfilesForProfilePatchRequest
 
     private PropertyValue<DateTime?> _left = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(Left), "left");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("left")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Left
@@ -169,6 +205,9 @@ public class TeamDirectoryProfilesForProfilePatchRequest
 
     private PropertyValue<DateTime?> _leftAt = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(LeftAt), "leftAt");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("leftAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? LeftAt
@@ -179,6 +218,9 @@ public class TeamDirectoryProfilesForProfilePatchRequest
 
     private PropertyValue<bool?> _speaksEnglish = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(IsSpeaksEnglish), "speaksEnglish");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("speaksEnglish")]
     public bool? IsSpeaksEnglish
     {
@@ -188,6 +230,9 @@ public class TeamDirectoryProfilesForProfilePatchRequest
 
     private PropertyValue<string?> _pictureAttachmentId = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(PictureAttachmentId), "pictureAttachmentId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("pictureAttachmentId")]
     public string? PictureAttachmentId
     {
@@ -197,6 +242,9 @@ public class TeamDirectoryProfilesForProfilePatchRequest
 
     private PropertyValue<AvatarCropSquare?> _avatarCropSquare = new PropertyValue<AvatarCropSquare?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(AvatarCropSquare), "avatarCropSquare");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("avatarCropSquare")]
     public AvatarCropSquare? AvatarCropSquare
     {
@@ -206,6 +254,9 @@ public class TeamDirectoryProfilesForProfilePatchRequest
 
     private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(CustomFieldValues), "customFieldValues");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("customFieldValues")]
     public List<CustomFieldInputValue>? CustomFieldValues
     {
@@ -215,6 +266,9 @@ public class TeamDirectoryProfilesForProfilePatchRequest
 
     private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(ExternalId), "externalId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("externalId")]
     public string? ExternalId
     {

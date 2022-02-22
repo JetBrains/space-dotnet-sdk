@@ -65,6 +65,9 @@ public class BlogPostRequest
 
     private PropertyValue<List<string>?> _locations = new PropertyValue<List<string>?>(nameof(BlogPostRequest), nameof(Locations), "locations");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("locations")]
     public List<string>? Locations
     {
@@ -74,6 +77,9 @@ public class BlogPostRequest
 
     private PropertyValue<List<string>?> _teams = new PropertyValue<List<string>?>(nameof(BlogPostRequest), nameof(Teams), "teams");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("teams")]
     public List<string>? Teams
     {
@@ -83,6 +89,9 @@ public class BlogPostRequest
 
     private PropertyValue<BlogCalendarEvent?> _event = new PropertyValue<BlogCalendarEvent?>(nameof(BlogPostRequest), nameof(Event), "event");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("event")]
     public BlogCalendarEvent? Event
     {

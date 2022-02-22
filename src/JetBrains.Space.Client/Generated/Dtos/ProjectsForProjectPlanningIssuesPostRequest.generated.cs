@@ -63,6 +63,9 @@ public class ProjectsForProjectPlanningIssuesPostRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {
@@ -72,6 +75,9 @@ public class ProjectsForProjectPlanningIssuesPostRequest
 
     private PropertyValue<ProfileIdentifier?> _assignee = new PropertyValue<ProfileIdentifier?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Assignee), "assignee");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("assignee")]
     public ProfileIdentifier? Assignee
     {
@@ -91,6 +97,9 @@ public class ProjectsForProjectPlanningIssuesPostRequest
 
     private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(DueDate), "dueDate");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("dueDate")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? DueDate
@@ -128,6 +137,9 @@ public class ProjectsForProjectPlanningIssuesPostRequest
 
     private PropertyValue<List<AttachmentIn>?> _attachments = new PropertyValue<List<AttachmentIn>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Attachments), "attachments", new List<AttachmentIn>());
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("attachments")]
     public List<AttachmentIn>? Attachments
     {
@@ -137,6 +149,9 @@ public class ProjectsForProjectPlanningIssuesPostRequest
 
     private PropertyValue<MessageLink?> _fromMessage = new PropertyValue<MessageLink?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(FromMessage), "fromMessage");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("fromMessage")]
     public MessageLink? FromMessage
     {
@@ -146,6 +161,9 @@ public class ProjectsForProjectPlanningIssuesPostRequest
 
     private PropertyValue<List<CustomFieldInputValue>?> _customFields = new PropertyValue<List<CustomFieldInputValue>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(CustomFields), "customFields");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("customFields")]
     public List<CustomFieldInputValue>? CustomFields
     {
@@ -155,6 +173,9 @@ public class ProjectsForProjectPlanningIssuesPostRequest
 
     private PropertyValue<List<string>?> _topics = new PropertyValue<List<string>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Topics), "topics");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("topics")]
     public List<string>? Topics
     {
@@ -164,6 +185,9 @@ public class ProjectsForProjectPlanningIssuesPostRequest
 
     private PropertyValue<List<IssueIdentifier>?> _parents = new PropertyValue<List<IssueIdentifier>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Parents), "parents");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("parents")]
     public List<IssueIdentifier>? Parents
     {

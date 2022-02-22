@@ -67,6 +67,9 @@ public class ProjectsVaultForIdPatchRequest
 
     private PropertyValue<string?> _namespace = new PropertyValue<string?>(nameof(ProjectsVaultForIdPatchRequest), nameof(Namespace), "namespace");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("namespace")]
     public string? Namespace
     {
@@ -76,6 +79,9 @@ public class ProjectsVaultForIdPatchRequest
 
     private PropertyValue<string?> _vaultNamespace = new PropertyValue<string?>(nameof(ProjectsVaultForIdPatchRequest), nameof(VaultNamespace), "vaultNamespace");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("vaultNamespace")]
     public string? VaultNamespace
     {
@@ -105,6 +111,9 @@ public class ProjectsVaultForIdPatchRequest
 
     private PropertyValue<string?> _appRoleSecretIdBase64 = new PropertyValue<string?>(nameof(ProjectsVaultForIdPatchRequest), nameof(AppRoleSecretIdBase64), "appRoleSecretIdBase64");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("appRoleSecretIdBase64")]
     public string? AppRoleSecretIdBase64
     {

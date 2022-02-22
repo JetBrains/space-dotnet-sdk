@@ -90,6 +90,9 @@ public class TeamDirectoryMembershipsPostRequest
 
     private PropertyValue<ProfileIdentifier?> _manager = new PropertyValue<ProfileIdentifier?>(nameof(TeamDirectoryMembershipsPostRequest), nameof(Manager), "manager");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("manager")]
     public ProfileIdentifier? Manager
     {
@@ -99,6 +102,9 @@ public class TeamDirectoryMembershipsPostRequest
 
     private PropertyValue<DateTime?> _activeSince = new PropertyValue<DateTime?>(nameof(TeamDirectoryMembershipsPostRequest), nameof(ActiveSince), "activeSince");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("activeSince")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? ActiveSince
@@ -109,6 +115,9 @@ public class TeamDirectoryMembershipsPostRequest
 
     private PropertyValue<DateTime?> _activeTill = new PropertyValue<DateTime?>(nameof(TeamDirectoryMembershipsPostRequest), nameof(ActiveTill), "activeTill");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("activeTill")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? ActiveTill
@@ -119,6 +128,9 @@ public class TeamDirectoryMembershipsPostRequest
 
     private PropertyValue<string?> _previousMembershipId = new PropertyValue<string?>(nameof(TeamDirectoryMembershipsPostRequest), nameof(PreviousMembershipId), "previousMembershipId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("previousMembershipId")]
     public string? PreviousMembershipId
     {
@@ -137,6 +149,9 @@ public class TeamDirectoryMembershipsPostRequest
 
     private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(TeamDirectoryMembershipsPostRequest), nameof(CustomFieldValues), "customFieldValues");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("customFieldValues")]
     public List<CustomFieldInputValue>? CustomFieldValues
     {

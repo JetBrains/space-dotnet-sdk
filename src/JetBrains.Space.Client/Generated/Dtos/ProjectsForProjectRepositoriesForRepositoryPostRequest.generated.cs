@@ -53,6 +53,9 @@ public class ProjectsForProjectRepositoriesForRepositoryPostRequest
 
     private PropertyValue<string?> _defaultBranch = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(DefaultBranch), "defaultBranch");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("defaultBranch")]
     public string? DefaultBranch
     {

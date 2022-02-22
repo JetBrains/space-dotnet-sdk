@@ -43,6 +43,9 @@ public class TrustedCertificatesForIdPatchRequest
     
     private PropertyValue<string?> _alias = new PropertyValue<string?>(nameof(TrustedCertificatesForIdPatchRequest), nameof(Alias), "alias");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("alias")]
     public string? Alias
     {
@@ -52,6 +55,9 @@ public class TrustedCertificatesForIdPatchRequest
 
     private PropertyValue<string?> _data = new PropertyValue<string?>(nameof(TrustedCertificatesForIdPatchRequest), nameof(Data), "data");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("data")]
     public string? Data
     {
@@ -61,6 +67,9 @@ public class TrustedCertificatesForIdPatchRequest
 
     private PropertyValue<bool?> _archived = new PropertyValue<bool?>(nameof(TrustedCertificatesForIdPatchRequest), nameof(IsArchived), "archived");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("archived")]
     public bool? IsArchived
     {

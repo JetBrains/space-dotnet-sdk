@@ -45,6 +45,9 @@ public class ProjectsPlanningBoardsSprintsForSprintPatchRequest
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsPlanningBoardsSprintsForSprintPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
     public string? Name
     {
@@ -54,6 +57,9 @@ public class ProjectsPlanningBoardsSprintsForSprintPatchRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsPlanningBoardsSprintsForSprintPatchRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {
@@ -63,6 +69,9 @@ public class ProjectsPlanningBoardsSprintsForSprintPatchRequest
 
     private PropertyValue<DateTime?> _from = new PropertyValue<DateTime?>(nameof(ProjectsPlanningBoardsSprintsForSprintPatchRequest), nameof(From), "from");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("from")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? From
@@ -73,6 +82,9 @@ public class ProjectsPlanningBoardsSprintsForSprintPatchRequest
 
     private PropertyValue<DateTime?> _to = new PropertyValue<DateTime?>(nameof(ProjectsPlanningBoardsSprintsForSprintPatchRequest), nameof(To), "to");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("to")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? To
@@ -83,6 +95,9 @@ public class ProjectsPlanningBoardsSprintsForSprintPatchRequest
 
     private PropertyValue<SprintLaunch?> _launch = new PropertyValue<SprintLaunch?>(nameof(ProjectsPlanningBoardsSprintsForSprintPatchRequest), nameof(Launch), "launch");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("launch")]
     public SprintLaunch? Launch
     {

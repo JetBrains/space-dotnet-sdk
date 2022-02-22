@@ -52,6 +52,9 @@ public class ProjectsParamsForIdPatchRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsParamsForIdPatchRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {

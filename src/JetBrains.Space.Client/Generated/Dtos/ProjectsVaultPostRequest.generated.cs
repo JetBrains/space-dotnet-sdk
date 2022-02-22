@@ -78,6 +78,9 @@ public class ProjectsVaultPostRequest
 
     private PropertyValue<string?> _namespace = new PropertyValue<string?>(nameof(ProjectsVaultPostRequest), nameof(Namespace), "namespace");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("namespace")]
     public string? Namespace
     {
@@ -87,6 +90,9 @@ public class ProjectsVaultPostRequest
 
     private PropertyValue<string?> _vaultNamespace = new PropertyValue<string?>(nameof(ProjectsVaultPostRequest), nameof(VaultNamespace), "vaultNamespace");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("vaultNamespace")]
     public string? VaultNamespace
     {

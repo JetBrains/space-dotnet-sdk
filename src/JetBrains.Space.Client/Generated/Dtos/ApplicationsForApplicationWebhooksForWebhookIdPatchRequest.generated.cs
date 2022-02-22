@@ -34,9 +34,9 @@ public class ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
 {
     public ApplicationsForApplicationWebhooksForWebhookIdPatchRequest() { }
     
-    public ApplicationsForApplicationWebhooksForWebhookIdPatchRequest(bool enabled, List<int> acceptedHttpResponseCodes, bool doRetries, string? name = null, string? description = null, ExternalEndpointUpdateDTO? endpoint = null, EndpointAuthUpdateDTO? endpointAuth = null)
+    public ApplicationsForApplicationWebhooksForWebhookIdPatchRequest(List<int> acceptedHttpResponseCodes, string? name = null, bool? enabled = null, bool? doRetries = null, string? description = null, ExternalEndpointUpdateDTO? endpoint = null, EndpointAuthUpdateDTO? endpointAuth = null)
     {
-        Name = (name ?? string.Empty);
+        Name = name;
         Description = description;
         IsEnabled = enabled;
         Endpoint = endpoint;
@@ -45,10 +45,13 @@ public class ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
         IsDoRetries = doRetries;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ApplicationsForApplicationWebhooksForWebhookIdPatchRequest), nameof(Name), "name", string.Empty);
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ApplicationsForApplicationWebhooksForWebhookIdPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
-    public string Name
+    public string? Name
     {
         get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
@@ -56,6 +59,9 @@ public class ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ApplicationsForApplicationWebhooksForWebhookIdPatchRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {
@@ -63,10 +69,13 @@ public class ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(ApplicationsForApplicationWebhooksForWebhookIdPatchRequest), nameof(IsEnabled), "enabled");
+    private PropertyValue<bool?> _enabled = new PropertyValue<bool?>(nameof(ApplicationsForApplicationWebhooksForWebhookIdPatchRequest), nameof(IsEnabled), "enabled");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("enabled")]
-    public bool IsEnabled
+    public bool? IsEnabled
     {
         get => _enabled.GetValue(InlineErrors);
         set => _enabled.SetValue(value);
@@ -74,6 +83,9 @@ public class ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
 
     private PropertyValue<ExternalEndpointUpdateDTO?> _endpoint = new PropertyValue<ExternalEndpointUpdateDTO?>(nameof(ApplicationsForApplicationWebhooksForWebhookIdPatchRequest), nameof(Endpoint), "endpoint");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("endpoint")]
     public ExternalEndpointUpdateDTO? Endpoint
     {
@@ -83,6 +95,9 @@ public class ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
 
     private PropertyValue<EndpointAuthUpdateDTO?> _endpointAuth = new PropertyValue<EndpointAuthUpdateDTO?>(nameof(ApplicationsForApplicationWebhooksForWebhookIdPatchRequest), nameof(EndpointAuth), "endpointAuth");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("endpointAuth")]
     public EndpointAuthUpdateDTO? EndpointAuth
     {
@@ -99,10 +114,13 @@ public class ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
         set => _acceptedHttpResponseCodes.SetValue(value);
     }
 
-    private PropertyValue<bool> _doRetries = new PropertyValue<bool>(nameof(ApplicationsForApplicationWebhooksForWebhookIdPatchRequest), nameof(IsDoRetries), "doRetries");
+    private PropertyValue<bool?> _doRetries = new PropertyValue<bool?>(nameof(ApplicationsForApplicationWebhooksForWebhookIdPatchRequest), nameof(IsDoRetries), "doRetries");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("doRetries")]
-    public bool IsDoRetries
+    public bool? IsDoRetries
     {
         get => _doRetries.GetValue(InlineErrors);
         set => _doRetries.SetValue(value);

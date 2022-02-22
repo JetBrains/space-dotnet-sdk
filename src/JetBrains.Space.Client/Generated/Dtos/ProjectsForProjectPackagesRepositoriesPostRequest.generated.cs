@@ -67,6 +67,9 @@ public class ProjectsForProjectPackagesRepositoriesPostRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {
@@ -106,6 +109,9 @@ public class ProjectsForProjectPackagesRepositoriesPostRequest
 
     private PropertyValue<PackageRepositoryConnection?> _connection = new PropertyValue<PackageRepositoryConnection?>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Connection), "connection");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("connection")]
     public PackageRepositoryConnection? Connection
     {

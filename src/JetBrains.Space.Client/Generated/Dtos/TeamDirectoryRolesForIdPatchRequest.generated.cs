@@ -42,6 +42,9 @@ public class TeamDirectoryRolesForIdPatchRequest
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(TeamDirectoryRolesForIdPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
     public string? Name
     {
@@ -51,6 +54,9 @@ public class TeamDirectoryRolesForIdPatchRequest
 
     private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(TeamDirectoryRolesForIdPatchRequest), nameof(ParentId), "parentId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("parentId")]
     public string? ParentId
     {

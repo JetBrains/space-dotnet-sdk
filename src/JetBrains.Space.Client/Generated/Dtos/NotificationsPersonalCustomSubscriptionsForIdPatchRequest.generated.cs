@@ -44,6 +44,9 @@ public class NotificationsPersonalCustomSubscriptionsForIdPatchRequest
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(NotificationsPersonalCustomSubscriptionsForIdPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
     public string? Name
     {
@@ -53,6 +56,9 @@ public class NotificationsPersonalCustomSubscriptionsForIdPatchRequest
 
     private PropertyValue<bool?> _enabled = new PropertyValue<bool?>(nameof(NotificationsPersonalCustomSubscriptionsForIdPatchRequest), nameof(IsEnabled), "enabled");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("enabled")]
     public bool? IsEnabled
     {
@@ -62,6 +68,9 @@ public class NotificationsPersonalCustomSubscriptionsForIdPatchRequest
 
     private PropertyValue<string?> _feed = new PropertyValue<string?>(nameof(NotificationsPersonalCustomSubscriptionsForIdPatchRequest), nameof(Feed), "feed");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("feed")]
     public string? Feed
     {
@@ -71,6 +80,9 @@ public class NotificationsPersonalCustomSubscriptionsForIdPatchRequest
 
     private PropertyValue<CustomGenericSubscriptionIn?> _subscription = new PropertyValue<CustomGenericSubscriptionIn?>(nameof(NotificationsPersonalCustomSubscriptionsForIdPatchRequest), nameof(Subscription), "subscription");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("subscription")]
     public CustomGenericSubscriptionIn? Subscription
     {

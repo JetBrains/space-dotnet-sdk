@@ -45,6 +45,9 @@ public class TeamDirectoryInvitationsForIdPatchRequest
     
     private PropertyValue<string?> _inviteeEmail = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(InviteeEmail), "inviteeEmail");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("inviteeEmail")]
     public string? InviteeEmail
     {
@@ -54,6 +57,9 @@ public class TeamDirectoryInvitationsForIdPatchRequest
 
     private PropertyValue<string?> _inviteeFirstName = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(InviteeFirstName), "inviteeFirstName");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("inviteeFirstName")]
     public string? InviteeFirstName
     {
@@ -63,6 +69,9 @@ public class TeamDirectoryInvitationsForIdPatchRequest
 
     private PropertyValue<string?> _inviteeLastName = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(InviteeLastName), "inviteeLastName");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("inviteeLastName")]
     public string? InviteeLastName
     {
@@ -72,6 +81,9 @@ public class TeamDirectoryInvitationsForIdPatchRequest
 
     private PropertyValue<string?> _team = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(Team), "team");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("team")]
     public string? Team
     {
@@ -81,6 +93,9 @@ public class TeamDirectoryInvitationsForIdPatchRequest
 
     private PropertyValue<string?> _role = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(Role), "role");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("role")]
     public string? Role
     {

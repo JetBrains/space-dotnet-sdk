@@ -36,7 +36,7 @@ public class TeamDirectoryTeamsForIdPatchRequest
     
     public TeamDirectoryTeamsForIdPatchRequest(string? name = null, string? description = null, List<string>? emails = null, string? parentId = null, string? defaultManager = null, List<CustomFieldInputValue>? customFieldValues = null, string? externalId = null)
     {
-        Name = (name ?? string.Empty);
+        Name = name;
         Description = description;
         Emails = emails;
         ParentId = parentId;
@@ -45,10 +45,13 @@ public class TeamDirectoryTeamsForIdPatchRequest
         ExternalId = externalId;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(Name), "name", string.Empty);
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
-    public string Name
+    public string? Name
     {
         get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
@@ -56,6 +59,9 @@ public class TeamDirectoryTeamsForIdPatchRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {
@@ -65,6 +71,9 @@ public class TeamDirectoryTeamsForIdPatchRequest
 
     private PropertyValue<List<string>?> _emails = new PropertyValue<List<string>?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(Emails), "emails");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("emails")]
     public List<string>? Emails
     {
@@ -74,6 +83,9 @@ public class TeamDirectoryTeamsForIdPatchRequest
 
     private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(ParentId), "parentId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("parentId")]
     public string? ParentId
     {
@@ -83,6 +95,9 @@ public class TeamDirectoryTeamsForIdPatchRequest
 
     private PropertyValue<string?> _defaultManager = new PropertyValue<string?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(DefaultManager), "defaultManager");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("defaultManager")]
     public string? DefaultManager
     {
@@ -92,6 +107,9 @@ public class TeamDirectoryTeamsForIdPatchRequest
 
     private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(CustomFieldValues), "customFieldValues");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("customFieldValues")]
     public List<CustomFieldInputValue>? CustomFieldValues
     {
@@ -101,6 +119,9 @@ public class TeamDirectoryTeamsForIdPatchRequest
 
     private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(TeamDirectoryTeamsForIdPatchRequest), nameof(ExternalId), "externalId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("externalId")]
     public string? ExternalId
     {

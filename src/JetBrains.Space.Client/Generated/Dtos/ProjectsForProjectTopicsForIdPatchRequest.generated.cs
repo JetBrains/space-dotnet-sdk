@@ -36,14 +36,17 @@ public class ProjectsForProjectTopicsForIdPatchRequest
     
     public ProjectsForProjectTopicsForIdPatchRequest(string? name = null, string? parentTopicId = null)
     {
-        Name = (name ?? string.Empty);
+        Name = name;
         ParentTopicId = parentTopicId;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectTopicsForIdPatchRequest), nameof(Name), "name", string.Empty);
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectTopicsForIdPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
-    public string Name
+    public string? Name
     {
         get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
@@ -51,6 +54,9 @@ public class ProjectsForProjectTopicsForIdPatchRequest
 
     private PropertyValue<string?> _parentTopicId = new PropertyValue<string?>(nameof(ProjectsForProjectTopicsForIdPatchRequest), nameof(ParentTopicId), "parentTopicId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("parentTopicId")]
     public string? ParentTopicId
     {

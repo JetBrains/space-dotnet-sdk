@@ -57,6 +57,9 @@ public class TeamDirectoryTeamsPostRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(TeamDirectoryTeamsPostRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {
@@ -66,6 +69,9 @@ public class TeamDirectoryTeamsPostRequest
 
     private PropertyValue<List<string>?> _emails = new PropertyValue<List<string>?>(nameof(TeamDirectoryTeamsPostRequest), nameof(Emails), "emails");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("emails")]
     public List<string>? Emails
     {
@@ -75,6 +81,9 @@ public class TeamDirectoryTeamsPostRequest
 
     private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(TeamDirectoryTeamsPostRequest), nameof(ParentId), "parentId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("parentId")]
     public string? ParentId
     {
@@ -84,6 +93,9 @@ public class TeamDirectoryTeamsPostRequest
 
     private PropertyValue<string?> _defaultManager = new PropertyValue<string?>(nameof(TeamDirectoryTeamsPostRequest), nameof(DefaultManager), "defaultManager");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("defaultManager")]
     public string? DefaultManager
     {
@@ -93,6 +105,9 @@ public class TeamDirectoryTeamsPostRequest
 
     private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(TeamDirectoryTeamsPostRequest), nameof(CustomFieldValues), "customFieldValues");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("customFieldValues")]
     public List<CustomFieldInputValue>? CustomFieldValues
     {
@@ -102,6 +117,9 @@ public class TeamDirectoryTeamsPostRequest
 
     private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(TeamDirectoryTeamsPostRequest), nameof(ExternalId), "externalId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("externalId")]
     public string? ExternalId
     {

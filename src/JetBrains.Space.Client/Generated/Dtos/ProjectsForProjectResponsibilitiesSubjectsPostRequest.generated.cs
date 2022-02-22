@@ -41,6 +41,9 @@ public class ProjectsForProjectResponsibilitiesSubjectsPostRequest
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectResponsibilitiesSubjectsPostRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
     public string? Name
     {

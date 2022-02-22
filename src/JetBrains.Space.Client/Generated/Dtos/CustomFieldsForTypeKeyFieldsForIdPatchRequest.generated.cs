@@ -51,6 +51,9 @@ public class CustomFieldsForTypeKeyFieldsForIdPatchRequest
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
     public string? Name
     {
@@ -60,6 +63,9 @@ public class CustomFieldsForTypeKeyFieldsForIdPatchRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {
@@ -69,6 +75,9 @@ public class CustomFieldsForTypeKeyFieldsForIdPatchRequest
 
     private PropertyValue<CFConstraint?> _constraint = new PropertyValue<CFConstraint?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(Constraint), "constraint");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("constraint")]
     public CFConstraint? Constraint
     {
@@ -78,6 +87,9 @@ public class CustomFieldsForTypeKeyFieldsForIdPatchRequest
 
     private PropertyValue<bool?> _required = new PropertyValue<bool?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(IsRequired), "required");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("required")]
     public bool? IsRequired
     {
@@ -87,6 +99,9 @@ public class CustomFieldsForTypeKeyFieldsForIdPatchRequest
 
     private PropertyValue<bool?> _private = new PropertyValue<bool?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(IsPrivate), "private");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("private")]
     public bool? IsPrivate
     {
@@ -96,6 +111,9 @@ public class CustomFieldsForTypeKeyFieldsForIdPatchRequest
 
     private PropertyValue<AccessType?> _access = new PropertyValue<AccessType?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(Access), "access");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("access")]
     public AccessType? Access
     {
@@ -105,6 +123,9 @@ public class CustomFieldsForTypeKeyFieldsForIdPatchRequest
 
     private PropertyValue<CFInputValue?> _defaultValue = new PropertyValue<CFInputValue?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(DefaultValue), "defaultValue");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("defaultValue")]
     public CFInputValue? DefaultValue
     {
@@ -114,6 +135,9 @@ public class CustomFieldsForTypeKeyFieldsForIdPatchRequest
 
     private PropertyValue<List<EnumValueData>?> _enumValues = new PropertyValue<List<EnumValueData>?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(EnumValues), "enumValues");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [Obsolete("Use cfParameters instead (since 2020-09-07) (will be removed in a future version)")]
     [JsonPropertyName("enumValues")]
     public List<EnumValueData>? EnumValues
@@ -124,6 +148,9 @@ public class CustomFieldsForTypeKeyFieldsForIdPatchRequest
 
     private PropertyValue<CFEnumValuesModification?> _openEnumValuesModification = new PropertyValue<CFEnumValuesModification?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(OpenEnumValuesModification), "openEnumValuesModification");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("openEnumValuesModification")]
     public CFEnumValuesModification? OpenEnumValuesModification
     {
@@ -133,6 +160,9 @@ public class CustomFieldsForTypeKeyFieldsForIdPatchRequest
 
     private PropertyValue<CFUpdateParameters?> _cfParameters = new PropertyValue<CFUpdateParameters?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(CfParameters), "cfParameters");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("cfParameters")]
     public CFUpdateParameters? CfParameters
     {

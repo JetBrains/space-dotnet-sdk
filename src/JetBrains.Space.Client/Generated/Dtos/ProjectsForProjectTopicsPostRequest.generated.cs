@@ -52,6 +52,9 @@ public class ProjectsForProjectTopicsPostRequest
 
     private PropertyValue<string?> _parentTopicId = new PropertyValue<string?>(nameof(ProjectsForProjectTopicsPostRequest), nameof(ParentTopicId), "parentTopicId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("parentTopicId")]
     public string? ParentTopicId
     {

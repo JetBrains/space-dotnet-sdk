@@ -45,6 +45,9 @@ public class TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
     public string? Name
     {
@@ -54,6 +57,9 @@ public class TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest
 
     private PropertyValue<DateTime?> _expiresAt = new PropertyValue<DateTime?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(ExpiresAt), "expiresAt");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("expiresAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? ExpiresAt
@@ -64,6 +70,9 @@ public class TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest
 
     private PropertyValue<int?> _inviteeLimit = new PropertyValue<int?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(InviteeLimit), "inviteeLimit");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("inviteeLimit")]
     public int? InviteeLimit
     {
@@ -73,6 +82,9 @@ public class TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest
 
     private PropertyValue<string?> _team = new PropertyValue<string?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(Team), "team");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("team")]
     public string? Team
     {
@@ -82,6 +94,9 @@ public class TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest
 
     private PropertyValue<string?> _position = new PropertyValue<string?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(Position), "position");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("position")]
     public string? Position
     {

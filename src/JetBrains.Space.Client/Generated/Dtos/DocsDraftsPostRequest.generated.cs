@@ -46,6 +46,9 @@ public class DocsDraftsPostRequest
     
     private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(DocsDraftsPostRequest), nameof(Title), "title");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("title")]
     public string? Title
     {
@@ -55,6 +58,9 @@ public class DocsDraftsPostRequest
 
     private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(DocsDraftsPostRequest), nameof(Text), "text");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("text")]
     public string? Text
     {
@@ -64,6 +70,9 @@ public class DocsDraftsPostRequest
 
     private PropertyValue<long?> _textVersion = new PropertyValue<long?>(nameof(DocsDraftsPostRequest), nameof(TextVersion), "textVersion");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("textVersion")]
     public long? TextVersion
     {
@@ -82,6 +91,9 @@ public class DocsDraftsPostRequest
 
     private PropertyValue<string?> _folder = new PropertyValue<string?>(nameof(DocsDraftsPostRequest), nameof(Folder), "folder");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("folder")]
     public string? Folder
     {
@@ -91,6 +103,9 @@ public class DocsDraftsPostRequest
 
     private PropertyValue<PublicationDetails?> _publicationDetails2 = new PropertyValue<PublicationDetails?>(nameof(DocsDraftsPostRequest), nameof(PublicationDetails2), "publicationDetails2");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("publicationDetails2")]
     public PublicationDetails? PublicationDetails2
     {

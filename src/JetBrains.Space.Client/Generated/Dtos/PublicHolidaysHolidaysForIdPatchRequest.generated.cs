@@ -45,6 +45,9 @@ public class PublicHolidaysHolidaysForIdPatchRequest
     
     private PropertyValue<string?> _calendar = new PropertyValue<string?>(nameof(PublicHolidaysHolidaysForIdPatchRequest), nameof(Calendar), "calendar");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("calendar")]
     public string? Calendar
     {
@@ -54,6 +57,9 @@ public class PublicHolidaysHolidaysForIdPatchRequest
 
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(PublicHolidaysHolidaysForIdPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
     public string? Name
     {
@@ -63,6 +69,9 @@ public class PublicHolidaysHolidaysForIdPatchRequest
 
     private PropertyValue<DateTime?> _date = new PropertyValue<DateTime?>(nameof(PublicHolidaysHolidaysForIdPatchRequest), nameof(Date), "date");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("date")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Date
@@ -73,6 +82,9 @@ public class PublicHolidaysHolidaysForIdPatchRequest
 
     private PropertyValue<bool?> _workingDay = new PropertyValue<bool?>(nameof(PublicHolidaysHolidaysForIdPatchRequest), nameof(IsWorkingDay), "workingDay");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("workingDay")]
     public bool? IsWorkingDay
     {
@@ -82,6 +94,9 @@ public class PublicHolidaysHolidaysForIdPatchRequest
 
     private PropertyValue<bool?> _halfDay = new PropertyValue<bool?>(nameof(PublicHolidaysHolidaysForIdPatchRequest), nameof(IsHalfDay), "halfDay");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("halfDay")]
     public bool? IsHalfDay
     {

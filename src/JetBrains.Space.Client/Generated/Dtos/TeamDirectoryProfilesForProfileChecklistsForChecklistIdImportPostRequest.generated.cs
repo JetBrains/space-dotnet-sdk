@@ -53,6 +53,9 @@ public class TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRe
 
     private PropertyValue<string?> _afterItemId = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileChecklistsForChecklistIdImportPostRequest), nameof(AfterItemId), "afterItemId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("afterItemId")]
     public string? AfterItemId
     {

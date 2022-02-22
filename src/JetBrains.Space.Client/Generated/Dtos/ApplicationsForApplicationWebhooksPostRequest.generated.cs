@@ -57,6 +57,9 @@ public class ApplicationsForApplicationWebhooksPostRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {
@@ -66,6 +69,9 @@ public class ApplicationsForApplicationWebhooksPostRequest
 
     private PropertyValue<EndpointCreateDTO?> _endpoint = new PropertyValue<EndpointCreateDTO?>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(Endpoint), "endpoint");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("endpoint")]
     public EndpointCreateDTO? Endpoint
     {
@@ -75,6 +81,9 @@ public class ApplicationsForApplicationWebhooksPostRequest
 
     private PropertyValue<EndpointAuthCreateDTO?> _endpointAuth = new PropertyValue<EndpointAuthCreateDTO?>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(EndpointAuth), "endpointAuth");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("endpointAuth")]
     public EndpointAuthCreateDTO? EndpointAuth
     {

@@ -36,14 +36,17 @@ public class TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest
     
     public TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest(string? name = null, string? description = null)
     {
-        Name = (name ?? string.Empty);
+        Name = name;
         Description = description;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest), nameof(Name), "name", string.Empty);
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
-    public string Name
+    public string? Name
     {
         get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
@@ -51,6 +54,9 @@ public class TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {

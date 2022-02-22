@@ -56,6 +56,9 @@ public class CalendarsMeetingsForIdPatchRequest
     
     private PropertyValue<string?> _summary = new PropertyValue<string?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Summary), "summary");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("summary")]
     public string? Summary
     {
@@ -65,6 +68,9 @@ public class CalendarsMeetingsForIdPatchRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {
@@ -74,6 +80,9 @@ public class CalendarsMeetingsForIdPatchRequest
 
     private PropertyValue<CalendarEventSpec?> _occurrenceRule = new PropertyValue<CalendarEventSpec?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(OccurrenceRule), "occurrenceRule");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("occurrenceRule")]
     public CalendarEventSpec? OccurrenceRule
     {
@@ -119,6 +128,9 @@ public class CalendarsMeetingsForIdPatchRequest
 
     private PropertyValue<MeetingVisibility?> _visibility = new PropertyValue<MeetingVisibility?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Visibility), "visibility");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("visibility")]
     public MeetingVisibility? Visibility
     {
@@ -128,6 +140,9 @@ public class CalendarsMeetingsForIdPatchRequest
 
     private PropertyValue<MeetingModificationPreference?> _modificationPreference = new PropertyValue<MeetingModificationPreference?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ModificationPreference), "modificationPreference");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("modificationPreference")]
     public MeetingModificationPreference? ModificationPreference
     {
@@ -137,6 +152,9 @@ public class CalendarsMeetingsForIdPatchRequest
 
     private PropertyValue<MeetingJoiningPreference?> _joiningPreference = new PropertyValue<MeetingJoiningPreference?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(JoiningPreference), "joiningPreference");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("joiningPreference")]
     public MeetingJoiningPreference? JoiningPreference
     {
@@ -155,6 +173,9 @@ public class CalendarsMeetingsForIdPatchRequest
 
     private PropertyValue<string?> _organizer = new PropertyValue<string?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Organizer), "organizer");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("organizer")]
     public string? Organizer
     {
@@ -164,6 +185,9 @@ public class CalendarsMeetingsForIdPatchRequest
 
     private PropertyValue<DateTime?> _targetDate = new PropertyValue<DateTime?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(TargetDate), "targetDate");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("targetDate")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? TargetDate
@@ -183,6 +207,9 @@ public class CalendarsMeetingsForIdPatchRequest
 
     private PropertyValue<EventConferenceData?> _conferenceData = new PropertyValue<EventConferenceData?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ConferenceData), "conferenceData");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("conferenceData")]
     public EventConferenceData? ConferenceData
     {
@@ -192,6 +219,9 @@ public class CalendarsMeetingsForIdPatchRequest
 
     private PropertyValue<List<MeetingAttachment>?> _attachments = new PropertyValue<List<MeetingAttachment>?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Attachments), "attachments");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("attachments")]
     public List<MeetingAttachment>? Attachments
     {

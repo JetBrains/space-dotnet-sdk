@@ -228,7 +228,7 @@ public partial class ApplicationClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<ESApp> UpdateApplicationAsync(ApplicationIdentifier application, bool endpointSslVerification, bool hasVerificationToken, bool hasPublicKeySignature, bool hasSigningKey, EndpointAppLevelAuthUpdateType appLevelAuth, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? name = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<ESApp> UpdateApplicationAsync(ApplicationIdentifier application, bool? endpointSslVerification = null, bool? hasVerificationToken = null, bool? hasPublicKeySignature = null, bool? hasSigningKey = null, EndpointAppLevelAuthUpdateType? appLevelAuth = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? name = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
@@ -253,9 +253,9 @@ public partial class ApplicationClient : ISpaceClient
                 IsHasSigningKey = hasSigningKey,
                 AppLevelAuth = appLevelAuth,
                 SslKeystoreAuth = sslKeystoreAuth,
-                BasicAuthUsername = (basicAuthUsername ?? string.Empty),
-                BasicAuthPassword = (basicAuthPassword ?? string.Empty),
-                BearerAuthToken = (bearerAuthToken ?? string.Empty),
+                BasicAuthUsername = basicAuthUsername,
+                BasicAuthPassword = basicAuthPassword,
+                BearerAuthToken = bearerAuthToken,
             }, cancellationToken);
     }
     
@@ -1221,14 +1221,14 @@ public partial class ApplicationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task UpdateWebhookAsync(ApplicationIdentifier application, string webhookId, bool enabled, List<int> acceptedHttpResponseCodes, bool doRetries, string? name = null, string? description = null, ExternalEndpointUpdateDTO? endpoint = null, EndpointAuthUpdateDTO? endpointAuth = null, CancellationToken cancellationToken = default)
+        public async Task UpdateWebhookAsync(ApplicationIdentifier application, string webhookId, List<int> acceptedHttpResponseCodes, string? name = null, bool? enabled = null, bool? doRetries = null, string? description = null, ExternalEndpointUpdateDTO? endpoint = null, EndpointAuthUpdateDTO? endpointAuth = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
             await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{application}/webhooks/{webhookId}{queryParameters.ToQueryString()}", 
                 new ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
                 { 
-                    Name = (name ?? string.Empty),
+                    Name = name,
                     Description = description,
                     IsEnabled = enabled,
                     Endpoint = endpoint,
@@ -1431,7 +1431,7 @@ public partial class ApplicationClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<SubscriptionDTO> UpdateSubscriptionAsync(ApplicationIdentifier application, string webhookId, string subscriptionId, bool enabled, CustomGenericSubscriptionIn subscription, string? name = null, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<SubscriptionDTO> UpdateSubscriptionAsync(ApplicationIdentifier application, string webhookId, string subscriptionId, CustomGenericSubscriptionIn subscription, string? name = null, bool? enabled = null, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubscriptionDTO>()) : Partial<SubscriptionDTO>.Default()).ToString());
@@ -1439,7 +1439,7 @@ public partial class ApplicationClient : ISpaceClient
                 return await _connection.RequestResourceAsync<ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsForSubscriptionIdPatchRequest, SubscriptionDTO>("PATCH", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions/{subscriptionId}{queryParameters.ToQueryString()}", 
                     new ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsForSubscriptionIdPatchRequest
                     { 
-                        Name = (name ?? string.Empty),
+                        Name = name,
                         IsEnabled = enabled,
                         Subscription = subscription,
                     }, cancellationToken);

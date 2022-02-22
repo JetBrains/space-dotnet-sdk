@@ -42,6 +42,9 @@ public class TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPat
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
     public string? Name
     {
@@ -51,6 +54,9 @@ public class TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPat
 
     private PropertyValue<string?> _scope = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest), nameof(Scope), "scope");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("scope")]
     public string? Scope
     {

@@ -85,6 +85,9 @@ public class ProjectsForProjectCodeReviewsMergeRequestsPostRequest
 
     private PropertyValue<List<ReviewerParam>?> _reviewers = new PropertyValue<List<ReviewerParam>?>(nameof(ProjectsForProjectCodeReviewsMergeRequestsPostRequest), nameof(Reviewers), "reviewers");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("reviewers")]
     public List<ReviewerParam>? Reviewers
     {

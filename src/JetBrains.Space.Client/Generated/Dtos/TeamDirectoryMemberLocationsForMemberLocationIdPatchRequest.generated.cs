@@ -43,6 +43,9 @@ public class TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest
     
     private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest), nameof(Location), "location");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("location")]
     public string? Location
     {
@@ -52,6 +55,9 @@ public class TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest
 
     private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest), nameof(Since), "since");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("since")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Since
@@ -62,6 +68,9 @@ public class TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest
 
     private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest), nameof(Till), "till");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("till")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Till

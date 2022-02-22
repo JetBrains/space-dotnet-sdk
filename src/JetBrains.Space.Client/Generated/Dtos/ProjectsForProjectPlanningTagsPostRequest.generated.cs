@@ -42,6 +42,9 @@ public class ProjectsForProjectPlanningTagsPostRequest
     
     private PropertyValue<string?> _parentTagId = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningTagsPostRequest), nameof(ParentTagId), "parentTagId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("parentTagId")]
     public string? ParentTagId
     {

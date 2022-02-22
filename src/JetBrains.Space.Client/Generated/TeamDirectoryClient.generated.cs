@@ -2282,7 +2282,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                 await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/checklists/{checklistId}{queryParameters.ToQueryString()}", 
                     new TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest
                     { 
-                        Name = (name ?? string.Empty),
+                        Name = name,
                         Description = description,
                     }, cancellationToken);
             }
@@ -3300,7 +3300,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             return await _connection.RequestResourceAsync<TeamDirectoryTeamsForIdPatchRequest, TDTeam>("PATCH", $"api/http/team-directory/teams/{id}{queryParameters.ToQueryString()}", 
                 new TeamDirectoryTeamsForIdPatchRequest
                 { 
-                    Name = (name ?? string.Empty),
+                    Name = name,
                     Description = description,
                     Emails = emails,
                     ParentId = parentId,

@@ -86,6 +86,9 @@ public class PublicHolidaysHolidaysPostRequest
 
     private PropertyValue<bool?> _halfDay = new PropertyValue<bool?>(nameof(PublicHolidaysHolidaysPostRequest), nameof(IsHalfDay), "halfDay");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("halfDay")]
     public bool? IsHalfDay
     {

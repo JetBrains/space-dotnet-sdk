@@ -86,6 +86,9 @@ public class AuthModulesForIdSamlMetadataPostRequest
 
     private PropertyValue<SSLKeystore?> _sslKeystore = new PropertyValue<SSLKeystore?>(nameof(AuthModulesForIdSamlMetadataPostRequest), nameof(SslKeystore), "sslKeystore");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("sslKeystore")]
     public SSLKeystore? SslKeystore
     {
@@ -95,6 +98,9 @@ public class AuthModulesForIdSamlMetadataPostRequest
 
     private PropertyValue<string?> _contactProfileId = new PropertyValue<string?>(nameof(AuthModulesForIdSamlMetadataPostRequest), nameof(ContactProfileId), "contactProfileId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("contactProfileId")]
     public string? ContactProfileId
     {

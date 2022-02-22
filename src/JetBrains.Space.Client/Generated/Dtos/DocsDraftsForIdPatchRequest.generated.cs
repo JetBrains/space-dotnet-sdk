@@ -46,6 +46,9 @@ public class DocsDraftsForIdPatchRequest
     
     private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(DocsDraftsForIdPatchRequest), nameof(Title), "title");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("title")]
     public string? Title
     {
@@ -55,6 +58,9 @@ public class DocsDraftsForIdPatchRequest
 
     private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(DocsDraftsForIdPatchRequest), nameof(Text), "text");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("text")]
     public string? Text
     {
@@ -64,6 +70,9 @@ public class DocsDraftsForIdPatchRequest
 
     private PropertyValue<long?> _textVersion = new PropertyValue<long?>(nameof(DocsDraftsForIdPatchRequest), nameof(TextVersion), "textVersion");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("textVersion")]
     public long? TextVersion
     {
@@ -73,6 +82,9 @@ public class DocsDraftsForIdPatchRequest
 
     private PropertyValue<DraftDocumentType?> _type = new PropertyValue<DraftDocumentType?>(nameof(DocsDraftsForIdPatchRequest), nameof(Type), "type");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("type")]
     public DraftDocumentType? Type
     {
@@ -82,6 +94,9 @@ public class DocsDraftsForIdPatchRequest
 
     private PropertyValue<string?> _folder = new PropertyValue<string?>(nameof(DocsDraftsForIdPatchRequest), nameof(Folder), "folder");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("folder")]
     public string? Folder
     {
@@ -91,6 +106,9 @@ public class DocsDraftsForIdPatchRequest
 
     private PropertyValue<PublicationDetails?> _publicationDetails2 = new PropertyValue<PublicationDetails?>(nameof(DocsDraftsForIdPatchRequest), nameof(PublicationDetails2), "publicationDetails2");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("publicationDetails2")]
     public PublicationDetails? PublicationDetails2
     {

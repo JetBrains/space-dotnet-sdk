@@ -43,6 +43,9 @@ public class TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequ
     
     private PropertyValue<DateTime?> _dateStart = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest), nameof(DateStart), "dateStart");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("dateStart")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? DateStart
@@ -53,6 +56,9 @@ public class TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequ
 
     private PropertyValue<DateTime?> _dateEnd = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest), nameof(DateEnd), "dateEnd");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("dateEnd")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? DateEnd

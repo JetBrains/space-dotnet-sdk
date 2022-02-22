@@ -44,6 +44,9 @@ public class ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
     public string? Name
     {
@@ -53,6 +56,9 @@ public class ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {
@@ -62,6 +68,9 @@ public class ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest
 
     private PropertyValue<bool?> _public = new PropertyValue<bool?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(IsPublic), "public");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("public")]
     public bool? IsPublic
     {
@@ -71,6 +80,9 @@ public class ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest
 
     private PropertyValue<ESPackageRepositorySettings?> _settings = new PropertyValue<ESPackageRepositorySettings?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(Settings), "settings");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("settings")]
     public ESPackageRepositorySettings? Settings
     {

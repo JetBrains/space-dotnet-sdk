@@ -36,17 +36,20 @@ public class ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest
     
     public ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest(List<string> topics, string? name = null, string? description = null, string? owner = null, string? tag = null)
     {
-        Name = (name ?? string.Empty);
+        Name = name;
         Description = description;
         Owner = owner;
         Tag = tag;
         Topics = topics;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Name), "name", string.Empty);
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
-    public string Name
+    public string? Name
     {
         get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
@@ -54,6 +57,9 @@ public class ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {
@@ -63,6 +69,9 @@ public class ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest
 
     private PropertyValue<string?> _owner = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Owner), "owner");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("owner")]
     public string? Owner
     {
@@ -72,6 +81,9 @@ public class ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest
 
     private PropertyValue<string?> _tag = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest), nameof(Tag), "tag");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("tag")]
     public string? Tag
     {

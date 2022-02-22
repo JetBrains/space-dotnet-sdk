@@ -41,6 +41,9 @@ public class ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForP
     
     private PropertyValue<string?> _connectionId = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataPutRequest), nameof(ConnectionId), "connectionId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("connectionId")]
     public string? ConnectionId
     {

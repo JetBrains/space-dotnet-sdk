@@ -51,6 +51,9 @@ public class TeamDirectoryProfilesForProfileSettingsPatchRequest
     
     private PropertyValue<DarkTheme?> _darkTheme = new PropertyValue<DarkTheme?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(DarkTheme), "darkTheme");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("darkTheme")]
     public DarkTheme? DarkTheme
     {
@@ -60,6 +63,9 @@ public class TeamDirectoryProfilesForProfileSettingsPatchRequest
 
     private PropertyValue<string?> _themeName = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(ThemeName), "themeName");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("themeName")]
     public string? ThemeName
     {
@@ -69,6 +75,9 @@ public class TeamDirectoryProfilesForProfileSettingsPatchRequest
 
     private PropertyValue<Weekday?> _firstDayOfWeek = new PropertyValue<Weekday?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(FirstDayOfWeek), "firstDayOfWeek");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("firstDayOfWeek")]
     public Weekday? FirstDayOfWeek
     {
@@ -78,6 +87,9 @@ public class TeamDirectoryProfilesForProfileSettingsPatchRequest
 
     private PropertyValue<DraftDocumentType?> _draftType = new PropertyValue<DraftDocumentType?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(DraftType), "draftType");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("draftType")]
     public DraftDocumentType? DraftType
     {
@@ -87,6 +99,9 @@ public class TeamDirectoryProfilesForProfileSettingsPatchRequest
 
     private PropertyValue<TypographySettings?> _typographySettings = new PropertyValue<TypographySettings?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(TypographySettings), "typographySettings");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("typographySettings")]
     public TypographySettings? TypographySettings
     {
@@ -96,6 +111,9 @@ public class TeamDirectoryProfilesForProfileSettingsPatchRequest
 
     private PropertyValue<bool?> _todoFilters = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(IsTodoFilters), "todoFilters");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("todoFilters")]
     public bool? IsTodoFilters
     {
@@ -105,6 +123,9 @@ public class TeamDirectoryProfilesForProfileSettingsPatchRequest
 
     private PropertyValue<string?> _calendarView = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(CalendarView), "calendarView");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("calendarView")]
     public string? CalendarView
     {
@@ -114,6 +135,9 @@ public class TeamDirectoryProfilesForProfileSettingsPatchRequest
 
     private PropertyValue<bool?> _emailNotificationsEnabled = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(IsEmailNotificationsEnabled), "emailNotificationsEnabled");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [Obsolete("Use notification-settings (since 24 Feb 2021) (will be removed in a future version)")]
     [JsonPropertyName("emailNotificationsEnabled")]
     public bool? IsEmailNotificationsEnabled
@@ -124,6 +148,9 @@ public class TeamDirectoryProfilesForProfileSettingsPatchRequest
 
     private PropertyValue<string?> _notificationEmail = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(NotificationEmail), "notificationEmail");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [Obsolete("Use notification-settings (since 24 Feb 2021) (will be removed in a future version)")]
     [JsonPropertyName("notificationEmail")]
     public string? NotificationEmail
@@ -134,6 +161,9 @@ public class TeamDirectoryProfilesForProfileSettingsPatchRequest
 
     private PropertyValue<string?> _preferredLanguage = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(PreferredLanguage), "preferredLanguage");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("preferredLanguage")]
     public string? PreferredLanguage
     {
@@ -143,6 +173,9 @@ public class TeamDirectoryProfilesForProfileSettingsPatchRequest
 
     private PropertyValue<ProjectIdentifier?> _defaultProject = new PropertyValue<ProjectIdentifier?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(DefaultProject), "defaultProject");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("defaultProject")]
     public ProjectIdentifier? DefaultProject
     {

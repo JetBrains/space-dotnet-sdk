@@ -1462,7 +1462,7 @@ public partial class ProjectClient : ISpaceClient
                 await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/checklists/{checklistId}{queryParameters.ToQueryString()}", 
                     new ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest
                     { 
-                        Name = (name ?? string.Empty),
+                        Name = name,
                         Description = description,
                         Owner = owner,
                         Tag = tag,
@@ -1774,10 +1774,10 @@ public partial class ProjectClient : ISpaceClient
                 await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/issues/{issueId}{queryParameters.ToQueryString()}", 
                     new ProjectsForProjectPlanningIssuesForIssueIdPatchRequest
                     { 
-                        Title = (title ?? string.Empty),
+                        Title = title,
                         Description = description,
                         Assignee = assignee,
-                        Status = (status ?? string.Empty),
+                        Status = status,
                         DueDate = dueDate,
                         CustomFields = (customFields ?? new List<CustomFieldInputValue>()),
                         IsNotifySubscribers = notifySubscribers,
@@ -4782,7 +4782,7 @@ public partial class ProjectClient : ISpaceClient
             return await _connection.RequestResourceAsync<ProjectsForProjectTopicsForIdPatchRequest, Topic>("PATCH", $"api/http/projects/{project}/topics/{id}{queryParameters.ToQueryString()}", 
                 new ProjectsForProjectTopicsForIdPatchRequest
                 { 
-                    Name = (name ?? string.Empty),
+                    Name = name,
                     ParentTopicId = parentTopicId,
                 }, cancellationToken);
         }

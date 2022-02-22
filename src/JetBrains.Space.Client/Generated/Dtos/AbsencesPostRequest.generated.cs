@@ -79,6 +79,9 @@ public class AbsencesPostRequest
 
     private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(AbsencesPostRequest), nameof(Location), "location");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("location")]
     public string? Location
     {
@@ -129,6 +132,9 @@ public class AbsencesPostRequest
 
     private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(AbsencesPostRequest), nameof(CustomFieldValues), "customFieldValues");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("customFieldValues")]
     public List<CustomFieldInputValue>? CustomFieldValues
     {

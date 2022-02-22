@@ -63,6 +63,9 @@ public class TeamDirectoryProfilesForProfilePermanentTokensPostRequest
 
     private PropertyValue<DateTime?> _expires = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfilePermanentTokensPostRequest), nameof(Expires), "expires");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("expires")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? Expires

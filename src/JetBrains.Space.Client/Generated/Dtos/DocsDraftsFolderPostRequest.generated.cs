@@ -52,6 +52,9 @@ public class DocsDraftsFolderPostRequest
 
     private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(DocsDraftsFolderPostRequest), nameof(ParentId), "parentId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("parentId")]
     public string? ParentId
     {

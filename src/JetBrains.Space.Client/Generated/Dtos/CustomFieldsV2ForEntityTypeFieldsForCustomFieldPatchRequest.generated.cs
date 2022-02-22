@@ -46,6 +46,9 @@ public class CustomFieldsV2ForEntityTypeFieldsForCustomFieldPatchRequest
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
     public string? Name
     {
@@ -55,6 +58,9 @@ public class CustomFieldsV2ForEntityTypeFieldsForCustomFieldPatchRequest
 
     private PropertyValue<CFUpdateParameters?> _parameters = new PropertyValue<CFUpdateParameters?>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldPatchRequest), nameof(Parameters), "parameters");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("parameters")]
     public CFUpdateParameters? Parameters
     {
@@ -64,6 +70,9 @@ public class CustomFieldsV2ForEntityTypeFieldsForCustomFieldPatchRequest
 
     private PropertyValue<bool?> _required = new PropertyValue<bool?>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldPatchRequest), nameof(IsRequired), "required");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("required")]
     public bool? IsRequired
     {
@@ -73,6 +82,9 @@ public class CustomFieldsV2ForEntityTypeFieldsForCustomFieldPatchRequest
 
     private PropertyValue<CFInputValue?> _defaultValue = new PropertyValue<CFInputValue?>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldPatchRequest), nameof(DefaultValue), "defaultValue");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("defaultValue")]
     public CFInputValue? DefaultValue
     {
@@ -82,6 +94,9 @@ public class CustomFieldsV2ForEntityTypeFieldsForCustomFieldPatchRequest
 
     private PropertyValue<CFConstraint?> _constraint = new PropertyValue<CFConstraint?>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldPatchRequest), nameof(Constraint), "constraint");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("constraint")]
     public CFConstraint? Constraint
     {
@@ -91,6 +106,9 @@ public class CustomFieldsV2ForEntityTypeFieldsForCustomFieldPatchRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CustomFieldsV2ForEntityTypeFieldsForCustomFieldPatchRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {

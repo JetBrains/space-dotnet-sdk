@@ -78,6 +78,9 @@ public class CustomFieldsV2ForEntityTypeFieldsPostRequest
 
     private PropertyValue<CFCreateParameters?> _parameters = new PropertyValue<CFCreateParameters?>(nameof(CustomFieldsV2ForEntityTypeFieldsPostRequest), nameof(Parameters), "parameters");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("parameters")]
     public CFCreateParameters? Parameters
     {
@@ -96,6 +99,9 @@ public class CustomFieldsV2ForEntityTypeFieldsPostRequest
 
     private PropertyValue<CFInputValue?> _defaultValue = new PropertyValue<CFInputValue?>(nameof(CustomFieldsV2ForEntityTypeFieldsPostRequest), nameof(DefaultValue), "defaultValue");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("defaultValue")]
     public CFInputValue? DefaultValue
     {
@@ -105,6 +111,9 @@ public class CustomFieldsV2ForEntityTypeFieldsPostRequest
 
     private PropertyValue<CFConstraint?> _constraint = new PropertyValue<CFConstraint?>(nameof(CustomFieldsV2ForEntityTypeFieldsPostRequest), nameof(Constraint), "constraint");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("constraint")]
     public CFConstraint? Constraint
     {
@@ -114,6 +123,9 @@ public class CustomFieldsV2ForEntityTypeFieldsPostRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CustomFieldsV2ForEntityTypeFieldsPostRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {
@@ -123,6 +135,9 @@ public class CustomFieldsV2ForEntityTypeFieldsPostRequest
 
     private PropertyValue<int?> _order = new PropertyValue<int?>(nameof(CustomFieldsV2ForEntityTypeFieldsPostRequest), nameof(Order), "order");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("order")]
     public int? Order
     {

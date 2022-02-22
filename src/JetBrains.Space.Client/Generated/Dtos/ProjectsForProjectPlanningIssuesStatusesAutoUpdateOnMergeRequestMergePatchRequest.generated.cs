@@ -41,6 +41,9 @@ public class ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMer
     
     private PropertyValue<string?> _statusId = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest), nameof(StatusId), "statusId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("statusId")]
     public string? StatusId
     {

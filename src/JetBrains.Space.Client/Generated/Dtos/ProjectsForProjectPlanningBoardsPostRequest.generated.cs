@@ -52,6 +52,9 @@ public class ProjectsForProjectPlanningBoardsPostRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningBoardsPostRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {

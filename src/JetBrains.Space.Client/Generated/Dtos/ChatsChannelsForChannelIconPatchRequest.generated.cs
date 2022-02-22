@@ -41,6 +41,9 @@ public class ChatsChannelsForChannelIconPatchRequest
     
     private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(ChatsChannelsForChannelIconPatchRequest), nameof(Icon), "icon");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("icon")]
     public string? Icon
     {

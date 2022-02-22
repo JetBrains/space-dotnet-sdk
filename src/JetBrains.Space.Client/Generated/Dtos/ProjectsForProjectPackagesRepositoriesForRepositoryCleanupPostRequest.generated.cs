@@ -41,6 +41,9 @@ public class ProjectsForProjectPackagesRepositoriesForRepositoryCleanupPostReque
     
     private PropertyValue<RetentionPolicyParams?> _retentionPolicyParams = new PropertyValue<RetentionPolicyParams?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryCleanupPostRequest), nameof(RetentionPolicyParams), "retentionPolicyParams");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("retentionPolicyParams")]
     public RetentionPolicyParams? RetentionPolicyParams
     {

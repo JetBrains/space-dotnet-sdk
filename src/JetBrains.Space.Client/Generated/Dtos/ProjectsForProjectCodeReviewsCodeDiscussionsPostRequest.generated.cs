@@ -59,6 +59,9 @@ public class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
 
     private PropertyValue<DiffContext?> _diffContext = new PropertyValue<DiffContext?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(DiffContext), "diffContext");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("diffContext")]
     public DiffContext? DiffContext
     {
@@ -88,6 +91,9 @@ public class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
 
     private PropertyValue<string?> _filename = new PropertyValue<string?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Filename), "filename");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("filename")]
     public string? Filename
     {
@@ -97,6 +103,9 @@ public class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
 
     private PropertyValue<int?> _line = new PropertyValue<int?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Line), "line");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("line")]
     public int? Line
     {
@@ -106,6 +115,9 @@ public class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
 
     private PropertyValue<int?> _oldLine = new PropertyValue<int?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(OldLine), "oldLine");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("oldLine")]
     public int? OldLine
     {
@@ -124,6 +136,9 @@ public class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
 
     private PropertyValue<ReviewIdentifier?> _reviewId = new PropertyValue<ReviewIdentifier?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(ReviewId), "reviewId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("reviewId")]
     public ReviewIdentifier? ReviewId
     {

@@ -34,26 +34,32 @@ public class ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsForSubsc
 {
     public ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsForSubscriptionIdPatchRequest() { }
     
-    public ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsForSubscriptionIdPatchRequest(bool enabled, CustomGenericSubscriptionIn subscription, string? name = null)
+    public ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsForSubscriptionIdPatchRequest(CustomGenericSubscriptionIn subscription, string? name = null, bool? enabled = null)
     {
-        Name = (name ?? string.Empty);
+        Name = name;
         IsEnabled = enabled;
         Subscription = subscription;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsForSubscriptionIdPatchRequest), nameof(Name), "name", string.Empty);
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsForSubscriptionIdPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
-    public string Name
+    public string? Name
     {
         get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsForSubscriptionIdPatchRequest), nameof(IsEnabled), "enabled");
+    private PropertyValue<bool?> _enabled = new PropertyValue<bool?>(nameof(ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsForSubscriptionIdPatchRequest), nameof(IsEnabled), "enabled");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("enabled")]
-    public bool IsEnabled
+    public bool? IsEnabled
     {
         get => _enabled.GetValue(InlineErrors);
         set => _enabled.SetValue(value);

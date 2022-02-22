@@ -34,7 +34,7 @@ public class ApplicationsForApplicationPatchRequest
 {
     public ApplicationsForApplicationPatchRequest() { }
     
-    public ApplicationsForApplicationPatchRequest(bool endpointSslVerification, bool hasVerificationToken, bool hasPublicKeySignature, bool hasSigningKey, EndpointAppLevelAuthUpdateType appLevelAuth, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? name = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? sslKeystoreAuth = null)
+    public ApplicationsForApplicationPatchRequest(bool? endpointSslVerification = null, bool? hasVerificationToken = null, bool? hasPublicKeySignature = null, bool? hasSigningKey = null, EndpointAppLevelAuthUpdateType? appLevelAuth = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? name = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? sslKeystoreAuth = null)
     {
         Name = name;
         PictureAttachmentId = pictureAttachmentId;
@@ -53,13 +53,16 @@ public class ApplicationsForApplicationPatchRequest
         IsHasSigningKey = hasSigningKey;
         AppLevelAuth = appLevelAuth;
         SslKeystoreAuth = sslKeystoreAuth;
-        BasicAuthUsername = (basicAuthUsername ?? string.Empty);
-        BasicAuthPassword = (basicAuthPassword ?? string.Empty);
-        BearerAuthToken = (bearerAuthToken ?? string.Empty);
+        BasicAuthUsername = basicAuthUsername;
+        BasicAuthPassword = basicAuthPassword;
+        BearerAuthToken = bearerAuthToken;
     }
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
     public string? Name
     {
@@ -69,6 +72,9 @@ public class ApplicationsForApplicationPatchRequest
 
     private PropertyValue<string?> _pictureAttachmentId = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(PictureAttachmentId), "pictureAttachmentId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("pictureAttachmentId")]
     public string? PictureAttachmentId
     {
@@ -78,6 +84,9 @@ public class ApplicationsForApplicationPatchRequest
 
     private PropertyValue<string?> _defaultExternalPicture = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(DefaultExternalPicture), "defaultExternalPicture");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("defaultExternalPicture")]
     public string? DefaultExternalPicture
     {
@@ -87,6 +96,9 @@ public class ApplicationsForApplicationPatchRequest
 
     private PropertyValue<string?> _clientSecret = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(ClientSecret), "clientSecret");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("clientSecret")]
     public string? ClientSecret
     {
@@ -96,6 +108,9 @@ public class ApplicationsForApplicationPatchRequest
 
     private PropertyValue<bool?> _clientCredentialsFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsClientCredentialsFlowEnabled), "clientCredentialsFlowEnabled");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("clientCredentialsFlowEnabled")]
     public bool? IsClientCredentialsFlowEnabled
     {
@@ -105,6 +120,9 @@ public class ApplicationsForApplicationPatchRequest
 
     private PropertyValue<bool?> _codeFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsCodeFlowEnabled), "codeFlowEnabled");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("codeFlowEnabled")]
     public bool? IsCodeFlowEnabled
     {
@@ -114,6 +132,9 @@ public class ApplicationsForApplicationPatchRequest
 
     private PropertyValue<string?> _codeFlowRedirectURIs = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(CodeFlowRedirectURIs), "codeFlowRedirectURIs");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("codeFlowRedirectURIs")]
     public string? CodeFlowRedirectURIs
     {
@@ -123,6 +144,9 @@ public class ApplicationsForApplicationPatchRequest
 
     private PropertyValue<bool?> _pkceRequired = new PropertyValue<bool?>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsPkceRequired), "pkceRequired");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("pkceRequired")]
     public bool? IsPkceRequired
     {
@@ -132,6 +156,9 @@ public class ApplicationsForApplicationPatchRequest
 
     private PropertyValue<bool?> _implicitFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsImplicitFlowEnabled), "implicitFlowEnabled");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("implicitFlowEnabled")]
     public bool? IsImplicitFlowEnabled
     {
@@ -141,6 +168,9 @@ public class ApplicationsForApplicationPatchRequest
 
     private PropertyValue<string?> _implicitFlowRedirectURIs = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(ImplicitFlowRedirectURIs), "implicitFlowRedirectURIs");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("implicitFlowRedirectURIs")]
     public string? ImplicitFlowRedirectURIs
     {
@@ -150,6 +180,9 @@ public class ApplicationsForApplicationPatchRequest
 
     private PropertyValue<string?> _endpointUri = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(EndpointUri), "endpointUri");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("endpointUri")]
     public string? EndpointUri
     {
@@ -157,49 +190,64 @@ public class ApplicationsForApplicationPatchRequest
         set => _endpointUri.SetValue(value);
     }
 
-    private PropertyValue<bool> _endpointSslVerification = new PropertyValue<bool>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsEndpointSslVerification), "endpointSslVerification");
+    private PropertyValue<bool?> _endpointSslVerification = new PropertyValue<bool?>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsEndpointSslVerification), "endpointSslVerification");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("endpointSslVerification")]
-    public bool IsEndpointSslVerification
+    public bool? IsEndpointSslVerification
     {
         get => _endpointSslVerification.GetValue(InlineErrors);
         set => _endpointSslVerification.SetValue(value);
     }
 
-    private PropertyValue<bool> _hasVerificationToken = new PropertyValue<bool>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsHasVerificationToken), "hasVerificationToken");
+    private PropertyValue<bool?> _hasVerificationToken = new PropertyValue<bool?>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsHasVerificationToken), "hasVerificationToken");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [Obsolete("VerificationToken is an obsolete auth method - use it to turn it off (since 2021-09-02) (will be removed in a future version)")]
     [JsonPropertyName("hasVerificationToken")]
-    public bool IsHasVerificationToken
+    public bool? IsHasVerificationToken
     {
         get => _hasVerificationToken.GetValue(InlineErrors);
         set => _hasVerificationToken.SetValue(value);
     }
 
-    private PropertyValue<bool> _hasPublicKeySignature = new PropertyValue<bool>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsHasPublicKeySignature), "hasPublicKeySignature");
+    private PropertyValue<bool?> _hasPublicKeySignature = new PropertyValue<bool?>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsHasPublicKeySignature), "hasPublicKeySignature");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
     [JsonPropertyName("hasPublicKeySignature")]
-    public bool IsHasPublicKeySignature
+    public bool? IsHasPublicKeySignature
     {
         get => _hasPublicKeySignature.GetValue(InlineErrors);
         set => _hasPublicKeySignature.SetValue(value);
     }
 
-    private PropertyValue<bool> _hasSigningKey = new PropertyValue<bool>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsHasSigningKey), "hasSigningKey");
+    private PropertyValue<bool?> _hasSigningKey = new PropertyValue<bool?>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsHasSigningKey), "hasSigningKey");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
     [JsonPropertyName("hasSigningKey")]
-    public bool IsHasSigningKey
+    public bool? IsHasSigningKey
     {
         get => _hasSigningKey.GetValue(InlineErrors);
         set => _hasSigningKey.SetValue(value);
     }
 
-    private PropertyValue<EndpointAppLevelAuthUpdateType> _appLevelAuth = new PropertyValue<EndpointAppLevelAuthUpdateType>(nameof(ApplicationsForApplicationPatchRequest), nameof(AppLevelAuth), "appLevelAuth");
+    private PropertyValue<EndpointAppLevelAuthUpdateType?> _appLevelAuth = new PropertyValue<EndpointAppLevelAuthUpdateType?>(nameof(ApplicationsForApplicationPatchRequest), nameof(AppLevelAuth), "appLevelAuth");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("appLevelAuth")]
-    public EndpointAppLevelAuthUpdateType AppLevelAuth
+    public EndpointAppLevelAuthUpdateType? AppLevelAuth
     {
         get => _appLevelAuth.GetValue(InlineErrors);
         set => _appLevelAuth.SetValue(value);
@@ -207,6 +255,9 @@ public class ApplicationsForApplicationPatchRequest
 
     private PropertyValue<string?> _sslKeystoreAuth = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(SslKeystoreAuth), "sslKeystoreAuth");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("sslKeystoreAuth")]
     public string? SslKeystoreAuth
     {
@@ -214,28 +265,37 @@ public class ApplicationsForApplicationPatchRequest
         set => _sslKeystoreAuth.SetValue(value);
     }
 
-    private PropertyValue<string> _basicAuthUsername = new PropertyValue<string>(nameof(ApplicationsForApplicationPatchRequest), nameof(BasicAuthUsername), "basicAuthUsername", string.Empty);
+    private PropertyValue<string?> _basicAuthUsername = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(BasicAuthUsername), "basicAuthUsername");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("basicAuthUsername")]
-    public string BasicAuthUsername
+    public string? BasicAuthUsername
     {
         get => _basicAuthUsername.GetValue(InlineErrors);
         set => _basicAuthUsername.SetValue(value);
     }
 
-    private PropertyValue<string> _basicAuthPassword = new PropertyValue<string>(nameof(ApplicationsForApplicationPatchRequest), nameof(BasicAuthPassword), "basicAuthPassword", string.Empty);
+    private PropertyValue<string?> _basicAuthPassword = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(BasicAuthPassword), "basicAuthPassword");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("basicAuthPassword")]
-    public string BasicAuthPassword
+    public string? BasicAuthPassword
     {
         get => _basicAuthPassword.GetValue(InlineErrors);
         set => _basicAuthPassword.SetValue(value);
     }
 
-    private PropertyValue<string> _bearerAuthToken = new PropertyValue<string>(nameof(ApplicationsForApplicationPatchRequest), nameof(BearerAuthToken), "bearerAuthToken", string.Empty);
+    private PropertyValue<string?> _bearerAuthToken = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(BearerAuthToken), "bearerAuthToken");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("bearerAuthToken")]
-    public string BearerAuthToken
+    public string? BearerAuthToken
     {
         get => _bearerAuthToken.GetValue(InlineErrors);
         set => _bearerAuthToken.SetValue(value);

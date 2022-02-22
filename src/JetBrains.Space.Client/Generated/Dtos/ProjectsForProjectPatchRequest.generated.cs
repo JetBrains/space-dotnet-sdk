@@ -46,6 +46,9 @@ public class ProjectsForProjectPatchRequest
     
     private PropertyValue<ProjectKey?> _key = new PropertyValue<ProjectKey?>(nameof(ProjectsForProjectPatchRequest), nameof(Key), "key");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("key")]
     public ProjectKey? Key
     {
@@ -55,6 +58,9 @@ public class ProjectsForProjectPatchRequest
 
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
     public string? Name
     {
@@ -64,6 +70,9 @@ public class ProjectsForProjectPatchRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPatchRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {
@@ -73,6 +82,9 @@ public class ProjectsForProjectPatchRequest
 
     private PropertyValue<bool?> _private = new PropertyValue<bool?>(nameof(ProjectsForProjectPatchRequest), nameof(IsPrivate), "private");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("private")]
     public bool? IsPrivate
     {
@@ -82,6 +94,9 @@ public class ProjectsForProjectPatchRequest
 
     private PropertyValue<List<string>?> _tags = new PropertyValue<List<string>?>(nameof(ProjectsForProjectPatchRequest), nameof(Tags), "tags");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("tags")]
     public List<string>? Tags
     {
@@ -91,6 +106,9 @@ public class ProjectsForProjectPatchRequest
 
     private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(ProjectsForProjectPatchRequest), nameof(Icon), "icon");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("icon")]
     public string? Icon
     {

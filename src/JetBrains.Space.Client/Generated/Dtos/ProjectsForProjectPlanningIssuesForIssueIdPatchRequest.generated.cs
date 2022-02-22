@@ -36,19 +36,22 @@ public class ProjectsForProjectPlanningIssuesForIssueIdPatchRequest
     
     public ProjectsForProjectPlanningIssuesForIssueIdPatchRequest(string? title = null, string? status = null, List<CustomFieldInputValue>? customFields = null, bool notifySubscribers = true, string? description = null, string? assignee = null, DateTime? dueDate = null)
     {
-        Title = (title ?? string.Empty);
+        Title = title;
         Description = description;
         Assignee = assignee;
-        Status = (status ?? string.Empty);
+        Status = status;
         DueDate = dueDate;
         CustomFields = (customFields ?? new List<CustomFieldInputValue>());
         IsNotifySubscribers = notifySubscribers;
     }
     
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Title), "title", string.Empty);
+    private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Title), "title");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("title")]
-    public string Title
+    public string? Title
     {
         get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
@@ -56,6 +59,9 @@ public class ProjectsForProjectPlanningIssuesForIssueIdPatchRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {
@@ -65,6 +71,9 @@ public class ProjectsForProjectPlanningIssuesForIssueIdPatchRequest
 
     private PropertyValue<string?> _assignee = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Assignee), "assignee");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("assignee")]
     public string? Assignee
     {
@@ -72,10 +81,13 @@ public class ProjectsForProjectPlanningIssuesForIssueIdPatchRequest
         set => _assignee.SetValue(value);
     }
 
-    private PropertyValue<string> _status = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Status), "status", string.Empty);
+    private PropertyValue<string?> _status = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Status), "status");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("status")]
-    public string Status
+    public string? Status
     {
         get => _status.GetValue(InlineErrors);
         set => _status.SetValue(value);
@@ -83,6 +95,9 @@ public class ProjectsForProjectPlanningIssuesForIssueIdPatchRequest
 
     private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(DueDate), "dueDate");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("dueDate")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? DueDate

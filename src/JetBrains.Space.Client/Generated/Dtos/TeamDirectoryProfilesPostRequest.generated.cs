@@ -108,6 +108,9 @@ public class TeamDirectoryProfilesPostRequest
 
     private PropertyValue<DateTime?> _birthday = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Birthday), "birthday");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("birthday")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Birthday
@@ -118,6 +121,9 @@ public class TeamDirectoryProfilesPostRequest
 
     private PropertyValue<string?> _about = new PropertyValue<string?>(nameof(TeamDirectoryProfilesPostRequest), nameof(About), "about");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("about")]
     public string? About
     {
@@ -154,6 +160,9 @@ public class TeamDirectoryProfilesPostRequest
 
     private PropertyValue<DateTime?> _joined = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Joined), "joined");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("joined")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Joined
@@ -164,6 +173,9 @@ public class TeamDirectoryProfilesPostRequest
 
     private PropertyValue<DateTime?> _left = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Left), "left");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("left")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Left
@@ -174,6 +186,9 @@ public class TeamDirectoryProfilesPostRequest
 
     private PropertyValue<DateTime?> _leftAt = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(LeftAt), "leftAt");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("leftAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? LeftAt
@@ -184,6 +199,9 @@ public class TeamDirectoryProfilesPostRequest
 
     private PropertyValue<bool?> _speaksEnglish = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesPostRequest), nameof(IsSpeaksEnglish), "speaksEnglish");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("speaksEnglish")]
     public bool? IsSpeaksEnglish
     {
@@ -193,6 +211,9 @@ public class TeamDirectoryProfilesPostRequest
 
     private PropertyValue<string?> _pictureAttachmentId = new PropertyValue<string?>(nameof(TeamDirectoryProfilesPostRequest), nameof(PictureAttachmentId), "pictureAttachmentId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("pictureAttachmentId")]
     public string? PictureAttachmentId
     {
@@ -202,6 +223,9 @@ public class TeamDirectoryProfilesPostRequest
 
     private PropertyValue<AvatarCropSquare?> _avatarCropSquare = new PropertyValue<AvatarCropSquare?>(nameof(TeamDirectoryProfilesPostRequest), nameof(AvatarCropSquare), "avatarCropSquare");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("avatarCropSquare")]
     public AvatarCropSquare? AvatarCropSquare
     {
@@ -220,6 +244,9 @@ public class TeamDirectoryProfilesPostRequest
 
     private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(TeamDirectoryProfilesPostRequest), nameof(ExternalId), "externalId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("externalId")]
     public string? ExternalId
     {
@@ -229,6 +256,9 @@ public class TeamDirectoryProfilesPostRequest
 
     private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Location), "location");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("location")]
     public string? Location
     {
@@ -238,6 +268,9 @@ public class TeamDirectoryProfilesPostRequest
 
     private PropertyValue<bool?> _external = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesPostRequest), nameof(IsExternal), "external");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("external")]
     public bool? IsExternal
     {

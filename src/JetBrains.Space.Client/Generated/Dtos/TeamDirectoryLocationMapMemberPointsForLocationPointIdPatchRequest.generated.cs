@@ -42,6 +42,9 @@ public class TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest
     
     private PropertyValue<int?> _x = new PropertyValue<int?>(nameof(TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest), nameof(X), "x");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("x")]
     public int? X
     {
@@ -51,6 +54,9 @@ public class TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest
 
     private PropertyValue<int?> _y = new PropertyValue<int?>(nameof(TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest), nameof(Y), "y");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("y")]
     public int? Y
     {

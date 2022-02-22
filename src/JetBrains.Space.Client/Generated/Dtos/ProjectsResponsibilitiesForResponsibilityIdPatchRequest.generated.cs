@@ -52,6 +52,9 @@ public class ProjectsResponsibilitiesForResponsibilityIdPatchRequest
 
     private PropertyValue<string?> _notes = new PropertyValue<string?>(nameof(ProjectsResponsibilitiesForResponsibilityIdPatchRequest), nameof(Notes), "notes");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("notes")]
     public string? Notes
     {

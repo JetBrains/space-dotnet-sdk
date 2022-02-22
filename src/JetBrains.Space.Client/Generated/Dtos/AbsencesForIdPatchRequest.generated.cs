@@ -49,6 +49,9 @@ public class AbsencesForIdPatchRequest
     
     private PropertyValue<string?> _member = new PropertyValue<string?>(nameof(AbsencesForIdPatchRequest), nameof(Member), "member");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("member")]
     public string? Member
     {
@@ -58,6 +61,9 @@ public class AbsencesForIdPatchRequest
 
     private PropertyValue<string?> _reason = new PropertyValue<string?>(nameof(AbsencesForIdPatchRequest), nameof(Reason), "reason");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("reason")]
     public string? Reason
     {
@@ -67,6 +73,9 @@ public class AbsencesForIdPatchRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(AbsencesForIdPatchRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {
@@ -76,6 +85,9 @@ public class AbsencesForIdPatchRequest
 
     private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(AbsencesForIdPatchRequest), nameof(Location), "location");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("location")]
     public string? Location
     {
@@ -85,6 +97,9 @@ public class AbsencesForIdPatchRequest
 
     private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(AbsencesForIdPatchRequest), nameof(Since), "since");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("since")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Since
@@ -95,6 +110,9 @@ public class AbsencesForIdPatchRequest
 
     private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(AbsencesForIdPatchRequest), nameof(Till), "till");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("till")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Till
@@ -115,6 +133,9 @@ public class AbsencesForIdPatchRequest
 
     private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(AbsencesForIdPatchRequest), nameof(Icon), "icon");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("icon")]
     public string? Icon
     {
@@ -124,6 +145,9 @@ public class AbsencesForIdPatchRequest
 
     private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(AbsencesForIdPatchRequest), nameof(CustomFieldValues), "customFieldValues");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("customFieldValues")]
     public List<CustomFieldInputValue>? CustomFieldValues
     {

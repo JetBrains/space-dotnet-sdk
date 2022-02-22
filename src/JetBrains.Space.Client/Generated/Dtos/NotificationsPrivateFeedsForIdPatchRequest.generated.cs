@@ -43,6 +43,9 @@ public class NotificationsPrivateFeedsForIdPatchRequest
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(NotificationsPrivateFeedsForIdPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
     public string? Name
     {
@@ -52,6 +55,9 @@ public class NotificationsPrivateFeedsForIdPatchRequest
 
     private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(NotificationsPrivateFeedsForIdPatchRequest), nameof(Icon), "icon");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("icon")]
     public string? Icon
     {
@@ -61,6 +67,9 @@ public class NotificationsPrivateFeedsForIdPatchRequest
 
     private PropertyValue<PrivateFeedColor?> _color = new PropertyValue<PrivateFeedColor?>(nameof(NotificationsPrivateFeedsForIdPatchRequest), nameof(Color), "color");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("color")]
     public PrivateFeedColor? Color
     {

@@ -41,6 +41,9 @@ public class ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForPr
     
     private PropertyValue<string?> _role = new PropertyValue<string?>(nameof(ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdPostRequest), nameof(Role), "role");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("role")]
     public string? Role
     {

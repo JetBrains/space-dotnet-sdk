@@ -76,6 +76,9 @@ public class ChatsMessagesEditMessagePostRequest
 
     private PropertyValue<List<AttachmentIn>?> _attachments = new PropertyValue<List<AttachmentIn>?>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Attachments), "attachments");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("attachments")]
     public List<AttachmentIn>? Attachments
     {
@@ -85,6 +88,9 @@ public class ChatsMessagesEditMessagePostRequest
 
     private PropertyValue<bool?> _unfurlLinks = new PropertyValue<bool?>(nameof(ChatsMessagesEditMessagePostRequest), nameof(IsUnfurlLinks), "unfurlLinks");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("unfurlLinks")]
     public bool? IsUnfurlLinks
     {
@@ -94,6 +100,9 @@ public class ChatsMessagesEditMessagePostRequest
 
     private PropertyValue<bool?> _resolveNames = new PropertyValue<bool?>(nameof(ChatsMessagesEditMessagePostRequest), nameof(IsResolveNames), "resolveNames");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("resolveNames")]
     public bool? IsResolveNames
     {

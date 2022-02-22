@@ -74,6 +74,9 @@ public class ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest
 
     private PropertyValue<string?> _squashedCommitMessage = new PropertyValue<string?>(nameof(ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest), nameof(SquashedCommitMessage), "squashedCommitMessage");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("squashedCommitMessage")]
     public string? SquashedCommitMessage
     {

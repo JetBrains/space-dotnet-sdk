@@ -48,6 +48,9 @@ public class ChatsMessagesSendMessagePostRequest
     
     private PropertyValue<MessageRecipient?> _recipient = new PropertyValue<MessageRecipient?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Recipient), "recipient");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [Obsolete("Use channel instead (since 2021-12-13) (will be removed in a future version)")]
     [JsonPropertyName("recipient")]
     public MessageRecipient? Recipient
@@ -68,6 +71,9 @@ public class ChatsMessagesSendMessagePostRequest
 
     private PropertyValue<List<AttachmentIn>?> _attachments = new PropertyValue<List<AttachmentIn>?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Attachments), "attachments");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("attachments")]
     public List<AttachmentIn>? Attachments
     {
@@ -77,6 +83,9 @@ public class ChatsMessagesSendMessagePostRequest
 
     private PropertyValue<bool?> _unfurlLinks = new PropertyValue<bool?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(IsUnfurlLinks), "unfurlLinks");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("unfurlLinks")]
     public bool? IsUnfurlLinks
     {
@@ -86,6 +95,9 @@ public class ChatsMessagesSendMessagePostRequest
 
     private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(ExternalId), "externalId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("externalId")]
     public string? ExternalId
     {
@@ -95,6 +107,9 @@ public class ChatsMessagesSendMessagePostRequest
 
     private PropertyValue<bool?> _resolveNames = new PropertyValue<bool?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(IsResolveNames), "resolveNames");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("resolveNames")]
     public bool? IsResolveNames
     {
@@ -104,6 +119,9 @@ public class ChatsMessagesSendMessagePostRequest
 
     private PropertyValue<bool?> _pending = new PropertyValue<bool?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(IsPending), "pending");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("pending")]
     public bool? IsPending
     {
@@ -113,6 +131,9 @@ public class ChatsMessagesSendMessagePostRequest
 
     private PropertyValue<ChannelIdentifier?> _channel = new PropertyValue<ChannelIdentifier?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Channel), "channel");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("channel")]
     public ChannelIdentifier? Channel
     {

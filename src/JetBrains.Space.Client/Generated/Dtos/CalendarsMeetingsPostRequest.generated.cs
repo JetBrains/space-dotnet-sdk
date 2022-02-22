@@ -64,6 +64,9 @@ public class CalendarsMeetingsPostRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CalendarsMeetingsPostRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {
@@ -155,6 +158,9 @@ public class CalendarsMeetingsPostRequest
 
     private PropertyValue<string?> _organizer = new PropertyValue<string?>(nameof(CalendarsMeetingsPostRequest), nameof(Organizer), "organizer");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("organizer")]
     public string? Organizer
     {
@@ -164,6 +170,9 @@ public class CalendarsMeetingsPostRequest
 
     private PropertyValue<EventConferenceData?> _conferenceData = new PropertyValue<EventConferenceData?>(nameof(CalendarsMeetingsPostRequest), nameof(ConferenceData), "conferenceData");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("conferenceData")]
     public EventConferenceData? ConferenceData
     {
@@ -173,6 +182,9 @@ public class CalendarsMeetingsPostRequest
 
     private PropertyValue<List<MeetingAttachment>?> _attachments = new PropertyValue<List<MeetingAttachment>?>(nameof(CalendarsMeetingsPostRequest), nameof(Attachments), "attachments");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("attachments")]
     public List<MeetingAttachment>? Attachments
     {

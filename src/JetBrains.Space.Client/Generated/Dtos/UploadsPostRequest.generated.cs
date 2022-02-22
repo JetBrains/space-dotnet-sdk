@@ -52,6 +52,9 @@ public class UploadsPostRequest
 
     private PropertyValue<string?> _mediaType = new PropertyValue<string?>(nameof(UploadsPostRequest), nameof(MediaType), "mediaType");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("mediaType")]
     public string? MediaType
     {

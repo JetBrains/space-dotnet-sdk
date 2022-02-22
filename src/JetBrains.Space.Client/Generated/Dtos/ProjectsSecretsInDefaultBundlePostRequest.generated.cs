@@ -74,6 +74,9 @@ public class ProjectsSecretsInDefaultBundlePostRequest
 
     private PropertyValue<string?> _publicKeyId = new PropertyValue<string?>(nameof(ProjectsSecretsInDefaultBundlePostRequest), nameof(PublicKeyId), "publicKeyId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("publicKeyId")]
     public string? PublicKeyId
     {

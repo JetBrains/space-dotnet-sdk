@@ -48,6 +48,9 @@ public class TeamDirectoryMembershipsForMembershipIdPatchRequest
     
     private PropertyValue<string?> _teamId = new PropertyValue<string?>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(TeamId), "teamId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("teamId")]
     public string? TeamId
     {
@@ -57,6 +60,9 @@ public class TeamDirectoryMembershipsForMembershipIdPatchRequest
 
     private PropertyValue<string?> _roleId = new PropertyValue<string?>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(RoleId), "roleId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("roleId")]
     public string? RoleId
     {
@@ -66,6 +72,9 @@ public class TeamDirectoryMembershipsForMembershipIdPatchRequest
 
     private PropertyValue<bool?> _lead = new PropertyValue<bool?>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(IsLead), "lead");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [Obsolete("The property is deprecated (since 2020-12-01) (will be removed in a future version)")]
     [JsonPropertyName("lead")]
     public bool? IsLead
@@ -76,6 +85,9 @@ public class TeamDirectoryMembershipsForMembershipIdPatchRequest
 
     private PropertyValue<ProfileIdentifier?> _manager = new PropertyValue<ProfileIdentifier?>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(Manager), "manager");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("manager")]
     public ProfileIdentifier? Manager
     {
@@ -85,6 +97,9 @@ public class TeamDirectoryMembershipsForMembershipIdPatchRequest
 
     private PropertyValue<DateTime?> _activeSince = new PropertyValue<DateTime?>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(ActiveSince), "activeSince");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("activeSince")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? ActiveSince
@@ -95,6 +110,9 @@ public class TeamDirectoryMembershipsForMembershipIdPatchRequest
 
     private PropertyValue<DateTime?> _activeTill = new PropertyValue<DateTime?>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(ActiveTill), "activeTill");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("activeTill")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? ActiveTill
@@ -114,6 +132,9 @@ public class TeamDirectoryMembershipsForMembershipIdPatchRequest
 
     private PropertyValue<List<CustomFieldInputValue>?> _customFieldValues = new PropertyValue<List<CustomFieldInputValue>?>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(CustomFieldValues), "customFieldValues");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("customFieldValues")]
     public List<CustomFieldInputValue>? CustomFieldValues
     {

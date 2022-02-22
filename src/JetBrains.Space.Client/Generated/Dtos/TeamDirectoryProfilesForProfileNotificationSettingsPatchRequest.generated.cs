@@ -44,6 +44,9 @@ public class TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest
     
     private PropertyValue<bool?> _emailNotificationsEnabled = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest), nameof(IsEmailNotificationsEnabled), "emailNotificationsEnabled");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("emailNotificationsEnabled")]
     public bool? IsEmailNotificationsEnabled
     {
@@ -53,6 +56,9 @@ public class TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest
 
     private PropertyValue<string?> _notificationEmail = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest), nameof(NotificationEmail), "notificationEmail");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("notificationEmail")]
     public string? NotificationEmail
     {
@@ -62,6 +68,9 @@ public class TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest
 
     private PropertyValue<bool?> _pushNotificationEnabled = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest), nameof(IsPushNotificationEnabled), "pushNotificationEnabled");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("pushNotificationEnabled")]
     public bool? IsPushNotificationEnabled
     {
@@ -71,6 +80,9 @@ public class TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest
 
     private PropertyValue<int?> _desktopInactivityTimeout = new PropertyValue<int?>(nameof(TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest), nameof(DesktopInactivityTimeout), "desktopInactivityTimeout");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("desktopInactivityTimeout")]
     public int? DesktopInactivityTimeout
     {

@@ -41,6 +41,9 @@ public class TeamDirectoryProfilesForProfileReactivatePatchRequest
     
     private PropertyValue<DateTime?> _joined = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfileReactivatePatchRequest), nameof(Joined), "joined");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("joined")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Joined

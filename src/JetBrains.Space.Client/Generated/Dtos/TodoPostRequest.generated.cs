@@ -52,6 +52,9 @@ public class TodoPostRequest
 
     private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(TodoPostRequest), nameof(DueDate), "dueDate");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("dueDate")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? DueDate

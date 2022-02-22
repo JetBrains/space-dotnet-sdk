@@ -64,6 +64,9 @@ public class CalendarsMeetingsForIdParticipationStatusPatchRequest
 
     private PropertyValue<DateTime?> _targetDate = new PropertyValue<DateTime?>(nameof(CalendarsMeetingsForIdParticipationStatusPatchRequest), nameof(TargetDate), "targetDate");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("targetDate")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? TargetDate

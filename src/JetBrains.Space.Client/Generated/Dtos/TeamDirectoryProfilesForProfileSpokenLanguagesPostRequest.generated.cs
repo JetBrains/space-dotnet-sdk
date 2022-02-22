@@ -53,6 +53,9 @@ public class TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest
 
     private PropertyValue<string?> _firstName = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest), nameof(FirstName), "firstName");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("firstName")]
     public string? FirstName
     {
@@ -62,6 +65,9 @@ public class TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest
 
     private PropertyValue<string?> _lastName = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest), nameof(LastName), "lastName");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("lastName")]
     public string? LastName
     {

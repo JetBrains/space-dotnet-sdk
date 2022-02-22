@@ -76,6 +76,9 @@ public class TeamDirectoryInvitationLinksPostRequest
 
     private PropertyValue<string?> _team = new PropertyValue<string?>(nameof(TeamDirectoryInvitationLinksPostRequest), nameof(Team), "team");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("team")]
     public string? Team
     {
@@ -85,6 +88,9 @@ public class TeamDirectoryInvitationLinksPostRequest
 
     private PropertyValue<string?> _role = new PropertyValue<string?>(nameof(TeamDirectoryInvitationLinksPostRequest), nameof(Role), "role");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("role")]
     public string? Role
     {

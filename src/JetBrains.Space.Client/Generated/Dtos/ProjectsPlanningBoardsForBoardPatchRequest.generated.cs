@@ -46,6 +46,9 @@ public class ProjectsPlanningBoardsForBoardPatchRequest
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(Name), "name");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
     public string? Name
     {
@@ -55,6 +58,9 @@ public class ProjectsPlanningBoardsForBoardPatchRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {
@@ -64,6 +70,9 @@ public class ProjectsPlanningBoardsForBoardPatchRequest
 
     private PropertyValue<string?> _swimlaneKey = new PropertyValue<string?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(SwimlaneKey), "swimlaneKey");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("swimlaneKey")]
     public string? SwimlaneKey
     {
@@ -73,6 +82,9 @@ public class ProjectsPlanningBoardsForBoardPatchRequest
 
     private PropertyValue<BoardColumns?> _columns = new PropertyValue<BoardColumns?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(Columns), "columns");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("columns")]
     public BoardColumns? Columns
     {
@@ -82,6 +94,9 @@ public class ProjectsPlanningBoardsForBoardPatchRequest
 
     private PropertyValue<List<string>?> _memberOwners = new PropertyValue<List<string>?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(MemberOwners), "memberOwners");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("memberOwners")]
     public List<string>? MemberOwners
     {
@@ -91,6 +106,9 @@ public class ProjectsPlanningBoardsForBoardPatchRequest
 
     private PropertyValue<List<string>?> _teamOwners = new PropertyValue<List<string>?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(TeamOwners), "teamOwners");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("teamOwners")]
     public List<string>? TeamOwners
     {

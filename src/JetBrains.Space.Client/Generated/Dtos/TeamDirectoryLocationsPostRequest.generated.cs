@@ -61,6 +61,9 @@ public class TeamDirectoryLocationsPostRequest
 
     private PropertyValue<string?> _timezone = new PropertyValue<string?>(nameof(TeamDirectoryLocationsPostRequest), nameof(Timezone), "timezone");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("timezone")]
     public string? Timezone
     {
@@ -70,6 +73,9 @@ public class TeamDirectoryLocationsPostRequest
 
     private PropertyValue<List<int>?> _workdays = new PropertyValue<List<int>?>(nameof(TeamDirectoryLocationsPostRequest), nameof(Workdays), "workdays");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("workdays")]
     public List<int>? Workdays
     {
@@ -79,6 +85,9 @@ public class TeamDirectoryLocationsPostRequest
 
     private PropertyValue<List<string>?> _phones = new PropertyValue<List<string>?>(nameof(TeamDirectoryLocationsPostRequest), nameof(Phones), "phones");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("phones")]
     public List<string>? Phones
     {
@@ -88,6 +97,9 @@ public class TeamDirectoryLocationsPostRequest
 
     private PropertyValue<List<string>?> _emails = new PropertyValue<List<string>?>(nameof(TeamDirectoryLocationsPostRequest), nameof(Emails), "emails");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("emails")]
     public List<string>? Emails
     {
@@ -97,6 +109,9 @@ public class TeamDirectoryLocationsPostRequest
 
     private PropertyValue<List<string>?> _equipment = new PropertyValue<List<string>?>(nameof(TeamDirectoryLocationsPostRequest), nameof(Equipment), "equipment");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("equipment")]
     public List<string>? Equipment
     {
@@ -106,6 +121,9 @@ public class TeamDirectoryLocationsPostRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(TeamDirectoryLocationsPostRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {
@@ -115,6 +133,9 @@ public class TeamDirectoryLocationsPostRequest
 
     private PropertyValue<string?> _address = new PropertyValue<string?>(nameof(TeamDirectoryLocationsPostRequest), nameof(Address), "address");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("address")]
     public string? Address
     {
@@ -124,6 +145,9 @@ public class TeamDirectoryLocationsPostRequest
 
     private PropertyValue<string?> _type = new PropertyValue<string?>(nameof(TeamDirectoryLocationsPostRequest), nameof(Type), "type");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("type")]
     public string? Type
     {
@@ -133,6 +157,9 @@ public class TeamDirectoryLocationsPostRequest
 
     private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(TeamDirectoryLocationsPostRequest), nameof(ParentId), "parentId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("parentId")]
     public string? ParentId
     {
@@ -142,6 +169,9 @@ public class TeamDirectoryLocationsPostRequest
 
     private PropertyValue<int?> _capacity = new PropertyValue<int?>(nameof(TeamDirectoryLocationsPostRequest), nameof(Capacity), "capacity");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("capacity")]
     public int? Capacity
     {

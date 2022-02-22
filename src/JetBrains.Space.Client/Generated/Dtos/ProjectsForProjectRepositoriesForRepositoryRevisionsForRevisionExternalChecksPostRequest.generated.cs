@@ -49,6 +49,9 @@ public class ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExte
     
     private PropertyValue<string?> _branch = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Branch), "branch");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("branch")]
     public string? Branch
     {
@@ -58,6 +61,9 @@ public class ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExte
 
     private PropertyValue<List<string>?> _changes = new PropertyValue<List<string>?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Changes), "changes");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("changes")]
     public List<string>? Changes
     {
@@ -117,6 +123,9 @@ public class ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExte
 
     private PropertyValue<long?> _timestamp = new PropertyValue<long?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Timestamp), "timestamp");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("timestamp")]
     public long? Timestamp
     {
@@ -126,6 +135,9 @@ public class ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExte
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {

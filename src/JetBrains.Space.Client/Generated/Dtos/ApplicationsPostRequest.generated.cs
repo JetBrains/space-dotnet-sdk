@@ -72,6 +72,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _pictureAttachmentId = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(PictureAttachmentId), "pictureAttachmentId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("pictureAttachmentId")]
     public string? PictureAttachmentId
     {
@@ -81,6 +84,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _defaultExternalPicture = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(DefaultExternalPicture), "defaultExternalPicture");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("defaultExternalPicture")]
     public string? DefaultExternalPicture
     {
@@ -90,6 +96,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _clientId = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(ClientId), "clientId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("clientId")]
     public string? ClientId
     {
@@ -99,6 +108,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _clientSecret = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(ClientSecret), "clientSecret");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("clientSecret")]
     public string? ClientSecret
     {
@@ -108,6 +120,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<bool?> _clientCredentialsFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsClientCredentialsFlowEnabled), "clientCredentialsFlowEnabled");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("clientCredentialsFlowEnabled")]
     public bool? IsClientCredentialsFlowEnabled
     {
@@ -117,6 +132,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<bool?> _codeFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsCodeFlowEnabled), "codeFlowEnabled");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("codeFlowEnabled")]
     public bool? IsCodeFlowEnabled
     {
@@ -126,6 +144,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _codeFlowRedirectURIs = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(CodeFlowRedirectURIs), "codeFlowRedirectURIs");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("codeFlowRedirectURIs")]
     public string? CodeFlowRedirectURIs
     {
@@ -135,6 +156,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<bool?> _pkceRequired = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsPkceRequired), "pkceRequired");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("pkceRequired")]
     public bool? IsPkceRequired
     {
@@ -144,6 +168,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<bool?> _implicitFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsImplicitFlowEnabled), "implicitFlowEnabled");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("implicitFlowEnabled")]
     public bool? IsImplicitFlowEnabled
     {
@@ -153,6 +180,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _implicitFlowRedirectURIs = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(ImplicitFlowRedirectURIs), "implicitFlowRedirectURIs");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("implicitFlowRedirectURIs")]
     public string? ImplicitFlowRedirectURIs
     {
@@ -162,6 +192,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _endpointUri = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(EndpointUri), "endpointUri");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("endpointUri")]
     public string? EndpointUri
     {
@@ -180,6 +213,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<EndpointAuthCreate?> _appLevelAuth = new PropertyValue<EndpointAuthCreate?>(nameof(ApplicationsPostRequest), nameof(AppLevelAuth), "appLevelAuth");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("appLevelAuth")]
     public EndpointAuthCreate? AppLevelAuth
     {
@@ -189,6 +225,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _sslKeystoreAuth = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(SslKeystoreAuth), "sslKeystoreAuth");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("sslKeystoreAuth")]
     public string? SslKeystoreAuth
     {
@@ -198,6 +237,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<bool?> _hasSigningKey = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsHasSigningKey), "hasSigningKey");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
     [JsonPropertyName("hasSigningKey")]
     public bool? IsHasSigningKey
@@ -208,6 +250,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<bool?> _hasPublicKeySignature = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsHasPublicKeySignature), "hasPublicKeySignature");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
     [JsonPropertyName("hasPublicKeySignature")]
     public bool? IsHasPublicKeySignature
@@ -218,6 +263,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _basicAuthUsername = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(BasicAuthUsername), "basicAuthUsername");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
     [JsonPropertyName("basicAuthUsername")]
     public string? BasicAuthUsername
@@ -228,6 +276,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _basicAuthPassword = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(BasicAuthPassword), "basicAuthPassword");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
     [JsonPropertyName("basicAuthPassword")]
     public string? BasicAuthPassword
@@ -238,6 +289,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _bearerAuthToken = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(BearerAuthToken), "bearerAuthToken");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [Obsolete("Use appLevelAuth instead (since 2021-09-02) (will be removed in a future version)")]
     [JsonPropertyName("bearerAuthToken")]
     public string? BearerAuthToken
@@ -248,6 +302,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<bool?> _connectToSpace = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsConnectToSpace), "connectToSpace");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("connectToSpace")]
     public bool? IsConnectToSpace
     {
@@ -257,6 +314,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _state = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(State), "state");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("state")]
     public string? State
     {

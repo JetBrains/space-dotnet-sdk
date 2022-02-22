@@ -65,6 +65,9 @@ public class TeamDirectoryMemberLocationsPostRequest
 
     private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(Since), "since");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("since")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Since
@@ -75,6 +78,9 @@ public class TeamDirectoryMemberLocationsPostRequest
 
     private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(Till), "till");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("till")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Till
@@ -85,6 +91,9 @@ public class TeamDirectoryMemberLocationsPostRequest
 
     private PropertyValue<string?> _previousLocation = new PropertyValue<string?>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(PreviousLocation), "previousLocation");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("previousLocation")]
     public string? PreviousLocation
     {

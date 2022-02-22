@@ -53,6 +53,9 @@ public class ProjectsSecretsForIdPatchRequest
 
     private PropertyValue<string?> _publicKeyId = new PropertyValue<string?>(nameof(ProjectsSecretsForIdPatchRequest), nameof(PublicKeyId), "publicKeyId");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("publicKeyId")]
     public string? PublicKeyId
     {
@@ -62,6 +65,9 @@ public class ProjectsSecretsForIdPatchRequest
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsSecretsForIdPatchRequest), nameof(Description), "description");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
     public string? Description
     {

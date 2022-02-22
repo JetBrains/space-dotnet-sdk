@@ -52,6 +52,9 @@ public class ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForP
 
     private PropertyValue<string?> _comment = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataVersionForPackageVersionPutRequest), nameof(Comment), "comment");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("comment")]
     public string? Comment
     {
