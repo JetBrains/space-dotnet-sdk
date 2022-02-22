@@ -258,13 +258,13 @@ public class CSharpApiModelDtoGenerator
         {
             builder.AppendLine($"{indent}[Required]");
         }
-        if (apiField.Optional && _codeGenerationContext.IsRequestBodyDto(dtoId))
+        if (apiField.Optional && (apiField.Type.Nullable || apiField.RequiresAddedNullability()) && _codeGenerationContext.IsRequestBodyDto(dtoId))
         {
             // REMARK: This only works well in .NET6+.
             // Since .NET3.1 will go out of support relatively soon (December 3, 2022 - https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core),
             // we decided to only add optional request body properties in supported .NET versions.
             builder.AppendLine($"#if NET6_0_OR_GREATER");
-            builder.AppendLine($"{indent}[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]");
+            builder.AppendLine($"{indent}[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]");
             builder.AppendLine($"#endif");
         }
         if (apiField.Deprecation != null)
