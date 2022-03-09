@@ -60,7 +60,7 @@ public class CSharpApiModelUrlParameterGenerator
     {
         var indent = new Indent();
         var builder = new StringBuilder();
-            
+
         var typeNameForUrlParameterOption = apiUrlParameterOption.ToCSharpClassName();
         var factoryMethodNameForUrlParameterOption = apiUrlParameterOption.ToCSharpFactoryMethodName(typeNameForUrlParameterOption, apiUrlParameter);
             
@@ -140,17 +140,32 @@ public class CSharpApiModelUrlParameterGenerator
                     var urlParameterFieldName = field.Name;
                     
                     // Property
-                    builder.AppendLine($"{indent}public {valueTypeName} {propertyName} {{ get; }}");
+                    if (!field.Optional && !field.Type.Nullable)
+                    {
+                        builder.AppendLine($"{indent}[Required]");
+                    }
+                    builder.AppendLine($"{indent}[JsonPropertyName(\"{field.Name}\")]");
+                    builder.AppendLine($"#if NET6_0_OR_GREATER");
+                    builder.AppendLine($"{indent}public {valueTypeName} {propertyName} {{ get; init; }}");
+                    builder.AppendLine($"#else");
+                    builder.AppendLine($"{indent}public {valueTypeName} {propertyName} {{ get; set; }}");
+                    builder.AppendLine($"#endif");
                     builder.AppendLine($"{indent}");
                         
                     // ToString() override preparation
                     toStringInterpolatedFields.Add($"{urlParameterFieldName}:{{{propertyName}}}");
                 }
-
+                    
+                // Parameterless constructor
+                builder.AppendLine($"#if !NET6_0_OR_GREATER");
+                builder.AppendLine($"{indent}public {typeNameForUrlParameterOption}() {{ }}");
+                builder.AppendLine($"#endif");
+                builder.AppendLine($"{indent}");
+                
+                // Constructor
                 var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
                     .WithParametersForApiFields(orderedFields);
-                    
-                // Constructor
+                
                 builder.AppendLine($"{indent}public {typeNameForUrlParameterOption}({methodParametersBuilder.BuildMethodParametersList()})");
                 builder.AppendLine($"{indent}{{");
                 indent.Increment();
