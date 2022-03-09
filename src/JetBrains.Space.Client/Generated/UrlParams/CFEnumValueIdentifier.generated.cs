@@ -40,7 +40,17 @@ public abstract class CFEnumValueIdentifier : IUrlParameter
     
     public class CFEnumValueIdentifierId : CFEnumValueIdentifier
     {
-        public string Id { get; }
+        [Required]
+        [JsonPropertyName("id")]
+#if NET6_0_OR_GREATER
+        public string Id { get; init; }
+#else
+        public string Id { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public CFEnumValueIdentifierId() { }
+#endif
         
         public CFEnumValueIdentifierId(string id)
         {
@@ -53,7 +63,17 @@ public abstract class CFEnumValueIdentifier : IUrlParameter
     
     public class CFEnumValueIdentifierName : CFEnumValueIdentifier
     {
-        public string Name { get; }
+        [Required]
+        [JsonPropertyName("name")]
+#if NET6_0_OR_GREATER
+        public string Name { get; init; }
+#else
+        public string Name { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public CFEnumValueIdentifierName() { }
+#endif
         
         public CFEnumValueIdentifierName(string name)
         {

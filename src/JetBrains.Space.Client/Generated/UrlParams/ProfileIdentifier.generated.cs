@@ -46,7 +46,17 @@ public abstract class ProfileIdentifier : IUrlParameter
     
     public class ProfileIdentifierExternalId : ProfileIdentifier
     {
-        public string ExternalId { get; }
+        [Required]
+        [JsonPropertyName("externalId")]
+#if NET6_0_OR_GREATER
+        public string ExternalId { get; init; }
+#else
+        public string ExternalId { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ProfileIdentifierExternalId() { }
+#endif
         
         public ProfileIdentifierExternalId(string externalId)
         {
@@ -59,7 +69,17 @@ public abstract class ProfileIdentifier : IUrlParameter
     
     public class ProfileIdentifierId : ProfileIdentifier
     {
-        public string Id { get; }
+        [Required]
+        [JsonPropertyName("id")]
+#if NET6_0_OR_GREATER
+        public string Id { get; init; }
+#else
+        public string Id { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ProfileIdentifierId() { }
+#endif
         
         public ProfileIdentifierId(string id)
         {
@@ -78,7 +98,17 @@ public abstract class ProfileIdentifier : IUrlParameter
     
     public class ProfileIdentifierUsername : ProfileIdentifier
     {
-        public string Username { get; }
+        [Required]
+        [JsonPropertyName("username")]
+#if NET6_0_OR_GREATER
+        public string Username { get; init; }
+#else
+        public string Username { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ProfileIdentifierUsername() { }
+#endif
         
         public ProfileIdentifierUsername(string username)
         {

@@ -40,7 +40,17 @@ public abstract class ExtendedTypeScope : IUrlParameter
     
     public class ExtendedTypeScopeContainer : ExtendedTypeScope
     {
-        public string ContainerId { get; }
+        [Required]
+        [JsonPropertyName("containerId")]
+#if NET6_0_OR_GREATER
+        public string ContainerId { get; init; }
+#else
+        public string ContainerId { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ExtendedTypeScopeContainer() { }
+#endif
         
         public ExtendedTypeScopeContainer(string containerId)
         {

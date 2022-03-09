@@ -40,7 +40,17 @@ public abstract class SprintIdentifier : IUrlParameter
     
     public class SprintIdentifierCurrent : SprintIdentifier
     {
-        public BoardIdentifier Board { get; }
+        [Required]
+        [JsonPropertyName("board")]
+#if NET6_0_OR_GREATER
+        public BoardIdentifier Board { get; init; }
+#else
+        public BoardIdentifier Board { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public SprintIdentifierCurrent() { }
+#endif
         
         public SprintIdentifierCurrent(BoardIdentifier board)
         {
@@ -53,7 +63,17 @@ public abstract class SprintIdentifier : IUrlParameter
     
     public class SprintIdentifierId : SprintIdentifier
     {
-        public string Id { get; }
+        [Required]
+        [JsonPropertyName("id")]
+#if NET6_0_OR_GREATER
+        public string Id { get; init; }
+#else
+        public string Id { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public SprintIdentifierId() { }
+#endif
         
         public SprintIdentifierId(string id)
         {

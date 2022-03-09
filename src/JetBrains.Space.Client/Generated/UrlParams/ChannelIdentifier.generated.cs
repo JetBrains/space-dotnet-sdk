@@ -61,7 +61,17 @@ public abstract class ChannelIdentifier : IUrlParameter
     
     public class ChannelIdentifierApplication : ChannelIdentifier
     {
-        public ApplicationIdentifier Application { get; }
+        [Required]
+        [JsonPropertyName("application")]
+#if NET6_0_OR_GREATER
+        public ApplicationIdentifier Application { get; init; }
+#else
+        public ApplicationIdentifier Application { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ChannelIdentifierApplication() { }
+#endif
         
         public ChannelIdentifierApplication(ApplicationIdentifier application)
         {
@@ -74,7 +84,17 @@ public abstract class ChannelIdentifier : IUrlParameter
     
     public class ChannelIdentifierArticle : ChannelIdentifier
     {
-        public string Article { get; }
+        [Required]
+        [JsonPropertyName("article")]
+#if NET6_0_OR_GREATER
+        public string Article { get; init; }
+#else
+        public string Article { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ChannelIdentifierArticle() { }
+#endif
         
         public ChannelIdentifierArticle(string article)
         {
@@ -87,7 +107,17 @@ public abstract class ChannelIdentifier : IUrlParameter
     
     public class ChannelIdentifierChannel : ChannelIdentifier
     {
-        public ChatChannel Channel { get; }
+        [Required]
+        [JsonPropertyName("channel")]
+#if NET6_0_OR_GREATER
+        public ChatChannel Channel { get; init; }
+#else
+        public ChatChannel Channel { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ChannelIdentifierChannel() { }
+#endif
         
         public ChannelIdentifierChannel(ChatChannel channel)
         {
@@ -100,7 +130,17 @@ public abstract class ChannelIdentifier : IUrlParameter
     
     public class ChannelIdentifierContactKey : ChannelIdentifier
     {
-        public string ContactKey { get; }
+        [Required]
+        [JsonPropertyName("contactKey")]
+#if NET6_0_OR_GREATER
+        public string ContactKey { get; init; }
+#else
+        public string ContactKey { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ChannelIdentifierContactKey() { }
+#endif
         
         public ChannelIdentifierContactKey(string contactKey)
         {
@@ -113,7 +153,17 @@ public abstract class ChannelIdentifier : IUrlParameter
     
     public class ChannelIdentifierId : ChannelIdentifier
     {
-        public string Id { get; }
+        [Required]
+        [JsonPropertyName("id")]
+#if NET6_0_OR_GREATER
+        public string Id { get; init; }
+#else
+        public string Id { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ChannelIdentifierId() { }
+#endif
         
         public ChannelIdentifierId(string id)
         {
@@ -126,7 +176,17 @@ public abstract class ChannelIdentifier : IUrlParameter
     
     public class ChannelIdentifierIssue : ChannelIdentifier
     {
-        public IssueIdentifier Issue { get; }
+        [Required]
+        [JsonPropertyName("issue")]
+#if NET6_0_OR_GREATER
+        public IssueIdentifier Issue { get; init; }
+#else
+        public IssueIdentifier Issue { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ChannelIdentifierIssue() { }
+#endif
         
         public ChannelIdentifierIssue(IssueIdentifier issue)
         {
@@ -139,7 +199,17 @@ public abstract class ChannelIdentifier : IUrlParameter
     
     public class ChannelIdentifierProfile : ChannelIdentifier
     {
-        public ProfileIdentifier Member { get; }
+        [Required]
+        [JsonPropertyName("member")]
+#if NET6_0_OR_GREATER
+        public ProfileIdentifier Member { get; init; }
+#else
+        public ProfileIdentifier Member { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ChannelIdentifierProfile() { }
+#endif
         
         public ChannelIdentifierProfile(ProfileIdentifier member)
         {
@@ -152,7 +222,17 @@ public abstract class ChannelIdentifier : IUrlParameter
     
     public class ChannelIdentifierReview : ChannelIdentifier
     {
-        public ReviewIdentifier CodeReview { get; }
+        [Required]
+        [JsonPropertyName("codeReview")]
+#if NET6_0_OR_GREATER
+        public ReviewIdentifier CodeReview { get; init; }
+#else
+        public ReviewIdentifier CodeReview { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ChannelIdentifierReview() { }
+#endif
         
         public ChannelIdentifierReview(ReviewIdentifier codeReview)
         {
@@ -165,7 +245,17 @@ public abstract class ChannelIdentifier : IUrlParameter
     
     public class ChannelIdentifierThread : ChannelIdentifier
     {
-        public string Message { get; }
+        [Required]
+        [JsonPropertyName("message")]
+#if NET6_0_OR_GREATER
+        public string Message { get; init; }
+#else
+        public string Message { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ChannelIdentifierThread() { }
+#endif
         
         public ChannelIdentifierThread(string message)
         {

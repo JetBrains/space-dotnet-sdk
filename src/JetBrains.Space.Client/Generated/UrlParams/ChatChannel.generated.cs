@@ -40,7 +40,17 @@ public abstract class ChatChannel : IUrlParameter
     
     public class ChatChannelFromId : ChatChannel
     {
-        public string Id { get; }
+        [Required]
+        [JsonPropertyName("id")]
+#if NET6_0_OR_GREATER
+        public string Id { get; init; }
+#else
+        public string Id { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ChatChannelFromId() { }
+#endif
         
         public ChatChannelFromId(string id)
         {
@@ -53,7 +63,17 @@ public abstract class ChatChannel : IUrlParameter
     
     public class ChatChannelFromName : ChatChannel
     {
-        public string Name { get; }
+        [Required]
+        [JsonPropertyName("name")]
+#if NET6_0_OR_GREATER
+        public string Name { get; init; }
+#else
+        public string Name { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ChatChannelFromName() { }
+#endif
         
         public ChatChannelFromName(string name)
         {

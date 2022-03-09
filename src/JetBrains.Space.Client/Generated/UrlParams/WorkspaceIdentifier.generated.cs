@@ -43,9 +43,25 @@ public abstract class WorkspaceIdentifier : IUrlParameter
     
     public class WorkspaceIdentifierByProject : WorkspaceIdentifier
     {
-        public ProjectIdentifier Project { get; }
+        [Required]
+        [JsonPropertyName("project")]
+#if NET6_0_OR_GREATER
+        public ProjectIdentifier Project { get; init; }
+#else
+        public ProjectIdentifier Project { get; set; }
+#endif
         
-        public int Number { get; }
+        [Required]
+        [JsonPropertyName("number")]
+#if NET6_0_OR_GREATER
+        public int Number { get; init; }
+#else
+        public int Number { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public WorkspaceIdentifierByProject() { }
+#endif
         
         public WorkspaceIdentifierByProject(ProjectIdentifier project, int number)
         {
@@ -59,7 +75,17 @@ public abstract class WorkspaceIdentifier : IUrlParameter
     
     public class WorkspaceIdentifierExternalId : WorkspaceIdentifier
     {
-        public string ExternalId { get; }
+        [Required]
+        [JsonPropertyName("externalId")]
+#if NET6_0_OR_GREATER
+        public string ExternalId { get; init; }
+#else
+        public string ExternalId { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public WorkspaceIdentifierExternalId() { }
+#endif
         
         public WorkspaceIdentifierExternalId(string externalId)
         {
@@ -72,7 +98,17 @@ public abstract class WorkspaceIdentifier : IUrlParameter
     
     public class WorkspaceIdentifierId : WorkspaceIdentifier
     {
-        public string Id { get; }
+        [Required]
+        [JsonPropertyName("id")]
+#if NET6_0_OR_GREATER
+        public string Id { get; init; }
+#else
+        public string Id { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public WorkspaceIdentifierId() { }
+#endif
         
         public WorkspaceIdentifierId(string id)
         {

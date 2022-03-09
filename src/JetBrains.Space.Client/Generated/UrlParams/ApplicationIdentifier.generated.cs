@@ -43,7 +43,17 @@ public abstract class ApplicationIdentifier : IUrlParameter
     
     public class ApplicationIdentifierClientId : ApplicationIdentifier
     {
-        public string ClientId { get; }
+        [Required]
+        [JsonPropertyName("clientId")]
+#if NET6_0_OR_GREATER
+        public string ClientId { get; init; }
+#else
+        public string ClientId { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ApplicationIdentifierClientId() { }
+#endif
         
         public ApplicationIdentifierClientId(string clientId)
         {
@@ -56,7 +66,17 @@ public abstract class ApplicationIdentifier : IUrlParameter
     
     public class ApplicationIdentifierId : ApplicationIdentifier
     {
-        public string Id { get; }
+        [Required]
+        [JsonPropertyName("id")]
+#if NET6_0_OR_GREATER
+        public string Id { get; init; }
+#else
+        public string Id { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ApplicationIdentifierId() { }
+#endif
         
         public ApplicationIdentifierId(string id)
         {

@@ -40,7 +40,17 @@ public abstract class CFIdentifier : IUrlParameter
     
     public class CFIdentifierId : CFIdentifier
     {
-        public string Id { get; }
+        [Required]
+        [JsonPropertyName("id")]
+#if NET6_0_OR_GREATER
+        public string Id { get; init; }
+#else
+        public string Id { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public CFIdentifierId() { }
+#endif
         
         public CFIdentifierId(string id)
         {
@@ -53,7 +63,17 @@ public abstract class CFIdentifier : IUrlParameter
     
     public class CFIdentifierName : CFIdentifier
     {
-        public string Name { get; }
+        [Required]
+        [JsonPropertyName("name")]
+#if NET6_0_OR_GREATER
+        public string Name { get; init; }
+#else
+        public string Name { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public CFIdentifierName() { }
+#endif
         
         public CFIdentifierName(string name)
         {

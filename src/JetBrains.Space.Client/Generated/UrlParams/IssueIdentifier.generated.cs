@@ -40,7 +40,17 @@ public abstract class IssueIdentifier : IUrlParameter
     
     public class IssueIdentifierId : IssueIdentifier
     {
-        public string Id { get; }
+        [Required]
+        [JsonPropertyName("id")]
+#if NET6_0_OR_GREATER
+        public string Id { get; init; }
+#else
+        public string Id { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public IssueIdentifierId() { }
+#endif
         
         public IssueIdentifierId(string id)
         {
@@ -53,7 +63,17 @@ public abstract class IssueIdentifier : IUrlParameter
     
     public class IssueIdentifierKey : IssueIdentifier
     {
-        public string Key { get; }
+        [Required]
+        [JsonPropertyName("key")]
+#if NET6_0_OR_GREATER
+        public string Key { get; init; }
+#else
+        public string Key { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public IssueIdentifierKey() { }
+#endif
         
         public IssueIdentifierKey(string key)
         {

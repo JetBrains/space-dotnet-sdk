@@ -43,7 +43,17 @@ public abstract class ReviewIdentifier : IUrlParameter
     
     public class ReviewIdentifierId : ReviewIdentifier
     {
-        public string Id { get; }
+        [Required]
+        [JsonPropertyName("id")]
+#if NET6_0_OR_GREATER
+        public string Id { get; init; }
+#else
+        public string Id { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ReviewIdentifierId() { }
+#endif
         
         public ReviewIdentifierId(string id)
         {
@@ -56,7 +66,17 @@ public abstract class ReviewIdentifier : IUrlParameter
     
     public class ReviewIdentifierKey : ReviewIdentifier
     {
-        public string Key { get; }
+        [Required]
+        [JsonPropertyName("key")]
+#if NET6_0_OR_GREATER
+        public string Key { get; init; }
+#else
+        public string Key { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ReviewIdentifierKey() { }
+#endif
         
         public ReviewIdentifierKey(string key)
         {
@@ -69,7 +89,17 @@ public abstract class ReviewIdentifier : IUrlParameter
     
     public class ReviewIdentifierNumber : ReviewIdentifier
     {
-        public int Number { get; }
+        [Required]
+        [JsonPropertyName("number")]
+#if NET6_0_OR_GREATER
+        public int Number { get; init; }
+#else
+        public int Number { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ReviewIdentifierNumber() { }
+#endif
         
         public ReviewIdentifierNumber(int number)
         {

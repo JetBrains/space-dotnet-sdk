@@ -40,7 +40,17 @@ public abstract class IssueTrackerIdentifier : IUrlParameter
     
     public class IssueTrackerIdentifierDefaultProjectTracker : IssueTrackerIdentifier
     {
-        public ProjectIdentifier Project { get; }
+        [Required]
+        [JsonPropertyName("project")]
+#if NET6_0_OR_GREATER
+        public ProjectIdentifier Project { get; init; }
+#else
+        public ProjectIdentifier Project { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public IssueTrackerIdentifierDefaultProjectTracker() { }
+#endif
         
         public IssueTrackerIdentifierDefaultProjectTracker(ProjectIdentifier project)
         {
@@ -53,7 +63,17 @@ public abstract class IssueTrackerIdentifier : IUrlParameter
     
     public class IssueTrackerIdentifierId : IssueTrackerIdentifier
     {
-        public string Id { get; }
+        [Required]
+        [JsonPropertyName("id")]
+#if NET6_0_OR_GREATER
+        public string Id { get; init; }
+#else
+        public string Id { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public IssueTrackerIdentifierId() { }
+#endif
         
         public IssueTrackerIdentifierId(string id)
         {

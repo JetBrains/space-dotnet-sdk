@@ -49,7 +49,17 @@ public abstract class CFEntityIdentifier : IUrlParameter
     
     public class CFAbsenceIdentifier : CFEntityIdentifier
     {
-        public AbsenceIdentifier Absence { get; }
+        [Required]
+        [JsonPropertyName("absence")]
+#if NET6_0_OR_GREATER
+        public AbsenceIdentifier Absence { get; init; }
+#else
+        public AbsenceIdentifier Absence { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public CFAbsenceIdentifier() { }
+#endif
         
         public CFAbsenceIdentifier(AbsenceIdentifier absence)
         {
@@ -62,7 +72,17 @@ public abstract class CFEntityIdentifier : IUrlParameter
     
     public class CFIssueIdentifier : CFEntityIdentifier
     {
-        public IssueIdentifier Issue { get; }
+        [Required]
+        [JsonPropertyName("issue")]
+#if NET6_0_OR_GREATER
+        public IssueIdentifier Issue { get; init; }
+#else
+        public IssueIdentifier Issue { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public CFIssueIdentifier() { }
+#endif
         
         public CFIssueIdentifier(IssueIdentifier issue)
         {
@@ -75,7 +95,17 @@ public abstract class CFEntityIdentifier : IUrlParameter
     
     public class CFMembershipIdentifier : CFEntityIdentifier
     {
-        public TeamMembershipIdentifier Membership { get; }
+        [Required]
+        [JsonPropertyName("membership")]
+#if NET6_0_OR_GREATER
+        public TeamMembershipIdentifier Membership { get; init; }
+#else
+        public TeamMembershipIdentifier Membership { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public CFMembershipIdentifier() { }
+#endif
         
         public CFMembershipIdentifier(TeamMembershipIdentifier membership)
         {
@@ -88,7 +118,17 @@ public abstract class CFEntityIdentifier : IUrlParameter
     
     public class CFProfileIdentifier : CFEntityIdentifier
     {
-        public ProfileIdentifier Profile { get; }
+        [Required]
+        [JsonPropertyName("profile")]
+#if NET6_0_OR_GREATER
+        public ProfileIdentifier Profile { get; init; }
+#else
+        public ProfileIdentifier Profile { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public CFProfileIdentifier() { }
+#endif
         
         public CFProfileIdentifier(ProfileIdentifier profile)
         {
@@ -101,7 +141,17 @@ public abstract class CFEntityIdentifier : IUrlParameter
     
     public class CFTeamIdentifier : CFEntityIdentifier
     {
-        public TeamIdentifier Team { get; }
+        [Required]
+        [JsonPropertyName("team")]
+#if NET6_0_OR_GREATER
+        public TeamIdentifier Team { get; init; }
+#else
+        public TeamIdentifier Team { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public CFTeamIdentifier() { }
+#endif
         
         public CFTeamIdentifier(TeamIdentifier team)
         {

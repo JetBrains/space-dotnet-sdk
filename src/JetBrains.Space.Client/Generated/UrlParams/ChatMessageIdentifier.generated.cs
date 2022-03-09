@@ -40,7 +40,17 @@ public abstract class ChatMessageIdentifier : IUrlParameter
     
     public class ChatMessageIdentifierExternalId : ChatMessageIdentifier
     {
-        public string ExternalId { get; }
+        [Required]
+        [JsonPropertyName("externalId")]
+#if NET6_0_OR_GREATER
+        public string ExternalId { get; init; }
+#else
+        public string ExternalId { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ChatMessageIdentifierExternalId() { }
+#endif
         
         public ChatMessageIdentifierExternalId(string externalId)
         {
@@ -53,7 +63,17 @@ public abstract class ChatMessageIdentifier : IUrlParameter
     
     public class ChatMessageIdentifierInternalId : ChatMessageIdentifier
     {
-        public string Id { get; }
+        [Required]
+        [JsonPropertyName("id")]
+#if NET6_0_OR_GREATER
+        public string Id { get; init; }
+#else
+        public string Id { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ChatMessageIdentifierInternalId() { }
+#endif
         
         public ChatMessageIdentifierInternalId(string id)
         {

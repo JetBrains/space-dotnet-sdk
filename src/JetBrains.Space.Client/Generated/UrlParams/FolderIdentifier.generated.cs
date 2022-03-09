@@ -40,7 +40,17 @@ public abstract class FolderIdentifier : IUrlParameter
     
     public class FolderIdentifierId : FolderIdentifier
     {
-        public string Id { get; }
+        [Required]
+        [JsonPropertyName("id")]
+#if NET6_0_OR_GREATER
+        public string Id { get; init; }
+#else
+        public string Id { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public FolderIdentifierId() { }
+#endif
         
         public FolderIdentifierId(string id)
         {

@@ -43,7 +43,17 @@ public abstract class TeamIdentifier : IUrlParameter
     
     public class TeamIdentifierExternalId : TeamIdentifier
     {
-        public string ExternalId { get; }
+        [Required]
+        [JsonPropertyName("externalId")]
+#if NET6_0_OR_GREATER
+        public string ExternalId { get; init; }
+#else
+        public string ExternalId { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public TeamIdentifierExternalId() { }
+#endif
         
         public TeamIdentifierExternalId(string externalId)
         {
@@ -56,7 +66,17 @@ public abstract class TeamIdentifier : IUrlParameter
     
     public class TeamIdentifierId : TeamIdentifier
     {
-        public string Id { get; }
+        [Required]
+        [JsonPropertyName("id")]
+#if NET6_0_OR_GREATER
+        public string Id { get; init; }
+#else
+        public string Id { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public TeamIdentifierId() { }
+#endif
         
         public TeamIdentifierId(string id)
         {
@@ -69,7 +89,17 @@ public abstract class TeamIdentifier : IUrlParameter
     
     public class TeamIdentifierName : TeamIdentifier
     {
-        public string Name { get; }
+        [Required]
+        [JsonPropertyName("name")]
+#if NET6_0_OR_GREATER
+        public string Name { get; init; }
+#else
+        public string Name { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public TeamIdentifierName() { }
+#endif
         
         public TeamIdentifierName(string name)
         {

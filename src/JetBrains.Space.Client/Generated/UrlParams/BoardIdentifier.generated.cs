@@ -37,7 +37,17 @@ public abstract class BoardIdentifier : IUrlParameter
     
     public class BoardIdentifierId : BoardIdentifier
     {
-        public string Id { get; }
+        [Required]
+        [JsonPropertyName("id")]
+#if NET6_0_OR_GREATER
+        public string Id { get; init; }
+#else
+        public string Id { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public BoardIdentifierId() { }
+#endif
         
         public BoardIdentifierId(string id)
         {

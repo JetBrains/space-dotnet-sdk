@@ -40,7 +40,17 @@ public abstract class ReactionItemIdentifier : IUrlParameter
     
     public class ReactionItemIdentifierArticleReaction : ReactionItemIdentifier
     {
-        public string Article { get; }
+        [Required]
+        [JsonPropertyName("article")]
+#if NET6_0_OR_GREATER
+        public string Article { get; init; }
+#else
+        public string Article { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ReactionItemIdentifierArticleReaction() { }
+#endif
         
         public ReactionItemIdentifierArticleReaction(string article)
         {
@@ -53,9 +63,25 @@ public abstract class ReactionItemIdentifier : IUrlParameter
     
     public class ReactionItemIdentifierChatMessageReaction : ReactionItemIdentifier
     {
-        public ChannelIdentifier Channel { get; }
+        [Required]
+        [JsonPropertyName("channel")]
+#if NET6_0_OR_GREATER
+        public ChannelIdentifier Channel { get; init; }
+#else
+        public ChannelIdentifier Channel { get; set; }
+#endif
         
-        public ChatMessageIdentifier Message { get; }
+        [Required]
+        [JsonPropertyName("message")]
+#if NET6_0_OR_GREATER
+        public ChatMessageIdentifier Message { get; init; }
+#else
+        public ChatMessageIdentifier Message { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ReactionItemIdentifierChatMessageReaction() { }
+#endif
         
         public ReactionItemIdentifierChatMessageReaction(ChannelIdentifier channel, ChatMessageIdentifier message)
         {

@@ -43,7 +43,17 @@ public abstract class PackageRepositoryIdentifier : IUrlParameter
     
     public class PackageRepositoryIdentifierId : PackageRepositoryIdentifier
     {
-        public string Id { get; }
+        [Required]
+        [JsonPropertyName("id")]
+#if NET6_0_OR_GREATER
+        public string Id { get; init; }
+#else
+        public string Id { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public PackageRepositoryIdentifierId() { }
+#endif
         
         public PackageRepositoryIdentifierId(string id)
         {
@@ -56,7 +66,17 @@ public abstract class PackageRepositoryIdentifier : IUrlParameter
     
     public class PackageRepositoryIdentifierKey : PackageRepositoryIdentifier
     {
-        public string Key { get; }
+        [Required]
+        [JsonPropertyName("key")]
+#if NET6_0_OR_GREATER
+        public string Key { get; init; }
+#else
+        public string Key { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public PackageRepositoryIdentifierKey() { }
+#endif
         
         public PackageRepositoryIdentifierKey(string key)
         {
@@ -69,9 +89,25 @@ public abstract class PackageRepositoryIdentifier : IUrlParameter
     
     public class PackageRepositoryIdentifierTypeAndName : PackageRepositoryIdentifier
     {
-        public string Type { get; }
+        [Required]
+        [JsonPropertyName("type")]
+#if NET6_0_OR_GREATER
+        public string Type { get; init; }
+#else
+        public string Type { get; set; }
+#endif
         
-        public string Name { get; }
+        [Required]
+        [JsonPropertyName("name")]
+#if NET6_0_OR_GREATER
+        public string Name { get; init; }
+#else
+        public string Name { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public PackageRepositoryIdentifierTypeAndName() { }
+#endif
         
         public PackageRepositoryIdentifierTypeAndName(string type, string name)
         {

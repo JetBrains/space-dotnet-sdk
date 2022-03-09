@@ -37,7 +37,17 @@ public abstract class TeamMembershipIdentifier : IUrlParameter
     
     public class TeamMembershipIdentifierId : TeamMembershipIdentifier
     {
-        public string Id { get; }
+        [Required]
+        [JsonPropertyName("id")]
+#if NET6_0_OR_GREATER
+        public string Id { get; init; }
+#else
+        public string Id { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public TeamMembershipIdentifierId() { }
+#endif
         
         public TeamMembershipIdentifierId(string id)
         {

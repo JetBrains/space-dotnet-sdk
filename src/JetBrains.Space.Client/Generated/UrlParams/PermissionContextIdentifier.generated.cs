@@ -43,7 +43,17 @@ public abstract class PermissionContextIdentifier : IUrlParameter
     
     public class ChannelPermissionContextIdentifier : PermissionContextIdentifier
     {
-        public string Channel { get; }
+        [Required]
+        [JsonPropertyName("channel")]
+#if NET6_0_OR_GREATER
+        public string Channel { get; init; }
+#else
+        public string Channel { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ChannelPermissionContextIdentifier() { }
+#endif
         
         public ChannelPermissionContextIdentifier(string channel)
         {
@@ -62,7 +72,17 @@ public abstract class PermissionContextIdentifier : IUrlParameter
     
     public class ProjectPermissionContextIdentifier : PermissionContextIdentifier
     {
-        public ProjectIdentifier Project { get; }
+        [Required]
+        [JsonPropertyName("project")]
+#if NET6_0_OR_GREATER
+        public ProjectIdentifier Project { get; init; }
+#else
+        public ProjectIdentifier Project { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ProjectPermissionContextIdentifier() { }
+#endif
         
         public ProjectPermissionContextIdentifier(ProjectIdentifier project)
         {

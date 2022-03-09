@@ -40,7 +40,17 @@ public abstract class ProjectIdentifier : IUrlParameter
     
     public class ProjectIdentifierId : ProjectIdentifier
     {
-        public string Id { get; }
+        [Required]
+        [JsonPropertyName("id")]
+#if NET6_0_OR_GREATER
+        public string Id { get; init; }
+#else
+        public string Id { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ProjectIdentifierId() { }
+#endif
         
         public ProjectIdentifierId(string id)
         {
@@ -53,7 +63,17 @@ public abstract class ProjectIdentifier : IUrlParameter
     
     public class ProjectIdentifierKey : ProjectIdentifier
     {
-        public string Key { get; }
+        [Required]
+        [JsonPropertyName("key")]
+#if NET6_0_OR_GREATER
+        public string Key { get; init; }
+#else
+        public string Key { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public ProjectIdentifierKey() { }
+#endif
         
         public ProjectIdentifierKey(string key)
         {

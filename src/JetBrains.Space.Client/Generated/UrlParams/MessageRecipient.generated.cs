@@ -46,7 +46,17 @@ public abstract class MessageRecipient : IUrlParameter
     
     public class MessageRecipientChannel : MessageRecipient
     {
-        public ChatChannel Channel { get; }
+        [Required]
+        [JsonPropertyName("channel")]
+#if NET6_0_OR_GREATER
+        public ChatChannel Channel { get; init; }
+#else
+        public ChatChannel Channel { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public MessageRecipientChannel() { }
+#endif
         
         public MessageRecipientChannel(ChatChannel channel)
         {
@@ -59,7 +69,17 @@ public abstract class MessageRecipient : IUrlParameter
     
     public class MessageRecipientCodeReview : MessageRecipient
     {
-        public string CodeReview { get; }
+        [Required]
+        [JsonPropertyName("codeReview")]
+#if NET6_0_OR_GREATER
+        public string CodeReview { get; init; }
+#else
+        public string CodeReview { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public MessageRecipientCodeReview() { }
+#endif
         
         public MessageRecipientCodeReview(string codeReview)
         {
@@ -72,7 +92,17 @@ public abstract class MessageRecipient : IUrlParameter
     
     public class MessageRecipientIssue : MessageRecipient
     {
-        public string Issue { get; }
+        [Required]
+        [JsonPropertyName("issue")]
+#if NET6_0_OR_GREATER
+        public string Issue { get; init; }
+#else
+        public string Issue { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public MessageRecipientIssue() { }
+#endif
         
         public MessageRecipientIssue(string issue)
         {
@@ -85,7 +115,17 @@ public abstract class MessageRecipient : IUrlParameter
     
     public class MessageRecipientMember : MessageRecipient
     {
-        public ProfileIdentifier Member { get; }
+        [Required]
+        [JsonPropertyName("member")]
+#if NET6_0_OR_GREATER
+        public ProfileIdentifier Member { get; init; }
+#else
+        public ProfileIdentifier Member { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public MessageRecipientMember() { }
+#endif
         
         public MessageRecipientMember(ProfileIdentifier member)
         {

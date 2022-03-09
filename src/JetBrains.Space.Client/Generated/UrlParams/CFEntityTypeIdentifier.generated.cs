@@ -55,7 +55,17 @@ public abstract class CFEntityTypeIdentifier : IUrlParameter
     
     public class CFIssueTrackerEntityType : CFEntityTypeIdentifier
     {
-        public IssueTrackerIdentifier IssueTracker { get; }
+        [Required]
+        [JsonPropertyName("issueTracker")]
+#if NET6_0_OR_GREATER
+        public IssueTrackerIdentifier IssueTracker { get; init; }
+#else
+        public IssueTrackerIdentifier IssueTracker { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public CFIssueTrackerEntityType() { }
+#endif
         
         public CFIssueTrackerEntityType(IssueTrackerIdentifier issueTracker)
         {
