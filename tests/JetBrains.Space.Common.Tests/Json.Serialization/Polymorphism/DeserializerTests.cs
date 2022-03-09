@@ -65,4 +65,39 @@ public class DeserializerTests
             }
         }
     }
+
+    [Fact]
+    public void CanDeserializeObjectWithPolymorphClasses_Repro_PayloadContextNull()
+    {
+        var inputJsonString = "{\n  \"className\": \"MenuActionPayload\",\n  \"menuItemUniqueCode\": \"translate-message\",\n  \"context\": {\n    \"className\": \"ChannelMessageMenuActionContext\",\n    \"channelIdentifier\": {\n      \"className\": \"ChannelIdentifier.Id\",\n      \"id\": \"channelId\"\n    },\n    \"messageIdentifier\": {\n      \"className\": \"ChatMessageIdentifier.InternalId\",\n      \"id\": \"messageId\"\n    }\n  },\n  \"clientId\": \"clientId\",\n  \"userId\": \"userId\",\n  \"verificationToken\": null\n}";
+
+        var result = JsonSerializer.Deserialize(inputJsonString, typeof(ApplicationPayload), CreateSerializerOptions());
+
+        Assert.NotNull(result);
+        Assert.IsType<MenuActionPayload>(result);
+        if (result is MenuActionPayload menuActionPayload)
+        {
+            Assert.NotNull(menuActionPayload.Context);
+            Assert.IsType<ChannelMessageMenuActionContext>(menuActionPayload.Context);
+
+            if (menuActionPayload.Context is ChannelMessageMenuActionContext channelMessageMenuActionContext)
+            {
+                Assert.NotNull(channelMessageMenuActionContext.ChannelIdentifier);
+                Assert.IsType<ChannelIdentifier.ChannelIdentifierId>(channelMessageMenuActionContext.ChannelIdentifier);
+                if (channelMessageMenuActionContext.ChannelIdentifier is ChannelIdentifier.ChannelIdentifierId channelIdentifier)
+                {
+                    Assert.NotNull(channelIdentifier.Id);
+                    Assert.Equal("channelId", channelIdentifier.Id);
+                }
+
+                Assert.NotNull(channelMessageMenuActionContext.MessageIdentifier);
+                Assert.IsType<ChatMessageIdentifier.ChatMessageIdentifierInternalId>(channelMessageMenuActionContext.MessageIdentifier);
+                if (channelMessageMenuActionContext.MessageIdentifier is ChatMessageIdentifier.ChatMessageIdentifierInternalId messageIdentifier)
+                {
+                    Assert.NotNull(messageIdentifier.Id);
+                    Assert.Equal("messageId", messageIdentifier.Id);
+                }
+            }
+        }
+    }
 }

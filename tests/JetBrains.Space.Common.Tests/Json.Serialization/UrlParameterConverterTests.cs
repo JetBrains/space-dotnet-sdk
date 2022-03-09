@@ -27,7 +27,7 @@ public class UrlParameterConverterTests
     }
         
     [Fact]
-    public void ReadReturnsNull()
+    public void ReadReturnsNullForSomeUrlParameter()
     {
         // Arrange
         var target = new UrlParameterConverter().CreateConverter(typeof(SomeUrlParameter), new JsonSerializerOptions()) as JsonConverter<SomeUrlParameter>;

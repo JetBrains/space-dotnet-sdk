@@ -2,7 +2,11 @@ using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using JetBrains.Annotations;
+using JetBrains.Space.Common.Json.Serialization.Internal;
+using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
+
+#nullable disable
 
 namespace JetBrains.Space.Common.Json.Serialization;
 
@@ -40,8 +44,27 @@ public class UrlParameterConverter<T> : JsonConverter<T>
     [CanBeNull]
     public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        JsonDocument.ParseValue(ref reader).Dispose();
-        return null!;
+        if (reader.TokenType == JsonTokenType.Null) return null;
+    
+        var readerAtStart = reader;
+            
+        using var jsonDocument = JsonDocument.ParseValue(ref reader);
+        var jsonObject = jsonDocument.RootElement;
+    
+        var className = jsonObject.GetStringValue("className");
+        if (!string.IsNullOrEmpty(className))
+        {
+            if (ClassNameTypeUtility.TryResolve(
+                    className: className, 
+                    spaceDotNetCSharpTypeName: ClassNameTypeUtility.SpaceDotNetClientNamespace + "." + typeToConvert.Name + "+" + CSharpIdentifier.ForClassOrNamespace(className) + ", " + ClassNameTypeUtility.SpaceDotNetClientAssemblyName,
+                    targetType: out var targetType))
+            {
+                return JsonSerializer.Deserialize(ref readerAtStart, targetType, options) as T;
+            }
+        }
+        
+        JsonDocument.ParseValue(ref readerAtStart).Dispose();
+        return null;
     }
 
     /// <inheritdoc />
