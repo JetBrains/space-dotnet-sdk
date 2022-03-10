@@ -44,7 +44,7 @@ public partial class UploadClient
         var request = new HttpRequestMessage(HttpMethod.Put, _connection.ServerUrl + uploadPath.TrimStart('/') + "/" + fileName.TrimStart('/'))
         {
             Content = new StreamContent(uploadStream)
-        }.WithClientAndSdkHeaders(SdkInfo.Version);;
+        }.WithClientAndSdkHeaders(SdkInfo.Version);
             
         var response = await uploadHttpClient.SendAsync(request, cancellationToken);
         if (response.IsSuccessStatusCode)
