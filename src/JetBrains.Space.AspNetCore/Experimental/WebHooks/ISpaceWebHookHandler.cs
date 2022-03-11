@@ -28,14 +28,14 @@ public interface ISpaceWebHookHandler
     /// </summary>
     /// <param name="payload">The <see cref="MessageActionPayload"/>.</param>
     /// <returns>The result of executing this action. When <value>null</value>, no further action will be taken by the Space server. When <seealso cref="AppUserActionExecutionResult"/>, Space server may prompt the user to perform additional actions.</returns>
-    Task<AppUserActionExecutionResult?> HandleMessageActionAsync(MessageActionPayload payload);
+    Task<AppUserActionExecutionResult> HandleMessageActionAsync(MessageActionPayload payload);
         
     /// <summary>
     /// Handle menu action request. This method is called when a user interacts with our application by clicking a menu item on a message.
     /// </summary>
     /// <param name="payload">The <see cref="MenuActionPayload"/>.</param>
     /// <returns>The result of executing this action. When <value>null</value>, no further action will be taken by the Space server. When <seealso cref="AppUserActionExecutionResult"/>, Space server may prompt the user to perform additional actions.</returns>
-    Task<AppUserActionExecutionResult?> HandleMenuActionAsync(MenuActionPayload payload);
+    Task<AppUserActionExecutionResult> HandleMenuActionAsync(MenuActionPayload payload);
 
     /// <summary>
     /// Handle webhook request. This method is called when a webhook payload is delivered from Space.

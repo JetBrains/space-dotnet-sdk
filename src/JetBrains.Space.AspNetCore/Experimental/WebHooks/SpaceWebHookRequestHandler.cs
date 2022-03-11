@@ -82,27 +82,13 @@ public class SpaceWebHookRequestHandler<TWebHookHandler>
             // Action?
             case MessageActionPayload actionPayload:
                 var actionResult = await handler.HandleMessageActionAsync(actionPayload);
-                if (actionResult != null)
-                {
-                    await WriteJsonResponse(context.Response, 200, actionResult);
-                }
-                else 
-                {
-                    await WriteTextResponse(context.Response, 200);
-                }
+                await WriteJsonResponse(context.Response, 200, actionResult);
                 return;
                 
             // Menu action?
             case MenuActionPayload menuActionPayload:
                 var menuActionResult = await handler.HandleMenuActionAsync(menuActionPayload);
-                if (menuActionResult != null)
-                {
-                    await WriteJsonResponse(context.Response, 200, menuActionResult);
-                }
-                else 
-                {
-                    await WriteTextResponse(context.Response, 200);
-                }
+                await WriteJsonResponse(context.Response, 200, menuActionResult);
                 return;
                 
             // Webhook?

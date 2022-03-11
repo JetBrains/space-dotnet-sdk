@@ -17,12 +17,12 @@ public abstract class SpaceWebHookHandler
         => Task.CompletedTask;
 
     /// <inheritdoc/>
-    public virtual Task<AppUserActionExecutionResult?> HandleMessageActionAsync(MessageActionPayload payload)
-        => Task.FromResult<AppUserActionExecutionResult?>(null);
+    public virtual Task<AppUserActionExecutionResult> HandleMessageActionAsync(MessageActionPayload payload)
+        => Task.FromResult<AppUserActionExecutionResult>(AppUserActionExecutionResult.Success());
 
     /// <inheritdoc/>
-    public virtual Task<AppUserActionExecutionResult?> HandleMenuActionAsync(MenuActionPayload payload)
-        => Task.FromResult<AppUserActionExecutionResult?>(null);
+    public virtual Task<AppUserActionExecutionResult> HandleMenuActionAsync(MenuActionPayload payload)
+        => Task.FromResult<AppUserActionExecutionResult>(AppUserActionExecutionResult.Success());
         
     /// <inheritdoc/>
     public virtual Task<ApplicationExecutionResult> HandleWebhookRequestAsync(WebhookRequestPayload payload)
