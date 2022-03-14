@@ -10,6 +10,17 @@ namespace JetBrains.Space.Common;
 public class AuthenticationTokens
 {
     /// <summary>
+    /// Creates a new <see cref="AuthenticationTokens"/> instance from refresh token.
+    /// </summary>
+    /// <param name="refreshToken">The refresh token value.</param>
+    /// <returns>An <see cref="AuthenticationTokens"/> instance.</returns>
+    public static AuthenticationTokens FromRefreshToken(string refreshToken) =>
+        new AuthenticationTokens(
+            accessToken: null,
+            refreshToken: refreshToken,
+            expires: null);
+
+    /// <summary>
     /// Creates a new <see cref="AuthenticationTokens"/> instance.
     /// </summary>
     /// <param name="accessToken">The access token value.</param>
