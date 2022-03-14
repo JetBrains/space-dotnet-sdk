@@ -228,7 +228,9 @@ public class BearerTokenConnection
             exception = spaceError.Error switch
             {
                 ErrorCodes.ValidationError => new ValidationException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
-                ErrorCodes.AuthenticationRequired => new AuthenticationRequiredException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
+                ErrorCodes.AuthenticationRequired => !string.IsNullOrEmpty(spaceError.Description) && spaceError.Description.Equals("Refresh token associated with the access token is revoked", StringComparison.InvariantCulture)
+                    ? new RefreshTokenRevokedException(spaceError.Description, response.StatusCode, response.ReasonPhrase)
+                    : new AuthenticationRequiredException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
                 ErrorCodes.PermissionDenied => new PermissionDeniedException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
                 ErrorCodes.DuplicatedEntity => new DuplicatedEntityException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
                 ErrorCodes.RequestError => new ResourceException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
