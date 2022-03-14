@@ -30,8 +30,9 @@ public class RefreshTokenConnection
     /// <param name="clientId">The client id to use when refreshing tokens.</param>
     /// <param name="clientSecret">The client secret to use when refreshing tokens.</param>
     /// <param name="authenticationTokens">Authentication tokens to use while authenticating.</param>
+    /// <param name="scopes">The list of permissions to request. The connection is initialized with the provided scope. When <value>null</value> or empty, default scope of "**" will be used.</param>
     /// <param name="httpClient">HTTP client to use for communication.</param>
-    public RefreshTokenConnection(Uri serverUrl, string clientId, string clientSecret, AuthenticationTokens authenticationTokens, HttpClient? httpClient = null)
+    public RefreshTokenConnection(Uri serverUrl, string clientId, string clientSecret, AuthenticationTokens authenticationTokens, IEnumerable<string>? scopes = null, HttpClient? httpClient = null)
         : base(serverUrl, authenticationTokens, httpClient)
     {
         if (string.IsNullOrEmpty(authenticationTokens.RefreshToken))
@@ -41,19 +42,33 @@ public class RefreshTokenConnection
             
         _clientId = clientId;
         _clientSecret = clientSecret;
+
+        // Add provided scope, or default scope
+        if (scopes != null)
+        {
+            foreach (var scope in scopes)
+            {
+                Scope.Add(scope);
+            }
+        }
+        else
+        {
+            Scope.Add("**");
+        }
     }
 
     /// <summary>
-    /// Gets the list of permissions to request. Defaults to "**".
+    /// Gets the list of permissions to request. Defaults to "**" if no scope was provided when calling the constructor.
     /// </summary>
     // ReSharper disable once MemberCanBePrivate.Global
-    public ICollection<string> Scope { get; } = new HashSet<string> { "**" };
+    public ICollection<string> Scope { get; } = new HashSet<string>();
 
     /// <inheritdoc />
     protected override async Task EnsureAuthenticatedAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        // Authenticate?
-        if (AuthenticationTokens != null && AuthenticationTokens.HasExpired() && !string.IsNullOrEmpty(AuthenticationTokens.RefreshToken))
+        // Authenticate when token expired or when no access token is provided (but refresh token is known)
+        if (AuthenticationTokens != null &&
+            !string.IsNullOrEmpty(AuthenticationTokens.RefreshToken) && (AuthenticationTokens.HasExpired() || string.IsNullOrEmpty(AuthenticationTokens.AccessToken)))
         {
             // Get new token
             var spaceTokenRequest = new HttpRequestMessage(HttpMethod.Post, ServerUrl + "oauth/token")
