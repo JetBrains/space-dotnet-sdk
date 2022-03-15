@@ -7,7 +7,6 @@ using JetBrains.Space.AspNetCore.Experimental.WebHooks.Options;
 using JetBrains.Space.Client;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.EndpointAuthentication;
 
@@ -17,34 +16,24 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.EndpointAuthenticatio
 [PublicAPI]
 public class VerifyHttpBasicAuthenticationHandler : ISpaceEndpointAuthenticationHandler
 {
-    private readonly IOptionsSnapshot<SpaceWebHookOptions> _options;
     private readonly ILogger<VerifyHttpBasicAuthenticationHandler> _logger;
 
     /// <summary>
     /// Creates a new <see cref="VerifyHttpBasicAuthenticationHandler"/>.
     /// </summary>
-    /// <param name="options">The <see cref="SpaceWebHookOptions"/> used by the current <see cref="VerifyHttpBasicAuthenticationHandler"/>.</param>
     /// <param name="logger">An <see cref="ILogger{T}"/> used by the current <see cref="VerifyHttpBasicAuthenticationHandler"/>.</param>
-    public VerifyHttpBasicAuthenticationHandler(
-        IOptionsSnapshot<SpaceWebHookOptions> options,
-        ILogger<VerifyHttpBasicAuthenticationHandler> logger)
+    public VerifyHttpBasicAuthenticationHandler(ILogger<VerifyHttpBasicAuthenticationHandler> logger)
     {
-        _options = options;
         _logger = logger;
     }
         
     /// <inheritdoc />
     public Task<bool> AuthenticateRequestAsync(
-        string? optionsName,
+        SpaceWebHookOptions options,
         HttpContext context,
         string requestBody,
         ApplicationPayload? payload)
     {
-        // Determine options name to use (in case multiple are registered)
-        var options = optionsName != null
-            ? _options.Get(optionsName)
-            : _options.Value;
-
         var verificationOptions = options.VerifyHttpBasicAuthentication;
         if (verificationOptions is not { IsEnabled: true })
         {

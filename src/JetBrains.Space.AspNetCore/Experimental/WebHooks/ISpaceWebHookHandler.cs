@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using JetBrains.Space.AspNetCore.Experimental.WebHooks.Options;
 using JetBrains.Space.Client;
 
 namespace JetBrains.Space.AspNetCore.Experimental.WebHooks;
@@ -10,6 +11,18 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks;
 [PublicAPI]
 public interface ISpaceWebHookHandler
 {
+    /// <summary>
+    /// Configure <see cref="SpaceWebHookOptions"/> for request validation,
+    /// based on the <see cref="ApplicationPayload"/> read from the current request.
+    /// 
+    /// This method can be used to configure signature validation etc. before dispatching
+    /// the <see cref="ApplicationPayload"/> to other methods on the <see cref="ISpaceWebHookHandler"/>.
+    /// </summary>
+    /// <param name="options">The <see cref="SpaceWebHookOptions"/> to configure.</param>
+    /// <param name="payload">The <see cref="ApplicationPayload"/>.</param>
+    /// <returns>The configured (or original) <see cref="SpaceWebHookOptions"/>.</returns>
+    Task<SpaceWebHookOptions> ConfigureRequestValidationOptionsAsync(SpaceWebHookOptions options, ApplicationPayload payload);
+
     /// <summary>
     /// Handle "list commands" request. Use the response to provide details about available slash commands to Space.
     /// </summary>

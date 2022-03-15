@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using JetBrains.Space.AspNetCore.Experimental.WebHooks.Options;
 using JetBrains.Space.Client;
 
 namespace JetBrains.Space.AspNetCore.Experimental.WebHooks;
@@ -8,6 +9,10 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks;
 public abstract class SpaceWebHookHandler
     : ISpaceWebHookHandler
 {
+    /// <inheritdoc />
+    public virtual Task<SpaceWebHookOptions> ConfigureRequestValidationOptionsAsync(SpaceWebHookOptions options, ApplicationPayload payload)
+        => Task.FromResult(options);
+
     /// <inheritdoc/>
     public virtual Task<Commands> HandleListCommandsAsync(ListCommandsPayload payload) 
         => Task.FromResult(new Commands(new List<CommandDetail>()));

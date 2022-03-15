@@ -7,7 +7,6 @@ using JetBrains.Space.AspNetCore.Experimental.WebHooks.Options;
 using JetBrains.Space.Client;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.EndpointAuthentication;
 
@@ -20,34 +19,24 @@ public class VerifySigningKeyAuthenticationHandler : ISpaceEndpointAuthenticatio
     private const string HeaderSpaceSignature = "X-Space-Signature";
     private const string HeaderSpaceTimestamp = "X-Space-Timestamp";
 
-    private readonly IOptionsSnapshot<SpaceWebHookOptions> _options;
     private readonly ILogger<VerifySigningKeyAuthenticationHandler> _logger;
 
     /// <summary>
     /// Creates a new <see cref="VerifySigningKeyAuthenticationHandler"/>.
     /// </summary>
-    /// <param name="options">The <see cref="SpaceWebHookOptions"/> used by the current <see cref="VerifySigningKeyAuthenticationHandler"/>.</param>
     /// <param name="logger">An <see cref="ILogger{T}"/> used by the current <see cref="VerifySigningKeyAuthenticationHandler"/>.</param>
-    public VerifySigningKeyAuthenticationHandler(
-        IOptionsSnapshot<SpaceWebHookOptions> options,
-        ILogger<VerifySigningKeyAuthenticationHandler> logger)
+    public VerifySigningKeyAuthenticationHandler(ILogger<VerifySigningKeyAuthenticationHandler> logger)
     {
-        _options = options;
         _logger = logger;
     }
         
     /// <inheritdoc />
     public Task<bool> AuthenticateRequestAsync(
-        string? optionsName,
+        SpaceWebHookOptions options,
         HttpContext context,
         string requestBody,
         ApplicationPayload? payload)
     {
-        // Determine options name to use (in case multiple are registered)
-        var options = optionsName != null
-            ? _options.Get(optionsName)
-            : _options.Value;
-
         var verificationOptions = options.VerifySigningKey;
         if (verificationOptions is not { IsEnabled: true })
         {

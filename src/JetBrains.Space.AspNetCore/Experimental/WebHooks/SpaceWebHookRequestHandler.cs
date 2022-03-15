@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using JetBrains.Space.AspNetCore.Experimental.WebHooks.EndpointAuthentication;
 using JetBrains.Space.AspNetCore.Experimental.WebHooks.Options;
@@ -12,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace JetBrains.Space.AspNetCore.Experimental.WebHooks;
 
@@ -22,6 +24,7 @@ namespace JetBrains.Space.AspNetCore.Experimental.WebHooks;
 public class SpaceWebHookRequestHandler<TWebHookHandler>
     where TWebHookHandler : class, ISpaceWebHookHandler
 {
+    private readonly IOptionsSnapshot<SpaceWebHookOptions> _options;
     private readonly ILogger<SpaceWebHookRequestHandler<TWebHookHandler>> _logger;
         
     // ReSharper disable once StaticMemberInGenericType
@@ -35,10 +38,13 @@ public class SpaceWebHookRequestHandler<TWebHookHandler>
     /// <summary>
     /// Creates a new <see cref="SpaceWebHookRequestHandler{T}"/>.
     /// </summary>
+    /// <param name="options">The <see cref="SpaceWebHookOptions"/> used by the current <see cref="SpaceWebHookRequestHandler{T}"/>.</param>
     /// <param name="logger">An <see cref="ILogger{T}"/> used by the current <see cref="SpaceWebHookRequestHandler{T}"/>.</param>
     public SpaceWebHookRequestHandler(
+        IOptionsSnapshot<SpaceWebHookOptions> options,
         ILogger<SpaceWebHookRequestHandler<TWebHookHandler>> logger)
     {
+        _options = options;
         _logger = logger;
     }
         
@@ -49,19 +55,36 @@ public class SpaceWebHookRequestHandler<TWebHookHandler>
     /// <param name="optionsName">The (optional) name of the <see cref="SpaceWebHookOptions"/> options that apply.</param>
     public async Task HandleAsync(HttpContext context, string? optionsName)
     {
-        // Determine handler
-        var handler = context.RequestServices.GetRequiredService<TWebHookHandler>();
-            
-        // Validate and read payload
-        var (isValid, payload) = await ValidateAndReadModelFromRequestAsync(context, optionsName);
-        if (!isValid || payload == null)
+        // Read payload
+        var readPayloadResult = await TryReadPayloadFromRequestAsync(context.Request);
+        if (!readPayloadResult.Succeeded || readPayloadResult.PayloadJson == null || readPayloadResult.Payload == null)
         {
-            // When not valid, ValidateAndReadModelFromRequestAsync already has written a status code and response.
+            await WriteTextResponse(context.Response, 400, "The request payload could not be read. Check the application log for more information.");
             return;
         }
-            
+        
+        // Determine handler
+        var handler = context.RequestServices.GetRequiredService<TWebHookHandler>();
+        
+        // Determine options to use (in case multiple are registered)
+        var options = optionsName != null
+            ? _options.Get(optionsName)
+            : _options.Value;
+        
+        var configuredOptions = await handler.ConfigureRequestValidationOptionsAsync(
+            // REVIEW: Is there a faster way of doing a deep copy of an options DTO?
+            options: JsonSerializer.Deserialize<SpaceWebHookOptions>(JsonSerializer.Serialize(options))!,
+            payload: readPayloadResult.Payload);
+
+        // Validate payload
+        if (!await IsValidPayloadAsync(configuredOptions, context, readPayloadResult.PayloadJson, readPayloadResult.Payload))
+        {
+            await WriteTextResponse(context.Response, 400, "The request could not be validated. Check the application log for more information.");
+            return;
+        }
+        
         // Handle payload
-        switch (payload)
+        switch (readPayloadResult.Payload)
         {
             // List commands?
             case ListCommandsPayload listCommandsPayload:
@@ -142,51 +165,53 @@ public class SpaceWebHookRequestHandler<TWebHookHandler>
 
         await WriteTextResponse(context.Response, 400, "Payload is not supported.");
     }
-
-    private async Task<(bool, ApplicationPayload?)> ValidateAndReadModelFromRequestAsync(HttpContext context, string? optionsName)
+    
+    private async Task<ReadPayloadResult> TryReadPayloadFromRequestAsync(HttpRequest httpRequest)
     {
         try 
         {
-            using var inputStreamReader = new StreamReader(context.Request.Body);
+            using var inputStreamReader = new StreamReader(httpRequest.Body);
             var inputJsonString = await inputStreamReader.ReadToEndAsync();
-                
+            
             // Deserialize model
-            var payload = JsonSerializer.Deserialize(inputJsonString, typeof(ApplicationPayload), JsonSerializerOptions) as ApplicationPayload;
-            if (payload != null)
+            if (JsonSerializer.Deserialize(inputJsonString, typeof(ApplicationPayload), JsonSerializerOptions) is ApplicationPayload payload)
             {
                 PropagatePropertyAccessPathHelper.SetAccessPathForValue(string.Empty, false, payload);
+                return ReadPayloadResult.Success(inputJsonString, payload);
             }
-                
-            // Validate request
-            foreach (var endpointAuthenticationHandler in context.RequestServices.GetServices<ISpaceEndpointAuthenticationHandler>())
-            {
-                if (!await endpointAuthenticationHandler.AuthenticateRequestAsync(optionsName, context, inputJsonString, payload))
-                {
-                    await WriteTextResponse(context.Response, 401, "The request could not be validated. Check the application log for more information.");
-                    return (false, null);
-                }
-            }
-                
-            // Good to go!
-            return (true, payload);
+
+            _logger.LogError("JSON payload could not be deserialized. A null value was returned");
+            return ReadPayloadResult.Failed();
         }
         catch (JsonException jsonException)
         {
             var path = jsonException.Path;
             var formatterException = new InputFormatterException(jsonException.Message, jsonException);
-                
+            
             _logger.LogError(jsonException, "JSON input formatter threw an exception at path {Path}: {Message}", path, formatterException.Message);
-                
-            await WriteTextResponse(context.Response, 400, "The request payload could not be read. Check the application log for more information.");
-            return (false, null);
+            
+            return ReadPayloadResult.Failed();
         }
         catch (Exception exception) when (exception is FormatException or OverflowException)
         {
             _logger.LogError(exception, "JSON input formatter threw an exception: {Message}", exception.Message);
-                
-            await WriteTextResponse(context.Response, 400, "The request payload could not be read. Check the application log for more information.");
-            return (false, null);
+            
+            return ReadPayloadResult.Failed();
         }
+    }
+    
+    private async Task<bool> IsValidPayloadAsync(SpaceWebHookOptions options, HttpContext context, string payloadJson, ApplicationPayload payload)
+    {
+        // Validate request
+        foreach (var endpointAuthenticationHandler in context.RequestServices.GetServices<ISpaceEndpointAuthenticationHandler>())
+        {
+            if (!await endpointAuthenticationHandler.AuthenticateRequestAsync(options, context, payloadJson, payload))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private static Task WriteApplicationExecutionResultAsync(HttpResponse response, ApplicationExecutionResult executionResult) 
@@ -212,5 +237,25 @@ public class SpaceWebHookRequestHandler<TWebHookHandler>
             response.ContentType = "application/json; charset=utf-8";
             await JsonSerializer.SerializeAsync(response.Body, payload, JsonSerializerOptions);
 #endif
+    }
+    
+    private class ReadPayloadResult
+    {
+        public static ReadPayloadResult Success(string payloadJson, ApplicationPayload payload) =>
+            new(true, payloadJson, payload);
+        
+        public static ReadPayloadResult Failed() =>
+            new(false, null, null);
+        
+        private ReadPayloadResult(bool succeeded, string? payloadJson, ApplicationPayload? payload)
+        {
+            Succeeded = succeeded;
+            PayloadJson = payloadJson;
+            Payload = payload;
+        }
+
+        public bool Succeeded { get; protected set; }
+        public string? PayloadJson { get; protected set; }
+        public ApplicationPayload? Payload { get; protected set; }
     }
 }
