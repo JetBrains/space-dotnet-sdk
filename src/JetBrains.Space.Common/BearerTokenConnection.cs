@@ -91,8 +91,8 @@ public class BearerTokenConnection
         var response = await SendRequestAsync(request, cancellationToken);
 
 #if NET6_0_OR_GREATER
-            return (await JsonSerializer.DeserializeAsync<TResult>(
-                await response.Content.ReadAsStreamAsync(cancellationToken), JsonSerializerOptions, cancellationToken))!;
+        return (await JsonSerializer.DeserializeAsync<TResult>(
+            await response.Content.ReadAsStreamAsync(cancellationToken), JsonSerializerOptions, cancellationToken))!;
 #else
         return (await JsonSerializer.DeserializeAsync<TResult>(
             await response.Content.ReadAsStreamAsync(), JsonSerializerOptions, cancellationToken))!;
@@ -129,8 +129,8 @@ public class BearerTokenConnection
         var response = await SendRequestAsync(request, cancellationToken);
             
 #if NET6_0_OR_GREATER
-            return (await JsonSerializer.DeserializeAsync<TResult>(
-                await response.Content.ReadAsStreamAsync(cancellationToken), JsonSerializerOptions, cancellationToken))!;
+        return (await JsonSerializer.DeserializeAsync<TResult>(
+            await response.Content.ReadAsStreamAsync(cancellationToken), JsonSerializerOptions, cancellationToken))!;
 #else
         return (await JsonSerializer.DeserializeAsync<TResult>(
             await response.Content.ReadAsStreamAsync(), JsonSerializerOptions, cancellationToken))!;
@@ -155,7 +155,7 @@ public class BearerTokenConnection
             ContentEncoding = response.Content.Headers.ContentEncoding.ToString(),
             ContentLanguage = response.Content.Headers.ContentLanguage.ToString(),
 #if NET6_0_OR_GREATER
-                Stream = await response.Content.ReadAsStreamAsync(cancellationToken)
+            Stream = await response.Content.ReadAsStreamAsync(cancellationToken)
 #else
             Stream = await response.Content.ReadAsStreamAsync()
 #endif
