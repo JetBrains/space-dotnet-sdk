@@ -65,5 +65,17 @@ public static class OrganizationForUpdateDTOPartialExtensions
     public static Partial<OrganizationForUpdateDTO> WithLicense(this Partial<OrganizationForUpdateDTO> it)
         => it.AddFieldName("license");
     
+    public static Partial<OrganizationForUpdateDTO> WithOrgSize(this Partial<OrganizationForUpdateDTO> it)
+        => it.AddFieldName("orgSize");
+    
+    public static Partial<OrganizationForUpdateDTO> WithOrgSize(this Partial<OrganizationForUpdateDTO> it, Func<Partial<OrgSizeDTO>, Partial<OrgSizeDTO>> partialBuilder)
+        => it.AddFieldName("orgSize", partialBuilder(new Partial<OrgSizeDTO>(it)));
+    
+    public static Partial<OrganizationForUpdateDTO> WithOrgIndustry(this Partial<OrganizationForUpdateDTO> it)
+        => it.AddFieldName("orgIndustry");
+    
+    public static Partial<OrganizationForUpdateDTO> WithOrgIndustry(this Partial<OrganizationForUpdateDTO> it, Func<Partial<OrgIndustryDTO>, Partial<OrgIndustryDTO>> partialBuilder)
+        => it.AddFieldName("orgIndustry", partialBuilder(new Partial<OrgIndustryDTO>(it)));
+    
 }
 

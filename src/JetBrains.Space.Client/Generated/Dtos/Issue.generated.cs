@@ -34,7 +34,7 @@ public sealed class Issue
 {
     public Issue() { }
     
-    public Issue(string id, bool archived, string projectId, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<SprintRecord> sprints, List<Topic> topics, PRProject? projectRef = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, CPrincipal? deletedBy = null, DateTime? deletedTime = null, string? description = null, List<AttachmentInfo>? unfurls = null)
+    public Issue(string id, bool archived, PRProject projectRef, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<SprintRecord> sprints, List<Topic> topics, string? projectId = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, int? subItemsCount = null, int? doneSubItemsCount = null, CPrincipal? deletedBy = null, DateTime? deletedTime = null, string? description = null, List<AttachmentInfo>? unfurls = null)
     {
         Id = id;
         IsArchived = archived;
@@ -51,6 +51,8 @@ public sealed class Issue
         Tags = tags;
         Title = title;
         AttachmentsCount = attachmentsCount;
+        SubItemsCount = subItemsCount;
+        DoneSubItemsCount = doneSubItemsCount;
         DeletedBy = deletedBy;
         DeletedTime = deletedTime;
         Attachments = attachments;
@@ -83,20 +85,20 @@ public sealed class Issue
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(Issue), nameof(ProjectId), "projectId");
+    private PropertyValue<string?> _projectId = new PropertyValue<string?>(nameof(Issue), nameof(ProjectId), "projectId");
     
-    [Required]
     [JsonPropertyName("projectId")]
-    public string ProjectId
+    public string? ProjectId
     {
         get => _projectId.GetValue(InlineErrors);
         set => _projectId.SetValue(value);
     }
 
-    private PropertyValue<PRProject?> _projectRef = new PropertyValue<PRProject?>(nameof(Issue), nameof(ProjectRef), "projectRef");
+    private PropertyValue<PRProject> _projectRef = new PropertyValue<PRProject>(nameof(Issue), nameof(ProjectRef), "projectRef");
     
+    [Required]
     [JsonPropertyName("projectRef")]
-    public PRProject? ProjectRef
+    public PRProject ProjectRef
     {
         get => _projectRef.GetValue(InlineErrors);
         set => _projectRef.SetValue(value);
@@ -207,6 +209,24 @@ public sealed class Issue
     {
         get => _attachmentsCount.GetValue(InlineErrors);
         set => _attachmentsCount.SetValue(value);
+    }
+
+    private PropertyValue<int?> _subItemsCount = new PropertyValue<int?>(nameof(Issue), nameof(SubItemsCount), "subItemsCount");
+    
+    [JsonPropertyName("subItemsCount")]
+    public int? SubItemsCount
+    {
+        get => _subItemsCount.GetValue(InlineErrors);
+        set => _subItemsCount.SetValue(value);
+    }
+
+    private PropertyValue<int?> _doneSubItemsCount = new PropertyValue<int?>(nameof(Issue), nameof(DoneSubItemsCount), "doneSubItemsCount");
+    
+    [JsonPropertyName("doneSubItemsCount")]
+    public int? DoneSubItemsCount
+    {
+        get => _doneSubItemsCount.GetValue(InlineErrors);
+        set => _doneSubItemsCount.SetValue(value);
     }
 
     private PropertyValue<CPrincipal?> _deletedBy = new PropertyValue<CPrincipal?>(nameof(Issue), nameof(DeletedBy), "deletedBy");
@@ -323,6 +343,8 @@ public sealed class Issue
         _tags.SetAccessPath(parentChainPath, validateHasBeenSet);
         _title.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attachmentsCount.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _subItemsCount.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _doneSubItemsCount.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deletedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deletedTime.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);

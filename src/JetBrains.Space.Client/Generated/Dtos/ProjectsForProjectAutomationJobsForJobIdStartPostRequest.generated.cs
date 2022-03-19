@@ -34,9 +34,10 @@ public class ProjectsForProjectAutomationJobsForJobIdStartPostRequest
 {
     public ProjectsForProjectAutomationJobsForJobIdStartPostRequest() { }
     
-    public ProjectsForProjectAutomationJobsForJobIdStartPostRequest(Branch branch)
+    public ProjectsForProjectAutomationJobsForJobIdStartPostRequest(Branch branch, List<JobParameter>? parameters = null)
     {
         Branch = branch;
+        Parameters = parameters;
     }
     
     private PropertyValue<Branch> _branch = new PropertyValue<Branch>(nameof(ProjectsForProjectAutomationJobsForJobIdStartPostRequest), nameof(Branch), "branch");
@@ -49,9 +50,22 @@ public class ProjectsForProjectAutomationJobsForJobIdStartPostRequest
         set => _branch.SetValue(value);
     }
 
+    private PropertyValue<List<JobParameter>?> _parameters = new PropertyValue<List<JobParameter>?>(nameof(ProjectsForProjectAutomationJobsForJobIdStartPostRequest), nameof(Parameters), "parameters");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("parameters")]
+    public List<JobParameter>? Parameters
+    {
+        get => _parameters.GetValue(InlineErrors);
+        set => _parameters.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _branch.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _parameters.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

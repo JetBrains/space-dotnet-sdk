@@ -34,11 +34,12 @@ public sealed class RepoHeadsChange
 {
     public RepoHeadsChange() { }
     
-    public RepoHeadsChange(string name, string oldId, string newId)
+    public RepoHeadsChange(string name, string oldId, string newId, bool? force = null)
     {
         Name = name;
         OldId = oldId;
         NewId = newId;
+        IsForce = force;
     }
     
     private PropertyValue<string> _name = new PropertyValue<string>(nameof(RepoHeadsChange), nameof(Name), "name");
@@ -71,11 +72,21 @@ public sealed class RepoHeadsChange
         set => _newId.SetValue(value);
     }
 
+    private PropertyValue<bool?> _force = new PropertyValue<bool?>(nameof(RepoHeadsChange), nameof(IsForce), "force");
+    
+    [JsonPropertyName("force")]
+    public bool? IsForce
+    {
+        get => _force.GetValue(InlineErrors);
+        set => _force.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _oldId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _newId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _force.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

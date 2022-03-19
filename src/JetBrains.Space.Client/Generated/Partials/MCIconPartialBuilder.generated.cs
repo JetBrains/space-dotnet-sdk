@@ -37,5 +37,8 @@ public static class MCIconPartialExtensions
     public static Partial<MCIcon> WithStyle(this Partial<MCIcon> it)
         => it.AddFieldName("style");
     
+    public static Partial<MCIcon> WithStyle(this Partial<MCIcon> it, Func<Partial<MessageStyle>, Partial<MessageStyle>> partialBuilder)
+        => it.AddFieldName("style", partialBuilder(new Partial<MessageStyle>(it)));
+    
 }
 

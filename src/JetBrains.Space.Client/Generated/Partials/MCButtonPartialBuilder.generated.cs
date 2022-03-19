@@ -37,6 +37,9 @@ public static class MCButtonPartialExtensions
     public static Partial<MCButton> WithStyle(this Partial<MCButton> it)
         => it.AddFieldName("style");
     
+    public static Partial<MCButton> WithStyle(this Partial<MCButton> it, Func<Partial<MessageButtonStyle>, Partial<MessageButtonStyle>> partialBuilder)
+        => it.AddFieldName("style", partialBuilder(new Partial<MessageButtonStyle>(it)));
+    
     public static Partial<MCButton> WithAction(this Partial<MCButton> it)
         => it.AddFieldName("action");
     

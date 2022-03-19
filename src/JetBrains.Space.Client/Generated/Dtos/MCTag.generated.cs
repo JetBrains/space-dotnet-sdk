@@ -30,14 +30,14 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class MCTag
-     : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+     : MCElementDetails, MCInlineElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "MCTag";
     
     public MCTag() { }
     
-    public MCTag(string text, string style)
+    public MCTag(string text, MessageStyle? style = null)
     {
         Text = text;
         Style = style;
@@ -53,11 +53,10 @@ public sealed class MCTag
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCTag), nameof(Style), "style");
+    private PropertyValue<MessageStyle?> _style = new PropertyValue<MessageStyle?>(nameof(MCTag), nameof(Style), "style");
     
-    [Required]
     [JsonPropertyName("style")]
-    public string Style
+    public MessageStyle? Style
     {
         get => _style.GetValue(InlineErrors);
         set => _style.SetValue(value);

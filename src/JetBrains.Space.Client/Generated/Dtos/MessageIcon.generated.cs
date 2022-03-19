@@ -30,14 +30,14 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class MessageIcon
-     : MessageAccessoryElement, IClassNameConvertible, IPropagatePropertyAccessPath
+     : MessageAccessoryElement, MessageInlineElement, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "MessageIcon";
     
     public MessageIcon() { }
     
-    public MessageIcon(ApiIcon icon, MessageStyle style)
+    public MessageIcon(ApiIcon icon, MessageStyle? style = null)
     {
         Icon = icon;
         Style = style;
@@ -53,11 +53,10 @@ public sealed class MessageIcon
         set => _icon.SetValue(value);
     }
 
-    private PropertyValue<MessageStyle> _style = new PropertyValue<MessageStyle>(nameof(MessageIcon), nameof(Style), "style");
+    private PropertyValue<MessageStyle?> _style = new PropertyValue<MessageStyle?>(nameof(MessageIcon), nameof(Style), "style");
     
-    [Required]
     [JsonPropertyName("style")]
-    public MessageStyle Style
+    public MessageStyle? Style
     {
         get => _style.GetValue(InlineErrors);
         set => _style.SetValue(value);

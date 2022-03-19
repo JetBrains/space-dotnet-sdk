@@ -34,7 +34,7 @@ public sealed class OrganizationForUpdateDTO
 {
     public OrganizationForUpdateDTO() { }
     
-    public OrganizationForUpdateDTO(string name, string? slogan = null, string? logoSmall = null, string? logo = null, string? logoId = null, string? slackWorkspace = null, bool? onboardingRequired = null, bool? userAgreementAccepted = null, ATimeZone? timezone = null, string? license = null)
+    public OrganizationForUpdateDTO(string name, string? slogan = null, string? logoSmall = null, string? logo = null, string? logoId = null, string? slackWorkspace = null, bool? onboardingRequired = null, bool? userAgreementAccepted = null, ATimeZone? timezone = null, string? license = null, OrgSizeDTO? orgSize = null, OrgIndustryDTO? orgIndustry = null)
     {
         Name = name;
         Slogan = slogan;
@@ -46,6 +46,8 @@ public sealed class OrganizationForUpdateDTO
         IsUserAgreementAccepted = userAgreementAccepted;
         Timezone = timezone;
         License = license;
+        OrgSize = orgSize;
+        OrgIndustry = orgIndustry;
     }
     
     private PropertyValue<string> _name = new PropertyValue<string>(nameof(OrganizationForUpdateDTO), nameof(Name), "name");
@@ -140,6 +142,24 @@ public sealed class OrganizationForUpdateDTO
         set => _license.SetValue(value);
     }
 
+    private PropertyValue<OrgSizeDTO?> _orgSize = new PropertyValue<OrgSizeDTO?>(nameof(OrganizationForUpdateDTO), nameof(OrgSize), "orgSize");
+    
+    [JsonPropertyName("orgSize")]
+    public OrgSizeDTO? OrgSize
+    {
+        get => _orgSize.GetValue(InlineErrors);
+        set => _orgSize.SetValue(value);
+    }
+
+    private PropertyValue<OrgIndustryDTO?> _orgIndustry = new PropertyValue<OrgIndustryDTO?>(nameof(OrganizationForUpdateDTO), nameof(OrgIndustry), "orgIndustry");
+    
+    [JsonPropertyName("orgIndustry")]
+    public OrgIndustryDTO? OrgIndustry
+    {
+        get => _orgIndustry.GetValue(InlineErrors);
+        set => _orgIndustry.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -152,6 +172,8 @@ public sealed class OrganizationForUpdateDTO
         _userAgreementAccepted.SetAccessPath(parentChainPath, validateHasBeenSet);
         _timezone.SetAccessPath(parentChainPath, validateHasBeenSet);
         _license.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _orgSize.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _orgIndustry.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -55,12 +55,6 @@ public static class KBArticlePartialExtensions
     public static Partial<KBArticle> WithDocumentId(this Partial<KBArticle> it)
         => it.AddFieldName("documentId");
     
-    public static Partial<KBArticle> WithDocument(this Partial<KBArticle> it)
-        => it.AddFieldName("document");
-    
-    public static Partial<KBArticle> WithDocument(this Partial<KBArticle> it, Func<Partial<DocumentInContainer>, Partial<DocumentInContainer>> partialBuilder)
-        => it.AddFieldName("document", partialBuilder(new Partial<DocumentInContainer>(it)));
-    
     public static Partial<KBArticle> WithDocumentRef(this Partial<KBArticle> it)
         => it.AddFieldName("documentRef");
     

@@ -30,14 +30,14 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class MessageTag
-     : MessageAccessoryElement, IClassNameConvertible, IPropagatePropertyAccessPath
+     : MessageAccessoryElement, MessageInlineElement, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "MessageTag";
     
     public MessageTag() { }
     
-    public MessageTag(string text, MessageStyle style)
+    public MessageTag(string text, MessageStyle? style = null)
     {
         Text = text;
         Style = style;
@@ -53,11 +53,10 @@ public sealed class MessageTag
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<MessageStyle> _style = new PropertyValue<MessageStyle>(nameof(MessageTag), nameof(Style), "style");
+    private PropertyValue<MessageStyle?> _style = new PropertyValue<MessageStyle?>(nameof(MessageTag), nameof(Style), "style");
     
-    [Required]
     [JsonPropertyName("style")]
-    public MessageStyle Style
+    public MessageStyle? Style
     {
         get => _style.GetValue(InlineErrors);
         set => _style.SetValue(value);

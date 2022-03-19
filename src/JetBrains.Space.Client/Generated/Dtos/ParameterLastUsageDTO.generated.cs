@@ -34,7 +34,7 @@ public sealed class ParameterLastUsageDTO
 {
     public ParameterLastUsageDTO() { }
     
-    public ParameterLastUsageDTO(string jobExecutionId, string stepExecutionId, string jobName, DateTime usedAt)
+    public ParameterLastUsageDTO(string jobExecutionId, string jobName, DateTime usedAt, string? stepExecutionId = null)
     {
         JobExecutionId = jobExecutionId;
         StepExecutionId = stepExecutionId;
@@ -52,11 +52,10 @@ public sealed class ParameterLastUsageDTO
         set => _jobExecutionId.SetValue(value);
     }
 
-    private PropertyValue<string> _stepExecutionId = new PropertyValue<string>(nameof(ParameterLastUsageDTO), nameof(StepExecutionId), "stepExecutionId");
+    private PropertyValue<string?> _stepExecutionId = new PropertyValue<string?>(nameof(ParameterLastUsageDTO), nameof(StepExecutionId), "stepExecutionId");
     
-    [Required]
     [JsonPropertyName("stepExecutionId")]
-    public string StepExecutionId
+    public string? StepExecutionId
     {
         get => _stepExecutionId.GetValue(InlineErrors);
         set => _stepExecutionId.SetValue(value);

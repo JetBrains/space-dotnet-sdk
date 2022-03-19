@@ -34,7 +34,7 @@ public sealed class OrganizationRecord
 {
     public OrganizationRecord() { }
     
-    public OrganizationRecord(string id, string orgId, string name, string? slogan = null, string? logoId = null, bool? onboardingRequired = null, bool? allowDomainsEdit = null, long? createdAt = null, ATimeZone? timezone = null, string? slackWorkspace = null)
+    public OrganizationRecord(string id, string orgId, string name, string? slogan = null, string? logoId = null, bool? onboardingRequired = null, bool? allowDomainsEdit = null, long? createdAt = null, ATimeZone? timezone = null, OrgSizeDTO? orgSize = null, OrgIndustryDTO? orgIndustry = null, string? slackWorkspace = null)
     {
         Id = id;
         OrgId = orgId;
@@ -45,6 +45,8 @@ public sealed class OrganizationRecord
         IsAllowDomainsEdit = allowDomainsEdit;
         CreatedAt = createdAt;
         Timezone = timezone;
+        OrgSize = orgSize;
+        OrgIndustry = orgIndustry;
         SlackWorkspace = slackWorkspace;
     }
     
@@ -132,6 +134,24 @@ public sealed class OrganizationRecord
         set => _timezone.SetValue(value);
     }
 
+    private PropertyValue<OrgSizeDTO?> _orgSize = new PropertyValue<OrgSizeDTO?>(nameof(OrganizationRecord), nameof(OrgSize), "orgSize");
+    
+    [JsonPropertyName("orgSize")]
+    public OrgSizeDTO? OrgSize
+    {
+        get => _orgSize.GetValue(InlineErrors);
+        set => _orgSize.SetValue(value);
+    }
+
+    private PropertyValue<OrgIndustryDTO?> _orgIndustry = new PropertyValue<OrgIndustryDTO?>(nameof(OrganizationRecord), nameof(OrgIndustry), "orgIndustry");
+    
+    [JsonPropertyName("orgIndustry")]
+    public OrgIndustryDTO? OrgIndustry
+    {
+        get => _orgIndustry.GetValue(InlineErrors);
+        set => _orgIndustry.SetValue(value);
+    }
+
     private PropertyValue<string?> _slackWorkspace = new PropertyValue<string?>(nameof(OrganizationRecord), nameof(SlackWorkspace), "slackWorkspace");
     
     [Obsolete("Slack integration is no longer supported (since 2021-10-13) (will be removed in a future version)")]
@@ -153,6 +173,8 @@ public sealed class OrganizationRecord
         _allowDomainsEdit.SetAccessPath(parentChainPath, validateHasBeenSet);
         _createdAt.SetAccessPath(parentChainPath, validateHasBeenSet);
         _timezone.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _orgSize.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _orgIndustry.SetAccessPath(parentChainPath, validateHasBeenSet);
         _slackWorkspace.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

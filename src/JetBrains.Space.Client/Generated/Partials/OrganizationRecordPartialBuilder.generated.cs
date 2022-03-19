@@ -61,6 +61,18 @@ public static class OrganizationRecordPartialExtensions
     public static Partial<OrganizationRecord> WithTimezone(this Partial<OrganizationRecord> it, Func<Partial<ATimeZone>, Partial<ATimeZone>> partialBuilder)
         => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZone>(it)));
     
+    public static Partial<OrganizationRecord> WithOrgSize(this Partial<OrganizationRecord> it)
+        => it.AddFieldName("orgSize");
+    
+    public static Partial<OrganizationRecord> WithOrgSize(this Partial<OrganizationRecord> it, Func<Partial<OrgSizeDTO>, Partial<OrgSizeDTO>> partialBuilder)
+        => it.AddFieldName("orgSize", partialBuilder(new Partial<OrgSizeDTO>(it)));
+    
+    public static Partial<OrganizationRecord> WithOrgIndustry(this Partial<OrganizationRecord> it)
+        => it.AddFieldName("orgIndustry");
+    
+    public static Partial<OrganizationRecord> WithOrgIndustry(this Partial<OrganizationRecord> it, Func<Partial<OrgIndustryDTO>, Partial<OrgIndustryDTO>> partialBuilder)
+        => it.AddFieldName("orgIndustry", partialBuilder(new Partial<OrgIndustryDTO>(it)));
+    
     [Obsolete("Slack integration is no longer supported (since 2021-10-13) (will be removed in a future version)")]
     public static Partial<OrganizationRecord> WithSlackWorkspace(this Partial<OrganizationRecord> it)
         => it.AddFieldName("slackWorkspace");

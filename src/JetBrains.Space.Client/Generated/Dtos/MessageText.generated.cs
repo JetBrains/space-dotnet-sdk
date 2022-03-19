@@ -37,9 +37,11 @@ public sealed class MessageText
     
     public MessageText() { }
     
-    public MessageText(string content, MessageAccessoryElement? accessory = null)
+    public MessageText(string content, MessageAccessoryElement? accessory = null, MessageStyle? style = null, MessageTextSize? size = null)
     {
         Accessory = accessory;
+        Style = style;
+        Size = size;
         Content = content;
     }
     
@@ -50,6 +52,24 @@ public sealed class MessageText
     {
         get => _accessory.GetValue(InlineErrors);
         set => _accessory.SetValue(value);
+    }
+
+    private PropertyValue<MessageStyle?> _style = new PropertyValue<MessageStyle?>(nameof(MessageText), nameof(Style), "style");
+    
+    [JsonPropertyName("style")]
+    public MessageStyle? Style
+    {
+        get => _style.GetValue(InlineErrors);
+        set => _style.SetValue(value);
+    }
+
+    private PropertyValue<MessageTextSize?> _size = new PropertyValue<MessageTextSize?>(nameof(MessageText), nameof(Size), "size");
+    
+    [JsonPropertyName("size")]
+    public MessageTextSize? Size
+    {
+        get => _size.GetValue(InlineErrors);
+        set => _size.SetValue(value);
     }
 
     private PropertyValue<string> _content = new PropertyValue<string>(nameof(MessageText), nameof(Content), "content");
@@ -65,6 +85,8 @@ public sealed class MessageText
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _accessory.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _style.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _size.SetAccessPath(parentChainPath, validateHasBeenSet);
         _content.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

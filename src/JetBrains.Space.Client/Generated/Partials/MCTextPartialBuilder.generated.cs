@@ -43,5 +43,17 @@ public static class MCTextPartialExtensions
     public static Partial<MCText> WithAccessory(this Partial<MCText> it, Func<Partial<MCElement>, Partial<MCElement>> partialBuilder)
         => it.AddFieldName("accessory", partialBuilder(new Partial<MCElement>(it)));
     
+    public static Partial<MCText> WithStyle(this Partial<MCText> it)
+        => it.AddFieldName("style");
+    
+    public static Partial<MCText> WithStyle(this Partial<MCText> it, Func<Partial<MessageStyle>, Partial<MessageStyle>> partialBuilder)
+        => it.AddFieldName("style", partialBuilder(new Partial<MessageStyle>(it)));
+    
+    public static Partial<MCText> WithSize(this Partial<MCText> it)
+        => it.AddFieldName("size");
+    
+    public static Partial<MCText> WithSize(this Partial<MCText> it, Func<Partial<MessageTextSize>, Partial<MessageTextSize>> partialBuilder)
+        => it.AddFieldName("size", partialBuilder(new Partial<MessageTextSize>(it)));
+    
 }
 

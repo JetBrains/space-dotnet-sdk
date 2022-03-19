@@ -49,6 +49,9 @@ public static class PackageRepositoryPartialExtensions
     public static Partial<PackageRepository> WithIsPublic(this Partial<PackageRepository> it)
         => it.AddFieldName("public");
     
+    public static Partial<PackageRepository> WithIsCleanupEnabled(this Partial<PackageRepository> it)
+        => it.AddFieldName("cleanupEnabled");
+    
     public static Partial<PackageRepository> WithSettings(this Partial<PackageRepository> it)
         => it.AddFieldName("settings");
     

@@ -37,11 +37,13 @@ public sealed class MCText
     
     public MCText() { }
     
-    public MCText(string content, bool markdown, MCElement? accessory = null)
+    public MCText(string content, bool markdown, MCElement? accessory = null, MessageStyle? style = null, MessageTextSize? size = null)
     {
         Content = content;
         IsMarkdown = markdown;
         Accessory = accessory;
+        Style = style;
+        Size = size;
     }
     
     private PropertyValue<string> _content = new PropertyValue<string>(nameof(MCText), nameof(Content), "content");
@@ -73,11 +75,31 @@ public sealed class MCText
         set => _accessory.SetValue(value);
     }
 
+    private PropertyValue<MessageStyle?> _style = new PropertyValue<MessageStyle?>(nameof(MCText), nameof(Style), "style");
+    
+    [JsonPropertyName("style")]
+    public MessageStyle? Style
+    {
+        get => _style.GetValue(InlineErrors);
+        set => _style.SetValue(value);
+    }
+
+    private PropertyValue<MessageTextSize?> _size = new PropertyValue<MessageTextSize?>(nameof(MCText), nameof(Size), "size");
+    
+    [JsonPropertyName("size")]
+    public MessageTextSize? Size
+    {
+        get => _size.GetValue(InlineErrors);
+        set => _size.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _content.SetAccessPath(parentChainPath, validateHasBeenSet);
         _markdown.SetAccessPath(parentChainPath, validateHasBeenSet);
         _accessory.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _style.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _size.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

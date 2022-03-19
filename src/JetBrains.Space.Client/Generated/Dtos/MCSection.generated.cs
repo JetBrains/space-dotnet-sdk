@@ -37,22 +37,14 @@ public sealed class MCSection
     
     public MCSection() { }
     
-    public MCSection(List<MCElement> elements, MCText? header = null, MCText? footer = null)
+    public MCSection(List<MCElement> elements, MessageStyle? style = null, MCText? header = null, MCText? footer = null)
     {
-        Header = header;
         Elements = elements;
+        Style = style;
+        Header = header;
         Footer = footer;
     }
     
-    private PropertyValue<MCText?> _header = new PropertyValue<MCText?>(nameof(MCSection), nameof(Header), "header");
-    
-    [JsonPropertyName("header")]
-    public MCText? Header
-    {
-        get => _header.GetValue(InlineErrors);
-        set => _header.SetValue(value);
-    }
-
     private PropertyValue<List<MCElement>> _elements = new PropertyValue<List<MCElement>>(nameof(MCSection), nameof(Elements), "elements", new List<MCElement>());
     
     [Required]
@@ -61,6 +53,24 @@ public sealed class MCSection
     {
         get => _elements.GetValue(InlineErrors);
         set => _elements.SetValue(value);
+    }
+
+    private PropertyValue<MessageStyle?> _style = new PropertyValue<MessageStyle?>(nameof(MCSection), nameof(Style), "style");
+    
+    [JsonPropertyName("style")]
+    public MessageStyle? Style
+    {
+        get => _style.GetValue(InlineErrors);
+        set => _style.SetValue(value);
+    }
+
+    private PropertyValue<MCText?> _header = new PropertyValue<MCText?>(nameof(MCSection), nameof(Header), "header");
+    
+    [JsonPropertyName("header")]
+    public MCText? Header
+    {
+        get => _header.GetValue(InlineErrors);
+        set => _header.SetValue(value);
     }
 
     private PropertyValue<MCText?> _footer = new PropertyValue<MCText?>(nameof(MCSection), nameof(Footer), "footer");
@@ -74,8 +84,9 @@ public sealed class MCSection
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _header.SetAccessPath(parentChainPath, validateHasBeenSet);
         _elements.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _style.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _header.SetAccessPath(parentChainPath, validateHasBeenSet);
         _footer.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

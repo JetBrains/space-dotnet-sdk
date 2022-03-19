@@ -29,47 +29,14 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class MCOutline
-     : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+public interface MCOutline
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public  string? ClassName => "MCOutline";
+    public static MCOutlineLegacy Legacy(MCElement? icon = null, MCText? text = null)
+        => new MCOutlineLegacy(icon: icon, text: text);
     
-    public MCOutline() { }
+    public static MCOutlineV2 V2(List<MCInlineElement> elements)
+        => new MCOutlineV2(elements: elements);
     
-    public MCOutline(MCElement? icon = null, MCText? text = null)
-    {
-        Icon = icon;
-        Text = text;
-    }
-    
-    private PropertyValue<MCElement?> _icon = new PropertyValue<MCElement?>(nameof(MCOutline), nameof(Icon), "icon");
-    
-    [JsonPropertyName("icon")]
-    public MCElement? Icon
-    {
-        get => _icon.GetValue(InlineErrors);
-        set => _icon.SetValue(value);
-    }
-
-    private PropertyValue<MCText?> _text = new PropertyValue<MCText?>(nameof(MCOutline), nameof(Text), "text");
-    
-    [JsonPropertyName("text")]
-    public MCText? Text
-    {
-        get => _text.GetValue(InlineErrors);
-        set => _text.SetValue(value);
-    }
-
-    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
-    }
-    
-    /// <inheritdoc />
-    [JsonPropertyName("$errors")]
-    public List<ApiInlineError> InlineErrors { get; set; } = new();
-
 }
 

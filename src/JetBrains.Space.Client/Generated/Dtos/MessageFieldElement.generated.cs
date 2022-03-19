@@ -35,5 +35,8 @@ public interface MessageFieldElement
     public static MessageField MessageField(string first, string second)
         => new MessageField(first: first, second: second);
     
+    public static MessageFieldV2 MessageFieldV2(List<MessageInlineElement> first, List<MessageInlineElement> second)
+        => new MessageFieldV2(first: first, second: second);
+    
 }
 

@@ -34,13 +34,14 @@ public sealed class PackageRepository
 {
     public PackageRepository() { }
     
-    public PackageRepository(string id, PackageType type, bool @public, PackageRepositoryMode mode, bool archived, string? name = null, string? description = null, ESPackageRepositorySettings? settings = null)
+    public PackageRepository(string id, PackageType type, bool @public, bool cleanupEnabled, PackageRepositoryMode mode, bool archived, string? name = null, string? description = null, ESPackageRepositorySettings? settings = null)
     {
         Id = id;
         Type = type;
         Name = name;
         Description = description;
         IsPublic = @public;
+        IsCleanupEnabled = cleanupEnabled;
         Settings = settings;
         Mode = mode;
         IsArchived = archived;
@@ -94,6 +95,16 @@ public sealed class PackageRepository
         set => _public.SetValue(value);
     }
 
+    private PropertyValue<bool> _cleanupEnabled = new PropertyValue<bool>(nameof(PackageRepository), nameof(IsCleanupEnabled), "cleanupEnabled");
+    
+    [Required]
+    [JsonPropertyName("cleanupEnabled")]
+    public bool IsCleanupEnabled
+    {
+        get => _cleanupEnabled.GetValue(InlineErrors);
+        set => _cleanupEnabled.SetValue(value);
+    }
+
     private PropertyValue<ESPackageRepositorySettings?> _settings = new PropertyValue<ESPackageRepositorySettings?>(nameof(PackageRepository), nameof(Settings), "settings");
     
     [JsonPropertyName("settings")]
@@ -130,6 +141,7 @@ public sealed class PackageRepository
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _public.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _cleanupEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _settings.SetAccessPath(parentChainPath, validateHasBeenSet);
         _mode.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);

@@ -101,8 +101,8 @@ public interface M2ItemContentDetails
     public static M2UserLeftChannel M2UserLeftChannel()
         => new M2UserLeftChannel();
     
-    public static MCMessage MCMessage(string style, List<MCElement> content, MCOutline? outline = null, string? serviceId = null, string? supplementaryData = null, M2ItemContentDetails? extension = null)
-        => new MCMessage(style: style, content: content, outline: outline, serviceId: serviceId, supplementaryData: supplementaryData, extension: extension);
+    public static MCMessage MCMessage(List<MCElement> content, MessageStyle? style = null, MCOutline? outline = null, M2ItemContentDetails? extension = null)
+        => new MCMessage(content: content, style: style, outline: outline, extension: extension);
     
     public static MCMessageCommonDetails MCMessageCommonDetails()
         => new MCMessageCommonDetails();

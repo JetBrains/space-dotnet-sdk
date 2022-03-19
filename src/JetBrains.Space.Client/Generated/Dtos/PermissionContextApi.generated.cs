@@ -35,6 +35,12 @@ public interface PermissionContextApi
     public static ChannelPermissionContext ChannelPermissionContext(M2ChannelRecord channel)
         => new ChannelPermissionContext(channel: channel);
     
+    public static DocumentFolderPermissionContext DocumentFolderPermissionContext(DocumentFolder folder)
+        => new DocumentFolderPermissionContext(folder: folder);
+    
+    public static DocumentPermissionContext DocumentPermissionContext(Document document)
+        => new DocumentPermissionContext(document: document);
+    
     public static GlobalPermissionContext GlobalPermissionContext()
         => new GlobalPermissionContext();
     

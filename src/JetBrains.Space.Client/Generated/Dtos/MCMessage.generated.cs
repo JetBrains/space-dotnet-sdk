@@ -37,21 +37,18 @@ public sealed class MCMessage
     
     public MCMessage() { }
     
-    public MCMessage(string style, List<MCElement> content, MCOutline? outline = null, string? serviceId = null, string? supplementaryData = null, M2ItemContentDetails? extension = null)
+    public MCMessage(List<MCElement> content, MessageStyle? style = null, MCOutline? outline = null, M2ItemContentDetails? extension = null)
     {
         Style = style;
         Outline = outline;
         Content = content;
-        ServiceId = serviceId;
-        SupplementaryData = supplementaryData;
         Extension = extension;
     }
     
-    private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCMessage), nameof(Style), "style");
+    private PropertyValue<MessageStyle?> _style = new PropertyValue<MessageStyle?>(nameof(MCMessage), nameof(Style), "style");
     
-    [Required]
     [JsonPropertyName("style")]
-    public string Style
+    public MessageStyle? Style
     {
         get => _style.GetValue(InlineErrors);
         set => _style.SetValue(value);
@@ -76,24 +73,6 @@ public sealed class MCMessage
         set => _content.SetValue(value);
     }
 
-    private PropertyValue<string?> _serviceId = new PropertyValue<string?>(nameof(MCMessage), nameof(ServiceId), "serviceId");
-    
-    [JsonPropertyName("serviceId")]
-    public string? ServiceId
-    {
-        get => _serviceId.GetValue(InlineErrors);
-        set => _serviceId.SetValue(value);
-    }
-
-    private PropertyValue<string?> _supplementaryData = new PropertyValue<string?>(nameof(MCMessage), nameof(SupplementaryData), "supplementaryData");
-    
-    [JsonPropertyName("supplementaryData")]
-    public string? SupplementaryData
-    {
-        get => _supplementaryData.GetValue(InlineErrors);
-        set => _supplementaryData.SetValue(value);
-    }
-
     private PropertyValue<M2ItemContentDetails?> _extension = new PropertyValue<M2ItemContentDetails?>(nameof(MCMessage), nameof(Extension), "extension");
     
     [JsonPropertyName("extension")]
@@ -108,8 +87,6 @@ public sealed class MCMessage
         _style.SetAccessPath(parentChainPath, validateHasBeenSet);
         _outline.SetAccessPath(parentChainPath, validateHasBeenSet);
         _content.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _serviceId.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _supplementaryData.SetAccessPath(parentChainPath, validateHasBeenSet);
         _extension.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

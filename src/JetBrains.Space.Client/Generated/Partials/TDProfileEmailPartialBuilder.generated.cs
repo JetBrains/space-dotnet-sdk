@@ -37,5 +37,8 @@ public static class TDProfileEmailPartialExtensions
     public static Partial<TDProfileEmail> WithEmail(this Partial<TDProfileEmail> it)
         => it.AddFieldName("email");
     
+    public static Partial<TDProfileEmail> WithIsBlocked(this Partial<TDProfileEmail> it)
+        => it.AddFieldName("blocked");
+    
 }
 

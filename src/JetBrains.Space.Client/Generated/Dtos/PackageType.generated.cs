@@ -38,6 +38,9 @@ public interface PackageType
     public static ContainerPackageType Container(string id)
         => new ContainerPackageType(id: id);
     
+    public static FileType FileType(string id)
+        => new FileType(id: id);
+    
     public static MavenPackageType Maven(string id)
         => new MavenPackageType(id: id);
     

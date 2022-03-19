@@ -37,5 +37,8 @@ public static class MCTagPartialExtensions
     public static Partial<MCTag> WithStyle(this Partial<MCTag> it)
         => it.AddFieldName("style");
     
+    public static Partial<MCTag> WithStyle(this Partial<MCTag> it, Func<Partial<MessageStyle>, Partial<MessageStyle>> partialBuilder)
+        => it.AddFieldName("style", partialBuilder(new Partial<MessageStyle>(it)));
+    
 }
 

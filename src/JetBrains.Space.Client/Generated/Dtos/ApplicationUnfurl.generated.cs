@@ -34,11 +34,10 @@ public sealed class ApplicationUnfurl
 {
     public ApplicationUnfurl() { }
     
-    public ApplicationUnfurl(string queueItemId, ApplicationUnfurlContent content, string? link = null)
+    public ApplicationUnfurl(string queueItemId, ApplicationUnfurlContent content)
     {
         QueueItemId = queueItemId;
         Content = content;
-        Link = link;
     }
     
     private PropertyValue<string> _queueItemId = new PropertyValue<string>(nameof(ApplicationUnfurl), nameof(QueueItemId), "queueItemId");
@@ -61,20 +60,10 @@ public sealed class ApplicationUnfurl
         set => _content.SetValue(value);
     }
 
-    private PropertyValue<string?> _link = new PropertyValue<string?>(nameof(ApplicationUnfurl), nameof(Link), "link");
-    
-    [JsonPropertyName("link")]
-    public string? Link
-    {
-        get => _link.GetValue(InlineErrors);
-        set => _link.SetValue(value);
-    }
-
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _queueItemId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _content.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _link.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

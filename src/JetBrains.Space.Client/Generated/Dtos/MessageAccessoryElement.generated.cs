@@ -32,13 +32,13 @@ namespace JetBrains.Space.Client;
 public interface MessageAccessoryElement
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static MessageIcon MessageIcon(ApiIcon icon, MessageStyle style)
+    public static MessageIcon MessageIcon(ApiIcon icon, MessageStyle? style = null)
         => new MessageIcon(icon: icon, style: style);
     
     public static MessageImage MessageImage(string src)
         => new MessageImage(src: src);
     
-    public static MessageTag MessageTag(string text, MessageStyle style)
+    public static MessageTag MessageTag(string text, MessageStyle? style = null)
         => new MessageTag(text: text, style: style);
     
 }

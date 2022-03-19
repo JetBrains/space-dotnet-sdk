@@ -37,6 +37,18 @@ public static class MessageTextPartialExtensions
     public static Partial<MessageText> WithAccessory(this Partial<MessageText> it, Func<Partial<MessageAccessoryElement>, Partial<MessageAccessoryElement>> partialBuilder)
         => it.AddFieldName("accessory", partialBuilder(new Partial<MessageAccessoryElement>(it)));
     
+    public static Partial<MessageText> WithStyle(this Partial<MessageText> it)
+        => it.AddFieldName("style");
+    
+    public static Partial<MessageText> WithStyle(this Partial<MessageText> it, Func<Partial<MessageStyle>, Partial<MessageStyle>> partialBuilder)
+        => it.AddFieldName("style", partialBuilder(new Partial<MessageStyle>(it)));
+    
+    public static Partial<MessageText> WithSize(this Partial<MessageText> it)
+        => it.AddFieldName("size");
+    
+    public static Partial<MessageText> WithSize(this Partial<MessageText> it, Func<Partial<MessageTextSize>, Partial<MessageTextSize>> partialBuilder)
+        => it.AddFieldName("size", partialBuilder(new Partial<MessageTextSize>(it)));
+    
     public static Partial<MessageText> WithContent(this Partial<MessageText> it)
         => it.AddFieldName("content");
     

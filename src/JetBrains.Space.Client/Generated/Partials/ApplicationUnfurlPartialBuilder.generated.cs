@@ -40,8 +40,5 @@ public static class ApplicationUnfurlPartialExtensions
     public static Partial<ApplicationUnfurl> WithContent(this Partial<ApplicationUnfurl> it, Func<Partial<ApplicationUnfurlContent>, Partial<ApplicationUnfurlContent>> partialBuilder)
         => it.AddFieldName("content", partialBuilder(new Partial<ApplicationUnfurlContent>(it)));
     
-    public static Partial<ApplicationUnfurl> WithLink(this Partial<ApplicationUnfurl> it)
-        => it.AddFieldName("link");
-    
 }
 

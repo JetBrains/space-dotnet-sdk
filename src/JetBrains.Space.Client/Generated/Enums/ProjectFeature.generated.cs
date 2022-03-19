@@ -56,5 +56,14 @@ public enum ProjectFeature
     [EnumMember(Value = "DEV_ENVIRONMENTS")]
     DEVENVIRONMENTS,
     
+    [EnumMember(Value = "HOSTING")]
+    HOSTING,
+    
+    [EnumMember(Value = "DEPLOYMENTS")]
+    DEPLOYMENTS,
+    
+    [EnumMember(Value = "TABLES")]
+    TABLES,
+    
 }
 

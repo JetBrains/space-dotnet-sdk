@@ -38,11 +38,14 @@ public interface MessageElement
     public static MessageDivider MessageDivider()
         => new MessageDivider();
     
-    public static MessageFields MessageFields(List<MessageFieldElement> fields)
-        => new MessageFields(fields: fields);
+    public static MessageFields MessageFields(List<MessageFieldElement> fields, MessageTextSize? nameTextSize = null, MessageTextSize? valueTextSize = null)
+        => new MessageFields(fields: fields, nameTextSize: nameTextSize, valueTextSize: valueTextSize);
     
-    public static MessageText MessageText(string content, MessageAccessoryElement? accessory = null)
-        => new MessageText(content: content, accessory: accessory);
+    public static MessageInlineGroup MessageInlineGroup(List<MessageInlineElement> elements, MessageAccessoryElement? accessory = null, MessageTextSize? textSize = null, MessageStyle? textStyle = null, MessageStyle? elementsStyle = null)
+        => new MessageInlineGroup(elements: elements, accessory: accessory, textSize: textSize, textStyle: textStyle, elementsStyle: elementsStyle);
+    
+    public static MessageText MessageText(string content, MessageAccessoryElement? accessory = null, MessageStyle? style = null, MessageTextSize? size = null)
+        => new MessageText(content: content, accessory: accessory, style: style, size: size);
     
 }
 

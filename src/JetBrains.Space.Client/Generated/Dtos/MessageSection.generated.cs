@@ -29,6 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
+[Obsolete("Use MessageSectionV2 instead (since 2022-01-01)")]
 public sealed class MessageSection
      : MessageSectionElement, IClassNameConvertible, IPropagatePropertyAccessPath
 {

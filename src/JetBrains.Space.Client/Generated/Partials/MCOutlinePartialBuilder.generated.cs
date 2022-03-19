@@ -31,17 +31,5 @@ namespace JetBrains.Space.Client.MCOutlinePartialBuilder;
 
 public static class MCOutlinePartialExtensions
 {
-    public static Partial<MCOutline> WithIcon(this Partial<MCOutline> it)
-        => it.AddFieldName("icon");
-    
-    public static Partial<MCOutline> WithIcon(this Partial<MCOutline> it, Func<Partial<MCElement>, Partial<MCElement>> partialBuilder)
-        => it.AddFieldName("icon", partialBuilder(new Partial<MCElement>(it)));
-    
-    public static Partial<MCOutline> WithText(this Partial<MCOutline> it)
-        => it.AddFieldName("text");
-    
-    public static Partial<MCOutline> WithText(this Partial<MCOutline> it, Func<Partial<MCText>, Partial<MCText>> partialBuilder)
-        => it.AddFieldName("text", partialBuilder(new Partial<MCText>(it)));
-    
 }
 

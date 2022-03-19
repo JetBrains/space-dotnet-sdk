@@ -37,9 +37,11 @@ public sealed class MessageFields
     
     public MessageFields() { }
     
-    public MessageFields(List<MessageFieldElement> fields)
+    public MessageFields(List<MessageFieldElement> fields, MessageTextSize? nameTextSize = null, MessageTextSize? valueTextSize = null)
     {
         Fields = fields;
+        NameTextSize = nameTextSize;
+        ValueTextSize = valueTextSize;
     }
     
     private PropertyValue<List<MessageFieldElement>> _fields = new PropertyValue<List<MessageFieldElement>>(nameof(MessageFields), nameof(Fields), "fields", new List<MessageFieldElement>());
@@ -52,9 +54,29 @@ public sealed class MessageFields
         set => _fields.SetValue(value);
     }
 
+    private PropertyValue<MessageTextSize?> _nameTextSize = new PropertyValue<MessageTextSize?>(nameof(MessageFields), nameof(NameTextSize), "nameTextSize");
+    
+    [JsonPropertyName("nameTextSize")]
+    public MessageTextSize? NameTextSize
+    {
+        get => _nameTextSize.GetValue(InlineErrors);
+        set => _nameTextSize.SetValue(value);
+    }
+
+    private PropertyValue<MessageTextSize?> _valueTextSize = new PropertyValue<MessageTextSize?>(nameof(MessageFields), nameof(ValueTextSize), "valueTextSize");
+    
+    [JsonPropertyName("valueTextSize")]
+    public MessageTextSize? ValueTextSize
+    {
+        get => _valueTextSize.GetValue(InlineErrors);
+        set => _valueTextSize.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _fields.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _nameTextSize.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _valueTextSize.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

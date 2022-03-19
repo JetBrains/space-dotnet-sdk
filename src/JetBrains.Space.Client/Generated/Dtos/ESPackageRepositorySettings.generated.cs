@@ -42,6 +42,9 @@ public abstract class ESPackageRepositorySettings
     public static ESContainerRegistrySettings ESContainerRegistrySettings(bool immutableTags, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
         => new ESContainerRegistrySettings(immutableTags: immutableTags, retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
     
+    public static ESFileRepositorySettings ESFileRepositorySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
+        => new ESFileRepositorySettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
+    
     public static ESMavenRepositorySettings ESMavenRepositorySettings(bool enableSnapshots, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null, bool? checkVulnerabilities = null)
         => new ESMavenRepositorySettings(enableSnapshots: enableSnapshots, retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions, checkVulnerabilities: checkVulnerabilities);
     

@@ -37,5 +37,17 @@ public static class MessageFieldsPartialExtensions
     public static Partial<MessageFields> WithFields(this Partial<MessageFields> it, Func<Partial<MessageFieldElement>, Partial<MessageFieldElement>> partialBuilder)
         => it.AddFieldName("fields", partialBuilder(new Partial<MessageFieldElement>(it)));
     
+    public static Partial<MessageFields> WithNameTextSize(this Partial<MessageFields> it)
+        => it.AddFieldName("nameTextSize");
+    
+    public static Partial<MessageFields> WithNameTextSize(this Partial<MessageFields> it, Func<Partial<MessageTextSize>, Partial<MessageTextSize>> partialBuilder)
+        => it.AddFieldName("nameTextSize", partialBuilder(new Partial<MessageTextSize>(it)));
+    
+    public static Partial<MessageFields> WithValueTextSize(this Partial<MessageFields> it)
+        => it.AddFieldName("valueTextSize");
+    
+    public static Partial<MessageFields> WithValueTextSize(this Partial<MessageFields> it, Func<Partial<MessageTextSize>, Partial<MessageTextSize>> partialBuilder)
+        => it.AddFieldName("valueTextSize", partialBuilder(new Partial<MessageTextSize>(it)));
+    
 }
 

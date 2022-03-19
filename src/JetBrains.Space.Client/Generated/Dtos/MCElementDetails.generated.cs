@@ -32,8 +32,8 @@ namespace JetBrains.Space.Client;
 public interface MCElementDetails
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static MCButton MCButton(string text, string style, MCAction action, bool? disabled = null)
-        => new MCButton(text: text, style: style, action: action, disabled: disabled);
+    public static MCButton MCButton(string text, MCAction action, MessageButtonStyle? style = null, bool? disabled = null)
+        => new MCButton(text: text, action: action, style: style, disabled: disabled);
     
     public static MCDivider MCDivider()
         => new MCDivider();
@@ -44,23 +44,23 @@ public interface MCElementDetails
     public static MCGroup MCGroup(List<MCElement> elements)
         => new MCGroup(elements: elements);
     
-    public static MCIcon MCIcon(string name, string style)
+    public static MCIcon MCIcon(string name, MessageStyle? style = null)
         => new MCIcon(name: name, style: style);
     
     public static MCImage MCImage(string src)
         => new MCImage(src: src);
     
-    public static MCOutline MCOutline(MCElement? icon = null, MCText? text = null)
-        => new MCOutline(icon: icon, text: text);
+    public static MCInlineGroup MCInlineGroup(List<MCInlineElement> elements, MCElement? accessory = null, MessageTextSize? textSize = null)
+        => new MCInlineGroup(elements: elements, accessory: accessory, textSize: textSize);
     
-    public static MCSection MCSection(List<MCElement> elements, MCText? header = null, MCText? footer = null)
-        => new MCSection(elements: elements, header: header, footer: footer);
+    public static MCSection MCSection(List<MCElement> elements, MessageStyle? style = null, MCText? header = null, MCText? footer = null)
+        => new MCSection(elements: elements, style: style, header: header, footer: footer);
     
-    public static MCTag MCTag(string text, string style)
+    public static MCTag MCTag(string text, MessageStyle? style = null)
         => new MCTag(text: text, style: style);
     
-    public static MCText MCText(string content, bool markdown, MCElement? accessory = null)
-        => new MCText(content: content, markdown: markdown, accessory: accessory);
+    public static MCText MCText(string content, bool markdown, MCElement? accessory = null, MessageStyle? style = null, MessageTextSize? size = null)
+        => new MCText(content: content, markdown: markdown, accessory: accessory, style: style, size: size);
     
 }
 

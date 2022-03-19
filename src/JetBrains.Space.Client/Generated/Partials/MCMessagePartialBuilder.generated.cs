@@ -34,6 +34,9 @@ public static class MCMessagePartialExtensions
     public static Partial<MCMessage> WithStyle(this Partial<MCMessage> it)
         => it.AddFieldName("style");
     
+    public static Partial<MCMessage> WithStyle(this Partial<MCMessage> it, Func<Partial<MessageStyle>, Partial<MessageStyle>> partialBuilder)
+        => it.AddFieldName("style", partialBuilder(new Partial<MessageStyle>(it)));
+    
     public static Partial<MCMessage> WithOutline(this Partial<MCMessage> it)
         => it.AddFieldName("outline");
     
@@ -45,12 +48,6 @@ public static class MCMessagePartialExtensions
     
     public static Partial<MCMessage> WithContent(this Partial<MCMessage> it, Func<Partial<MCElement>, Partial<MCElement>> partialBuilder)
         => it.AddFieldName("content", partialBuilder(new Partial<MCElement>(it)));
-    
-    public static Partial<MCMessage> WithServiceId(this Partial<MCMessage> it)
-        => it.AddFieldName("serviceId");
-    
-    public static Partial<MCMessage> WithSupplementaryData(this Partial<MCMessage> it)
-        => it.AddFieldName("supplementaryData");
     
     public static Partial<MCMessage> WithExtension(this Partial<MCMessage> it)
         => it.AddFieldName("extension");

@@ -34,7 +34,7 @@ public sealed class KBArticle
 {
     public KBArticle() { }
     
-    public KBArticle(string id, bool archived, string title, KBBook book, KBFolder folder, string documentId, Document documentRef, DateTime created, DateTime updated, string alias, DocumentInContainer? document = null, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
+    public KBArticle(string id, bool archived, string title, KBBook book, KBFolder folder, string documentId, Document documentRef, DateTime created, DateTime updated, string alias, CPrincipal? createdBy = null, CPrincipal? updatedBy = null)
     {
         Id = id;
         IsArchived = archived;
@@ -42,7 +42,6 @@ public sealed class KBArticle
         Book = book;
         Folder = folder;
         DocumentId = documentId;
-        Document = document;
         DocumentRef = documentRef;
         Created = created;
         CreatedBy = createdBy;
@@ -109,15 +108,6 @@ public sealed class KBArticle
     {
         get => _documentId.GetValue(InlineErrors);
         set => _documentId.SetValue(value);
-    }
-
-    private PropertyValue<DocumentInContainer?> _document = new PropertyValue<DocumentInContainer?>(nameof(KBArticle), nameof(Document), "document");
-    
-    [JsonPropertyName("document")]
-    public DocumentInContainer? Document
-    {
-        get => _document.GetValue(InlineErrors);
-        set => _document.SetValue(value);
     }
 
     private PropertyValue<Document> _documentRef = new PropertyValue<Document>(nameof(KBArticle), nameof(DocumentRef), "documentRef");
@@ -188,7 +178,6 @@ public sealed class KBArticle
         _book.SetAccessPath(parentChainPath, validateHasBeenSet);
         _folder.SetAccessPath(parentChainPath, validateHasBeenSet);
         _documentId.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _document.SetAccessPath(parentChainPath, validateHasBeenSet);
         _documentRef.SetAccessPath(parentChainPath, validateHasBeenSet);
         _created.SetAccessPath(parentChainPath, validateHasBeenSet);
         _createdBy.SetAccessPath(parentChainPath, validateHasBeenSet);

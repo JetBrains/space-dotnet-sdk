@@ -30,14 +30,14 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class MCButton
-     : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+     : MCElementDetails, MCInlineElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "MCButton";
     
     public MCButton() { }
     
-    public MCButton(string text, string style, MCAction action, bool? disabled = null)
+    public MCButton(string text, MCAction action, MessageButtonStyle? style = null, bool? disabled = null)
     {
         Text = text;
         Style = style;
@@ -55,11 +55,10 @@ public sealed class MCButton
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCButton), nameof(Style), "style");
+    private PropertyValue<MessageButtonStyle?> _style = new PropertyValue<MessageButtonStyle?>(nameof(MCButton), nameof(Style), "style");
     
-    [Required]
     [JsonPropertyName("style")]
-    public string Style
+    public MessageButtonStyle? Style
     {
         get => _style.GetValue(InlineErrors);
         set => _style.SetValue(value);

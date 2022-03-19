@@ -97,6 +97,12 @@ public static class IssuePartialExtensions
     public static Partial<Issue> WithAttachmentsCount(this Partial<Issue> it)
         => it.AddFieldName("attachmentsCount");
     
+    public static Partial<Issue> WithSubItemsCount(this Partial<Issue> it)
+        => it.AddFieldName("subItemsCount");
+    
+    public static Partial<Issue> WithDoneSubItemsCount(this Partial<Issue> it)
+        => it.AddFieldName("doneSubItemsCount");
+    
     public static Partial<Issue> WithDeletedBy(this Partial<Issue> it)
         => it.AddFieldName("deletedBy");
     

@@ -29,45 +29,14 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class MessageOutline
-     : IPropagatePropertyAccessPath
+public interface MessageOutline
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public MessageOutline() { }
+    public static MessageOutlineLegacy Legacy(string text, ApiIcon? icon = null)
+        => new MessageOutlineLegacy(text: text, icon: icon);
     
-    public MessageOutline(string text, ApiIcon? icon = null)
-    {
-        Icon = icon;
-        Text = text;
-    }
+    public static MessageOutlineV2 V2(List<MessageInlineElement> elements)
+        => new MessageOutlineV2(elements: elements);
     
-    private PropertyValue<ApiIcon?> _icon = new PropertyValue<ApiIcon?>(nameof(MessageOutline), nameof(Icon), "icon");
-    
-    [JsonPropertyName("icon")]
-    public ApiIcon? Icon
-    {
-        get => _icon.GetValue(InlineErrors);
-        set => _icon.SetValue(value);
-    }
-
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageOutline), nameof(Text), "text");
-    
-    [Required]
-    [JsonPropertyName("text")]
-    public string Text
-    {
-        get => _text.GetValue(InlineErrors);
-        set => _text.SetValue(value);
-    }
-
-    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
-    }
-    
-    /// <inheritdoc />
-    [JsonPropertyName("$errors")]
-    public List<ApiInlineError> InlineErrors { get; set; } = new();
-
 }
 

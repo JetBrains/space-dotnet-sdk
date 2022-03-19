@@ -511,7 +511,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<LaunchResult> StartJobAsync(ProjectIdentifier project, string jobId, Branch branch, Func<Partial<LaunchResult>, Partial<LaunchResult>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<LaunchResult> StartJobAsync(ProjectIdentifier project, string jobId, Branch branch, List<JobParameter>? parameters = null, Func<Partial<LaunchResult>, Partial<LaunchResult>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<LaunchResult>()) : Partial<LaunchResult>.Default()).ToString());
@@ -520,6 +520,7 @@ public partial class ProjectClient : ISpaceClient
                     new ProjectsForProjectAutomationJobsForJobIdStartPostRequest
                     { 
                         Branch = branch,
+                        Parameters = parameters,
                     }, cancellationToken);
             }
             
@@ -2039,7 +2040,7 @@ public partial class ProjectClient : ISpaceClient
                 /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
                 /// </item>
                 /// <item>
-                /// <term>Edit folder content</term>
+                /// <term>Edit documents</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -2066,7 +2067,7 @@ public partial class ProjectClient : ISpaceClient
                 /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
                 /// </item>
                 /// <item>
-                /// <term>Edit folder content</term>
+                /// <term>Edit documents</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -3901,7 +3902,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task UpdateRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string? name = null, string? description = null, bool? @public = null, ESPackageRepositorySettings? settings = null, CancellationToken cancellationToken = default)
+            public async Task UpdateRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string? name = null, string? description = null, bool? @public = null, bool? cleanupEnabled = null, ESPackageRepositorySettings? settings = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -3911,6 +3912,7 @@ public partial class ProjectClient : ISpaceClient
                         Name = name,
                         Description = description,
                         IsPublic = @public,
+                        IsCleanupEnabled = cleanupEnabled,
                         Settings = settings,
                     }, cancellationToken);
             }
@@ -4111,6 +4113,79 @@ public partial class ProjectClient : ISpaceClient
                         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetListOfPublishingToRemoteRepositoryAsync(project: project, repository: repository, connectionId: connectionId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackagesPublishing>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackagesPublishing>.Default())), skip, cancellationToken);
                 
                 }
+            
+            }
+        
+            public FileClient Files => new FileClient(_connection);
+            
+            public partial class FileClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public FileClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Gets a list of repository files for a given project ID in parent folder
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Read package repositories</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<List<FileData>> GetListOfFilesAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string? parentPath = null, Func<Partial<FileData>, Partial<FileData>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (parentPath != null) queryParameters.Append("parentPath", parentPath);
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<FileData>()) : Partial<FileData>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<FileData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/files{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// Gets a details for repository file for a given project ID
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Read package repositories</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<FileDetails> GetFileDetailsAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string filePath, Func<Partial<FileDetails>, Partial<FileDetails>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<FileDetails>()) : Partial<FileDetails>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<FileDetails>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/files/name:{filePath}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// Removes a file in repository for a given project ID
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Write package repositories</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task DeleteFileAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string filePath, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}/files/name:{filePath}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
             
             }
         

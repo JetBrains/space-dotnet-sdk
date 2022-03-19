@@ -34,11 +34,12 @@ public class ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest
 {
     public ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest() { }
     
-    public ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest(string? name = null, string? description = null, bool? @public = null, ESPackageRepositorySettings? settings = null)
+    public ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest(string? name = null, string? description = null, bool? @public = null, bool? cleanupEnabled = null, ESPackageRepositorySettings? settings = null)
     {
         Name = name;
         Description = description;
         IsPublic = @public;
+        IsCleanupEnabled = cleanupEnabled;
         Settings = settings;
     }
     
@@ -78,6 +79,18 @@ public class ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest
         set => _public.SetValue(value);
     }
 
+    private PropertyValue<bool?> _cleanupEnabled = new PropertyValue<bool?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(IsCleanupEnabled), "cleanupEnabled");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("cleanupEnabled")]
+    public bool? IsCleanupEnabled
+    {
+        get => _cleanupEnabled.GetValue(InlineErrors);
+        set => _cleanupEnabled.SetValue(value);
+    }
+
     private PropertyValue<ESPackageRepositorySettings?> _settings = new PropertyValue<ESPackageRepositorySettings?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(Settings), "settings");
     
 #if NET6_0_OR_GREATER
@@ -95,6 +108,7 @@ public class ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _public.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _cleanupEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _settings.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

@@ -30,14 +30,14 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class MCIcon
-     : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+     : MCElementDetails, MCInlineElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "MCIcon";
     
     public MCIcon() { }
     
-    public MCIcon(string name, string style)
+    public MCIcon(string name, MessageStyle? style = null)
     {
         Name = name;
         Style = style;
@@ -53,11 +53,10 @@ public sealed class MCIcon
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCIcon), nameof(Style), "style");
+    private PropertyValue<MessageStyle?> _style = new PropertyValue<MessageStyle?>(nameof(MCIcon), nameof(Style), "style");
     
-    [Required]
     [JsonPropertyName("style")]
-    public string Style
+    public MessageStyle? Style
     {
         get => _style.GetValue(InlineErrors);
         set => _style.SetValue(value);

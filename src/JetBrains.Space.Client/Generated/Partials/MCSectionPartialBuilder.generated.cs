@@ -31,17 +31,23 @@ namespace JetBrains.Space.Client.MCSectionPartialBuilder;
 
 public static class MCSectionPartialExtensions
 {
-    public static Partial<MCSection> WithHeader(this Partial<MCSection> it)
-        => it.AddFieldName("header");
-    
-    public static Partial<MCSection> WithHeader(this Partial<MCSection> it, Func<Partial<MCText>, Partial<MCText>> partialBuilder)
-        => it.AddFieldName("header", partialBuilder(new Partial<MCText>(it)));
-    
     public static Partial<MCSection> WithElements(this Partial<MCSection> it)
         => it.AddFieldName("elements");
     
     public static Partial<MCSection> WithElements(this Partial<MCSection> it, Func<Partial<MCElement>, Partial<MCElement>> partialBuilder)
         => it.AddFieldName("elements", partialBuilder(new Partial<MCElement>(it)));
+    
+    public static Partial<MCSection> WithStyle(this Partial<MCSection> it)
+        => it.AddFieldName("style");
+    
+    public static Partial<MCSection> WithStyle(this Partial<MCSection> it, Func<Partial<MessageStyle>, Partial<MessageStyle>> partialBuilder)
+        => it.AddFieldName("style", partialBuilder(new Partial<MessageStyle>(it)));
+    
+    public static Partial<MCSection> WithHeader(this Partial<MCSection> it)
+        => it.AddFieldName("header");
+    
+    public static Partial<MCSection> WithHeader(this Partial<MCSection> it, Func<Partial<MCText>, Partial<MCText>> partialBuilder)
+        => it.AddFieldName("header", partialBuilder(new Partial<MCText>(it)));
     
     public static Partial<MCSection> WithFooter(this Partial<MCSection> it)
         => it.AddFieldName("footer");

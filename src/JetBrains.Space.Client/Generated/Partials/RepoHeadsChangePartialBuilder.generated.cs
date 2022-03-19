@@ -40,5 +40,8 @@ public static class RepoHeadsChangePartialExtensions
     public static Partial<RepoHeadsChange> WithNewId(this Partial<RepoHeadsChange> it)
         => it.AddFieldName("newId");
     
+    public static Partial<RepoHeadsChange> WithIsForce(this Partial<RepoHeadsChange> it)
+        => it.AddFieldName("force");
+    
 }
 

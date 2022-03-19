@@ -35,6 +35,12 @@ public abstract class PermissionContextIdentifier : IUrlParameter
     public static PermissionContextIdentifier Channel(string channel)
         => new ChannelPermissionContextIdentifier(channel);
     
+    public static PermissionContextIdentifier DocumentFolder(string folder)
+        => new DocumentFolderPermissionContextIdentifier(folder);
+    
+    public static PermissionContextIdentifier Document(string document)
+        => new DocumentPermissionContextIdentifier(document);
+    
     public static PermissionContextIdentifier Global
         => new GlobalPermissionContextIdentifier();
     
@@ -62,6 +68,52 @@ public abstract class PermissionContextIdentifier : IUrlParameter
         
         public override string ToString()
             => $"channel:{Channel}";
+    }
+    
+    public class DocumentFolderPermissionContextIdentifier : PermissionContextIdentifier
+    {
+        [Required]
+        [JsonPropertyName("folder")]
+#if NET6_0_OR_GREATER
+        public string Folder { get; init; }
+#else
+        public string Folder { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public DocumentFolderPermissionContextIdentifier() { }
+#endif
+        
+        public DocumentFolderPermissionContextIdentifier(string folder)
+        {
+            Folder = folder;
+        }
+        
+        public override string ToString()
+            => $"folder:{Folder}";
+    }
+    
+    public class DocumentPermissionContextIdentifier : PermissionContextIdentifier
+    {
+        [Required]
+        [JsonPropertyName("document")]
+#if NET6_0_OR_GREATER
+        public string Document { get; init; }
+#else
+        public string Document { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+        public DocumentPermissionContextIdentifier() { }
+#endif
+        
+        public DocumentPermissionContextIdentifier(string document)
+        {
+            Document = document;
+        }
+        
+        public override string ToString()
+            => $"document:{Document}";
     }
     
     public class GlobalPermissionContextIdentifier : PermissionContextIdentifier
