@@ -86,23 +86,26 @@ public class Program
             await chatClient.Messages.SendMessageAsync(
                 recipient: MessageRecipient.Channel(ChatChannel.FromName(chatChannelName)),
                 content: ChatMessage.Block(
-                    outline: new MessageOutline("Have you tried JetBrains Space?"),
-                    messageData: "Have you tried JetBrains Space? See https://www.jetbrains.com/space/ for more information.",
-                    sections: new List<MessageSectionElement>
+                    outline: MessageOutline.V2(new()
                     {
-                        new MessageSection
-                        {
-                            Header = "JetBrains Space",
-                            Elements = new List<MessageElement>
+                        MessageInlineElement.MessageInlineText("Have you tried JetBrains Space?")
+                    }),
+                    messageData: "Have you tried JetBrains Space? See https://www.jetbrains.com/space/ for more information.",
+                    sections: new()
+                    {
+                        MessageSectionElement.MessageSectionV2(
+                            elements: new()
                             {
+                                MessageElement.MessageText("JetBrains Space", size: MessageTextSize.LARGE),
+                                
                                 MessageElement.MessageText("JetBrains Space is an Integrated Team Environment.",
-                                    MessageAccessoryElement.MessageIcon(new ApiIcon("space"), MessageStyle.SUCCESS)),
+                                MessageAccessoryElement.MessageIcon(new ApiIcon("space"), MessageStyle.SUCCESS)),
                                 MessageElement.MessageText("Have you tried JetBrains Space?"),
                                 MessageElement.MessageDivider(),
-                                MessageElement.MessageText("Get access at https://www.jetbrains.com/space/")
-                            },
-                            Footer = "Check it out at https://www.jetbrains.com/space/"
-                        }
+                                MessageElement.MessageText("Get access at https://www.jetbrains.com/space/"),
+                                
+                                MessageElement.MessageText("Check it out at https://www.jetbrains.com/space/", size: MessageTextSize.SMALL)
+                            })
                     },
                     style: MessageStyle.SUCCESS),
                 unfurlLinks: false);

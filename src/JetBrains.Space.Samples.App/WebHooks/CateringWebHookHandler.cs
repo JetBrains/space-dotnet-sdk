@@ -64,23 +64,25 @@ public class CateringWebHookHandler : SpaceWebHookHandler
             channelIdentifier: null,
             recipient: MessageRecipient.Member(ProfileIdentifier.Id(userId)),
             content: ChatMessage.Block(
-                outline: new MessageOutline("Anything to eat or drink while we are on our way to Space?"),
-                messageData: "Anything to eat or drink while we are on our way to Space?",
-                sections: new List<MessageSectionElement>
+                outline: MessageOutline.V2(new()
                 {
-                    new MessageSection
-                    {
-                        Header = "JetBrains Space - Catering",
-                        Elements = new List<MessageElement>
+                    MessageInlineElement.MessageInlineText("Anything to eat or drink while we are on our way to Space?")
+                }),
+                messageData: "Anything to eat or drink while we are on our way to Space?",
+                sections: new()
+                {
+                    MessageSectionElement.MessageSectionV2(
+                        elements: new()
                         {
+                            MessageElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
+                            
                             MessageElement.MessageText("Anything to eat or drink while we are on our way to Space?"),
                             MessageElement.MessageControlGroup(new List<MessageControlElement>
                             {
                                 MessageControlElement.MessageButton("Yes, please", MessageButtonStyle.PRIMARY, 
                                     MessageAction.Post("catering-start", ""))
                             })
-                        }
-                    }
+                        })
                 },
                 style: MessageStyle.PRIMARY),
             cateringSession: cateringSession);
@@ -120,15 +122,18 @@ public class CateringWebHookHandler : SpaceWebHookHandler
                 channelIdentifier: ChannelIdentifier.Profile(ProfileIdentifier.Id(payload.UserId)), 
                 recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
                 content: ChatMessage.Block(
-                    outline: new MessageOutline("Would you prefer chicken or pasta?"),
-                    messageData: "Would you prefer chicken or pasta?",
-                    sections: new List<MessageSectionElement>
+                    outline: MessageOutline.V2(new()
                     {
-                        new MessageSection
-                        {
-                            Header = "JetBrains Space - Catering",
-                            Elements = new List<MessageElement>
+                        MessageInlineElement.MessageInlineText("Would you prefer chicken or pasta?")
+                    }),
+                    messageData: "Would you prefer chicken or pasta?",
+                    sections: new()
+                    {
+                        MessageSectionElement.MessageSectionV2(
+                            elements: new()
                             {
+                                MessageElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
+                                
                                 MessageElement.MessageText("Would you prefer chicken or pasta?"),
                                 MessageElement.MessageControlGroup(new List<MessageControlElement>
                                 {
@@ -139,8 +144,7 @@ public class CateringWebHookHandler : SpaceWebHookHandler
                                     MessageControlElement.MessageButton("No food", MessageButtonStyle.REGULAR,
                                         MessageAction.Post(ActionId.Food, "🤷 None"))
                                 })
-                            }
-                        }
+                            })
                     },
                     style: MessageStyle.PRIMARY),
                 cateringSession: cateringSession);
@@ -151,15 +155,18 @@ public class CateringWebHookHandler : SpaceWebHookHandler
                 channelIdentifier: ChannelIdentifier.Profile(ProfileIdentifier.Id(payload.UserId)),
                 recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
                 content: ChatMessage.Block(
-                    outline: new MessageOutline("Any drinks? Coffee or tea?"),
-                    messageData: "Any drinks? Coffee or tea?",
-                    sections: new List<MessageSectionElement>
+                    outline: MessageOutline.V2(new()
                     {
-                        new MessageSection
-                        {
-                            Header = "JetBrains Space - Catering",
-                            Elements = new List<MessageElement>
+                        MessageInlineElement.MessageInlineText("Any drinks? Coffee or tea?")
+                    }),
+                    messageData: "Any drinks? Coffee or tea?",
+                    sections: new()
+                    {
+                        MessageSectionElement.MessageSectionV2(
+                            elements: new()
                             {
+                                MessageElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
+                                
                                 MessageElement.MessageText("Any drinks? Coffee or tea?"),
                                 MessageElement.MessageControlGroup(new List<MessageControlElement>
                                 {
@@ -172,8 +179,7 @@ public class CateringWebHookHandler : SpaceWebHookHandler
                                     MessageControlElement.MessageButton("No drinks", MessageButtonStyle.REGULAR, 
                                         MessageAction.Post(ActionId.Drinks, "🤷 None"))
                                 })
-                            }
-                        }
+                            })
                     },
                     style: MessageStyle.PRIMARY),
                 cateringSession: cateringSession);
@@ -186,27 +192,31 @@ public class CateringWebHookHandler : SpaceWebHookHandler
                 channelIdentifier: ChannelIdentifier.Profile(ProfileIdentifier.Id(payload.UserId)),
                 recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
                 content: ChatMessage.Block(
-                    outline: new MessageOutline("How would you like your coffee?"),
-                    messageData: "How would you like your coffee?",
-                    sections: new List<MessageSectionElement>
+                    outline: MessageOutline.V2(new()
                     {
-                        new MessageSection
-                        {
-                            Header = "JetBrains Space - Catering",
-                            Elements = new List<MessageElement>
+                        MessageInlineElement.MessageInlineText("How would you like your coffee?")
+                    }),
+                    messageData: "How would you like your coffee?",
+                    sections: new()
+                    {
+                        MessageSectionElement.MessageSectionV2(
+                            elements: new()
                             {
-                                MessageElement.MessageText("How would you like your coffee?"),
+                                MessageElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
+                                
+                                MessageElement.MessageText("Any drinks? Coffee or tea?"),
                                 MessageElement.MessageControlGroup(new List<MessageControlElement>
                                 {
-                                    MessageControlElement.MessageButton("Milk", MessageButtonStyle.REGULAR, 
-                                        MessageAction.Post(ActionId.DrinkAdditions, "with milk")),
-                                    MessageControlElement.MessageButton("Milk and Sugar", MessageButtonStyle.REGULAR,
-                                        MessageAction.Post(ActionId.DrinkAdditions, "with milk and sugar")),
-                                    MessageControlElement.MessageButton("No additions", MessageButtonStyle.REGULAR, 
-                                        MessageAction.Post(ActionId.DrinkAdditions, "no additions"))
+                                    MessageControlElement.MessageButton("Water", MessageButtonStyle.REGULAR, 
+                                        MessageAction.Post(ActionId.Drinks, "🥛 Water")),
+                                    MessageControlElement.MessageButton("Coffee", MessageButtonStyle.REGULAR,
+                                        MessageAction.Post(ActionId.Drinks, "☕ Coffee")),
+                                    MessageControlElement.MessageButton("Tea", MessageButtonStyle.REGULAR, 
+                                        MessageAction.Post(ActionId.Drinks, "☕ Tea")),
+                                    MessageControlElement.MessageButton("No drinks", MessageButtonStyle.REGULAR, 
+                                        MessageAction.Post(ActionId.Drinks, "🤷 None"))
                                 })
-                            }
-                        }
+                            })
                     },
                     style: MessageStyle.PRIMARY),
                 cateringSession: cateringSession);
@@ -217,15 +227,18 @@ public class CateringWebHookHandler : SpaceWebHookHandler
                 channelIdentifier: ChannelIdentifier.Profile(ProfileIdentifier.Id(payload.UserId)),
                 recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
                 content: ChatMessage.Block(
-                    outline: new MessageOutline("Thank you, we'll be right there!"),
-                    messageData: "Thank you, we'll be right there!",
-                    sections: new List<MessageSectionElement>
+                    outline: MessageOutline.V2(new()
                     {
-                        new MessageSection
-                        {
-                            Header = "JetBrains Space - Catering",
-                            Elements = new List<MessageElement>
+                        MessageInlineElement.MessageInlineText("Thank you, we'll be right there!")
+                    }),
+                    messageData: "Thank you, we'll be right there!",
+                    sections: new()
+                    {
+                        MessageSectionElement.MessageSectionV2(
+                            elements: new()
                             {
+                                MessageElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
+                                
                                 MessageElement.MessageText("Thank you, we'll be right there!"),
                                 MessageElement.MessageFields(new List<MessageFieldElement>
                                 {
@@ -235,8 +248,7 @@ public class CateringWebHookHandler : SpaceWebHookHandler
                                             ? " (" + cateringSession.SelectedDrinkAdditions + ")"
                                             : ""))
                                 })
-                            }
-                        }
+                            })
                     },
                     style: MessageStyle.PRIMARY),
                 cateringSession: cateringSession);
