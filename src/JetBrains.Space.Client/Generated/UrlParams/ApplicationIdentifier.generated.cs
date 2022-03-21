@@ -52,7 +52,9 @@ public abstract class ApplicationIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ApplicationIdentifierClientId() { }
+#pragma warning restore CS8618
 #endif
         
         public ApplicationIdentifierClientId(string clientId)
@@ -75,7 +77,9 @@ public abstract class ApplicationIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ApplicationIdentifierId() { }
+#pragma warning restore CS8618
 #endif
         
         public ApplicationIdentifierId(string id)

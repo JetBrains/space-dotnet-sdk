@@ -2351,6 +2351,313 @@ public partial class TeamDirectoryClient : ISpaceClient
         
         }
     
+        public DocumentClient Documents => new DocumentClient(_connection);
+        
+        public partial class DocumentClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public DocumentClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<Document> CreateDocumentAsync(ProfileIdentifier profile, string name, FolderIdentifier folder, DocumentBodyCreateIn bodyIn, PublicationDetailsIn? publicationDetailsIn = null, Func<Partial<Document>, Partial<Document>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Document>()) : Partial<Document>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileDocumentsPostRequest, Document>("POST", $"api/http/team-directory/profiles/{profile}/documents{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryProfilesForProfileDocumentsPostRequest
+                    { 
+                        Name = name,
+                        Folder = folder,
+                        BodyIn = bodyIn,
+                        PublicationDetailsIn = publicationDetailsIn,
+                    }, cancellationToken);
+            }
+            
+        
+            public async Task<Document> GetDocumentAsync(ProfileIdentifier profile, string documentId, Func<Partial<Document>, Partial<Document>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Document>()) : Partial<Document>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Document>("GET", $"api/http/team-directory/profiles/{profile}/documents/{documentId}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            public async Task<Document> UpdateDocumentAsync(ProfileIdentifier profile, string documentId, string? name = null, DocumentBodyUpdateIn? updateIn = null, PublicationDetailsIn? publicationDetailsIn = null, Func<Partial<Document>, Partial<Document>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Document>()) : Partial<Document>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileDocumentsForDocumentIdPatchRequest, Document>("PATCH", $"api/http/team-directory/profiles/{profile}/documents/{documentId}{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryProfilesForProfileDocumentsForDocumentIdPatchRequest
+                    { 
+                        Name = name,
+                        UpdateIn = updateIn,
+                        PublicationDetailsIn = publicationDetailsIn,
+                    }, cancellationToken);
+            }
+            
+        
+            public async Task ArchiveDocumentAsync(ProfileIdentifier profile, string documentId, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/documents/{documentId}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            public FolderClient Folders => new FolderClient(_connection);
+            
+            public partial class FolderClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public FolderClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<DocumentFolder> CreateFolderAsync(ProfileIdentifier profile, string name, FolderIdentifier parentFolder, Func<Partial<DocumentFolder>, Partial<DocumentFolder>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<DocumentFolder>()) : Partial<DocumentFolder>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileDocumentsFoldersPostRequest, DocumentFolder>("POST", $"api/http/team-directory/profiles/{profile}/documents/folders{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileDocumentsFoldersPostRequest
+                        { 
+                            Name = name,
+                            ParentFolder = parentFolder,
+                        }, cancellationToken);
+                }
+                
+            
+                public async Task<DocumentFolder> GetFolderAsync(ProfileIdentifier profile, FolderIdentifier folder, Func<Partial<DocumentFolder>, Partial<DocumentFolder>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<DocumentFolder>()) : Partial<DocumentFolder>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<DocumentFolder>("GET", $"api/http/team-directory/profiles/{profile}/documents/folders/{folder}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+                public async Task RenameFolderAsync(ProfileIdentifier profile, FolderIdentifier folder, string name, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/documents/folders/{folder}{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileDocumentsFoldersForFolderPatchRequest
+                        { 
+                            Name = name,
+                        }, cancellationToken);
+                }
+                
+            
+                public async Task ArchiveFolderAsync(ProfileIdentifier profile, FolderIdentifier folder, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/documents/folders/{folder}{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+                public DocumentClient Documents => new DocumentClient(_connection);
+                
+                public partial class DocumentClient : ISpaceClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public DocumentClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<Batch<Document>> ListDocumentsInFolderAsync(ProfileIdentifier profile, FolderIdentifier folder, bool withArchived = false, string? sortBy = null, ColumnSortOrder? order = null, string? skip = null, int? top = 100, Func<Partial<Batch<Document>>, Partial<Batch<Document>>>? partial = null, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("withArchived", withArchived.ToString("l"));
+                        if (sortBy != null) queryParameters.Append("sortBy", sortBy);
+                        queryParameters.Append("order", order.ToEnumString());
+                        if (skip != null) queryParameters.Append("$skip", skip);
+                        if (top != null) queryParameters.Append("$top", top?.ToString());
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Document>>()) : Partial<Batch<Document>>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<Batch<Document>>("GET", $"api/http/team-directory/profiles/{profile}/documents/folders/{folder}/documents{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
+                    
+                    public IAsyncEnumerable<Document> ListDocumentsInFolderAsyncEnumerable(ProfileIdentifier profile, FolderIdentifier folder, bool withArchived = false, string? sortBy = null, ColumnSortOrder? order = null, string? skip = null, int? top = 100, Func<Partial<Document>, Partial<Document>>? partial = null, CancellationToken cancellationToken = default)
+                        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListDocumentsInFolderAsync(profile: profile, folder: folder, withArchived: withArchived, sortBy: sortBy, order: order, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Document>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Document>.Default())), skip, cancellationToken);
+                
+                }
+            
+                public IntroductionClient Introduction => new IntroductionClient(_connection);
+                
+                public partial class IntroductionClient : ISpaceClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public IntroductionClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task AddFolderIntroductionAsync(ProfileIdentifier profile, FolderIdentifier folder, string documentId, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/documents/folders/{folder}/introduction/{documentId}{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
+                
+                    public async Task RemoveFolderIntroductionAsync(ProfileIdentifier profile, FolderIdentifier folder, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/documents/folders/{folder}/introduction{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
+                
+                }
+            
+                public MoveClient Move => new MoveClient(_connection);
+                
+                public partial class MoveClient : ISpaceClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public MoveClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<DocumentFolder> MoveFolderAsync(ProfileIdentifier profile, FolderIdentifier folder, FolderIdentifier parentFolder, Func<Partial<DocumentFolder>, Partial<DocumentFolder>>? partial = null, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<DocumentFolder>()) : Partial<DocumentFolder>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileDocumentsFoldersForFolderMovePatchRequest, DocumentFolder>("PATCH", $"api/http/team-directory/profiles/{profile}/documents/folders/{folder}/move{queryParameters.ToQueryString()}", 
+                            new TeamDirectoryProfilesForProfileDocumentsFoldersForFolderMovePatchRequest
+                            { 
+                                ParentFolder = parentFolder,
+                            }, cancellationToken);
+                    }
+                    
+                
+                }
+            
+                public SubfolderClient Subfolders => new SubfolderClient(_connection);
+                
+                public partial class SubfolderClient : ISpaceClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public SubfolderClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<Batch<DocumentFolder>> ListSubfoldersAsync(ProfileIdentifier profile, FolderIdentifier folder, bool withArchived = false, string? sortBy = null, ColumnSortOrder? order = null, string? skip = null, int? top = 100, Func<Partial<Batch<DocumentFolder>>, Partial<Batch<DocumentFolder>>>? partial = null, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("withArchived", withArchived.ToString("l"));
+                        if (sortBy != null) queryParameters.Append("sortBy", sortBy);
+                        queryParameters.Append("order", order.ToEnumString());
+                        if (skip != null) queryParameters.Append("$skip", skip);
+                        if (top != null) queryParameters.Append("$top", top?.ToString());
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<DocumentFolder>>()) : Partial<Batch<DocumentFolder>>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<Batch<DocumentFolder>>("GET", $"api/http/team-directory/profiles/{profile}/documents/folders/{folder}/subfolders{queryParameters.ToQueryString()}", cancellationToken);
+                    }
+                    
+                    
+                    public IAsyncEnumerable<DocumentFolder> ListSubfoldersAsyncEnumerable(ProfileIdentifier profile, FolderIdentifier folder, bool withArchived = false, string? sortBy = null, ColumnSortOrder? order = null, string? skip = null, int? top = 100, Func<Partial<DocumentFolder>, Partial<DocumentFolder>>? partial = null, CancellationToken cancellationToken = default)
+                        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListSubfoldersAsync(profile: profile, folder: folder, withArchived: withArchived, sortBy: sortBy, order: order, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<DocumentFolder>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DocumentFolder>.Default())), skip, cancellationToken);
+                
+                }
+            
+            }
+        
+            public CopyClient Copy => new CopyClient(_connection);
+            
+            public partial class CopyClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public CopyClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<Document> CopyDocumentAsync(ProfileIdentifier profile, string documentId, string name, FolderIdentifier folder, Func<Partial<Document>, Partial<Document>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Document>()) : Partial<Document>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileDocumentsForDocumentIdCopyPostRequest, Document>("POST", $"api/http/team-directory/profiles/{profile}/documents/{documentId}/copy{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileDocumentsForDocumentIdCopyPostRequest
+                        { 
+                            Name = name,
+                            Folder = folder,
+                        }, cancellationToken);
+                }
+                
+            
+            }
+        
+            public MoveClient Move => new MoveClient(_connection);
+            
+            public partial class MoveClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public MoveClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<Document> MoveDocumentAsync(ProfileIdentifier profile, string documentId, FolderIdentifier folder, Func<Partial<Document>, Partial<Document>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Document>()) : Partial<Document>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileDocumentsForDocumentIdMovePatchRequest, Document>("PATCH", $"api/http/team-directory/profiles/{profile}/documents/{documentId}/move{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileDocumentsForDocumentIdMovePatchRequest
+                        { 
+                            Folder = folder,
+                        }, cancellationToken);
+                }
+                
+            
+            }
+        
+            public UnarchiveClient Unarchive => new UnarchiveClient(_connection);
+            
+            public partial class UnarchiveClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public UnarchiveClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<Document> UnarchiveDocumentAsync(ProfileIdentifier profile, string documentId, Func<Partial<Document>, Partial<Document>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Document>()) : Partial<Document>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Document>("PATCH", $"api/http/team-directory/profiles/{profile}/documents/{documentId}/unarchive{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+        }
+    
         public GpgKeyClient GpgKeys => new GpgKeyClient(_connection);
         
         public partial class GpgKeyClient : ISpaceClient

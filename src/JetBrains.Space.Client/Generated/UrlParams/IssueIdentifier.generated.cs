@@ -49,7 +49,9 @@ public abstract class IssueIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public IssueIdentifierId() { }
+#pragma warning restore CS8618
 #endif
         
         public IssueIdentifierId(string id)
@@ -72,7 +74,9 @@ public abstract class IssueIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public IssueIdentifierKey() { }
+#pragma warning restore CS8618
 #endif
         
         public IssueIdentifierKey(string key)

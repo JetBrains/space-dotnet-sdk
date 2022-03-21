@@ -55,7 +55,9 @@ public abstract class MessageRecipient : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public MessageRecipientChannel() { }
+#pragma warning restore CS8618
 #endif
         
         public MessageRecipientChannel(ChatChannel channel)
@@ -78,7 +80,9 @@ public abstract class MessageRecipient : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public MessageRecipientCodeReview() { }
+#pragma warning restore CS8618
 #endif
         
         public MessageRecipientCodeReview(string codeReview)
@@ -101,7 +105,9 @@ public abstract class MessageRecipient : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public MessageRecipientIssue() { }
+#pragma warning restore CS8618
 #endif
         
         public MessageRecipientIssue(string issue)
@@ -124,7 +130,9 @@ public abstract class MessageRecipient : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public MessageRecipientMember() { }
+#pragma warning restore CS8618
 #endif
         
         public MessageRecipientMember(ProfileIdentifier member)

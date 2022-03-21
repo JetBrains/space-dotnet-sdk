@@ -52,7 +52,9 @@ public abstract class TeamIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public TeamIdentifierExternalId() { }
+#pragma warning restore CS8618
 #endif
         
         public TeamIdentifierExternalId(string externalId)
@@ -75,7 +77,9 @@ public abstract class TeamIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public TeamIdentifierId() { }
+#pragma warning restore CS8618
 #endif
         
         public TeamIdentifierId(string id)
@@ -98,7 +102,9 @@ public abstract class TeamIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public TeamIdentifierName() { }
+#pragma warning restore CS8618
 #endif
         
         public TeamIdentifierName(string name)

@@ -49,7 +49,9 @@ public abstract class SprintIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public SprintIdentifierCurrent() { }
+#pragma warning restore CS8618
 #endif
         
         public SprintIdentifierCurrent(BoardIdentifier board)
@@ -72,7 +74,9 @@ public abstract class SprintIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public SprintIdentifierId() { }
+#pragma warning restore CS8618
 #endif
         
         public SprintIdentifierId(string id)

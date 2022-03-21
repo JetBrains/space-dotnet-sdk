@@ -34,7 +34,7 @@ public sealed class HAEndpoint
 {
     public HAEndpoint() { }
     
-    public HAEndpoint(HAResource resource, HAMethod method, List<HAParameter> parameters, HAPath path, string displayName, string functionName, HATypeObject? requestBody = null, HAType? responseBody = null, string? doc = null, HADeprecation? deprecation = null, List<HARight>? rights = null)
+    public HAEndpoint(HAResource resource, HAMethod method, List<HAParameter> parameters, HAPath path, string displayName, string functionName, HATypeObject? requestBody = null, HAType? responseBody = null, string? doc = null, HADeprecation? deprecation = null, List<HARight>? rights = null, string? featureFlag = null)
     {
         Resource = resource;
         Method = method;
@@ -47,6 +47,7 @@ public sealed class HAEndpoint
         Doc = doc;
         Deprecation = deprecation;
         Rights = rights;
+        FeatureFlag = featureFlag;
     }
     
     private PropertyValue<HAResource> _resource = new PropertyValue<HAResource>(nameof(HAEndpoint), nameof(Resource), "resource");
@@ -154,6 +155,15 @@ public sealed class HAEndpoint
         set => _rights.SetValue(value);
     }
 
+    private PropertyValue<string?> _featureFlag = new PropertyValue<string?>(nameof(HAEndpoint), nameof(FeatureFlag), "featureFlag");
+    
+    [JsonPropertyName("featureFlag")]
+    public string? FeatureFlag
+    {
+        get => _featureFlag.GetValue(InlineErrors);
+        set => _featureFlag.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _resource.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -167,6 +177,7 @@ public sealed class HAEndpoint
         _doc.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
         _rights.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _featureFlag.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

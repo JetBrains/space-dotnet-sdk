@@ -58,7 +58,9 @@ public abstract class PermissionContextIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ChannelPermissionContextIdentifier() { }
+#pragma warning restore CS8618
 #endif
         
         public ChannelPermissionContextIdentifier(string channel)
@@ -81,7 +83,9 @@ public abstract class PermissionContextIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public DocumentFolderPermissionContextIdentifier() { }
+#pragma warning restore CS8618
 #endif
         
         public DocumentFolderPermissionContextIdentifier(string folder)
@@ -104,7 +108,9 @@ public abstract class PermissionContextIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public DocumentPermissionContextIdentifier() { }
+#pragma warning restore CS8618
 #endif
         
         public DocumentPermissionContextIdentifier(string document)
@@ -133,7 +139,9 @@ public abstract class PermissionContextIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ProjectPermissionContextIdentifier() { }
+#pragma warning restore CS8618
 #endif
         
         public ProjectPermissionContextIdentifier(ProjectIdentifier project)

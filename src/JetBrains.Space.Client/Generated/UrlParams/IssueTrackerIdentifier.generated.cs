@@ -49,7 +49,9 @@ public abstract class IssueTrackerIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public IssueTrackerIdentifierDefaultProjectTracker() { }
+#pragma warning restore CS8618
 #endif
         
         public IssueTrackerIdentifierDefaultProjectTracker(ProjectIdentifier project)
@@ -72,7 +74,9 @@ public abstract class IssueTrackerIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public IssueTrackerIdentifierId() { }
+#pragma warning restore CS8618
 #endif
         
         public IssueTrackerIdentifierId(string id)

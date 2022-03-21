@@ -49,7 +49,9 @@ public abstract class ChatMessageIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ChatMessageIdentifierExternalId() { }
+#pragma warning restore CS8618
 #endif
         
         public ChatMessageIdentifierExternalId(string externalId)
@@ -72,7 +74,9 @@ public abstract class ChatMessageIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ChatMessageIdentifierInternalId() { }
+#pragma warning restore CS8618
 #endif
         
         public ChatMessageIdentifierInternalId(string id)

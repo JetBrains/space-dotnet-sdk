@@ -46,7 +46,9 @@ public abstract class TeamMembershipIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public TeamMembershipIdentifierId() { }
+#pragma warning restore CS8618
 #endif
         
         public TeamMembershipIdentifierId(string id)

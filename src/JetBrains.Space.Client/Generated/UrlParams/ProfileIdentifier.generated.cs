@@ -55,7 +55,9 @@ public abstract class ProfileIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ProfileIdentifierExternalId() { }
+#pragma warning restore CS8618
 #endif
         
         public ProfileIdentifierExternalId(string externalId)
@@ -78,7 +80,9 @@ public abstract class ProfileIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ProfileIdentifierId() { }
+#pragma warning restore CS8618
 #endif
         
         public ProfileIdentifierId(string id)
@@ -107,7 +111,9 @@ public abstract class ProfileIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ProfileIdentifierUsername() { }
+#pragma warning restore CS8618
 #endif
         
         public ProfileIdentifierUsername(string username)

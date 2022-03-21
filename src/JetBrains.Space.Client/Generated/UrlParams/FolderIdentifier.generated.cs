@@ -49,7 +49,9 @@ public abstract class FolderIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public FolderIdentifierId() { }
+#pragma warning restore CS8618
 #endif
         
         public FolderIdentifierId(string id)

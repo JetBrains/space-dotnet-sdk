@@ -58,7 +58,9 @@ public abstract class CFEntityIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public CFAbsenceIdentifier() { }
+#pragma warning restore CS8618
 #endif
         
         public CFAbsenceIdentifier(AbsenceIdentifier absence)
@@ -81,7 +83,9 @@ public abstract class CFEntityIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public CFIssueIdentifier() { }
+#pragma warning restore CS8618
 #endif
         
         public CFIssueIdentifier(IssueIdentifier issue)
@@ -104,7 +108,9 @@ public abstract class CFEntityIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public CFMembershipIdentifier() { }
+#pragma warning restore CS8618
 #endif
         
         public CFMembershipIdentifier(TeamMembershipIdentifier membership)
@@ -127,7 +133,9 @@ public abstract class CFEntityIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public CFProfileIdentifier() { }
+#pragma warning restore CS8618
 #endif
         
         public CFProfileIdentifier(ProfileIdentifier profile)
@@ -150,7 +158,9 @@ public abstract class CFEntityIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public CFTeamIdentifier() { }
+#pragma warning restore CS8618
 #endif
         
         public CFTeamIdentifier(TeamIdentifier team)

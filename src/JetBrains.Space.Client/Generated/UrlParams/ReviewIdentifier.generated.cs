@@ -52,7 +52,9 @@ public abstract class ReviewIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ReviewIdentifierId() { }
+#pragma warning restore CS8618
 #endif
         
         public ReviewIdentifierId(string id)
@@ -75,7 +77,9 @@ public abstract class ReviewIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ReviewIdentifierKey() { }
+#pragma warning restore CS8618
 #endif
         
         public ReviewIdentifierKey(string key)
@@ -98,7 +102,9 @@ public abstract class ReviewIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ReviewIdentifierNumber() { }
+#pragma warning restore CS8618
 #endif
         
         public ReviewIdentifierNumber(int number)

@@ -70,7 +70,9 @@ public abstract class ChannelIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ChannelIdentifierApplication() { }
+#pragma warning restore CS8618
 #endif
         
         public ChannelIdentifierApplication(ApplicationIdentifier application)
@@ -93,7 +95,9 @@ public abstract class ChannelIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ChannelIdentifierArticle() { }
+#pragma warning restore CS8618
 #endif
         
         public ChannelIdentifierArticle(string article)
@@ -116,7 +120,9 @@ public abstract class ChannelIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ChannelIdentifierChannel() { }
+#pragma warning restore CS8618
 #endif
         
         public ChannelIdentifierChannel(ChatChannel channel)
@@ -139,7 +145,9 @@ public abstract class ChannelIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ChannelIdentifierContactKey() { }
+#pragma warning restore CS8618
 #endif
         
         public ChannelIdentifierContactKey(string contactKey)
@@ -162,7 +170,9 @@ public abstract class ChannelIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ChannelIdentifierId() { }
+#pragma warning restore CS8618
 #endif
         
         public ChannelIdentifierId(string id)
@@ -185,7 +195,9 @@ public abstract class ChannelIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ChannelIdentifierIssue() { }
+#pragma warning restore CS8618
 #endif
         
         public ChannelIdentifierIssue(IssueIdentifier issue)
@@ -208,7 +220,9 @@ public abstract class ChannelIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ChannelIdentifierProfile() { }
+#pragma warning restore CS8618
 #endif
         
         public ChannelIdentifierProfile(ProfileIdentifier member)
@@ -231,7 +245,9 @@ public abstract class ChannelIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ChannelIdentifierReview() { }
+#pragma warning restore CS8618
 #endif
         
         public ChannelIdentifierReview(ReviewIdentifier codeReview)
@@ -254,7 +270,9 @@ public abstract class ChannelIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ChannelIdentifierThread() { }
+#pragma warning restore CS8618
 #endif
         
         public ChannelIdentifierThread(string message)

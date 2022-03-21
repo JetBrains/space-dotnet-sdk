@@ -49,7 +49,9 @@ public abstract class ProjectIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ProjectIdentifierId() { }
+#pragma warning restore CS8618
 #endif
         
         public ProjectIdentifierId(string id)
@@ -72,7 +74,9 @@ public abstract class ProjectIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public ProjectIdentifierKey() { }
+#pragma warning restore CS8618
 #endif
         
         public ProjectIdentifierKey(string key)

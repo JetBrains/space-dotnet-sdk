@@ -49,7 +49,9 @@ public abstract class CFIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public CFIdentifierId() { }
+#pragma warning restore CS8618
 #endif
         
         public CFIdentifierId(string id)
@@ -72,7 +74,9 @@ public abstract class CFIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public CFIdentifierName() { }
+#pragma warning restore CS8618
 #endif
         
         public CFIdentifierName(string name)

@@ -88,5 +88,8 @@ public static class HAEndpointPartialExtensions
     public static Partial<HAEndpoint> WithRights(this Partial<HAEndpoint> it, Func<Partial<HARight>, Partial<HARight>> partialBuilder)
         => it.AddFieldName("rights", partialBuilder(new Partial<HARight>(it)));
     
+    public static Partial<HAEndpoint> WithFeatureFlag(this Partial<HAEndpoint> it)
+        => it.AddFieldName("featureFlag");
+    
 }
 

@@ -64,7 +64,9 @@ public abstract class CFEntityTypeIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public CFIssueTrackerEntityType() { }
+#pragma warning restore CS8618
 #endif
         
         public CFIssueTrackerEntityType(IssueTrackerIdentifier issueTracker)

@@ -52,7 +52,9 @@ public abstract class PackageRepositoryIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public PackageRepositoryIdentifierId() { }
+#pragma warning restore CS8618
 #endif
         
         public PackageRepositoryIdentifierId(string id)
@@ -75,7 +77,9 @@ public abstract class PackageRepositoryIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public PackageRepositoryIdentifierKey() { }
+#pragma warning restore CS8618
 #endif
         
         public PackageRepositoryIdentifierKey(string key)
@@ -106,7 +110,9 @@ public abstract class PackageRepositoryIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public PackageRepositoryIdentifierTypeAndName() { }
+#pragma warning restore CS8618
 #endif
         
         public PackageRepositoryIdentifierTypeAndName(string type, string name)

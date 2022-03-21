@@ -60,7 +60,9 @@ public abstract class WorkspaceIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public WorkspaceIdentifierByProject() { }
+#pragma warning restore CS8618
 #endif
         
         public WorkspaceIdentifierByProject(ProjectIdentifier project, int number)
@@ -84,7 +86,9 @@ public abstract class WorkspaceIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public WorkspaceIdentifierExternalId() { }
+#pragma warning restore CS8618
 #endif
         
         public WorkspaceIdentifierExternalId(string externalId)
@@ -107,7 +111,9 @@ public abstract class WorkspaceIdentifier : IUrlParameter
 #endif
         
 #if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
         public WorkspaceIdentifierId() { }
+#pragma warning restore CS8618
 #endif
         
         public WorkspaceIdentifierId(string id)
