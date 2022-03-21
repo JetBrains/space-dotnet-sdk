@@ -158,7 +158,9 @@ public class CSharpApiModelUrlParameterGenerator
                     
                 // Parameterless constructor
                 builder.AppendLine($"#if !NET6_0_OR_GREATER");
+                builder.AppendLine($"#pragma warning disable CS8618"); // [CS8618] Non-nullable property must contain a non-null value when exiting constructor. Consider declaring the property as nullable.
                 builder.AppendLine($"{indent}public {typeNameForUrlParameterOption}() {{ }}");
+                builder.AppendLine($"#pragma warning restore CS8618");
                 builder.AppendLine($"#endif");
                 builder.AppendLine($"{indent}");
                 
