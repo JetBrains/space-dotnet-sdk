@@ -1165,7 +1165,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         
     
         /// <summary>
-        /// Get/search all team memberships. Parameters are applied as 'AND' filters.
+        /// Get/search team memberships. Parameters are applied as 'AND' filters.
         /// </summary>
         /// <remarks>
         /// Required permissions:
@@ -1175,11 +1175,12 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<Batch<TDMembership>> GetAllMembershipsAsync(bool directTeams = false, bool directRoles = false, bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? teams = null, List<string>? roles = null, DateTime? since = null, DateTime? till = null, bool? requiresApproval = null, Func<Partial<Batch<TDMembership>>, Partial<Batch<TDMembership>>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<TDMembership>> GetAllMembershipsAsync(bool directTeams = false, bool directRoles = false, bool withArchived = false, string? skip = null, int? top = 100, List<TeamMembershipIdentifier>? identifiers = null, List<ProfileIdentifier>? profiles = null, List<string>? teams = null, List<string>? roles = null, DateTime? since = null, DateTime? till = null, bool? requiresApproval = null, Func<Partial<Batch<TDMembership>>, Partial<Batch<TDMembership>>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             if (skip != null) queryParameters.Append("$skip", skip);
             if (top != null) queryParameters.Append("$top", top?.ToString());
+            if (identifiers != null) queryParameters.Append("identifiers", identifiers.Select(it => it.ToString()));
             if (profiles != null) queryParameters.Append("profiles", profiles.Select(it => it.ToString()));
             if (teams != null) queryParameters.Append("teams", teams.Select(it => it));
             queryParameters.Append("directTeams", directTeams.ToString("l"));
@@ -1196,7 +1197,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         
         
         /// <summary>
-        /// Get/search all team memberships. Parameters are applied as 'AND' filters.
+        /// Get/search team memberships. Parameters are applied as 'AND' filters.
         /// </summary>
         /// <remarks>
         /// Required permissions:
@@ -1206,8 +1207,28 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public IAsyncEnumerable<TDMembership> GetAllMembershipsAsyncEnumerable(bool directTeams = false, bool directRoles = false, bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? teams = null, List<string>? roles = null, DateTime? since = null, DateTime? till = null, bool? requiresApproval = null, Func<Partial<TDMembership>, Partial<TDMembership>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMembershipsAsync(directTeams: directTeams, directRoles: directRoles, withArchived: withArchived, top: top, profiles: profiles, teams: teams, roles: roles, since: since, till: till, requiresApproval: requiresApproval, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMembership>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMembership>.Default())), skip, cancellationToken);
+        public IAsyncEnumerable<TDMembership> GetAllMembershipsAsyncEnumerable(bool directTeams = false, bool directRoles = false, bool withArchived = false, string? skip = null, int? top = 100, List<TeamMembershipIdentifier>? identifiers = null, List<ProfileIdentifier>? profiles = null, List<string>? teams = null, List<string>? roles = null, DateTime? since = null, DateTime? till = null, bool? requiresApproval = null, Func<Partial<TDMembership>, Partial<TDMembership>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMembershipsAsync(directTeams: directTeams, directRoles: directRoles, withArchived: withArchived, top: top, identifiers: identifiers, profiles: profiles, teams: teams, roles: roles, since: since, till: till, requiresApproval: requiresApproval, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMembership>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMembership>.Default())), skip, cancellationToken);
+    
+        /// <summary>
+        /// Get a single membership by its identifier
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View memberships</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<TDMembership> GetMembershipAsync(TeamMembershipIdentifier membershipId, Func<Partial<TDMembership>, Partial<TDMembership>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMembership>()) : Partial<TDMembership>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<TDMembership>("GET", $"api/http/team-directory/memberships/{membershipId}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
         /// <summary>
         /// Update a team membership. Optional parameters will be ignored when null and updated otherwise.

@@ -38,7 +38,7 @@ public interface ApplicationMetadata
     public static AutomationServiceMetadata AutomationServiceMetadata(PRProject project)
         => new AutomationServiceMetadata(project: project);
     
-    public static MarketplaceAppMetadata MarketplaceAppMetadata(int marketplaceAppId, string lastSentServerUrl, AppConnectionStatus connectionStatus)
+    public static MarketplaceAppMetadata MarketplaceAppMetadata(string marketplaceAppId, string lastSentServerUrl, AppConnectionStatus connectionStatus)
         => new MarketplaceAppMetadata(marketplaceAppId: marketplaceAppId, lastSentServerUrl: lastSentServerUrl, connectionStatus: connectionStatus);
     
     public static SubscriptionMetadata SubscriptionMetadata(M2ChannelRecord channel, string subscription, string subscriptionName)

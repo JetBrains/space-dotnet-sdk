@@ -53,9 +53,6 @@ public interface UnfurlDetails
     public static UnfurlDetailsArticle Article(ArticleRecord article, ArticleContentRecord? content = null, ArticleChannelRecord? channel = null, ArticleDetailsRecord? details = null)
         => new UnfurlDetailsArticle(article: article, content: content, channel: channel, details: details);
     
-    public static UnfurlDetailsBlockMarkdown BlockMarkdown(string title, string markdown, string? icon = null)
-        => new UnfurlDetailsBlockMarkdown(title: title, markdown: markdown, icon: icon);
-    
     public static UnfurlDetailsChat Chat(string channel, string title)
         => new UnfurlDetailsChat(channel: channel, title: title);
     
@@ -88,9 +85,6 @@ public interface UnfurlDetails
     
     public static UnfurlDetailsImage Image(string title, ImageAttachment image, string? icon = null)
         => new UnfurlDetailsImage(title: title, image: image, icon: icon);
-    
-    public static UnfurlDetailsInlineMarkdown InlineMarkdown(string markdown)
-        => new UnfurlDetailsInlineMarkdown(markdown: markdown);
     
     public static UnfurlDetailsIssue Issue(Issue issue, bool? strikeThrough = null, bool? compact = null)
         => new UnfurlDetailsIssue(issue: issue, strikeThrough: strikeThrough, compact: compact);

@@ -34,7 +34,7 @@ public sealed class KBBook
 {
     public KBBook() { }
     
-    public KBBook(string id, bool archived, string name, string summary, long updated, string alias, List<KBBookContext> contexts, KBFolder rootFolder, CPrincipal? updatedBy = null)
+    public KBBook(string id, bool archived, string name, string summary, long updated, string alias, KBFolder rootFolder, CPrincipal? updatedBy = null, List<KBBookContext>? contexts = null, PRProject? project = null)
     {
         Id = id;
         IsArchived = archived;
@@ -44,6 +44,7 @@ public sealed class KBBook
         UpdatedBy = updatedBy;
         Alias = alias;
         Contexts = contexts;
+        Project = project;
         RootFolder = rootFolder;
     }
     
@@ -116,14 +117,22 @@ public sealed class KBBook
         set => _alias.SetValue(value);
     }
 
-    private PropertyValue<List<KBBookContext>> _contexts = new PropertyValue<List<KBBookContext>>(nameof(KBBook), nameof(Contexts), "contexts", new List<KBBookContext>());
+    private PropertyValue<List<KBBookContext>?> _contexts = new PropertyValue<List<KBBookContext>?>(nameof(KBBook), nameof(Contexts), "contexts");
     
-    [Required]
     [JsonPropertyName("contexts")]
-    public List<KBBookContext> Contexts
+    public List<KBBookContext>? Contexts
     {
         get => _contexts.GetValue(InlineErrors);
         set => _contexts.SetValue(value);
+    }
+
+    private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(KBBook), nameof(Project), "project");
+    
+    [JsonPropertyName("project")]
+    public PRProject? Project
+    {
+        get => _project.GetValue(InlineErrors);
+        set => _project.SetValue(value);
     }
 
     private PropertyValue<KBFolder> _rootFolder = new PropertyValue<KBFolder>(nameof(KBBook), nameof(RootFolder), "rootFolder");
@@ -146,6 +155,7 @@ public sealed class KBBook
         _updatedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _alias.SetAccessPath(parentChainPath, validateHasBeenSet);
         _contexts.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
         _rootFolder.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

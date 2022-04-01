@@ -34,11 +34,13 @@ public sealed class TDLocationWithTimeZone
 {
     public TDLocationWithTimeZone() { }
     
-    public TDLocationWithTimeZone(string id, string name, ATimeZoneWithOffset timezone)
+    public TDLocationWithTimeZone(string id, string name, ATimeZoneWithOffset timezone, LocationType? type = null, string? parentLocation = null)
     {
         Id = id;
         Name = name;
         Timezone = timezone;
+        Type = type;
+        ParentLocation = parentLocation;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLocationWithTimeZone), nameof(Id), "id");
@@ -71,11 +73,31 @@ public sealed class TDLocationWithTimeZone
         set => _timezone.SetValue(value);
     }
 
+    private PropertyValue<LocationType?> _type = new PropertyValue<LocationType?>(nameof(TDLocationWithTimeZone), nameof(Type), "type");
+    
+    [JsonPropertyName("type")]
+    public LocationType? Type
+    {
+        get => _type.GetValue(InlineErrors);
+        set => _type.SetValue(value);
+    }
+
+    private PropertyValue<string?> _parentLocation = new PropertyValue<string?>(nameof(TDLocationWithTimeZone), nameof(ParentLocation), "parentLocation");
+    
+    [JsonPropertyName("parentLocation")]
+    public string? ParentLocation
+    {
+        get => _parentLocation.GetValue(InlineErrors);
+        set => _parentLocation.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _timezone.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _parentLocation.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

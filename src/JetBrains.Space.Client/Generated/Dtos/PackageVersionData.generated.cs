@@ -34,7 +34,7 @@ public sealed class PackageVersionData
 {
     public PackageVersionData() { }
     
-    public PackageVersionData(PackageType type, string repository, string name, string version, bool pinned, List<string>? tags = null, long? created = null, long? lastAccessed = null, long? downloads = null, string? comment = null, long? diskSize = null)
+    public PackageVersionData(PackageType type, string repository, string name, string version, bool pinned, List<string>? tags = null, long? created = null, long? lastAccessed = null, long? downloads = null, string? comment = null, long? diskSize = null, string? path = null)
     {
         Type = type;
         Repository = repository;
@@ -47,6 +47,7 @@ public sealed class PackageVersionData
         IsPinned = pinned;
         Comment = comment;
         DiskSize = diskSize;
+        Path = path;
     }
     
     private PropertyValue<PackageType> _type = new PropertyValue<PackageType>(nameof(PackageVersionData), nameof(Type), "type");
@@ -153,6 +154,15 @@ public sealed class PackageVersionData
         set => _diskSize.SetValue(value);
     }
 
+    private PropertyValue<string?> _path = new PropertyValue<string?>(nameof(PackageVersionData), nameof(Path), "path");
+    
+    [JsonPropertyName("path")]
+    public string? Path
+    {
+        get => _path.GetValue(InlineErrors);
+        set => _path.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _type.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -166,6 +176,7 @@ public sealed class PackageVersionData
         _pinned.SetAccessPath(parentChainPath, validateHasBeenSet);
         _comment.SetAccessPath(parentChainPath, validateHasBeenSet);
         _diskSize.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _path.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

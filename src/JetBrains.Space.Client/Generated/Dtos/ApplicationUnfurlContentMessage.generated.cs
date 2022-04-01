@@ -29,22 +29,22 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ApplicationUnfurlContentMC
+public sealed class ApplicationUnfurlContentMessage
      : ApplicationUnfurlContent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "ApplicationUnfurlContent.MC";
+    public override string? ClassName => "ApplicationUnfurlContent.Message";
     
-    public ApplicationUnfurlContentMC() { }
+    public ApplicationUnfurlContentMessage() { }
     
-    public ApplicationUnfurlContentMC(MessageStyle style, List<MessageSectionElement> sections, MessageOutline? outline = null)
+    public ApplicationUnfurlContentMessage(MessageStyle style, List<MessageSectionElement> sections, MessageOutline? outline = null)
     {
         Style = style;
         Outline = outline;
         Sections = sections;
     }
     
-    private PropertyValue<MessageStyle> _style = new PropertyValue<MessageStyle>(nameof(ApplicationUnfurlContentMC), nameof(Style), "style");
+    private PropertyValue<MessageStyle> _style = new PropertyValue<MessageStyle>(nameof(ApplicationUnfurlContentMessage), nameof(Style), "style");
     
     [Required]
     [JsonPropertyName("style")]
@@ -54,7 +54,7 @@ public sealed class ApplicationUnfurlContentMC
         set => _style.SetValue(value);
     }
 
-    private PropertyValue<MessageOutline?> _outline = new PropertyValue<MessageOutline?>(nameof(ApplicationUnfurlContentMC), nameof(Outline), "outline");
+    private PropertyValue<MessageOutline?> _outline = new PropertyValue<MessageOutline?>(nameof(ApplicationUnfurlContentMessage), nameof(Outline), "outline");
     
     [JsonPropertyName("outline")]
     public MessageOutline? Outline
@@ -63,7 +63,7 @@ public sealed class ApplicationUnfurlContentMC
         set => _outline.SetValue(value);
     }
 
-    private PropertyValue<List<MessageSectionElement>> _sections = new PropertyValue<List<MessageSectionElement>>(nameof(ApplicationUnfurlContentMC), nameof(Sections), "sections", new List<MessageSectionElement>());
+    private PropertyValue<List<MessageSectionElement>> _sections = new PropertyValue<List<MessageSectionElement>>(nameof(ApplicationUnfurlContentMessage), nameof(Sections), "sections", new List<MessageSectionElement>());
     
     [Required]
     [JsonPropertyName("sections")]

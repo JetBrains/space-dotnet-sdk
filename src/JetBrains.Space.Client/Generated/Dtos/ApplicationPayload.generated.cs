@@ -41,8 +41,8 @@ public interface ApplicationPayload
     public static ChangeServerUrlPayload ChangeServerUrlPayload(string newServerUrl, string clientId, string? userId = null, string? verificationToken = null)
         => new ChangeServerUrlPayload(newServerUrl: newServerUrl, clientId: clientId, userId: userId, verificationToken: verificationToken);
     
-    public static InitPayload InitPayload(string clientSecret, string serverUrl, string clientId, string userId, string? state = null, string? verificationToken = null)
-        => new InitPayload(clientSecret: clientSecret, serverUrl: serverUrl, clientId: clientId, userId: userId, state: state, verificationToken: verificationToken);
+    public static InitPayload InitPayload(string clientSecret, string serverUrl, string clientId, string? state = null, string? userId = null, string? verificationToken = null)
+        => new InitPayload(clientSecret: clientSecret, serverUrl: serverUrl, clientId: clientId, state: state, userId: userId, verificationToken: verificationToken);
     
     public static ListCommandsPayload ListCommandsPayload(string clientId, string? userId = null, string? verificationToken = null)
         => new ListCommandsPayload(clientId: clientId, userId: userId, verificationToken: verificationToken);

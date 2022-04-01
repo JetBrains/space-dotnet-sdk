@@ -36,17 +36,11 @@ public class ApplicationUnfurlContent
     [JsonPropertyName("className")]
     public virtual string? ClassName => "ApplicationUnfurlContent";
     
-    public static ApplicationUnfurlContentBlockMarkdown BlockMarkdown(string title, string markdown, ApiIcon? icon = null)
-        => new ApplicationUnfurlContentBlockMarkdown(title: title, markdown: markdown, icon: icon);
-    
     public static ApplicationUnfurlContentImage Image(string title, string url, ApiIcon? icon = null)
         => new ApplicationUnfurlContentImage(title: title, url: url, icon: icon);
     
-    public static ApplicationUnfurlContentInlineMarkdown InlineMarkdown(string markdown)
-        => new ApplicationUnfurlContentInlineMarkdown(markdown: markdown);
-    
-    public static ApplicationUnfurlContentMC MC(MessageStyle style, List<MessageSectionElement> sections, MessageOutline? outline = null)
-        => new ApplicationUnfurlContentMC(style: style, sections: sections, outline: outline);
+    public static ApplicationUnfurlContentMessage Message(MessageStyle style, List<MessageSectionElement> sections, MessageOutline? outline = null)
+        => new ApplicationUnfurlContentMessage(style: style, sections: sections, outline: outline);
     
     public ApplicationUnfurlContent() { }
     

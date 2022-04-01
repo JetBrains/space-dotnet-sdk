@@ -43,5 +43,14 @@ public static class TDLocationWithTimeZonePartialExtensions
     public static Partial<TDLocationWithTimeZone> WithTimezone(this Partial<TDLocationWithTimeZone> it, Func<Partial<ATimeZoneWithOffset>, Partial<ATimeZoneWithOffset>> partialBuilder)
         => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZoneWithOffset>(it)));
     
+    public static Partial<TDLocationWithTimeZone> WithType(this Partial<TDLocationWithTimeZone> it)
+        => it.AddFieldName("type");
+    
+    public static Partial<TDLocationWithTimeZone> WithType(this Partial<TDLocationWithTimeZone> it, Func<Partial<LocationType>, Partial<LocationType>> partialBuilder)
+        => it.AddFieldName("type", partialBuilder(new Partial<LocationType>(it)));
+    
+    public static Partial<TDLocationWithTimeZone> WithParentLocation(this Partial<TDLocationWithTimeZone> it)
+        => it.AddFieldName("parentLocation");
+    
 }
 

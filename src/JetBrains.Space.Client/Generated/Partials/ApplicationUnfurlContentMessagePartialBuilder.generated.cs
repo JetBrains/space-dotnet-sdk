@@ -27,26 +27,26 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationUnfurlContentMCPartialBuilder;
+namespace JetBrains.Space.Client.ApplicationUnfurlContentMessagePartialBuilder;
 
-public static class ApplicationUnfurlContentMCPartialExtensions
+public static class ApplicationUnfurlContentMessagePartialExtensions
 {
-    public static Partial<ApplicationUnfurlContentMC> WithStyle(this Partial<ApplicationUnfurlContentMC> it)
+    public static Partial<ApplicationUnfurlContentMessage> WithStyle(this Partial<ApplicationUnfurlContentMessage> it)
         => it.AddFieldName("style");
     
-    public static Partial<ApplicationUnfurlContentMC> WithStyle(this Partial<ApplicationUnfurlContentMC> it, Func<Partial<MessageStyle>, Partial<MessageStyle>> partialBuilder)
+    public static Partial<ApplicationUnfurlContentMessage> WithStyle(this Partial<ApplicationUnfurlContentMessage> it, Func<Partial<MessageStyle>, Partial<MessageStyle>> partialBuilder)
         => it.AddFieldName("style", partialBuilder(new Partial<MessageStyle>(it)));
     
-    public static Partial<ApplicationUnfurlContentMC> WithOutline(this Partial<ApplicationUnfurlContentMC> it)
+    public static Partial<ApplicationUnfurlContentMessage> WithOutline(this Partial<ApplicationUnfurlContentMessage> it)
         => it.AddFieldName("outline");
     
-    public static Partial<ApplicationUnfurlContentMC> WithOutline(this Partial<ApplicationUnfurlContentMC> it, Func<Partial<MessageOutline>, Partial<MessageOutline>> partialBuilder)
+    public static Partial<ApplicationUnfurlContentMessage> WithOutline(this Partial<ApplicationUnfurlContentMessage> it, Func<Partial<MessageOutline>, Partial<MessageOutline>> partialBuilder)
         => it.AddFieldName("outline", partialBuilder(new Partial<MessageOutline>(it)));
     
-    public static Partial<ApplicationUnfurlContentMC> WithSections(this Partial<ApplicationUnfurlContentMC> it)
+    public static Partial<ApplicationUnfurlContentMessage> WithSections(this Partial<ApplicationUnfurlContentMessage> it)
         => it.AddFieldName("sections");
     
-    public static Partial<ApplicationUnfurlContentMC> WithSections(this Partial<ApplicationUnfurlContentMC> it, Func<Partial<MessageSectionElement>, Partial<MessageSectionElement>> partialBuilder)
+    public static Partial<ApplicationUnfurlContentMessage> WithSections(this Partial<ApplicationUnfurlContentMessage> it, Func<Partial<MessageSectionElement>, Partial<MessageSectionElement>> partialBuilder)
         => it.AddFieldName("sections", partialBuilder(new Partial<MessageSectionElement>(it)));
     
 }

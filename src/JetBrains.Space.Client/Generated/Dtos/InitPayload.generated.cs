@@ -37,7 +37,7 @@ public sealed class InitPayload
     
     public InitPayload() { }
     
-    public InitPayload(string clientSecret, string serverUrl, string clientId, string userId, string? state = null, string? verificationToken = null)
+    public InitPayload(string clientSecret, string serverUrl, string clientId, string? state = null, string? userId = null, string? verificationToken = null)
     {
         ClientSecret = clientSecret;
         ServerUrl = serverUrl;
@@ -86,11 +86,10 @@ public sealed class InitPayload
         set => _clientId.SetValue(value);
     }
 
-    private PropertyValue<string> _userId = new PropertyValue<string>(nameof(InitPayload), nameof(UserId), "userId");
+    private PropertyValue<string?> _userId = new PropertyValue<string?>(nameof(InitPayload), nameof(UserId), "userId");
     
-    [Required]
     [JsonPropertyName("userId")]
-    public string UserId
+    public string? UserId
     {
         get => _userId.GetValue(InlineErrors);
         set => _userId.SetValue(value);

@@ -37,18 +37,18 @@ public sealed class MarketplaceAppMetadata
     
     public MarketplaceAppMetadata() { }
     
-    public MarketplaceAppMetadata(int marketplaceAppId, string lastSentServerUrl, AppConnectionStatus connectionStatus)
+    public MarketplaceAppMetadata(string marketplaceAppId, string lastSentServerUrl, AppConnectionStatus connectionStatus)
     {
         MarketplaceAppId = marketplaceAppId;
         LastSentServerUrl = lastSentServerUrl;
         ConnectionStatus = connectionStatus;
     }
     
-    private PropertyValue<int> _marketplaceAppId = new PropertyValue<int>(nameof(MarketplaceAppMetadata), nameof(MarketplaceAppId), "marketplaceAppId");
+    private PropertyValue<string> _marketplaceAppId = new PropertyValue<string>(nameof(MarketplaceAppMetadata), nameof(MarketplaceAppId), "marketplaceAppId");
     
     [Required]
     [JsonPropertyName("marketplaceAppId")]
-    public int MarketplaceAppId
+    public string MarketplaceAppId
     {
         get => _marketplaceAppId.GetValue(InlineErrors);
         set => _marketplaceAppId.SetValue(value);

@@ -67,5 +67,8 @@ public static class PackageVersionDataPartialExtensions
     public static Partial<PackageVersionData> WithDiskSize(this Partial<PackageVersionData> it)
         => it.AddFieldName("diskSize");
     
+    public static Partial<PackageVersionData> WithPath(this Partial<PackageVersionData> it)
+        => it.AddFieldName("path");
+    
 }
 

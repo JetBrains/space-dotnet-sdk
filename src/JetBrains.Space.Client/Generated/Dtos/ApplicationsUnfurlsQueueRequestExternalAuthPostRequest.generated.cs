@@ -34,7 +34,7 @@ public class ApplicationsUnfurlsQueueRequestExternalAuthPostRequest
 {
     public ApplicationsUnfurlsQueueRequestExternalAuthPostRequest() { }
     
-    public ApplicationsUnfurlsQueueRequestExternalAuthPostRequest(string queueItemId, ApplicationUnfurlContentMC message)
+    public ApplicationsUnfurlsQueueRequestExternalAuthPostRequest(string queueItemId, ApplicationUnfurlContentMessage message)
     {
         QueueItemId = queueItemId;
         Message = message;
@@ -50,11 +50,11 @@ public class ApplicationsUnfurlsQueueRequestExternalAuthPostRequest
         set => _queueItemId.SetValue(value);
     }
 
-    private PropertyValue<ApplicationUnfurlContentMC> _message = new PropertyValue<ApplicationUnfurlContentMC>(nameof(ApplicationsUnfurlsQueueRequestExternalAuthPostRequest), nameof(Message), "message");
+    private PropertyValue<ApplicationUnfurlContentMessage> _message = new PropertyValue<ApplicationUnfurlContentMessage>(nameof(ApplicationsUnfurlsQueueRequestExternalAuthPostRequest), nameof(Message), "message");
     
     [Required]
     [JsonPropertyName("message")]
-    public ApplicationUnfurlContentMC Message
+    public ApplicationUnfurlContentMessage Message
     {
         get => _message.GetValue(InlineErrors);
         set => _message.SetValue(value);

@@ -65,5 +65,11 @@ public enum ProjectFeature
     [EnumMember(Value = "TABLES")]
     TABLES,
     
+    [EnumMember(Value = "PARAMETERS")]
+    PARAMETERS,
+    
+    [EnumMember(Value = "SECRETS")]
+    SECRETS,
+    
 }
 

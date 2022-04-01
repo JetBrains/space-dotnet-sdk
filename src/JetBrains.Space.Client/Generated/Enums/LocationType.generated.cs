@@ -27,18 +27,28 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.UnfurlDetailsBlockMarkdownPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class UnfurlDetailsBlockMarkdownPartialExtensions
+[JsonConverter(typeof(EnumStringConverter))]
+public enum LocationType
 {
-    public static Partial<UnfurlDetailsBlockMarkdown> WithIcon(this Partial<UnfurlDetailsBlockMarkdown> it)
-        => it.AddFieldName("icon");
+    [EnumMember(Value = "Region")]
+    Region,
     
-    public static Partial<UnfurlDetailsBlockMarkdown> WithTitle(this Partial<UnfurlDetailsBlockMarkdown> it)
-        => it.AddFieldName("title");
+    [EnumMember(Value = "Campus")]
+    Campus,
     
-    public static Partial<UnfurlDetailsBlockMarkdown> WithMarkdown(this Partial<UnfurlDetailsBlockMarkdown> it)
-        => it.AddFieldName("markdown");
+    [EnumMember(Value = "Building")]
+    Building,
+    
+    [EnumMember(Value = "Floor")]
+    Floor,
+    
+    [EnumMember(Value = "Room")]
+    Room,
+    
+    [EnumMember(Value = "ConferenceRoom")]
+    ConferenceRoom,
     
 }
 

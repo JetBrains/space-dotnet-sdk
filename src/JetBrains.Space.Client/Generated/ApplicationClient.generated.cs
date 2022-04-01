@@ -104,26 +104,6 @@ public partial class ApplicationClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    [Obsolete("Use GET applications/paged (since 2021-03-18) (will be removed in a future version)")]
-    public async Task<List<ESApp>> GetAllApplicationsDeprecatedAsync(string query, bool withArchived = false, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, CancellationToken cancellationToken = default)
-    {
-        var queryParameters = new NameValueCollection();
-        queryParameters.Append("query", query);
-        queryParameters.Append("withArchived", withArchived.ToString("l"));
-        queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
-        
-        return await _connection.RequestResourceAsync<List<ESApp>>("GET", $"api/http/applications{queryParameters.ToQueryString()}", cancellationToken);
-    }
-    
-
-    /// <remarks>
-    /// Required permissions:
-    /// <list type="bullet">
-    /// <item>
-    /// <term>View applications</term>
-    /// </item>
-    /// </list>
-    /// </remarks>
     public async Task<Batch<ESApp>> GetAllApplicationsAsync(string? skip = null, int? top = 100, string? name = null, List<ProfileIdentifier>? owner = null, bool? withArchived = false, bool? withManaged = true, AppsOrdering? ordering = null, Func<Partial<Batch<ESApp>>, Partial<Batch<ESApp>>>? partial = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
@@ -591,7 +571,7 @@ public partial class ApplicationClient : ISpaceClient
             /// <summary>
             /// Request user to authenticate in external system to provide unfurls from it. Method is to be called by the application providing unfurls.
             /// </summary>
-            public async Task RequestExternalSystemAuthenticationAsync(string queueItemId, ApplicationUnfurlContentMC message, CancellationToken cancellationToken = default)
+            public async Task RequestExternalSystemAuthenticationAsync(string queueItemId, ApplicationUnfurlContentMessage message, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 

@@ -61,6 +61,12 @@ public static class KBBookPartialExtensions
     public static Partial<KBBook> WithContexts(this Partial<KBBook> it, Func<Partial<KBBookContext>, Partial<KBBookContext>> partialBuilder)
         => it.AddFieldName("contexts", partialBuilder(new Partial<KBBookContext>(it)));
     
+    public static Partial<KBBook> WithProject(this Partial<KBBook> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<KBBook> WithProject(this Partial<KBBook> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
+    
     public static Partial<KBBook> WithRootFolder(this Partial<KBBook> it)
         => it.AddFieldName("rootFolder");
     
