@@ -48,6 +48,14 @@ public class Program
             return await RunGenerateFromOrganizationUrl(namedArguments);
         }
 
+        if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("JB_SPACE_API_URL")))
+        {
+            namedArguments["organizationUrl"] = Environment.GetEnvironmentVariable("JB_SPACE_API_URL");
+            namedArguments["clientId"] = Environment.GetEnvironmentVariable("JB_SPACE_CLIENT_ID");
+            namedArguments["clientSecret"] = Environment.GetEnvironmentVariable("JB_SPACE_CLIENT_SECRET");
+            return await RunGenerateFromOrganizationUrl(namedArguments);
+        }
+
         return await RunHelpAsync();
     }
 
@@ -57,6 +65,11 @@ public class Program
         Console.WriteLine();
         Console.WriteLine("  Generate code from a remote API model:");
         Console.WriteLine("    --organizationUrl=https://{organization}.jetbrains.space/ --clientId={client-id} --clientSecret={client=secret}");
+        Console.WriteLine();
+        Console.WriteLine("  Generate code from a remote API model (set environment variables):");
+        Console.WriteLine("    JB_SPACE_API_URL=https://{organization}.jetbrains.space/");
+        Console.WriteLine("    JB_SPACE_CLIENT_ID={client-id} --clientSecret={client=secret}");
+        Console.WriteLine("    JB_SPACE_CLIENT_SECRET={client=secret}");
         Console.WriteLine();
         Console.WriteLine("  Generate code from a HA_model.json file:");
         Console.WriteLine("    --model={path-to-HA_model.json} --version={version}");
