@@ -10,6 +10,9 @@ public class ApiDto
     [JsonPropertyName("id")]
     public string Id { get; set; } = default!;
         
+    [JsonPropertyName("description")]
+    public ApiDescription? Description { get; set; }
+    
     [JsonPropertyName("deprecation")]
     public ApiDeprecation? Deprecation { get; set; } = default;
         

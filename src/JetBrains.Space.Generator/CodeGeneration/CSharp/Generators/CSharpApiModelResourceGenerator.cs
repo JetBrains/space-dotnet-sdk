@@ -162,7 +162,7 @@ public class CSharpApiModelResourceGenerator
                     CSharpExpression.DefaultLiteral);
                 
             builder.Append(
-                indent.Wrap(GenerateMethodDocumentationForEndpoint(apiEndpoint)));
+                indent.Wrap(GenerateMethodDocumentationForEndpoint(apiEndpoint, methodParametersBuilder)));
             builder.Append($"{indent}public async Task {methodNameForEndpoint}Async(");
             builder.Append(methodParametersBuilder.BuildMethodParametersList());
             builder.AppendLine(")");
@@ -247,7 +247,7 @@ public class CSharpApiModelResourceGenerator
                     CSharpExpression.DefaultLiteral);
         
             builder.Append(
-                indent.Wrap(GenerateMethodDocumentationForEndpoint(apiEndpoint)));
+                indent.Wrap(GenerateMethodDocumentationForEndpoint(apiEndpoint, methodParametersBuilder)));
             builder.Append($"{indent}public async Task<");
             builder.Append(apiEndpoint.ResponseBody!.ToCSharpType(_codeGenerationContext));
             builder.Append(">");
@@ -389,7 +389,7 @@ public class CSharpApiModelResourceGenerator
                     CSharpExpression.DefaultLiteral);
 
             builder.Append(
-                indent.Wrap(GenerateMethodDocumentationForEndpoint(apiEndpoint)));
+                indent.Wrap(GenerateMethodDocumentationForEndpoint(apiEndpoint, methodParametersBuilder)));
             builder.Append($"{indent}public IAsyncEnumerable<");
             builder.Append(batchDataType.ElementType.ToCSharpType(_codeGenerationContext));
             builder.Append(">");
@@ -422,18 +422,19 @@ public class CSharpApiModelResourceGenerator
         return builder.ToString();
     }
 
-    private static string GenerateMethodDocumentationForEndpoint(ApiEndpoint apiEndpoint)
+    private static string GenerateMethodDocumentationForEndpoint(ApiEndpoint apiEndpoint, MethodParametersBuilder methodParametersBuilder)
     {
         var indent = new Indent();
         var builder = new StringBuilder();
             
         // Documentation for method
-        if (!string.IsNullOrEmpty(apiEndpoint.Documentation))
+        if (apiEndpoint.Description != null)
         {
             builder.Append(
                 indent.Wrap(
-                    apiEndpoint.Documentation.ToCSharpDocumentationComment()));
+                    apiEndpoint.Description.ToCSharpDocumentationSummary()));
         }
+        builder.Append(methodParametersBuilder.BuildMethodParametersDocumentation());
 
         // Remarks (required permissions)
         if (apiEndpoint.Rights is { Count: > 0 })

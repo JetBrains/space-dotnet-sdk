@@ -49,6 +49,12 @@ public class CSharpPartialExtensionsGenerator
         var apiFieldName = apiField.Name;
             
         // Field
+        if (apiField.Description != null)
+        {
+            builder.Append(
+                indent.Wrap(
+                    apiField.Description.ToCSharpDocumentationSummary()));
+        }
         if (apiField.Deprecation != null)
         {
             builder.AppendLine($"{indent}{apiField.Deprecation.ToCSharpDeprecation()}");
@@ -68,6 +74,12 @@ public class CSharpPartialExtensionsGenerator
             // Recursive field?
             if (currentDtoType == currentFieldInnerType)
             {
+                if (apiField.Description != null)
+                {
+                    builder.Append(
+                        indent.Wrap(
+                            apiField.Description.ToCSharpDocumentationSummary()));
+                }
                 if (apiField.Deprecation != null)
                 {
                     builder.AppendLine($"{indent}{apiField.Deprecation.ToCSharpDeprecation()}");
@@ -80,6 +92,12 @@ public class CSharpPartialExtensionsGenerator
             }
 
             // Field with partial builder
+            if (apiField.Description != null)
+            {
+                builder.Append(
+                    indent.Wrap(
+                        apiField.Description.ToCSharpDocumentationSummary()));
+            }
             if (apiField.Deprecation != null)
             {
                 builder.AppendLine($"{indent}{apiField.Deprecation.ToCSharpDeprecation()}");

@@ -32,8 +32,8 @@ public class ApiEndpoint
     [JsonPropertyName("displayName")]
     public string DisplayName { get; set; } = default!;
         
-    [JsonPropertyName("doc")]
-    public string? Documentation { get; set; }
+    [JsonPropertyName("description")]
+    public ApiDescription? Description { get; set; }
         
     [JsonPropertyName("functionName")]
     public string? FunctionName { get; set; }

@@ -254,6 +254,12 @@ public class CSharpApiModelDtoGenerator
         }
 
         // Property
+        if (apiField.Description != null)
+        {
+            builder.Append(
+                indent.Wrap(
+                    apiField.Description.ToCSharpDocumentationSummary()));
+        }
         if (!apiField.Optional && !apiField.Type.Nullable)
         {
             builder.AppendLine($"{indent}[Required]");

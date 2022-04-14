@@ -15,6 +15,9 @@ public class ApiField
     [JsonPropertyName("optional")]
     public bool Optional { get; set; }
         
+    [JsonPropertyName("description")]
+    public ApiDescription? Description { get; set; }
+    
     [JsonPropertyName("deprecation")]
     public ApiDeprecation? Deprecation { get; set; }
         

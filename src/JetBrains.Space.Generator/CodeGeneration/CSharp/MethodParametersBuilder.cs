@@ -12,12 +12,14 @@ public class MethodParametersBuilder
         public string Type { get; }
         public string Name { get; }
         public string? DefaultValue { get; }
+        public string? Documentation { get; set; }
 
-        public MethodParameter(string type, string name, string? defaultValue)
+        public MethodParameter(string type, string name, string? defaultValue, string? documentation)
         {
             Type = type;
             Name = name;
             DefaultValue = defaultValue;
+            Documentation = documentation;
         }
     }
 
@@ -100,18 +102,19 @@ public class MethodParametersBuilder
                 
             var parameterName = parameter.Field.ToCSharpVariableName();
             var parameterDefaultValue = parameter.Field.ToCSharpDefaultValueForParameterList(_context);
+            var parameterDescription = parameter.Field.Description?.ToCSharpDocumentationParameter(parameterName);
 
             methodParametersBuilder = methodParametersBuilder
-                .WithParameter(parameterType, parameterName, parameterDefaultValue);
+                .WithParameter(parameterType, parameterName, parameterDefaultValue, parameterDescription);
         }
 
         return methodParametersBuilder;
     }
 
-    public MethodParametersBuilder WithParameter(string type, string name, string? defaultValue = null)
+    public MethodParametersBuilder WithParameter(string type, string name, string? defaultValue = null, string? description = null)
     {
         var futureParameters = new List<MethodParameter>(_parameters);
-        futureParameters.Add(new MethodParameter(type, name, defaultValue));
+        futureParameters.Add(new MethodParameter(type, name, defaultValue, description));
         return new MethodParametersBuilder(_context, futureParameters);
     }
 
@@ -120,7 +123,7 @@ public class MethodParametersBuilder
         var futureParameters = new List<MethodParameter>();
         foreach (var futureParameter in _parameters)
         {
-            futureParameters.Add(new MethodParameter(futureParameter.Type, futureParameter.Name, defaultValue));
+            futureParameters.Add(new MethodParameter(futureParameter.Type, futureParameter.Name, defaultValue, futureParameter.Documentation));
         }
         return new MethodParametersBuilder(_context, futureParameters);
     }
@@ -132,7 +135,7 @@ public class MethodParametersBuilder
         {
             if (futureParameter.Name == name)
             {
-                futureParameters.Add(new MethodParameter(futureParameter.Type, futureParameter.Name, defaultValue));
+                futureParameters.Add(new MethodParameter(futureParameter.Type, futureParameter.Name, defaultValue, futureParameter.Documentation));
             }
             else
             {
@@ -154,6 +157,12 @@ public class MethodParametersBuilder
                 }
                 return parameterDefinition;
             }));
+
+    public string BuildMethodParametersDocumentation() =>
+        string.Join(", ", _parameters
+            .OrderBy(RequiredParametersFirstOrder)
+            .Select(it => it.Documentation)
+            .Where(it => it != null));
 
     public string BuildMethodCallParameters(bool includePrefix = true) =>
         string.Join(", ", _parameters

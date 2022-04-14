@@ -12,6 +12,9 @@ public abstract class ApiUrlParameterOption
         
     [JsonPropertyName("optionName")]
     public string OptionName { get; set; } = default!;
+    
+    [JsonPropertyName("description")]
+    public ApiDescription? Description { get; set; }
         
     [JsonPropertyName("deprecation")]
     public ApiDeprecation? Deprecation { get; set; } = default;

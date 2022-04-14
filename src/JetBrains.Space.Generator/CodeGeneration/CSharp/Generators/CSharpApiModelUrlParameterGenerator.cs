@@ -63,7 +63,15 @@ public class CSharpApiModelUrlParameterGenerator
 
         var typeNameForUrlParameterOption = apiUrlParameterOption.ToCSharpClassName();
         var factoryMethodNameForUrlParameterOption = apiUrlParameterOption.ToCSharpFactoryMethodName(typeNameForUrlParameterOption, apiUrlParameter);
-            
+        
+        // Option method documentation
+        if (apiUrlParameterOption.Description != null)
+        {
+            builder.Append(
+                indent.Wrap(
+                    apiUrlParameterOption.Description.ToCSharpDocumentationSummary()));
+        }
+        
         // Option method deprecation
         if (apiUrlParameterOption.Deprecation != null)
         {
@@ -105,7 +113,15 @@ public class CSharpApiModelUrlParameterGenerator
         var builder = new StringBuilder();
             
         var typeNameForUrlParameterOption = apiUrlParameterOption.ToCSharpClassName();
-            
+        
+        // Option type documentation
+        if (apiUrlParameterOption.Description != null)
+        {
+            builder.Append(
+                indent.Wrap(
+                    apiUrlParameterOption.Description.ToCSharpDocumentationSummary()));
+        }
+        
         // Option type deprecation
         if (apiUrlParameterOption.Deprecation != null)
         {
