@@ -34,7 +34,7 @@ public sealed class Issue
 {
     public Issue() { }
     
-    public Issue(string id, bool archived, PRProject projectRef, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<SprintRecord> sprints, List<Topic> topics, string? projectId = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, int? subItemsCount = null, int? doneSubItemsCount = null, CPrincipal? deletedBy = null, DateTime? deletedTime = null, string? description = null, List<AttachmentInfo>? unfurls = null)
+    public Issue(string id, bool archived, PRProject projectRef, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<SprintRecord> sprints, List<Topic> topics, string? projectId = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, int? subItemsCount = null, int? doneSubItemsCount = null, int? commentsCount = null, CPrincipal? deletedBy = null, DateTime? deletedTime = null, string? description = null, List<AttachmentInfo>? unfurls = null)
     {
         Id = id;
         IsArchived = archived;
@@ -53,6 +53,7 @@ public sealed class Issue
         AttachmentsCount = attachmentsCount;
         SubItemsCount = subItemsCount;
         DoneSubItemsCount = doneSubItemsCount;
+        CommentsCount = commentsCount;
         DeletedBy = deletedBy;
         DeletedTime = deletedTime;
         Attachments = attachments;
@@ -229,6 +230,15 @@ public sealed class Issue
         set => _doneSubItemsCount.SetValue(value);
     }
 
+    private PropertyValue<int?> _commentsCount = new PropertyValue<int?>(nameof(Issue), nameof(CommentsCount), "commentsCount");
+    
+    [JsonPropertyName("commentsCount")]
+    public int? CommentsCount
+    {
+        get => _commentsCount.GetValue(InlineErrors);
+        set => _commentsCount.SetValue(value);
+    }
+
     private PropertyValue<CPrincipal?> _deletedBy = new PropertyValue<CPrincipal?>(nameof(Issue), nameof(DeletedBy), "deletedBy");
     
     [JsonPropertyName("deletedBy")]
@@ -345,6 +355,7 @@ public sealed class Issue
         _attachmentsCount.SetAccessPath(parentChainPath, validateHasBeenSet);
         _subItemsCount.SetAccessPath(parentChainPath, validateHasBeenSet);
         _doneSubItemsCount.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commentsCount.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deletedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deletedTime.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);

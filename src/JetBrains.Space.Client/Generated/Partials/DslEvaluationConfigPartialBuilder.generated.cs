@@ -27,23 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationUnfurlPatternRequestPartialBuilder;
+namespace JetBrains.Space.Client.DslEvaluationConfigPartialBuilder;
 
-public static class ApplicationUnfurlPatternRequestPartialExtensions
+public static class DslEvaluationConfigPartialExtensions
 {
-    /// <summary>
-    /// Prefix that is used in external IDs and that will be recognised by Space to generate links
-    /// </summary>
-    public static Partial<ApplicationUnfurlPatternRequest> WithPrefix(this Partial<ApplicationUnfurlPatternRequest> it)
-        => it.AddFieldName("prefix");
+    public static Partial<DslEvaluationConfig> WithExperimentalOptIns(this Partial<DslEvaluationConfig> it)
+        => it.AddFieldName("experimentalOptIns");
     
-    /// <summary>
-    /// URL of the external resource ending with *<?>* which is a variable for a number that follows the prefix.
-    /// 
-    /// If the specified prefix should be a part of the URL, include it before *<?>*.
-    /// </summary>
-    public static Partial<ApplicationUnfurlPatternRequest> WithLinkReplacement(this Partial<ApplicationUnfurlPatternRequest> it)
-        => it.AddFieldName("linkReplacement");
+    public static Partial<DslEvaluationConfig> WithRuntimeInfo(this Partial<DslEvaluationConfig> it)
+        => it.AddFieldName("runtimeInfo");
+    
+    public static Partial<DslEvaluationConfig> WithRuntimeInfo(this Partial<DslEvaluationConfig> it, Func<Partial<DslRuntimeInfo>, Partial<DslRuntimeInfo>> partialBuilder)
+        => it.AddFieldName("runtimeInfo", partialBuilder(new Partial<DslRuntimeInfo>(it)));
     
 }
 

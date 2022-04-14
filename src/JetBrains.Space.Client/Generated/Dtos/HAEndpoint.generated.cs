@@ -34,7 +34,7 @@ public sealed class HAEndpoint
 {
     public HAEndpoint() { }
     
-    public HAEndpoint(HAResource resource, HAMethod method, List<HAParameter> parameters, HAPath path, string displayName, string functionName, HATypeObject? requestBody = null, HAType? responseBody = null, string? doc = null, HADeprecation? deprecation = null, List<HARight>? rights = null, string? featureFlag = null)
+    public HAEndpoint(HAResource resource, HAMethod method, List<HAParameter> parameters, HAPath path, string displayName, string functionName, HATypeObject? requestBody = null, HAType? responseBody = null, string? doc = null, HADescription? description = null, HADeprecation? deprecation = null, List<HARight>? rights = null, string? featureFlag = null)
     {
         Resource = resource;
         Method = method;
@@ -45,6 +45,7 @@ public sealed class HAEndpoint
         DisplayName = displayName;
         FunctionName = functionName;
         Doc = doc;
+        Description = description;
         Deprecation = deprecation;
         Rights = rights;
         FeatureFlag = featureFlag;
@@ -130,11 +131,21 @@ public sealed class HAEndpoint
 
     private PropertyValue<string?> _doc = new PropertyValue<string?>(nameof(HAEndpoint), nameof(Doc), "doc");
     
+    [Obsolete("Use description instead (since 2022-03-25) (will be removed in a future version)")]
     [JsonPropertyName("doc")]
     public string? Doc
     {
         get => _doc.GetValue(InlineErrors);
         set => _doc.SetValue(value);
+    }
+
+    private PropertyValue<HADescription?> _description = new PropertyValue<HADescription?>(nameof(HAEndpoint), nameof(Description), "description");
+    
+    [JsonPropertyName("description")]
+    public HADescription? Description
+    {
+        get => _description.GetValue(InlineErrors);
+        set => _description.SetValue(value);
     }
 
     private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAEndpoint), nameof(Deprecation), "deprecation");
@@ -175,6 +186,7 @@ public sealed class HAEndpoint
         _displayName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _functionName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _doc.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
         _rights.SetAccessPath(parentChainPath, validateHasBeenSet);
         _featureFlag.SetAccessPath(parentChainPath, validateHasBeenSet);

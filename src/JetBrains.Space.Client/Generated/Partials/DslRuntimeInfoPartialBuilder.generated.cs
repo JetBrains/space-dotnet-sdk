@@ -27,15 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PrincipalInProfilePartialBuilder;
+namespace JetBrains.Space.Client.DslRuntimeInfoPartialBuilder;
 
-public static class PrincipalInProfilePartialExtensions
+public static class DslRuntimeInfoPartialExtensions
 {
-    public static Partial<PrincipalInProfile> WithProfile(this Partial<PrincipalInProfile> it)
-        => it.AddFieldName("profile");
+    public static Partial<DslRuntimeInfo> WithMavenRepoUrl(this Partial<DslRuntimeInfo> it)
+        => it.AddFieldName("mavenRepoUrl");
     
-    public static Partial<PrincipalInProfile> WithProfile(this Partial<PrincipalInProfile> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
-        => it.AddFieldName("profile", partialBuilder(new Partial<ProfileIdentifier>(it)));
+    public static Partial<DslRuntimeInfo> WithMavenCoordinates(this Partial<DslRuntimeInfo> it)
+        => it.AddFieldName("mavenCoordinates");
+    
+    public static Partial<DslRuntimeInfo> WithMavenCoordinates(this Partial<DslRuntimeInfo> it, Func<Partial<MavenCoordinates>, Partial<MavenCoordinates>> partialBuilder)
+        => it.AddFieldName("mavenCoordinates", partialBuilder(new Partial<MavenCoordinates>(it)));
     
 }
 

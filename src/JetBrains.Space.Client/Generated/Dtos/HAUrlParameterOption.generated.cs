@@ -36,11 +36,11 @@ public class HAUrlParameterOption
     [JsonPropertyName("className")]
     public virtual string? ClassName => "HA_UrlParameterOption";
     
-    public static HAUrlParameterOptionConst Const(string value, string optionName, HADeprecation? deprecation = null)
-        => new HAUrlParameterOptionConst(value: value, optionName: optionName, deprecation: deprecation);
+    public static HAUrlParameterOptionConst Const(string value, string optionName, HADescription? description = null, HADeprecation? deprecation = null)
+        => new HAUrlParameterOptionConst(value: value, optionName: optionName, description: description, deprecation: deprecation);
     
-    public static HAUrlParameterOptionVar Var(HAField parameter, List<HAField> parameters, bool prefixRequired, string optionName, HADeprecation? deprecation = null)
-        => new HAUrlParameterOptionVar(parameter: parameter, parameters: parameters, prefixRequired: prefixRequired, optionName: optionName, deprecation: deprecation);
+    public static HAUrlParameterOptionVar Var(HAField parameter, List<HAField> parameters, bool prefixRequired, string optionName, HADescription? description = null, HADeprecation? deprecation = null)
+        => new HAUrlParameterOptionVar(parameter: parameter, parameters: parameters, prefixRequired: prefixRequired, optionName: optionName, description: description, deprecation: deprecation);
     
     public HAUrlParameterOption() { }
     

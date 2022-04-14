@@ -46,6 +46,9 @@ public sealed class ApplicationUnfurlContentImage
     
     private PropertyValue<ApiIcon?> _icon = new PropertyValue<ApiIcon?>(nameof(ApplicationUnfurlContentImage), nameof(Icon), "icon");
     
+    /// <summary>
+    /// Optional icon to appear in the header above the image
+    /// </summary>
     [JsonPropertyName("icon")]
     public ApiIcon? Icon
     {
@@ -55,6 +58,9 @@ public sealed class ApplicationUnfurlContentImage
 
     private PropertyValue<string> _title = new PropertyValue<string>(nameof(ApplicationUnfurlContentImage), nameof(Title), "title");
     
+    /// <summary>
+    /// Header text
+    /// </summary>
     [Required]
     [JsonPropertyName("title")]
     public string Title
@@ -65,6 +71,11 @@ public sealed class ApplicationUnfurlContentImage
 
     private PropertyValue<string> _url = new PropertyValue<string>(nameof(ApplicationUnfurlContentImage), nameof(Url), "url");
     
+    /// <summary>
+    /// Image url.
+    /// 
+    /// Space will download and store this image to your organization at the moment of link preview processing, so that further changes of the image available on that url won't affect the already generated link preview.
+    /// </summary>
     [Required]
     [JsonPropertyName("url")]
     public string Url

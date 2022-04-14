@@ -103,6 +103,9 @@ public static class IssuePartialExtensions
     public static Partial<Issue> WithDoneSubItemsCount(this Partial<Issue> it)
         => it.AddFieldName("doneSubItemsCount");
     
+    public static Partial<Issue> WithCommentsCount(this Partial<Issue> it)
+        => it.AddFieldName("commentsCount");
+    
     public static Partial<Issue> WithDeletedBy(this Partial<Issue> it)
         => it.AddFieldName("deletedBy");
     

@@ -29,32 +29,40 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class PrincipalInProfile
-     : PrincipalIn, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class HADescription
+     : IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public override string? ClassName => "PrincipalIn.Profile";
+    public HADescription() { }
     
-    public PrincipalInProfile() { }
-    
-    public PrincipalInProfile(ProfileIdentifier profile)
+    public HADescription(string text, string? helpTopic = null)
     {
-        Profile = profile;
+        Text = text;
+        HelpTopic = helpTopic;
     }
     
-    private PropertyValue<ProfileIdentifier> _profile = new PropertyValue<ProfileIdentifier>(nameof(PrincipalInProfile), nameof(Profile), "profile");
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(HADescription), nameof(Text), "text");
     
     [Required]
-    [JsonPropertyName("profile")]
-    public ProfileIdentifier Profile
+    [JsonPropertyName("text")]
+    public string Text
     {
-        get => _profile.GetValue(InlineErrors);
-        set => _profile.SetValue(value);
+        get => _text.GetValue(InlineErrors);
+        set => _text.SetValue(value);
     }
 
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    private PropertyValue<string?> _helpTopic = new PropertyValue<string?>(nameof(HADescription), nameof(HelpTopic), "helpTopic");
+    
+    [JsonPropertyName("helpTopic")]
+    public string? HelpTopic
     {
-        _profile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        get => _helpTopic.GetValue(InlineErrors);
+        set => _helpTopic.SetValue(value);
+    }
+
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _helpTopic.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

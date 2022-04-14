@@ -27,9 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PrincipalInPartialBuilder;
+namespace JetBrains.Space.Client.HADescriptionPartialBuilder;
 
-public static class PrincipalInPartialExtensions
+public static class HADescriptionPartialExtensions
 {
+    public static Partial<HADescription> WithText(this Partial<HADescription> it)
+        => it.AddFieldName("text");
+    
+    public static Partial<HADescription> WithHelpTopic(this Partial<HADescription> it)
+        => it.AddFieldName("helpTopic");
+    
 }
 

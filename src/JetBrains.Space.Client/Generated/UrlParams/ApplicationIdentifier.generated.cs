@@ -32,15 +32,31 @@ namespace JetBrains.Space.Client;
 [JsonConverter(typeof(UrlParameterConverter))]
 public abstract class ApplicationIdentifier : IUrlParameter
 {
+    /// <summary>
+    /// Specifies application by the client id that it uses to authenticate in Space
+    /// <a href="https://www.jetbrains.com/help/space/client-credentials.html">Read more...</a>
+    /// </summary>
     public static ApplicationIdentifier ClientId(string clientId)
         => new ApplicationIdentifierClientId(clientId);
     
+    /// <summary>
+    /// Specifies application by the identifier that can be fetched via [Get all applications](https://www.jetbrains.com/help/space/applications-api.html#get_all_applications) method
+    /// </summary>
     public static ApplicationIdentifier Id(string id)
         => new ApplicationIdentifierId(id);
     
+    /// <summary>
+    /// Specifies application that corresponds to the caller of this API method.
+    /// 
+    /// Applicable only for calls made by Space applications.
+    /// </summary>
     public static ApplicationIdentifier Me
         => new ApplicationIdentifierMe();
     
+    /// <summary>
+    /// Specifies application by the client id that it uses to authenticate in Space
+    /// <a href="https://www.jetbrains.com/help/space/client-credentials.html">Read more...</a>
+    /// </summary>
     public class ApplicationIdentifierClientId : ApplicationIdentifier
     {
         [Required]
@@ -66,6 +82,9 @@ public abstract class ApplicationIdentifier : IUrlParameter
             => $"clientId:{ClientId}";
     }
     
+    /// <summary>
+    /// Specifies application by the identifier that can be fetched via [Get all applications](https://www.jetbrains.com/help/space/applications-api.html#get_all_applications) method
+    /// </summary>
     public class ApplicationIdentifierId : ApplicationIdentifier
     {
         [Required]
@@ -91,6 +110,11 @@ public abstract class ApplicationIdentifier : IUrlParameter
             => $"id:{Id}";
     }
     
+    /// <summary>
+    /// Specifies application that corresponds to the caller of this API method.
+    /// 
+    /// Applicable only for calls made by Space applications.
+    /// </summary>
     public class ApplicationIdentifierMe : ApplicationIdentifier
     {
         public override string ToString()

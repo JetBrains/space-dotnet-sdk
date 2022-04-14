@@ -31,9 +31,17 @@ namespace JetBrains.Space.Client.ApplicationUnfurlPatternPartialBuilder;
 
 public static class ApplicationUnfurlPatternPartialExtensions
 {
+    /// <summary>
+    /// Prefix that is used in external IDs and that will be recognised by Space to generate links
+    /// </summary>
     public static Partial<ApplicationUnfurlPattern> WithPrefix(this Partial<ApplicationUnfurlPattern> it)
         => it.AddFieldName("prefix");
     
+    /// <summary>
+    /// URL of the external resource ending with *<?>* which is a variable for a number that follows the prefix.
+    /// 
+    /// If the specified prefix should be a part of the URL, include it before *<?>*.
+    /// </summary>
     public static Partial<ApplicationUnfurlPattern> WithLinkReplacement(this Partial<ApplicationUnfurlPattern> it)
         => it.AddFieldName("linkReplacement");
     

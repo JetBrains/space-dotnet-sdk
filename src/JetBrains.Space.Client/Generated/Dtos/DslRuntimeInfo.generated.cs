@@ -29,43 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class MessageOutlineLegacy
-     : MessageOutline, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class DslRuntimeInfo
+     : IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public  string? ClassName => "MessageOutlineLegacy";
+    public DslRuntimeInfo() { }
     
-    public MessageOutlineLegacy() { }
-    
-    public MessageOutlineLegacy(string text, ApiIcon? icon = null)
+    public DslRuntimeInfo(string mavenRepoUrl, MavenCoordinates mavenCoordinates)
     {
-        Icon = icon;
-        Text = text;
+        MavenRepoUrl = mavenRepoUrl;
+        MavenCoordinates = mavenCoordinates;
     }
     
-    private PropertyValue<ApiIcon?> _icon = new PropertyValue<ApiIcon?>(nameof(MessageOutlineLegacy), nameof(Icon), "icon");
-    
-    [JsonPropertyName("icon")]
-    public ApiIcon? Icon
-    {
-        get => _icon.GetValue(InlineErrors);
-        set => _icon.SetValue(value);
-    }
-
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageOutlineLegacy), nameof(Text), "text");
+    private PropertyValue<string> _mavenRepoUrl = new PropertyValue<string>(nameof(DslRuntimeInfo), nameof(MavenRepoUrl), "mavenRepoUrl");
     
     [Required]
-    [JsonPropertyName("text")]
-    public string Text
+    [JsonPropertyName("mavenRepoUrl")]
+    public string MavenRepoUrl
     {
-        get => _text.GetValue(InlineErrors);
-        set => _text.SetValue(value);
+        get => _mavenRepoUrl.GetValue(InlineErrors);
+        set => _mavenRepoUrl.SetValue(value);
+    }
+
+    private PropertyValue<MavenCoordinates> _mavenCoordinates = new PropertyValue<MavenCoordinates>(nameof(DslRuntimeInfo), nameof(MavenCoordinates), "mavenCoordinates");
+    
+    [Required]
+    [JsonPropertyName("mavenCoordinates")]
+    public MavenCoordinates MavenCoordinates
+    {
+        get => _mavenCoordinates.GetValue(InlineErrors);
+        set => _mavenCoordinates.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mavenRepoUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mavenCoordinates.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

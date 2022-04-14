@@ -37,10 +37,11 @@ public sealed class HAUrlParameterOptionConst
     
     public HAUrlParameterOptionConst() { }
     
-    public HAUrlParameterOptionConst(string value, string optionName, HADeprecation? deprecation = null)
+    public HAUrlParameterOptionConst(string value, string optionName, HADescription? description = null, HADeprecation? deprecation = null)
     {
         Value = value;
         OptionName = optionName;
+        Description = description;
         Deprecation = deprecation;
     }
     
@@ -64,6 +65,15 @@ public sealed class HAUrlParameterOptionConst
         set => _optionName.SetValue(value);
     }
 
+    private PropertyValue<HADescription?> _description = new PropertyValue<HADescription?>(nameof(HAUrlParameterOptionConst), nameof(Description), "description");
+    
+    [JsonPropertyName("description")]
+    public HADescription? Description
+    {
+        get => _description.GetValue(InlineErrors);
+        set => _description.SetValue(value);
+    }
+
     private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAUrlParameterOptionConst), nameof(Deprecation), "deprecation");
     
     [JsonPropertyName("deprecation")]
@@ -77,6 +87,7 @@ public sealed class HAUrlParameterOptionConst
     {
         _value.SetAccessPath(parentChainPath, validateHasBeenSet);
         _optionName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

@@ -197,6 +197,84 @@ public partial class AuthModuleClient : ISpaceClient
     }
     
 
+    public ConfigClient Config => new ConfigClient(_connection);
+    
+    public partial class ConfigClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public ConfigClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <summary>
+        /// Get authentication configuration
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Manage authentication modules</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<AuthConfig> GetConfigAsync(Func<Partial<AuthConfig>, Partial<AuthConfig>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<AuthConfig>()) : Partial<AuthConfig>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<AuthConfig>("GET", $"api/http/auth-modules/config{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Set authentication configuration
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Manage authentication modules</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task PutConfigAsync(int? dontRememberMeTtl = null, int? adminRememberMeTtl = null, int? userRememberMeTtl = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PUT", $"api/http/auth-modules/config{queryParameters.ToQueryString()}", 
+                new AuthModulesConfigPutRequest
+                { 
+                    DontRememberMeTtl = dontRememberMeTtl,
+                    AdminRememberMeTtl = adminRememberMeTtl,
+                    UserRememberMeTtl = userRememberMeTtl,
+                }, cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Reset authentication configuration to default
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Manage authentication modules</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<AuthConfig> DeleteConfigAsync(Func<Partial<AuthConfig>, Partial<AuthConfig>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<AuthConfig>()) : Partial<AuthConfig>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<AuthConfig>("DELETE", $"api/http/auth-modules/config{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+    }
+
     public TestClient Test => new TestClient(_connection);
     
     public partial class TestClient : ISpaceClient

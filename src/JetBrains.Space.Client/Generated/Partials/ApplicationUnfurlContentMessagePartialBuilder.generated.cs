@@ -31,21 +31,39 @@ namespace JetBrains.Space.Client.ApplicationUnfurlContentMessagePartialBuilder;
 
 public static class ApplicationUnfurlContentMessagePartialExtensions
 {
+    /// <summary>
+    /// Default style for outline and sections
+    /// </summary>
     public static Partial<ApplicationUnfurlContentMessage> WithStyle(this Partial<ApplicationUnfurlContentMessage> it)
         => it.AddFieldName("style");
     
+    /// <summary>
+    /// Default style for outline and sections
+    /// </summary>
     public static Partial<ApplicationUnfurlContentMessage> WithStyle(this Partial<ApplicationUnfurlContentMessage> it, Func<Partial<MessageStyle>, Partial<MessageStyle>> partialBuilder)
         => it.AddFieldName("style", partialBuilder(new Partial<MessageStyle>(it)));
     
+    /// <summary>
+    /// Line of elements appearing above the main body of the message
+    /// </summary>
     public static Partial<ApplicationUnfurlContentMessage> WithOutline(this Partial<ApplicationUnfurlContentMessage> it)
         => it.AddFieldName("outline");
     
+    /// <summary>
+    /// Line of elements appearing above the main body of the message
+    /// </summary>
     public static Partial<ApplicationUnfurlContentMessage> WithOutline(this Partial<ApplicationUnfurlContentMessage> it, Func<Partial<MessageOutline>, Partial<MessageOutline>> partialBuilder)
         => it.AddFieldName("outline", partialBuilder(new Partial<MessageOutline>(it)));
     
+    /// <summary>
+    /// List of sections of the message
+    /// </summary>
     public static Partial<ApplicationUnfurlContentMessage> WithSections(this Partial<ApplicationUnfurlContentMessage> it)
         => it.AddFieldName("sections");
     
+    /// <summary>
+    /// List of sections of the message
+    /// </summary>
     public static Partial<ApplicationUnfurlContentMessage> WithSections(this Partial<ApplicationUnfurlContentMessage> it, Func<Partial<MessageSectionElement>, Partial<MessageSectionElement>> partialBuilder)
         => it.AddFieldName("sections", partialBuilder(new Partial<MessageSectionElement>(it)));
     

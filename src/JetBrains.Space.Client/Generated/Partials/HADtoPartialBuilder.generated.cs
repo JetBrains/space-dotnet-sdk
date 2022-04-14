@@ -84,6 +84,12 @@ public static class HADtoPartialExtensions
     public static Partial<HADto> WithInheritors(this Partial<HADto> it, Func<Partial<HADto>, Partial<HADto>> partialBuilder)
         => it.AddFieldName("inheritors", partialBuilder(new Partial<HADto>(it)));
     
+    public static Partial<HADto> WithDescription(this Partial<HADto> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<HADto> WithDescription(this Partial<HADto> it, Func<Partial<HADescription>, Partial<HADescription>> partialBuilder)
+        => it.AddFieldName("description", partialBuilder(new Partial<HADescription>(it)));
+    
     public static Partial<HADto> WithDeprecation(this Partial<HADto> it)
         => it.AddFieldName("deprecation");
     

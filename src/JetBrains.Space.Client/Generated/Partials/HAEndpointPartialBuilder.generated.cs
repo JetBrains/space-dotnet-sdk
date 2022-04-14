@@ -73,8 +73,15 @@ public static class HAEndpointPartialExtensions
     public static Partial<HAEndpoint> WithFunctionName(this Partial<HAEndpoint> it)
         => it.AddFieldName("functionName");
     
+    [Obsolete("Use description instead (since 2022-03-25) (will be removed in a future version)")]
     public static Partial<HAEndpoint> WithDoc(this Partial<HAEndpoint> it)
         => it.AddFieldName("doc");
+    
+    public static Partial<HAEndpoint> WithDescription(this Partial<HAEndpoint> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<HAEndpoint> WithDescription(this Partial<HAEndpoint> it, Func<Partial<HADescription>, Partial<HADescription>> partialBuilder)
+        => it.AddFieldName("description", partialBuilder(new Partial<HADescription>(it)));
     
     public static Partial<HAEndpoint> WithDeprecation(this Partial<HAEndpoint> it)
         => it.AddFieldName("deprecation");

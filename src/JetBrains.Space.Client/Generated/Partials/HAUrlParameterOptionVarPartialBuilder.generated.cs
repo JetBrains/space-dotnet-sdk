@@ -51,6 +51,12 @@ public static class HAUrlParameterOptionVarPartialExtensions
     public static Partial<HAUrlParameterOptionVar> WithOptionName(this Partial<HAUrlParameterOptionVar> it)
         => it.AddFieldName("optionName");
     
+    public static Partial<HAUrlParameterOptionVar> WithDescription(this Partial<HAUrlParameterOptionVar> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<HAUrlParameterOptionVar> WithDescription(this Partial<HAUrlParameterOptionVar> it, Func<Partial<HADescription>, Partial<HADescription>> partialBuilder)
+        => it.AddFieldName("description", partialBuilder(new Partial<HADescription>(it)));
+    
     public static Partial<HAUrlParameterOptionVar> WithDeprecation(this Partial<HAUrlParameterOptionVar> it)
         => it.AddFieldName("deprecation");
     

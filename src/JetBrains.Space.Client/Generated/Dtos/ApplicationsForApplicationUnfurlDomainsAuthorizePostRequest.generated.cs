@@ -42,6 +42,9 @@ public class ApplicationsForApplicationUnfurlDomainsAuthorizePostRequest
     
     private PropertyValue<List<string>> _domains = new PropertyValue<List<string>>(nameof(ApplicationsForApplicationUnfurlDomainsAuthorizePostRequest), nameof(Domains), "domains", new List<string>());
     
+    /// <summary>
+    /// List of domains to approve or reject providing link previews for
+    /// </summary>
     [Required]
     [JsonPropertyName("domains")]
     public List<string> Domains
@@ -52,6 +55,9 @@ public class ApplicationsForApplicationUnfurlDomainsAuthorizePostRequest
 
     private PropertyValue<bool> _approve = new PropertyValue<bool>(nameof(ApplicationsForApplicationUnfurlDomainsAuthorizePostRequest), nameof(IsApprove), "approve");
     
+    /// <summary>
+    /// True for approving or false for denying link previews for the provided list of domains
+    /// </summary>
     [Required]
     [JsonPropertyName("approve")]
     public bool IsApprove

@@ -27,12 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PrincipalInApplicationPartialBuilder;
+namespace JetBrains.Space.Client.AuthConfigPartialBuilder;
 
-public static class PrincipalInApplicationPartialExtensions
+public static class AuthConfigPartialExtensions
 {
-    public static Partial<PrincipalInApplication> WithApplication(this Partial<PrincipalInApplication> it)
-        => it.AddFieldName("application");
+    public static Partial<AuthConfig> WithDontRememberMeTtl(this Partial<AuthConfig> it)
+        => it.AddFieldName("dontRememberMeTtl");
+    
+    public static Partial<AuthConfig> WithAdminRememberMeTtl(this Partial<AuthConfig> it)
+        => it.AddFieldName("adminRememberMeTtl");
+    
+    public static Partial<AuthConfig> WithUserRememberMeTtl(this Partial<AuthConfig> it)
+        => it.AddFieldName("userRememberMeTtl");
     
 }
 

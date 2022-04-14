@@ -55,6 +55,9 @@ public sealed class ApplicationUnfurlQueueItem
 
     private PropertyValue<string> _target = new PropertyValue<string>(nameof(ApplicationUnfurlQueueItem), nameof(Target), "target");
     
+    /// <summary>
+    /// External url that the preview is being provided for
+    /// </summary>
     [Required]
     [JsonPropertyName("target")]
     public string Target
@@ -65,6 +68,9 @@ public sealed class ApplicationUnfurlQueueItem
 
     private PropertyValue<ApplicationUnfurlContext?> _context = new PropertyValue<ApplicationUnfurlContext?>(nameof(ApplicationUnfurlQueueItem), nameof(Context), "context");
     
+    /// <summary>
+    /// Describes the context in which this link appears in Space
+    /// </summary>
     [JsonPropertyName("context")]
     public ApplicationUnfurlContext? Context
     {
@@ -74,6 +80,9 @@ public sealed class ApplicationUnfurlQueueItem
 
     private PropertyValue<ProfileIdentifier?> _authorUserId = new PropertyValue<ProfileIdentifier?>(nameof(ApplicationUnfurlQueueItem), nameof(AuthorUserId), "authorUserId");
     
+    /// <summary>
+    /// Space user that has posted the link
+    /// </summary>
     [JsonPropertyName("authorUserId")]
     public ProfileIdentifier? AuthorUserId
     {
@@ -83,6 +92,9 @@ public sealed class ApplicationUnfurlQueueItem
 
     private PropertyValue<long> _etag = new PropertyValue<long>(nameof(ApplicationUnfurlQueueItem), nameof(Etag), "etag");
     
+    /// <summary>
+    /// Monotonically increasing counter that should be used by the application to fetch unprocessed queue items only
+    /// </summary>
     [Required]
     [JsonPropertyName("etag")]
     public long Etag

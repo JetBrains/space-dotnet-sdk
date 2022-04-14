@@ -45,6 +45,9 @@ public sealed class ApplicationUnfurlPattern
     
     private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(ApplicationUnfurlPattern), nameof(Prefix), "prefix");
     
+    /// <summary>
+    /// Prefix that is used in external IDs and that will be recognised by Space to generate links
+    /// </summary>
     [Required]
     [JsonPropertyName("prefix")]
     public string Prefix
@@ -55,6 +58,11 @@ public sealed class ApplicationUnfurlPattern
 
     private PropertyValue<string> _linkReplacement = new PropertyValue<string>(nameof(ApplicationUnfurlPattern), nameof(LinkReplacement), "linkReplacement");
     
+    /// <summary>
+    /// URL of the external resource ending with *<?>* which is a variable for a number that follows the prefix.
+    /// 
+    /// If the specified prefix should be a part of the URL, include it before *<?>*.
+    /// </summary>
     [Required]
     [JsonPropertyName("linkReplacement")]
     public string LinkReplacement

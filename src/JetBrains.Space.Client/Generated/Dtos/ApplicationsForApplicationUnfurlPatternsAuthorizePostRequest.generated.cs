@@ -42,6 +42,9 @@ public class ApplicationsForApplicationUnfurlPatternsAuthorizePostRequest
     
     private PropertyValue<List<string>> _patterns = new PropertyValue<List<string>>(nameof(ApplicationsForApplicationUnfurlPatternsAuthorizePostRequest), nameof(Patterns), "patterns", new List<string>());
     
+    /// <summary>
+    /// List of external ID prefixes to approve or reject providing link previews for
+    /// </summary>
     [Required]
     [JsonPropertyName("patterns")]
     public List<string> Patterns
@@ -52,6 +55,9 @@ public class ApplicationsForApplicationUnfurlPatternsAuthorizePostRequest
 
     private PropertyValue<bool> _approve = new PropertyValue<bool>(nameof(ApplicationsForApplicationUnfurlPatternsAuthorizePostRequest), nameof(IsApprove), "approve");
     
+    /// <summary>
+    /// True for approving or false for denying link previews for the provided list of external ID prefixes
+    /// </summary>
     [Required]
     [JsonPropertyName("approve")]
     public bool IsApprove

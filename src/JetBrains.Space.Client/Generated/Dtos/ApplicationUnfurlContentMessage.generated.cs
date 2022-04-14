@@ -46,6 +46,9 @@ public sealed class ApplicationUnfurlContentMessage
     
     private PropertyValue<MessageStyle> _style = new PropertyValue<MessageStyle>(nameof(ApplicationUnfurlContentMessage), nameof(Style), "style");
     
+    /// <summary>
+    /// Default style for outline and sections
+    /// </summary>
     [Required]
     [JsonPropertyName("style")]
     public MessageStyle Style
@@ -56,6 +59,9 @@ public sealed class ApplicationUnfurlContentMessage
 
     private PropertyValue<MessageOutline?> _outline = new PropertyValue<MessageOutline?>(nameof(ApplicationUnfurlContentMessage), nameof(Outline), "outline");
     
+    /// <summary>
+    /// Line of elements appearing above the main body of the message
+    /// </summary>
     [JsonPropertyName("outline")]
     public MessageOutline? Outline
     {
@@ -65,6 +71,9 @@ public sealed class ApplicationUnfurlContentMessage
 
     private PropertyValue<List<MessageSectionElement>> _sections = new PropertyValue<List<MessageSectionElement>>(nameof(ApplicationUnfurlContentMessage), nameof(Sections), "sections", new List<MessageSectionElement>());
     
+    /// <summary>
+    /// List of sections of the message
+    /// </summary>
     [Required]
     [JsonPropertyName("sections")]
     public List<MessageSectionElement> Sections

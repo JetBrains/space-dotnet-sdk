@@ -31,15 +31,29 @@ namespace JetBrains.Space.Client.ApplicationUnfurlContentImagePartialBuilder;
 
 public static class ApplicationUnfurlContentImagePartialExtensions
 {
+    /// <summary>
+    /// Optional icon to appear in the header above the image
+    /// </summary>
     public static Partial<ApplicationUnfurlContentImage> WithIcon(this Partial<ApplicationUnfurlContentImage> it)
         => it.AddFieldName("icon");
     
+    /// <summary>
+    /// Optional icon to appear in the header above the image
+    /// </summary>
     public static Partial<ApplicationUnfurlContentImage> WithIcon(this Partial<ApplicationUnfurlContentImage> it, Func<Partial<ApiIcon>, Partial<ApiIcon>> partialBuilder)
         => it.AddFieldName("icon", partialBuilder(new Partial<ApiIcon>(it)));
     
+    /// <summary>
+    /// Header text
+    /// </summary>
     public static Partial<ApplicationUnfurlContentImage> WithTitle(this Partial<ApplicationUnfurlContentImage> it)
         => it.AddFieldName("title");
     
+    /// <summary>
+    /// Image url.
+    /// 
+    /// Space will download and store this image to your organization at the moment of link preview processing, so that further changes of the image available on that url won't affect the already generated link preview.
+    /// </summary>
     public static Partial<ApplicationUnfurlContentImage> WithUrl(this Partial<ApplicationUnfurlContentImage> it)
         => it.AddFieldName("url");
     

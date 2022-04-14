@@ -64,6 +64,9 @@ public sealed class ExternalLinkPattern
 
     private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(ExternalLinkPattern), nameof(Prefix), "prefix");
     
+    /// <summary>
+    /// Prefix that is used in the external IDs and that will be recognised by Space to generate links
+    /// </summary>
     [Required]
     [JsonPropertyName("prefix")]
     public string Prefix
@@ -74,6 +77,9 @@ public sealed class ExternalLinkPattern
 
     private PropertyValue<string> _linkReplacement = new PropertyValue<string>(nameof(ExternalLinkPattern), nameof(LinkReplacement), "linkReplacement");
     
+    /// <summary>
+    /// URL of the external resource ending with *<?>* which is a variable for a number that follows the prefix
+    /// </summary>
     [Required]
     [JsonPropertyName("linkReplacement")]
     public string LinkReplacement

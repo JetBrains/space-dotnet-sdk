@@ -29,43 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class MessageOutlineLegacy
-     : MessageOutline, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class DslEvaluationConfig
+     : IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public  string? ClassName => "MessageOutlineLegacy";
+    public DslEvaluationConfig() { }
     
-    public MessageOutlineLegacy() { }
-    
-    public MessageOutlineLegacy(string text, ApiIcon? icon = null)
+    public DslEvaluationConfig(List<string> experimentalOptIns, DslRuntimeInfo runtimeInfo)
     {
-        Icon = icon;
-        Text = text;
+        ExperimentalOptIns = experimentalOptIns;
+        RuntimeInfo = runtimeInfo;
     }
     
-    private PropertyValue<ApiIcon?> _icon = new PropertyValue<ApiIcon?>(nameof(MessageOutlineLegacy), nameof(Icon), "icon");
-    
-    [JsonPropertyName("icon")]
-    public ApiIcon? Icon
-    {
-        get => _icon.GetValue(InlineErrors);
-        set => _icon.SetValue(value);
-    }
-
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageOutlineLegacy), nameof(Text), "text");
+    private PropertyValue<List<string>> _experimentalOptIns = new PropertyValue<List<string>>(nameof(DslEvaluationConfig), nameof(ExperimentalOptIns), "experimentalOptIns", new List<string>());
     
     [Required]
-    [JsonPropertyName("text")]
-    public string Text
+    [JsonPropertyName("experimentalOptIns")]
+    public List<string> ExperimentalOptIns
     {
-        get => _text.GetValue(InlineErrors);
-        set => _text.SetValue(value);
+        get => _experimentalOptIns.GetValue(InlineErrors);
+        set => _experimentalOptIns.SetValue(value);
+    }
+
+    private PropertyValue<DslRuntimeInfo> _runtimeInfo = new PropertyValue<DslRuntimeInfo>(nameof(DslEvaluationConfig), nameof(RuntimeInfo), "runtimeInfo");
+    
+    [Required]
+    [JsonPropertyName("runtimeInfo")]
+    public DslRuntimeInfo RuntimeInfo
+    {
+        get => _runtimeInfo.GetValue(InlineErrors);
+        set => _runtimeInfo.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _experimentalOptIns.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _runtimeInfo.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

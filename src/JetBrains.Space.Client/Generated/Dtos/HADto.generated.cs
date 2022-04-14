@@ -34,7 +34,7 @@ public sealed class HADto
 {
     public HADto() { }
     
-    public HADto(string id, string name, List<HADtoField> fields, HierarchyRole hierarchyRole, HierarchyRole2 hierarchyRole2, List<HADto> implements, List<HADto> inheritors, bool record, HADto? extends = null, HADeprecation? deprecation = null, HAField? errorsField = null)
+    public HADto(string id, string name, List<HADtoField> fields, HierarchyRole hierarchyRole, HierarchyRole2 hierarchyRole2, List<HADto> implements, List<HADto> inheritors, bool record, HADto? extends = null, HADescription? description = null, HADeprecation? deprecation = null, HAField? errorsField = null)
     {
         Id = id;
         Name = name;
@@ -44,6 +44,7 @@ public sealed class HADto
         Extends = extends;
         Implements = implements;
         Inheritors = inheritors;
+        Description = description;
         Deprecation = deprecation;
         IsRecord = record;
         ErrorsField = errorsField;
@@ -129,6 +130,15 @@ public sealed class HADto
         set => _inheritors.SetValue(value);
     }
 
+    private PropertyValue<HADescription?> _description = new PropertyValue<HADescription?>(nameof(HADto), nameof(Description), "description");
+    
+    [JsonPropertyName("description")]
+    public HADescription? Description
+    {
+        get => _description.GetValue(InlineErrors);
+        set => _description.SetValue(value);
+    }
+
     private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HADto), nameof(Deprecation), "deprecation");
     
     [JsonPropertyName("deprecation")]
@@ -167,6 +177,7 @@ public sealed class HADto
         _extends.SetAccessPath(parentChainPath, validateHasBeenSet);
         _implements.SetAccessPath(parentChainPath, validateHasBeenSet);
         _inheritors.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
         _record.SetAccessPath(parentChainPath, validateHasBeenSet);
         _errorsField.SetAccessPath(parentChainPath, validateHasBeenSet);

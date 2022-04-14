@@ -40,6 +40,7 @@ public partial class ExternalLinkPatternClient : ISpaceClient
     
     /// <summary>
     /// Add a prefix to be expanded to external links
+    /// <a href="https://www.jetbrains.com/help/space/external-links.html">Read more...</a>
     /// </summary>
     /// <remarks>
     /// Required permissions:
@@ -64,6 +65,7 @@ public partial class ExternalLinkPatternClient : ISpaceClient
 
     /// <summary>
     /// List all prefixes to be automatically expanded to external links
+    /// <a href="https://www.jetbrains.com/help/space/external-links.html">Read more...</a>
     /// </summary>
     /// <remarks>
     /// Required permissions:
@@ -84,6 +86,7 @@ public partial class ExternalLinkPatternClient : ISpaceClient
 
     /// <summary>
     /// Delete prefix for expanding to external links
+    /// <a href="https://www.jetbrains.com/help/space/external-links.html">Read more...</a>
     /// </summary>
     /// <remarks>
     /// Required permissions:

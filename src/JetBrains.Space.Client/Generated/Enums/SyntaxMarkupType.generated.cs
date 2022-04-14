@@ -77,6 +77,9 @@ public enum SyntaxMarkupType
     [EnumMember(Value = "HIGHLIGHT")]
     HIGHLIGHT,
     
+    [EnumMember(Value = "CODE_FOLD")]
+    CODEFOLD,
+    
     [EnumMember(Value = "SKIP")]
     SKIP,
     

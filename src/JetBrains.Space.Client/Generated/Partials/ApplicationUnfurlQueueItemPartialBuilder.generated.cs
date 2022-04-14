@@ -34,21 +34,39 @@ public static class ApplicationUnfurlQueueItemPartialExtensions
     public static Partial<ApplicationUnfurlQueueItem> WithId(this Partial<ApplicationUnfurlQueueItem> it)
         => it.AddFieldName("id");
     
+    /// <summary>
+    /// External url that the preview is being provided for
+    /// </summary>
     public static Partial<ApplicationUnfurlQueueItem> WithTarget(this Partial<ApplicationUnfurlQueueItem> it)
         => it.AddFieldName("target");
     
+    /// <summary>
+    /// Describes the context in which this link appears in Space
+    /// </summary>
     public static Partial<ApplicationUnfurlQueueItem> WithContext(this Partial<ApplicationUnfurlQueueItem> it)
         => it.AddFieldName("context");
     
+    /// <summary>
+    /// Describes the context in which this link appears in Space
+    /// </summary>
     public static Partial<ApplicationUnfurlQueueItem> WithContext(this Partial<ApplicationUnfurlQueueItem> it, Func<Partial<ApplicationUnfurlContext>, Partial<ApplicationUnfurlContext>> partialBuilder)
         => it.AddFieldName("context", partialBuilder(new Partial<ApplicationUnfurlContext>(it)));
     
+    /// <summary>
+    /// Space user that has posted the link
+    /// </summary>
     public static Partial<ApplicationUnfurlQueueItem> WithAuthorUserId(this Partial<ApplicationUnfurlQueueItem> it)
         => it.AddFieldName("authorUserId");
     
+    /// <summary>
+    /// Space user that has posted the link
+    /// </summary>
     public static Partial<ApplicationUnfurlQueueItem> WithAuthorUserId(this Partial<ApplicationUnfurlQueueItem> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
         => it.AddFieldName("authorUserId", partialBuilder(new Partial<ProfileIdentifier>(it)));
     
+    /// <summary>
+    /// Monotonically increasing counter that should be used by the application to fetch unprocessed queue items only
+    /// </summary>
     public static Partial<ApplicationUnfurlQueueItem> WithEtag(this Partial<ApplicationUnfurlQueueItem> it)
         => it.AddFieldName("etag");
     

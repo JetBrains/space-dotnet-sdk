@@ -27,30 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.MavenCoordinatesPartialBuilder;
 
-[JsonConverter(typeof(ClassNameDtoTypeConverter))]
-public class PrincipalIn
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+public static class MavenCoordinatesPartialExtensions
 {
-    [JsonPropertyName("className")]
-    public virtual string? ClassName => "PrincipalIn";
+    public static Partial<MavenCoordinates> WithGroupId(this Partial<MavenCoordinates> it)
+        => it.AddFieldName("groupId");
     
-    public static PrincipalInApplication Application(string application)
-        => new PrincipalInApplication(application: application);
+    public static Partial<MavenCoordinates> WithArtifactId(this Partial<MavenCoordinates> it)
+        => it.AddFieldName("artifactId");
     
-    public static PrincipalInProfile Profile(ProfileIdentifier profile)
-        => new PrincipalInProfile(profile: profile);
+    public static Partial<MavenCoordinates> WithVersion(this Partial<MavenCoordinates> it)
+        => it.AddFieldName("version");
     
-    public PrincipalIn() { }
-    
-    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-    }
-    
-    /// <inheritdoc />
-    [JsonPropertyName("$errors")]
-    public List<ApiInlineError> InlineErrors { get; set; } = new();
-
 }
 

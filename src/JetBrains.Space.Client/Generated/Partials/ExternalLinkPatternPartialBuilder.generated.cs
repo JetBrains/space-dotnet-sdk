@@ -37,9 +37,15 @@ public static class ExternalLinkPatternPartialExtensions
     public static Partial<ExternalLinkPattern> WithIsArchived(this Partial<ExternalLinkPattern> it)
         => it.AddFieldName("archived");
     
+    /// <summary>
+    /// Prefix that is used in the external IDs and that will be recognised by Space to generate links
+    /// </summary>
     public static Partial<ExternalLinkPattern> WithPrefix(this Partial<ExternalLinkPattern> it)
         => it.AddFieldName("prefix");
     
+    /// <summary>
+    /// URL of the external resource ending with *<?>* which is a variable for a number that follows the prefix
+    /// </summary>
     public static Partial<ExternalLinkPattern> WithLinkReplacement(this Partial<ExternalLinkPattern> it)
         => it.AddFieldName("linkReplacement");
     

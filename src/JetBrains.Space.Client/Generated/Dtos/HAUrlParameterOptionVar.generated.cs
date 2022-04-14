@@ -37,12 +37,13 @@ public sealed class HAUrlParameterOptionVar
     
     public HAUrlParameterOptionVar() { }
     
-    public HAUrlParameterOptionVar(HAField parameter, List<HAField> parameters, bool prefixRequired, string optionName, HADeprecation? deprecation = null)
+    public HAUrlParameterOptionVar(HAField parameter, List<HAField> parameters, bool prefixRequired, string optionName, HADescription? description = null, HADeprecation? deprecation = null)
     {
         Parameter = parameter;
         Parameters = parameters;
         IsPrefixRequired = prefixRequired;
         OptionName = optionName;
+        Description = description;
         Deprecation = deprecation;
     }
     
@@ -87,6 +88,15 @@ public sealed class HAUrlParameterOptionVar
         set => _optionName.SetValue(value);
     }
 
+    private PropertyValue<HADescription?> _description = new PropertyValue<HADescription?>(nameof(HAUrlParameterOptionVar), nameof(Description), "description");
+    
+    [JsonPropertyName("description")]
+    public HADescription? Description
+    {
+        get => _description.GetValue(InlineErrors);
+        set => _description.SetValue(value);
+    }
+
     private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAUrlParameterOptionVar), nameof(Deprecation), "deprecation");
     
     [JsonPropertyName("deprecation")]
@@ -102,6 +112,7 @@ public sealed class HAUrlParameterOptionVar
         _parameters.SetAccessPath(parentChainPath, validateHasBeenSet);
         _prefixRequired.SetAccessPath(parentChainPath, validateHasBeenSet);
         _optionName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

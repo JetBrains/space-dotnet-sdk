@@ -49,6 +49,12 @@ public static class HAFieldPartialExtensions
     public static Partial<HAField> WithIsOptional(this Partial<HAField> it)
         => it.AddFieldName("optional");
     
+    public static Partial<HAField> WithDescription(this Partial<HAField> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<HAField> WithDescription(this Partial<HAField> it, Func<Partial<HADescription>, Partial<HADescription>> partialBuilder)
+        => it.AddFieldName("description", partialBuilder(new Partial<HADescription>(it)));
+    
     public static Partial<HAField> WithDeprecation(this Partial<HAField> it)
         => it.AddFieldName("deprecation");
     

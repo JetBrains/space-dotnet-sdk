@@ -34,12 +34,13 @@ public sealed class HAField
 {
     public HAField() { }
     
-    public HAField(string name, HAType type, bool optional, HADefaultValue? defaultValue = null, HADeprecation? deprecation = null)
+    public HAField(string name, HAType type, bool optional, HADefaultValue? defaultValue = null, HADescription? description = null, HADeprecation? deprecation = null)
     {
         Name = name;
         Type = type;
         DefaultValue = defaultValue;
         IsOptional = optional;
+        Description = description;
         Deprecation = deprecation;
     }
     
@@ -82,6 +83,15 @@ public sealed class HAField
         set => _optional.SetValue(value);
     }
 
+    private PropertyValue<HADescription?> _description = new PropertyValue<HADescription?>(nameof(HAField), nameof(Description), "description");
+    
+    [JsonPropertyName("description")]
+    public HADescription? Description
+    {
+        get => _description.GetValue(InlineErrors);
+        set => _description.SetValue(value);
+    }
+
     private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAField), nameof(Deprecation), "deprecation");
     
     [JsonPropertyName("deprecation")]
@@ -97,6 +107,7 @@ public sealed class HAField
         _type.SetAccessPath(parentChainPath, validateHasBeenSet);
         _defaultValue.SetAccessPath(parentChainPath, validateHasBeenSet);
         _optional.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

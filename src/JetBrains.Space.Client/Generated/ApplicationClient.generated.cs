@@ -517,7 +517,7 @@ public partial class ApplicationClient : ISpaceClient
             }
             
             /// <summary>
-            /// Update list of patterns for unfurling by the application. Method is to be called by the application providing unfurls.
+            /// Update list of external ID prefixes for unfurling by the application. Method is to be called by the application providing unfurls.
             /// </summary>
             /// <remarks>
             /// Required permissions:
