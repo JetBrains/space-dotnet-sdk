@@ -44,8 +44,14 @@ public interface UnfurlDetails
     public static ChannelItemSnapshot ChannelItemSnapshot(string id, string text, CPrincipal author, DateTime created, long time, string? channelId = null, M2ItemContentDetails? details = null, List<AttachmentInfo>? attachments = null, List<EntityMention>? mentions = null)
         => new ChannelItemSnapshot(id: id, text: text, author: author, created: created, time: time, channelId: channelId, details: details, attachments: attachments, mentions: mentions);
     
-    public static DocumentHistoryUnfurlDetails DocumentHistory(string document, string title, DateTime? version = null, DateTime? @base = null, DateTime? preview = null)
-        => new DocumentHistoryUnfurlDetails(document: document, title: title, version: version, @base: @base, preview: preview);
+    public static DocumentHistoryUnfurlDetails DocumentHistory(string document, string title, DateTime? version = null, DateTime? @base = null, DateTime? preview = null, DateTime? version2 = null, DateTime? base2 = null, DateTime? preview2 = null)
+        => new DocumentHistoryUnfurlDetails(document: document, title: title, version: version, @base: @base, preview: preview, version2: version2, base2: base2, preview2: preview2);
+    
+    public static UnfurlDeployTargetDetails UnfurlDeployTargetDetails(DeployTargetRecord targetRef, string? targetName = null, bool? showLinkIcon = null, bool? skipDetailsRender = null)
+        => new UnfurlDeployTargetDetails(targetRef: targetRef, targetName: targetName, showLinkIcon: showLinkIcon, skipDetailsRender: skipDetailsRender);
+    
+    public static UnfurlDeploymentDetails UnfurlDeploymentDetails(DeploymentRecord deploymentRef, bool? showLinkIcon = null, bool? showDetails = null, bool? showStatus = null)
+        => new UnfurlDeploymentDetails(deploymentRef: deploymentRef, showLinkIcon: showLinkIcon, showDetails: showDetails, showStatus: showStatus);
     
     public static UnfurlDetailsApplication Application(ESApp app)
         => new UnfurlDetailsApplication(app: app);

@@ -246,7 +246,7 @@ public partial class CalendarClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<Meeting> CreateMeetingAsync(string summary, CalendarEventSpec occurrenceRule, List<string>? locations = null, List<string>? profiles = null, List<string>? externalParticipants = null, List<string>? teams = null, MeetingVisibility visibility = MeetingVisibility.EVERYONE, MeetingModificationPreference modificationPreference = MeetingModificationPreference.PARTICIPANTS, MeetingJoiningPreference joiningPreference = MeetingJoiningPreference.NOBODY, bool notifyOnExport = true, string? description = null, string? organizer = null, EventConferenceData? conferenceData = null, List<MeetingAttachment>? attachments = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Meeting> CreateMeetingAsync(string summary, CalendarEventSpec occurrenceRule, List<string>? locations = null, List<string>? profiles = null, List<string>? externalParticipants = null, List<string>? teams = null, MeetingVisibility visibility = MeetingVisibility.EVERYONE, MeetingModificationPreference modificationPreference = MeetingModificationPreference.PARTICIPANTS, MeetingJoiningPreference joiningPreference = MeetingJoiningPreference.NOBODY, bool notifyOnExport = true, string? description = null, string? organizer = null, EventConferenceData? conferenceData = null, List<MeetingAttachment>? attachments = null, CalendarIdentifier? calendarId = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default()).ToString());
@@ -268,6 +268,7 @@ public partial class CalendarClient : ISpaceClient
                     Organizer = organizer,
                     ConferenceData = conferenceData,
                     Attachments = attachments,
+                    CalendarId = calendarId,
                 }, cancellationToken);
         }
         
@@ -495,7 +496,7 @@ public partial class CalendarClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<Meeting> UpdateMeetingAsync(string id, Diff locationsDiff, Diff profilesDiff, Diff externalParticipantsDiff, Diff teamsDiff, bool notifyOnExport = true, RecurrentModification modificationKind = RecurrentModification.All, string? summary = null, string? description = null, CalendarEventSpec? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, DateTime? targetDate = null, EventConferenceData? conferenceData = null, List<MeetingAttachment>? attachments = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Meeting> UpdateMeetingAsync(string id, Diff locationsDiff, Diff profilesDiff, Diff externalParticipantsDiff, Diff teamsDiff, bool notifyOnExport = true, RecurrentModification modificationKind = RecurrentModification.All, string? summary = null, string? description = null, CalendarEventSpec? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, DateTime? targetDate = null, EventConferenceData? conferenceData = null, List<MeetingAttachment>? attachments = null, CalendarIdentifier? calendarId = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default()).ToString());
@@ -519,6 +520,7 @@ public partial class CalendarClient : ISpaceClient
                     ModificationKind = modificationKind,
                     ConferenceData = conferenceData,
                     Attachments = attachments,
+                    CalendarId = calendarId,
                 }, cancellationToken);
         }
         

@@ -476,6 +476,364 @@ public partial class ProjectClient : ISpaceClient
 
     public partial class AutomationClient : ISpaceClient
     {
+        public DeploymentTargetClient DeploymentTargets => new DeploymentTargetClient(_connection);
+        
+        public partial class DeploymentTargetClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public DeploymentTargetClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Modify deployment targets</term>
+            /// <description>Modify deployment targets in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task CreateAsync(ProjectIdentifier project, string key, string name, string description, List<DeployTargetRepositoryDTO>? repositories = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/automation/deployment-targets{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectAutomationDeploymentTargetsPostRequest
+                    { 
+                        Key = key,
+                        Name = name,
+                        Description = description,
+                        Repositories = (repositories ?? new List<DeployTargetRepositoryDTO>()),
+                    }, cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View deployments</term>
+            /// <description>View deployments in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Batch<DeployTargetDTO>> ListAsync(ProjectIdentifier project, string? search = null, string? sortBy = null, ColumnSortOrder? sortOrder = null, string? skip = null, int? top = 100, Func<Partial<Batch<DeployTargetDTO>>, Partial<Batch<DeployTargetDTO>>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                if (search != null) queryParameters.Append("search", search);
+                if (sortBy != null) queryParameters.Append("sortBy", sortBy);
+                queryParameters.Append("sortOrder", sortOrder.ToEnumString());
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<DeployTargetDTO>>()) : Partial<Batch<DeployTargetDTO>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<DeployTargetDTO>>("GET", $"api/http/projects/{project}/automation/deployment-targets{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View deployments</term>
+            /// <description>View deployments in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public IAsyncEnumerable<DeployTargetDTO> ListAsyncEnumerable(ProjectIdentifier project, string? search = null, string? sortBy = null, ColumnSortOrder? sortOrder = null, string? skip = null, int? top = 100, Func<Partial<DeployTargetDTO>, Partial<DeployTargetDTO>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListAsync(project: project, search: search, sortBy: sortBy, sortOrder: sortOrder, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<DeployTargetDTO>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DeployTargetDTO>.Default())), skip, cancellationToken);
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View deployments</term>
+            /// <description>View deployments in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<List<DeployTargetRecord>> ListFavoritesAsync(ProjectIdentifier project, string? sortBy = null, ColumnSortOrder? sortOrder = null, Func<Partial<DeployTargetRecord>, Partial<DeployTargetRecord>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                if (sortBy != null) queryParameters.Append("sortBy", sortBy);
+                queryParameters.Append("sortOrder", sortOrder.ToEnumString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<DeployTargetRecord>()) : Partial<DeployTargetRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<DeployTargetRecord>>("GET", $"api/http/projects/{project}/automation/deployment-targets/favorites{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View deployments</term>
+            /// <description>View deployments in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<DeployTargetRecord> GetAsync(ProjectIdentifier project, TargetIdentifier identifier, Func<Partial<DeployTargetRecord>, Partial<DeployTargetRecord>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<DeployTargetRecord>()) : Partial<DeployTargetRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<DeployTargetRecord>("GET", $"api/http/projects/{project}/automation/deployment-targets/{identifier}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            public async Task UpdateAsync(ProjectIdentifier project, TargetIdentifier identifier, string name, string description, List<DeployTargetRepositoryDTO> repositories, bool manualControl = true, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PUT", $"api/http/projects/{project}/automation/deployment-targets/{identifier}{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectAutomationDeploymentTargetsForIdentifierPutRequest
+                    { 
+                        Name = name,
+                        Description = description,
+                        Repositories = repositories,
+                        IsManualControl = manualControl,
+                        HangTimeoutMinutes = hangTimeoutMinutes,
+                        FailTimeoutMinutes = failTimeoutMinutes,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Modify deployment targets</term>
+            /// <description>Modify deployment targets in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task DeleteAsync(ProjectIdentifier project, TargetIdentifier identifier, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/automation/deployment-targets/{identifier}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+        }
+    
+        public DeploymentClient Deployments => new DeploymentClient(_connection);
+        
+        public partial class DeploymentClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public DeploymentClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Modify deployments</term>
+            /// <description>Modify deployments in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<DeploymentRecord> FailAsync(ProjectIdentifier project, TargetIdentifier targetIdentifier, Func<Partial<DeploymentRecord>, Partial<DeploymentRecord>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<DeploymentRecord>()) : Partial<DeploymentRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectAutomationDeploymentsFailPostRequest, DeploymentRecord>("POST", $"api/http/projects/{project}/automation/deployments/fail{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectAutomationDeploymentsFailPostRequest
+                    { 
+                        TargetIdentifier = targetIdentifier,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Modify deployments</term>
+            /// <description>Modify deployments in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<DeploymentRecord> FinishAsync(ProjectIdentifier project, TargetIdentifier targetIdentifier, DeploymentIdentifier? deploymentIdentifier = null, string? version = null, string? description = null, List<DeploymentCommitReference>? commitRefs = null, ExternalLink? externalLink = null, Func<Partial<DeploymentRecord>, Partial<DeploymentRecord>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<DeploymentRecord>()) : Partial<DeploymentRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectAutomationDeploymentsFinishPostRequest, DeploymentRecord>("POST", $"api/http/projects/{project}/automation/deployments/finish{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectAutomationDeploymentsFinishPostRequest
+                    { 
+                        TargetIdentifier = targetIdentifier,
+                        DeploymentIdentifier = deploymentIdentifier,
+                        Version = version,
+                        Description = description,
+                        CommitRefs = commitRefs,
+                        ExternalLink = externalLink,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Modify deployments</term>
+            /// <description>Modify deployments in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<DeploymentRecord> ScheduleAsync(ProjectIdentifier project, TargetIdentifier targetIdentifier, string? version = null, DateTime? scheduledStart = null, string? description = null, List<DeploymentCommitReference>? commitRefs = null, ExternalLink? externalLink = null, Func<Partial<DeploymentRecord>, Partial<DeploymentRecord>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<DeploymentRecord>()) : Partial<DeploymentRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectAutomationDeploymentsSchedulePostRequest, DeploymentRecord>("POST", $"api/http/projects/{project}/automation/deployments/schedule{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectAutomationDeploymentsSchedulePostRequest
+                    { 
+                        TargetIdentifier = targetIdentifier,
+                        Version = version,
+                        ScheduledStart = scheduledStart,
+                        Description = description,
+                        CommitRefs = commitRefs,
+                        ExternalLink = externalLink,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Modify deployments</term>
+            /// <description>Modify deployments in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<DeploymentRecord> StartAsync(ProjectIdentifier project, TargetIdentifier targetIdentifier, bool syncWithAutomationJob = false, DeploymentIdentifier? deploymentIdentifier = null, string? version = null, string? description = null, List<DeploymentCommitReference>? commitRefs = null, ExternalLink? externalLink = null, Func<Partial<DeploymentRecord>, Partial<DeploymentRecord>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<DeploymentRecord>()) : Partial<DeploymentRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectAutomationDeploymentsStartPostRequest, DeploymentRecord>("POST", $"api/http/projects/{project}/automation/deployments/start{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectAutomationDeploymentsStartPostRequest
+                    { 
+                        TargetIdentifier = targetIdentifier,
+                        DeploymentIdentifier = deploymentIdentifier,
+                        Version = version,
+                        Description = description,
+                        CommitRefs = commitRefs,
+                        ExternalLink = externalLink,
+                        IsSyncWithAutomationJob = syncWithAutomationJob,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View deployments</term>
+            /// <description>View deployments in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Batch<DeploymentRecord>> ListAsync(ProjectIdentifier project, TargetIdentifier? targetIdentifier = null, string? jobExecutionId = null, string? skip = null, int? top = 100, Func<Partial<Batch<DeploymentRecord>>, Partial<Batch<DeploymentRecord>>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                if (targetIdentifier != null) queryParameters.Append("targetIdentifier", targetIdentifier?.ToString());
+                if (jobExecutionId != null) queryParameters.Append("jobExecutionId", jobExecutionId);
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<DeploymentRecord>>()) : Partial<Batch<DeploymentRecord>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<DeploymentRecord>>("GET", $"api/http/projects/{project}/automation/deployments{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View deployments</term>
+            /// <description>View deployments in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public IAsyncEnumerable<DeploymentRecord> ListAsyncEnumerable(ProjectIdentifier project, TargetIdentifier? targetIdentifier = null, string? jobExecutionId = null, string? skip = null, int? top = 100, Func<Partial<DeploymentRecord>, Partial<DeploymentRecord>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListAsync(project: project, targetIdentifier: targetIdentifier, jobExecutionId: jobExecutionId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<DeploymentRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DeploymentRecord>.Default())), skip, cancellationToken);
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View deployments</term>
+            /// <description>View deployments in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<DeploymentRecord> GetAsync(ProjectIdentifier project, TargetIdentifier targetIdentifier, DeploymentIdentifier deploymentIdentifier, Func<Partial<DeploymentRecord>, Partial<DeploymentRecord>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<DeploymentRecord>()) : Partial<DeploymentRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<DeploymentRecord>("GET", $"api/http/projects/{project}/automation/deployments/{targetIdentifier}/{deploymentIdentifier}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Modify deployments</term>
+            /// <description>Modify deployments in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<DeploymentRecord> UpdateAsync(ProjectIdentifier project, TargetIdentifier targetIdentifier, DeploymentIdentifier deploymentIdentifier, string? version = null, DateTime? scheduledStart = null, string? description = null, List<DeploymentCommitReference>? commitRefs = null, ExternalLink? externalLink = null, Func<Partial<DeploymentRecord>, Partial<DeploymentRecord>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<DeploymentRecord>()) : Partial<DeploymentRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectAutomationDeploymentsPutRequest, DeploymentRecord>("PUT", $"api/http/projects/{project}/automation/deployments{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectAutomationDeploymentsPutRequest
+                    { 
+                        TargetIdentifier = targetIdentifier,
+                        DeploymentIdentifier = deploymentIdentifier,
+                        Version = version,
+                        ScheduledStart = scheduledStart,
+                        Description = description,
+                        CommitRefs = commitRefs,
+                        ExternalLink = externalLink,
+                    }, cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Modify deployments</term>
+            /// <description>Modify deployments in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task DeleteAsync(ProjectIdentifier project, TargetIdentifier targetIdentifier, DeploymentIdentifier deploymentIdentifier, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/automation/deployments/{targetIdentifier}/{deploymentIdentifier}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+        }
+    
         public partial class GraphExecutionClient : ISpaceClient
         {
             /// <summary>
@@ -1402,6 +1760,7 @@ public partial class ProjectClient : ISpaceClient
             /// <summary>
             /// Create a new checklist in a project
             /// </summary>
+            [Obsolete("Use POST on projects/{project}/documents (since 2022-04-08) (will be removed in a future version)")]
             public async Task<Checklist> CreateChecklistAsync(ProjectIdentifier project, string name, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -1420,6 +1779,7 @@ public partial class ProjectClient : ISpaceClient
             /// The items with the same indent level will be placed one under the other.
             /// An issue URL will be converted into the corresponding issue.
             /// </summary>
+            [Obsolete("Use POST on projects/{project}/documents (since 2022-04-08) (will be removed in a future version)")]
             public async Task<Checklist> ImportChecklistAsync(ProjectIdentifier project, string name, string tabIndentedLines, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -1455,6 +1815,7 @@ public partial class ProjectClient : ISpaceClient
             /// <summary>
             /// Search existing checklists in a project
             /// </summary>
+            [Obsolete("Use GET on projects/{project}/documents/folders/{folder}/documents (since 2022-04-08) (will be removed in a future version)")]
             public async Task<Batch<Checklist>> GetAllChecklistsAsync(ProjectIdentifier project, ChecklistSorting sorting = ChecklistSorting.UPDATED, bool descending = false, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<Checklist>>, Partial<Batch<Checklist>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -1472,12 +1833,14 @@ public partial class ProjectClient : ISpaceClient
             /// <summary>
             /// Search existing checklists in a project
             /// </summary>
+            [Obsolete("Use GET on projects/{project}/documents/folders/{folder}/documents (since 2022-04-08) (will be removed in a future version)")]
             public IAsyncEnumerable<Checklist> GetAllChecklistsAsyncEnumerable(ProjectIdentifier project, ChecklistSorting sorting = ChecklistSorting.UPDATED, bool descending = false, string? skip = null, int? top = 100, string? query = null, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllChecklistsAsync(project: project, sorting: sorting, descending: descending, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Checklist>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Checklist>.Default())), skip, cancellationToken);
         
             /// <summary>
             /// Update an existing checklist in a project
             /// </summary>
+            [Obsolete("Use PATCH on projects/{project}/documents/{documentId} (since 2022-04-08) (will be removed in a future version)")]
             public async Task UpdateChecklistAsync(ProjectIdentifier project, string checklistId, List<string> topics, string? name = null, string? description = null, string? owner = null, string? tag = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -1497,6 +1860,7 @@ public partial class ProjectClient : ISpaceClient
             /// <summary>
             /// Delete an existing checklist in a project
             /// </summary>
+            [Obsolete("Use DELETE on projects/{project}/documents/{documentId} (since 2022-04-08) (will be removed in a future version)")]
             public async Task DeleteChecklistAsync(ProjectIdentifier project, string checklistId, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -1519,6 +1883,7 @@ public partial class ProjectClient : ISpaceClient
                 /// <summary>
                 /// Get all starred checklists in a project
                 /// </summary>
+                [Obsolete("[SPACE-13768]: Not implemented yet (since 2022-04-08) (will be removed in a future version)")]
                 public async Task<List<Checklist>> GetAllStarredChecklistsAsync(ProjectIdentifier project, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -1691,7 +2056,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Batch<Issue>> GetAllIssuesAsync(ProjectIdentifier project, IssuesSorting sorting, bool descending, List<ProfileIdentifier>? assigneeId = null, List<PrincipalIn>? createdBy = null, List<string>? statuses = null, List<SprintIdentifier>? sprints = null, List<BoardIdentifier>? boards = null, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, string? importTransaction = null, DateTime? creationTimeFrom = null, DateTime? creationTimeTo = null, DateTime? dueDateFrom = null, DateTime? dueDateTo = null, List<string>? topics = null, IssueListGrouping? grouping = null, string? deployment = null, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Batch<Issue>> GetAllIssuesAsync(ProjectIdentifier project, IssuesSorting sorting, bool descending, List<ProfileIdentifier>? assigneeId = null, List<PrincipalIn>? createdBy = null, List<string>? statuses = null, List<string>? tags = null, List<SprintIdentifier>? sprints = null, List<BoardIdentifier>? boards = null, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? customFields = null, string? importTransaction = null, DateTime? creationTimeFrom = null, DateTime? creationTimeTo = null, DateTime? dueDateFrom = null, DateTime? dueDateTo = null, List<string>? topics = null, IssueListGrouping? grouping = null, string? deployment = null, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 if (skip != null) queryParameters.Append("$skip", skip);
@@ -1704,7 +2069,7 @@ public partial class ProjectClient : ISpaceClient
                 if (query != null) queryParameters.Append("query", query);
                 queryParameters.Append("sorting", sorting.ToEnumString());
                 queryParameters.Append("descending", descending.ToString("l"));
-                if (tags != null) queryParameters.Append("tags", tags.Select(it => it));
+                queryParameters.Append("tags", (tags ?? new List<string>()).Select(it => it));
                 queryParameters.Append("sprints", (sprints ?? new List<SprintIdentifier>()).Select(it => it?.ToString()));
                 queryParameters.Append("boards", (boards ?? new List<BoardIdentifier>()).Select(it => it?.ToString()));
                 if (customFields != null) queryParameters.Append("customFields", customFields.Select(it => it));
@@ -1734,8 +2099,8 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public IAsyncEnumerable<Issue> GetAllIssuesAsyncEnumerable(ProjectIdentifier project, IssuesSorting sorting, bool descending, List<ProfileIdentifier>? assigneeId = null, List<PrincipalIn>? createdBy = null, List<string>? statuses = null, List<SprintIdentifier>? sprints = null, List<BoardIdentifier>? boards = null, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, string? importTransaction = null, DateTime? creationTimeFrom = null, DateTime? creationTimeTo = null, DateTime? dueDateFrom = null, DateTime? dueDateTo = null, List<string>? topics = null, IssueListGrouping? grouping = null, string? deployment = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
-                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesAsync(project: project, assigneeId: assigneeId, createdBy: createdBy, statuses: statuses, sorting: sorting, descending: descending, sprints: sprints, boards: boards, top: top, createdByProfileId: createdByProfileId, tagId: tagId, query: query, tags: tags, customFields: customFields, importTransaction: importTransaction, creationTimeFrom: creationTimeFrom, creationTimeTo: creationTimeTo, dueDateFrom: dueDateFrom, dueDateTo: dueDateTo, topics: topics, grouping: grouping, deployment: deployment, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
+            public IAsyncEnumerable<Issue> GetAllIssuesAsyncEnumerable(ProjectIdentifier project, IssuesSorting sorting, bool descending, List<ProfileIdentifier>? assigneeId = null, List<PrincipalIn>? createdBy = null, List<string>? statuses = null, List<string>? tags = null, List<SprintIdentifier>? sprints = null, List<BoardIdentifier>? boards = null, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? customFields = null, string? importTransaction = null, DateTime? creationTimeFrom = null, DateTime? creationTimeTo = null, DateTime? dueDateFrom = null, DateTime? dueDateTo = null, List<string>? topics = null, IssueListGrouping? grouping = null, string? deployment = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesAsync(project: project, assigneeId: assigneeId, createdBy: createdBy, statuses: statuses, sorting: sorting, descending: descending, tags: tags, sprints: sprints, boards: boards, top: top, createdByProfileId: createdByProfileId, tagId: tagId, query: query, customFields: customFields, importTransaction: importTransaction, creationTimeFrom: creationTimeFrom, creationTimeTo: creationTimeTo, dueDateFrom: dueDateFrom, dueDateTo: dueDateTo, topics: topics, grouping: grouping, deployment: deployment, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
         
             /// <summary>
             /// Find an existing issue by a given number in a project
@@ -2059,10 +2424,6 @@ public partial class ProjectClient : ISpaceClient
                 /// <description>Update issues that were created by other users</description>
                 /// </item>
                 /// <item>
-                /// <term>Manage checklists</term>
-                /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
-                /// </item>
-                /// <item>
                 /// <term>Edit documents</term>
                 /// </item>
                 /// </list>
@@ -2084,10 +2445,6 @@ public partial class ProjectClient : ISpaceClient
                 /// <item>
                 /// <term>Update issues</term>
                 /// <description>Update issues that were created by other users</description>
-                /// </item>
-                /// <item>
-                /// <term>Manage checklists</term>
-                /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
                 /// </item>
                 /// <item>
                 /// <term>Edit documents</term>
@@ -2329,8 +2686,8 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Manage checklists</term>
-            /// <description>Add, edit or remove checklists, as well as manage planning tags</description>
+            /// <term>Manage tags</term>
+            /// <description>Add, edit or remove planning tags</description>
             /// </item>
             /// </list>
             /// </remarks>

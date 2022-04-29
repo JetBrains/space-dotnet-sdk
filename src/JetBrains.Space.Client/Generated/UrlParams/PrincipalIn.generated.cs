@@ -35,6 +35,9 @@ public abstract class PrincipalIn : IUrlParameter
     public static PrincipalIn Application(string application)
         => new PrincipalInApplication(application);
     
+    public static PrincipalIn BuiltIn(string builtIn)
+        => new PrincipalInBuiltIn(builtIn);
+    
     public static PrincipalIn Profile(ProfileIdentifier profile)
         => new PrincipalInProfile(profile);
     
@@ -61,6 +64,31 @@ public abstract class PrincipalIn : IUrlParameter
         
         public override string ToString()
             => $"application:{Application}";
+    }
+    
+    public class PrincipalInBuiltIn : PrincipalIn
+    {
+        [Required]
+        [JsonPropertyName("builtIn")]
+#if NET6_0_OR_GREATER
+        public string BuiltIn { get; init; }
+#else
+        public string BuiltIn { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
+        public PrincipalInBuiltIn() { }
+#pragma warning restore CS8618
+#endif
+        
+        public PrincipalInBuiltIn(string builtIn)
+        {
+            BuiltIn = builtIn;
+        }
+        
+        public override string ToString()
+            => $"builtIn:{BuiltIn}";
     }
     
     public class PrincipalInProfile : PrincipalIn

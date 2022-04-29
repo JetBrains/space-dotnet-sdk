@@ -34,11 +34,12 @@ public sealed class DataProducerOptions
 {
     public DataProducerOptions() { }
     
-    public DataProducerOptions(SFUDataProducerOptions sfuOptions, bool closed, long? userConnectionId = null)
+    public DataProducerOptions(SFUDataProducerOptions sfuOptions, bool closed, string routerId, long? userConnectionId = null)
     {
         SfuOptions = sfuOptions;
         IsClosed = closed;
         UserConnectionId = userConnectionId;
+        RouterId = routerId;
     }
     
     private PropertyValue<SFUDataProducerOptions> _sfuOptions = new PropertyValue<SFUDataProducerOptions>(nameof(DataProducerOptions), nameof(SfuOptions), "sfuOptions");
@@ -70,11 +71,22 @@ public sealed class DataProducerOptions
         set => _userConnectionId.SetValue(value);
     }
 
+    private PropertyValue<string> _routerId = new PropertyValue<string>(nameof(DataProducerOptions), nameof(RouterId), "routerId");
+    
+    [Required]
+    [JsonPropertyName("routerId")]
+    public string RouterId
+    {
+        get => _routerId.GetValue(InlineErrors);
+        set => _routerId.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _sfuOptions.SetAccessPath(parentChainPath, validateHasBeenSet);
         _closed.SetAccessPath(parentChainPath, validateHasBeenSet);
         _userConnectionId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _routerId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -36,11 +36,11 @@ public class PackageRepositoryConnection
     [JsonPropertyName("className")]
     public virtual string? ClassName => "PackageRepositoryConnection";
     
-    public static PackageRepositoryConnectionRemote Remote(string id, bool enabled, bool rememberDownloaded, string url, PackageRepositoryCredentials credentials, List<string>? packageNameFilters = null, string? secretId = null, string? secretValue = null, PackageRepositoryConnectionSettings? settings = null)
-        => new PackageRepositoryConnectionRemote(id: id, enabled: enabled, rememberDownloaded: rememberDownloaded, url: url, credentials: credentials, packageNameFilters: packageNameFilters, secretId: secretId, secretValue: secretValue, settings: settings);
+    public static PackageRepositoryConnectionRemote Remote(string id, bool enabled, bool rememberDownloaded, string url, PackageRepositoryCredentials credentials, string? description = null, List<string>? packageNameFilters = null, string? secretId = null, string? secretValue = null, PackageRepositoryConnectionSettings? settings = null)
+        => new PackageRepositoryConnectionRemote(id: id, enabled: enabled, rememberDownloaded: rememberDownloaded, url: url, credentials: credentials, description: description, packageNameFilters: packageNameFilters, secretId: secretId, secretValue: secretValue, settings: settings);
     
-    public static PackageRepositoryConnectionSpace Space(string id, bool enabled, bool rememberDownloaded, ProjectPackageRepository repository, List<string>? packageNameFilters = null)
-        => new PackageRepositoryConnectionSpace(id: id, enabled: enabled, rememberDownloaded: rememberDownloaded, repository: repository, packageNameFilters: packageNameFilters);
+    public static PackageRepositoryConnectionSpace Space(string id, bool enabled, bool rememberDownloaded, ProjectPackageRepository repository, string? description = null, List<string>? packageNameFilters = null)
+        => new PackageRepositoryConnectionSpace(id: id, enabled: enabled, rememberDownloaded: rememberDownloaded, repository: repository, description: description, packageNameFilters: packageNameFilters);
     
     public PackageRepositoryConnection() { }
     

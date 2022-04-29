@@ -46,5 +46,14 @@ public static class DocumentHistoryUnfurlDetailsPartialExtensions
     public static Partial<DocumentHistoryUnfurlDetails> WithPreview(this Partial<DocumentHistoryUnfurlDetails> it)
         => it.AddFieldName("preview");
     
+    public static Partial<DocumentHistoryUnfurlDetails> WithVersion2(this Partial<DocumentHistoryUnfurlDetails> it)
+        => it.AddFieldName("version2");
+    
+    public static Partial<DocumentHistoryUnfurlDetails> WithBase2(this Partial<DocumentHistoryUnfurlDetails> it)
+        => it.AddFieldName("base2");
+    
+    public static Partial<DocumentHistoryUnfurlDetails> WithPreview2(this Partial<DocumentHistoryUnfurlDetails> it)
+        => it.AddFieldName("preview2");
+    
 }
 

@@ -37,15 +37,16 @@ public sealed class BooleanCFValue
     
     public BooleanCFValue() { }
     
-    public BooleanCFValue(bool? value = null)
+    public BooleanCFValue(bool value)
     {
         IsValue = value;
     }
     
-    private PropertyValue<bool?> _value = new PropertyValue<bool?>(nameof(BooleanCFValue), nameof(IsValue), "value");
+    private PropertyValue<bool> _value = new PropertyValue<bool>(nameof(BooleanCFValue), nameof(IsValue), "value");
     
+    [Required]
     [JsonPropertyName("value")]
-    public bool? IsValue
+    public bool IsValue
     {
         get => _value.GetValue(InlineErrors);
         set => _value.SetValue(value);

@@ -34,9 +34,10 @@ public sealed class SshKeyData
 {
     public SshKeyData() { }
     
-    public SshKeyData(string fingerprint, string publicKey, string comment, DateTime? lastUsed = null, string? lastResource = null)
+    public SshKeyData(string fingerprint, string publicKey, string comment, string? sha256fingerprint = null, DateTime? lastUsed = null, string? lastResource = null)
     {
         Fingerprint = fingerprint;
+        Sha256fingerprint = sha256fingerprint;
         PublicKey = publicKey;
         Comment = comment;
         LastUsed = lastUsed;
@@ -51,6 +52,15 @@ public sealed class SshKeyData
     {
         get => _fingerprint.GetValue(InlineErrors);
         set => _fingerprint.SetValue(value);
+    }
+
+    private PropertyValue<string?> _sha256fingerprint = new PropertyValue<string?>(nameof(SshKeyData), nameof(Sha256fingerprint), "sha256fingerprint");
+    
+    [JsonPropertyName("sha256fingerprint")]
+    public string? Sha256fingerprint
+    {
+        get => _sha256fingerprint.GetValue(InlineErrors);
+        set => _sha256fingerprint.SetValue(value);
     }
 
     private PropertyValue<string> _publicKey = new PropertyValue<string>(nameof(SshKeyData), nameof(PublicKey), "publicKey");
@@ -95,6 +105,7 @@ public sealed class SshKeyData
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _fingerprint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sha256fingerprint.SetAccessPath(parentChainPath, validateHasBeenSet);
         _publicKey.SetAccessPath(parentChainPath, validateHasBeenSet);
         _comment.SetAccessPath(parentChainPath, validateHasBeenSet);
         _lastUsed.SetAccessPath(parentChainPath, validateHasBeenSet);

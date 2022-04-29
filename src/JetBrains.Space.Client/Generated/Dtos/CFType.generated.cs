@@ -54,6 +54,9 @@ public abstract class CFType
     public static DateTimeCFType DateTime()
         => new DateTimeCFType();
     
+    public static DeploymentCFType Deployment()
+        => new DeploymentCFType();
+    
     public static DocumentCFType Document()
         => new DocumentCFType();
     
@@ -107,6 +110,9 @@ public abstract class CFType
     
     public static StringListCFType StringList()
         => new StringListCFType();
+    
+    public static TargetCFType Target()
+        => new TargetCFType();
     
     public static TeamCFType Team()
         => new TeamCFType();

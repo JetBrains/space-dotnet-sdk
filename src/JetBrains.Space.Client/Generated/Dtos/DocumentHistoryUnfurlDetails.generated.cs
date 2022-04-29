@@ -37,13 +37,16 @@ public sealed class DocumentHistoryUnfurlDetails
     
     public DocumentHistoryUnfurlDetails() { }
     
-    public DocumentHistoryUnfurlDetails(string document, string title, DateTime? version = null, DateTime? @base = null, DateTime? preview = null)
+    public DocumentHistoryUnfurlDetails(string document, string title, DateTime? version = null, DateTime? @base = null, DateTime? preview = null, DateTime? version2 = null, DateTime? base2 = null, DateTime? preview2 = null)
     {
         Document = document;
         Title = title;
         Version = version;
         Base = @base;
         Preview = preview;
+        Version2 = version2;
+        Base2 = base2;
+        Preview2 = preview2;
     }
     
     private PropertyValue<string> _document = new PropertyValue<string>(nameof(DocumentHistoryUnfurlDetails), nameof(Document), "document");
@@ -96,6 +99,36 @@ public sealed class DocumentHistoryUnfurlDetails
         set => _preview.SetValue(value);
     }
 
+    private PropertyValue<DateTime?> _version2 = new PropertyValue<DateTime?>(nameof(DocumentHistoryUnfurlDetails), nameof(Version2), "version2");
+    
+    [JsonPropertyName("version2")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? Version2
+    {
+        get => _version2.GetValue(InlineErrors);
+        set => _version2.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _base2 = new PropertyValue<DateTime?>(nameof(DocumentHistoryUnfurlDetails), nameof(Base2), "base2");
+    
+    [JsonPropertyName("base2")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? Base2
+    {
+        get => _base2.GetValue(InlineErrors);
+        set => _base2.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _preview2 = new PropertyValue<DateTime?>(nameof(DocumentHistoryUnfurlDetails), nameof(Preview2), "preview2");
+    
+    [JsonPropertyName("preview2")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? Preview2
+    {
+        get => _preview2.GetValue(InlineErrors);
+        set => _preview2.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _document.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -103,6 +136,9 @@ public sealed class DocumentHistoryUnfurlDetails
         _version.SetAccessPath(parentChainPath, validateHasBeenSet);
         _base.SetAccessPath(parentChainPath, validateHasBeenSet);
         _preview.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _version2.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _base2.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _preview2.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

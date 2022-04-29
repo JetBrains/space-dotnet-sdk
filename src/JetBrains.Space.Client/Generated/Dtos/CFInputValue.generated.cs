@@ -35,7 +35,7 @@ public interface CFInputValue
     public static AutonumberCFValue AutonumberCFValue(string? value = null)
         => new AutonumberCFValue(value: value);
     
-    public static BooleanCFValue BooleanCFValue(bool? value = null)
+    public static BooleanCFValue BooleanCFValue(bool value)
         => new BooleanCFValue(value: value);
     
     public static ContactCFValue ContactCFValue(string? value = null)
@@ -49,6 +49,9 @@ public interface CFInputValue
     
     public static DateTimeCFValue DateTimeCFValue(DateTime? value = null)
         => new DateTimeCFValue(value: value);
+    
+    public static DeploymentCFInputValue Deployment(DeploymentIdentifier? deployment = null)
+        => new DeploymentCFInputValue(deployment: deployment);
     
     public static DocumentCFInputValue Document(string? documentId = null)
         => new DocumentCFInputValue(documentId: documentId);
@@ -115,6 +118,9 @@ public interface CFInputValue
     
     public static StringListCFValue StringListCFValue(List<string> values)
         => new StringListCFValue(values: values);
+    
+    public static TargetCFInputValue Target(TargetIdentifier? target = null)
+        => new TargetCFInputValue(target: target);
     
     public static TeamCFInputValue Team(string? team = null)
         => new TeamCFInputValue(team: team);

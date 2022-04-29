@@ -34,7 +34,7 @@ public class CalendarsMeetingsForIdPatchRequest
 {
     public CalendarsMeetingsForIdPatchRequest() { }
     
-    public CalendarsMeetingsForIdPatchRequest(Diff locationsDiff, Diff profilesDiff, Diff externalParticipantsDiff, Diff teamsDiff, bool notifyOnExport = true, RecurrentModification modificationKind = RecurrentModification.All, string? summary = null, string? description = null, CalendarEventSpec? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, DateTime? targetDate = null, EventConferenceData? conferenceData = null, List<MeetingAttachment>? attachments = null)
+    public CalendarsMeetingsForIdPatchRequest(Diff locationsDiff, Diff profilesDiff, Diff externalParticipantsDiff, Diff teamsDiff, bool notifyOnExport = true, RecurrentModification modificationKind = RecurrentModification.All, string? summary = null, string? description = null, CalendarEventSpec? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, DateTime? targetDate = null, EventConferenceData? conferenceData = null, List<MeetingAttachment>? attachments = null, CalendarIdentifier? calendarId = null)
     {
         Summary = summary;
         Description = description;
@@ -52,6 +52,7 @@ public class CalendarsMeetingsForIdPatchRequest
         ModificationKind = modificationKind;
         ConferenceData = conferenceData;
         Attachments = attachments;
+        CalendarId = calendarId;
     }
     
     private PropertyValue<string?> _summary = new PropertyValue<string?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Summary), "summary");
@@ -229,6 +230,18 @@ public class CalendarsMeetingsForIdPatchRequest
         set => _attachments.SetValue(value);
     }
 
+    private PropertyValue<CalendarIdentifier?> _calendarId = new PropertyValue<CalendarIdentifier?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(CalendarId), "calendarId");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("calendarId")]
+    public CalendarIdentifier? CalendarId
+    {
+        get => _calendarId.GetValue(InlineErrors);
+        set => _calendarId.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _summary.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -247,6 +260,7 @@ public class CalendarsMeetingsForIdPatchRequest
         _modificationKind.SetAccessPath(parentChainPath, validateHasBeenSet);
         _conferenceData.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _calendarId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

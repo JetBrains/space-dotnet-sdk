@@ -43,5 +43,8 @@ public static class DataProducerOptionsPartialExtensions
     public static Partial<DataProducerOptions> WithUserConnectionId(this Partial<DataProducerOptions> it)
         => it.AddFieldName("userConnectionId");
     
+    public static Partial<DataProducerOptions> WithRouterId(this Partial<DataProducerOptions> it)
+        => it.AddFieldName("routerId");
+    
 }
 

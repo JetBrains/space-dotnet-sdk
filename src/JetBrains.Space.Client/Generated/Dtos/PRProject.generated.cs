@@ -34,7 +34,7 @@ public sealed class PRProject
 {
     public PRProject() { }
     
-    public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> collaboratorsProfiles, List<TDTeam> collaboratorsTeams, List<TDMemberProfile> externalUserProfiles, List<ProjectFeatureState> features, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, string projectId, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, ProjectTeamType type, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null, List<ProjectTeamMemberRecord>? members = null, TDTeam? team = null, List<TDTeam>? teams = null)
+    public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> collaboratorsProfiles, List<TDTeam> collaboratorsTeams, List<TDMemberProfile> externalUserProfiles, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, string projectId, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, ProjectTeamType type, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null, List<ProjectFeatureState>? features = null, List<ProjectTeamMemberRecord>? members = null, TDTeam? team = null, List<TDTeam>? teams = null)
     {
         Id = id;
         Key = key;
@@ -202,11 +202,10 @@ public sealed class PRProject
         set => _externalUserProfiles.SetValue(value);
     }
 
-    private PropertyValue<List<ProjectFeatureState>> _features = new PropertyValue<List<ProjectFeatureState>>(nameof(PRProject), nameof(Features), "features", new List<ProjectFeatureState>());
+    private PropertyValue<List<ProjectFeatureState>?> _features = new PropertyValue<List<ProjectFeatureState>?>(nameof(PRProject), nameof(Features), "features");
     
-    [Required]
     [JsonPropertyName("features")]
-    public List<ProjectFeatureState> Features
+    public List<ProjectFeatureState>? Features
     {
         get => _features.GetValue(InlineErrors);
         set => _features.SetValue(value);

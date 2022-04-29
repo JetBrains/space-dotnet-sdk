@@ -34,5 +34,8 @@ public static class CBuiltInServicePrincipalDetailsPartialExtensions
     public static Partial<CBuiltInServicePrincipalDetails> WithName(this Partial<CBuiltInServicePrincipalDetails> it)
         => it.AddFieldName("name");
     
+    public static Partial<CBuiltInServicePrincipalDetails> WithKey(this Partial<CBuiltInServicePrincipalDetails> it)
+        => it.AddFieldName("key");
+    
 }
 

@@ -29,46 +29,23 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ApplicationUnfurlTargetsRequestedEvent
-     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class TargetCFInputValue
+     : CFInputValue, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public  string? ClassName => "ApplicationUnfurlTargetsRequestedEvent";
+    public  string? ClassName => "TargetCFInputValue";
     
-    public ApplicationUnfurlTargetsRequestedEvent() { }
+    public TargetCFInputValue() { }
     
-    public ApplicationUnfurlTargetsRequestedEvent(KMetaMod meta, ESApp application, ApplicationUnfurlTarget target)
+    public TargetCFInputValue(TargetIdentifier? target = null)
     {
-        Meta = meta;
-        Application = application;
         Target = target;
     }
     
-    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(ApplicationUnfurlTargetsRequestedEvent), nameof(Meta), "meta");
+    private PropertyValue<TargetIdentifier?> _target = new PropertyValue<TargetIdentifier?>(nameof(TargetCFInputValue), nameof(Target), "target");
     
-    [Required]
-    [JsonPropertyName("meta")]
-    public KMetaMod Meta
-    {
-        get => _meta.GetValue(InlineErrors);
-        set => _meta.SetValue(value);
-    }
-
-    private PropertyValue<ESApp> _application = new PropertyValue<ESApp>(nameof(ApplicationUnfurlTargetsRequestedEvent), nameof(Application), "application");
-    
-    [Required]
-    [JsonPropertyName("application")]
-    public ESApp Application
-    {
-        get => _application.GetValue(InlineErrors);
-        set => _application.SetValue(value);
-    }
-
-    private PropertyValue<ApplicationUnfurlTarget> _target = new PropertyValue<ApplicationUnfurlTarget>(nameof(ApplicationUnfurlTargetsRequestedEvent), nameof(Target), "target");
-    
-    [Required]
     [JsonPropertyName("target")]
-    public ApplicationUnfurlTarget Target
+    public TargetIdentifier? Target
     {
         get => _target.GetValue(InlineErrors);
         set => _target.SetValue(value);
@@ -76,8 +53,6 @@ public sealed class ApplicationUnfurlTargetsRequestedEvent
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _application.SetAccessPath(parentChainPath, validateHasBeenSet);
         _target.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

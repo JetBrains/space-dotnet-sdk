@@ -147,5 +147,14 @@ public static class MeetingPartialExtensions
     public static Partial<Meeting> WithExternalSource(this Partial<Meeting> it, Func<Partial<EventExternalSource>, Partial<EventExternalSource>> partialBuilder)
         => it.AddFieldName("externalSource", partialBuilder(new Partial<EventExternalSource>(it)));
     
+    public static Partial<Meeting> WithCalendar(this Partial<Meeting> it)
+        => it.AddFieldName("calendar");
+    
+    public static Partial<Meeting> WithCalendar(this Partial<Meeting> it, Func<Partial<CalendarInfo>, Partial<CalendarInfo>> partialBuilder)
+        => it.AddFieldName("calendar", partialBuilder(new Partial<CalendarInfo>(it)));
+    
+    public static Partial<Meeting> WithCanLeaveOrRsvp(this Partial<Meeting> it)
+        => it.AddFieldName("canLeaveOrRsvp");
+    
 }
 

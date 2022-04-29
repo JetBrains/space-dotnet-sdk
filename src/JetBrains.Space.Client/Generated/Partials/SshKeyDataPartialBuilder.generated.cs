@@ -34,6 +34,9 @@ public static class SshKeyDataPartialExtensions
     public static Partial<SshKeyData> WithFingerprint(this Partial<SshKeyData> it)
         => it.AddFieldName("fingerprint");
     
+    public static Partial<SshKeyData> WithSha256fingerprint(this Partial<SshKeyData> it)
+        => it.AddFieldName("sha256fingerprint");
+    
     public static Partial<SshKeyData> WithPublicKey(this Partial<SshKeyData> it)
         => it.AddFieldName("publicKey");
     

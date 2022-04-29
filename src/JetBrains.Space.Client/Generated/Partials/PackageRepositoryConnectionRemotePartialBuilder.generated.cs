@@ -34,6 +34,9 @@ public static class PackageRepositoryConnectionRemotePartialExtensions
     public static Partial<PackageRepositoryConnectionRemote> WithId(this Partial<PackageRepositoryConnectionRemote> it)
         => it.AddFieldName("id");
     
+    public static Partial<PackageRepositoryConnectionRemote> WithDescription(this Partial<PackageRepositoryConnectionRemote> it)
+        => it.AddFieldName("description");
+    
     public static Partial<PackageRepositoryConnectionRemote> WithIsEnabled(this Partial<PackageRepositoryConnectionRemote> it)
         => it.AddFieldName("enabled");
     

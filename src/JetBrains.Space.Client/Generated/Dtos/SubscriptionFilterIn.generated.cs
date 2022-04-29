@@ -47,6 +47,9 @@ public interface SubscriptionFilterIn
     public static CodeReviewSubscriptionFilterIn CodeReview(List<string> authors, List<string> participants, List<string> branchSpec, List<string> pathSpec, string titleRegex, string? project = null, string? repository = null)
         => new CodeReviewSubscriptionFilterIn(authors: authors, participants: participants, branchSpec: branchSpec, pathSpec: pathSpec, titleRegex: titleRegex, project: project, repository: repository);
     
+    public static DeploymentsSubscriptionFilterIn Deployments(string project, List<string>? repositories = null, List<string>? targetIdentifiers = null)
+        => new DeploymentsSubscriptionFilterIn(project: project, repositories: repositories, targetIdentifiers: targetIdentifiers);
+    
     public static DocumentCustomSubscriptionFilterIn DocumentCustom(List<string> documents, string? project = null, List<string>? books = null, List<string>? folders = null)
         => new DocumentCustomSubscriptionFilterIn(documents: documents, project: project, books: books, folders: folders);
     

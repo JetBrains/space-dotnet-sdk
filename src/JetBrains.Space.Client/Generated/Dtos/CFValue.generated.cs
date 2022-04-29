@@ -39,7 +39,7 @@ public abstract class CFValue
     public static AutonumberCFValue Autonumber(string? value = null)
         => new AutonumberCFValue(value: value);
     
-    public static BooleanCFValue Boolean(bool? value = null)
+    public static BooleanCFValue Boolean(bool value)
         => new BooleanCFValue(value: value);
     
     public static ContactCFValue Contact(string? value = null)
@@ -53,6 +53,9 @@ public abstract class CFValue
     
     public static DateTimeCFValue DateTime(DateTime? value = null)
         => new DateTimeCFValue(value: value);
+    
+    public static DeploymentCFValue Deployment(DeploymentRecord? deployment = null)
+        => new DeploymentCFValue(deployment: deployment);
     
     public static DocumentCFValue Document(Document? document = null)
         => new DocumentCFValue(document: document);
@@ -107,6 +110,9 @@ public abstract class CFValue
     
     public static StringListCFValue StringList(List<string> values)
         => new StringListCFValue(values: values);
+    
+    public static TargetCFValue Target(DeployTargetRecord? target = null)
+        => new TargetCFValue(target: target);
     
     public static TeamCFValue Team(TDTeam? team = null)
         => new TeamCFValue(team: team);

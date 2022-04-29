@@ -37,9 +37,10 @@ public sealed class PackageRepositoryConnectionRemote
     
     public PackageRepositoryConnectionRemote() { }
     
-    public PackageRepositoryConnectionRemote(string id, bool enabled, bool rememberDownloaded, string url, PackageRepositoryCredentials credentials, List<string>? packageNameFilters = null, string? secretId = null, string? secretValue = null, PackageRepositoryConnectionSettings? settings = null)
+    public PackageRepositoryConnectionRemote(string id, bool enabled, bool rememberDownloaded, string url, PackageRepositoryCredentials credentials, string? description = null, List<string>? packageNameFilters = null, string? secretId = null, string? secretValue = null, PackageRepositoryConnectionSettings? settings = null)
     {
         Id = id;
+        Description = description;
         IsEnabled = enabled;
         IsRememberDownloaded = rememberDownloaded;
         PackageNameFilters = packageNameFilters;
@@ -58,6 +59,15 @@ public sealed class PackageRepositoryConnectionRemote
     {
         get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
+    }
+
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(PackageRepositoryConnectionRemote), nameof(Description), "description");
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue(InlineErrors);
+        set => _description.SetValue(value);
     }
 
     private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(PackageRepositoryConnectionRemote), nameof(IsEnabled), "enabled");
@@ -139,6 +149,7 @@ public sealed class PackageRepositoryConnectionRemote
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _enabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _rememberDownloaded.SetAccessPath(parentChainPath, validateHasBeenSet);
         _packageNameFilters.SetAccessPath(parentChainPath, validateHasBeenSet);

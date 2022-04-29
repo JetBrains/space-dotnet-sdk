@@ -34,6 +34,9 @@ public static class PackageRepositoryConnectionSpacePartialExtensions
     public static Partial<PackageRepositoryConnectionSpace> WithId(this Partial<PackageRepositoryConnectionSpace> it)
         => it.AddFieldName("id");
     
+    public static Partial<PackageRepositoryConnectionSpace> WithDescription(this Partial<PackageRepositoryConnectionSpace> it)
+        => it.AddFieldName("description");
+    
     public static Partial<PackageRepositoryConnectionSpace> WithIsEnabled(this Partial<PackageRepositoryConnectionSpace> it)
         => it.AddFieldName("enabled");
     

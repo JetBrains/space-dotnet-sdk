@@ -37,9 +37,10 @@ public sealed class PackageRepositoryConnectionSpace
     
     public PackageRepositoryConnectionSpace() { }
     
-    public PackageRepositoryConnectionSpace(string id, bool enabled, bool rememberDownloaded, ProjectPackageRepository repository, List<string>? packageNameFilters = null)
+    public PackageRepositoryConnectionSpace(string id, bool enabled, bool rememberDownloaded, ProjectPackageRepository repository, string? description = null, List<string>? packageNameFilters = null)
     {
         Id = id;
+        Description = description;
         IsEnabled = enabled;
         IsRememberDownloaded = rememberDownloaded;
         PackageNameFilters = packageNameFilters;
@@ -54,6 +55,15 @@ public sealed class PackageRepositoryConnectionSpace
     {
         get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
+    }
+
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(PackageRepositoryConnectionSpace), nameof(Description), "description");
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue(InlineErrors);
+        set => _description.SetValue(value);
     }
 
     private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(PackageRepositoryConnectionSpace), nameof(IsEnabled), "enabled");
@@ -98,6 +108,7 @@ public sealed class PackageRepositoryConnectionSpace
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _enabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _rememberDownloaded.SetAccessPath(parentChainPath, validateHasBeenSet);
         _packageNameFilters.SetAccessPath(parentChainPath, validateHasBeenSet);

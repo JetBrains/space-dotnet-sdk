@@ -32,8 +32,8 @@ namespace JetBrains.Space.Client;
 public interface ChannelContactThread
      : M2ChannelContactInfo, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static M2ChannelContactThread M2(M2ChannelRecord parent, string? text = null, string? messageId = null, CPrincipal? messageAuthor = null, string? attachments = null)
-        => new M2ChannelContactThread(parent: parent, text: text, messageId: messageId, messageAuthor: messageAuthor, attachments: attachments);
+    public static M2ChannelContactThread M2(M2ChannelRecord parent, string messageId, string? text = null, CPrincipal? messageAuthor = null, string? attachments = null)
+        => new M2ChannelContactThread(parent: parent, messageId: messageId, text: text, messageAuthor: messageAuthor, attachments: attachments);
     
     public static M2ChannelContentCodeDiscussionInReview M2ChannelContentCodeDiscussionInReview(ChannelSpecificDefaults notificationDefaults, CodeDiscussionRecord codeDiscussion, M2ChannelRecord parent, string messageId)
         => new M2ChannelContentCodeDiscussionInReview(notificationDefaults: notificationDefaults, codeDiscussion: codeDiscussion, parent: parent, messageId: messageId);

@@ -103,5 +103,26 @@ public partial class OrganizationClient : ISpaceClient
     
     }
 
+    public JetSaleClient JetSales => new JetSaleClient(_connection);
+    
+    public partial class JetSaleClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public JetSaleClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        public async Task<string> CheckDomainAvailabilityAsync(CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            return await _connection.RequestResourceAsync<string>("GET", $"api/http/organization/jet-sales/url{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+    }
+
 }
 

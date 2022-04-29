@@ -38,8 +38,8 @@ public interface CPrincipalDetails
     public static CAutomationTaskPrincipalDetails CAutomationTaskPrincipalDetails(PRProject project, string name, string id)
         => new CAutomationTaskPrincipalDetails(project: project, name: name, id: id);
     
-    public static CBuiltInServicePrincipalDetails CBuiltInServicePrincipalDetails(string name)
-        => new CBuiltInServicePrincipalDetails(name: name);
+    public static CBuiltInServicePrincipalDetails CBuiltInServicePrincipalDetails(string name, string? key = null)
+        => new CBuiltInServicePrincipalDetails(name: name, key: key);
     
     public static CUserPrincipalDetails CUserPrincipalDetails(TDMemberProfile user)
         => new CUserPrincipalDetails(user: user);

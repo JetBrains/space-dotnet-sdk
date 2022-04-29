@@ -34,10 +34,11 @@ public sealed class ProducerOptions
 {
     public ProducerOptions() { }
     
-    public ProducerOptions(SFUProducerOptions sfuOptions, long userConnectionId, MediaSource source)
+    public ProducerOptions(SFUProducerOptions sfuOptions, long userConnectionId, string routerId, MediaSource source)
     {
         SfuOptions = sfuOptions;
         UserConnectionId = userConnectionId;
+        RouterId = routerId;
         Source = source;
     }
     
@@ -61,6 +62,16 @@ public sealed class ProducerOptions
         set => _userConnectionId.SetValue(value);
     }
 
+    private PropertyValue<string> _routerId = new PropertyValue<string>(nameof(ProducerOptions), nameof(RouterId), "routerId");
+    
+    [Required]
+    [JsonPropertyName("routerId")]
+    public string RouterId
+    {
+        get => _routerId.GetValue(InlineErrors);
+        set => _routerId.SetValue(value);
+    }
+
     private PropertyValue<MediaSource> _source = new PropertyValue<MediaSource>(nameof(ProducerOptions), nameof(Source), "source");
     
     [Required]
@@ -75,6 +86,7 @@ public sealed class ProducerOptions
     {
         _sfuOptions.SetAccessPath(parentChainPath, validateHasBeenSet);
         _userConnectionId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _routerId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _source.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

@@ -34,7 +34,7 @@ public class CalendarsMeetingsPostRequest
 {
     public CalendarsMeetingsPostRequest() { }
     
-    public CalendarsMeetingsPostRequest(string summary, CalendarEventSpec occurrenceRule, List<string>? locations = null, List<string>? profiles = null, List<string>? externalParticipants = null, List<string>? teams = null, MeetingVisibility visibility = MeetingVisibility.EVERYONE, MeetingModificationPreference modificationPreference = MeetingModificationPreference.PARTICIPANTS, MeetingJoiningPreference joiningPreference = MeetingJoiningPreference.NOBODY, bool notifyOnExport = true, string? description = null, string? organizer = null, EventConferenceData? conferenceData = null, List<MeetingAttachment>? attachments = null)
+    public CalendarsMeetingsPostRequest(string summary, CalendarEventSpec occurrenceRule, List<string>? locations = null, List<string>? profiles = null, List<string>? externalParticipants = null, List<string>? teams = null, MeetingVisibility visibility = MeetingVisibility.EVERYONE, MeetingModificationPreference modificationPreference = MeetingModificationPreference.PARTICIPANTS, MeetingJoiningPreference joiningPreference = MeetingJoiningPreference.NOBODY, bool notifyOnExport = true, string? description = null, string? organizer = null, EventConferenceData? conferenceData = null, List<MeetingAttachment>? attachments = null, CalendarIdentifier? calendarId = null)
     {
         Summary = summary;
         Description = description;
@@ -50,6 +50,7 @@ public class CalendarsMeetingsPostRequest
         Organizer = organizer;
         ConferenceData = conferenceData;
         Attachments = attachments;
+        CalendarId = calendarId;
     }
     
     private PropertyValue<string> _summary = new PropertyValue<string>(nameof(CalendarsMeetingsPostRequest), nameof(Summary), "summary");
@@ -192,6 +193,18 @@ public class CalendarsMeetingsPostRequest
         set => _attachments.SetValue(value);
     }
 
+    private PropertyValue<CalendarIdentifier?> _calendarId = new PropertyValue<CalendarIdentifier?>(nameof(CalendarsMeetingsPostRequest), nameof(CalendarId), "calendarId");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("calendarId")]
+    public CalendarIdentifier? CalendarId
+    {
+        get => _calendarId.GetValue(InlineErrors);
+        set => _calendarId.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _summary.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -208,6 +221,7 @@ public class CalendarsMeetingsPostRequest
         _organizer.SetAccessPath(parentChainPath, validateHasBeenSet);
         _conferenceData.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _calendarId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -27,26 +27,26 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationUnfurlTargetsRequestedEventPartialBuilder;
+namespace JetBrains.Space.Client.ApplicationUnfurlTargetWebhookEventPartialBuilder;
 
-public static class ApplicationUnfurlTargetsRequestedEventPartialExtensions
+public static class ApplicationUnfurlTargetWebhookEventPartialExtensions
 {
-    public static Partial<ApplicationUnfurlTargetsRequestedEvent> WithMeta(this Partial<ApplicationUnfurlTargetsRequestedEvent> it)
+    public static Partial<ApplicationUnfurlTargetWebhookEvent> WithMeta(this Partial<ApplicationUnfurlTargetWebhookEvent> it)
         => it.AddFieldName("meta");
     
-    public static Partial<ApplicationUnfurlTargetsRequestedEvent> WithMeta(this Partial<ApplicationUnfurlTargetsRequestedEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
+    public static Partial<ApplicationUnfurlTargetWebhookEvent> WithMeta(this Partial<ApplicationUnfurlTargetWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
         => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
     
-    public static Partial<ApplicationUnfurlTargetsRequestedEvent> WithApplication(this Partial<ApplicationUnfurlTargetsRequestedEvent> it)
+    public static Partial<ApplicationUnfurlTargetWebhookEvent> WithApplication(this Partial<ApplicationUnfurlTargetWebhookEvent> it)
         => it.AddFieldName("application");
     
-    public static Partial<ApplicationUnfurlTargetsRequestedEvent> WithApplication(this Partial<ApplicationUnfurlTargetsRequestedEvent> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
+    public static Partial<ApplicationUnfurlTargetWebhookEvent> WithApplication(this Partial<ApplicationUnfurlTargetWebhookEvent> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
         => it.AddFieldName("application", partialBuilder(new Partial<ESApp>(it)));
     
-    public static Partial<ApplicationUnfurlTargetsRequestedEvent> WithTarget(this Partial<ApplicationUnfurlTargetsRequestedEvent> it)
+    public static Partial<ApplicationUnfurlTargetWebhookEvent> WithTarget(this Partial<ApplicationUnfurlTargetWebhookEvent> it)
         => it.AddFieldName("target");
     
-    public static Partial<ApplicationUnfurlTargetsRequestedEvent> WithTarget(this Partial<ApplicationUnfurlTargetsRequestedEvent> it, Func<Partial<ApplicationUnfurlTarget>, Partial<ApplicationUnfurlTarget>> partialBuilder)
+    public static Partial<ApplicationUnfurlTargetWebhookEvent> WithTarget(this Partial<ApplicationUnfurlTargetWebhookEvent> it, Func<Partial<ApplicationUnfurlTarget>, Partial<ApplicationUnfurlTarget>> partialBuilder)
         => it.AddFieldName("target", partialBuilder(new Partial<ApplicationUnfurlTarget>(it)));
     
 }

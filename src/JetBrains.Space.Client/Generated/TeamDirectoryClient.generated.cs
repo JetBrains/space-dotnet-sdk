@@ -2231,6 +2231,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// <summary>
             /// Create a new checklist associated with the profile
             /// </summary>
+            [Obsolete("Use POST on team-directory/profiles/{profile}/documents (since 2022-04-08) (will be removed in a future version)")]
             public async Task<Checklist> CreateChecklistAsync(ProfileIdentifier profile, string name, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -2249,6 +2250,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// The items with the same indent level will be placed one under the other.
             /// An issue URL will be converted into the corresponding issue.
             /// </summary>
+            [Obsolete("Use POST on team-directory/profiles/{profile}/documents (since 2022-04-08) (will be removed in a future version)")]
             public async Task<Checklist> ImportChecklistAsync(ProfileIdentifier profile, string name, string tabIndentedLines, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -2284,6 +2286,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// <summary>
             /// Get all existing checklists associated with the profile
             /// </summary>
+            [Obsolete("Use GET team-directory/profiles/{profile}/documents/folders/{folder}/documents (since 2022-04-08) (will be removed in a future version)")]
             public async Task<List<Checklist>> GetAllChecklistsAsync(ProfileIdentifier profile, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -2296,6 +2299,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// <summary>
             /// Update an existing checklist associated with the profile
             /// </summary>
+            [Obsolete("Use PATCH on team-directory/profiles/{profile}/documents/{documentId} (since 2022-04-08) (will be removed in a future version)")]
             public async Task UpdateChecklistAsync(ProfileIdentifier profile, string checklistId, string? name = null, string? description = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -2312,6 +2316,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// <summary>
             /// Delete an existing checklist associated with the profile
             /// </summary>
+            [Obsolete("Use DELETE on profiles/{profile}/documents/{documentId} (since 2022-04-08) (will be removed in a future version)")]
             public async Task DeleteChecklistAsync(ProfileIdentifier profile, string checklistId, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -2334,6 +2339,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// <summary>
                 /// Get all starred checklists associated with the profile
                 /// </summary>
+                [Obsolete("[SPACE-13768]: Not implemented yet (since 2022-04-08) (will be removed in a future version)")]
                 public async Task<List<Checklist>> GetAllStarredChecklistsAsync(ProfileIdentifier profile, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();

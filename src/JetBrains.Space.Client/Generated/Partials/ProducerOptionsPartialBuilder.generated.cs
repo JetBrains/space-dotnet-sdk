@@ -40,6 +40,9 @@ public static class ProducerOptionsPartialExtensions
     public static Partial<ProducerOptions> WithUserConnectionId(this Partial<ProducerOptions> it)
         => it.AddFieldName("userConnectionId");
     
+    public static Partial<ProducerOptions> WithRouterId(this Partial<ProducerOptions> it)
+        => it.AddFieldName("routerId");
+    
     public static Partial<ProducerOptions> WithSource(this Partial<ProducerOptions> it)
         => it.AddFieldName("source");
     

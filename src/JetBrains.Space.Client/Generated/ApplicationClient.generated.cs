@@ -555,6 +555,14 @@ public partial class ApplicationClient : ISpaceClient
             /// <summary>
             /// Provide Space with unfurls content. Method is to be called by the application providing unfurls.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Provide external unfurls as attachments</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<List<PostUnfurlContentResult>> PostUnfurlsContentAsync(List<ApplicationUnfurl> unfurls, Func<Partial<PostUnfurlContentResult>, Partial<PostUnfurlContentResult>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -571,6 +579,14 @@ public partial class ApplicationClient : ISpaceClient
             /// <summary>
             /// Request user to authenticate in external system to provide unfurls from it. Method is to be called by the application providing unfurls.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Provide external unfurls as attachments</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task RequestExternalSystemAuthenticationAsync(string queueItemId, ApplicationUnfurlContentMessage message, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -587,6 +603,14 @@ public partial class ApplicationClient : ISpaceClient
             /// <summary>
             /// Clear all external system authentication requests for the specified user. Method is to be called by the application providing unfurls.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Provide external unfurls as attachments</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task ClearExternalSystemAuthenticationRequestsAsync(ProfileIdentifier userId, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -602,6 +626,14 @@ public partial class ApplicationClient : ISpaceClient
             /// <summary>
             /// Get links for unfurling by the application. Method is to be called by the application providing unfurls.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Provide external unfurls as attachments</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<List<ApplicationUnfurlQueueItem>> GetUnfurlQueueItemsAsync(int batchSize, long? fromEtag = null, Func<Partial<ApplicationUnfurlQueueItem>, Partial<ApplicationUnfurlQueueItem>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();

@@ -50,8 +50,8 @@ public interface WebhookEvent
     public static ApplicationUnfurlQueueItemsCreatedEvent ApplicationUnfurlQueueItemsCreatedEvent()
         => new ApplicationUnfurlQueueItemsCreatedEvent();
     
-    public static ApplicationUnfurlTargetsRequestedEvent ApplicationUnfurlTargetsRequestedEvent(KMetaMod meta, ESApp application, ApplicationUnfurlTarget target)
-        => new ApplicationUnfurlTargetsRequestedEvent(meta: meta, application: application, target: target);
+    public static ApplicationUnfurlTargetWebhookEvent ApplicationUnfurlTarget(KMetaMod meta, ESApp application, ApplicationUnfurlTarget target)
+        => new ApplicationUnfurlTargetWebhookEvent(meta: meta, application: application, target: target);
     
     public static ApplicationWebhookEvent Application(KMetaMod meta, ESApp application, bool clientIdChanged, bool clientSecretChanged, bool verificationTokenChanged, bool signingKeyChanged, Modification<string>? name = null, Modification<TDMemberProfile>? owner = null, Modification<bool>? archived = null, Modification<string>? endpointURI = null)
         => new ApplicationWebhookEvent(meta: meta, application: application, clientIdChanged: clientIdChanged, clientSecretChanged: clientSecretChanged, verificationTokenChanged: verificationTokenChanged, signingKeyChanged: signingKeyChanged, name: name, owner: owner, archived: archived, endpointURI: endpointURI);
@@ -67,6 +67,9 @@ public interface WebhookEvent
     
     public static CodeReviewWebhookEvent CodeReview(ProjectKey projectKey, string repository, string reviewId, string title, bool isMergeRequest)
         => new CodeReviewWebhookEvent(projectKey: projectKey, repository: repository, reviewId: reviewId, title: title, isMergeRequest: isMergeRequest);
+    
+    public static DeploymentWebhookEvent Deployment(KMetaMod meta, string projectKey, string targetId, string deploymentId, Modification<DeploymentStatus>? statusMod = null)
+        => new DeploymentWebhookEvent(meta: meta, projectKey: projectKey, targetId: targetId, deploymentId: deploymentId, statusMod: statusMod);
     
     public static DocumentEditorsChangedEvent DocumentEditorsChangedEvent(KMetaMod meta, string document)
         => new DocumentEditorsChangedEvent(meta: meta, document: document);

@@ -34,7 +34,7 @@ public sealed class Meeting
 {
     public Meeting() { }
     
-    public Meeting(string id, bool archived, string summary, List<TDLocation> locations, List<TDMemberProfile> profiles, List<TDTeam> teams, CalendarEventSpec occurrenceRule, MeetingOrigin origin, MeetingVisibility visibility, MeetingModificationPreference modificationPreference, long etag, bool privateDataSubstituted, bool canModify, bool canDelete, bool canJoin, List<string> externalParticipants, string? description = null, string? conferenceLink = null, MeetingJoiningPreference? joiningPreference = null, MeetingOrganizer? organizer = null, string? linkToExternalSource = null, List<MeetingAttachment>? eventAttachments = null, EventConferenceData? conferenceData = null, M2ChannelRecord? channelRef = null, EventExternalSource? externalSource = null)
+    public Meeting(string id, bool archived, string summary, List<TDLocation> locations, List<TDMemberProfile> profiles, List<TDTeam> teams, CalendarEventSpec occurrenceRule, MeetingOrigin origin, MeetingVisibility visibility, MeetingModificationPreference modificationPreference, long etag, bool privateDataSubstituted, bool canModify, bool canDelete, bool canJoin, List<string> externalParticipants, string? description = null, string? conferenceLink = null, MeetingJoiningPreference? joiningPreference = null, MeetingOrganizer? organizer = null, string? linkToExternalSource = null, List<MeetingAttachment>? eventAttachments = null, EventConferenceData? conferenceData = null, M2ChannelRecord? channelRef = null, EventExternalSource? externalSource = null, CalendarInfo? calendar = null, bool? canLeaveOrRsvp = null)
     {
         Id = id;
         IsArchived = archived;
@@ -61,6 +61,8 @@ public sealed class Meeting
         ConferenceData = conferenceData;
         ChannelRef = channelRef;
         ExternalSource = externalSource;
+        Calendar = calendar;
+        CanLeaveOrRsvp = canLeaveOrRsvp;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(Meeting), nameof(Id), "id");
@@ -306,6 +308,24 @@ public sealed class Meeting
         set => _externalSource.SetValue(value);
     }
 
+    private PropertyValue<CalendarInfo?> _calendar = new PropertyValue<CalendarInfo?>(nameof(Meeting), nameof(Calendar), "calendar");
+    
+    [JsonPropertyName("calendar")]
+    public CalendarInfo? Calendar
+    {
+        get => _calendar.GetValue(InlineErrors);
+        set => _calendar.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _canLeaveOrRsvp = new PropertyValue<bool?>(nameof(Meeting), nameof(CanLeaveOrRsvp), "canLeaveOrRsvp");
+    
+    [JsonPropertyName("canLeaveOrRsvp")]
+    public bool? CanLeaveOrRsvp
+    {
+        get => _canLeaveOrRsvp.GetValue(InlineErrors);
+        set => _canLeaveOrRsvp.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -333,6 +353,8 @@ public sealed class Meeting
         _conferenceData.SetAccessPath(parentChainPath, validateHasBeenSet);
         _channelRef.SetAccessPath(parentChainPath, validateHasBeenSet);
         _externalSource.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _calendar.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _canLeaveOrRsvp.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

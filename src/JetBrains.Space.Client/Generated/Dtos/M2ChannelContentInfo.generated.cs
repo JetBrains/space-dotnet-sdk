@@ -35,6 +35,12 @@ public interface M2ChannelContentInfo
     public static BillingFeedChannel BillingFeedChannel(ChannelSpecificDefaults? notificationDefaults = null)
         => new BillingFeedChannel(notificationDefaults: notificationDefaults);
     
+    public static DeploymentM2ChannelInfo DeploymentM2ChannelInfo(ChannelSpecificDefaults notificationDefaults, DeploymentRecord deployment, PRProject? project = null)
+        => new DeploymentM2ChannelInfo(notificationDefaults: notificationDefaults, deployment: deployment, project: project);
+    
+    public static DeploymentTargetM2ChannelInfo DeploymentTargetM2ChannelInfo(ChannelSpecificDefaults notificationDefaults, DeployTargetRecord deployTarget, PRProject project)
+        => new DeploymentTargetM2ChannelInfo(notificationDefaults: notificationDefaults, deployTarget: deployTarget, project: project);
+    
     public static M2ChannelAutomationJobFeedInfo M2ChannelAutomationJobFeedInfo(JobSubscription jobSubscription, string jobName, ChannelSpecificDefaults notificationDefaults, string? repoName = null)
         => new M2ChannelAutomationJobFeedInfo(jobSubscription: jobSubscription, jobName: jobName, notificationDefaults: notificationDefaults, repoName: repoName);
     

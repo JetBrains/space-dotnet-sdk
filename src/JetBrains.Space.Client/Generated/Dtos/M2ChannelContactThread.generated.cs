@@ -37,7 +37,7 @@ public sealed class M2ChannelContactThread
     
     public M2ChannelContactThread() { }
     
-    public M2ChannelContactThread(M2ChannelRecord parent, string? text = null, string? messageId = null, CPrincipal? messageAuthor = null, string? attachments = null)
+    public M2ChannelContactThread(M2ChannelRecord parent, string messageId, string? text = null, CPrincipal? messageAuthor = null, string? attachments = null)
     {
         Parent = parent;
         Text = text;
@@ -65,10 +65,11 @@ public sealed class M2ChannelContactThread
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<string?> _messageId = new PropertyValue<string?>(nameof(M2ChannelContactThread), nameof(MessageId), "messageId");
+    private PropertyValue<string> _messageId = new PropertyValue<string>(nameof(M2ChannelContactThread), nameof(MessageId), "messageId");
     
+    [Required]
     [JsonPropertyName("messageId")]
-    public string? MessageId
+    public string MessageId
     {
         get => _messageId.GetValue(InlineErrors);
         set => _messageId.SetValue(value);

@@ -37,9 +37,10 @@ public sealed class CBuiltInServicePrincipalDetails
     
     public CBuiltInServicePrincipalDetails() { }
     
-    public CBuiltInServicePrincipalDetails(string name)
+    public CBuiltInServicePrincipalDetails(string name, string? key = null)
     {
         Name = name;
+        Key = key;
     }
     
     private PropertyValue<string> _name = new PropertyValue<string>(nameof(CBuiltInServicePrincipalDetails), nameof(Name), "name");
@@ -52,9 +53,19 @@ public sealed class CBuiltInServicePrincipalDetails
         set => _name.SetValue(value);
     }
 
+    private PropertyValue<string?> _key = new PropertyValue<string?>(nameof(CBuiltInServicePrincipalDetails), nameof(Key), "key");
+    
+    [JsonPropertyName("key")]
+    public string? Key
+    {
+        get => _key.GetValue(InlineErrors);
+        set => _key.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _key.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />
