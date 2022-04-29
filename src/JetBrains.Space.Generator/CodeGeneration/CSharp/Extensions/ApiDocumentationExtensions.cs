@@ -35,7 +35,10 @@ public static class ApiDocumentationExtensions
         var line = reader.ReadLine();
         while (line != null)
         {
-            builder.AppendLine("/// " + line);
+            builder.AppendLine("/// " + line
+                .Replace("<", "&lt;")
+                .Replace(">", "&gt;"));
+            
             line = reader.ReadLine();
         }
 

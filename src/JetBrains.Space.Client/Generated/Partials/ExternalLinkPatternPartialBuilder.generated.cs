@@ -44,7 +44,7 @@ public static class ExternalLinkPatternPartialExtensions
         => it.AddFieldName("prefix");
     
     /// <summary>
-    /// URL of the external resource ending with *<?>* which is a variable for a number that follows the prefix
+    /// URL of the external resource ending with *&lt;?&gt;* which is a variable for a number that follows the prefix
     /// </summary>
     public static Partial<ExternalLinkPattern> WithLinkReplacement(this Partial<ExternalLinkPattern> it)
         => it.AddFieldName("linkReplacement");

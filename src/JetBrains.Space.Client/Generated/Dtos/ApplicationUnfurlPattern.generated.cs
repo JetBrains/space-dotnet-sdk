@@ -59,9 +59,9 @@ public sealed class ApplicationUnfurlPattern
     private PropertyValue<string> _linkReplacement = new PropertyValue<string>(nameof(ApplicationUnfurlPattern), nameof(LinkReplacement), "linkReplacement");
     
     /// <summary>
-    /// URL of the external resource ending with *<?>* which is a variable for a number that follows the prefix.
+    /// URL of the external resource ending with *&lt;?&gt;* which is a variable for a number that follows the prefix.
     /// 
-    /// If the specified prefix should be a part of the URL, include it before *<?>*.
+    /// If the specified prefix should be a part of the URL, include it before *&lt;?&gt;*.
     /// </summary>
     [Required]
     [JsonPropertyName("linkReplacement")]

@@ -56,7 +56,7 @@ public class ExternalLinkPatternsPostRequest
     private PropertyValue<string> _linkReplacement = new PropertyValue<string>(nameof(ExternalLinkPatternsPostRequest), nameof(LinkReplacement), "linkReplacement");
     
     /// <summary>
-    /// URL of the external resource ending with *<?>* which is a variable for a number that follows the prefix
+    /// URL of the external resource ending with *&lt;?&gt;* which is a variable for a number that follows the prefix
     /// </summary>
     [Required]
     [JsonPropertyName("linkReplacement")]
