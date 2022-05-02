@@ -36,6 +36,29 @@ job("Build and publish to NuGet.org (manual)") {
         gitPush { enabled = false } // disable the default gitPush trigger
     }
     
+    container("Initiate Space deployment", image = "openjdk:11") {
+        resources {
+            cpu = 1.cpu
+            memory = 512.mb
+        }
+        
+        kotlinScript { api ->
+            api.space().projects.automation.deployments.start(
+                project = api.projectIdentifier(),
+                targetIdentifier = TargetIdentifier.Key("nuget"),
+                version = api.executionNumber().toString(),
+                commitRefs = listOf(
+                    DeploymentCommitReference(
+                        repositoryName = "SpaceDotNet",
+                        branch = api.gitBranch(),
+                        commit = api.gitRevision()
+                    )
+                ),
+                syncWithAutomationJob = true
+            )
+        }
+    }
+    
     container("mcr.microsoft.com/dotnet/sdk:6.0") {
         resources {
             cpu = 2.cpu
