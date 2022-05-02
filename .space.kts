@@ -38,7 +38,7 @@ job("Build and publish to NuGet.org (manual)") {
     
     container("Initiate Space deployment", image = "openjdk:11") {
         resources {
-            cpu = 1.cpu
+            cpu = 0.5.cpu
             memory = 512.mb
         }
         
@@ -47,13 +47,6 @@ job("Build and publish to NuGet.org (manual)") {
                 project = api.projectIdentifier(),
                 targetIdentifier = TargetIdentifier.Key("nuget"),
                 version = api.executionNumber().toString(),
-                commitRefs = listOf(
-                    DeploymentCommitReference(
-                        repositoryName = "SpaceDotNet",
-                        branch = api.gitBranch(),
-                        commit = api.gitRevision()
-                    )
-                ),
                 syncWithAutomationJob = true
             )
         }
