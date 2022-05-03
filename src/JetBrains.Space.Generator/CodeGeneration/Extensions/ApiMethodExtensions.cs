@@ -5,30 +5,19 @@ namespace JetBrains.Space.Generator.CodeGeneration.Extensions;
 
 public static class ApiMethodExtensions
 {
-    public static string ToHttpMethod(this ApiMethod current)
-    {
-        if (current == ApiMethod.HTTP_GET)
-            return "GET";
-        if (current == ApiMethod.HTTP_POST)
-            return "POST";
-        if (current == ApiMethod.HTTP_PATCH)
-            return "PATCH";
-        if (current == ApiMethod.HTTP_PUT)
-            return "PUT";
-        if (current == ApiMethod.HTTP_DELETE)
-            return "DELETE";
-            
-        if (current == ApiMethod.REST_QUERY)
-            return "GET";         
-        if (current == ApiMethod.REST_GET)
-            return "GET";
-        if (current == ApiMethod.REST_CREATE)
-            return "POST";
-        if (current == ApiMethod.REST_UPDATE)
-            return "PATCH";
-        if (current == ApiMethod.REST_DELETE)
-            return "DELETE";
-            
-        throw new ArgumentOutOfRangeException(nameof(current), current, null);
-    }
+    public static string ToHttpMethod(this ApiMethod current) =>
+        current switch
+        {
+            ApiMethod.HTTP_GET => "GET",
+            ApiMethod.HTTP_POST => "POST",
+            ApiMethod.HTTP_PATCH => "PATCH",
+            ApiMethod.HTTP_PUT => "PUT",
+            ApiMethod.HTTP_DELETE => "DELETE",
+            ApiMethod.REST_QUERY => "GET",
+            ApiMethod.REST_GET => "GET",
+            ApiMethod.REST_CREATE => "POST",
+            ApiMethod.REST_UPDATE => "PATCH",
+            ApiMethod.REST_DELETE => "DELETE",
+            _ => throw new ArgumentOutOfRangeException(nameof(current), current, null)
+        };
 }

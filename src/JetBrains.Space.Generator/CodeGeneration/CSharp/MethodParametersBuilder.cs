@@ -12,7 +12,7 @@ public class MethodParametersBuilder
         public string Type { get; }
         public string Name { get; }
         public string? DefaultValue { get; }
-        public string? Documentation { get; set; }
+        public string? Documentation { get; }
 
         public MethodParameter(string type, string name, string? defaultValue, string? documentation)
         {

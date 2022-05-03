@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -9,7 +8,7 @@ using JetBrains.Space.Common;
 
 namespace JetBrains.Space.Samples.CommandLine;
 
-public class Program
+public static class Program
 {
     // ReSharper disable once UnusedParameter.Local
     public static async Task Main()

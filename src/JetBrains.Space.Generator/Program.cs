@@ -13,7 +13,7 @@ using JetBrains.Space.Generator.Model.HttpApi;
 
 namespace JetBrains.Space.Generator;
 
-public class Program
+public static class Program
 {
     private const string OutputPath = "../../../../JetBrains.Space.Client/Generated/";
     private const string SdkInfoOutputPath = "../../../../JetBrains.Space.Common/Generated/";

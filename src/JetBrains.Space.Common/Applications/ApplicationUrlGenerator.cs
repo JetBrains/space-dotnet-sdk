@@ -49,10 +49,10 @@ public static class ApplicationUrlGenerator
         switch (authForMessagesFromSpace)
         {
             case AuthForMessagesFromSpace.PublicKeySignature:
-                builder.Query += $"&has-public-key-signature=true";
+                builder.Query += "&has-public-key-signature=true";
                 break;
             case AuthForMessagesFromSpace.SigningKey:
-                builder.Query += $"&has-signing-key=true";
+                builder.Query += "&has-signing-key=true";
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(authForMessagesFromSpace), authForMessagesFromSpace, "Unknown authentication option");
