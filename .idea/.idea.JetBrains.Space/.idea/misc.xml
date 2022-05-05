@@ -1,8 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="SwUserDefinedSpecifications">
-    <option name="specTypeByUrl">
-      <map />
+  <component name="UnattendedHostPersistenceState">
+    <option name="openedFilesInfos">
+      <list>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="0" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/README.md" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="265" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/.space/devfile.yml" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="855" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/build/Build.cs" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="201" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/build.cmd" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="848" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/build.ps1" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="1807" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/.space.kts" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="12" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/dev-env-warmup.sh" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="fileUrl" value="mock:///DiffPreview" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="300" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/.space/Dockerfile" />
+        </OpenedFileInfo>
+      </list>
     </option>
   </component>
   <component name="com.jetbrains.rider.android.RiderAndroidMiscFileCreationComponent">

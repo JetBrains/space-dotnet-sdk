@@ -22,6 +22,7 @@ ProjectSection(SolutionItems) = preProject
 	global.json = global.json
 	version-info.txt = version-info.txt
 	CODEOWNERS = CODEOWNERS
+	dev-env-warmup.sh = dev-env-warmup.sh
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JetBrains.Space.AspNetCore.Authentication", "src\JetBrains.Space.AspNetCore.Authentication\JetBrains.Space.AspNetCore.Authentication.csproj", "{5A9D31CA-EC29-469C-B2E9-551151ACD2F0}"
@@ -46,6 +47,12 @@ ProjectSection(SolutionItems) = preProject
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JetBrains.Space.Common.Tests", "tests\JetBrains.Space.Common.Tests\JetBrains.Space.Common.Tests.csproj", "{572A10FA-DA8F-4276-9070-A16B2A02DFE2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".space", ".space", "{EEC03935-4377-4CC8-BB7D-2E50A74DDE8A}"
+	ProjectSection(SolutionItems) = preProject
+		.space\devfile.yml = .space\devfile.yml
+		.space\Dockerfile = .space\Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -104,5 +111,6 @@ Global
 		{AF5AD74B-2C0B-4632-B1F6-217C17B14F87} = {1E220DAF-BE55-4503-9372-FF930F4225BC}
 		{5106E67A-DDFE-4728-812F-7FEDEE6533D5} = {0E5096B8-C938-4581-A331-C92F8F058219}
 		{572A10FA-DA8F-4276-9070-A16B2A02DFE2} = {2000A623-CF3C-42E8-A6C0-745EC1263779}
+		{EEC03935-4377-4CC8-BB7D-2E50A74DDE8A} = {0E5096B8-C938-4581-A331-C92F8F058219}
 	EndGlobalSection
 EndGlobal

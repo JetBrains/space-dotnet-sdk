@@ -5,3 +5,9 @@ attributes:
     editor:
       type: Rider
     projectRoot: JetBrains.Space.sln
+components:
+  - name: image-build
+    image:
+      imageName: spacedotnet-rd:latest
+      dockerfile:
+        uri: .space/Dockerfile
