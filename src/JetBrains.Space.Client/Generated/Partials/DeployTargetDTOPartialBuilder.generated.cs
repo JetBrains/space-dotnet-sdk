@@ -64,5 +64,11 @@ public static class DeployTargetDTOPartialExtensions
     public static Partial<DeployTargetDTO> WithNext(this Partial<DeployTargetDTO> it, Func<Partial<DeploymentInfo>, Partial<DeploymentInfo>> partialBuilder)
         => it.AddFieldName("next", partialBuilder(new Partial<DeploymentInfo>(it)));
     
+    public static Partial<DeployTargetDTO> WithConnectedChannel(this Partial<DeployTargetDTO> it)
+        => it.AddFieldName("connectedChannel");
+    
+    public static Partial<DeployTargetDTO> WithConnectedChannel(this Partial<DeployTargetDTO> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
+        => it.AddFieldName("connectedChannel", partialBuilder(new Partial<M2ChannelRecord>(it)));
+    
 }
 

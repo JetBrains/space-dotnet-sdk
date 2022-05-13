@@ -37,7 +37,7 @@ public sealed class ProfileOrganizationEvent
     
     public ProfileOrganizationEvent() { }
     
-    public ProfileOrganizationEvent(KMetaMod meta, TDMemberProfile member, bool? joinedOrganization = null, bool? leftOrganization = null)
+    public ProfileOrganizationEvent(KMetaMod meta, TDMemberProfile member, bool joinedOrganization, bool leftOrganization)
     {
         Meta = meta;
         Member = member;
@@ -65,19 +65,21 @@ public sealed class ProfileOrganizationEvent
         set => _member.SetValue(value);
     }
 
-    private PropertyValue<bool?> _joinedOrganization = new PropertyValue<bool?>(nameof(ProfileOrganizationEvent), nameof(IsJoinedOrganization), "joinedOrganization");
+    private PropertyValue<bool> _joinedOrganization = new PropertyValue<bool>(nameof(ProfileOrganizationEvent), nameof(IsJoinedOrganization), "joinedOrganization");
     
+    [Required]
     [JsonPropertyName("joinedOrganization")]
-    public bool? IsJoinedOrganization
+    public bool IsJoinedOrganization
     {
         get => _joinedOrganization.GetValue(InlineErrors);
         set => _joinedOrganization.SetValue(value);
     }
 
-    private PropertyValue<bool?> _leftOrganization = new PropertyValue<bool?>(nameof(ProfileOrganizationEvent), nameof(IsLeftOrganization), "leftOrganization");
+    private PropertyValue<bool> _leftOrganization = new PropertyValue<bool>(nameof(ProfileOrganizationEvent), nameof(IsLeftOrganization), "leftOrganization");
     
+    [Required]
     [JsonPropertyName("leftOrganization")]
-    public bool? IsLeftOrganization
+    public bool IsLeftOrganization
     {
         get => _leftOrganization.GetValue(InlineErrors);
         set => _leftOrganization.SetValue(value);

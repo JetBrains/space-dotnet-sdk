@@ -34,13 +34,22 @@ public sealed class TypographySettings
 {
     public TypographySettings() { }
     
-    public TypographySettings(bool? fontLigaturesInCodeSnippets = null, bool? fontLigaturesInGeneralText = null, bool? limitLineLengthInChatMessages = null)
+    public TypographySettings(bool? fontLigaturesInRegularText = null, bool? fontLigaturesInCodeSnippets = null, bool? limitLineLengthInChatMessages = null)
     {
+        IsFontLigaturesInRegularText = fontLigaturesInRegularText;
         IsFontLigaturesInCodeSnippets = fontLigaturesInCodeSnippets;
-        IsFontLigaturesInGeneralText = fontLigaturesInGeneralText;
         IsLimitLineLengthInChatMessages = limitLineLengthInChatMessages;
     }
     
+    private PropertyValue<bool?> _fontLigaturesInRegularText = new PropertyValue<bool?>(nameof(TypographySettings), nameof(IsFontLigaturesInRegularText), "fontLigaturesInRegularText");
+    
+    [JsonPropertyName("fontLigaturesInRegularText")]
+    public bool? IsFontLigaturesInRegularText
+    {
+        get => _fontLigaturesInRegularText.GetValue(InlineErrors);
+        set => _fontLigaturesInRegularText.SetValue(value);
+    }
+
     private PropertyValue<bool?> _fontLigaturesInCodeSnippets = new PropertyValue<bool?>(nameof(TypographySettings), nameof(IsFontLigaturesInCodeSnippets), "fontLigaturesInCodeSnippets");
     
     [JsonPropertyName("fontLigaturesInCodeSnippets")]
@@ -48,15 +57,6 @@ public sealed class TypographySettings
     {
         get => _fontLigaturesInCodeSnippets.GetValue(InlineErrors);
         set => _fontLigaturesInCodeSnippets.SetValue(value);
-    }
-
-    private PropertyValue<bool?> _fontLigaturesInGeneralText = new PropertyValue<bool?>(nameof(TypographySettings), nameof(IsFontLigaturesInGeneralText), "fontLigaturesInGeneralText");
-    
-    [JsonPropertyName("fontLigaturesInGeneralText")]
-    public bool? IsFontLigaturesInGeneralText
-    {
-        get => _fontLigaturesInGeneralText.GetValue(InlineErrors);
-        set => _fontLigaturesInGeneralText.SetValue(value);
     }
 
     private PropertyValue<bool?> _limitLineLengthInChatMessages = new PropertyValue<bool?>(nameof(TypographySettings), nameof(IsLimitLineLengthInChatMessages), "limitLineLengthInChatMessages");
@@ -70,8 +70,8 @@ public sealed class TypographySettings
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
+        _fontLigaturesInRegularText.SetAccessPath(parentChainPath, validateHasBeenSet);
         _fontLigaturesInCodeSnippets.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _fontLigaturesInGeneralText.SetAccessPath(parentChainPath, validateHasBeenSet);
         _limitLineLengthInChatMessages.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

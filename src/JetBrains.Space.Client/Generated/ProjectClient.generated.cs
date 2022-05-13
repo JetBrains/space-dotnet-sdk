@@ -1210,7 +1210,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task UpdateBoardAsync(BoardIdentifier board, string? name = null, string? description = null, string? swimlaneKey = null, BoardColumns? columns = null, List<string>? memberOwners = null, List<string>? teamOwners = null, CancellationToken cancellationToken = default)
+            public async Task UpdateBoardAsync(BoardIdentifier board, string? name = null, string? description = null, string? swimlaneKey = null, BoardColumns? columns = null, List<BoardIssueInputField>? issueFields = null, List<string>? memberOwners = null, List<string>? teamOwners = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -1221,6 +1221,7 @@ public partial class ProjectClient : ISpaceClient
                         Description = description,
                         SwimlaneKey = swimlaneKey,
                         Columns = columns,
+                        IssueFields = issueFields,
                         MemberOwners = memberOwners,
                         TeamOwners = teamOwners,
                     }, cancellationToken);
@@ -2779,6 +2780,178 @@ public partial class ProjectClient : ISpaceClient
             return await _connection.RequestResourceAsync<List<PRPrivateProject>>("GET", $"api/http/projects/private-projects{queryParameters.ToQueryString()}", cancellationToken);
         }
         
+    
+    }
+
+    public RepositoryClient Repositories => new RepositoryClient(_connection);
+    
+    public partial class RepositoryClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public RepositoryClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        public FindClient Find => new FindClient(_connection);
+        
+        public partial class FindClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public FindClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<Batch<RepositoryDetails>> GetAllFindAsync(string term, string? skip = null, int? top = 100, Func<Partial<Batch<RepositoryDetails>>, Partial<Batch<RepositoryDetails>>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                queryParameters.Append("term", term);
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<RepositoryDetails>>()) : Partial<Batch<RepositoryDetails>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<RepositoryDetails>>("GET", $"api/http/projects/repositories/find{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+            
+            public IAsyncEnumerable<RepositoryDetails> GetAllFindAsyncEnumerable(string term, string? skip = null, int? top = 100, Func<Partial<RepositoryDetails>, Partial<RepositoryDetails>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllFindAsync(term: term, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<RepositoryDetails>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<RepositoryDetails>.Default())), skip, cancellationToken);
+        
+        }
+    
+    }
+
+    public partial class RepositoryClient : ISpaceClient
+    {
+        public async Task<PRRepositoryInfo> CreateNewRepositoryAsync(ProjectIdentifier project, string repository, string description = "", bool initialize = true, bool defaultSetup = false, string? defaultBranch = null, Func<Partial<PRRepositoryInfo>, Partial<PRRepositoryInfo>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRRepositoryInfo>()) : Partial<PRRepositoryInfo>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryPostRequest, PRRepositoryInfo>("POST", $"api/http/projects/{project}/repositories/{repository}{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectRepositoriesForRepositoryPostRequest
+                { 
+                    Description = description,
+                    DefaultBranch = defaultBranch,
+                    IsInitialize = initialize,
+                    IsDefaultSetup = defaultSetup,
+                }, cancellationToken);
+        }
+        
+    
+        public async Task<GitCommitResult> CommitAsync(string project, string repository, string baseCommit, string targetBranch, string commitMessage, List<GitCommitFileRequest> files, Func<Partial<GitCommitResult>, Partial<GitCommitResult>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitCommitResult>()) : Partial<GitCommitResult>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest, GitCommitResult>("POST", $"api/http/projects/{project}/repositories/{repository}/commit{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectRepositoriesForRepositoryCommitPostRequest
+                { 
+                    BaseCommit = baseCommit,
+                    TargetBranch = targetBranch,
+                    CommitMessage = commitMessage,
+                    Files = files,
+                }, cancellationToken);
+        }
+        
+    
+        public async Task GcAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/gc{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public async Task<Batch<GitCommitInfo>> CommitsAsync(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<GitCommitInfo>>, Partial<Batch<GitCommitInfo>>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            if (skip != null) queryParameters.Append("$skip", skip);
+            if (top != null) queryParameters.Append("$top", top?.ToString());
+            if (query != null) queryParameters.Append("query", query);
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<GitCommitInfo>>()) : Partial<Batch<GitCommitInfo>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<Batch<GitCommitInfo>>("GET", $"api/http/projects/{project}/repositories/{repository}/commits{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+        
+        public IAsyncEnumerable<GitCommitInfo> CommitsAsyncEnumerable(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => CommitsAsync(project: project, repository: repository, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<GitCommitInfo>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<GitCommitInfo>.Default())), skip, cancellationToken);
+    
+        public async Task<RepositoryUrls> UrlAsync(ProjectIdentifier project, string repository, Func<Partial<RepositoryUrls>, Partial<RepositoryUrls>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<RepositoryUrls>()) : Partial<RepositoryUrls>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<RepositoryUrls>("GET", $"api/http/projects/{project}/repositories/{repository}/url{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public async Task DeleteRepositoryAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/repositories/{repository}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        public RevisionClient Revisions => new RevisionClient(_connection);
+        
+        public partial class RevisionClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public RevisionClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public ExternalCheckClient ExternalChecks => new ExternalCheckClient(_connection);
+            
+            public partial class ExternalCheckClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public ExternalCheckClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task ReportExternalCheckStatusAsync(ProjectIdentifier project, string repository, string revision, CommitExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, string? branch = null, List<string>? changes = null, long? timestamp = null, string? description = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/external-checks{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest
+                        { 
+                            Branch = branch,
+                            Changes = changes,
+                            ExecutionStatus = executionStatus,
+                            Url = url,
+                            ExternalServiceName = externalServiceName,
+                            TaskName = taskName,
+                            TaskId = taskId,
+                            Timestamp = timestamp,
+                            Description = description,
+                        }, cancellationToken);
+                }
+                
+            
+                public async Task<List<ExternalCheckDTO>> GetExternalChecksForACommitAsync(ProjectIdentifier project, string repository, string revision, Func<Partial<ExternalCheckDTO>, Partial<ExternalCheckDTO>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<ExternalCheckDTO>()) : Partial<ExternalCheckDTO>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<ExternalCheckDTO>>("GET", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/external-checks{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+        }
     
     }
 
@@ -5332,146 +5505,6 @@ public partial class ProjectClient : ISpaceClient
                 return await _connection.RequestResourceAsync<List<PackageType>>("GET", $"api/http/projects/{project}/packages/types{queryParameters.ToQueryString()}", cancellationToken);
             }
             
-        
-        }
-    
-    }
-
-    public RepositoryClient Repositories => new RepositoryClient(_connection);
-    
-    public partial class RepositoryClient : ISpaceClient
-    {
-        private readonly Connection _connection;
-        
-        public RepositoryClient(Connection connection)
-        {
-            _connection = connection;
-        }
-        
-        public async Task<PRRepositoryInfo> CreateNewRepositoryAsync(ProjectIdentifier project, string repository, string description = "", bool initialize = true, bool defaultSetup = false, string? defaultBranch = null, Func<Partial<PRRepositoryInfo>, Partial<PRRepositoryInfo>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRRepositoryInfo>()) : Partial<PRRepositoryInfo>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryPostRequest, PRRepositoryInfo>("POST", $"api/http/projects/{project}/repositories/{repository}{queryParameters.ToQueryString()}", 
-                new ProjectsForProjectRepositoriesForRepositoryPostRequest
-                { 
-                    Description = description,
-                    DefaultBranch = defaultBranch,
-                    IsInitialize = initialize,
-                    IsDefaultSetup = defaultSetup,
-                }, cancellationToken);
-        }
-        
-    
-        public async Task<GitCommitResult> CommitAsync(string project, string repository, string baseCommit, string targetBranch, string commitMessage, List<GitCommitFileRequest> files, Func<Partial<GitCommitResult>, Partial<GitCommitResult>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitCommitResult>()) : Partial<GitCommitResult>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryCommitPostRequest, GitCommitResult>("POST", $"api/http/projects/{project}/repositories/{repository}/commit{queryParameters.ToQueryString()}", 
-                new ProjectsForProjectRepositoriesForRepositoryCommitPostRequest
-                { 
-                    BaseCommit = baseCommit,
-                    TargetBranch = targetBranch,
-                    CommitMessage = commitMessage,
-                    Files = files,
-                }, cancellationToken);
-        }
-        
-    
-        public async Task GcAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            
-            await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/gc{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-    
-        public async Task<Batch<GitCommitInfo>> CommitsAsync(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<GitCommitInfo>>, Partial<Batch<GitCommitInfo>>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            if (skip != null) queryParameters.Append("$skip", skip);
-            if (top != null) queryParameters.Append("$top", top?.ToString());
-            if (query != null) queryParameters.Append("query", query);
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<GitCommitInfo>>()) : Partial<Batch<GitCommitInfo>>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<Batch<GitCommitInfo>>("GET", $"api/http/projects/{project}/repositories/{repository}/commits{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-        
-        public IAsyncEnumerable<GitCommitInfo> CommitsAsyncEnumerable(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => CommitsAsync(project: project, repository: repository, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<GitCommitInfo>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<GitCommitInfo>.Default())), skip, cancellationToken);
-    
-        public async Task<RepositoryUrls> UrlAsync(ProjectIdentifier project, string repository, Func<Partial<RepositoryUrls>, Partial<RepositoryUrls>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<RepositoryUrls>()) : Partial<RepositoryUrls>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<RepositoryUrls>("GET", $"api/http/projects/{project}/repositories/{repository}/url{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-    
-        public async Task DeleteRepositoryAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            
-            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/repositories/{repository}{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-    
-        public RevisionClient Revisions => new RevisionClient(_connection);
-        
-        public partial class RevisionClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public RevisionClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            public ExternalCheckClient ExternalChecks => new ExternalCheckClient(_connection);
-            
-            public partial class ExternalCheckClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public ExternalCheckClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                public async Task ReportExternalCheckStatusAsync(ProjectIdentifier project, string repository, string revision, CommitExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, string? branch = null, List<string>? changes = null, long? timestamp = null, string? description = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/external-checks{queryParameters.ToQueryString()}", 
-                        new ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest
-                        { 
-                            Branch = branch,
-                            Changes = changes,
-                            ExecutionStatus = executionStatus,
-                            Url = url,
-                            ExternalServiceName = externalServiceName,
-                            TaskName = taskName,
-                            TaskId = taskId,
-                            Timestamp = timestamp,
-                            Description = description,
-                        }, cancellationToken);
-                }
-                
-            
-                public async Task<List<ExternalCheckDTO>> GetExternalChecksForACommitAsync(ProjectIdentifier project, string repository, string revision, Func<Partial<ExternalCheckDTO>, Partial<ExternalCheckDTO>>? partial = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<ExternalCheckDTO>()) : Partial<ExternalCheckDTO>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<List<ExternalCheckDTO>>("GET", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/external-checks{queryParameters.ToQueryString()}", cancellationToken);
-                }
-                
-            
-            }
         
         }
     

@@ -34,7 +34,7 @@ public sealed class DeployTargetDTO
 {
     public DeployTargetDTO() { }
     
-    public DeployTargetDTO(string id, string name, string key, string description, string createdAt, string? lastUpdated = null, string? lastDeployed = null, DeploymentInfo? current = null, DeploymentInfo? next = null)
+    public DeployTargetDTO(string id, string name, string key, string description, string createdAt, string? lastUpdated = null, string? lastDeployed = null, DeploymentInfo? current = null, DeploymentInfo? next = null, M2ChannelRecord? connectedChannel = null)
     {
         Id = id;
         Name = name;
@@ -45,6 +45,7 @@ public sealed class DeployTargetDTO
         LastDeployed = lastDeployed;
         Current = current;
         Next = next;
+        ConnectedChannel = connectedChannel;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(DeployTargetDTO), nameof(Id), "id");
@@ -133,6 +134,15 @@ public sealed class DeployTargetDTO
         set => _next.SetValue(value);
     }
 
+    private PropertyValue<M2ChannelRecord?> _connectedChannel = new PropertyValue<M2ChannelRecord?>(nameof(DeployTargetDTO), nameof(ConnectedChannel), "connectedChannel");
+    
+    [JsonPropertyName("connectedChannel")]
+    public M2ChannelRecord? ConnectedChannel
+    {
+        get => _connectedChannel.GetValue(InlineErrors);
+        set => _connectedChannel.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -144,6 +154,7 @@ public sealed class DeployTargetDTO
         _lastDeployed.SetAccessPath(parentChainPath, validateHasBeenSet);
         _current.SetAccessPath(parentChainPath, validateHasBeenSet);
         _next.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _connectedChannel.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

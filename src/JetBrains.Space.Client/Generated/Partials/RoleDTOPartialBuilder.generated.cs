@@ -27,18 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TypographySettingsPartialBuilder;
+namespace JetBrains.Space.Client.RoleDTOPartialBuilder;
 
-public static class TypographySettingsPartialExtensions
+public static class RoleDTOPartialExtensions
 {
-    public static Partial<TypographySettings> WithIsFontLigaturesInRegularText(this Partial<TypographySettings> it)
-        => it.AddFieldName("fontLigaturesInRegularText");
+    public static Partial<RoleDTO> WithRoleId(this Partial<RoleDTO> it)
+        => it.AddFieldName("roleId");
     
-    public static Partial<TypographySettings> WithIsFontLigaturesInCodeSnippets(this Partial<TypographySettings> it)
-        => it.AddFieldName("fontLigaturesInCodeSnippets");
+    public static Partial<RoleDTO> WithType(this Partial<RoleDTO> it)
+        => it.AddFieldName("type");
     
-    public static Partial<TypographySettings> WithIsLimitLineLengthInChatMessages(this Partial<TypographySettings> it)
-        => it.AddFieldName("limitLineLengthInChatMessages");
+    public static Partial<RoleDTO> WithType(this Partial<RoleDTO> it, Func<Partial<PermissionRoleType>, Partial<PermissionRoleType>> partialBuilder)
+        => it.AddFieldName("type", partialBuilder(new Partial<PermissionRoleType>(it)));
+    
+    public static Partial<RoleDTO> WithCode(this Partial<RoleDTO> it)
+        => it.AddFieldName("code");
+    
+    public static Partial<RoleDTO> WithName(this Partial<RoleDTO> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<RoleDTO> WithDescription(this Partial<RoleDTO> it)
+        => it.AddFieldName("description");
     
 }
 

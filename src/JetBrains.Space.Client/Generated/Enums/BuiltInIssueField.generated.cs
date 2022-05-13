@@ -27,18 +27,40 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TypographySettingsPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class TypographySettingsPartialExtensions
+[JsonConverter(typeof(EnumStringConverter))]
+public enum BuiltInIssueField
 {
-    public static Partial<TypographySettings> WithIsFontLigaturesInRegularText(this Partial<TypographySettings> it)
-        => it.AddFieldName("fontLigaturesInRegularText");
+    [EnumMember(Value = "ID")]
+    ID,
     
-    public static Partial<TypographySettings> WithIsFontLigaturesInCodeSnippets(this Partial<TypographySettings> it)
-        => it.AddFieldName("fontLigaturesInCodeSnippets");
+    [EnumMember(Value = "DUE_DATE")]
+    DUEDATE,
     
-    public static Partial<TypographySettings> WithIsLimitLineLengthInChatMessages(this Partial<TypographySettings> it)
-        => it.AddFieldName("limitLineLengthInChatMessages");
+    [EnumMember(Value = "ATTACHMENTS")]
+    ATTACHMENTS,
+    
+    [EnumMember(Value = "STATUS")]
+    STATUS,
+    
+    [EnumMember(Value = "TITLE")]
+    TITLE,
+    
+    [EnumMember(Value = "DESCRIPTION")]
+    DESCRIPTION,
+    
+    [EnumMember(Value = "TAGS")]
+    TAGS,
+    
+    [EnumMember(Value = "ASSIGNEE")]
+    ASSIGNEE,
+    
+    [EnumMember(Value = "ATTACHMENT_COUNT")]
+    ATTACHMENTCOUNT,
+    
+    [EnumMember(Value = "SUBITEMS_COUNT")]
+    SUBITEMSCOUNT,
     
 }
 

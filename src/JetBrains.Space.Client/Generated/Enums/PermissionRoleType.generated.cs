@@ -27,18 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TypographySettingsPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class TypographySettingsPartialExtensions
+[JsonConverter(typeof(EnumStringConverter))]
+public enum PermissionRoleType
 {
-    public static Partial<TypographySettings> WithIsFontLigaturesInRegularText(this Partial<TypographySettings> it)
-        => it.AddFieldName("fontLigaturesInRegularText");
+    [EnumMember(Value = "PREDEFINED")]
+    PREDEFINED,
     
-    public static Partial<TypographySettings> WithIsFontLigaturesInCodeSnippets(this Partial<TypographySettings> it)
-        => it.AddFieldName("fontLigaturesInCodeSnippets");
+    [EnumMember(Value = "CUSTOM")]
+    CUSTOM,
     
-    public static Partial<TypographySettings> WithIsLimitLineLengthInChatMessages(this Partial<TypographySettings> it)
-        => it.AddFieldName("limitLineLengthInChatMessages");
+    [EnumMember(Value = "AUTHORIZABLE")]
+    AUTHORIZABLE,
+    
+    [EnumMember(Value = "ANONYMOUS")]
+    ANONYMOUS,
     
 }
 

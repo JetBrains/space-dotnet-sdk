@@ -27,18 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TypographySettingsPartialBuilder;
+namespace JetBrains.Space.Client.BoardIssueFieldBuiltInPartialBuilder;
 
-public static class TypographySettingsPartialExtensions
+public static class BoardIssueFieldBuiltInPartialExtensions
 {
-    public static Partial<TypographySettings> WithIsFontLigaturesInRegularText(this Partial<TypographySettings> it)
-        => it.AddFieldName("fontLigaturesInRegularText");
+    public static Partial<BoardIssueFieldBuiltIn> WithField(this Partial<BoardIssueFieldBuiltIn> it)
+        => it.AddFieldName("field");
     
-    public static Partial<TypographySettings> WithIsFontLigaturesInCodeSnippets(this Partial<TypographySettings> it)
-        => it.AddFieldName("fontLigaturesInCodeSnippets");
-    
-    public static Partial<TypographySettings> WithIsLimitLineLengthInChatMessages(this Partial<TypographySettings> it)
-        => it.AddFieldName("limitLineLengthInChatMessages");
+    public static Partial<BoardIssueFieldBuiltIn> WithField(this Partial<BoardIssueFieldBuiltIn> it, Func<Partial<BuiltInIssueField>, Partial<BuiltInIssueField>> partialBuilder)
+        => it.AddFieldName("field", partialBuilder(new Partial<BuiltInIssueField>(it)));
     
 }
 

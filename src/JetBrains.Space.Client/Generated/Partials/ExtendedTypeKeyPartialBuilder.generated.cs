@@ -27,18 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TypographySettingsPartialBuilder;
+namespace JetBrains.Space.Client.ExtendedTypeKeyPartialBuilder;
 
-public static class TypographySettingsPartialExtensions
+public static class ExtendedTypeKeyPartialExtensions
 {
-    public static Partial<TypographySettings> WithIsFontLigaturesInRegularText(this Partial<TypographySettings> it)
-        => it.AddFieldName("fontLigaturesInRegularText");
+    public static Partial<ExtendedTypeKey> WithKey(this Partial<ExtendedTypeKey> it)
+        => it.AddFieldName("key");
     
-    public static Partial<TypographySettings> WithIsFontLigaturesInCodeSnippets(this Partial<TypographySettings> it)
-        => it.AddFieldName("fontLigaturesInCodeSnippets");
+    public static Partial<ExtendedTypeKey> WithScope(this Partial<ExtendedTypeKey> it)
+        => it.AddFieldName("scope");
     
-    public static Partial<TypographySettings> WithIsLimitLineLengthInChatMessages(this Partial<TypographySettings> it)
-        => it.AddFieldName("limitLineLengthInChatMessages");
+    public static Partial<ExtendedTypeKey> WithScope(this Partial<ExtendedTypeKey> it, Func<Partial<ExtendedTypeScope>, Partial<ExtendedTypeScope>> partialBuilder)
+        => it.AddFieldName("scope", partialBuilder(new Partial<ExtendedTypeScope>(it)));
     
 }
 

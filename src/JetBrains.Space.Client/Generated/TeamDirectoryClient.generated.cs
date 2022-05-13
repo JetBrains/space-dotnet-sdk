@@ -1782,6 +1782,40 @@ public partial class TeamDirectoryClient : ISpaceClient
         
         }
     
+        public DashboardClient Dashboards => new DashboardClient(_connection);
+        
+        public partial class DashboardClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public DashboardClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<DashboardPreferencesRecord> GetDashboardAsync(DashboardIdentifier dashboard, Func<Partial<DashboardPreferencesRecord>, Partial<DashboardPreferencesRecord>>? partial = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<DashboardPreferencesRecord>()) : Partial<DashboardPreferencesRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<DashboardPreferencesRecord>("GET", $"api/http/team-directory/profiles/dashboards/{dashboard}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+            public async Task UpdateDashboardAsync(DashboardIdentifier dashboard, List<List<DashboardItemData>> data, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/dashboards/{dashboard}{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryProfilesDashboardsForDashboardPatchRequest
+                    { 
+                        Data = data,
+                    }, cancellationToken);
+            }
+            
+        
+        }
+    
         public OAuthConsentClient OAuthConsents => new OAuthConsentClient(_connection);
         
         public partial class OAuthConsentClient : ISpaceClient

@@ -27,18 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TypographySettingsPartialBuilder;
+namespace JetBrains.Space.Client.RepositoryDetailsPartialBuilder;
 
-public static class TypographySettingsPartialExtensions
+public static class RepositoryDetailsPartialExtensions
 {
-    public static Partial<TypographySettings> WithIsFontLigaturesInRegularText(this Partial<TypographySettings> it)
-        => it.AddFieldName("fontLigaturesInRegularText");
+    public static Partial<RepositoryDetails> WithProjectKey(this Partial<RepositoryDetails> it)
+        => it.AddFieldName("projectKey");
     
-    public static Partial<TypographySettings> WithIsFontLigaturesInCodeSnippets(this Partial<TypographySettings> it)
-        => it.AddFieldName("fontLigaturesInCodeSnippets");
+    public static Partial<RepositoryDetails> WithRepository(this Partial<RepositoryDetails> it)
+        => it.AddFieldName("repository");
     
-    public static Partial<TypographySettings> WithIsLimitLineLengthInChatMessages(this Partial<TypographySettings> it)
-        => it.AddFieldName("limitLineLengthInChatMessages");
+    public static Partial<RepositoryDetails> WithIsStarred(this Partial<RepositoryDetails> it)
+        => it.AddFieldName("starred");
     
 }
 

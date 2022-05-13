@@ -34,12 +34,13 @@ public class ProjectsPlanningBoardsForBoardPatchRequest
 {
     public ProjectsPlanningBoardsForBoardPatchRequest() { }
     
-    public ProjectsPlanningBoardsForBoardPatchRequest(string? name = null, string? description = null, string? swimlaneKey = null, BoardColumns? columns = null, List<string>? memberOwners = null, List<string>? teamOwners = null)
+    public ProjectsPlanningBoardsForBoardPatchRequest(string? name = null, string? description = null, string? swimlaneKey = null, BoardColumns? columns = null, List<BoardIssueInputField>? issueFields = null, List<string>? memberOwners = null, List<string>? teamOwners = null)
     {
         Name = name;
         Description = description;
         SwimlaneKey = swimlaneKey;
         Columns = columns;
+        IssueFields = issueFields;
         MemberOwners = memberOwners;
         TeamOwners = teamOwners;
     }
@@ -92,6 +93,18 @@ public class ProjectsPlanningBoardsForBoardPatchRequest
         set => _columns.SetValue(value);
     }
 
+    private PropertyValue<List<BoardIssueInputField>?> _issueFields = new PropertyValue<List<BoardIssueInputField>?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(IssueFields), "issueFields");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("issueFields")]
+    public List<BoardIssueInputField>? IssueFields
+    {
+        get => _issueFields.GetValue(InlineErrors);
+        set => _issueFields.SetValue(value);
+    }
+
     private PropertyValue<List<string>?> _memberOwners = new PropertyValue<List<string>?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(MemberOwners), "memberOwners");
     
 #if NET6_0_OR_GREATER
@@ -122,6 +135,7 @@ public class ProjectsPlanningBoardsForBoardPatchRequest
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _swimlaneKey.SetAccessPath(parentChainPath, validateHasBeenSet);
         _columns.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issueFields.SetAccessPath(parentChainPath, validateHasBeenSet);
         _memberOwners.SetAccessPath(parentChainPath, validateHasBeenSet);
         _teamOwners.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

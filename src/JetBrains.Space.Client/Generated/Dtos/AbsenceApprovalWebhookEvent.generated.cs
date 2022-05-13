@@ -37,7 +37,7 @@ public sealed class AbsenceApprovalWebhookEvent
     
     public AbsenceApprovalWebhookEvent() { }
     
-    public AbsenceApprovalWebhookEvent(KMetaMod meta, AbsenceRecord absence, TDMemberProfile member, Modification<bool>? approved = null)
+    public AbsenceApprovalWebhookEvent(KMetaMod meta, AbsenceRecord absence, TDMemberProfile member, Modification<bool> approved)
     {
         Meta = meta;
         Absence = absence;
@@ -75,10 +75,11 @@ public sealed class AbsenceApprovalWebhookEvent
         set => _member.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _approved = new PropertyValue<Modification<bool>?>(nameof(AbsenceApprovalWebhookEvent), nameof(Approved), "approved");
+    private PropertyValue<Modification<bool>> _approved = new PropertyValue<Modification<bool>>(nameof(AbsenceApprovalWebhookEvent), nameof(Approved), "approved");
     
+    [Required]
     [JsonPropertyName("approved")]
-    public Modification<bool>? Approved
+    public Modification<bool> Approved
     {
         get => _approved.GetValue(InlineErrors);
         set => _approved.SetValue(value);

@@ -34,7 +34,7 @@ public sealed class TDMembership
 {
     public TDMembership() { }
     
-    public TDMembership(string id, TDTeam team, TDRole role, bool lead, bool requiresApproval, bool archived, Dictionary<string, CFValue> customFields, TDMemberProfile? member = null, TDMemberProfile? manager = null, DateTime? since = null, DateTime? till = null, DateTime? activeSince = null, DateTime? activeTill = null, TDMembership? editFor = null, TDMembership? pendingEdit = null, TDMemberProfile? approver = null)
+    public TDMembership(string id, TDMemberProfile member, TDTeam team, TDRole role, bool lead, bool requiresApproval, bool archived, Dictionary<string, CFValue> customFields, TDMemberProfile? manager = null, DateTime? since = null, DateTime? till = null, DateTime? activeSince = null, DateTime? activeTill = null, TDMembership? editFor = null, TDMembership? pendingEdit = null, TDMemberProfile? approver = null)
     {
         Id = id;
         Member = member;
@@ -64,10 +64,11 @@ public sealed class TDMembership
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile?> _member = new PropertyValue<TDMemberProfile?>(nameof(TDMembership), nameof(Member), "member");
+    private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(TDMembership), nameof(Member), "member");
     
+    [Required]
     [JsonPropertyName("member")]
-    public TDMemberProfile? Member
+    public TDMemberProfile Member
     {
         get => _member.GetValue(InlineErrors);
         set => _member.SetValue(value);

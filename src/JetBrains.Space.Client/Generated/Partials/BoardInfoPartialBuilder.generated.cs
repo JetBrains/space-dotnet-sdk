@@ -49,5 +49,11 @@ public static class BoardInfoPartialExtensions
     public static Partial<BoardInfo> WithSwimlaneKey(this Partial<BoardInfo> it)
         => it.AddFieldName("swimlaneKey");
     
+    public static Partial<BoardInfo> WithIssueFields(this Partial<BoardInfo> it)
+        => it.AddFieldName("issueFields");
+    
+    public static Partial<BoardInfo> WithIssueFields(this Partial<BoardInfo> it, Func<Partial<BoardIssueField>, Partial<BoardIssueField>> partialBuilder)
+        => it.AddFieldName("issueFields", partialBuilder(new Partial<BoardIssueField>(it)));
+    
 }
 

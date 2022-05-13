@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client;
 public interface WebhookEvent
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static AbsenceApprovalWebhookEvent AbsenceApproval(KMetaMod meta, AbsenceRecord absence, TDMemberProfile member, Modification<bool>? approved = null)
+    public static AbsenceApprovalWebhookEvent AbsenceApproval(KMetaMod meta, AbsenceRecord absence, TDMemberProfile member, Modification<bool> approved)
         => new AbsenceApprovalWebhookEvent(meta: meta, absence: absence, member: member, approved: approved);
     
     public static AbsenceWebhookEvent Absence(KMetaMod meta, AbsenceRecord absence, TDMemberProfile member, Modification<string>? icon = null, Modification<AbsenceReasonRecord>? reason = null, Modification<string>? description = null, Modification<DateTime>? since = null, Modification<DateTime>? till = null, Modification<TDLocation>? location = null, Modification<bool>? available = null)
@@ -98,7 +98,7 @@ public interface WebhookEvent
     public static PingWebhookEvent Ping(string webhookName)
         => new PingWebhookEvent(webhookName: webhookName);
     
-    public static ProfileOrganizationEvent ProfileOrganizationEvent(KMetaMod meta, TDMemberProfile member, bool? joinedOrganization = null, bool? leftOrganization = null)
+    public static ProfileOrganizationEvent ProfileOrganizationEvent(KMetaMod meta, TDMemberProfile member, bool joinedOrganization, bool leftOrganization)
         => new ProfileOrganizationEvent(meta: meta, member: member, joinedOrganization: joinedOrganization, leftOrganization: leftOrganization);
     
     public static ProjectEvent ProjectEvent(KMetaMod meta, PRProject project)

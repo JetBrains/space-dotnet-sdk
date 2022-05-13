@@ -27,18 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TypographySettingsPartialBuilder;
+namespace JetBrains.Space.Client.CustomBoardIssueInputFieldPartialBuilder;
 
-public static class TypographySettingsPartialExtensions
+public static class CustomBoardIssueInputFieldPartialExtensions
 {
-    public static Partial<TypographySettings> WithIsFontLigaturesInRegularText(this Partial<TypographySettings> it)
-        => it.AddFieldName("fontLigaturesInRegularText");
+    public static Partial<CustomBoardIssueInputField> WithKey(this Partial<CustomBoardIssueInputField> it)
+        => it.AddFieldName("key");
     
-    public static Partial<TypographySettings> WithIsFontLigaturesInCodeSnippets(this Partial<TypographySettings> it)
-        => it.AddFieldName("fontLigaturesInCodeSnippets");
+    public static Partial<CustomBoardIssueInputField> WithKey(this Partial<CustomBoardIssueInputField> it, Func<Partial<ExtendedTypeKey>, Partial<ExtendedTypeKey>> partialBuilder)
+        => it.AddFieldName("key", partialBuilder(new Partial<ExtendedTypeKey>(it)));
     
-    public static Partial<TypographySettings> WithIsLimitLineLengthInChatMessages(this Partial<TypographySettings> it)
-        => it.AddFieldName("limitLineLengthInChatMessages");
+    public static Partial<CustomBoardIssueInputField> WithFieldId(this Partial<CustomBoardIssueInputField> it)
+        => it.AddFieldName("fieldId");
     
 }
 

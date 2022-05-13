@@ -562,7 +562,7 @@ public partial class CalendarClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
-            /// <term>Update meetings</term>
+            /// <term>Update meeting RSVP status</term>
             /// </item>
             /// </list>
             /// </remarks>

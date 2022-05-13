@@ -27,18 +27,30 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TypographySettingsPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class TypographySettingsPartialExtensions
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class BoardIssueField
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static Partial<TypographySettings> WithIsFontLigaturesInRegularText(this Partial<TypographySettings> it)
-        => it.AddFieldName("fontLigaturesInRegularText");
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "BoardIssueField";
     
-    public static Partial<TypographySettings> WithIsFontLigaturesInCodeSnippets(this Partial<TypographySettings> it)
-        => it.AddFieldName("fontLigaturesInCodeSnippets");
+    public static BoardIssueFieldBuiltIn BuiltIn(BuiltInIssueField field)
+        => new BoardIssueFieldBuiltIn(field: field);
     
-    public static Partial<TypographySettings> WithIsLimitLineLengthInChatMessages(this Partial<TypographySettings> it)
-        => it.AddFieldName("limitLineLengthInChatMessages");
+    public static BoardIssueFieldCustom Custom(CustomField customField)
+        => new BoardIssueFieldCustom(customField: customField);
     
+    public BoardIssueField() { }
+    
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 
