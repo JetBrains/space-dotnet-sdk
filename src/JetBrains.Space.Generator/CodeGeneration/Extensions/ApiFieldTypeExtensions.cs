@@ -38,7 +38,7 @@ public static class ApiFieldTypeExtensions
         
     public static ApiFieldType.Array? GetBatchDataType(this ApiFieldType.Object subject)
     {
-        if (subject.Kind != ApiFieldType.Object.ObjectKind.BATCH) return null;
+        if (subject.Kind is not ApiFieldType.Object.ObjectKind.BATCH and not ApiFieldType.Object.ObjectKind.SYNC_BATCH) return null;
             
         var dataFieldType = subject.Fields.First(it => string.Equals(it.Name, "data", StringComparison.OrdinalIgnoreCase));
         var dataFieldArrayType = (ApiFieldType.Array)dataFieldType.Type;

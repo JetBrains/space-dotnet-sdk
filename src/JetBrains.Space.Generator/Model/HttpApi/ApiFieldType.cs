@@ -54,6 +54,7 @@ public abstract class ApiFieldType
             [EnumMember(Value = "PAIR")] PAIR,
             [EnumMember(Value = "TRIPLE")] TRIPLE,
             [EnumMember(Value = "BATCH")] BATCH,
+            [EnumMember(Value = "SYNC_BATCH")] SYNC_BATCH,
             [EnumMember(Value = "MOD")] MOD,
             [EnumMember(Value = "REQUEST_BODY")] REQUEST_BODY
         }

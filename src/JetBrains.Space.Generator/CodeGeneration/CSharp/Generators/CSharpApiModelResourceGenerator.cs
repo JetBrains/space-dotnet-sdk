@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Space.Generator.Model.HttpApi;
 using JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions;
@@ -110,12 +111,23 @@ public class CSharpApiModelResourceGenerator
     {
         var builder = new CSharpBuilder();
         builder.AppendLine(GenerateMethodForApiEndpoint(apiEndpoint, baseEndpointPath));
-            
-        var isResponseBatch = apiEndpoint.ResponseBody is ApiFieldType.Object { Kind: ApiFieldType.Object.ObjectKind.BATCH };
+        
+        var isResponseBatch = apiEndpoint.ResponseBody is 
+            ApiFieldType.Object { Kind: ApiFieldType.Object.ObjectKind.BATCH };
+        
         if (isResponseBatch && apiEndpoint.ResponseBody != null)
         {
             builder.AppendLine();
             builder.AppendLine(GenerateEnumerableMethodForBatchApiEndpoint(apiEndpoint, baseEndpointPath));
+        }
+        
+        var isResponseSyncBatch = apiEndpoint.ResponseBody is
+            ApiFieldType.Object { Kind: ApiFieldType.Object.ObjectKind.SYNC_BATCH };
+
+        if (isResponseSyncBatch)
+        {
+            // TODO: The batch logic probably needs to be replicated.
+            throw new NotSupportedException("Endpoints with ResponseBody type of SYNC_BATCH are not supported yet by the code generator.");
         }
 
         return builder.ToString();

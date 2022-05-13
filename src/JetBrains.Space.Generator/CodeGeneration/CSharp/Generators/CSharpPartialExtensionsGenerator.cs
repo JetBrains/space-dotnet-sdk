@@ -184,7 +184,16 @@ public class CSharpPartialExtensionsGenerator
                     sb.Append(GenerateCSharpTypeFrom(apiFieldTypeObject.GetBatchDataType()!));
                     sb.Append(">");
                     return sb.ToString();
-                }  
+                }
+                else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.SYNC_BATCH)
+                {
+                    // Known anonymous type
+                    var sb = new StringBuilder();
+                    sb.Append("SyncBatch<");
+                    sb.Append(GenerateCSharpTypeFrom(apiFieldTypeObject.GetBatchDataType()!));
+                    sb.Append(">");
+                    return sb.ToString();
+                }
                 else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.MOD)
                 {
                     // Known anonymous type
