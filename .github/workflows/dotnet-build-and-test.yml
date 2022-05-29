@@ -33,11 +33,6 @@ jobs:
           path: ${{ env.NUGET_PACKAGES }}
           key: ${{ runner.os }}.nuget.${{ hashFiles('**/*.csproj') }}
 
-      - name: 🔄 Restore Nuget Packages 🔄
-        run: dotnet restore
-
-      - name: 🛠 Build .NET Projects 🛠
-        run: dotnet build --no-restore
-
-      - name: ✅ Run Unit Tests ✅
-        run: dotnet test --no-restore
+      - name: 🛠 Build Solution with NUKE 🛠
+        shell: bash
+        run: ./build.sh --target Test
