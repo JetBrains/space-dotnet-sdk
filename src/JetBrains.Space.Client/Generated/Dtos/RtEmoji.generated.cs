@@ -29,29 +29,44 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class DocsDraftsFolderForIdParentPatchRequest
-     : IPropagatePropertyAccessPath
+public sealed class RtEmoji
+     : InlineNode, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public DocsDraftsFolderForIdParentPatchRequest() { }
+    [JsonPropertyName("className")]
+    public  string? ClassName => "RtEmoji";
     
-    public DocsDraftsFolderForIdParentPatchRequest(string parentFolderId)
+    public RtEmoji() { }
+    
+    public RtEmoji(string emojiName, List<DocumentMark> marks)
     {
-        ParentFolderId = parentFolderId;
+        EmojiName = emojiName;
+        Marks = marks;
     }
     
-    private PropertyValue<string> _parentFolderId = new PropertyValue<string>(nameof(DocsDraftsFolderForIdParentPatchRequest), nameof(ParentFolderId), "parentFolderId");
+    private PropertyValue<string> _emojiName = new PropertyValue<string>(nameof(RtEmoji), nameof(EmojiName), "emojiName");
     
     [Required]
-    [JsonPropertyName("parentFolderId")]
-    public string ParentFolderId
+    [JsonPropertyName("emojiName")]
+    public string EmojiName
     {
-        get => _parentFolderId.GetValue(InlineErrors);
-        set => _parentFolderId.SetValue(value);
+        get => _emojiName.GetValue(InlineErrors);
+        set => _emojiName.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    private PropertyValue<List<DocumentMark>> _marks = new PropertyValue<List<DocumentMark>>(nameof(RtEmoji), nameof(Marks), "marks", new List<DocumentMark>());
+    
+    [Required]
+    [JsonPropertyName("marks")]
+    public List<DocumentMark> Marks
     {
-        _parentFolderId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        get => _marks.GetValue(InlineErrors);
+        set => _marks.SetValue(value);
+    }
+
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _emojiName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _marks.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

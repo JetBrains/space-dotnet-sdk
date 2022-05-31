@@ -27,36 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.RtEmojiPartialBuilder;
 
-public class DocsDraftsForIdEditorsTeamsPostRequest
-     : IPropagatePropertyAccessPath
+public static class RtEmojiPartialExtensions
 {
-    public DocsDraftsForIdEditorsTeamsPostRequest() { }
+    public static Partial<RtEmoji> WithEmojiName(this Partial<RtEmoji> it)
+        => it.AddFieldName("emojiName");
     
-    public DocsDraftsForIdEditorsTeamsPostRequest(string teamId)
-    {
-        TeamId = teamId;
-    }
+    public static Partial<RtEmoji> WithMarks(this Partial<RtEmoji> it)
+        => it.AddFieldName("marks");
     
-    private PropertyValue<string> _teamId = new PropertyValue<string>(nameof(DocsDraftsForIdEditorsTeamsPostRequest), nameof(TeamId), "teamId");
+    public static Partial<RtEmoji> WithMarks(this Partial<RtEmoji> it, Func<Partial<DocumentMark>, Partial<DocumentMark>> partialBuilder)
+        => it.AddFieldName("marks", partialBuilder(new Partial<DocumentMark>(it)));
     
-    [Required]
-    [JsonPropertyName("teamId")]
-    public string TeamId
-    {
-        get => _teamId.GetValue(InlineErrors);
-        set => _teamId.SetValue(value);
-    }
-
-    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-        _teamId.SetAccessPath(parentChainPath, validateHasBeenSet);
-    }
-    
-    /// <inheritdoc />
-    [JsonPropertyName("$errors")]
-    public List<ApiInlineError> InlineErrors { get; set; } = new();
-
 }
 

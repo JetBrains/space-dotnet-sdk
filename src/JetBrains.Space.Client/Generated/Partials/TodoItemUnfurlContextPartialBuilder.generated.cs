@@ -27,36 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.TodoItemUnfurlContextPartialBuilder;
 
-public class DocsDraftsForIdEditorsProfilesPostRequest
-     : IPropagatePropertyAccessPath
+public static class TodoItemUnfurlContextPartialExtensions
 {
-    public DocsDraftsForIdEditorsProfilesPostRequest() { }
+    public static Partial<TodoItemUnfurlContext> WithUserId(this Partial<TodoItemUnfurlContext> it)
+        => it.AddFieldName("userId");
     
-    public DocsDraftsForIdEditorsProfilesPostRequest(string editorId)
-    {
-        EditorId = editorId;
-    }
+    public static Partial<TodoItemUnfurlContext> WithTodoItemId(this Partial<TodoItemUnfurlContext> it)
+        => it.AddFieldName("todoItemId");
     
-    private PropertyValue<string> _editorId = new PropertyValue<string>(nameof(DocsDraftsForIdEditorsProfilesPostRequest), nameof(EditorId), "editorId");
-    
-    [Required]
-    [JsonPropertyName("editorId")]
-    public string EditorId
-    {
-        get => _editorId.GetValue(InlineErrors);
-        set => _editorId.SetValue(value);
-    }
-
-    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-        _editorId.SetAccessPath(parentChainPath, validateHasBeenSet);
-    }
-    
-    /// <inheritdoc />
-    [JsonPropertyName("$errors")]
-    public List<ApiInlineError> InlineErrors { get; set; } = new();
-
 }
 

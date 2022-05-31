@@ -58,5 +58,11 @@ public static class TodoContentPartialExtensions
     public static Partial<TodoContent> WithExtId(this Partial<TodoContent> it)
         => it.AddFieldName("extId");
     
+    public static Partial<TodoContent> WithUnfurls(this Partial<TodoContent> it)
+        => it.AddFieldName("unfurls");
+    
+    public static Partial<TodoContent> WithUnfurls(this Partial<TodoContent> it, Func<Partial<Unfurl>, Partial<Unfurl>> partialBuilder)
+        => it.AddFieldName("unfurls", partialBuilder(new Partial<Unfurl>(it)));
+    
 }
 

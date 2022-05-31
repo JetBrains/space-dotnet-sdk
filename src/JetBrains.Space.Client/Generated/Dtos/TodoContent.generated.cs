@@ -37,7 +37,7 @@ public sealed class TodoContent
     
     public TodoContent() { }
     
-    public TodoContent(string originalText, string text, string? link = null, TodoItemContentKind? kind = null, CPrincipal? principal = null, long? time = null, string? extId = null)
+    public TodoContent(string originalText, string text, string? link = null, TodoItemContentKind? kind = null, CPrincipal? principal = null, long? time = null, string? extId = null, List<Unfurl>? unfurls = null)
     {
         OriginalText = originalText;
         Link = link;
@@ -46,6 +46,7 @@ public sealed class TodoContent
         Time = time;
         Text = text;
         ExtId = extId;
+        Unfurls = unfurls;
     }
     
     private PropertyValue<string> _originalText = new PropertyValue<string>(nameof(TodoContent), nameof(OriginalText), "originalText");
@@ -113,6 +114,15 @@ public sealed class TodoContent
         set => _extId.SetValue(value);
     }
 
+    private PropertyValue<List<Unfurl>?> _unfurls = new PropertyValue<List<Unfurl>?>(nameof(TodoContent), nameof(Unfurls), "unfurls");
+    
+    [JsonPropertyName("unfurls")]
+    public List<Unfurl>? Unfurls
+    {
+        get => _unfurls.GetValue(InlineErrors);
+        set => _unfurls.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _originalText.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -122,6 +132,7 @@ public sealed class TodoContent
         _time.SetAccessPath(parentChainPath, validateHasBeenSet);
         _text.SetAccessPath(parentChainPath, validateHasBeenSet);
         _extId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _unfurls.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

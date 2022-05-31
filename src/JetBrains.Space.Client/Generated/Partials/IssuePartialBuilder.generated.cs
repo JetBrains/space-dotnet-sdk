@@ -115,6 +115,12 @@ public static class IssuePartialExtensions
     public static Partial<Issue> WithDeletedTime(this Partial<Issue> it)
         => it.AddFieldName("deletedTime");
     
+    public static Partial<Issue> WithMessageOrigin(this Partial<Issue> it)
+        => it.AddFieldName("messageOrigin");
+    
+    public static Partial<Issue> WithMessageOrigin(this Partial<Issue> it, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>> partialBuilder)
+        => it.AddFieldName("messageOrigin", partialBuilder(new Partial<ChannelItemRecord>(it)));
+    
     public static Partial<Issue> WithAttachments(this Partial<Issue> it)
         => it.AddFieldName("attachments");
     

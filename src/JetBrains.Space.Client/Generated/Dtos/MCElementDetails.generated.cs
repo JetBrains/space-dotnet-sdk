@@ -53,6 +53,9 @@ public interface MCElementDetails
     public static MCInlineGroup MCInlineGroup(List<MCInlineElement> elements, MCElement? accessory = null, MessageTextSize? textSize = null)
         => new MCInlineGroup(elements: elements, accessory: accessory, textSize: textSize);
     
+    public static MCParagraph MCParagraph(List<MCElement> elements, MCElement? accessory = null)
+        => new MCParagraph(elements: elements, accessory: accessory);
+    
     public static MCSection MCSection(List<MCElement> elements, MessageStyle? style = null, MCText? header = null, MCText? footer = null)
         => new MCSection(elements: elements, style: style, header: header, footer: footer);
     

@@ -40,5 +40,8 @@ public static class EventExternalSourcePartialExtensions
     public static Partial<EventExternalSource> WithSourceLink(this Partial<EventExternalSource> it)
         => it.AddFieldName("sourceLink");
     
+    public static Partial<EventExternalSource> WithExternalTimestamp(this Partial<EventExternalSource> it)
+        => it.AddFieldName("externalTimestamp");
+    
 }
 

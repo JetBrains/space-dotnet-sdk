@@ -35,6 +35,9 @@ public interface InlineNode
     public static RtBreak RtBreak(bool soft, List<DocumentMark> marks)
         => new RtBreak(soft: soft, marks: marks);
     
+    public static RtEmoji RtEmoji(string emojiName, List<DocumentMark> marks)
+        => new RtEmoji(emojiName: emojiName, marks: marks);
+    
     public static RtImage RtImage(RtImageAttrs attrs, List<DocumentMark> marks)
         => new RtImage(attrs: attrs, marks: marks);
     

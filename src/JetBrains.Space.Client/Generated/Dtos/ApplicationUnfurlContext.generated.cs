@@ -50,5 +50,8 @@ public interface ApplicationUnfurlContext
     public static IssueUnfurlContext IssueUnfurlContext(string issueId)
         => new IssueUnfurlContext(issueId: issueId);
     
+    public static TodoItemUnfurlContext TodoItemUnfurlContext(string userId, string todoItemId)
+        => new TodoItemUnfurlContext(userId: userId, todoItemId: todoItemId);
+    
 }
 

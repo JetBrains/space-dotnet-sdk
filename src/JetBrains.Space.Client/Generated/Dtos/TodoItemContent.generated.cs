@@ -32,8 +32,8 @@ namespace JetBrains.Space.Client;
 public interface TodoItemContent
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static TodoContent TodoContent(string originalText, string text, string? link = null, TodoItemContentKind? kind = null, CPrincipal? principal = null, long? time = null, string? extId = null)
-        => new TodoContent(originalText: originalText, text: text, link: link, kind: kind, principal: principal, time: time, extId: extId);
+    public static TodoContent TodoContent(string originalText, string text, string? link = null, TodoItemContentKind? kind = null, CPrincipal? principal = null, long? time = null, string? extId = null, List<Unfurl>? unfurls = null)
+        => new TodoContent(originalText: originalText, text: text, link: link, kind: kind, principal: principal, time: time, extId: extId, unfurls: unfurls);
     
     public static TodoItemContentMdText MdText(string text, MdMarkup mdMarkup)
         => new TodoItemContentMdText(text: text, mdMarkup: mdMarkup);

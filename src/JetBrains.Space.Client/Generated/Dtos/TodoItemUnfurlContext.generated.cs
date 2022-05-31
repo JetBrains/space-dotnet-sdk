@@ -29,43 +29,44 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class DocsDraftsFolderPostRequest
-     : IPropagatePropertyAccessPath
+public sealed class TodoItemUnfurlContext
+     : ApplicationUnfurlContext, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public DocsDraftsFolderPostRequest() { }
+    [JsonPropertyName("className")]
+    public  string? ClassName => "TodoItemUnfurlContext";
     
-    public DocsDraftsFolderPostRequest(string name, string? parentId = null)
+    public TodoItemUnfurlContext() { }
+    
+    public TodoItemUnfurlContext(string userId, string todoItemId)
     {
-        Name = name;
-        ParentId = parentId;
+        UserId = userId;
+        TodoItemId = todoItemId;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(DocsDraftsFolderPostRequest), nameof(Name), "name");
+    private PropertyValue<string> _userId = new PropertyValue<string>(nameof(TodoItemUnfurlContext), nameof(UserId), "userId");
     
     [Required]
-    [JsonPropertyName("name")]
-    public string Name
+    [JsonPropertyName("userId")]
+    public string UserId
     {
-        get => _name.GetValue(InlineErrors);
-        set => _name.SetValue(value);
+        get => _userId.GetValue(InlineErrors);
+        set => _userId.SetValue(value);
     }
 
-    private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(DocsDraftsFolderPostRequest), nameof(ParentId), "parentId");
+    private PropertyValue<string> _todoItemId = new PropertyValue<string>(nameof(TodoItemUnfurlContext), nameof(TodoItemId), "todoItemId");
     
-#if NET6_0_OR_GREATER
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-#endif
-    [JsonPropertyName("parentId")]
-    public string? ParentId
+    [Required]
+    [JsonPropertyName("todoItemId")]
+    public string TodoItemId
     {
-        get => _parentId.GetValue(InlineErrors);
-        set => _parentId.SetValue(value);
+        get => _todoItemId.GetValue(InlineErrors);
+        set => _todoItemId.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _parentId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _userId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _todoItemId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

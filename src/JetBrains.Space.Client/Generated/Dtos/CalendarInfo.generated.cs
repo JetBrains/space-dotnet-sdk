@@ -34,7 +34,7 @@ public sealed class CalendarInfo
 {
     public CalendarInfo() { }
     
-    public CalendarInfo(string id, bool freeBusyOnly, bool readOnly, bool exposeToCalDav, bool exposeToGoogle, bool archived, string? name = null, string? defaultColor = null)
+    public CalendarInfo(string id, bool freeBusyOnly, bool readOnly, bool exposeToCalDav, bool exposeToGoogle, bool archived, string? name = null, string? defaultColor = null, string? sourceUrl = null)
     {
         Id = id;
         Name = name;
@@ -43,6 +43,7 @@ public sealed class CalendarInfo
         IsReadOnly = readOnly;
         IsExposeToCalDav = exposeToCalDav;
         IsExposeToGoogle = exposeToGoogle;
+        SourceUrl = sourceUrl;
         IsArchived = archived;
     }
     
@@ -114,6 +115,15 @@ public sealed class CalendarInfo
         set => _exposeToGoogle.SetValue(value);
     }
 
+    private PropertyValue<string?> _sourceUrl = new PropertyValue<string?>(nameof(CalendarInfo), nameof(SourceUrl), "sourceUrl");
+    
+    [JsonPropertyName("sourceUrl")]
+    public string? SourceUrl
+    {
+        get => _sourceUrl.GetValue(InlineErrors);
+        set => _sourceUrl.SetValue(value);
+    }
+
     private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CalendarInfo), nameof(IsArchived), "archived");
     
     [Required]
@@ -133,6 +143,7 @@ public sealed class CalendarInfo
         _readOnly.SetAccessPath(parentChainPath, validateHasBeenSet);
         _exposeToCalDav.SetAccessPath(parentChainPath, validateHasBeenSet);
         _exposeToGoogle.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sourceUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

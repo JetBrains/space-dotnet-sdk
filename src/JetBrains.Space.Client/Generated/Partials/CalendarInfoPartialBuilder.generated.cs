@@ -52,6 +52,9 @@ public static class CalendarInfoPartialExtensions
     public static Partial<CalendarInfo> WithIsExposeToGoogle(this Partial<CalendarInfo> it)
         => it.AddFieldName("exposeToGoogle");
     
+    public static Partial<CalendarInfo> WithSourceUrl(this Partial<CalendarInfo> it)
+        => it.AddFieldName("sourceUrl");
+    
     public static Partial<CalendarInfo> WithIsArchived(this Partial<CalendarInfo> it)
         => it.AddFieldName("archived");
     

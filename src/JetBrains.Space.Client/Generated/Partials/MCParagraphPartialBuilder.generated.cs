@@ -27,36 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.MCParagraphPartialBuilder;
 
-public class DocsDraftsFolderForIdNamePatchRequest
-     : IPropagatePropertyAccessPath
+public static class MCParagraphPartialExtensions
 {
-    public DocsDraftsFolderForIdNamePatchRequest() { }
+    public static Partial<MCParagraph> WithAccessory(this Partial<MCParagraph> it)
+        => it.AddFieldName("accessory");
     
-    public DocsDraftsFolderForIdNamePatchRequest(string name)
-    {
-        Name = name;
-    }
+    public static Partial<MCParagraph> WithAccessory(this Partial<MCParagraph> it, Func<Partial<MCElement>, Partial<MCElement>> partialBuilder)
+        => it.AddFieldName("accessory", partialBuilder(new Partial<MCElement>(it)));
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(DocsDraftsFolderForIdNamePatchRequest), nameof(Name), "name");
+    public static Partial<MCParagraph> WithElements(this Partial<MCParagraph> it)
+        => it.AddFieldName("elements");
     
-    [Required]
-    [JsonPropertyName("name")]
-    public string Name
-    {
-        get => _name.GetValue(InlineErrors);
-        set => _name.SetValue(value);
-    }
-
-    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
-    }
+    public static Partial<MCParagraph> WithElements(this Partial<MCParagraph> it, Func<Partial<MCElement>, Partial<MCElement>> partialBuilder)
+        => it.AddFieldName("elements", partialBuilder(new Partial<MCElement>(it)));
     
-    /// <inheritdoc />
-    [JsonPropertyName("$errors")]
-    public List<ApiInlineError> InlineErrors { get; set; } = new();
-
 }
 

@@ -34,7 +34,7 @@ public sealed class Issue
 {
     public Issue() { }
     
-    public Issue(string id, bool archived, PRProject projectRef, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<SprintRecord> sprints, List<Topic> topics, string? projectId = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, int? subItemsCount = null, int? doneSubItemsCount = null, int? commentsCount = null, CPrincipal? deletedBy = null, DateTime? deletedTime = null, string? description = null, List<AttachmentInfo>? unfurls = null)
+    public Issue(string id, bool archived, PRProject projectRef, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<SprintRecord> sprints, List<Topic> topics, string? projectId = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, int? subItemsCount = null, int? doneSubItemsCount = null, int? commentsCount = null, CPrincipal? deletedBy = null, DateTime? deletedTime = null, ChannelItemRecord? messageOrigin = null, string? description = null, List<AttachmentInfo>? unfurls = null)
     {
         Id = id;
         IsArchived = archived;
@@ -56,6 +56,7 @@ public sealed class Issue
         CommentsCount = commentsCount;
         DeletedBy = deletedBy;
         DeletedTime = deletedTime;
+        MessageOrigin = messageOrigin;
         Attachments = attachments;
         Channel = channel;
         Checklists = checklists;
@@ -258,6 +259,15 @@ public sealed class Issue
         set => _deletedTime.SetValue(value);
     }
 
+    private PropertyValue<ChannelItemRecord?> _messageOrigin = new PropertyValue<ChannelItemRecord?>(nameof(Issue), nameof(MessageOrigin), "messageOrigin");
+    
+    [JsonPropertyName("messageOrigin")]
+    public ChannelItemRecord? MessageOrigin
+    {
+        get => _messageOrigin.GetValue(InlineErrors);
+        set => _messageOrigin.SetValue(value);
+    }
+
     private PropertyValue<List<AttachmentInfo>> _attachments = new PropertyValue<List<AttachmentInfo>>(nameof(Issue), nameof(Attachments), "attachments", new List<AttachmentInfo>());
     
     [Required]
@@ -358,6 +368,7 @@ public sealed class Issue
         _commentsCount.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deletedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deletedTime.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _messageOrigin.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
         _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
         _checklists.SetAccessPath(parentChainPath, validateHasBeenSet);
