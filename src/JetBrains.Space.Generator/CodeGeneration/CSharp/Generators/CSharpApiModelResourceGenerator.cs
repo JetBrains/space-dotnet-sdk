@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
+using JetBrains.Space.Common;
 using JetBrains.Space.Generator.Model.HttpApi;
 using JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions;
 using JetBrains.Space.Generator.CodeGeneration.Extensions;
@@ -117,17 +119,15 @@ public class CSharpApiModelResourceGenerator
         
         if (isResponseBatch && apiEndpoint.ResponseBody != null)
         {
-            builder.AppendLine();
             builder.AppendLine(GenerateEnumerableMethodForBatchApiEndpoint(apiEndpoint, baseEndpointPath));
         }
         
         var isResponseSyncBatch = apiEndpoint.ResponseBody is
             ApiFieldType.Object { Kind: ApiFieldType.Object.ObjectKind.SYNC_BATCH };
 
-        if (isResponseSyncBatch)
+        if (isResponseSyncBatch && FeatureFlags.GenerateEnumerableMethodForSyncBatchApiEndpoint)
         {
-            // TODO: The batch logic probably needs to be replicated.
-            throw new NotSupportedException("Endpoints with ResponseBody type of SYNC_BATCH are not supported yet by the code generator.");
+            builder.AppendLine(GenerateEnumerableMethodForSyncBatchApiEndpoint(apiEndpoint, baseEndpointPath));
         }
 
         return builder.ToString();
@@ -145,7 +145,10 @@ public class CSharpApiModelResourceGenerator
             
         var isResponsePrimitiveOrArrayOfPrimitive = apiEndpoint.ResponseBody is ApiFieldType.Primitive 
             or ApiFieldType.Array { ElementType: ApiFieldType.Primitive };
-            
+
+        var isResponseSyncBatch = apiEndpoint.ResponseBody is
+            ApiFieldType.Object { Kind: ApiFieldType.Object.ObjectKind.SYNC_BATCH };
+
         if (apiEndpoint.ResponseBody == null)
         {
             var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
@@ -168,6 +171,9 @@ public class CSharpApiModelResourceGenerator
             }
                 
             methodParametersBuilder = methodParametersBuilder
+                .WithParameter(CSharpType.RequestHeaders.Value,
+                    "requestHeaders",
+                    CSharpExpression.NullLiteral)
                 .WithParameter(CSharpType.CancellationToken.Value,
                     "cancellationToken",
                     CSharpExpression.DefaultLiteral);
@@ -214,8 +220,16 @@ public class CSharpApiModelResourceGenerator
                     builder.Append(", data");
                 }
             }
-                
-            builder.Append(", cancellationToken");
+
+            if (!isResponseSyncBatch)
+            {
+                builder.Append(", requestHeaders: null");
+            }
+            else
+            {
+                builder.Append($", requestHeaders: {nameof(EpochTrackerHeaders)}.{nameof(EpochTrackerHeaders.GenerateFrom)}(_connection.ServerUrl, {nameof(EpochTracker)}.{nameof(EpochTracker.Instance)})");
+            }
+            builder.Append(", cancellationToken: cancellationToken");
             builder.AppendLine(");");
             indent.Decrement();
             builder.AppendLine($"{indent}}}");
@@ -253,6 +267,9 @@ public class CSharpApiModelResourceGenerator
             }
                 
             methodParametersBuilder = methodParametersBuilder
+                .WithParameter(CSharpType.RequestHeaders.Value,
+                    "requestHeaders",
+                    CSharpExpression.NullLiteral)
                 .WithParameter(CSharpType.CancellationToken.Value,
                     "cancellationToken",
                     CSharpExpression.DefaultLiteral);
@@ -310,7 +327,15 @@ public class CSharpApiModelResourceGenerator
                 }
             }
                 
-            builder.Append(", cancellationToken");
+            if (!isResponseSyncBatch)
+            {
+                builder.Append(", requestHeaders: null");
+            }
+            else
+            {
+                builder.Append($", requestHeaders: {nameof(EpochTrackerHeaders)}.{nameof(EpochTrackerHeaders.GenerateFrom)}(_connection.ServerUrl, {nameof(EpochTracker)}.{nameof(EpochTracker.Instance)})");
+            }
+            builder.Append(", cancellationToken: cancellationToken");
             builder.AppendLine(");");
             indent.Decrement();
             builder.AppendLine($"{indent}}}");
@@ -423,6 +448,85 @@ public class CSharpApiModelResourceGenerator
                     .BuildMethodCallParameters());
                 
             builder.Append("), skip, cancellationToken);");
+            indent.Decrement();
+        }
+        else
+        {
+            builder.AppendLine($"{indent}#warning UNSUPPORTED CASE - " + apiEndpoint.ToCSharpMethodName() + " - " + apiEndpoint.Method.ToHttpMethod() + " " + endpointPath);
+        }
+
+        return builder.ToString();
+    }
+
+    private string GenerateEnumerableMethodForSyncBatchApiEndpoint(ApiEndpoint apiEndpoint, string baseEndpointPath)
+    {
+        var indent = new Indent();
+        var builder = new StringBuilder();
+
+        var endpointPath = (baseEndpointPath + "/" + apiEndpoint.Path.Segments.ToPath()).TrimEnd('/');
+
+        var methodNameForEndpoint = apiEndpoint.ToCSharpMethodName();
+
+        var batchDataType = ((ApiFieldType.Object)apiEndpoint.ResponseBody!).GetBatchDataType()!;
+
+        if (apiEndpoint.ResponseBody != null)
+        {
+            var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
+                .WithParametersForApiParameters(apiEndpoint.Parameters);
+
+            if (apiEndpoint.RequestBody != null)
+            {
+                if (FeatureFlags.DoNotExposeRequestObjects)
+                {
+                    methodParametersBuilder = methodParametersBuilder
+                        .WithParametersForApiFields(apiEndpoint.RequestBody.Fields);
+                }
+                else
+                {
+                    methodParametersBuilder = methodParametersBuilder
+                        .WithParameter(
+                            apiEndpoint.ToCSharpRequestBodyClassName(endpointPath)!,
+                            "data");
+                }
+            }
+
+            var partialType = "Partial<" + batchDataType.GetBatchElementTypeOrType().ToCSharpType(_codeGenerationContext) + ">";
+            var funcType = $"Func<{partialType}, {partialType}>?";
+            methodParametersBuilder = methodParametersBuilder
+                .WithParameter(
+                    funcType,
+                    "partial",
+                    CSharpExpression.NullLiteral);
+
+            methodParametersBuilder = methodParametersBuilder
+                .WithParameter(CSharpType.CancellationToken.Value,
+                    "cancellationToken",
+                    CSharpExpression.DefaultLiteral);
+
+            builder.Append(
+                indent.Wrap(GenerateMethodDocumentationForEndpoint(apiEndpoint, methodParametersBuilder)));
+            builder.Append($"{indent}public IAsyncEnumerable<");
+            builder.Append(batchDataType.ElementType.ToCSharpType(_codeGenerationContext));
+            builder.Append(">");
+            builder.Append($" {methodNameForEndpoint}AsyncEnumerable(");
+            builder.Append(methodParametersBuilder.BuildMethodParametersList());
+            builder.AppendLine(")");
+
+            indent.Increment();
+            builder.Append($"{indent}=> SyncBatchEnumerator.AllItems((batchEtag, batchCancellationToken) => ");
+
+            builder.Append($"{methodNameForEndpoint}Async(");
+
+            var partialTypeForBatch = "Partial<SyncBatch<" + batchDataType.GetBatchElementTypeOrType().ToCSharpType(_codeGenerationContext) + ">>";
+            builder.Append(
+                methodParametersBuilder
+                    .WithDefaultValueForAllParameters(null)
+                    .WithDefaultValueForParameter("batchInfo", "SyncBatchInfo.Since(batchEtag!, 100)") // REVIEW: SyncBatchInfo may have several variants in the future
+                    .WithDefaultValueForParameter("partial", $"builder => {partialTypeForBatch}.Default().WithEtag().WithHasMore().WithData(partial != null ? partial : _ => {partialType}.Default())")
+                    .WithDefaultValueForParameter(CSharpType.CancellationToken.Value, "batchCancellationToken")
+                    .BuildMethodCallParameters());
+
+            builder.Append("), cancellationToken);");
             indent.Decrement();
         }
         else

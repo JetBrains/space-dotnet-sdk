@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using JetBrains.Space.AspNetCore.Experimental.WebHooks.EndpointAuthentication;
 using JetBrains.Space.AspNetCore.Experimental.WebHooks.Options;
 using JetBrains.Space.Client;
+using JetBrains.Space.Common;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 using Microsoft.AspNetCore.Http;
@@ -25,7 +26,9 @@ public class SpaceWebHookRequestHandler<TWebHookHandler>
 {
     private readonly IOptionsSnapshot<SpaceWebHookOptions> _options;
     private readonly ILogger<SpaceWebHookRequestHandler<TWebHookHandler>> _logger;
-        
+    
+    private readonly EpochTracker _epochTracker = EpochTracker.Instance;
+    
     // ReSharper disable once StaticMemberInGenericType
     private static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
     {
@@ -80,6 +83,17 @@ public class SpaceWebHookRequestHandler<TWebHookHandler>
         {
             await WriteTextResponse(context.Response, 400, "The request could not be validated. Check the application log for more information.");
             return;
+        }
+        
+        // Handle sync epoch header
+        if (configuredOptions.ServerUrl != null)
+        {
+            if (context.Request.Headers.TryGetValue(EpochTrackerHeaders.SyncEpoch, out var syncEpochHeaders) &&
+                syncEpochHeaders.Count > 0 &&
+                long.TryParse(syncEpochHeaders[0], out var syncEpoch))
+            {
+                _epochTracker.UpdateEpochFor(configuredOptions.ServerUrl, syncEpoch);
+            }
         }
         
         // Handle payload

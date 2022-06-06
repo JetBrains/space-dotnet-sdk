@@ -72,19 +72,20 @@ public class RefreshTokenConnection
         {
             // Get new token
             var spaceTokenRequest = new HttpRequestMessage(HttpMethod.Post, ServerUrl + "oauth/token")
-            {
-                Headers =
                 {
-                    Authorization = AuthenticationHeaderValue.Parse(
-                        "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes($"{_clientId}:{_clientSecret}")))
-                },
-                Content = new FormUrlEncodedContent(new []
-                {
-                    new KeyValuePair<string?, string?>("grant_type", "refresh_token"),
-                    new KeyValuePair<string?, string?>("refresh_token", AuthenticationTokens.RefreshToken),
-                    new KeyValuePair<string?, string?>("scope", string.Join(" ", Scope))
-                })
-            }.WithClientAndSdkHeaders(SdkInfo.Version);
+                    Headers =
+                    {
+                        Authorization = AuthenticationHeaderValue.Parse(
+                            "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes($"{_clientId}:{_clientSecret}")))
+                    },
+                    Content = new FormUrlEncodedContent(new []
+                    {
+                        new KeyValuePair<string?, string?>("grant_type", "refresh_token"),
+                        new KeyValuePair<string?, string?>("refresh_token", AuthenticationTokens.RefreshToken),
+                        new KeyValuePair<string?, string?>("scope", string.Join(" ", Scope))
+                    })
+                }
+                .WithClientAndSdkHeaders(SdkInfo.Version);
 
             var spaceTokenResponse = await HttpClient.SendAsync(spaceTokenRequest, cancellationToken);
             if (!spaceTokenResponse.IsSuccessStatusCode)

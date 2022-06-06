@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Net.Http;
 using JetBrains.Annotations;
 
@@ -26,6 +27,25 @@ public static class HttpRequestMessageExtensions
         
         if (!request.Headers.Contains(SdkVersionHeaderName)) 
             request.Headers.Add(SdkVersionHeaderName, sdkVersion);
+        
+        return request;
+    }
+
+    /// <summary>
+    /// Try to append the HTTP request headers specified in <paramref name="requestHeaders"/> to the <see cref="HttpRequestMessage"/>.
+    /// </summary>
+    /// <param name="request">The <see cref="HttpRequestMessage"/> to append headers to.</param>
+    /// <param name="requestHeaders">The headers to append.</param>
+    /// <returns>The <see cref="HttpRequestMessage"/> with headers appended.</returns>
+    public static HttpRequestMessage WithHeaders(this HttpRequestMessage request, Dictionary<string, string>? requestHeaders)
+    {
+        if (requestHeaders != null)
+        {
+            foreach (var (key, value) in requestHeaders)
+            {
+                request.Headers.TryAddWithoutValidation(key, value);
+            }
+        }
         
         return request;
     }

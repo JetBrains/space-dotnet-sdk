@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -37,6 +38,8 @@ public class BearerTokenConnection
     /// </summary>
     public IResourceRetryPolicy ResourceRetryPolicy { get; set; }
 
+    private IHttpMessageInterceptor _epochTrackerHttpMessageInterceptor = new EpochTrackerHttpMessageInterceptor(EpochTracker.Instance);
+
     /// <summary>
     /// Creates an instance of the <see cref="BearerTokenConnection" /> class.
     /// </summary>
@@ -64,29 +67,33 @@ public class BearerTokenConnection
     }
 
     /// <inheritdoc />
-    protected override async Task RequestResourceInternalAsync(string httpMethod, string urlPath, CancellationToken cancellationToken)
+    protected override async Task RequestResourceInternalAsync(string httpMethod, string urlPath, Dictionary<string, string>? requestHeaders, CancellationToken cancellationToken)
     {
         var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
-        {
-            Headers =
             {
-                Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
+                Headers =
+                {
+                    Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
+                }
             }
-        }.WithClientAndSdkHeaders(SdkInfo.Version);
+            .WithClientAndSdkHeaders(SdkInfo.Version)
+            .WithHeaders(requestHeaders);
             
         await SendRequestAsync(request, cancellationToken);
     }
 
     /// <inheritdoc />
-    protected override async Task<TResult> RequestResourceInternalAsync<TResult>(string httpMethod, string urlPath, CancellationToken cancellationToken)
+    protected override async Task<TResult> RequestResourceInternalAsync<TResult>(string httpMethod, string urlPath, Dictionary<string, string>? requestHeaders, CancellationToken cancellationToken)
     {
         var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
-        {
-            Headers =
             {
-                Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
+                Headers =
+                {
+                    Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
+                }
             }
-        }.WithClientAndSdkHeaders(SdkInfo.Version);
+            .WithClientAndSdkHeaders(SdkInfo.Version)
+            .WithHeaders(requestHeaders);
             
         var response = await SendRequestAsync(request, cancellationToken);
 
@@ -100,31 +107,35 @@ public class BearerTokenConnection
     }
 
     /// <inheritdoc />
-    protected override async Task RequestResourceInternalAsync<TPayload>(string httpMethod, string urlPath, TPayload payload, CancellationToken cancellationToken)
+    protected override async Task RequestResourceInternalAsync<TPayload>(string httpMethod, string urlPath, TPayload payload, Dictionary<string, string>? requestHeaders, CancellationToken cancellationToken)
     {
         var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
-        {
-            Headers =
             {
-                Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
-            },
-            Content = new StringContent(JsonSerializer.Serialize(payload, JsonSerializerOptions), Encoding.UTF8, "application/json")
-        }.WithClientAndSdkHeaders(SdkInfo.Version);
+                Headers =
+                {
+                    Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
+                },
+                Content = new StringContent(JsonSerializer.Serialize(payload, JsonSerializerOptions), Encoding.UTF8, "application/json")
+            }
+            .WithClientAndSdkHeaders(SdkInfo.Version)
+            .WithHeaders(requestHeaders);
             
         await SendRequestAsync(request, cancellationToken);
     }
         
     /// <inheritdoc />
-    protected override async Task<TResult> RequestResourceInternalAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload, CancellationToken cancellationToken)
+    protected override async Task<TResult> RequestResourceInternalAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload, Dictionary<string, string>? requestHeaders, CancellationToken cancellationToken)
     {
         var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
-        {
-            Headers =
             {
-                Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
-            },
-            Content = new StringContent(JsonSerializer.Serialize(payload, JsonSerializerOptions), Encoding.UTF8, "application/json")
-        }.WithClientAndSdkHeaders(SdkInfo.Version);
+                Headers =
+                {
+                    Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
+                },
+                Content = new StringContent(JsonSerializer.Serialize(payload, JsonSerializerOptions), Encoding.UTF8, "application/json")
+            }
+            .WithClientAndSdkHeaders(SdkInfo.Version)
+            .WithHeaders(requestHeaders);
             
         var response = await SendRequestAsync(request, cancellationToken);
             
@@ -192,7 +203,12 @@ public class BearerTokenConnection
         {
             await EnsureAuthenticatedAsync(request, cancellationToken);
 
+            request = await _epochTrackerHttpMessageInterceptor.BeforeRequestAsync(ServerUrl, request, cancellationToken);
+            
             var response = await HttpClient.SendAsync(request, cancellationToken);
+            
+            response = await _epochTrackerHttpMessageInterceptor.AfterResponseAsync(ServerUrl, response, cancellationToken);
+            
             if (!response.IsSuccessStatusCode)
             {
                 var exception = await BuildException(response);
