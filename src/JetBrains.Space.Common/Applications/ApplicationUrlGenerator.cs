@@ -1,5 +1,5 @@
 using System;
-using System.Linq;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 
 namespace JetBrains.Space.Common.Applications;
@@ -17,33 +17,28 @@ public static class ApplicationUrlGenerator
     /// <param name="applicationName">Default application name. Can be changed by users in each Space organization.</param>
     /// <param name="applicationEndpoint">HTTPS url that Space will use to send messages to the application.</param>
     /// <param name="state">A string that will be passed to the application in <see cref="JetBrains.Space.Client.InitPayload"/> when user installs the application. Allows to track the installation process across different systems while user is redirected in the browser.</param>
-    /// <param name="authCodeFlow">Enables the authentication code for the application.</param>
-    /// <param name="authForMessagesFromSpace">Authentication for messages sent by Space to the application. Recommended value is <see cref="AuthForMessagesFromSpace.PublicKeySignature"/>.
-    /// The <see cref="AuthForMessagesFromSpace.PublicKeySignature"/> is the default one and is not appended to URL parameters.</param>
+    /// <param name="authFlows">Authentication flow(s) that the application will use to access the Space API.</param>
+    /// <param name="authForMessagesFromSpace">Authentication for messages sent by Space to the application. Recommended value is <see cref="AuthForMessagesFromSpace.PublicKeySignature"/>.</param>
     /// <returns>A URL for installing an app to a particular Space organization.</returns>
     public static Uri GenerateInstallUrl(
         Uri serverUrl, 
         string applicationName, 
         Uri applicationEndpoint, 
         string? state = null,
-        SpaceAuthorizationCodeFlow? authCodeFlow = null,
+        IEnumerable<SpaceAuthFlow>? authFlows = null,
         AuthForMessagesFromSpace authForMessagesFromSpace = AuthForMessagesFromSpace.PublicKeySignature)
     {
+        authFlows ??= new [] { SpaceAuthFlow.ClientCredentials() };
+
         var builder = new UriBuilder(serverUrl);
         builder.Path = builder.Path.TrimStart('/') + "/extensions/installedApplications/new";
         builder.Query += $"name={Uri.EscapeDataString(applicationName)}";
         builder.Query += $"&pair=true";
         builder.Query += $"&endpoint={Uri.EscapeDataString(applicationEndpoint.AbsoluteUri)}";
         
-        if (authCodeFlow != null)
+        foreach (var authFlow in authFlows)
         {
-            builder.Query += "&code-flow-enabled=true";
-            builder.Query += "&code-flow-redirect-uris=" + string.Join("%0A", authCodeFlow.RedirectUris.Select(it => Uri.EscapeDataString(it.ToString())));
-       
-            if (authCodeFlow.PkceRequired)
-            {
-                builder.Query += "&pkce-required=true";
-            }
+            builder.Query += $"&{authFlow}";
         }
 
         if (!string.IsNullOrEmpty(state))
@@ -51,9 +46,16 @@ public static class ApplicationUrlGenerator
             builder.Query += $"&state={Uri.EscapeDataString(state)}";
         }
         
-        if (authForMessagesFromSpace == AuthForMessagesFromSpace.SigningKey)
+        switch (authForMessagesFromSpace)
         {
-            builder.Query += "&has-signing-key=true";
+            case AuthForMessagesFromSpace.PublicKeySignature:
+                builder.Query += "&has-public-key-signature=true";
+                break;
+            case AuthForMessagesFromSpace.SigningKey:
+                builder.Query += "&has-signing-key=true";
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(authForMessagesFromSpace), authForMessagesFromSpace, "Unknown authentication option");
         }
 
         return builder.Uri;

@@ -21,7 +21,9 @@ public class ApplicationUrlGeneratorTests
             "https://my-org.jetbrains.space/extensions/installedApplications/new?" +
             "name=My%20app" +
             "&pair=true" +
-            "&endpoint=https%3A%2F%2Fmy-server.domain.com%2Fapi",
+            "&endpoint=https%3A%2F%2Fmy-server.domain.com%2Fapi" +
+            "&client-credentials-flow-enabled=true" +
+            "&has-public-key-signature=true",
             result.AbsoluteUri);
     }
     
@@ -34,13 +36,17 @@ public class ApplicationUrlGeneratorTests
             applicationName: "My app",
             applicationEndpoint: new Uri("https://my-server.domain.com/api"),
             state: "4e617c52-3906-4ad6-ac35-5be3fe66608b",
-            authCodeFlow: new SpaceAuthorizationCodeFlow(
-                redirectUris: new []
-                {
-                    new Uri("https://server1.domain.com/redirect-auth1"),
-                    new Uri("https://server2.domain.com/redirect-auth2")
-                },
-                pkceRequired: true),
+            authFlows: new []
+            {
+                SpaceAuthFlow.ClientCredentials(),
+                SpaceAuthFlow.AuthorizationCode(
+                    redirectUris: new []
+                    {
+                        new Uri("https://server1.domain.com/redirect-auth1"),
+                        new Uri("https://server2.domain.com/redirect-auth2")
+                    },
+                    pkceRequired: true)
+            },
             authForMessagesFromSpace: AuthForMessagesFromSpace.SigningKey
         );
         
@@ -50,6 +56,7 @@ public class ApplicationUrlGeneratorTests
             "name=My%20app" +
             "&pair=true" +
             "&endpoint=https%3A%2F%2Fmy-server.domain.com%2Fapi" +
+            "&client-credentials-flow-enabled=true" +
             "&code-flow-enabled=true" +
             "&code-flow-redirect-uris=https%3A%2F%2Fserver1.domain.com%2Fredirect-auth1%0Ahttps%3A%2F%2Fserver2.domain.com%2Fredirect-auth2" +
             "&pkce-required=true" +
