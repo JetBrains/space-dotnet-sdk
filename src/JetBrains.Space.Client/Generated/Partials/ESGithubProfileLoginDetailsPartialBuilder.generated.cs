@@ -52,5 +52,11 @@ public static class ESGithubProfileLoginDetailsPartialExtensions
     public static Partial<ESGithubProfileLoginDetails> WithOrganizations(this Partial<ESGithubProfileLoginDetails> it)
         => it.AddFieldName("organizations");
     
+    public static Partial<ESGithubProfileLoginDetails> WithAllEmails(this Partial<ESGithubProfileLoginDetails> it)
+        => it.AddFieldName("allEmails");
+    
+    public static Partial<ESGithubProfileLoginDetails> WithAllEmails(this Partial<ESGithubProfileLoginDetails> it, Func<Partial<Pair<string, bool>>, Partial<Pair<string, bool>>> partialBuilder)
+        => it.AddFieldName("allEmails", partialBuilder(new Partial<Pair<string, bool>>(it)));
+    
 }
 

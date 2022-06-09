@@ -34,7 +34,7 @@ public sealed class InvitationLink
 {
     public InvitationLink() { }
     
-    public InvitationLink(string id, string name, CPrincipal createdBy, DateTime createdAt, int inviteeLimit, int inviteeUsage, bool deleted, DateTime? expiresAt = null, TDTeam? team = null, TDRole? position = null)
+    public InvitationLink(string id, string name, CPrincipal createdBy, DateTime createdAt, int inviteeLimit, int inviteeUsage, bool deleted, DateTime? expiresAt = null, TDTeam? team = null, TDRole? position = null, string? link = null)
     {
         Id = id;
         Name = name;
@@ -45,6 +45,7 @@ public sealed class InvitationLink
         InviteeUsage = inviteeUsage;
         Team = team;
         Position = position;
+        Link = link;
         IsDeleted = deleted;
     }
     
@@ -137,6 +138,15 @@ public sealed class InvitationLink
         set => _position.SetValue(value);
     }
 
+    private PropertyValue<string?> _link = new PropertyValue<string?>(nameof(InvitationLink), nameof(Link), "link");
+    
+    [JsonPropertyName("link")]
+    public string? Link
+    {
+        get => _link.GetValue(InlineErrors);
+        set => _link.SetValue(value);
+    }
+
     private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(InvitationLink), nameof(IsDeleted), "deleted");
     
     [Required]
@@ -158,6 +168,7 @@ public sealed class InvitationLink
         _inviteeUsage.SetAccessPath(parentChainPath, validateHasBeenSet);
         _team.SetAccessPath(parentChainPath, validateHasBeenSet);
         _position.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _link.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deleted.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

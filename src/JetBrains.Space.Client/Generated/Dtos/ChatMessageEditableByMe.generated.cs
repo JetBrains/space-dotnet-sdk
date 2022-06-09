@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class ChatMessageEditableByMe
-     : ChatMessageMenuItemVisibilityFilterApi, IClassNameConvertible, IPropagatePropertyAccessPath
+     : ChatMessageMenuItemVisibilityFilterApi, ChatMessageMenuItemVisibilityFilterIn, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "ChatMessageEditableByMe";

@@ -34,7 +34,7 @@ public sealed class PRProject
 {
     public PRProject() { }
     
-    public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> collaboratorsProfiles, List<TDTeam> collaboratorsTeams, List<TDMemberProfile> externalUserProfiles, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, string projectId, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, ProjectTeamType type, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null, List<ProjectFeatureState>? features = null, List<ProjectTeamMemberRecord>? members = null, TDTeam? team = null, List<TDTeam>? teams = null)
+    public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> collaboratorsProfiles, List<TDTeam> collaboratorsTeams, int daysInWeek, bool enable, List<TDMemberProfile> externalUserProfiles, DurationTextFormat format, int hoursInDay, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, string projectId, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, ProjectTeamType type, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null, List<ProjectFeatureState>? features = null, List<ProjectTeamMemberRecord>? members = null, TDTeam? team = null, List<TDTeam>? teams = null)
     {
         Id = id;
         Key = key;
@@ -49,8 +49,12 @@ public sealed class PRProject
         Boards = boards;
         CollaboratorsProfiles = collaboratorsProfiles;
         CollaboratorsTeams = collaboratorsTeams;
+        DaysInWeek = daysInWeek;
+        IsEnable = enable;
         ExternalUserProfiles = externalUserProfiles;
         Features = features;
+        Format = format;
+        HoursInDay = hoursInDay;
         MemberProfiles = memberProfiles;
         MemberTeams = memberTeams;
         Members = members;
@@ -192,6 +196,26 @@ public sealed class PRProject
         set => _collaboratorsTeams.SetValue(value);
     }
 
+    private PropertyValue<int> _daysInWeek = new PropertyValue<int>(nameof(PRProject), nameof(DaysInWeek), "daysInWeek");
+    
+    [Required]
+    [JsonPropertyName("daysInWeek")]
+    public int DaysInWeek
+    {
+        get => _daysInWeek.GetValue(InlineErrors);
+        set => _daysInWeek.SetValue(value);
+    }
+
+    private PropertyValue<bool> _enable = new PropertyValue<bool>(nameof(PRProject), nameof(IsEnable), "enable");
+    
+    [Required]
+    [JsonPropertyName("enable")]
+    public bool IsEnable
+    {
+        get => _enable.GetValue(InlineErrors);
+        set => _enable.SetValue(value);
+    }
+
     private PropertyValue<List<TDMemberProfile>> _externalUserProfiles = new PropertyValue<List<TDMemberProfile>>(nameof(PRProject), nameof(ExternalUserProfiles), "externalUserProfiles", new List<TDMemberProfile>());
     
     [Required]
@@ -209,6 +233,26 @@ public sealed class PRProject
     {
         get => _features.GetValue(InlineErrors);
         set => _features.SetValue(value);
+    }
+
+    private PropertyValue<DurationTextFormat> _format = new PropertyValue<DurationTextFormat>(nameof(PRProject), nameof(Format), "format");
+    
+    [Required]
+    [JsonPropertyName("format")]
+    public DurationTextFormat Format
+    {
+        get => _format.GetValue(InlineErrors);
+        set => _format.SetValue(value);
+    }
+
+    private PropertyValue<int> _hoursInDay = new PropertyValue<int>(nameof(PRProject), nameof(HoursInDay), "hoursInDay");
+    
+    [Required]
+    [JsonPropertyName("hoursInDay")]
+    public int HoursInDay
+    {
+        get => _hoursInDay.GetValue(InlineErrors);
+        set => _hoursInDay.SetValue(value);
     }
 
     private PropertyValue<List<TDMemberProfile>> _memberProfiles = new PropertyValue<List<TDMemberProfile>>(nameof(PRProject), nameof(MemberProfiles), "memberProfiles", new List<TDMemberProfile>());
@@ -333,8 +377,12 @@ public sealed class PRProject
         _boards.SetAccessPath(parentChainPath, validateHasBeenSet);
         _collaboratorsProfiles.SetAccessPath(parentChainPath, validateHasBeenSet);
         _collaboratorsTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _daysInWeek.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _enable.SetAccessPath(parentChainPath, validateHasBeenSet);
         _externalUserProfiles.SetAccessPath(parentChainPath, validateHasBeenSet);
         _features.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _format.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hoursInDay.SetAccessPath(parentChainPath, validateHasBeenSet);
         _memberProfiles.SetAccessPath(parentChainPath, validateHasBeenSet);
         _memberTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _members.SetAccessPath(parentChainPath, validateHasBeenSet);

@@ -1490,7 +1490,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// <term>Add members</term>
         /// </item>
         /// <item>
-        /// <term>Add new external user</term>
+        /// <term>Add new guest</term>
         /// </item>
         /// </list>
         /// </remarks>

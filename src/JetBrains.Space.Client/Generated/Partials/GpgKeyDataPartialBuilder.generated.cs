@@ -37,11 +37,11 @@ public static class GpgKeyDataPartialExtensions
     public static Partial<GpgKeyData> WithPublicKey(this Partial<GpgKeyData> it)
         => it.AddFieldName("publicKey");
     
-    public static Partial<GpgKeyData> WithUserId(this Partial<GpgKeyData> it)
-        => it.AddFieldName("userId");
+    public static Partial<GpgKeyData> WithUserIds(this Partial<GpgKeyData> it)
+        => it.AddFieldName("userIds");
     
-    public static Partial<GpgKeyData> WithIsVerified(this Partial<GpgKeyData> it)
-        => it.AddFieldName("verified");
+    public static Partial<GpgKeyData> WithUserIds(this Partial<GpgKeyData> it, Func<Partial<GpgKeyDataKeyUserId>, Partial<GpgKeyDataKeyUserId>> partialBuilder)
+        => it.AddFieldName("userIds", partialBuilder(new Partial<GpgKeyDataKeyUserId>(it)));
     
     public static Partial<GpgKeyData> WithComment(this Partial<GpgKeyData> it)
         => it.AddFieldName("comment");

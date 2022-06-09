@@ -34,11 +34,12 @@ public class AuthModulesPostRequest
 {
     public AuthModulesPostRequest() { }
     
-    public AuthModulesPostRequest(string key, string name, bool enabled, ESAuthModuleSettings settings)
+    public AuthModulesPostRequest(string key, string name, bool enabled, ESAuthModuleSettings settings, string? iconDataURI = null)
     {
         Key = key;
         Name = name;
         IsEnabled = enabled;
+        IconDataURI = iconDataURI;
         Settings = settings;
     }
     
@@ -72,6 +73,18 @@ public class AuthModulesPostRequest
         set => _enabled.SetValue(value);
     }
 
+    private PropertyValue<string?> _iconDataURI = new PropertyValue<string?>(nameof(AuthModulesPostRequest), nameof(IconDataURI), "iconDataURI");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("iconDataURI")]
+    public string? IconDataURI
+    {
+        get => _iconDataURI.GetValue(InlineErrors);
+        set => _iconDataURI.SetValue(value);
+    }
+
     private PropertyValue<ESAuthModuleSettings> _settings = new PropertyValue<ESAuthModuleSettings>(nameof(AuthModulesPostRequest), nameof(Settings), "settings");
     
     [Required]
@@ -87,6 +100,7 @@ public class AuthModulesPostRequest
         _key.SetAccessPath(parentChainPath, validateHasBeenSet);
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _enabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _iconDataURI.SetAccessPath(parentChainPath, validateHasBeenSet);
         _settings.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

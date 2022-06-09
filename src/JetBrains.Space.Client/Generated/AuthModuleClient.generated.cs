@@ -49,7 +49,7 @@ public partial class AuthModuleClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<ESAuthModule> CreateAuthModuleAsync(string key, string name, bool enabled, ESAuthModuleSettings settings, Func<Partial<ESAuthModule>, Partial<ESAuthModule>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<ESAuthModule> CreateAuthModuleAsync(string key, string name, bool enabled, ESAuthModuleSettings settings, string? iconDataURI = null, Func<Partial<ESAuthModule>, Partial<ESAuthModule>>? partial = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESAuthModule>()) : Partial<ESAuthModule>.Default()).ToString());
@@ -60,6 +60,7 @@ public partial class AuthModuleClient : ISpaceClient
                 Key = key,
                 Name = name,
                 IsEnabled = enabled,
+                IconDataURI = iconDataURI,
                 Settings = settings,
             }, cancellationToken);
     }
@@ -163,7 +164,7 @@ public partial class AuthModuleClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task UpdateAuthModuleAsync(string id, string? key = null, string? name = null, bool? enabled = null, ESAuthModuleSettings? settings = null, CancellationToken cancellationToken = default)
+    public async Task UpdateAuthModuleAsync(string id, string? key = null, string? name = null, bool? enabled = null, string? iconDataURI = null, ESAuthModuleSettings? settings = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -173,6 +174,7 @@ public partial class AuthModuleClient : ISpaceClient
                 Key = key,
                 Name = name,
                 IsEnabled = enabled,
+                IconDataURI = iconDataURI,
                 Settings = settings,
             }, cancellationToken);
     }

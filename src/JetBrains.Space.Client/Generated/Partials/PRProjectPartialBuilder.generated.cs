@@ -88,6 +88,12 @@ public static class PRProjectPartialExtensions
     public static Partial<PRProject> WithCollaboratorsTeams(this Partial<PRProject> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
         => it.AddFieldName("collaboratorsTeams", partialBuilder(new Partial<TDTeam>(it)));
     
+    public static Partial<PRProject> WithDaysInWeek(this Partial<PRProject> it)
+        => it.AddFieldName("daysInWeek");
+    
+    public static Partial<PRProject> WithIsEnable(this Partial<PRProject> it)
+        => it.AddFieldName("enable");
+    
     public static Partial<PRProject> WithExternalUserProfiles(this Partial<PRProject> it)
         => it.AddFieldName("externalUserProfiles");
     
@@ -99,6 +105,15 @@ public static class PRProjectPartialExtensions
     
     public static Partial<PRProject> WithFeatures(this Partial<PRProject> it, Func<Partial<ProjectFeatureState>, Partial<ProjectFeatureState>> partialBuilder)
         => it.AddFieldName("features", partialBuilder(new Partial<ProjectFeatureState>(it)));
+    
+    public static Partial<PRProject> WithFormat(this Partial<PRProject> it)
+        => it.AddFieldName("format");
+    
+    public static Partial<PRProject> WithFormat(this Partial<PRProject> it, Func<Partial<DurationTextFormat>, Partial<DurationTextFormat>> partialBuilder)
+        => it.AddFieldName("format", partialBuilder(new Partial<DurationTextFormat>(it)));
+    
+    public static Partial<PRProject> WithHoursInDay(this Partial<PRProject> it)
+        => it.AddFieldName("hoursInDay");
     
     public static Partial<PRProject> WithMemberProfiles(this Partial<PRProject> it)
         => it.AddFieldName("memberProfiles");

@@ -67,6 +67,9 @@ public static class InvitationLinkPartialExtensions
     public static Partial<InvitationLink> WithPosition(this Partial<InvitationLink> it, Func<Partial<TDRole>, Partial<TDRole>> partialBuilder)
         => it.AddFieldName("position", partialBuilder(new Partial<TDRole>(it)));
     
+    public static Partial<InvitationLink> WithLink(this Partial<InvitationLink> it)
+        => it.AddFieldName("link");
+    
     public static Partial<InvitationLink> WithIsDeleted(this Partial<InvitationLink> it)
         => it.AddFieldName("deleted");
     

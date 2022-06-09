@@ -34,10 +34,9 @@ public sealed class AllReactionsToItemRecord
 {
     public AllReactionsToItemRecord() { }
     
-    public AllReactionsToItemRecord(string id, List<CertainReactionToItemRecord>? reactions = null, List<EmojiReactionRecord>? emojiReactions = null)
+    public AllReactionsToItemRecord(string id, List<EmojiReactionRecord>? emojiReactions = null)
     {
         Id = id;
-        Reactions = reactions;
         EmojiReactions = emojiReactions;
     }
     
@@ -49,15 +48,6 @@ public sealed class AllReactionsToItemRecord
     {
         get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
-    }
-
-    private PropertyValue<List<CertainReactionToItemRecord>?> _reactions = new PropertyValue<List<CertainReactionToItemRecord>?>(nameof(AllReactionsToItemRecord), nameof(Reactions), "reactions");
-    
-    [JsonPropertyName("reactions")]
-    public List<CertainReactionToItemRecord>? Reactions
-    {
-        get => _reactions.GetValue(InlineErrors);
-        set => _reactions.SetValue(value);
     }
 
     private PropertyValue<List<EmojiReactionRecord>?> _emojiReactions = new PropertyValue<List<EmojiReactionRecord>?>(nameof(AllReactionsToItemRecord), nameof(EmojiReactions), "emojiReactions");
@@ -72,7 +62,6 @@ public sealed class AllReactionsToItemRecord
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _reactions.SetAccessPath(parentChainPath, validateHasBeenSet);
         _emojiReactions.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

@@ -27,18 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ReactionDataPartialBuilder;
+namespace JetBrains.Space.Client.ChatBotUiExtensionInPartialBuilder;
 
-public static class ReactionDataPartialExtensions
+public static class ChatBotUiExtensionInPartialExtensions
 {
-    public static Partial<ReactionData> WithName(this Partial<ReactionData> it)
-        => it.AddFieldName("name");
-    
-    public static Partial<ReactionData> WithSymbol(this Partial<ReactionData> it)
-        => it.AddFieldName("symbol");
-    
-    public static Partial<ReactionData> WithEmoji(this Partial<ReactionData> it)
-        => it.AddFieldName("emoji");
-    
 }
 

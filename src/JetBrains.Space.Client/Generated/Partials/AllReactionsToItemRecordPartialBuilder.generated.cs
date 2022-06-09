@@ -34,12 +34,6 @@ public static class AllReactionsToItemRecordPartialExtensions
     public static Partial<AllReactionsToItemRecord> WithId(this Partial<AllReactionsToItemRecord> it)
         => it.AddFieldName("id");
     
-    public static Partial<AllReactionsToItemRecord> WithReactions(this Partial<AllReactionsToItemRecord> it)
-        => it.AddFieldName("reactions");
-    
-    public static Partial<AllReactionsToItemRecord> WithReactions(this Partial<AllReactionsToItemRecord> it, Func<Partial<CertainReactionToItemRecord>, Partial<CertainReactionToItemRecord>> partialBuilder)
-        => it.AddFieldName("reactions", partialBuilder(new Partial<CertainReactionToItemRecord>(it)));
-    
     public static Partial<AllReactionsToItemRecord> WithEmojiReactions(this Partial<AllReactionsToItemRecord> it)
         => it.AddFieldName("emojiReactions");
     

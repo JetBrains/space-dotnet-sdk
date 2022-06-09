@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class IssueEditableByMe
-     : IssueMenuItemVisibilityFilterApi, IClassNameConvertible, IPropagatePropertyAccessPath
+     : IssueMenuItemVisibilityFilterApi, IssueMenuItemVisibilityFilterIn, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "IssueEditableByMe";

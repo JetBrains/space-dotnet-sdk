@@ -34,7 +34,7 @@ public class ProjectsForProjectPackagesRepositoriesPostRequest
 {
     public ProjectsForProjectPackagesRepositoriesPostRequest() { }
     
-    public ProjectsForProjectPackagesRepositoriesPostRequest(string type, string name, bool @public, ESPackageRepositorySettings settings, PackageRepositoryMode mode, string? description = null, PackageRepositoryConnection? connection = null)
+    public ProjectsForProjectPackagesRepositoriesPostRequest(string type, string name, bool @public = false, PackageRepositoryMode mode = PackageRepositoryMode.HOSTING, string? description = null, ESPackageRepositorySettings? settings = null, PackageRepositoryConnection? connection = null)
     {
         Type = type;
         Name = name;
@@ -79,7 +79,6 @@ public class ProjectsForProjectPackagesRepositoriesPostRequest
 
     private PropertyValue<bool> _public = new PropertyValue<bool>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(IsPublic), "public");
     
-    [Required]
     [JsonPropertyName("public")]
     public bool IsPublic
     {
@@ -87,19 +86,20 @@ public class ProjectsForProjectPackagesRepositoriesPostRequest
         set => _public.SetValue(value);
     }
 
-    private PropertyValue<ESPackageRepositorySettings> _settings = new PropertyValue<ESPackageRepositorySettings>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Settings), "settings");
+    private PropertyValue<ESPackageRepositorySettings?> _settings = new PropertyValue<ESPackageRepositorySettings?>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Settings), "settings");
     
-    [Required]
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("settings")]
-    public ESPackageRepositorySettings Settings
+    public ESPackageRepositorySettings? Settings
     {
         get => _settings.GetValue(InlineErrors);
         set => _settings.SetValue(value);
     }
 
-    private PropertyValue<PackageRepositoryMode> _mode = new PropertyValue<PackageRepositoryMode>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Mode), "mode");
+    private PropertyValue<PackageRepositoryMode> _mode = new PropertyValue<PackageRepositoryMode>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Mode), "mode", PackageRepositoryMode.HOSTING);
     
-    [Required]
     [JsonPropertyName("mode")]
     public PackageRepositoryMode Mode
     {

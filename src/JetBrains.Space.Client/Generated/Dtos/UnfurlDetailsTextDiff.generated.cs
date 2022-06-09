@@ -29,53 +29,44 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ReactionData
-     : IPropagatePropertyAccessPath
+public sealed class UnfurlDetailsTextDiff
+     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public ReactionData() { }
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsTextDiff";
     
-    public ReactionData(string name, string symbol, string emoji)
+    public UnfurlDetailsTextDiff() { }
+    
+    public UnfurlDetailsTextDiff(string textBefore, string textAfter)
     {
-        Name = name;
-        Symbol = symbol;
-        Emoji = emoji;
+        TextBefore = textBefore;
+        TextAfter = textAfter;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ReactionData), nameof(Name), "name");
+    private PropertyValue<string> _textBefore = new PropertyValue<string>(nameof(UnfurlDetailsTextDiff), nameof(TextBefore), "textBefore");
     
     [Required]
-    [JsonPropertyName("name")]
-    public string Name
+    [JsonPropertyName("textBefore")]
+    public string TextBefore
     {
-        get => _name.GetValue(InlineErrors);
-        set => _name.SetValue(value);
-    }
-
-    private PropertyValue<string> _symbol = new PropertyValue<string>(nameof(ReactionData), nameof(Symbol), "symbol");
-    
-    [Required]
-    [JsonPropertyName("symbol")]
-    public string Symbol
-    {
-        get => _symbol.GetValue(InlineErrors);
-        set => _symbol.SetValue(value);
+        get => _textBefore.GetValue(InlineErrors);
+        set => _textBefore.SetValue(value);
     }
 
-    private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(ReactionData), nameof(Emoji), "emoji");
+    private PropertyValue<string> _textAfter = new PropertyValue<string>(nameof(UnfurlDetailsTextDiff), nameof(TextAfter), "textAfter");
     
     [Required]
-    [JsonPropertyName("emoji")]
-    public string Emoji
+    [JsonPropertyName("textAfter")]
+    public string TextAfter
     {
-        get => _emoji.GetValue(InlineErrors);
-        set => _emoji.SetValue(value);
+        get => _textAfter.GetValue(InlineErrors);
+        set => _textAfter.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _symbol.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _emoji.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _textBefore.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _textAfter.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

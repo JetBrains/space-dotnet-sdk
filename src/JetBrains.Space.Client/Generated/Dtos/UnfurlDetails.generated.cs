@@ -140,5 +140,8 @@ public interface UnfurlDetails
     public static UnfurlDetailsTeam Team(TDTeam team, bool? strikeThrough = null)
         => new UnfurlDetailsTeam(team: team, strikeThrough: strikeThrough);
     
+    public static UnfurlDetailsTextDiff TextDiff(string textBefore, string textAfter)
+        => new UnfurlDetailsTextDiff(textBefore: textBefore, textAfter: textAfter);
+    
 }
 

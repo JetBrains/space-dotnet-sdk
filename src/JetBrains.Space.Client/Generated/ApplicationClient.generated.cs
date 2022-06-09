@@ -200,6 +200,22 @@ public partial class ApplicationClient : ISpaceClient
     }
     
 
+    /// <summary>
+    /// Set UI extensions supported by the calling application in specified context. Only the application itself can set its extensions.
+    /// </summary>
+    public async Task SetUiExtensionsAsync(PermissionContextIdentifier contextIdentifier, List<AppUiExtensionIn> extensions, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        
+        await _connection.RequestResourceAsync("PATCH", $"api/http/applications/ui-extensions{queryParameters.ToQueryString()}", 
+            new ApplicationsUiExtensionsPatchRequest
+            { 
+                ContextIdentifier = contextIdentifier,
+                Extensions = extensions,
+            }, cancellationToken);
+    }
+    
+
     /// <remarks>
     /// Required permissions:
     /// <list type="bullet">
@@ -944,6 +960,150 @@ public partial class ApplicationClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             
             await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/ssh-keys/{fingerprint}{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+    }
+
+    public UiExtensionClient UiExtensions => new UiExtensionClient(_connection);
+    
+    public partial class UiExtensionClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public UiExtensionClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <summary>
+        /// Get UI extensions supported by the application in specified context. Omit contextIdentifier to get UI extensions in all contexts
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View applications</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<List<AppUiExtensionApi>> GetUiExtensionsAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, Func<Partial<AppUiExtensionApi>, Partial<AppUiExtensionApi>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("contextIdentifier", contextIdentifier.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<AppUiExtensionApi>()) : Partial<AppUiExtensionApi>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<AppUiExtensionApi>>("GET", $"api/http/applications/{application}/ui-extensions{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Disable application UI for everybody in specified context. Requires Superadmin right for global context, AdminProject for project context, AdminChannel for channel context. Users will still be able to enable application UI individually.
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View applications</term>
+        /// </item>
+        /// <item>
+        /// <term>Grant permissions to other members</term>
+        /// </item>
+        /// <item>
+        /// <term>Manage project permission scheme</term>
+        /// </item>
+        /// <item>
+        /// <term>Manage channels</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task DisableApplicationUiAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{application}/ui-extensions/disable-for-everybody{queryParameters.ToQueryString()}", 
+                new ApplicationsForApplicationUiExtensionsDisableForEverybodyPatchRequest
+                { 
+                    ContextIdentifier = contextIdentifier,
+                }, cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Disable application UI in specified context for the current user
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View applications</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task DisableApplicationUiForMeAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{application}/ui-extensions/disable-for-me{queryParameters.ToQueryString()}", 
+                new ApplicationsForApplicationUiExtensionsDisableForMePatchRequest
+                { 
+                    ContextIdentifier = contextIdentifier,
+                }, cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Enable application UI for everybody in specified context. Requires Superadmin right for global context, AdminProject for project context, AdminChannel for channel context. Users will still be able to disable application UI individually.
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View applications</term>
+        /// </item>
+        /// <item>
+        /// <term>Grant permissions to other members</term>
+        /// </item>
+        /// <item>
+        /// <term>Manage project permission scheme</term>
+        /// </item>
+        /// <item>
+        /// <term>Manage channels</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task EnableApplicationUiAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{application}/ui-extensions/enable-for-everybody{queryParameters.ToQueryString()}", 
+                new ApplicationsForApplicationUiExtensionsEnableForEverybodyPatchRequest
+                { 
+                    ContextIdentifier = contextIdentifier,
+                }, cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Enable application UI in specified context for the current user
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View applications</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task EnableApplicationUiForMeAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{application}/ui-extensions/enable-for-me{queryParameters.ToQueryString()}", 
+                new ApplicationsForApplicationUiExtensionsEnableForMePatchRequest
+                { 
+                    ContextIdentifier = contextIdentifier,
+                }, cancellationToken);
         }
         
     

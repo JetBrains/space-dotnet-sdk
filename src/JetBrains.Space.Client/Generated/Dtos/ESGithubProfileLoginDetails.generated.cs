@@ -37,7 +37,7 @@ public sealed class ESGithubProfileLoginDetails
     
     public ESGithubProfileLoginDetails() { }
     
-    public ESGithubProfileLoginDetails(bool emailVerified, string? login = null, string? firstName = null, string? lastName = null, string? email = null, string? avatarUrl = null, List<string>? organizations = null)
+    public ESGithubProfileLoginDetails(bool emailVerified, string? login = null, string? firstName = null, string? lastName = null, string? email = null, string? avatarUrl = null, List<string>? organizations = null, List<Pair<string, bool>>? allEmails = null)
     {
         Login = login;
         FirstName = firstName;
@@ -46,6 +46,7 @@ public sealed class ESGithubProfileLoginDetails
         IsEmailVerified = emailVerified;
         AvatarUrl = avatarUrl;
         Organizations = organizations;
+        AllEmails = allEmails;
     }
     
     private PropertyValue<string?> _login = new PropertyValue<string?>(nameof(ESGithubProfileLoginDetails), nameof(Login), "login");
@@ -112,6 +113,15 @@ public sealed class ESGithubProfileLoginDetails
         set => _organizations.SetValue(value);
     }
 
+    private PropertyValue<List<Pair<string, bool>>?> _allEmails = new PropertyValue<List<Pair<string, bool>>?>(nameof(ESGithubProfileLoginDetails), nameof(AllEmails), "allEmails");
+    
+    [JsonPropertyName("allEmails")]
+    public List<Pair<string, bool>>? AllEmails
+    {
+        get => _allEmails.GetValue(InlineErrors);
+        set => _allEmails.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _login.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -121,6 +131,7 @@ public sealed class ESGithubProfileLoginDetails
         _emailVerified.SetAccessPath(parentChainPath, validateHasBeenSet);
         _avatarUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
         _organizations.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _allEmails.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

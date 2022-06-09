@@ -34,12 +34,11 @@ public sealed class GpgKeyData
 {
     public GpgKeyData() { }
     
-    public GpgKeyData(string fingerprint, string publicKey, string userId, bool verified, string comment, DateTime created, DateTime added, bool revoked, DateTime? expires = null, DateTime? revokedAt = null, string? revokeComment = null)
+    public GpgKeyData(string fingerprint, string publicKey, List<GpgKeyDataKeyUserId> userIds, string comment, DateTime created, DateTime added, bool revoked, DateTime? expires = null, DateTime? revokedAt = null, string? revokeComment = null)
     {
         Fingerprint = fingerprint;
         PublicKey = publicKey;
-        UserId = userId;
-        IsVerified = verified;
+        UserIds = userIds;
         Comment = comment;
         Created = created;
         Added = added;
@@ -69,24 +68,14 @@ public sealed class GpgKeyData
         set => _publicKey.SetValue(value);
     }
 
-    private PropertyValue<string> _userId = new PropertyValue<string>(nameof(GpgKeyData), nameof(UserId), "userId");
+    private PropertyValue<List<GpgKeyDataKeyUserId>> _userIds = new PropertyValue<List<GpgKeyDataKeyUserId>>(nameof(GpgKeyData), nameof(UserIds), "userIds", new List<GpgKeyDataKeyUserId>());
     
     [Required]
-    [JsonPropertyName("userId")]
-    public string UserId
+    [JsonPropertyName("userIds")]
+    public List<GpgKeyDataKeyUserId> UserIds
     {
-        get => _userId.GetValue(InlineErrors);
-        set => _userId.SetValue(value);
-    }
-
-    private PropertyValue<bool> _verified = new PropertyValue<bool>(nameof(GpgKeyData), nameof(IsVerified), "verified");
-    
-    [Required]
-    [JsonPropertyName("verified")]
-    public bool IsVerified
-    {
-        get => _verified.GetValue(InlineErrors);
-        set => _verified.SetValue(value);
+        get => _userIds.GetValue(InlineErrors);
+        set => _userIds.SetValue(value);
     }
 
     private PropertyValue<string> _comment = new PropertyValue<string>(nameof(GpgKeyData), nameof(Comment), "comment");
@@ -164,8 +153,7 @@ public sealed class GpgKeyData
     {
         _fingerprint.SetAccessPath(parentChainPath, validateHasBeenSet);
         _publicKey.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _userId.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _verified.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _userIds.SetAccessPath(parentChainPath, validateHasBeenSet);
         _comment.SetAccessPath(parentChainPath, validateHasBeenSet);
         _created.SetAccessPath(parentChainPath, validateHasBeenSet);
         _added.SetAccessPath(parentChainPath, validateHasBeenSet);

@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class DocumentFolderEditableByMe
-     : DocumentFolderMenuItemVisibilityFilterApi, IClassNameConvertible, IPropagatePropertyAccessPath
+     : DocumentFolderMenuItemVisibilityFilterApi, DocumentFolderMenuItemVisibilityFilterIn, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "DocumentFolderEditableByMe";

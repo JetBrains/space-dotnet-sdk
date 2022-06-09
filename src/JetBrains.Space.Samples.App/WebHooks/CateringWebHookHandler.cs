@@ -88,7 +88,7 @@ public class CateringWebHookHandler : SpaceWebHookHandler
             cateringSession: cateringSession);
     }
 
-    public override async Task<AppUserActionExecutionResult?> HandleMessageActionAsync(MessageActionPayload payload)
+    public override async Task<AppUserActionExecutionResult> HandleMessageActionAsync(MessageActionPayload payload)
     {
         Sessions.TryGetValue(payload.UserId, out var cateringSession);
 
