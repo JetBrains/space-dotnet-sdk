@@ -34,7 +34,7 @@ public sealed class ChannelItemRecord
 {
     public ChannelItemRecord() { }
     
-    public ChannelItemRecord(string text, CPrincipal author, DateTime created, long time, string id, bool archived, List<Issue> issues, M2ItemContentDetails? details = null, AllReactionsToItemRecord? reactions = null, M2ChannelRecord? thread = null, ChannelItemRecord? projectedItem = null, List<AttachmentInfo>? attachments = null, bool? pending = null, DateTime? edited = null, bool? pinned = null, List<CPrincipal>? suggestedParticipants = null, List<EntityMention>? mentions = null, string? channelId = null)
+    public ChannelItemRecord(string text, CPrincipal author, DateTime created, long time, string id, bool archived, List<Issue> issues, M2ItemContentDetails? details = null, AllReactionsToItemRecord? reactions = null, M2ChannelRecord? thread = null, ChannelItemRecord? projectedItem = null, List<AttachmentInfo>? attachments = null, string? externalId = null, bool? pending = null, DateTime? edited = null, bool? pinned = null, List<CPrincipal>? suggestedParticipants = null, List<EntityMention>? mentions = null, string? channelId = null)
     {
         Text = text;
         Details = details;
@@ -45,6 +45,7 @@ public sealed class ChannelItemRecord
         Thread = thread;
         ProjectedItem = projectedItem;
         Attachments = attachments;
+        ExternalId = externalId;
         IsPending = pending;
         Id = id;
         IsArchived = archived;
@@ -140,6 +141,15 @@ public sealed class ChannelItemRecord
     {
         get => _attachments.GetValue(InlineErrors);
         set => _attachments.SetValue(value);
+    }
+
+    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(ChannelItemRecord), nameof(ExternalId), "externalId");
+    
+    [JsonPropertyName("externalId")]
+    public string? ExternalId
+    {
+        get => _externalId.GetValue(InlineErrors);
+        set => _externalId.SetValue(value);
     }
 
     private PropertyValue<bool?> _pending = new PropertyValue<bool?>(nameof(ChannelItemRecord), nameof(IsPending), "pending");
@@ -238,6 +248,7 @@ public sealed class ChannelItemRecord
         _thread.SetAccessPath(parentChainPath, validateHasBeenSet);
         _projectedItem.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _pending.SetAccessPath(parentChainPath, validateHasBeenSet);
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);

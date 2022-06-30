@@ -37,8 +37,26 @@ public sealed class ApplicationHomepageUiExtensionIn
     
     public ApplicationHomepageUiExtensionIn() { }
     
+    public ApplicationHomepageUiExtensionIn(string? iframeUrl = null)
+    {
+        IframeUrl = iframeUrl;
+    }
+    
+    private PropertyValue<string?> _iframeUrl = new PropertyValue<string?>(nameof(ApplicationHomepageUiExtensionIn), nameof(IframeUrl), "iframeUrl");
+    
+    /// <summary>
+    /// If specified, overrides the default URL for the application homepage iframe. The default URL is &lt;application endpoint&gt;/iframe/app-homepage
+    /// </summary>
+    [JsonPropertyName("iframeUrl")]
+    public string? IframeUrl
+    {
+        get => _iframeUrl.GetValue(InlineErrors);
+        set => _iframeUrl.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
+        _iframeUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

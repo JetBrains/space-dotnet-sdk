@@ -37,8 +37,23 @@ public sealed class ApplicationHomepageUiExtensionApi
     
     public ApplicationHomepageUiExtensionApi() { }
     
+    public ApplicationHomepageUiExtensionApi(string? iframeUrl = null)
+    {
+        IframeUrl = iframeUrl;
+    }
+    
+    private PropertyValue<string?> _iframeUrl = new PropertyValue<string?>(nameof(ApplicationHomepageUiExtensionApi), nameof(IframeUrl), "iframeUrl");
+    
+    [JsonPropertyName("iframeUrl")]
+    public string? IframeUrl
+    {
+        get => _iframeUrl.GetValue(InlineErrors);
+        set => _iframeUrl.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
+        _iframeUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -65,6 +65,15 @@ public interface WebhookEvent
     public static ChannelEvent ChannelEvent(KMetaMod meta, M2ChannelRecord channel, Modification<string>? name = null, Modification<string>? description = null, Modification<string>? icon = null, bool? restored = null, bool? archived = null)
         => new ChannelEvent(meta: meta, channel: channel, name: name, description: description, icon: icon, restored: restored, archived: archived);
     
+    public static ChatMessageCreatedEvent ChatMessageCreatedEvent(string channelId, ChannelItemRecord message, string? threadId = null)
+        => new ChatMessageCreatedEvent(channelId: channelId, message: message, threadId: threadId);
+    
+    public static ChatMessageDeletedEvent ChatMessageDeletedEvent(string channelId, ChannelItemRecord message, string? threadId = null)
+        => new ChatMessageDeletedEvent(channelId: channelId, message: message, threadId: threadId);
+    
+    public static ChatMessageUpdatedEvent ChatMessageUpdatedEvent(string channelId, ChannelItemRecord message, string? threadId = null, Modification<DateTime>? edited = null, Modification<bool>? pinned = null)
+        => new ChatMessageUpdatedEvent(channelId: channelId, message: message, threadId: threadId, edited: edited, pinned: pinned);
+    
     public static CodeReviewWebhookEvent CodeReview(ProjectKey projectKey, string repository, string reviewId, string title, bool isMergeRequest)
         => new CodeReviewWebhookEvent(projectKey: projectKey, repository: repository, reviewId: reviewId, title: title, isMergeRequest: isMergeRequest);
     

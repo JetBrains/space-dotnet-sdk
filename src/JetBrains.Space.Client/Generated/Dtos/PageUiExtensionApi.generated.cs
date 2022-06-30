@@ -32,8 +32,8 @@ namespace JetBrains.Space.Client;
 public interface PageUiExtensionApi
      : AppUiExtensionApi, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static ApplicationHomepageUiExtensionApi ApplicationHomepageUiExtensionApi()
-        => new ApplicationHomepageUiExtensionApi();
+    public static ApplicationHomepageUiExtensionApi ApplicationHomepageUiExtensionApi(string? iframeUrl = null)
+        => new ApplicationHomepageUiExtensionApi(iframeUrl: iframeUrl);
     
 }
 

@@ -27,18 +27,23 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MeetingPreviewMenuItemUiExtensionInPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class MeetingPreviewMenuItemUiExtensionInPartialExtensions
+public sealed class ProjectTeamRoleCollaborator
+     : ProjectTeamRole, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static Partial<MeetingPreviewMenuItemUiExtensionIn> WithDisplayName(this Partial<MeetingPreviewMenuItemUiExtensionIn> it)
-        => it.AddFieldName("displayName");
+    [JsonPropertyName("className")]
+    public override string? ClassName => "ProjectTeamRole.Collaborator";
     
-    public static Partial<MeetingPreviewMenuItemUiExtensionIn> WithDescription(this Partial<MeetingPreviewMenuItemUiExtensionIn> it)
-        => it.AddFieldName("description");
+    public ProjectTeamRoleCollaborator() { }
     
-    public static Partial<MeetingPreviewMenuItemUiExtensionIn> WithMenuItemUniqueCode(this Partial<MeetingPreviewMenuItemUiExtensionIn> it)
-        => it.AddFieldName("menuItemUniqueCode");
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+    }
     
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

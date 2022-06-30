@@ -34,13 +34,15 @@ public class TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest
 {
     public TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest() { }
     
-    public TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest(string? name = null, DateTime? expiresAt = null, int? inviteeLimit = null, string? team = null, string? position = null)
+    public TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest(string? name = null, DateTime? expiresAt = null, int? inviteeLimit = null, string? team = null, string? position = null, ProjectIdentifier? project = null, ProjectTeamRole? projectRole = null)
     {
         Name = name;
         ExpiresAt = expiresAt;
         InviteeLimit = inviteeLimit;
         Team = team;
         Position = position;
+        Project = project;
+        ProjectRole = projectRole;
     }
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(Name), "name");
@@ -104,6 +106,30 @@ public class TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest
         set => _position.SetValue(value);
     }
 
+    private PropertyValue<ProjectIdentifier?> _project = new PropertyValue<ProjectIdentifier?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(Project), "project");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("project")]
+    public ProjectIdentifier? Project
+    {
+        get => _project.GetValue(InlineErrors);
+        set => _project.SetValue(value);
+    }
+
+    private PropertyValue<ProjectTeamRole?> _projectRole = new PropertyValue<ProjectTeamRole?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(ProjectRole), "projectRole");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("projectRole")]
+    public ProjectTeamRole? ProjectRole
+    {
+        get => _projectRole.GetValue(InlineErrors);
+        set => _projectRole.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -111,6 +137,8 @@ public class TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest
         _inviteeLimit.SetAccessPath(parentChainPath, validateHasBeenSet);
         _team.SetAccessPath(parentChainPath, validateHasBeenSet);
         _position.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectRole.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

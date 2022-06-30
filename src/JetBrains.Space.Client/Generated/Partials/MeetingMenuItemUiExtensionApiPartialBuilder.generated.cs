@@ -27,17 +27,17 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MeetingPreviewMenuItemUiExtensionApiPartialBuilder;
+namespace JetBrains.Space.Client.MeetingMenuItemUiExtensionApiPartialBuilder;
 
-public static class MeetingPreviewMenuItemUiExtensionApiPartialExtensions
+public static class MeetingMenuItemUiExtensionApiPartialExtensions
 {
-    public static Partial<MeetingPreviewMenuItemUiExtensionApi> WithDisplayName(this Partial<MeetingPreviewMenuItemUiExtensionApi> it)
+    public static Partial<MeetingMenuItemUiExtensionApi> WithDisplayName(this Partial<MeetingMenuItemUiExtensionApi> it)
         => it.AddFieldName("displayName");
     
-    public static Partial<MeetingPreviewMenuItemUiExtensionApi> WithDescription(this Partial<MeetingPreviewMenuItemUiExtensionApi> it)
+    public static Partial<MeetingMenuItemUiExtensionApi> WithDescription(this Partial<MeetingMenuItemUiExtensionApi> it)
         => it.AddFieldName("description");
     
-    public static Partial<MeetingPreviewMenuItemUiExtensionApi> WithMenuItemUniqueCode(this Partial<MeetingPreviewMenuItemUiExtensionApi> it)
+    public static Partial<MeetingMenuItemUiExtensionApi> WithMenuItemUniqueCode(this Partial<MeetingMenuItemUiExtensionApi> it)
         => it.AddFieldName("menuItemUniqueCode");
     
 }

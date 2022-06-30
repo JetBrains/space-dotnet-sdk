@@ -76,6 +76,18 @@ public static class InvitationPartialExtensions
     public static Partial<Invitation> WithRole(this Partial<Invitation> it, Func<Partial<TDRole>, Partial<TDRole>> partialBuilder)
         => it.AddFieldName("role", partialBuilder(new Partial<TDRole>(it)));
     
+    public static Partial<Invitation> WithProject(this Partial<Invitation> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<Invitation> WithProject(this Partial<Invitation> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
+    
+    public static Partial<Invitation> WithProjectRole(this Partial<Invitation> it)
+        => it.AddFieldName("projectRole");
+    
+    public static Partial<Invitation> WithProjectRole(this Partial<Invitation> it, Func<Partial<ProjectTeamRole>, Partial<ProjectTeamRole>> partialBuilder)
+        => it.AddFieldName("projectRole", partialBuilder(new Partial<ProjectTeamRole>(it)));
+    
     public static Partial<Invitation> WithIsRevoked(this Partial<Invitation> it)
         => it.AddFieldName("revoked");
     

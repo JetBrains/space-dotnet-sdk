@@ -34,13 +34,15 @@ public sealed class RoleDTO
 {
     public RoleDTO() { }
     
-    public RoleDTO(string roleId, PermissionRoleType type, string name, string description, string? code = null)
+    public RoleDTO(string roleId, PermissionRoleType type, string name, string description, bool membersEditable, string? code = null, bool? rightsEditable = null)
     {
         RoleId = roleId;
         Type = type;
         Code = code;
         Name = name;
         Description = description;
+        IsMembersEditable = membersEditable;
+        IsRightsEditable = rightsEditable;
     }
     
     private PropertyValue<string> _roleId = new PropertyValue<string>(nameof(RoleDTO), nameof(RoleId), "roleId");
@@ -92,6 +94,25 @@ public sealed class RoleDTO
         set => _description.SetValue(value);
     }
 
+    private PropertyValue<bool> _membersEditable = new PropertyValue<bool>(nameof(RoleDTO), nameof(IsMembersEditable), "membersEditable");
+    
+    [Required]
+    [JsonPropertyName("membersEditable")]
+    public bool IsMembersEditable
+    {
+        get => _membersEditable.GetValue(InlineErrors);
+        set => _membersEditable.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _rightsEditable = new PropertyValue<bool?>(nameof(RoleDTO), nameof(IsRightsEditable), "rightsEditable");
+    
+    [JsonPropertyName("rightsEditable")]
+    public bool? IsRightsEditable
+    {
+        get => _rightsEditable.GetValue(InlineErrors);
+        set => _rightsEditable.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _roleId.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -99,6 +120,8 @@ public sealed class RoleDTO
         _code.SetAccessPath(parentChainPath, validateHasBeenSet);
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _membersEditable.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _rightsEditable.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

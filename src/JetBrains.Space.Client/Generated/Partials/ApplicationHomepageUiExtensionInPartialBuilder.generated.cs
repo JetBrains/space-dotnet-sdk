@@ -31,5 +31,11 @@ namespace JetBrains.Space.Client.ApplicationHomepageUiExtensionInPartialBuilder;
 
 public static class ApplicationHomepageUiExtensionInPartialExtensions
 {
+    /// <summary>
+    /// If specified, overrides the default URL for the application homepage iframe. The default URL is &lt;application endpoint&gt;/iframe/app-homepage
+    /// </summary>
+    public static Partial<ApplicationHomepageUiExtensionIn> WithIframeUrl(this Partial<ApplicationHomepageUiExtensionIn> it)
+        => it.AddFieldName("iframeUrl");
+    
 }
 

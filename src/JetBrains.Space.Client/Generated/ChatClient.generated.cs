@@ -127,7 +127,7 @@ public partial class ChatClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Browse channels</term>
+        /// <term>View channel info</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -150,7 +150,7 @@ public partial class ChatClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Browse channels</term>
+        /// <term>View channel info</term>
         /// </item>
         /// </list>
         /// </remarks>

@@ -79,6 +79,9 @@ public static class ChannelItemRecordPartialExtensions
     public static Partial<ChannelItemRecord> WithAttachments(this Partial<ChannelItemRecord> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
         => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentInfo>(it)));
     
+    public static Partial<ChannelItemRecord> WithExternalId(this Partial<ChannelItemRecord> it)
+        => it.AddFieldName("externalId");
+    
     public static Partial<ChannelItemRecord> WithIsPending(this Partial<ChannelItemRecord> it)
         => it.AddFieldName("pending");
     

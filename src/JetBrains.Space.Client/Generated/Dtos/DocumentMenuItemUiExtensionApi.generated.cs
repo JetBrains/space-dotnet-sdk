@@ -29,15 +29,15 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class DocumentInListMenuItemUiExtensionApi
+public sealed class DocumentMenuItemUiExtensionApi
      : ContextMenuItemUiExtensionApi, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "DocumentInListMenuItemUiExtensionApi";
+    public override string? ClassName => "DocumentMenuItemUiExtensionApi";
     
-    public DocumentInListMenuItemUiExtensionApi() { }
+    public DocumentMenuItemUiExtensionApi() { }
     
-    public DocumentInListMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<DocumentMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
+    public DocumentMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<DocumentMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
     {
         DisplayName = displayName;
         Description = description;
@@ -45,7 +45,7 @@ public sealed class DocumentInListMenuItemUiExtensionApi
         VisibilityFilters = visibilityFilters;
     }
     
-    private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(DocumentInListMenuItemUiExtensionApi), nameof(DisplayName), "displayName");
+    private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(DocumentMenuItemUiExtensionApi), nameof(DisplayName), "displayName");
     
     [Required]
     [JsonPropertyName("displayName")]
@@ -55,7 +55,7 @@ public sealed class DocumentInListMenuItemUiExtensionApi
         set => _displayName.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(DocumentInListMenuItemUiExtensionApi), nameof(Description), "description");
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(DocumentMenuItemUiExtensionApi), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
@@ -64,7 +64,7 @@ public sealed class DocumentInListMenuItemUiExtensionApi
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<string> _menuItemUniqueCode = new PropertyValue<string>(nameof(DocumentInListMenuItemUiExtensionApi), nameof(MenuItemUniqueCode), "menuItemUniqueCode");
+    private PropertyValue<string> _menuItemUniqueCode = new PropertyValue<string>(nameof(DocumentMenuItemUiExtensionApi), nameof(MenuItemUniqueCode), "menuItemUniqueCode");
     
     [Required]
     [JsonPropertyName("menuItemUniqueCode")]
@@ -74,7 +74,7 @@ public sealed class DocumentInListMenuItemUiExtensionApi
         set => _menuItemUniqueCode.SetValue(value);
     }
 
-    private PropertyValue<List<DocumentMenuItemVisibilityFilterApi>> _visibilityFilters = new PropertyValue<List<DocumentMenuItemVisibilityFilterApi>>(nameof(DocumentInListMenuItemUiExtensionApi), nameof(VisibilityFilters), "visibilityFilters", new List<DocumentMenuItemVisibilityFilterApi>());
+    private PropertyValue<List<DocumentMenuItemVisibilityFilterApi>> _visibilityFilters = new PropertyValue<List<DocumentMenuItemVisibilityFilterApi>>(nameof(DocumentMenuItemUiExtensionApi), nameof(VisibilityFilters), "visibilityFilters", new List<DocumentMenuItemVisibilityFilterApi>());
     
     [Required]
     [JsonPropertyName("visibilityFilters")]

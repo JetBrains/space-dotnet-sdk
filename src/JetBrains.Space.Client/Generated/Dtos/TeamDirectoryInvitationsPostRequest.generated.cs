@@ -34,13 +34,15 @@ public class TeamDirectoryInvitationsPostRequest
 {
     public TeamDirectoryInvitationsPostRequest() { }
     
-    public TeamDirectoryInvitationsPostRequest(string inviteeEmail, string? inviteeFirstName = null, string? inviteeLastName = null, string? team = null, string? role = null)
+    public TeamDirectoryInvitationsPostRequest(string inviteeEmail, string? inviteeFirstName = null, string? inviteeLastName = null, string? team = null, string? role = null, ProjectIdentifier? project = null, ProjectTeamRole? projectRole = null)
     {
         InviteeEmail = inviteeEmail;
         InviteeFirstName = inviteeFirstName;
         InviteeLastName = inviteeLastName;
         Team = team;
         Role = role;
+        Project = project;
+        ProjectRole = projectRole;
     }
     
     private PropertyValue<string> _inviteeEmail = new PropertyValue<string>(nameof(TeamDirectoryInvitationsPostRequest), nameof(InviteeEmail), "inviteeEmail");
@@ -101,6 +103,30 @@ public class TeamDirectoryInvitationsPostRequest
         set => _role.SetValue(value);
     }
 
+    private PropertyValue<ProjectIdentifier?> _project = new PropertyValue<ProjectIdentifier?>(nameof(TeamDirectoryInvitationsPostRequest), nameof(Project), "project");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("project")]
+    public ProjectIdentifier? Project
+    {
+        get => _project.GetValue(InlineErrors);
+        set => _project.SetValue(value);
+    }
+
+    private PropertyValue<ProjectTeamRole?> _projectRole = new PropertyValue<ProjectTeamRole?>(nameof(TeamDirectoryInvitationsPostRequest), nameof(ProjectRole), "projectRole");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("projectRole")]
+    public ProjectTeamRole? ProjectRole
+    {
+        get => _projectRole.GetValue(InlineErrors);
+        set => _projectRole.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _inviteeEmail.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -108,6 +134,8 @@ public class TeamDirectoryInvitationsPostRequest
         _inviteeLastName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _team.SetAccessPath(parentChainPath, validateHasBeenSet);
         _role.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectRole.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

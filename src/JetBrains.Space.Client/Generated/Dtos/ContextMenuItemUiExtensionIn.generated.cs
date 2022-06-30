@@ -38,23 +38,17 @@ public abstract class ContextMenuItemUiExtensionIn
     public static ChatMessageMenuItemUiExtensionIn ChatMessageMenuItemUiExtensionIn(string displayName, string menuItemUniqueCode, List<ChatMessageMenuItemVisibilityFilterIn> visibilityFilters, string? description = null)
         => new ChatMessageMenuItemUiExtensionIn(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
     
-    public static DocumentDetailsMenuItemUiExtensionIn DocumentDetailsMenuItemUiExtensionIn(string displayName, string menuItemUniqueCode, List<DocumentMenuItemVisibilityFilterIn> visibilityFilters, string? description = null)
-        => new DocumentDetailsMenuItemUiExtensionIn(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
+    public static DocumentFolderMenuItemUiExtensionIn DocumentFolderMenuItemUiExtensionIn(string displayName, string menuItemUniqueCode, List<DocumentFolderMenuItemVisibilityFilterIn> visibilityFilters, string? description = null)
+        => new DocumentFolderMenuItemUiExtensionIn(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
     
-    public static DocumentFolderDetailsMenuItemUiExtensionIn DocumentFolderDetailsMenuItemUiExtensionIn(string displayName, string menuItemUniqueCode, List<DocumentFolderMenuItemVisibilityFilterIn> visibilityFilters, string? description = null)
-        => new DocumentFolderDetailsMenuItemUiExtensionIn(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
-    
-    public static DocumentFolderInListMenuItemUiExtensionIn DocumentFolderInListMenuItemUiExtensionIn(string displayName, string menuItemUniqueCode, List<DocumentFolderMenuItemVisibilityFilterIn> visibilityFilters, string? description = null)
-        => new DocumentFolderInListMenuItemUiExtensionIn(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
-    
-    public static DocumentInListMenuItemUiExtensionIn DocumentInListMenuItemUiExtensionIn(string displayName, string menuItemUniqueCode, List<DocumentMenuItemVisibilityFilterIn> visibilityFilters, string? description = null)
-        => new DocumentInListMenuItemUiExtensionIn(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
+    public static DocumentMenuItemUiExtensionIn DocumentMenuItemUiExtensionIn(string displayName, string menuItemUniqueCode, List<DocumentMenuItemVisibilityFilterIn> visibilityFilters, string? description = null)
+        => new DocumentMenuItemUiExtensionIn(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
     
     public static IssueMenuItemUiExtensionIn IssueMenuItemUiExtensionIn(string displayName, string menuItemUniqueCode, List<IssueMenuItemVisibilityFilterIn> visibilityFilters, string? description = null)
         => new IssueMenuItemUiExtensionIn(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
     
-    public static MeetingPreviewMenuItemUiExtensionIn MeetingPreviewMenuItemUiExtensionIn(string displayName, string menuItemUniqueCode, string? description = null)
-        => new MeetingPreviewMenuItemUiExtensionIn(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, description: description);
+    public static MeetingMenuItemUiExtensionIn MeetingMenuItemUiExtensionIn(string displayName, string menuItemUniqueCode, string? description = null)
+        => new MeetingMenuItemUiExtensionIn(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, description: description);
     
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {

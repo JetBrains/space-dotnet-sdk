@@ -38,23 +38,17 @@ public abstract class ContextMenuItemUiExtensionApi
     public static ChatMessageMenuItemUiExtensionApi ChatMessageMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<ChatMessageMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
         => new ChatMessageMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
     
-    public static DocumentDetailsMenuItemUiExtensionApi DocumentDetailsMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<DocumentMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
-        => new DocumentDetailsMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
+    public static DocumentFolderMenuItemUiExtensionApi DocumentFolderMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<DocumentFolderMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
+        => new DocumentFolderMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
     
-    public static DocumentFolderDetailsMenuItemUiExtensionApi DocumentFolderDetailsMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<DocumentFolderMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
-        => new DocumentFolderDetailsMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
-    
-    public static DocumentFolderInListMenuItemUiExtensionApi DocumentFolderInListMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<DocumentFolderMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
-        => new DocumentFolderInListMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
-    
-    public static DocumentInListMenuItemUiExtensionApi DocumentInListMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<DocumentMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
-        => new DocumentInListMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
+    public static DocumentMenuItemUiExtensionApi DocumentMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<DocumentMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
+        => new DocumentMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
     
     public static IssueMenuItemUiExtensionApi IssueMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<IssueMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
         => new IssueMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
     
-    public static MeetingPreviewMenuItemUiExtensionApi MeetingPreviewMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, string? description = null)
-        => new MeetingPreviewMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, description: description);
+    public static MeetingMenuItemUiExtensionApi MeetingMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, string? description = null)
+        => new MeetingMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, description: description);
     
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {

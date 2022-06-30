@@ -29,15 +29,15 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class DocumentInListMenuItemUiExtensionIn
+public sealed class DocumentFolderMenuItemUiExtensionIn
      : ContextMenuItemUiExtensionIn, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "DocumentInListMenuItemUiExtensionIn";
+    public override string? ClassName => "DocumentFolderMenuItemUiExtensionIn";
     
-    public DocumentInListMenuItemUiExtensionIn() { }
+    public DocumentFolderMenuItemUiExtensionIn() { }
     
-    public DocumentInListMenuItemUiExtensionIn(string displayName, string menuItemUniqueCode, List<DocumentMenuItemVisibilityFilterIn> visibilityFilters, string? description = null)
+    public DocumentFolderMenuItemUiExtensionIn(string displayName, string menuItemUniqueCode, List<DocumentFolderMenuItemVisibilityFilterIn> visibilityFilters, string? description = null)
     {
         DisplayName = displayName;
         Description = description;
@@ -45,7 +45,7 @@ public sealed class DocumentInListMenuItemUiExtensionIn
         VisibilityFilters = visibilityFilters;
     }
     
-    private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(DocumentInListMenuItemUiExtensionIn), nameof(DisplayName), "displayName");
+    private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(DocumentFolderMenuItemUiExtensionIn), nameof(DisplayName), "displayName");
     
     [Required]
     [JsonPropertyName("displayName")]
@@ -55,7 +55,7 @@ public sealed class DocumentInListMenuItemUiExtensionIn
         set => _displayName.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(DocumentInListMenuItemUiExtensionIn), nameof(Description), "description");
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(DocumentFolderMenuItemUiExtensionIn), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
@@ -64,7 +64,7 @@ public sealed class DocumentInListMenuItemUiExtensionIn
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<string> _menuItemUniqueCode = new PropertyValue<string>(nameof(DocumentInListMenuItemUiExtensionIn), nameof(MenuItemUniqueCode), "menuItemUniqueCode");
+    private PropertyValue<string> _menuItemUniqueCode = new PropertyValue<string>(nameof(DocumentFolderMenuItemUiExtensionIn), nameof(MenuItemUniqueCode), "menuItemUniqueCode");
     
     [Required]
     [JsonPropertyName("menuItemUniqueCode")]
@@ -74,11 +74,11 @@ public sealed class DocumentInListMenuItemUiExtensionIn
         set => _menuItemUniqueCode.SetValue(value);
     }
 
-    private PropertyValue<List<DocumentMenuItemVisibilityFilterIn>> _visibilityFilters = new PropertyValue<List<DocumentMenuItemVisibilityFilterIn>>(nameof(DocumentInListMenuItemUiExtensionIn), nameof(VisibilityFilters), "visibilityFilters", new List<DocumentMenuItemVisibilityFilterIn>());
+    private PropertyValue<List<DocumentFolderMenuItemVisibilityFilterIn>> _visibilityFilters = new PropertyValue<List<DocumentFolderMenuItemVisibilityFilterIn>>(nameof(DocumentFolderMenuItemUiExtensionIn), nameof(VisibilityFilters), "visibilityFilters", new List<DocumentFolderMenuItemVisibilityFilterIn>());
     
     [Required]
     [JsonPropertyName("visibilityFilters")]
-    public List<DocumentMenuItemVisibilityFilterIn> VisibilityFilters
+    public List<DocumentFolderMenuItemVisibilityFilterIn> VisibilityFilters
     {
         get => _visibilityFilters.GetValue(InlineErrors);
         set => _visibilityFilters.SetValue(value);

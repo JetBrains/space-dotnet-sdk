@@ -70,7 +70,7 @@ public partial class ToDoItemClient : ISpaceClient
     /// Required permissions:
     /// <list type="bullet">
     /// <item>
-    /// <term>View todo</term>
+    /// <term>View to-dos</term>
     /// </item>
     /// </list>
     /// </remarks>
@@ -95,7 +95,7 @@ public partial class ToDoItemClient : ISpaceClient
     /// Required permissions:
     /// <list type="bullet">
     /// <item>
-    /// <term>View todo</term>
+    /// <term>View to-dos</term>
     /// </item>
     /// </list>
     /// </remarks>

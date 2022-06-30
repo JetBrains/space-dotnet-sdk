@@ -27,23 +27,23 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocumentFolderInListMenuItemUiExtensionApiPartialBuilder;
+namespace JetBrains.Space.Client.DocumentFolderMenuItemUiExtensionApiPartialBuilder;
 
-public static class DocumentFolderInListMenuItemUiExtensionApiPartialExtensions
+public static class DocumentFolderMenuItemUiExtensionApiPartialExtensions
 {
-    public static Partial<DocumentFolderInListMenuItemUiExtensionApi> WithDisplayName(this Partial<DocumentFolderInListMenuItemUiExtensionApi> it)
+    public static Partial<DocumentFolderMenuItemUiExtensionApi> WithDisplayName(this Partial<DocumentFolderMenuItemUiExtensionApi> it)
         => it.AddFieldName("displayName");
     
-    public static Partial<DocumentFolderInListMenuItemUiExtensionApi> WithDescription(this Partial<DocumentFolderInListMenuItemUiExtensionApi> it)
+    public static Partial<DocumentFolderMenuItemUiExtensionApi> WithDescription(this Partial<DocumentFolderMenuItemUiExtensionApi> it)
         => it.AddFieldName("description");
     
-    public static Partial<DocumentFolderInListMenuItemUiExtensionApi> WithMenuItemUniqueCode(this Partial<DocumentFolderInListMenuItemUiExtensionApi> it)
+    public static Partial<DocumentFolderMenuItemUiExtensionApi> WithMenuItemUniqueCode(this Partial<DocumentFolderMenuItemUiExtensionApi> it)
         => it.AddFieldName("menuItemUniqueCode");
     
-    public static Partial<DocumentFolderInListMenuItemUiExtensionApi> WithVisibilityFilters(this Partial<DocumentFolderInListMenuItemUiExtensionApi> it)
+    public static Partial<DocumentFolderMenuItemUiExtensionApi> WithVisibilityFilters(this Partial<DocumentFolderMenuItemUiExtensionApi> it)
         => it.AddFieldName("visibilityFilters");
     
-    public static Partial<DocumentFolderInListMenuItemUiExtensionApi> WithVisibilityFilters(this Partial<DocumentFolderInListMenuItemUiExtensionApi> it, Func<Partial<DocumentFolderMenuItemVisibilityFilterApi>, Partial<DocumentFolderMenuItemVisibilityFilterApi>> partialBuilder)
+    public static Partial<DocumentFolderMenuItemUiExtensionApi> WithVisibilityFilters(this Partial<DocumentFolderMenuItemUiExtensionApi> it, Func<Partial<DocumentFolderMenuItemVisibilityFilterApi>, Partial<DocumentFolderMenuItemVisibilityFilterApi>> partialBuilder)
         => it.AddFieldName("visibilityFilters", partialBuilder(new Partial<DocumentFolderMenuItemVisibilityFilterApi>(it)));
     
 }

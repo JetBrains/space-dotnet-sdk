@@ -34,7 +34,7 @@ public sealed class InvitationLink
 {
     public InvitationLink() { }
     
-    public InvitationLink(string id, string name, CPrincipal createdBy, DateTime createdAt, int inviteeLimit, int inviteeUsage, bool deleted, DateTime? expiresAt = null, TDTeam? team = null, TDRole? position = null, string? link = null)
+    public InvitationLink(string id, string name, CPrincipal createdBy, DateTime createdAt, int inviteeLimit, int inviteeUsage, ProjectTeamRole projectRole, bool deleted, DateTime? expiresAt = null, TDTeam? team = null, TDRole? position = null, PRProject? project = null, string? link = null)
     {
         Id = id;
         Name = name;
@@ -45,6 +45,8 @@ public sealed class InvitationLink
         InviteeUsage = inviteeUsage;
         Team = team;
         Position = position;
+        Project = project;
+        ProjectRole = projectRole;
         Link = link;
         IsDeleted = deleted;
     }
@@ -138,6 +140,25 @@ public sealed class InvitationLink
         set => _position.SetValue(value);
     }
 
+    private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(InvitationLink), nameof(Project), "project");
+    
+    [JsonPropertyName("project")]
+    public PRProject? Project
+    {
+        get => _project.GetValue(InlineErrors);
+        set => _project.SetValue(value);
+    }
+
+    private PropertyValue<ProjectTeamRole> _projectRole = new PropertyValue<ProjectTeamRole>(nameof(InvitationLink), nameof(ProjectRole), "projectRole");
+    
+    [Required]
+    [JsonPropertyName("projectRole")]
+    public ProjectTeamRole ProjectRole
+    {
+        get => _projectRole.GetValue(InlineErrors);
+        set => _projectRole.SetValue(value);
+    }
+
     private PropertyValue<string?> _link = new PropertyValue<string?>(nameof(InvitationLink), nameof(Link), "link");
     
     [JsonPropertyName("link")]
@@ -168,6 +189,8 @@ public sealed class InvitationLink
         _inviteeUsage.SetAccessPath(parentChainPath, validateHasBeenSet);
         _team.SetAccessPath(parentChainPath, validateHasBeenSet);
         _position.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectRole.SetAccessPath(parentChainPath, validateHasBeenSet);
         _link.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deleted.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

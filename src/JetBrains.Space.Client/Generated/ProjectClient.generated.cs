@@ -146,6 +146,23 @@ public partial class ProjectClient : ISpaceClient
     public IAsyncEnumerable<PRProject> GetAllProjectsWithRightAsyncEnumerable(string rightCode, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsWithRightAsync(rightCode: rightCode, top: top, term: term, path: path, starred: starred, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
 
+    public async Task<Batch<PRProject>> GetAllProjectsWithRightCodeAsync(string right, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        if (skip != null) queryParameters.Append("$skip", skip);
+        if (top != null) queryParameters.Append("$top", top?.ToString());
+        if (term != null) queryParameters.Append("term", term);
+        if (path != null) queryParameters.Append("path", path);
+        if (starred != null) queryParameters.Append("starred", starred?.ToString("l"));
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/right-unique-code:{right}{queryParameters.ToQueryString()}", cancellationToken);
+    }
+    
+    
+    public IAsyncEnumerable<PRProject> GetAllProjectsWithRightCodeAsyncEnumerable(string right, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
+        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsWithRightCodeAsync(right: right, top: top, term: term, path: path, starred: starred, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
+
     /// <summary>
     /// Get all projects for a team
     /// </summary>

@@ -49,5 +49,11 @@ public static class RoleDTOPartialExtensions
     public static Partial<RoleDTO> WithDescription(this Partial<RoleDTO> it)
         => it.AddFieldName("description");
     
+    public static Partial<RoleDTO> WithIsMembersEditable(this Partial<RoleDTO> it)
+        => it.AddFieldName("membersEditable");
+    
+    public static Partial<RoleDTO> WithIsRightsEditable(this Partial<RoleDTO> it)
+        => it.AddFieldName("rightsEditable");
+    
 }
 

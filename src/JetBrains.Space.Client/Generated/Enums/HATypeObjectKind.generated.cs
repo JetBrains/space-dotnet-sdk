@@ -41,6 +41,9 @@ public enum HATypeObjectKind
     [EnumMember(Value = "BATCH")]
     BATCH,
     
+    [EnumMember(Value = "SYNC_BATCH")]
+    SYNCBATCH,
+    
     [EnumMember(Value = "MOD")]
     MOD,
     

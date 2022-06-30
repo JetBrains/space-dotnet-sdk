@@ -29,23 +29,22 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class DocumentDetailsMenuItemUiExtensionApi
-     : ContextMenuItemUiExtensionApi, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class MeetingMenuItemUiExtensionIn
+     : ContextMenuItemUiExtensionIn, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "DocumentDetailsMenuItemUiExtensionApi";
+    public override string? ClassName => "MeetingMenuItemUiExtensionIn";
     
-    public DocumentDetailsMenuItemUiExtensionApi() { }
+    public MeetingMenuItemUiExtensionIn() { }
     
-    public DocumentDetailsMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<DocumentMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
+    public MeetingMenuItemUiExtensionIn(string displayName, string menuItemUniqueCode, string? description = null)
     {
         DisplayName = displayName;
         Description = description;
         MenuItemUniqueCode = menuItemUniqueCode;
-        VisibilityFilters = visibilityFilters;
     }
     
-    private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(DocumentDetailsMenuItemUiExtensionApi), nameof(DisplayName), "displayName");
+    private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(MeetingMenuItemUiExtensionIn), nameof(DisplayName), "displayName");
     
     [Required]
     [JsonPropertyName("displayName")]
@@ -55,7 +54,7 @@ public sealed class DocumentDetailsMenuItemUiExtensionApi
         set => _displayName.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(DocumentDetailsMenuItemUiExtensionApi), nameof(Description), "description");
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(MeetingMenuItemUiExtensionIn), nameof(Description), "description");
     
     [JsonPropertyName("description")]
     public string? Description
@@ -64,7 +63,7 @@ public sealed class DocumentDetailsMenuItemUiExtensionApi
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<string> _menuItemUniqueCode = new PropertyValue<string>(nameof(DocumentDetailsMenuItemUiExtensionApi), nameof(MenuItemUniqueCode), "menuItemUniqueCode");
+    private PropertyValue<string> _menuItemUniqueCode = new PropertyValue<string>(nameof(MeetingMenuItemUiExtensionIn), nameof(MenuItemUniqueCode), "menuItemUniqueCode");
     
     [Required]
     [JsonPropertyName("menuItemUniqueCode")]
@@ -74,22 +73,11 @@ public sealed class DocumentDetailsMenuItemUiExtensionApi
         set => _menuItemUniqueCode.SetValue(value);
     }
 
-    private PropertyValue<List<DocumentMenuItemVisibilityFilterApi>> _visibilityFilters = new PropertyValue<List<DocumentMenuItemVisibilityFilterApi>>(nameof(DocumentDetailsMenuItemUiExtensionApi), nameof(VisibilityFilters), "visibilityFilters", new List<DocumentMenuItemVisibilityFilterApi>());
-    
-    [Required]
-    [JsonPropertyName("visibilityFilters")]
-    public List<DocumentMenuItemVisibilityFilterApi> VisibilityFilters
-    {
-        get => _visibilityFilters.GetValue(InlineErrors);
-        set => _visibilityFilters.SetValue(value);
-    }
-
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _displayName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _menuItemUniqueCode.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _visibilityFilters.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -31,5 +31,8 @@ namespace JetBrains.Space.Client.ApplicationHomepageUiExtensionApiPartialBuilder
 
 public static class ApplicationHomepageUiExtensionApiPartialExtensions
 {
+    public static Partial<ApplicationHomepageUiExtensionApi> WithIframeUrl(this Partial<ApplicationHomepageUiExtensionApi> it)
+        => it.AddFieldName("iframeUrl");
+    
 }
 

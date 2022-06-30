@@ -34,7 +34,7 @@ public sealed class Invitation
 {
     public Invitation() { }
     
-    public Invitation(string id, DateTime expiresAt, string inviteeEmail, bool inviteeEmailBlocked, CPrincipal inviter, string? inviteeEmailBlockedReason = null, string? inviteeFirstName = null, string? inviteeLastName = null, TDMemberProfile? invitee = null, TDTeam? team = null, TDRole? role = null, bool? revoked = null)
+    public Invitation(string id, DateTime expiresAt, string inviteeEmail, bool inviteeEmailBlocked, CPrincipal inviter, string? inviteeEmailBlockedReason = null, string? inviteeFirstName = null, string? inviteeLastName = null, TDMemberProfile? invitee = null, TDTeam? team = null, TDRole? role = null, PRProject? project = null, ProjectTeamRole? projectRole = null, bool? revoked = null)
     {
         Id = id;
         ExpiresAt = expiresAt;
@@ -47,6 +47,8 @@ public sealed class Invitation
         Inviter = inviter;
         Team = team;
         Role = role;
+        Project = project;
+        ProjectRole = projectRole;
         IsRevoked = revoked;
     }
     
@@ -155,6 +157,24 @@ public sealed class Invitation
         set => _role.SetValue(value);
     }
 
+    private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(Invitation), nameof(Project), "project");
+    
+    [JsonPropertyName("project")]
+    public PRProject? Project
+    {
+        get => _project.GetValue(InlineErrors);
+        set => _project.SetValue(value);
+    }
+
+    private PropertyValue<ProjectTeamRole?> _projectRole = new PropertyValue<ProjectTeamRole?>(nameof(Invitation), nameof(ProjectRole), "projectRole");
+    
+    [JsonPropertyName("projectRole")]
+    public ProjectTeamRole? ProjectRole
+    {
+        get => _projectRole.GetValue(InlineErrors);
+        set => _projectRole.SetValue(value);
+    }
+
     private PropertyValue<bool?> _revoked = new PropertyValue<bool?>(nameof(Invitation), nameof(IsRevoked), "revoked");
     
     [JsonPropertyName("revoked")]
@@ -177,6 +197,8 @@ public sealed class Invitation
         _inviter.SetAccessPath(parentChainPath, validateHasBeenSet);
         _team.SetAccessPath(parentChainPath, validateHasBeenSet);
         _role.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectRole.SetAccessPath(parentChainPath, validateHasBeenSet);
         _revoked.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
