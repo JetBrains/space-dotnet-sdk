@@ -152,4 +152,25 @@ public static class ApiFieldExtensions
                    subject.Type is ApiFieldType.Enum
                );
     }
+    
+    public static string ToCSharpDocumentationParameter(this ApiField subject, string parameterName)
+    {
+        var builder = new StringBuilder();
+        if (!string.IsNullOrEmpty(subject.Description?.Text))
+        {
+            builder.AppendLine(subject.Description.Text);
+        }
+        if (!string.IsNullOrEmpty(subject.Experimental?.Message))
+        {
+            builder.AppendLine($"<b>{subject.Experimental.Message}</b>");
+        }
+        
+        var aggregateApiDescription = new ApiDescription
+        {
+            Text = builder.ToString(),
+            HelpTopic = subject.Description?.HelpTopic
+        };
+
+        return aggregateApiDescription.ToCSharpDocumentationParameter(parameterName);
+    }
 }

@@ -17,6 +17,10 @@ public class CSharpApiModelEnumGenerator
         {
             builder.AppendLine($"{indent}{apiEnum.Deprecation.ToCSharpDeprecation()}");
         }
+        if (apiEnum.Experimental != null)
+        {
+            builder.AppendLine($"{indent}{apiEnum.Experimental.ToCSharpExperimental()}");
+        }
             
         builder.AppendLine($"{indent}[JsonConverter(typeof(EnumStringConverter))]");
         builder.AppendLine($"{indent}public enum {typeNameForEnum}");

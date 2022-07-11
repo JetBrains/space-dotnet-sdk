@@ -21,6 +21,9 @@ public class ApiField
     [JsonPropertyName("deprecation")]
     public ApiDeprecation? Deprecation { get; set; }
         
+    [JsonPropertyName("experimental")]
+    public ApiExperimental? Experimental { get; set; } = default;
+        
     [JsonPropertyName("defaultValue")]
     public ApiDefaultValue? DefaultValue { get; set; }
 }

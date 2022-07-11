@@ -16,6 +16,9 @@ public class ApiDto
     [JsonPropertyName("deprecation")]
     public ApiDeprecation? Deprecation { get; set; } = default;
         
+    [JsonPropertyName("experimental")]
+    public ApiExperimental? Experimental { get; set; } = default;
+        
     [JsonPropertyName("name")]
     public string Name { get; set; } = default!;
         

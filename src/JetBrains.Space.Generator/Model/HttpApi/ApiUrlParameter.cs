@@ -16,4 +16,7 @@ public class ApiUrlParameter
         
     [JsonPropertyName("deprecation")]
     public ApiDeprecation? Deprecation { get; set; } = default;
+        
+    [JsonPropertyName("experimental")]
+    public ApiExperimental? Experimental { get; set; } = default;
 }

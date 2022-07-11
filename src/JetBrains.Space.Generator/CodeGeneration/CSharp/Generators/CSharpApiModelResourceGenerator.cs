@@ -428,12 +428,10 @@ public class CSharpApiModelResourceGenerator
         var builder = new StringBuilder();
             
         // Documentation for method
-        if (apiEndpoint.Description != null)
+        ApiDocumentationUtilities.RenderCSharpDocumentation(apiEndpoint.Description, apiEndpoint.Experimental, output =>
         {
-            builder.Append(
-                indent.Wrap(
-                    apiEndpoint.Description.ToCSharpDocumentationSummary()));
-        }
+            builder.Append(indent.Wrap(output));
+        });
         builder.Append(methodParametersBuilder.BuildMethodParametersDocumentation());
 
         // Remarks (required permissions)
@@ -460,6 +458,10 @@ public class CSharpApiModelResourceGenerator
         if (apiEndpoint.Deprecation != null)
         {
             builder.AppendLine($"{indent}{apiEndpoint.Deprecation.ToCSharpDeprecation()}");
+        }
+        if (apiEndpoint.Experimental != null)
+        {
+            builder.AppendLine($"{indent}{apiEndpoint.Experimental.ToCSharpExperimental()}");
         }
 
         return builder.ToString();

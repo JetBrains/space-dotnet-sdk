@@ -102,7 +102,7 @@ public class MethodParametersBuilder
                 
             var parameterName = parameter.Field.ToCSharpVariableName();
             var parameterDefaultValue = parameter.Field.ToCSharpDefaultValueForParameterList(_context);
-            var parameterDescription = parameter.Field.Description?.ToCSharpDocumentationParameter(parameterName);
+            var parameterDescription = parameter.Field.ToCSharpDocumentationParameter(parameterName);
 
             methodParametersBuilder = methodParametersBuilder
                 .WithParameter(parameterType, parameterName, parameterDefaultValue, parameterDescription);

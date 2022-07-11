@@ -27,6 +27,10 @@ public class CSharpApiModelUrlParameterGenerator
         {
             builder.AppendLine($"{indent}{apiUrlParameter.Deprecation.ToCSharpDeprecation()}");
         }
+        if (apiUrlParameter.Experimental != null)
+        {
+            builder.AppendLine($"{indent}{apiUrlParameter.Experimental.ToCSharpExperimental()}");
+        }
 
         // Parameter type
         builder.AppendLine($"{indent}[JsonConverter(typeof(UrlParameterConverter))]");
@@ -65,17 +69,19 @@ public class CSharpApiModelUrlParameterGenerator
         var factoryMethodNameForUrlParameterOption = apiUrlParameterOption.ToCSharpFactoryMethodName(typeNameForUrlParameterOption, apiUrlParameter);
         
         // Option method documentation
-        if (apiUrlParameterOption.Description != null)
+        ApiDocumentationUtilities.RenderCSharpDocumentation(apiUrlParameterOption.Description, apiUrlParameterOption.Experimental, output =>
         {
-            builder.Append(
-                indent.Wrap(
-                    apiUrlParameterOption.Description.ToCSharpDocumentationSummary()));
-        }
+            builder.Append(indent.Wrap(output));
+        });
         
         // Option method deprecation
         if (apiUrlParameterOption.Deprecation != null)
         {
             builder.AppendLine($"{indent}{apiUrlParameterOption.Deprecation.ToCSharpDeprecation()}");
+        }
+        if (apiUrlParameterOption.Experimental != null)
+        {
+            builder.AppendLine($"{indent}{apiUrlParameterOption.Experimental.ToCSharpExperimental()}");
         }
             
         // Option method
@@ -115,17 +121,19 @@ public class CSharpApiModelUrlParameterGenerator
         var typeNameForUrlParameterOption = apiUrlParameterOption.ToCSharpClassName();
         
         // Option type documentation
-        if (apiUrlParameterOption.Description != null)
+        ApiDocumentationUtilities.RenderCSharpDocumentation(apiUrlParameterOption.Description, apiUrlParameterOption.Experimental, output =>
         {
-            builder.Append(
-                indent.Wrap(
-                    apiUrlParameterOption.Description.ToCSharpDocumentationSummary()));
-        }
+            builder.Append(indent.Wrap(output));
+        });
         
         // Option type deprecation
         if (apiUrlParameterOption.Deprecation != null)
         {
             builder.AppendLine($"{indent}{apiUrlParameterOption.Deprecation.ToCSharpDeprecation()}");
+        }
+        if (apiUrlParameterOption.Experimental != null)
+        {
+            builder.AppendLine($"{indent}{apiUrlParameterOption.Experimental.ToCSharpExperimental()}");
         }
 
         // Option type

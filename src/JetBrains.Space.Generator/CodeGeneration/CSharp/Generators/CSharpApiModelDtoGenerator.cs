@@ -27,6 +27,10 @@ public class CSharpApiModelDtoGenerator
         {
             builder.AppendLine($"{indent}{apiDto.Deprecation.ToCSharpDeprecation()}");
         }
+        if (apiDto.Experimental != null)
+        {
+            builder.AppendLine($"{indent}{apiDto.Experimental.ToCSharpExperimental()}");
+        }
                 
         if (apiDto.HierarchyRole2 != HierarchyRole2.INTERFACE && apiDto.HierarchyRole2 != HierarchyRole2.SEALED_INTERFACE && apiDto.Extends == null && apiDto.Inheritors.Count > 0)
         {
@@ -254,12 +258,10 @@ public class CSharpApiModelDtoGenerator
         }
 
         // Property
-        if (apiField.Description != null)
+        ApiDocumentationUtilities.RenderCSharpDocumentation(apiField.Description, apiField.Experimental, output =>
         {
-            builder.Append(
-                indent.Wrap(
-                    apiField.Description.ToCSharpDocumentationSummary()));
-        }
+            builder.Append(indent.Wrap(output));
+        });
         if (!apiField.Optional && !apiField.Type.Nullable)
         {
             builder.AppendLine($"{indent}[Required]");
@@ -276,6 +278,10 @@ public class CSharpApiModelDtoGenerator
         if (apiField.Deprecation != null)
         {
             builder.AppendLine($"{indent}{apiField.Deprecation.ToCSharpDeprecation()}");
+        }
+        if (apiField.Experimental != null)
+        {
+            builder.AppendLine($"{indent}{apiField.Experimental.ToCSharpExperimental()}");
         }
         builder.AppendLine($"{indent}[JsonPropertyName(\"{apiField.Name}\")]");
 

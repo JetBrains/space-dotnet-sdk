@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using JetBrains.Space.Generator.Model.HttpApi.Converters;
@@ -18,6 +19,9 @@ public abstract class ApiUrlParameterOption
         
     [JsonPropertyName("deprecation")]
     public ApiDeprecation? Deprecation { get; set; } = default;
+        
+    [JsonPropertyName("experimental")]
+    public ApiExperimental? Experimental { get; set; } = default;
         
     public class Var : ApiUrlParameterOption
     {

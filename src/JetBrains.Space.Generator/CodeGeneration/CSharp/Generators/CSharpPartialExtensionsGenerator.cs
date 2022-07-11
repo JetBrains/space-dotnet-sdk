@@ -49,15 +49,17 @@ public class CSharpPartialExtensionsGenerator
         var apiFieldName = apiField.Name;
             
         // Field
-        if (apiField.Description != null)
+        ApiDocumentationUtilities.RenderCSharpDocumentation(apiField.Description, apiField.Experimental, output =>
         {
-            builder.Append(
-                indent.Wrap(
-                    apiField.Description.ToCSharpDocumentationSummary()));
-        }
+            builder.Append(indent.Wrap(output));
+        });
         if (apiField.Deprecation != null)
         {
             builder.AppendLine($"{indent}{apiField.Deprecation.ToCSharpDeprecation()}");
+        }
+        if (apiField.Experimental != null)
+        {
+            builder.AppendLine($"{indent}{apiField.Experimental.ToCSharpExperimental()}");
         }
         builder.AppendLine($"{indent}public static {currentPartialType} With{propertyName}(this {currentPartialType} it)");
         indent.Increment();
@@ -74,15 +76,17 @@ public class CSharpPartialExtensionsGenerator
             // Recursive field?
             if (currentDtoType == currentFieldInnerType)
             {
-                if (apiField.Description != null)
+                ApiDocumentationUtilities.RenderCSharpDocumentation(apiField.Description, apiField.Experimental, output =>
                 {
-                    builder.Append(
-                        indent.Wrap(
-                            apiField.Description.ToCSharpDocumentationSummary()));
-                }
+                    builder.Append(indent.Wrap(output));
+                });
                 if (apiField.Deprecation != null)
                 {
                     builder.AppendLine($"{indent}{apiField.Deprecation.ToCSharpDeprecation()}");
+                }
+                if (apiField.Experimental != null)
+                {
+                    builder.AppendLine($"{indent}{apiField.Experimental.ToCSharpExperimental()}");
                 }
                 builder.AppendLine($"{indent}public static {currentPartialType} With{propertyName}Recursive(this {currentPartialType} it)");
                 indent.Increment();
@@ -92,15 +96,17 @@ public class CSharpPartialExtensionsGenerator
             }
 
             // Field with partial builder
-            if (apiField.Description != null)
+            ApiDocumentationUtilities.RenderCSharpDocumentation(apiField.Description, apiField.Experimental, output =>
             {
-                builder.Append(
-                    indent.Wrap(
-                        apiField.Description.ToCSharpDocumentationSummary()));
-            }
+                builder.Append(indent.Wrap(output));
+            });
             if (apiField.Deprecation != null)
             {
                 builder.AppendLine($"{indent}{apiField.Deprecation.ToCSharpDeprecation()}");
+            }
+            if (apiField.Experimental != null)
+            {
+                builder.AppendLine($"{indent}{apiField.Experimental.ToCSharpExperimental()}");
             }
             builder.AppendLine($"{indent}public static {currentPartialType} With{propertyName}(this {currentPartialType} it, Func<Partial<{currentFieldInnerType}>, Partial<{currentFieldInnerType}>> partialBuilder)");
             indent.Increment();
