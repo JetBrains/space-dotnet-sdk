@@ -93,7 +93,7 @@ public class CateringWebHookHandler : SpaceWebHookHandler
         Sessions.TryGetValue(payload.UserId, out var cateringSession);
 
         // Start session
-        if (payload.ActionId == ActionId.Skip) return null;
+        if (payload.ActionId == ActionId.Skip) return AppUserActionExecutionResult.Success();
 
         if (cateringSession == null)
         {
@@ -256,7 +256,7 @@ public class CateringWebHookHandler : SpaceWebHookHandler
             Sessions.TryRemove(payload.UserId, out _);
         }
 
-        return null;
+        return AppUserActionExecutionResult.Success();
     }
 
     public override async Task<ApplicationExecutionResult> HandleWebhookRequestAsync(WebhookRequestPayload payload)
