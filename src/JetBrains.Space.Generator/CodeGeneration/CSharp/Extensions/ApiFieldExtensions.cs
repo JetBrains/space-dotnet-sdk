@@ -153,7 +153,7 @@ public static class ApiFieldExtensions
                );
     }
     
-    public static string ToCSharpDocumentationParameter(this ApiField subject, string parameterName)
+    public static string? ToCSharpDocumentationParameter(this ApiField subject, string parameterName)
     {
         var builder = new StringBuilder();
         if (!string.IsNullOrEmpty(subject.Description?.Text))
@@ -162,8 +162,10 @@ public static class ApiFieldExtensions
         }
         if (!string.IsNullOrEmpty(subject.Experimental?.Message))
         {
-            builder.AppendLine($"<b>{subject.Experimental.Message}</b>");
+            builder.AppendLine($"**{subject.Experimental.Message}**");
         }
+
+        if (builder.Length == 0) return null;
         
         var aggregateApiDescription = new ApiDescription
         {

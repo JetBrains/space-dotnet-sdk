@@ -159,7 +159,7 @@ public class MethodParametersBuilder
             }));
 
     public string BuildMethodParametersDocumentation() =>
-        string.Join(", ", _parameters
+        string.Join("", _parameters
             .OrderBy(RequiredParametersFirstOrder)
             .Select(it => it.Documentation)
             .Where(it => it != null));
