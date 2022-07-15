@@ -1,0 +1,14 @@
+{
+    "version": "1.0",
+    "retry-policy": {
+        "num-retries": 3,
+        "reuse-merge": true
+    },
+    "builds": [
+        {
+            "job": {
+                "name": "Continuous integration build"
+            }
+        }
+    ]
+}
