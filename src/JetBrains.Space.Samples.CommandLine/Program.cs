@@ -85,14 +85,11 @@ public static class Program
             await chatClient.Messages.SendMessageAsync(
                 recipient: MessageRecipient.Channel(ChatChannel.FromName(chatChannelName)),
                 content: ChatMessage.Block(
-                    outline: MessageOutline.V2(new()
-                    {
-                        MessageInlineElement.MessageInlineText("Have you tried JetBrains Space?")
-                    }),
+                    outline: new MessageOutline("Have you tried JetBrains Space?"),
                     messageData: "Have you tried JetBrains Space? See https://www.jetbrains.com/space/ for more information.",
                     sections: new()
                     {
-                        MessageSectionElement.MessageSectionV2(
+                        MessageSectionElement.MessageSection(
                             elements: new()
                             {
                                 MessageElement.MessageText("JetBrains Space", size: MessageTextSize.LARGE),

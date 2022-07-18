@@ -64,14 +64,11 @@ public class CateringWebHookHandler : SpaceWebHookHandler
             channelIdentifier: null,
             recipient: MessageRecipient.Member(ProfileIdentifier.Id(userId)),
             content: ChatMessage.Block(
-                outline: MessageOutline.V2(new()
-                {
-                    MessageInlineElement.MessageInlineText("Anything to eat or drink while we are on our way to Space?")
-                }),
+                outline: new MessageOutline("Anything to eat or drink while we are on our way to Space?"),
                 messageData: "Anything to eat or drink while we are on our way to Space?",
                 sections: new()
                 {
-                    MessageSectionElement.MessageSectionV2(
+                    MessageSectionElement.MessageSection(
                         elements: new()
                         {
                             MessageElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
@@ -122,14 +119,11 @@ public class CateringWebHookHandler : SpaceWebHookHandler
                 channelIdentifier: ChannelIdentifier.Profile(ProfileIdentifier.Id(payload.UserId)), 
                 recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
                 content: ChatMessage.Block(
-                    outline: MessageOutline.V2(new()
-                    {
-                        MessageInlineElement.MessageInlineText("Would you prefer chicken or pasta?")
-                    }),
+                    outline: new MessageOutline("Would you prefer chicken or pasta?"),
                     messageData: "Would you prefer chicken or pasta?",
                     sections: new()
                     {
-                        MessageSectionElement.MessageSectionV2(
+                        MessageSectionElement.MessageSection(
                             elements: new()
                             {
                                 MessageElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
@@ -155,14 +149,11 @@ public class CateringWebHookHandler : SpaceWebHookHandler
                 channelIdentifier: ChannelIdentifier.Profile(ProfileIdentifier.Id(payload.UserId)),
                 recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
                 content: ChatMessage.Block(
-                    outline: MessageOutline.V2(new()
-                    {
-                        MessageInlineElement.MessageInlineText("Any drinks? Coffee or tea?")
-                    }),
+                    outline: new MessageOutline("Any drinks? Coffee or tea?"),
                     messageData: "Any drinks? Coffee or tea?",
                     sections: new()
                     {
-                        MessageSectionElement.MessageSectionV2(
+                        MessageSectionElement.MessageSection(
                             elements: new()
                             {
                                 MessageElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
@@ -192,14 +183,11 @@ public class CateringWebHookHandler : SpaceWebHookHandler
                 channelIdentifier: ChannelIdentifier.Profile(ProfileIdentifier.Id(payload.UserId)),
                 recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
                 content: ChatMessage.Block(
-                    outline: MessageOutline.V2(new()
-                    {
-                        MessageInlineElement.MessageInlineText("How would you like your coffee?")
-                    }),
+                    outline: new MessageOutline("How would you like your coffee?"),
                     messageData: "How would you like your coffee?",
                     sections: new()
                     {
-                        MessageSectionElement.MessageSectionV2(
+                        MessageSectionElement.MessageSection(
                             elements: new()
                             {
                                 MessageElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
@@ -227,14 +215,11 @@ public class CateringWebHookHandler : SpaceWebHookHandler
                 channelIdentifier: ChannelIdentifier.Profile(ProfileIdentifier.Id(payload.UserId)),
                 recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
                 content: ChatMessage.Block(
-                    outline: MessageOutline.V2(new()
-                    {
-                        MessageInlineElement.MessageInlineText("Thank you, we'll be right there!")
-                    }),
+                    outline: new MessageOutline("Thank you, we'll be right there!"),
                     messageData: "Thank you, we'll be right there!",
                     sections: new()
                     {
-                        MessageSectionElement.MessageSectionV2(
+                        MessageSectionElement.MessageSection(
                             elements: new()
                             {
                                 MessageElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
