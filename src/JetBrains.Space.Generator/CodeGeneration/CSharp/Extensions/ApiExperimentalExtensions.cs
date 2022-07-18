@@ -10,6 +10,8 @@ public static class ApiExperimentalExtensions
     public static string ToCSharpExperimental(this ApiExperimental subject)
     {
         var builder = new StringBuilder();
+        builder.AppendLine($"#if NET6_0_OR_GREATER");
+        
         builder.Append("[Obsolete(\"");
         if (!string.IsNullOrEmpty(subject.Message))
         {
@@ -19,7 +21,23 @@ public static class ApiExperimentalExtensions
         {
             builder.Append("Usage of an experimental API");
         }
-        builder.Append("\", DiagnosticId = \"SPC001\")]");
+        builder.AppendLine("\", DiagnosticId = \"SPC001\")]");
+        
+        builder.AppendLine($"#else");
+        
+        builder.Append("[Obsolete(\"");
+        if (!string.IsNullOrEmpty(subject.Message))
+        {
+            builder.Append(subject.Message.ToUppercaseFirst());
+        }
+        else
+        {
+            builder.Append("Usage of an experimental API");
+        }
+        builder.AppendLine("\")]");
+        
+        builder.AppendLine($"#endif");
+        
         return builder.ToString();
     }
     
