@@ -52,8 +52,8 @@ public static class ApplicationUnfurlContentMessagePartialExtensions
     /// <summary>
     /// Line of elements appearing above the main body of the message
     /// </summary>
-    public static Partial<ApplicationUnfurlContentMessage> WithOutline(this Partial<ApplicationUnfurlContentMessage> it, Func<Partial<MessageOutline>, Partial<MessageOutline>> partialBuilder)
-        => it.AddFieldName("outline", partialBuilder(new Partial<MessageOutline>(it)));
+    public static Partial<ApplicationUnfurlContentMessage> WithOutline(this Partial<ApplicationUnfurlContentMessage> it, Func<Partial<MessageOutlineBase>, Partial<MessageOutlineBase>> partialBuilder)
+        => it.AddFieldName("outline", partialBuilder(new Partial<MessageOutlineBase>(it)));
     
     /// <summary>
     /// List of sections of the message

@@ -34,12 +34,13 @@ public sealed class HAEnum
 {
     public HAEnum() { }
     
-    public HAEnum(string id, string name, List<string> values, HADeprecation? deprecation = null)
+    public HAEnum(string id, string name, List<string> values, HADeprecation? deprecation = null, HAExperimental? experimental = null)
     {
         Id = id;
         Name = name;
         Values = values;
         Deprecation = deprecation;
+        Experimental = experimental;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(HAEnum), nameof(Id), "id");
@@ -81,12 +82,22 @@ public sealed class HAEnum
         set => _deprecation.SetValue(value);
     }
 
+    private PropertyValue<HAExperimental?> _experimental = new PropertyValue<HAExperimental?>(nameof(HAEnum), nameof(Experimental), "experimental");
+    
+    [JsonPropertyName("experimental")]
+    public HAExperimental? Experimental
+    {
+        get => _experimental.GetValue(InlineErrors);
+        set => _experimental.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _values.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _experimental.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

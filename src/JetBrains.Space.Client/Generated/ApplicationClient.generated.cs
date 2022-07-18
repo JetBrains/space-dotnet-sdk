@@ -722,7 +722,7 @@ public partial class ApplicationClient : ISpaceClient
         }
         
         /// <summary>
-        /// Create a permanent token for the given application that can be used to access the current organisation
+        /// Create a permanent token for the given application that can be used to access the current organization
         /// </summary>
         /// <remarks>
         /// Required permissions:
@@ -748,7 +748,7 @@ public partial class ApplicationClient : ISpaceClient
         
     
         /// <summary>
-        /// Get permanent tokens used to access the current organisation by the given application
+        /// Get permanent tokens used to access the current organization by the given application
         /// </summary>
         /// <remarks>
         /// Required permissions:
@@ -770,7 +770,7 @@ public partial class ApplicationClient : ISpaceClient
         
         
         /// <summary>
-        /// Get permanent tokens used to access the current organisation by the given application
+        /// Get permanent tokens used to access the current organization by the given application
         /// </summary>
         /// <remarks>
         /// Required permissions:
@@ -784,7 +784,7 @@ public partial class ApplicationClient : ISpaceClient
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPermanentTokensAsync(application: application, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESApplicationPermanentToken>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESApplicationPermanentToken>.Default())), skip, cancellationToken);
     
         /// <summary>
-        /// Update an existing personal token used to access the current organisation. The permanent token's name and/or scope can be updated.
+        /// Update an existing personal token used to access the current organization. The permanent token's name and/or scope can be updated.
         /// </summary>
         /// <remarks>
         /// Required permissions:
@@ -809,7 +809,7 @@ public partial class ApplicationClient : ISpaceClient
         
     
         /// <summary>
-        /// Delete a personal token used to access the current organisation
+        /// Delete a personal token used to access the current organization
         /// </summary>
         /// <remarks>
         /// Required permissions:

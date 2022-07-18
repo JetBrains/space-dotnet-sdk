@@ -34,7 +34,7 @@ public class TeamDirectoryProfilesPostRequest
 {
     public TeamDirectoryProfilesPostRequest() { }
     
-    public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? externalId = null, string? location = null, bool? external = null)
+    public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? externalId = null, string? location = null, bool? guest = null)
     {
         Username = username;
         FirstName = firstName;
@@ -55,7 +55,7 @@ public class TeamDirectoryProfilesPostRequest
         CustomFieldValues = (customFieldValues ?? new List<CustomFieldInputValue>());
         ExternalId = externalId;
         Location = location;
-        IsExternal = external;
+        IsGuest = guest;
     }
     
     private PropertyValue<string> _username = new PropertyValue<string>(nameof(TeamDirectoryProfilesPostRequest), nameof(Username), "username");
@@ -266,16 +266,16 @@ public class TeamDirectoryProfilesPostRequest
         set => _location.SetValue(value);
     }
 
-    private PropertyValue<bool?> _external = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesPostRequest), nameof(IsExternal), "external");
+    private PropertyValue<bool?> _guest = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesPostRequest), nameof(IsGuest), "guest");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
-    [JsonPropertyName("external")]
-    public bool? IsExternal
+    [JsonPropertyName("guest")]
+    public bool? IsGuest
     {
-        get => _external.GetValue(InlineErrors);
-        set => _external.SetValue(value);
+        get => _guest.GetValue(InlineErrors);
+        set => _guest.SetValue(value);
     }
 
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
@@ -299,7 +299,7 @@ public class TeamDirectoryProfilesPostRequest
         _customFieldValues.SetAccessPath(parentChainPath, validateHasBeenSet);
         _externalId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _location.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _external.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _guest.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

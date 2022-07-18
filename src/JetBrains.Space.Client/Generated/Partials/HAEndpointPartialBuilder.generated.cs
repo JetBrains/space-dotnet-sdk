@@ -89,6 +89,12 @@ public static class HAEndpointPartialExtensions
     public static Partial<HAEndpoint> WithDeprecation(this Partial<HAEndpoint> it, Func<Partial<HADeprecation>, Partial<HADeprecation>> partialBuilder)
         => it.AddFieldName("deprecation", partialBuilder(new Partial<HADeprecation>(it)));
     
+    public static Partial<HAEndpoint> WithExperimental(this Partial<HAEndpoint> it)
+        => it.AddFieldName("experimental");
+    
+    public static Partial<HAEndpoint> WithExperimental(this Partial<HAEndpoint> it, Func<Partial<HAExperimental>, Partial<HAExperimental>> partialBuilder)
+        => it.AddFieldName("experimental", partialBuilder(new Partial<HAExperimental>(it)));
+    
     public static Partial<HAEndpoint> WithRights(this Partial<HAEndpoint> it)
         => it.AddFieldName("rights");
     

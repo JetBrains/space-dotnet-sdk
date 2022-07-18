@@ -29,37 +29,17 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class KbPersonalContext
-     : KBBookContext, IClassNameConvertible, IPropagatePropertyAccessPath
+[JsonConverter(typeof(EnumStringConverter))]
+public enum AllChannelsSortColumn
 {
-    [JsonPropertyName("className")]
-    public  string? ClassName => "KbPersonalContext";
+    [EnumMember(Value = "Name")]
+    Name,
     
-    public KbPersonalContext() { }
+    [EnumMember(Value = "Subscribers")]
+    Subscribers,
     
-    public KbPersonalContext(TDMemberProfile owner)
-    {
-        Owner = owner;
-    }
+    [EnumMember(Value = "Created")]
+    Created,
     
-    private PropertyValue<TDMemberProfile> _owner = new PropertyValue<TDMemberProfile>(nameof(KbPersonalContext), nameof(Owner), "owner");
-    
-    [Required]
-    [JsonPropertyName("owner")]
-    public TDMemberProfile Owner
-    {
-        get => _owner.GetValue(InlineErrors);
-        set => _owner.SetValue(value);
-    }
-
-    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-        _owner.SetAccessPath(parentChainPath, validateHasBeenSet);
-    }
-    
-    /// <inheritdoc />
-    [JsonPropertyName("$errors")]
-    public List<ApiInlineError> InlineErrors { get; set; } = new();
-
 }
 

@@ -29,32 +29,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class MessageOutlineV2
-     : MessageOutline, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class TDCallParticipantApp
+     : TDCallParticipant, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public  string? ClassName => "MessageOutlineV2";
+    public override string? ClassName => "TD_CallParticipant.App";
     
-    public MessageOutlineV2() { }
+    public TDCallParticipantApp() { }
     
-    public MessageOutlineV2(List<MessageInlineElement> elements)
+    public TDCallParticipantApp(ESApp app)
     {
-        Elements = elements;
+        App = app;
     }
     
-    private PropertyValue<List<MessageInlineElement>> _elements = new PropertyValue<List<MessageInlineElement>>(nameof(MessageOutlineV2), nameof(Elements), "elements", new List<MessageInlineElement>());
+    private PropertyValue<ESApp> _app = new PropertyValue<ESApp>(nameof(TDCallParticipantApp), nameof(App), "app");
     
     [Required]
-    [JsonPropertyName("elements")]
-    public List<MessageInlineElement> Elements
+    [JsonPropertyName("app")]
+    public ESApp App
     {
-        get => _elements.GetValue(InlineErrors);
-        set => _elements.SetValue(value);
+        get => _app.GetValue(InlineErrors);
+        set => _app.SetValue(value);
     }
 
-    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _elements.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _app.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

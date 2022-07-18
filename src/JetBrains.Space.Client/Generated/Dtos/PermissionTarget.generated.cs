@@ -32,6 +32,9 @@ namespace JetBrains.Space.Client;
 public interface PermissionTarget
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
+    public static ChannelPermissionTarget Channel(ChannelIdentifier channel)
+        => new ChannelPermissionTarget(channel: channel);
+    
     public static GlobalPermissionTarget Global()
         => new GlobalPermissionTarget();
     

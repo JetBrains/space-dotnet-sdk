@@ -29,54 +29,38 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class MessageSectionV2
-     : MessageSectionElement, IClassNameConvertible, IPropagatePropertyAccessPath
+#if NET6_0_OR_GREATER
+[Obsolete("This part of API is not supported yet on mobile clients. Messages using it will be replaced with stubs on iOS and Android.", DiagnosticId = "SPC001")]
+#else
+[Obsolete("This part of API is not supported yet on mobile clients. Messages using it will be replaced with stubs on iOS and Android.")]
+#endif
+
+public sealed class MessageOutlineElements
+     : MessageOutlineBase, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public  string? ClassName => "MessageSectionV2";
+    public  string? ClassName => "MessageOutlineElements";
     
-    public MessageSectionV2() { }
+    public MessageOutlineElements() { }
     
-    public MessageSectionV2(List<MessageElement> elements, MessageStyle? style = null, MessageTextSize? textSize = null)
+    public MessageOutlineElements(List<MessageInlineElement> elements)
     {
         Elements = elements;
-        Style = style;
-        TextSize = textSize;
     }
     
-    private PropertyValue<List<MessageElement>> _elements = new PropertyValue<List<MessageElement>>(nameof(MessageSectionV2), nameof(Elements), "elements", new List<MessageElement>());
+    private PropertyValue<List<MessageInlineElement>> _elements = new PropertyValue<List<MessageInlineElement>>(nameof(MessageOutlineElements), nameof(Elements), "elements", new List<MessageInlineElement>());
     
     [Required]
     [JsonPropertyName("elements")]
-    public List<MessageElement> Elements
+    public List<MessageInlineElement> Elements
     {
         get => _elements.GetValue(InlineErrors);
         set => _elements.SetValue(value);
     }
 
-    private PropertyValue<MessageStyle?> _style = new PropertyValue<MessageStyle?>(nameof(MessageSectionV2), nameof(Style), "style");
-    
-    [JsonPropertyName("style")]
-    public MessageStyle? Style
-    {
-        get => _style.GetValue(InlineErrors);
-        set => _style.SetValue(value);
-    }
-
-    private PropertyValue<MessageTextSize?> _textSize = new PropertyValue<MessageTextSize?>(nameof(MessageSectionV2), nameof(TextSize), "textSize");
-    
-    [JsonPropertyName("textSize")]
-    public MessageTextSize? TextSize
-    {
-        get => _textSize.GetValue(InlineErrors);
-        set => _textSize.SetValue(value);
-    }
-
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _elements.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _style.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _textSize.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -29,43 +29,16 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class MessageOutlineLegacy
-     : MessageOutline, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class TwoFactorAuthenticationRequirementNotRequired
+     : TwoFactorAuthenticationRequirement, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public  string? ClassName => "MessageOutlineLegacy";
+    public override string? ClassName => "TwoFactorAuthenticationRequirement.NotRequired";
     
-    public MessageOutlineLegacy() { }
+    public TwoFactorAuthenticationRequirementNotRequired() { }
     
-    public MessageOutlineLegacy(string text, ApiIcon? icon = null)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        Icon = icon;
-        Text = text;
-    }
-    
-    private PropertyValue<ApiIcon?> _icon = new PropertyValue<ApiIcon?>(nameof(MessageOutlineLegacy), nameof(Icon), "icon");
-    
-    [JsonPropertyName("icon")]
-    public ApiIcon? Icon
-    {
-        get => _icon.GetValue(InlineErrors);
-        set => _icon.SetValue(value);
-    }
-
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageOutlineLegacy), nameof(Text), "text");
-    
-    [Required]
-    [JsonPropertyName("text")]
-    public string Text
-    {
-        get => _text.GetValue(InlineErrors);
-        set => _text.SetValue(value);
-    }
-
-    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

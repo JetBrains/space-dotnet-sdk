@@ -27,18 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MessageOutlineLegacyPartialBuilder;
+namespace JetBrains.Space.Client.DeleteAllAutomationLegacyChannelsActionPartialBuilder;
 
-public static class MessageOutlineLegacyPartialExtensions
+public static class DeleteAllAutomationLegacyChannelsActionPartialExtensions
 {
-    public static Partial<MessageOutlineLegacy> WithIcon(this Partial<MessageOutlineLegacy> it)
-        => it.AddFieldName("icon");
-    
-    public static Partial<MessageOutlineLegacy> WithIcon(this Partial<MessageOutlineLegacy> it, Func<Partial<ApiIcon>, Partial<ApiIcon>> partialBuilder)
-        => it.AddFieldName("icon", partialBuilder(new Partial<ApiIcon>(it)));
-    
-    public static Partial<MessageOutlineLegacy> WithText(this Partial<MessageOutlineLegacy> it)
-        => it.AddFieldName("text");
-    
 }
 

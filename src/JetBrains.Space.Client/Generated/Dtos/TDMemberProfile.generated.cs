@@ -34,7 +34,7 @@ public sealed class TDMemberProfile
 {
     public TDMemberProfile() { }
     
-    public TDMemberProfile(string id, string username, TDProfileName name, bool speaksEnglish, List<TDProfileLanguage> languages, bool archived, bool notAMember, List<AbsenceRecord> absences, Dictionary<string, CFValue> customFields, List<TDProfileEmail> emails, DocumentFolderWithChildren folderWithChildren, List<PublicHoliday> holidays, List<string> links, List<TDMemberLocation> locationHistory, List<TDMemberLocation> locations, List<ESProfileLogin> logins, List<TDMemberProfile> managers, List<TDMembership> membershipHistory, List<TDMembership> memberships, List<string> messengers, bool onboardingRequired, List<string> phones, List<Topic> topics, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, DateTime? joined = null, DateTime? leftAt = null, bool? external = null, string? about = null, AvatarCropSquare? avatarCropSquare = null, DateTime? birthday = null, string? externalId = null, Gender? gender = null, DateTime? left = null, bool? showBannerOnLandingPage = null, bool? showBannerOnProjectPage = null, bool? showBannerOnTeamDirectoryHomePage = null, List<TDMembership>? unapprovedMemberships = null)
+    public TDMemberProfile(string id, string username, TDProfileName name, bool speaksEnglish, List<TDProfileLanguage> languages, bool archived, bool notAMember, List<AbsenceRecord> absences, Dictionary<string, CFValue> customFields, List<TDProfileEmail> emails, DocumentFolderWithChildren folderWithChildren, List<PublicHoliday> holidays, List<string> links, List<TDMemberLocation> locationHistory, List<TDMemberLocation> locations, List<ESProfileLogin> logins, List<TDMemberProfile> managers, List<TDMembership> membershipHistory, List<TDMembership> memberships, List<string> messengers, bool onboardingRequired, List<string> phones, TwoFactorAuthenticationStatus status, List<Topic> topics, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, DateTime? joined = null, DateTime? leftAt = null, bool? external = null, string? about = null, AvatarCropSquare? avatarCropSquare = null, DateTime? birthday = null, string? externalId = null, Gender? gender = null, DateTime? left = null, bool? showBannerOnLandingPage = null, bool? showBannerOnProjectPage = null, bool? showBannerOnTeamDirectoryHomePage = null, List<TDMembership>? unapprovedMemberships = null)
     {
         Id = id;
         Username = username;
@@ -73,6 +73,7 @@ public sealed class TDMemberProfile
         IsShowBannerOnLandingPage = showBannerOnLandingPage;
         IsShowBannerOnProjectPage = showBannerOnProjectPage;
         IsShowBannerOnTeamDirectoryHomePage = showBannerOnTeamDirectoryHomePage;
+        Status = status;
         Topics = topics;
         UnapprovedMemberships = unapprovedMemberships;
     }
@@ -436,6 +437,16 @@ public sealed class TDMemberProfile
         set => _showBannerOnTeamDirectoryHomePage.SetValue(value);
     }
 
+    private PropertyValue<TwoFactorAuthenticationStatus> _status = new PropertyValue<TwoFactorAuthenticationStatus>(nameof(TDMemberProfile), nameof(Status), "status");
+    
+    [Required]
+    [JsonPropertyName("status")]
+    public TwoFactorAuthenticationStatus Status
+    {
+        get => _status.GetValue(InlineErrors);
+        set => _status.SetValue(value);
+    }
+
     private PropertyValue<List<Topic>> _topics = new PropertyValue<List<Topic>>(nameof(TDMemberProfile), nameof(Topics), "topics", new List<Topic>());
     
     [Required]
@@ -494,6 +505,7 @@ public sealed class TDMemberProfile
         _showBannerOnLandingPage.SetAccessPath(parentChainPath, validateHasBeenSet);
         _showBannerOnProjectPage.SetAccessPath(parentChainPath, validateHasBeenSet);
         _showBannerOnTeamDirectoryHomePage.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
         _topics.SetAccessPath(parentChainPath, validateHasBeenSet);
         _unapprovedMemberships.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

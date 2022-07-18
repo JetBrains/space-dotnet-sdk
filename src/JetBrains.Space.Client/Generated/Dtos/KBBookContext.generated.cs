@@ -35,9 +35,6 @@ public interface KBBookContext
     public static KbNoneContext KbNoneContext()
         => new KbNoneContext();
     
-    public static KbPersonalContext KbPersonalContext(TDMemberProfile owner)
-        => new KbPersonalContext(owner: owner);
-    
     public static KbProjectContext KbProjectContext(PRProject project)
         => new KbProjectContext(project: project);
     

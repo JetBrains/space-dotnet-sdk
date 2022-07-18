@@ -123,6 +123,12 @@ public partial class ChatClient : ISpaceClient
         }
         
     
+        /// <param name="query">
+        /// Substring matching name or description of the channel
+        /// </param>
+        /// <param name="quickFilter">
+        /// Additional options to filter channels
+        /// </param>
         /// <remarks>
         /// Required permissions:
         /// <list type="bullet">
@@ -131,21 +137,29 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<Batch<AllChannelsListEntry>> ListAllChannelsAsync(string query, string? skip = null, int? top = 100, string? quickFilter = null, string? sortColumn = null, ColumnSortOrder? sortOrder = ColumnSortOrder.ASC, Func<Partial<Batch<AllChannelsListEntry>>, Partial<Batch<AllChannelsListEntry>>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<AllChannelsListEntry>> ListAllChannelsAsync(string query, string? skip = null, int? top = 100, AllChannelsFilter? quickFilter = null, AllChannelsSortColumn? sortColumn = null, ColumnSortOrder? sortOrder = ColumnSortOrder.ASC, bool? publicOnly = false, bool? withArchived = true, Func<Partial<Batch<AllChannelsListEntry>>, Partial<Batch<AllChannelsListEntry>>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("query", query);
             if (skip != null) queryParameters.Append("$skip", skip);
             if (top != null) queryParameters.Append("$top", top?.ToString());
-            if (quickFilter != null) queryParameters.Append("quickFilter", quickFilter);
-            if (sortColumn != null) queryParameters.Append("sortColumn", sortColumn);
+            queryParameters.Append("quickFilter", quickFilter.ToEnumString());
+            queryParameters.Append("sortColumn", sortColumn.ToEnumString());
             queryParameters.Append("sortOrder", sortOrder.ToEnumString());
+            if (publicOnly != null) queryParameters.Append("publicOnly", publicOnly?.ToString("l"));
+            if (withArchived != null) queryParameters.Append("withArchived", withArchived?.ToString("l"));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<AllChannelsListEntry>>()) : Partial<Batch<AllChannelsListEntry>>.Default()).ToString());
             
             return await _connection.RequestResourceAsync<Batch<AllChannelsListEntry>>("GET", $"api/http/chats/channels/all-channels{queryParameters.ToQueryString()}", cancellationToken);
         }
         
         
+        /// <param name="query">
+        /// Substring matching name or description of the channel
+        /// </param>
+        /// <param name="quickFilter">
+        /// Additional options to filter channels
+        /// </param>
         /// <remarks>
         /// Required permissions:
         /// <list type="bullet">
@@ -154,8 +168,8 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public IAsyncEnumerable<AllChannelsListEntry> ListAllChannelsAsyncEnumerable(string query, string? skip = null, int? top = 100, string? quickFilter = null, string? sortColumn = null, ColumnSortOrder? sortOrder = ColumnSortOrder.ASC, Func<Partial<AllChannelsListEntry>, Partial<AllChannelsListEntry>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListAllChannelsAsync(query: query, top: top, quickFilter: quickFilter, sortColumn: sortColumn, sortOrder: sortOrder, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AllChannelsListEntry>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AllChannelsListEntry>.Default())), skip, cancellationToken);
+        public IAsyncEnumerable<AllChannelsListEntry> ListAllChannelsAsyncEnumerable(string query, string? skip = null, int? top = 100, AllChannelsFilter? quickFilter = null, AllChannelsSortColumn? sortColumn = null, ColumnSortOrder? sortOrder = ColumnSortOrder.ASC, bool? publicOnly = false, bool? withArchived = true, Func<Partial<AllChannelsListEntry>, Partial<AllChannelsListEntry>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListAllChannelsAsync(query: query, top: top, quickFilter: quickFilter, sortColumn: sortColumn, sortOrder: sortOrder, publicOnly: publicOnly, withArchived: withArchived, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AllChannelsListEntry>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AllChannelsListEntry>.Default())), skip, cancellationToken);
     
         /// <remarks>
         /// Required permissions:
@@ -907,6 +921,34 @@ public partial class ChatClient : ISpaceClient
                     Attachments = attachments,
                     IsUnfurlLinks = unfurlLinks,
                     IsResolveNames = resolveNames,
+                }, cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Post messages</term>
+        /// </item>
+        /// <item>
+        /// <term>Post messages in threads</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        [Obsolete("Use POST chats/messages/send-message (since 2020-01-17) (will be removed in a future version)")]
+        public async Task<ChannelItemRecord> SendTextMessageAsync(string channel, string text, bool pending = false, string? temporaryId = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ChannelItemRecord>()) : Partial<ChannelItemRecord>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ChatsMessagesSendPostRequest, ChannelItemRecord>("POST", $"api/http/chats/messages/send{queryParameters.ToQueryString()}", 
+                new ChatsMessagesSendPostRequest
+                { 
+                    Channel = channel,
+                    Text = text,
+                    IsPending = pending,
+                    TemporaryId = temporaryId,
                 }, cancellationToken);
         }
         

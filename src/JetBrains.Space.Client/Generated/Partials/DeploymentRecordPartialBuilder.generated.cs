@@ -97,5 +97,14 @@ public static class DeploymentRecordPartialExtensions
     public static Partial<DeploymentRecord> WithIsArchived(this Partial<DeploymentRecord> it)
         => it.AddFieldName("archived");
     
+    public static Partial<DeploymentRecord> WithTotalCommits(this Partial<DeploymentRecord> it)
+        => it.AddFieldName("totalCommits");
+    
+    public static Partial<DeploymentRecord> WithTotalMerges(this Partial<DeploymentRecord> it)
+        => it.AddFieldName("totalMerges");
+    
+    public static Partial<DeploymentRecord> WithTotalIssues(this Partial<DeploymentRecord> it)
+        => it.AddFieldName("totalIssues");
+    
 }
 

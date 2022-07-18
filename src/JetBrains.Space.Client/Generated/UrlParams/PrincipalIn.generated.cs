@@ -32,7 +32,7 @@ namespace JetBrains.Space.Client;
 [JsonConverter(typeof(UrlParameterConverter))]
 public abstract class PrincipalIn : IUrlParameter
 {
-    public static PrincipalIn Application(string application)
+    public static PrincipalIn Application(ApplicationIdentifier application)
         => new PrincipalInApplication(application);
     
     public static PrincipalIn BuiltIn(string builtIn)
@@ -46,9 +46,9 @@ public abstract class PrincipalIn : IUrlParameter
         [Required]
         [JsonPropertyName("application")]
 #if NET6_0_OR_GREATER
-        public string Application { get; init; }
+        public ApplicationIdentifier Application { get; init; }
 #else
-        public string Application { get; set; }
+        public ApplicationIdentifier Application { get; set; }
 #endif
         
 #if !NET6_0_OR_GREATER
@@ -57,7 +57,7 @@ public abstract class PrincipalIn : IUrlParameter
 #pragma warning restore CS8618
 #endif
         
-        public PrincipalInApplication(string application)
+        public PrincipalInApplication(ApplicationIdentifier application)
         {
             Application = application;
         }

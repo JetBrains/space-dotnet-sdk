@@ -27,15 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MessageOutlineV2PartialBuilder;
+namespace JetBrains.Space.Client.TwoFactorAuthenticationRequirementNotRequiredPartialBuilder;
 
-public static class MessageOutlineV2PartialExtensions
+public static class TwoFactorAuthenticationRequirementNotRequiredPartialExtensions
 {
-    public static Partial<MessageOutlineV2> WithElements(this Partial<MessageOutlineV2> it)
-        => it.AddFieldName("elements");
-    
-    public static Partial<MessageOutlineV2> WithElements(this Partial<MessageOutlineV2> it, Func<Partial<MessageInlineElement>, Partial<MessageInlineElement>> partialBuilder)
-        => it.AddFieldName("elements", partialBuilder(new Partial<MessageInlineElement>(it)));
-    
 }
 

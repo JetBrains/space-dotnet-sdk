@@ -37,9 +37,10 @@ public sealed class BookContainerInfo
     
     public BookContainerInfo() { }
     
-    public BookContainerInfo(KBBook book)
+    public BookContainerInfo(KBBook book, List<string>? grantedRights = null)
     {
         Book = book;
+        GrantedRights = grantedRights;
     }
     
     private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(BookContainerInfo), nameof(Book), "book");
@@ -52,9 +53,19 @@ public sealed class BookContainerInfo
         set => _book.SetValue(value);
     }
 
+    private PropertyValue<List<string>?> _grantedRights = new PropertyValue<List<string>?>(nameof(BookContainerInfo), nameof(GrantedRights), "grantedRights");
+    
+    [JsonPropertyName("grantedRights")]
+    public List<string>? GrantedRights
+    {
+        get => _grantedRights.GetValue(InlineErrors);
+        set => _grantedRights.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _book.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _grantedRights.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

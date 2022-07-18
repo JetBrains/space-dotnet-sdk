@@ -58,5 +58,8 @@ public static class AllChannelsListEntryPartialExtensions
     public static Partial<AllChannelsListEntry> WithIsSubscribed(this Partial<AllChannelsListEntry> it)
         => it.AddFieldName("subscribed");
     
+    public static Partial<AllChannelsListEntry> WithIsArchived(this Partial<AllChannelsListEntry> it)
+        => it.AddFieldName("archived");
+    
 }
 

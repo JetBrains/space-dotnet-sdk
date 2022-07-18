@@ -489,6 +489,55 @@ public partial class ProjectClient : ISpaceClient
         
         }
     
+        public SubscriptionClient Subscriptions => new SubscriptionClient(_connection);
+        
+        public partial class SubscriptionClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public SubscriptionClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public LegacyChannelClient LegacyChannels => new LegacyChannelClient(_connection);
+            
+            public partial class LegacyChannelClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public LegacyChannelClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Delete the legacy subscription channels matching the given filters (applied as AND). If no filter is provided, all subscription channels for the logged in user are deleted.
+                /// </summary>
+                /// <param name="unsubscribedOnly">
+                /// When true (the default), only channels corresponding to unsubscribed subscriptions will be deleted, active subscriptions won't be affected
+                /// </param>
+                /// <param name="project">
+                /// Only delete the channels of the subscriptions from this project
+                /// </param>
+                /// <param name="jobId">
+                /// Only delete the channels of the subscriptions from this job. You can find the job ID in the URL of the job page.
+                /// </param>
+                public async Task DeleteLegacyChannelAsync(bool unsubscribedOnly = true, ProjectIdentifier? project = null, string? jobId = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    if (project != null) queryParameters.Append("project", project?.ToString());
+                    if (jobId != null) queryParameters.Append("jobId", jobId);
+                    queryParameters.Append("unsubscribedOnly", unsubscribedOnly.ToString("l"));
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/automation/subscriptions/legacy-channels{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
+        }
+    
     }
 
     public partial class AutomationClient : ISpaceClient
@@ -2787,7 +2836,7 @@ public partial class ProjectClient : ISpaceClient
         
     
         /// <summary>
-        /// List private projects in the current organisation
+        /// List private projects in the current organization
         /// </summary>
         public async Task<List<PRPrivateProject>> GetAllPrivateProjectsAsync(Func<Partial<PRPrivateProject>, Partial<PRPrivateProject>>? partial = null, CancellationToken cancellationToken = default)
         {

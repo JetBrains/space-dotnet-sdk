@@ -46,5 +46,11 @@ public static class RoomPartialExtensions
     public static Partial<Room> WithChannel(this Partial<Room> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
         => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecord>(it)));
     
+    public static Partial<Room> WithOrigin(this Partial<Room> it)
+        => it.AddFieldName("origin");
+    
+    public static Partial<Room> WithOrigin(this Partial<Room> it, Func<Partial<RoomOrigin>, Partial<RoomOrigin>> partialBuilder)
+        => it.AddFieldName("origin", partialBuilder(new Partial<RoomOrigin>(it)));
+    
 }
 

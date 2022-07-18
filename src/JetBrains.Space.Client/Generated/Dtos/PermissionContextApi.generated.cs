@@ -50,8 +50,14 @@ public interface PermissionContextApi
     public static PrivateProjectPermissionContext PrivateProjectPermissionContext(string projectId)
         => new PrivateProjectPermissionContext(projectId: projectId);
     
+    public static ProfilePermissionContext ProfilePermissionContext(TDMemberProfile profile)
+        => new ProfilePermissionContext(profile: profile);
+    
     public static ProjectPermissionContext ProjectPermissionContext(PRProject project)
         => new ProjectPermissionContext(project: project);
+    
+    public static TeamPermissionContext TeamPermissionContext(TDTeam team)
+        => new TeamPermissionContext(team: team);
     
 }
 

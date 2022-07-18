@@ -32,14 +32,14 @@ namespace JetBrains.Space.Client;
 public interface DocumentContainerInfo
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static BookContainerInfo BookContainerInfo(KBBook book)
-        => new BookContainerInfo(book: book);
+    public static BookContainerInfo BookContainerInfo(KBBook book, List<string>? grantedRights = null)
+        => new BookContainerInfo(book: book, grantedRights: grantedRights);
     
-    public static InaccessibleContainerInfo InaccessibleContainerInfo()
-        => new InaccessibleContainerInfo();
+    public static InaccessibleContainerInfo InaccessibleContainerInfo(List<string>? grantedRights = null)
+        => new InaccessibleContainerInfo(grantedRights: grantedRights);
     
-    public static PersonalDocumentContainerInfo Personal(TDMemberProfile owner)
-        => new PersonalDocumentContainerInfo(owner: owner);
+    public static PersonalDocumentContainerInfo Personal(TDMemberProfile owner, List<string>? grantedRights = null)
+        => new PersonalDocumentContainerInfo(owner: owner, grantedRights: grantedRights);
     
 }
 

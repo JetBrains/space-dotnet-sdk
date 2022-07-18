@@ -29,6 +29,12 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
+#if NET6_0_OR_GREATER
+[Obsolete("This part of API is not supported yet on mobile clients. Messages using it will be replaced with stubs on iOS and Android.", DiagnosticId = "SPC001")]
+#else
+[Obsolete("This part of API is not supported yet on mobile clients. Messages using it will be replaced with stubs on iOS and Android.")]
+#endif
+
 public sealed class MessageFieldV2
      : MessageFieldElement, IClassNameConvertible, IPropagatePropertyAccessPath
 {

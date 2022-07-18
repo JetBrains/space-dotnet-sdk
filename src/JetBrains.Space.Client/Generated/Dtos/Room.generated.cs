@@ -34,12 +34,13 @@ public sealed class Room
 {
     public Room() { }
     
-    public Room(string id, bool archived, string name, M2ChannelRecord channel)
+    public Room(string id, bool archived, string name, M2ChannelRecord? channel = null, RoomOrigin? origin = null)
     {
         Id = id;
         IsArchived = archived;
         Name = name;
         Channel = channel;
+        Origin = origin;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(Room), nameof(Id), "id");
@@ -72,14 +73,22 @@ public sealed class Room
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(Room), nameof(Channel), "channel");
+    private PropertyValue<M2ChannelRecord?> _channel = new PropertyValue<M2ChannelRecord?>(nameof(Room), nameof(Channel), "channel");
     
-    [Required]
     [JsonPropertyName("channel")]
-    public M2ChannelRecord Channel
+    public M2ChannelRecord? Channel
     {
         get => _channel.GetValue(InlineErrors);
         set => _channel.SetValue(value);
+    }
+
+    private PropertyValue<RoomOrigin?> _origin = new PropertyValue<RoomOrigin?>(nameof(Room), nameof(Origin), "origin");
+    
+    [JsonPropertyName("origin")]
+    public RoomOrigin? Origin
+    {
+        get => _origin.GetValue(InlineErrors);
+        set => _origin.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
@@ -88,6 +97,7 @@ public sealed class Room
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _origin.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

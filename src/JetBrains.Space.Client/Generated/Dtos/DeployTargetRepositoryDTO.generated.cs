@@ -34,9 +34,10 @@ public sealed class DeployTargetRepositoryDTO
 {
     public DeployTargetRepositoryDTO() { }
     
-    public DeployTargetRepositoryDTO(string repositoryName)
+    public DeployTargetRepositoryDTO(string repositoryName, bool missing)
     {
         RepositoryName = repositoryName;
+        IsMissing = missing;
     }
     
     private PropertyValue<string> _repositoryName = new PropertyValue<string>(nameof(DeployTargetRepositoryDTO), nameof(RepositoryName), "repositoryName");
@@ -49,9 +50,20 @@ public sealed class DeployTargetRepositoryDTO
         set => _repositoryName.SetValue(value);
     }
 
+    private PropertyValue<bool> _missing = new PropertyValue<bool>(nameof(DeployTargetRepositoryDTO), nameof(IsMissing), "missing");
+    
+    [Required]
+    [JsonPropertyName("missing")]
+    public bool IsMissing
+    {
+        get => _missing.GetValue(InlineErrors);
+        set => _missing.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _repositoryName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _missing.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

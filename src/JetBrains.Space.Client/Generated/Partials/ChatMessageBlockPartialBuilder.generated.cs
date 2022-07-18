@@ -40,8 +40,8 @@ public static class ChatMessageBlockPartialExtensions
     public static Partial<ChatMessageBlock> WithOutline(this Partial<ChatMessageBlock> it)
         => it.AddFieldName("outline");
     
-    public static Partial<ChatMessageBlock> WithOutline(this Partial<ChatMessageBlock> it, Func<Partial<MessageOutline>, Partial<MessageOutline>> partialBuilder)
-        => it.AddFieldName("outline", partialBuilder(new Partial<MessageOutline>(it)));
+    public static Partial<ChatMessageBlock> WithOutline(this Partial<ChatMessageBlock> it, Func<Partial<MessageOutlineBase>, Partial<MessageOutlineBase>> partialBuilder)
+        => it.AddFieldName("outline", partialBuilder(new Partial<MessageOutlineBase>(it)));
     
     public static Partial<ChatMessageBlock> WithSections(this Partial<ChatMessageBlock> it)
         => it.AddFieldName("sections");

@@ -61,5 +61,11 @@ public static class HAFieldPartialExtensions
     public static Partial<HAField> WithDeprecation(this Partial<HAField> it, Func<Partial<HADeprecation>, Partial<HADeprecation>> partialBuilder)
         => it.AddFieldName("deprecation", partialBuilder(new Partial<HADeprecation>(it)));
     
+    public static Partial<HAField> WithExperimental(this Partial<HAField> it)
+        => it.AddFieldName("experimental");
+    
+    public static Partial<HAField> WithExperimental(this Partial<HAField> it, Func<Partial<HAExperimental>, Partial<HAExperimental>> partialBuilder)
+        => it.AddFieldName("experimental", partialBuilder(new Partial<HAExperimental>(it)));
+    
 }
 

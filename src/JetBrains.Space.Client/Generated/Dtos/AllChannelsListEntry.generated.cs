@@ -34,7 +34,7 @@ public sealed class AllChannelsListEntry
 {
     public AllChannelsListEntry() { }
     
-    public AllChannelsListEntry(string channelId, string name, string description, M2Access access, DateTime created, int subscribers, bool subscribed, string? icon = null)
+    public AllChannelsListEntry(string channelId, string name, string description, M2Access access, DateTime created, int subscribers, bool subscribed, bool archived, string? icon = null)
     {
         ChannelId = channelId;
         Name = name;
@@ -44,6 +44,7 @@ public sealed class AllChannelsListEntry
         Created = created;
         Subscribers = subscribers;
         IsSubscribed = subscribed;
+        IsArchived = archived;
     }
     
     private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(AllChannelsListEntry), nameof(ChannelId), "channelId");
@@ -126,6 +127,16 @@ public sealed class AllChannelsListEntry
         set => _subscribed.SetValue(value);
     }
 
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(AllChannelsListEntry), nameof(IsArchived), "archived");
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue(InlineErrors);
+        set => _archived.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -136,6 +147,7 @@ public sealed class AllChannelsListEntry
         _created.SetAccessPath(parentChainPath, validateHasBeenSet);
         _subscribers.SetAccessPath(parentChainPath, validateHasBeenSet);
         _subscribed.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -37,7 +37,7 @@ public sealed class ApplicationUnfurlContentMessage
     
     public ApplicationUnfurlContentMessage() { }
     
-    public ApplicationUnfurlContentMessage(MessageStyle style, List<MessageSectionElement> sections, MessageOutline? outline = null)
+    public ApplicationUnfurlContentMessage(MessageStyle style, List<MessageSectionElement> sections, MessageOutlineBase? outline = null)
     {
         Style = style;
         Outline = outline;
@@ -57,13 +57,13 @@ public sealed class ApplicationUnfurlContentMessage
         set => _style.SetValue(value);
     }
 
-    private PropertyValue<MessageOutline?> _outline = new PropertyValue<MessageOutline?>(nameof(ApplicationUnfurlContentMessage), nameof(Outline), "outline");
+    private PropertyValue<MessageOutlineBase?> _outline = new PropertyValue<MessageOutlineBase?>(nameof(ApplicationUnfurlContentMessage), nameof(Outline), "outline");
     
     /// <summary>
     /// Line of elements appearing above the main body of the message
     /// </summary>
     [JsonPropertyName("outline")]
-    public MessageOutline? Outline
+    public MessageOutlineBase? Outline
     {
         get => _outline.GetValue(InlineErrors);
         set => _outline.SetValue(value);

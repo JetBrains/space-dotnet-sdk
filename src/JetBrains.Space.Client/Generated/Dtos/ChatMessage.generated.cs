@@ -36,7 +36,7 @@ public class ChatMessage
     [JsonPropertyName("className")]
     public virtual string? ClassName => "ChatMessage";
     
-    public static ChatMessageBlock Block(List<MessageSectionElement> sections, MessageStyle? style = null, MessageOutline? outline = null, string? messageData = null)
+    public static ChatMessageBlock Block(List<MessageSectionElement> sections, MessageStyle? style = null, MessageOutlineBase? outline = null, string? messageData = null)
         => new ChatMessageBlock(sections: sections, style: style, outline: outline, messageData: messageData);
     
     public static ChatMessageText Text(string text)

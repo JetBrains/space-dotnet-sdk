@@ -35,8 +35,8 @@ public enum ProfileOrgRelation
     [EnumMember(Value = "MEMBER")]
     MEMBER,
     
-    [EnumMember(Value = "EXTERNAL")]
-    EXTERNAL,
+    [EnumMember(Value = "GUEST")]
+    GUEST,
     
     [EnumMember(Value = "ANY")]
     ANY,

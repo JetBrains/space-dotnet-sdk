@@ -34,7 +34,7 @@ public sealed class DeploymentCommitRefDetails
 {
     public DeploymentCommitRefDetails() { }
     
-    public DeploymentCommitRefDetails(string repositoryName, string branch, string commit, bool head, bool rollback, long? timestamp = null, int? totalCommits = null, int? totalMerges = null, int? totalIssues = null)
+    public DeploymentCommitRefDetails(string repositoryName, string branch, string commit, bool head, bool rollback, bool missing, long? timestamp = null, int? totalCommits = null, int? totalMerges = null, int? totalIssues = null)
     {
         RepositoryName = repositoryName;
         Branch = branch;
@@ -45,6 +45,7 @@ public sealed class DeploymentCommitRefDetails
         TotalMerges = totalMerges;
         TotalIssues = totalIssues;
         IsRollback = rollback;
+        IsMissing = missing;
     }
     
     private PropertyValue<string> _repositoryName = new PropertyValue<string>(nameof(DeploymentCommitRefDetails), nameof(RepositoryName), "repositoryName");
@@ -133,6 +134,16 @@ public sealed class DeploymentCommitRefDetails
         set => _rollback.SetValue(value);
     }
 
+    private PropertyValue<bool> _missing = new PropertyValue<bool>(nameof(DeploymentCommitRefDetails), nameof(IsMissing), "missing");
+    
+    [Required]
+    [JsonPropertyName("missing")]
+    public bool IsMissing
+    {
+        get => _missing.GetValue(InlineErrors);
+        set => _missing.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _repositoryName.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -144,6 +155,7 @@ public sealed class DeploymentCommitRefDetails
         _totalMerges.SetAccessPath(parentChainPath, validateHasBeenSet);
         _totalIssues.SetAccessPath(parentChainPath, validateHasBeenSet);
         _rollback.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _missing.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -39,8 +39,8 @@ public abstract class CodeReviewRecord
     public static CommitSetReviewRecord CommitSetReviewRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null)
         => new CommitSetReviewRecord(project: project, projectId: projectId, number: number, title: title, state: state, createdAt: createdAt, canBeReopened: canBeReopened, createdBy: createdBy, turnBased: turnBased, feedChannel: feedChannel);
     
-    public static MergeRequestRecord MergeRequestRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null)
-        => new MergeRequestRecord(project: project, projectId: projectId, number: number, title: title, state: state, createdAt: createdAt, branchPairs: branchPairs, canBeReopened: canBeReopened, createdBy: createdBy, turnBased: turnBased, feedChannel: feedChannel);
+    public static MergeRequestRecord MergeRequestRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, ExternalCodeReviewLink? externalLink = null)
+        => new MergeRequestRecord(project: project, projectId: projectId, number: number, title: title, state: state, createdAt: createdAt, branchPairs: branchPairs, canBeReopened: canBeReopened, createdBy: createdBy, turnBased: turnBased, feedChannel: feedChannel, externalLink: externalLink);
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewRecord), nameof(Id), "id");
     

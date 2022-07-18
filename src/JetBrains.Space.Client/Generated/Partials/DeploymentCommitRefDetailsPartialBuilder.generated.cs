@@ -58,5 +58,8 @@ public static class DeploymentCommitRefDetailsPartialExtensions
     public static Partial<DeploymentCommitRefDetails> WithIsRollback(this Partial<DeploymentCommitRefDetails> it)
         => it.AddFieldName("rollback");
     
+    public static Partial<DeploymentCommitRefDetails> WithIsMissing(this Partial<DeploymentCommitRefDetails> it)
+        => it.AddFieldName("missing");
+    
 }
 

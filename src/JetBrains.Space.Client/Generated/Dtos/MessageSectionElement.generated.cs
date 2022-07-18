@@ -35,11 +35,8 @@ public interface MessageSectionElement
     public static MessageDivider MessageDivider()
         => new MessageDivider();
     
-    public static MessageSection MessageSection(List<MessageElement> elements, string? header = null, string? footer = null)
-        => new MessageSection(elements: elements, header: header, footer: footer);
-    
-    public static MessageSectionV2 MessageSectionV2(List<MessageElement> elements, MessageStyle? style = null, MessageTextSize? textSize = null)
-        => new MessageSectionV2(elements: elements, style: style, textSize: textSize);
+    public static MessageSection MessageSection(List<MessageElement> elements, string? header = null, string? footer = null, MessageStyle? style = null, MessageTextSize? textSize = null)
+        => new MessageSection(elements: elements, header: header, footer: footer, style: style, textSize: textSize);
     
 }
 

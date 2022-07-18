@@ -34,7 +34,7 @@ public sealed class PRProject
 {
     public PRProject() { }
     
-    public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> collaboratorsProfiles, List<TDTeam> collaboratorsTeams, int daysInWeek, bool enable, List<TDMemberProfile> externalUserProfiles, DurationTextFormat format, int hoursInDay, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, string projectId, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, ProjectTeamType type, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null, List<ProjectFeatureState>? features = null, List<ProjectTeamMemberRecord>? members = null, TDTeam? team = null, List<TDTeam>? teams = null)
+    public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> collaboratorsProfiles, List<TDTeam> collaboratorsTeams, int daysInWeek, bool enable, DurationTextFormat format, List<TDMemberProfile> guestProfiles, int hoursInDay, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, string projectId, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, ProjectTeamType type, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null, List<ProjectFeatureState>? features = null, List<ProjectTeamMemberRecord>? members = null, TDTeam? team = null, List<TDTeam>? teams = null)
     {
         Id = id;
         Key = key;
@@ -51,9 +51,9 @@ public sealed class PRProject
         CollaboratorsTeams = collaboratorsTeams;
         DaysInWeek = daysInWeek;
         IsEnable = enable;
-        ExternalUserProfiles = externalUserProfiles;
         Features = features;
         Format = format;
+        GuestProfiles = guestProfiles;
         HoursInDay = hoursInDay;
         MemberProfiles = memberProfiles;
         MemberTeams = memberTeams;
@@ -216,16 +216,6 @@ public sealed class PRProject
         set => _enable.SetValue(value);
     }
 
-    private PropertyValue<List<TDMemberProfile>> _externalUserProfiles = new PropertyValue<List<TDMemberProfile>>(nameof(PRProject), nameof(ExternalUserProfiles), "externalUserProfiles", new List<TDMemberProfile>());
-    
-    [Required]
-    [JsonPropertyName("externalUserProfiles")]
-    public List<TDMemberProfile> ExternalUserProfiles
-    {
-        get => _externalUserProfiles.GetValue(InlineErrors);
-        set => _externalUserProfiles.SetValue(value);
-    }
-
     private PropertyValue<List<ProjectFeatureState>?> _features = new PropertyValue<List<ProjectFeatureState>?>(nameof(PRProject), nameof(Features), "features");
     
     [JsonPropertyName("features")]
@@ -243,6 +233,16 @@ public sealed class PRProject
     {
         get => _format.GetValue(InlineErrors);
         set => _format.SetValue(value);
+    }
+
+    private PropertyValue<List<TDMemberProfile>> _guestProfiles = new PropertyValue<List<TDMemberProfile>>(nameof(PRProject), nameof(GuestProfiles), "guestProfiles", new List<TDMemberProfile>());
+    
+    [Required]
+    [JsonPropertyName("guestProfiles")]
+    public List<TDMemberProfile> GuestProfiles
+    {
+        get => _guestProfiles.GetValue(InlineErrors);
+        set => _guestProfiles.SetValue(value);
     }
 
     private PropertyValue<int> _hoursInDay = new PropertyValue<int>(nameof(PRProject), nameof(HoursInDay), "hoursInDay");
@@ -379,9 +379,9 @@ public sealed class PRProject
         _collaboratorsTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _daysInWeek.SetAccessPath(parentChainPath, validateHasBeenSet);
         _enable.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _externalUserProfiles.SetAccessPath(parentChainPath, validateHasBeenSet);
         _features.SetAccessPath(parentChainPath, validateHasBeenSet);
         _format.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _guestProfiles.SetAccessPath(parentChainPath, validateHasBeenSet);
         _hoursInDay.SetAccessPath(parentChainPath, validateHasBeenSet);
         _memberProfiles.SetAccessPath(parentChainPath, validateHasBeenSet);
         _memberTeams.SetAccessPath(parentChainPath, validateHasBeenSet);

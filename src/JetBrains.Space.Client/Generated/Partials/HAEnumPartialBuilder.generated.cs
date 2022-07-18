@@ -46,5 +46,11 @@ public static class HAEnumPartialExtensions
     public static Partial<HAEnum> WithDeprecation(this Partial<HAEnum> it, Func<Partial<HADeprecation>, Partial<HADeprecation>> partialBuilder)
         => it.AddFieldName("deprecation", partialBuilder(new Partial<HADeprecation>(it)));
     
+    public static Partial<HAEnum> WithExperimental(this Partial<HAEnum> it)
+        => it.AddFieldName("experimental");
+    
+    public static Partial<HAEnum> WithExperimental(this Partial<HAEnum> it, Func<Partial<HAExperimental>, Partial<HAExperimental>> partialBuilder)
+        => it.AddFieldName("experimental", partialBuilder(new Partial<HAExperimental>(it)));
+    
 }
 

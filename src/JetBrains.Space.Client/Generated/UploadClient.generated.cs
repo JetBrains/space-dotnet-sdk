@@ -40,7 +40,7 @@ public partial class UploadClient : ISpaceClient
     
     /// <summary>
     /// Request a URL that can be used to upload an attachment.
-    /// An attachment can be uploaded to the URL that is returned, by making a PUT request that has a proper content-type header and the attachment data as the request body. The PUT request returns a string that is an id of the uploaded attachment. The attachment id can be passed to other API methods where this attachment needs to be used.
+    /// An attachment can be uploaded to the URL that is returned, by making a PUT request that has a proper content-type header and the attachment data as the request body. The PUT request returns a string that is an id of the uploaded attachment. The attachment id can be passed to other API methods where this attachment needs to be used. Attachments are available for download at `/d/{attachmentId}`.
     /// The 'storagePrefix' parameter can be one of file, maps, emoji or attachments.
     /// The 'mediaType' parameter can be omitted for all uploads. For image uploads that need to be resized automatically for specific use, such as chat stickers or emoji, use one of `chat-image-attachment`, `chat-sticker`, `emoji`.
     /// </summary>
@@ -56,6 +56,43 @@ public partial class UploadClient : ISpaceClient
             }, cancellationToken);
     }
     
+
+    public ChatClient Chat => new ChatClient(_connection);
+    
+    public partial class ChatClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public ChatClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        public PublicUrlClient PublicUrl => new PublicUrlClient(_connection);
+        
+        public partial class PublicUrlClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public PublicUrlClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Returns a URL that can be used to access attachment file without authentication
+            /// </summary>
+            public async Task<string> GetPublicUrlAsync(ChannelIdentifier channel, ChatMessageIdentifier message, string attachmentId, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                return await _connection.RequestResourceAsync<string>("GET", $"api/http/uploads/chat/public-url/{channel}/{message}/{attachmentId}{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+        }
+    
+    }
 
     public ImageClient Image => new ImageClient(_connection);
     

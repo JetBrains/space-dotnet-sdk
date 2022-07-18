@@ -34,13 +34,15 @@ public sealed class SessionParticipationRecord
 {
     public SessionParticipationRecord() { }
     
-    public SessionParticipationRecord(string id, long connectionId, string sessionId, TDMemberProfile member, ParticipationState state, List<DataProducerOptions> dataProducers, List<ProducerOptions> producers)
+    public SessionParticipationRecord(string id, long connectionId, string sessionId, ParticipationState state, List<DataProducerOptions> dataProducers, List<ProducerOptions> producers, TDMemberProfile? member = null, TDCallParticipant? participant = null, string? description = null)
     {
         Id = id;
         ConnectionId = connectionId;
         SessionId = sessionId;
         Member = member;
         State = state;
+        Participant = participant;
+        Description = description;
         DataProducers = dataProducers;
         Producers = producers;
     }
@@ -75,11 +77,10 @@ public sealed class SessionParticipationRecord
         set => _sessionId.SetValue(value);
     }
 
-    private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(SessionParticipationRecord), nameof(Member), "member");
+    private PropertyValue<TDMemberProfile?> _member = new PropertyValue<TDMemberProfile?>(nameof(SessionParticipationRecord), nameof(Member), "member");
     
-    [Required]
     [JsonPropertyName("member")]
-    public TDMemberProfile Member
+    public TDMemberProfile? Member
     {
         get => _member.GetValue(InlineErrors);
         set => _member.SetValue(value);
@@ -93,6 +94,24 @@ public sealed class SessionParticipationRecord
     {
         get => _state.GetValue(InlineErrors);
         set => _state.SetValue(value);
+    }
+
+    private PropertyValue<TDCallParticipant?> _participant = new PropertyValue<TDCallParticipant?>(nameof(SessionParticipationRecord), nameof(Participant), "participant");
+    
+    [JsonPropertyName("participant")]
+    public TDCallParticipant? Participant
+    {
+        get => _participant.GetValue(InlineErrors);
+        set => _participant.SetValue(value);
+    }
+
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(SessionParticipationRecord), nameof(Description), "description");
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue(InlineErrors);
+        set => _description.SetValue(value);
     }
 
     private PropertyValue<List<DataProducerOptions>> _dataProducers = new PropertyValue<List<DataProducerOptions>>(nameof(SessionParticipationRecord), nameof(DataProducers), "dataProducers", new List<DataProducerOptions>());
@@ -122,6 +141,8 @@ public sealed class SessionParticipationRecord
         _sessionId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _member.SetAccessPath(parentChainPath, validateHasBeenSet);
         _state.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _participant.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _dataProducers.SetAccessPath(parentChainPath, validateHasBeenSet);
         _producers.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

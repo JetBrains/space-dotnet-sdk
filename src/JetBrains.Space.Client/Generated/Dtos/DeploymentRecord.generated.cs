@@ -37,7 +37,7 @@ public sealed class DeploymentRecord
     
     public DeploymentRecord() { }
     
-    public DeploymentRecord(string id, string version, DateTime createdAt, DeploymentStatus status, M2ChannelRecord channel, DeployTargetRecord target, string targetKey, DeploymentSyncStatus syncStatus, List<DeploymentCommitRefDetails> commitRefs, bool archived, DateTime? scheduledStart = null, DateTime? startedAt = null, DateTime? finishedAt = null, string? description = null, List<string>? jobIds = null, ExternalLink? externalLink = null)
+    public DeploymentRecord(string id, string version, DateTime createdAt, DeploymentStatus status, M2ChannelRecord channel, DeployTargetRecord target, string targetKey, DeploymentSyncStatus syncStatus, List<DeploymentCommitRefDetails> commitRefs, bool archived, DateTime? scheduledStart = null, DateTime? startedAt = null, DateTime? finishedAt = null, string? description = null, List<string>? jobIds = null, ExternalLink? externalLink = null, int? totalCommits = null, int? totalMerges = null, int? totalIssues = null)
     {
         Id = id;
         Version = version;
@@ -55,6 +55,9 @@ public sealed class DeploymentRecord
         JobIds = jobIds;
         ExternalLink = externalLink;
         IsArchived = archived;
+        TotalCommits = totalCommits;
+        TotalMerges = totalMerges;
+        TotalIssues = totalIssues;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(DeploymentRecord), nameof(Id), "id");
@@ -215,6 +218,33 @@ public sealed class DeploymentRecord
         set => _archived.SetValue(value);
     }
 
+    private PropertyValue<int?> _totalCommits = new PropertyValue<int?>(nameof(DeploymentRecord), nameof(TotalCommits), "totalCommits");
+    
+    [JsonPropertyName("totalCommits")]
+    public int? TotalCommits
+    {
+        get => _totalCommits.GetValue(InlineErrors);
+        set => _totalCommits.SetValue(value);
+    }
+
+    private PropertyValue<int?> _totalMerges = new PropertyValue<int?>(nameof(DeploymentRecord), nameof(TotalMerges), "totalMerges");
+    
+    [JsonPropertyName("totalMerges")]
+    public int? TotalMerges
+    {
+        get => _totalMerges.GetValue(InlineErrors);
+        set => _totalMerges.SetValue(value);
+    }
+
+    private PropertyValue<int?> _totalIssues = new PropertyValue<int?>(nameof(DeploymentRecord), nameof(TotalIssues), "totalIssues");
+    
+    [JsonPropertyName("totalIssues")]
+    public int? TotalIssues
+    {
+        get => _totalIssues.GetValue(InlineErrors);
+        set => _totalIssues.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -233,6 +263,9 @@ public sealed class DeploymentRecord
         _jobIds.SetAccessPath(parentChainPath, validateHasBeenSet);
         _externalLink.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _totalCommits.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _totalMerges.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _totalIssues.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

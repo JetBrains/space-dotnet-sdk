@@ -27,15 +27,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.KbPersonalContextPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class KbPersonalContextPartialExtensions
+public interface MessageOutlineBase
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static Partial<KbPersonalContext> WithOwner(this Partial<KbPersonalContext> it)
-        => it.AddFieldName("owner");
+    public static MessageOutline MessageOutline(string text, ApiIcon? icon = null)
+        => new MessageOutline(text: text, icon: icon);
     
-    public static Partial<KbPersonalContext> WithOwner(this Partial<KbPersonalContext> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-        => it.AddFieldName("owner", partialBuilder(new Partial<TDMemberProfile>(it)));
+    public static MessageOutlineElements MessageOutlineElements(List<MessageInlineElement> elements)
+        => new MessageOutlineElements(elements: elements);
     
 }
 

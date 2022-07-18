@@ -49,5 +49,11 @@ public static class HAUrlParameterPartialExtensions
     public static Partial<HAUrlParameter> WithDeprecation(this Partial<HAUrlParameter> it, Func<Partial<HADeprecation>, Partial<HADeprecation>> partialBuilder)
         => it.AddFieldName("deprecation", partialBuilder(new Partial<HADeprecation>(it)));
     
+    public static Partial<HAUrlParameter> WithExperimental(this Partial<HAUrlParameter> it)
+        => it.AddFieldName("experimental");
+    
+    public static Partial<HAUrlParameter> WithExperimental(this Partial<HAUrlParameter> it, Func<Partial<HAExperimental>, Partial<HAExperimental>> partialBuilder)
+        => it.AddFieldName("experimental", partialBuilder(new Partial<HAExperimental>(it)));
+    
 }
 

@@ -34,12 +34,13 @@ public sealed class HAUrlParameter
 {
     public HAUrlParameter() { }
     
-    public HAUrlParameter(string id, string name, List<HAUrlParameterOption> options, HADeprecation? deprecation = null)
+    public HAUrlParameter(string id, string name, List<HAUrlParameterOption> options, HADeprecation? deprecation = null, HAExperimental? experimental = null)
     {
         Id = id;
         Name = name;
         Options = options;
         Deprecation = deprecation;
+        Experimental = experimental;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(HAUrlParameter), nameof(Id), "id");
@@ -81,12 +82,22 @@ public sealed class HAUrlParameter
         set => _deprecation.SetValue(value);
     }
 
+    private PropertyValue<HAExperimental?> _experimental = new PropertyValue<HAExperimental?>(nameof(HAUrlParameter), nameof(Experimental), "experimental");
+    
+    [JsonPropertyName("experimental")]
+    public HAExperimental? Experimental
+    {
+        get => _experimental.GetValue(InlineErrors);
+        set => _experimental.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _options.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _experimental.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

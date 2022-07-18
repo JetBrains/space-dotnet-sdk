@@ -52,6 +52,15 @@ public static class SessionParticipationRecordPartialExtensions
     public static Partial<SessionParticipationRecord> WithState(this Partial<SessionParticipationRecord> it, Func<Partial<ParticipationState>, Partial<ParticipationState>> partialBuilder)
         => it.AddFieldName("state", partialBuilder(new Partial<ParticipationState>(it)));
     
+    public static Partial<SessionParticipationRecord> WithParticipant(this Partial<SessionParticipationRecord> it)
+        => it.AddFieldName("participant");
+    
+    public static Partial<SessionParticipationRecord> WithParticipant(this Partial<SessionParticipationRecord> it, Func<Partial<TDCallParticipant>, Partial<TDCallParticipant>> partialBuilder)
+        => it.AddFieldName("participant", partialBuilder(new Partial<TDCallParticipant>(it)));
+    
+    public static Partial<SessionParticipationRecord> WithDescription(this Partial<SessionParticipationRecord> it)
+        => it.AddFieldName("description");
+    
     public static Partial<SessionParticipationRecord> WithDataProducers(this Partial<SessionParticipationRecord> it)
         => it.AddFieldName("dataProducers");
     

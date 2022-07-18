@@ -37,9 +37,10 @@ public sealed class PersonalDocumentContainerInfo
     
     public PersonalDocumentContainerInfo() { }
     
-    public PersonalDocumentContainerInfo(TDMemberProfile owner)
+    public PersonalDocumentContainerInfo(TDMemberProfile owner, List<string>? grantedRights = null)
     {
         Owner = owner;
+        GrantedRights = grantedRights;
     }
     
     private PropertyValue<TDMemberProfile> _owner = new PropertyValue<TDMemberProfile>(nameof(PersonalDocumentContainerInfo), nameof(Owner), "owner");
@@ -52,9 +53,19 @@ public sealed class PersonalDocumentContainerInfo
         set => _owner.SetValue(value);
     }
 
+    private PropertyValue<List<string>?> _grantedRights = new PropertyValue<List<string>?>(nameof(PersonalDocumentContainerInfo), nameof(GrantedRights), "grantedRights");
+    
+    [JsonPropertyName("grantedRights")]
+    public List<string>? GrantedRights
+    {
+        get => _grantedRights.GetValue(InlineErrors);
+        set => _grantedRights.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _owner.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _grantedRights.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

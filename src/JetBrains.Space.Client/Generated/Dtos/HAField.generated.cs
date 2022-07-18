@@ -34,7 +34,7 @@ public sealed class HAField
 {
     public HAField() { }
     
-    public HAField(string name, HAType type, bool optional, HADefaultValue? defaultValue = null, HADescription? description = null, HADeprecation? deprecation = null)
+    public HAField(string name, HAType type, bool optional, HADefaultValue? defaultValue = null, HADescription? description = null, HADeprecation? deprecation = null, HAExperimental? experimental = null)
     {
         Name = name;
         Type = type;
@@ -42,6 +42,7 @@ public sealed class HAField
         IsOptional = optional;
         Description = description;
         Deprecation = deprecation;
+        Experimental = experimental;
     }
     
     private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAField), nameof(Name), "name");
@@ -101,6 +102,15 @@ public sealed class HAField
         set => _deprecation.SetValue(value);
     }
 
+    private PropertyValue<HAExperimental?> _experimental = new PropertyValue<HAExperimental?>(nameof(HAField), nameof(Experimental), "experimental");
+    
+    [JsonPropertyName("experimental")]
+    public HAExperimental? Experimental
+    {
+        get => _experimental.GetValue(InlineErrors);
+        set => _experimental.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -109,6 +119,7 @@ public sealed class HAField
         _optional.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _experimental.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

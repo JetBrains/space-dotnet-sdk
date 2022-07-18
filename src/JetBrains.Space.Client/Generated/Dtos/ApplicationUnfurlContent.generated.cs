@@ -39,7 +39,7 @@ public class ApplicationUnfurlContent
     public static ApplicationUnfurlContentImage Image(string title, string url, ApiIcon? icon = null)
         => new ApplicationUnfurlContentImage(title: title, url: url, icon: icon);
     
-    public static ApplicationUnfurlContentMessage Message(MessageStyle style, List<MessageSectionElement> sections, MessageOutline? outline = null)
+    public static ApplicationUnfurlContentMessage Message(MessageStyle style, List<MessageSectionElement> sections, MessageOutlineBase? outline = null)
         => new ApplicationUnfurlContentMessage(style: style, sections: sections, outline: outline);
     
     public ApplicationUnfurlContent() { }

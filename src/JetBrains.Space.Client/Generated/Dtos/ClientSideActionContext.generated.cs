@@ -35,6 +35,12 @@ public interface ClientSideActionContext
     public static ConfigurePermissionsAction ConfigurePermissionsAction(ESApp app, PermissionContextIdentifier context)
         => new ConfigurePermissionsAction(app: app, context: context);
     
+    public static DeleteAllAutomationLegacyChannelsAction DeleteAllAutomationLegacyChannelsAction()
+        => new DeleteAllAutomationLegacyChannelsAction();
+    
+    public static DeleteAutomationLegacyChannelAction DeleteAutomationLegacyChannelAction(string jobId, ProjectIdentifier projectId)
+        => new DeleteAutomationLegacyChannelAction(jobId: jobId, projectId: projectId);
+    
     public static DeletePersonalFeedAction DeletePersonalFeedAction(string feed, string? feedId = null)
         => new DeletePersonalFeedAction(feed: feed, feedId: feedId);
     

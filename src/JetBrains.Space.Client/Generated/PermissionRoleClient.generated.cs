@@ -178,6 +178,74 @@ public partial class PermissionRoleClient : ISpaceClient
     }
     
 
+    public TwoFaRequirementClient TwoFaRequirement => new TwoFaRequirementClient(_connection);
+    
+    public partial class TwoFaRequirementClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public TwoFaRequirementClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <summary>
+        /// Get 2FA requirement for permission role
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Grant permissions to other members</term>
+        /// </item>
+        /// <item>
+        /// <term>Manage project permission scheme</term>
+        /// </item>
+        /// <item>
+        /// <term>Manage channels</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<TwoFactorAuthenticationRequirement> Get2faRequirementAsync(string roleId, Func<Partial<TwoFactorAuthenticationRequirement>, Partial<TwoFactorAuthenticationRequirement>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<TwoFactorAuthenticationRequirement>()) : Partial<TwoFactorAuthenticationRequirement>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<TwoFactorAuthenticationRequirement>("GET", $"api/http/permission-roles/{roleId}/2-fa-requirement{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Set 2FA requirement for permission role
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Grant permissions to other members</term>
+        /// </item>
+        /// <item>
+        /// <term>Manage project permission scheme</term>
+        /// </item>
+        /// <item>
+        /// <term>Manage channels</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task Set2faRequirementAsync(string roleId, bool? required = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PATCH", $"api/http/permission-roles/{roleId}/2-fa-requirement{queryParameters.ToQueryString()}", 
+                new PermissionRolesForRoleId2FaRequirementPatchRequest
+                { 
+                    IsRequired = required,
+                }, cancellationToken);
+        }
+        
+    
+    }
+
     public PermissionClient Permissions => new PermissionClient(_connection);
     
     public partial class PermissionClient : ISpaceClient

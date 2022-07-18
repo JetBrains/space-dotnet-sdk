@@ -37,12 +37,13 @@ public sealed class HAUrlParameterOptionConst
     
     public HAUrlParameterOptionConst() { }
     
-    public HAUrlParameterOptionConst(string value, string optionName, HADescription? description = null, HADeprecation? deprecation = null)
+    public HAUrlParameterOptionConst(string value, string optionName, HADescription? description = null, HADeprecation? deprecation = null, HAExperimental? experimental = null)
     {
         Value = value;
         OptionName = optionName;
         Description = description;
         Deprecation = deprecation;
+        Experimental = experimental;
     }
     
     private PropertyValue<string> _value = new PropertyValue<string>(nameof(HAUrlParameterOptionConst), nameof(Value), "value");
@@ -83,12 +84,22 @@ public sealed class HAUrlParameterOptionConst
         set => _deprecation.SetValue(value);
     }
 
+    private PropertyValue<HAExperimental?> _experimental = new PropertyValue<HAExperimental?>(nameof(HAUrlParameterOptionConst), nameof(Experimental), "experimental");
+    
+    [JsonPropertyName("experimental")]
+    public HAExperimental? Experimental
+    {
+        get => _experimental.GetValue(InlineErrors);
+        set => _experimental.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _value.SetAccessPath(parentChainPath, validateHasBeenSet);
         _optionName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _experimental.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

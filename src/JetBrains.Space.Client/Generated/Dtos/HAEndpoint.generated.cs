@@ -34,7 +34,7 @@ public sealed class HAEndpoint
 {
     public HAEndpoint() { }
     
-    public HAEndpoint(HAResource resource, HAMethod method, List<HAParameter> parameters, HAPath path, string displayName, string functionName, HATypeObject? requestBody = null, HAType? responseBody = null, string? doc = null, HADescription? description = null, HADeprecation? deprecation = null, List<HARight>? rights = null, string? featureFlag = null)
+    public HAEndpoint(HAResource resource, HAMethod method, List<HAParameter> parameters, HAPath path, string displayName, string functionName, HATypeObject? requestBody = null, HAType? responseBody = null, string? doc = null, HADescription? description = null, HADeprecation? deprecation = null, HAExperimental? experimental = null, List<HARight>? rights = null, string? featureFlag = null)
     {
         Resource = resource;
         Method = method;
@@ -47,6 +47,7 @@ public sealed class HAEndpoint
         Doc = doc;
         Description = description;
         Deprecation = deprecation;
+        Experimental = experimental;
         Rights = rights;
         FeatureFlag = featureFlag;
     }
@@ -157,6 +158,15 @@ public sealed class HAEndpoint
         set => _deprecation.SetValue(value);
     }
 
+    private PropertyValue<HAExperimental?> _experimental = new PropertyValue<HAExperimental?>(nameof(HAEndpoint), nameof(Experimental), "experimental");
+    
+    [JsonPropertyName("experimental")]
+    public HAExperimental? Experimental
+    {
+        get => _experimental.GetValue(InlineErrors);
+        set => _experimental.SetValue(value);
+    }
+
     private PropertyValue<List<HARight>?> _rights = new PropertyValue<List<HARight>?>(nameof(HAEndpoint), nameof(Rights), "rights");
     
     [JsonPropertyName("rights")]
@@ -188,6 +198,7 @@ public sealed class HAEndpoint
         _doc.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _experimental.SetAccessPath(parentChainPath, validateHasBeenSet);
         _rights.SetAccessPath(parentChainPath, validateHasBeenSet);
         _featureFlag.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

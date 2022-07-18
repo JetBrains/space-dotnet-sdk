@@ -402,7 +402,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         }
         
         /// <summary>
-        /// Create an invitation to join the current organisation. Optionally, the team and/or role to join when accepting the invitation can be specified.
+        /// Create an invitation to join the current organization. Optionally, the team and/or role to join when accepting the invitation can be specified.
         /// </summary>
         public async Task<Invitation> CreateInvitationAsync(string inviteeEmail, string? inviteeFirstName = null, string? inviteeLastName = null, string? team = null, string? role = null, ProjectIdentifier? project = null, ProjectTeamRole? projectRole = null, Func<Partial<Invitation>, Partial<Invitation>>? partial = null, CancellationToken cancellationToken = default)
         {
@@ -466,7 +466,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         
     
         /// <summary>
-        /// Delete an invitation. Deleted invitations can no longer be used to join the organisation.
+        /// Delete an invitation. Deleted invitations can no longer be used to join the organization.
         /// </summary>
         public async Task DeleteInvitationAsync(string id, CancellationToken cancellationToken = default)
         {
@@ -1502,7 +1502,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<TDMemberProfile> CreateProfileAsync(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? externalId = null, string? location = null, bool? external = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<TDMemberProfile> CreateProfileAsync(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? externalId = null, string? location = null, bool? guest = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
@@ -1529,7 +1529,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                     CustomFieldValues = (customFieldValues ?? new List<CustomFieldInputValue>()),
                     ExternalId = externalId,
                     Location = location,
-                    IsExternal = external,
+                    IsGuest = guest,
                 }, cancellationToken);
         }
         
@@ -2104,6 +2104,39 @@ public partial class TeamDirectoryClient : ISpaceClient
                 _connection = connection;
             }
             
+            public RequirementClient Requirements => new RequirementClient(_connection);
+            
+            public partial class RequirementClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public RequirementClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Get two-factor authentication requirements for a given profile ID. The response indicates whether two-factor authentication is required by participation in some permission roles.
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View member profiles</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<List<Profile2FARequirement>> TwoFactorAuthenticationRequirementsAsync(ProfileIdentifier profile, Func<Partial<Profile2FARequirement>, Partial<Profile2FARequirement>>? partial = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Profile2FARequirement>()) : Partial<Profile2FARequirement>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<List<Profile2FARequirement>>("GET", $"api/http/team-directory/profiles/{profile}/2-fa/requirements{queryParameters.ToQueryString()}", cancellationToken);
+                }
+                
+            
+            }
+        
             public StatuClient Status => new StatuClient(_connection);
             
             public partial class StatuClient : ISpaceClient
@@ -2118,6 +2151,14 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// <summary>
                 /// Get two-factor authentication status for a given profile ID. The response indicates whether two-factor authentication is active, not active, or not set up yet.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View member profiles</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task<TwoFactorAuthenticationStatus> TwoFactorAuthenticationStatusAsync(ProfileIdentifier profile, Func<Partial<TwoFactorAuthenticationStatus>, Partial<TwoFactorAuthenticationStatus>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2143,6 +2184,14 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// <summary>
                 /// Set up two-factor authentication using TOTP (Time-based One-time Password) for a given profile ID. The response will return a QR code (base64 encoded) that can be scanned with an app to setup two-factor authentication. The code that the app generates has to be confirmed in Space to enable TOTP.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Set up two-factor authentication for yourself. Create application passwords.</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task<TwoFactorAuthenticationSecret> SetUpTotpTwoFactorAuthenticationAsync(ProfileIdentifier profile, Func<Partial<TwoFactorAuthenticationSecret>, Partial<TwoFactorAuthenticationSecret>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2155,6 +2204,14 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// <summary>
                 /// Confirm two-factor authentication for a given profile ID using a TOTP (Time-based One-time Password) code from an app.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Set up two-factor authentication for yourself. Create application passwords.</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task ConfirmTotpTwoFactorAuthenticationSettingsAsync(ProfileIdentifier profile, int code, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2170,6 +2227,14 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// <summary>
                 /// Enable/disable two-factor authentication settings for a given profile ID
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage two-factor authentication. Manage application passwords.</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task UpdateTotpTwoFactorAuthenticationSettingsAsync(ProfileIdentifier profile, bool enabled, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2185,6 +2250,14 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// <summary>
                 /// Remove two-factor authentication settings for a given profile ID. Previously generated TOTP (Time-based One-time Password) are rendered invalid.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage two-factor authentication. Manage application passwords.</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task DeleteCurrentTotpTwoFactorAuthenticationSettingsAsync(ProfileIdentifier profile, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2974,7 +3047,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             }
             
             /// <summary>
-            /// Create a personal token for the given profile that can be used to access the current organisation
+            /// Create a personal token for the given profile that can be used to access the current organization
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -3000,7 +3073,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             
         
             /// <summary>
-            /// Get personal tokens used to access the current organisation for the given profile
+            /// Get personal tokens used to access the current organization for the given profile
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -3022,7 +3095,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             
             
             /// <summary>
-            /// Get personal tokens used to access the current organisation for the given profile
+            /// Get personal tokens used to access the current organization for the given profile
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -3036,7 +3109,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPermanentTokensAsync(profile: profile, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESPersonalToken>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESPersonalToken>.Default())), skip, cancellationToken);
         
             /// <summary>
-            /// Update an existing personal token used to access the current organisation. The name and/or scope of the personal token can be updated.
+            /// Update an existing personal token used to access the current organization. The name and/or scope of the personal token can be updated.
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -3061,7 +3134,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             
         
             /// <summary>
-            /// Delete a specific personal token used to access the current organisation
+            /// Delete a specific personal token used to access the current organization
             /// </summary>
             /// <remarks>
             /// Required permissions:

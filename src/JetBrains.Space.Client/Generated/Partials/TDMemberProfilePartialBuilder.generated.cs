@@ -190,6 +190,12 @@ public static class TDMemberProfilePartialExtensions
     public static Partial<TDMemberProfile> WithIsShowBannerOnTeamDirectoryHomePage(this Partial<TDMemberProfile> it)
         => it.AddFieldName("showBannerOnTeamDirectoryHomePage");
     
+    public static Partial<TDMemberProfile> WithStatus(this Partial<TDMemberProfile> it)
+        => it.AddFieldName("status");
+    
+    public static Partial<TDMemberProfile> WithStatus(this Partial<TDMemberProfile> it, Func<Partial<TwoFactorAuthenticationStatus>, Partial<TwoFactorAuthenticationStatus>> partialBuilder)
+        => it.AddFieldName("status", partialBuilder(new Partial<TwoFactorAuthenticationStatus>(it)));
+    
     public static Partial<TDMemberProfile> WithTopics(this Partial<TDMemberProfile> it)
         => it.AddFieldName("topics");
     

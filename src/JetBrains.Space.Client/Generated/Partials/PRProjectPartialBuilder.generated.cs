@@ -94,12 +94,6 @@ public static class PRProjectPartialExtensions
     public static Partial<PRProject> WithIsEnable(this Partial<PRProject> it)
         => it.AddFieldName("enable");
     
-    public static Partial<PRProject> WithExternalUserProfiles(this Partial<PRProject> it)
-        => it.AddFieldName("externalUserProfiles");
-    
-    public static Partial<PRProject> WithExternalUserProfiles(this Partial<PRProject> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-        => it.AddFieldName("externalUserProfiles", partialBuilder(new Partial<TDMemberProfile>(it)));
-    
     public static Partial<PRProject> WithFeatures(this Partial<PRProject> it)
         => it.AddFieldName("features");
     
@@ -111,6 +105,12 @@ public static class PRProjectPartialExtensions
     
     public static Partial<PRProject> WithFormat(this Partial<PRProject> it, Func<Partial<DurationTextFormat>, Partial<DurationTextFormat>> partialBuilder)
         => it.AddFieldName("format", partialBuilder(new Partial<DurationTextFormat>(it)));
+    
+    public static Partial<PRProject> WithGuestProfiles(this Partial<PRProject> it)
+        => it.AddFieldName("guestProfiles");
+    
+    public static Partial<PRProject> WithGuestProfiles(this Partial<PRProject> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("guestProfiles", partialBuilder(new Partial<TDMemberProfile>(it)));
     
     public static Partial<PRProject> WithHoursInDay(this Partial<PRProject> it)
         => it.AddFieldName("hoursInDay");

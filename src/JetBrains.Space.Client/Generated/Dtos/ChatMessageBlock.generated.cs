@@ -37,7 +37,7 @@ public sealed class ChatMessageBlock
     
     public ChatMessageBlock() { }
     
-    public ChatMessageBlock(List<MessageSectionElement> sections, MessageStyle? style = null, MessageOutline? outline = null, string? messageData = null)
+    public ChatMessageBlock(List<MessageSectionElement> sections, MessageStyle? style = null, MessageOutlineBase? outline = null, string? messageData = null)
     {
         Style = style;
         Outline = outline;
@@ -54,10 +54,10 @@ public sealed class ChatMessageBlock
         set => _style.SetValue(value);
     }
 
-    private PropertyValue<MessageOutline?> _outline = new PropertyValue<MessageOutline?>(nameof(ChatMessageBlock), nameof(Outline), "outline");
+    private PropertyValue<MessageOutlineBase?> _outline = new PropertyValue<MessageOutlineBase?>(nameof(ChatMessageBlock), nameof(Outline), "outline");
     
     [JsonPropertyName("outline")]
-    public MessageOutline? Outline
+    public MessageOutlineBase? Outline
     {
         get => _outline.GetValue(InlineErrors);
         set => _outline.SetValue(value);

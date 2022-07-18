@@ -31,17 +31,89 @@ namespace JetBrains.Space.Client.MessageSectionPartialBuilder;
 
 public static class MessageSectionPartialExtensions
 {
-    public static Partial<MessageSection> WithHeader(this Partial<MessageSection> it)
-        => it.AddFieldName("header");
-    
+    /// <summary>
+    /// Block elements that constitute the section
+    /// </summary>
     public static Partial<MessageSection> WithElements(this Partial<MessageSection> it)
         => it.AddFieldName("elements");
     
+    /// <summary>
+    /// Block elements that constitute the section
+    /// </summary>
     public static Partial<MessageSection> WithElements(this Partial<MessageSection> it, Func<Partial<MessageElement>, Partial<MessageElement>> partialBuilder)
         => it.AddFieldName("elements", partialBuilder(new Partial<MessageElement>(it)));
     
+    /// <summary>
+    /// Header text is displayed with a large font size at the top of the section
+    /// </summary>
+    public static Partial<MessageSection> WithHeader(this Partial<MessageSection> it)
+        => it.AddFieldName("header");
+    
+    /// <summary>
+    /// Footer text is displayed with a small font size and in a dimmed color at the bottom of the section
+    /// </summary>
     public static Partial<MessageSection> WithFooter(this Partial<MessageSection> it)
         => it.AddFieldName("footer");
+    
+    /// <summary>
+    /// Section style determines the color of the left-hand side bar
+    /// </summary>
+    /// <remarks>
+    /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
+    /// </remarks>
+#if NET6_0_OR_GREATER
+    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.", DiagnosticId = "SPC001")]
+#else
+    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.")]
+#endif
+    
+    public static Partial<MessageSection> WithStyle(this Partial<MessageSection> it)
+        => it.AddFieldName("style");
+    
+    /// <summary>
+    /// Section style determines the color of the left-hand side bar
+    /// </summary>
+    /// <remarks>
+    /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
+    /// </remarks>
+#if NET6_0_OR_GREATER
+    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.", DiagnosticId = "SPC001")]
+#else
+    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.")]
+#endif
+    
+    public static Partial<MessageSection> WithStyle(this Partial<MessageSection> it, Func<Partial<MessageStyle>, Partial<MessageStyle>> partialBuilder)
+        => it.AddFieldName("style", partialBuilder(new Partial<MessageStyle>(it)));
+    
+    /// <summary>
+    /// Default text size for all the elements within the section (excluding header and footer)
+    /// </summary>
+    /// <remarks>
+    /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
+    /// </remarks>
+#if NET6_0_OR_GREATER
+    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.", DiagnosticId = "SPC001")]
+#else
+    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.")]
+#endif
+    
+    public static Partial<MessageSection> WithTextSize(this Partial<MessageSection> it)
+        => it.AddFieldName("textSize");
+    
+    /// <summary>
+    /// Default text size for all the elements within the section (excluding header and footer)
+    /// </summary>
+    /// <remarks>
+    /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
+    /// </remarks>
+#if NET6_0_OR_GREATER
+    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.", DiagnosticId = "SPC001")]
+#else
+    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.")]
+#endif
+    
+    public static Partial<MessageSection> WithTextSize(this Partial<MessageSection> it, Func<Partial<MessageTextSize>, Partial<MessageTextSize>> partialBuilder)
+        => it.AddFieldName("textSize", partialBuilder(new Partial<MessageTextSize>(it)));
     
 }
 

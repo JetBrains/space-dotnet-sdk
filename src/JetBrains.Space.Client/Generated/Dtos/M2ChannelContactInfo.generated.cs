@@ -47,6 +47,9 @@ public interface M2ChannelContactInfo
     public static M2ChannelContactArticle M2ChannelContactArticle(ArticleRecord article, ChannelSpecificDefaults notificationDefaults)
         => new M2ChannelContactArticle(article: article, notificationDefaults: notificationDefaults);
     
+    public static M2ChannelContactCallDiscussion M2ChannelContactCallDiscussion(CallSession session, ChannelSpecificDefaults notificationDefaults)
+        => new M2ChannelContactCallDiscussion(session: session, notificationDefaults: notificationDefaults);
+    
     public static M2ChannelContactObsolete M2ChannelContactObsolete(M2ObsoleteCause? cause = null)
         => new M2ChannelContactObsolete(cause: cause);
     
