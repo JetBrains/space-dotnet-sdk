@@ -25,7 +25,8 @@ public sealed class CSharpType : Enumeration
     public static readonly CSharpType String = new("string");
     public static readonly CSharpType SpaceDate = new("DateTime", typeof(SpaceDateConverter), SpaceDateConverter.FormatString);
     public static readonly CSharpType SpaceTime = new("DateTime", typeof(SpaceDateTimeConverter), SpaceDateTimeConverter.FormatString);
+    public static readonly CSharpType SpaceDuration = new("TimeSpan", typeof(SpaceDurationConverter));
     public static readonly CSharpType Object = new("object");
-        
+    
     public static readonly CSharpType CancellationToken = new("CancellationToken");
 }

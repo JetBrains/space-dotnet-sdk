@@ -20,6 +20,7 @@ public static class ApiFieldTypeExtensions
             "String" => CSharpType.String,
             "Date" => CSharpType.SpaceDate,
             "DateTime" => CSharpType.SpaceTime,
+            "Duration" => CSharpType.SpaceDuration,
             _ => CSharpType.Object
         };
 

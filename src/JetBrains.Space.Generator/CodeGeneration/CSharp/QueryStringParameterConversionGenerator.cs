@@ -118,11 +118,22 @@ public class QueryStringParameterConversionGenerator
             case ApiFieldType.Primitive primitiveType:
             {
                 var csharpType = primitiveType.ToCSharpPrimitiveType();
+                
+                // String
                 if (csharpType == CSharpType.String)
                 {
                     return string.Empty;
                 }
                 
+                // Duration
+                if (csharpType == CSharpType.SpaceDuration)
+                {
+                    return !apiFieldType.Nullable
+                        ? ".ToIsoString()"
+                        : "?.ToIsoString()";
+                }
+                
+                // Other primitives
                 var formatString = "";
                 if (csharpType.FormatString != null)
                 {
