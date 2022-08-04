@@ -37,7 +37,7 @@ public sealed class MessageSection
     
     public MessageSection() { }
     
-    public MessageSection(List<MessageElement> elements, string? header = null, string? footer = null, MessageStyle? style = null, MessageTextSize? textSize = null)
+    public MessageSection(List<MessageBlockElement> elements, string? header = null, string? footer = null, MessageStyle? style = null, MessageTextSize? textSize = null)
     {
         Elements = elements;
         Header = header;
@@ -46,14 +46,14 @@ public sealed class MessageSection
         TextSize = textSize;
     }
     
-    private PropertyValue<List<MessageElement>> _elements = new PropertyValue<List<MessageElement>>(nameof(MessageSection), nameof(Elements), "elements", new List<MessageElement>());
+    private PropertyValue<List<MessageBlockElement>> _elements = new PropertyValue<List<MessageBlockElement>>(nameof(MessageSection), nameof(Elements), "elements", new List<MessageBlockElement>());
     
     /// <summary>
     /// Block elements that constitute the section
     /// </summary>
     [Required]
     [JsonPropertyName("elements")]
-    public List<MessageElement> Elements
+    public List<MessageBlockElement> Elements
     {
         get => _elements.GetValue(InlineErrors);
         set => _elements.SetValue(value);

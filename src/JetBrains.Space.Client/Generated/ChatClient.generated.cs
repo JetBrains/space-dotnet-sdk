@@ -925,6 +925,31 @@ public partial class ChatClient : ISpaceClient
         }
         
     
+        /// <summary>
+        /// This API method is intended to be used only by applications.
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Import messages</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task ImportMessagesAsync(ChannelIdentifier channel, List<ImportMessage> messages, bool suppressNotifications = false, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/chats/messages/import{queryParameters.ToQueryString()}", 
+                new ChatsMessagesImportPostRequest
+                { 
+                    Channel = channel,
+                    Messages = messages,
+                    IsSuppressNotifications = suppressNotifications,
+                }, cancellationToken);
+        }
+        
+    
         /// <remarks>
         /// Required permissions:
         /// <list type="bullet">
@@ -967,7 +992,7 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<ChannelItemRecord> SendMessageAsync(ChatMessage content, MessageRecipient? recipient = null, List<AttachmentIn>? attachments = null, bool? unfurlLinks = null, string? externalId = null, bool? resolveNames = null, bool? pending = null, ChannelIdentifier? channel = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<ChannelItemRecord> SendMessageAsync(ChatMessage content, ChannelIdentifier? channel = null, List<AttachmentIn>? attachments = null, bool? unfurlLinks = null, string? externalId = null, bool? resolveNames = null, bool? pending = null, MessageRecipient? recipient = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ChannelItemRecord>()) : Partial<ChannelItemRecord>.Default()).ToString());
@@ -975,14 +1000,14 @@ public partial class ChatClient : ISpaceClient
             return await _connection.RequestResourceAsync<ChatsMessagesSendMessagePostRequest, ChannelItemRecord>("POST", $"api/http/chats/messages/send-message{queryParameters.ToQueryString()}", 
                 new ChatsMessagesSendMessagePostRequest
                 { 
-                    Recipient = recipient,
+                    Channel = channel,
                     Content = content,
                     Attachments = attachments,
                     IsUnfurlLinks = unfurlLinks,
                     ExternalId = externalId,
                     IsResolveNames = resolveNames,
                     IsPending = pending,
-                    Channel = channel,
+                    Recipient = recipient,
                 }, cancellationToken);
         }
         

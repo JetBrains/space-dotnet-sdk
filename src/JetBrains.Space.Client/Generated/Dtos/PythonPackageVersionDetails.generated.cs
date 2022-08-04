@@ -37,7 +37,7 @@ public sealed class PythonPackageVersionDetails
     
     public PythonPackageVersionDetails() { }
     
-    public PythonPackageVersionDetails(string repository, string name, string version, long created, long downloads, bool pinned, long diskSize, string notNormalizedName, string platform, List<string> keywords, List<string> classifiers, List<PythonPackageUrl> projectUrls, List<string> requiresDist, List<PythonPackageFile> files, List<string>? tags = null, long? accessed = null, string? comment = null, CPrincipal? author = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, Dictionary<string, string>? metadata = null, string? summary = null, string? description = null, string? descriptionContentType = null, string? homePage = null, string? authorFromPackageDetails = null, string? authorEmail = null, string? maintainer = null, string? maintainerEmail = null, string? license = null, string? requiresPython = null)
+    public PythonPackageVersionDetails(string repository, string name, string version, long created, long downloads, bool pinned, long diskSize, string notNormalizedName, List<string> keywords, List<string> classifiers, List<PythonPackageUrl> projectUrls, List<string> requiresDist, List<PythonPackageFile> files, List<string>? tags = null, long? accessed = null, string? comment = null, CPrincipal? author = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, Dictionary<string, string>? metadata = null, string? platform = null, string? summary = null, string? description = null, string? descriptionContentType = null, string? homePage = null, string? authorFromPackageDetails = null, string? authorEmail = null, string? maintainer = null, string? maintainerEmail = null, string? license = null, string? requiresPython = null)
     {
         Repository = repository;
         Name = name;
@@ -215,11 +215,10 @@ public sealed class PythonPackageVersionDetails
         set => _notNormalizedName.SetValue(value);
     }
 
-    private PropertyValue<string> _platform = new PropertyValue<string>(nameof(PythonPackageVersionDetails), nameof(Platform), "platform");
+    private PropertyValue<string?> _platform = new PropertyValue<string?>(nameof(PythonPackageVersionDetails), nameof(Platform), "platform");
     
-    [Required]
     [JsonPropertyName("platform")]
-    public string Platform
+    public string? Platform
     {
         get => _platform.GetValue(InlineErrors);
         set => _platform.SetValue(value);

@@ -73,6 +73,12 @@ public static class InvitationLinkPartialExtensions
     public static Partial<InvitationLink> WithProject(this Partial<InvitationLink> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
         => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
     
+    public static Partial<InvitationLink> WithGlobalRole(this Partial<InvitationLink> it)
+        => it.AddFieldName("globalRole");
+    
+    public static Partial<InvitationLink> WithGlobalRole(this Partial<InvitationLink> it, Func<Partial<GlobalRole>, Partial<GlobalRole>> partialBuilder)
+        => it.AddFieldName("globalRole", partialBuilder(new Partial<GlobalRole>(it)));
+    
     public static Partial<InvitationLink> WithProjectRole(this Partial<InvitationLink> it)
         => it.AddFieldName("projectRole");
     

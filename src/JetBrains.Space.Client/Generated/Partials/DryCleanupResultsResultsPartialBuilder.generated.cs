@@ -34,6 +34,9 @@ public static class DryCleanupResultsResultsPartialExtensions
     public static Partial<DryCleanupResultsResults> WithTotalSize(this Partial<DryCleanupResultsResults> it)
         => it.AddFieldName("totalSize");
     
+    public static Partial<DryCleanupResultsResults> WithTotalCount(this Partial<DryCleanupResultsResults> it)
+        => it.AddFieldName("totalCount");
+    
     public static Partial<DryCleanupResultsResults> WithPackageVersions(this Partial<DryCleanupResultsResults> it)
         => it.AddFieldName("packageVersions");
     

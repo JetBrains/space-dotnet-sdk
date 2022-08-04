@@ -34,29 +34,28 @@ public class ChatsMessagesSendMessagePostRequest
 {
     public ChatsMessagesSendMessagePostRequest() { }
     
-    public ChatsMessagesSendMessagePostRequest(ChatMessage content, MessageRecipient? recipient = null, List<AttachmentIn>? attachments = null, bool? unfurlLinks = null, string? externalId = null, bool? resolveNames = null, bool? pending = null, ChannelIdentifier? channel = null)
+    public ChatsMessagesSendMessagePostRequest(ChatMessage content, ChannelIdentifier? channel = null, List<AttachmentIn>? attachments = null, bool? unfurlLinks = null, string? externalId = null, bool? resolveNames = null, bool? pending = null, MessageRecipient? recipient = null)
     {
-        Recipient = recipient;
+        Channel = channel;
         Content = content;
         Attachments = attachments;
         IsUnfurlLinks = unfurlLinks;
         ExternalId = externalId;
         IsResolveNames = resolveNames;
         IsPending = pending;
-        Channel = channel;
+        Recipient = recipient;
     }
     
-    private PropertyValue<MessageRecipient?> _recipient = new PropertyValue<MessageRecipient?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Recipient), "recipient");
+    private PropertyValue<ChannelIdentifier?> _channel = new PropertyValue<ChannelIdentifier?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Channel), "channel");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
-    [Obsolete("Use channel instead (since 2021-12-13) (will be removed in a future version)")]
-    [JsonPropertyName("recipient")]
-    public MessageRecipient? Recipient
+    [JsonPropertyName("channel")]
+    public ChannelIdentifier? Channel
     {
-        get => _recipient.GetValue(InlineErrors);
-        set => _recipient.SetValue(value);
+        get => _channel.GetValue(InlineErrors);
+        set => _channel.SetValue(value);
     }
 
     private PropertyValue<ChatMessage> _content = new PropertyValue<ChatMessage>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Content), "content");
@@ -129,28 +128,29 @@ public class ChatsMessagesSendMessagePostRequest
         set => _pending.SetValue(value);
     }
 
-    private PropertyValue<ChannelIdentifier?> _channel = new PropertyValue<ChannelIdentifier?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Channel), "channel");
+    private PropertyValue<MessageRecipient?> _recipient = new PropertyValue<MessageRecipient?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Recipient), "recipient");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
-    [JsonPropertyName("channel")]
-    public ChannelIdentifier? Channel
+    [Obsolete("Use channel instead (since 2021-12-13) (will be removed in a future version)")]
+    [JsonPropertyName("recipient")]
+    public MessageRecipient? Recipient
     {
-        get => _channel.GetValue(InlineErrors);
-        set => _channel.SetValue(value);
+        get => _recipient.GetValue(InlineErrors);
+        set => _recipient.SetValue(value);
     }
 
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _recipient.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
         _content.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
         _unfurlLinks.SetAccessPath(parentChainPath, validateHasBeenSet);
         _externalId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _resolveNames.SetAccessPath(parentChainPath, validateHasBeenSet);
         _pending.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _recipient.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

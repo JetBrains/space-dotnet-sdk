@@ -34,7 +34,7 @@ public sealed class PRRepositoryInfo
 {
     public PRRepositoryInfo() { }
     
-    public PRRepositoryInfo(string name, string description, RepositoryState state, string? id = null, DateTime? latestActivity = null, DateTime? proxyPushNotification = null, string? proxyPushNotificationBody = null, string? initProgress = null, string? readmeName = null, RepositoryActivity? monthlyActivity = null)
+    public PRRepositoryInfo(string name, string description, RepositoryState state, string? id = null, DateTime? latestActivity = null, DateTime? proxyPushNotification = null, string? proxyPushNotificationBody = null, string? initProgress = null, string? readmeName = null, RepositoryActivity? monthlyActivity = null, BranchInfo? defaultBranch = null)
     {
         Id = id;
         Name = name;
@@ -46,6 +46,7 @@ public sealed class PRRepositoryInfo
         InitProgress = initProgress;
         ReadmeName = readmeName;
         MonthlyActivity = monthlyActivity;
+        DefaultBranch = defaultBranch;
     }
     
     private PropertyValue<string?> _id = new PropertyValue<string?>(nameof(PRRepositoryInfo), nameof(Id), "id");
@@ -143,6 +144,15 @@ public sealed class PRRepositoryInfo
         set => _monthlyActivity.SetValue(value);
     }
 
+    private PropertyValue<BranchInfo?> _defaultBranch = new PropertyValue<BranchInfo?>(nameof(PRRepositoryInfo), nameof(DefaultBranch), "defaultBranch");
+    
+    [JsonPropertyName("defaultBranch")]
+    public BranchInfo? DefaultBranch
+    {
+        get => _defaultBranch.GetValue(InlineErrors);
+        set => _defaultBranch.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -155,6 +165,7 @@ public sealed class PRRepositoryInfo
         _initProgress.SetAccessPath(parentChainPath, validateHasBeenSet);
         _readmeName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _monthlyActivity.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _defaultBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

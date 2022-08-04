@@ -40,8 +40,8 @@ public static class MessageSectionPartialExtensions
     /// <summary>
     /// Block elements that constitute the section
     /// </summary>
-    public static Partial<MessageSection> WithElements(this Partial<MessageSection> it, Func<Partial<MessageElement>, Partial<MessageElement>> partialBuilder)
-        => it.AddFieldName("elements", partialBuilder(new Partial<MessageElement>(it)));
+    public static Partial<MessageSection> WithElements(this Partial<MessageSection> it, Func<Partial<MessageBlockElement>, Partial<MessageBlockElement>> partialBuilder)
+        => it.AddFieldName("elements", partialBuilder(new Partial<MessageBlockElement>(it)));
     
     /// <summary>
     /// Header text is displayed with a large font size at the top of the section

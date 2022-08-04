@@ -37,9 +37,10 @@ public sealed class DryCleanupResultsResults
     
     public DryCleanupResultsResults() { }
     
-    public DryCleanupResultsResults(long totalSize, List<PackageVersionRef> packageVersions)
+    public DryCleanupResultsResults(long totalSize, int totalCount, List<PackageVersionRef> packageVersions)
     {
         TotalSize = totalSize;
+        TotalCount = totalCount;
         PackageVersions = packageVersions;
     }
     
@@ -51,6 +52,16 @@ public sealed class DryCleanupResultsResults
     {
         get => _totalSize.GetValue(InlineErrors);
         set => _totalSize.SetValue(value);
+    }
+
+    private PropertyValue<int> _totalCount = new PropertyValue<int>(nameof(DryCleanupResultsResults), nameof(TotalCount), "totalCount");
+    
+    [Required]
+    [JsonPropertyName("totalCount")]
+    public int TotalCount
+    {
+        get => _totalCount.GetValue(InlineErrors);
+        set => _totalCount.SetValue(value);
     }
 
     private PropertyValue<List<PackageVersionRef>> _packageVersions = new PropertyValue<List<PackageVersionRef>>(nameof(DryCleanupResultsResults), nameof(PackageVersions), "packageVersions", new List<PackageVersionRef>());
@@ -66,6 +77,7 @@ public sealed class DryCleanupResultsResults
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _totalSize.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _totalCount.SetAccessPath(parentChainPath, validateHasBeenSet);
         _packageVersions.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

@@ -53,5 +53,8 @@ public interface ClientSideActionContext
     public static OpenPersonalFeedSettingsAction OpenPersonalFeedSettingsAction(string tab, string feed, string? feedId = null)
         => new OpenPersonalFeedSettingsAction(tab: tab, feed: feed, feedId: feedId);
     
+    public static PostponeWorkspaceDeletionChannelAction PostponeWorkspaceDeletionChannelAction(string workspaceId)
+        => new PostponeWorkspaceDeletionChannelAction(workspaceId: workspaceId);
+    
 }
 

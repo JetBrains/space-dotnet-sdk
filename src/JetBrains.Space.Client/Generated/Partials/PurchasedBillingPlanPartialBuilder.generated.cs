@@ -109,5 +109,11 @@ public static class PurchasedBillingPlanPartialExtensions
     public static Partial<PurchasedBillingPlan> WithIsHasCardVerifiedAdmin(this Partial<PurchasedBillingPlan> it)
         => it.AddFieldName("hasCardVerifiedAdmin");
     
+    public static Partial<PurchasedBillingPlan> WithIsTrial(this Partial<PurchasedBillingPlan> it)
+        => it.AddFieldName("isTrial");
+    
+    public static Partial<PurchasedBillingPlan> WithSpentTrials(this Partial<PurchasedBillingPlan> it)
+        => it.AddFieldName("spentTrials");
+    
 }
 

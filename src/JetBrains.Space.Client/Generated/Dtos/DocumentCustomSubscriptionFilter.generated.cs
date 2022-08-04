@@ -37,10 +37,9 @@ public sealed class DocumentCustomSubscriptionFilter
     
     public DocumentCustomSubscriptionFilter() { }
     
-    public DocumentCustomSubscriptionFilter(List<KbDocumentItem> documents, PRProject? project = null, List<KBBook>? books = null, List<KbFolderItem>? folders = null)
+    public DocumentCustomSubscriptionFilter(List<Document> documents, PRProject? project = null, List<DocumentFolder>? folders = null)
     {
         Project = project;
-        Books = books;
         Folders = folders;
         Documents = documents;
     }
@@ -54,29 +53,20 @@ public sealed class DocumentCustomSubscriptionFilter
         set => _project.SetValue(value);
     }
 
-    private PropertyValue<List<KBBook>?> _books = new PropertyValue<List<KBBook>?>(nameof(DocumentCustomSubscriptionFilter), nameof(Books), "books");
-    
-    [JsonPropertyName("books")]
-    public List<KBBook>? Books
-    {
-        get => _books.GetValue(InlineErrors);
-        set => _books.SetValue(value);
-    }
-
-    private PropertyValue<List<KbFolderItem>?> _folders = new PropertyValue<List<KbFolderItem>?>(nameof(DocumentCustomSubscriptionFilter), nameof(Folders), "folders");
+    private PropertyValue<List<DocumentFolder>?> _folders = new PropertyValue<List<DocumentFolder>?>(nameof(DocumentCustomSubscriptionFilter), nameof(Folders), "folders");
     
     [JsonPropertyName("folders")]
-    public List<KbFolderItem>? Folders
+    public List<DocumentFolder>? Folders
     {
         get => _folders.GetValue(InlineErrors);
         set => _folders.SetValue(value);
     }
 
-    private PropertyValue<List<KbDocumentItem>> _documents = new PropertyValue<List<KbDocumentItem>>(nameof(DocumentCustomSubscriptionFilter), nameof(Documents), "documents", new List<KbDocumentItem>());
+    private PropertyValue<List<Document>> _documents = new PropertyValue<List<Document>>(nameof(DocumentCustomSubscriptionFilter), nameof(Documents), "documents", new List<Document>());
     
     [Required]
     [JsonPropertyName("documents")]
-    public List<KbDocumentItem> Documents
+    public List<Document> Documents
     {
         get => _documents.GetValue(InlineErrors);
         set => _documents.SetValue(value);
@@ -85,7 +75,6 @@ public sealed class DocumentCustomSubscriptionFilter
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _books.SetAccessPath(parentChainPath, validateHasBeenSet);
         _folders.SetAccessPath(parentChainPath, validateHasBeenSet);
         _documents.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

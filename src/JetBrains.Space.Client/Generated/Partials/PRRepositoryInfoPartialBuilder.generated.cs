@@ -67,5 +67,11 @@ public static class PRRepositoryInfoPartialExtensions
     public static Partial<PRRepositoryInfo> WithMonthlyActivity(this Partial<PRRepositoryInfo> it, Func<Partial<RepositoryActivity>, Partial<RepositoryActivity>> partialBuilder)
         => it.AddFieldName("monthlyActivity", partialBuilder(new Partial<RepositoryActivity>(it)));
     
+    public static Partial<PRRepositoryInfo> WithDefaultBranch(this Partial<PRRepositoryInfo> it)
+        => it.AddFieldName("defaultBranch");
+    
+    public static Partial<PRRepositoryInfo> WithDefaultBranch(this Partial<PRRepositoryInfo> it, Func<Partial<BranchInfo>, Partial<BranchInfo>> partialBuilder)
+        => it.AddFieldName("defaultBranch", partialBuilder(new Partial<BranchInfo>(it)));
+    
 }
 

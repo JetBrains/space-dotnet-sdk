@@ -36,7 +36,7 @@ namespace JetBrains.Space.Client;
 #endif
 
 public sealed class MessageInlineGroup
-     : MessageElement, IClassNameConvertible, IPropagatePropertyAccessPath
+     : MessageBlockElement, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "MessageInlineGroup";

@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class MessageControlGroup
-     : MessageElement, IClassNameConvertible, IPropagatePropertyAccessPath
+     : MessageBlockElement, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "MessageControlGroup";

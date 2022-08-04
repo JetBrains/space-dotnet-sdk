@@ -34,7 +34,7 @@ public sealed class InvitationLink
 {
     public InvitationLink() { }
     
-    public InvitationLink(string id, string name, CPrincipal createdBy, DateTime createdAt, int inviteeLimit, int inviteeUsage, ProjectTeamRole projectRole, bool deleted, DateTime? expiresAt = null, TDTeam? team = null, TDRole? position = null, PRProject? project = null, string? link = null)
+    public InvitationLink(string id, string name, CPrincipal createdBy, DateTime createdAt, int inviteeLimit, int inviteeUsage, ProjectTeamRole projectRole, bool deleted, DateTime? expiresAt = null, TDTeam? team = null, TDRole? position = null, PRProject? project = null, GlobalRole? globalRole = null, string? link = null)
     {
         Id = id;
         Name = name;
@@ -46,6 +46,7 @@ public sealed class InvitationLink
         Team = team;
         Position = position;
         Project = project;
+        GlobalRole = globalRole;
         ProjectRole = projectRole;
         Link = link;
         IsDeleted = deleted;
@@ -149,6 +150,15 @@ public sealed class InvitationLink
         set => _project.SetValue(value);
     }
 
+    private PropertyValue<GlobalRole?> _globalRole = new PropertyValue<GlobalRole?>(nameof(InvitationLink), nameof(GlobalRole), "globalRole");
+    
+    [JsonPropertyName("globalRole")]
+    public GlobalRole? GlobalRole
+    {
+        get => _globalRole.GetValue(InlineErrors);
+        set => _globalRole.SetValue(value);
+    }
+
     private PropertyValue<ProjectTeamRole> _projectRole = new PropertyValue<ProjectTeamRole>(nameof(InvitationLink), nameof(ProjectRole), "projectRole");
     
     [Required]
@@ -190,6 +200,7 @@ public sealed class InvitationLink
         _team.SetAccessPath(parentChainPath, validateHasBeenSet);
         _position.SetAccessPath(parentChainPath, validateHasBeenSet);
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _globalRole.SetAccessPath(parentChainPath, validateHasBeenSet);
         _projectRole.SetAccessPath(parentChainPath, validateHasBeenSet);
         _link.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deleted.SetAccessPath(parentChainPath, validateHasBeenSet);

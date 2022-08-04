@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class MessageDivider
-     : MessageElement, MessageSectionElement, IClassNameConvertible, IPropagatePropertyAccessPath
+     : MessageBlockElement, MessageSectionElement, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "MessageDivider";

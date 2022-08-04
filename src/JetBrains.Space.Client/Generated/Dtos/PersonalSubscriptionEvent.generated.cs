@@ -34,10 +34,11 @@ public sealed class PersonalSubscriptionEvent
 {
     public PersonalSubscriptionEvent() { }
     
-    public PersonalSubscriptionEvent(string eventCode, string name, string? featureFlag = null)
+    public PersonalSubscriptionEvent(string eventCode, string name, bool? memberOnly = null, string? featureFlag = null)
     {
         EventCode = eventCode;
         Name = name;
+        IsMemberOnly = memberOnly;
         FeatureFlag = featureFlag;
     }
     
@@ -61,6 +62,15 @@ public sealed class PersonalSubscriptionEvent
         set => _name.SetValue(value);
     }
 
+    private PropertyValue<bool?> _memberOnly = new PropertyValue<bool?>(nameof(PersonalSubscriptionEvent), nameof(IsMemberOnly), "memberOnly");
+    
+    [JsonPropertyName("memberOnly")]
+    public bool? IsMemberOnly
+    {
+        get => _memberOnly.GetValue(InlineErrors);
+        set => _memberOnly.SetValue(value);
+    }
+
     private PropertyValue<string?> _featureFlag = new PropertyValue<string?>(nameof(PersonalSubscriptionEvent), nameof(FeatureFlag), "featureFlag");
     
     [JsonPropertyName("featureFlag")]
@@ -74,6 +84,7 @@ public sealed class PersonalSubscriptionEvent
     {
         _eventCode.SetAccessPath(parentChainPath, validateHasBeenSet);
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _memberOnly.SetAccessPath(parentChainPath, validateHasBeenSet);
         _featureFlag.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

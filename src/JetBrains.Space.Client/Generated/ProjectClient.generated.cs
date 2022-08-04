@@ -512,7 +512,7 @@ public partial class ProjectClient : ISpaceClient
                 }
                 
                 /// <summary>
-                /// Delete the legacy subscription channels matching the given filters (applied as AND). If no filter is provided, all subscription channels for the logged in user are deleted.
+                /// Delete the legacy subscription channels matching the given filters (applied as AND). If no filter is provided, all subscription channels corresponding to unsubscribed jobs for the logged in user are deleted.
                 /// </summary>
                 /// <param name="unsubscribedOnly">
                 /// When true (the default), only channels corresponding to unsubscribed subscriptions will be deleted, active subscriptions won't be affected
@@ -523,7 +523,7 @@ public partial class ProjectClient : ISpaceClient
                 /// <param name="jobId">
                 /// Only delete the channels of the subscriptions from this job. You can find the job ID in the URL of the job page.
                 /// </param>
-                public async Task DeleteLegacyChannelAsync(bool unsubscribedOnly = true, ProjectIdentifier? project = null, string? jobId = null, CancellationToken cancellationToken = default)
+                public async Task DeleteLegacyChannelsAsync(bool unsubscribedOnly = true, ProjectIdentifier? project = null, string? jobId = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     if (project != null) queryParameters.Append("project", project?.ToString());
@@ -2049,7 +2049,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<IssueImportResult> ImportIssuesAsync(ProjectIdentifier project, ImportMetadata metadata, List<ExternalIssue> issues, ImportMissingPolicy assigneeMissingPolicy, ImportMissingPolicy statusMissingPolicy, ImportExistsPolicy onExistsPolicy, bool dryRun, Func<Partial<IssueImportResult>, Partial<IssueImportResult>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<IssueImportResult> ImportIssuesAsync(ProjectIdentifier project, ImportMetadata metadata, List<ExternalIssue> issues, ImportMissingPolicy assigneeMissingPolicy, ImportMissingPolicy statusMissingPolicy, ImportExistsPolicy onExistsPolicy, bool dryRun, bool notifySubscribers = true, Func<Partial<IssueImportResult>, Partial<IssueImportResult>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<IssueImportResult>()) : Partial<IssueImportResult>.Default()).ToString());
@@ -2063,6 +2063,7 @@ public partial class ProjectClient : ISpaceClient
                         StatusMissingPolicy = statusMissingPolicy,
                         OnExistsPolicy = onExistsPolicy,
                         IsDryRun = dryRun,
+                        IsNotifySubscribers = notifySubscribers,
                     }, cancellationToken);
             }
             
@@ -4668,6 +4669,27 @@ public partial class ProjectClient : ISpaceClient
                         Name = name,
                         Folder = folder,
                     }, cancellationToken);
+            }
+            
+        
+        }
+    
+        public DeleteForeverClient DeleteForever => new DeleteForeverClient(_connection);
+        
+        public partial class DeleteForeverClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public DeleteForeverClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task DeleteDocumentForeverAsync(ProjectIdentifier project, string documentId, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/documents/{documentId}/delete-forever{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         

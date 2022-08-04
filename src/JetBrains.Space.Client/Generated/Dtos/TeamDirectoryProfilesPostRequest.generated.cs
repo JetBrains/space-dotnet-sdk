@@ -34,7 +34,7 @@ public class TeamDirectoryProfilesPostRequest
 {
     public TeamDirectoryProfilesPostRequest() { }
     
-    public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? externalId = null, string? location = null, bool? guest = null)
+    public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? externalId = null, string? location = null, bool? guest = null, ProjectIdentifier? project = null, ProjectTeamRole? projectRole = null)
     {
         Username = username;
         FirstName = firstName;
@@ -56,6 +56,8 @@ public class TeamDirectoryProfilesPostRequest
         ExternalId = externalId;
         Location = location;
         IsGuest = guest;
+        Project = project;
+        ProjectRole = projectRole;
     }
     
     private PropertyValue<string> _username = new PropertyValue<string>(nameof(TeamDirectoryProfilesPostRequest), nameof(Username), "username");
@@ -278,6 +280,30 @@ public class TeamDirectoryProfilesPostRequest
         set => _guest.SetValue(value);
     }
 
+    private PropertyValue<ProjectIdentifier?> _project = new PropertyValue<ProjectIdentifier?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Project), "project");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("project")]
+    public ProjectIdentifier? Project
+    {
+        get => _project.GetValue(InlineErrors);
+        set => _project.SetValue(value);
+    }
+
+    private PropertyValue<ProjectTeamRole?> _projectRole = new PropertyValue<ProjectTeamRole?>(nameof(TeamDirectoryProfilesPostRequest), nameof(ProjectRole), "projectRole");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("projectRole")]
+    public ProjectTeamRole? ProjectRole
+    {
+        get => _projectRole.GetValue(InlineErrors);
+        set => _projectRole.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _username.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -300,6 +326,8 @@ public class TeamDirectoryProfilesPostRequest
         _externalId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _location.SetAccessPath(parentChainPath, validateHasBeenSet);
         _guest.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectRole.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

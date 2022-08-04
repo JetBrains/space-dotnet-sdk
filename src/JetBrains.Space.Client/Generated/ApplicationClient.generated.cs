@@ -938,12 +938,12 @@ public partial class ApplicationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<List<ESSshKey>> GetSshKeysAsync(ApplicationIdentifier application, Func<Partial<ESSshKey>, Partial<ESSshKey>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<List<SshKeyData>> GetSshKeysAsync(ApplicationIdentifier application, Func<Partial<SshKeyData>, Partial<SshKeyData>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESSshKey>()) : Partial<ESSshKey>.Default()).ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<SshKeyData>()) : Partial<SshKeyData>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<ESSshKey>>("GET", $"api/http/applications/{application}/ssh-keys{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<List<SshKeyData>>("GET", $"api/http/applications/{application}/ssh-keys{queryParameters.ToQueryString()}", cancellationToken);
         }
         
     

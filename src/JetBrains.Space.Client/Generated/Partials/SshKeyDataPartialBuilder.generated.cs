@@ -43,6 +43,9 @@ public static class SshKeyDataPartialExtensions
     public static Partial<SshKeyData> WithComment(this Partial<SshKeyData> it)
         => it.AddFieldName("comment");
     
+    public static Partial<SshKeyData> WithCreatedAt(this Partial<SshKeyData> it)
+        => it.AddFieldName("createdAt");
+    
     public static Partial<SshKeyData> WithLastUsed(this Partial<SshKeyData> it)
         => it.AddFieldName("lastUsed");
     

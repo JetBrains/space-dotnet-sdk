@@ -32,20 +32,29 @@ namespace JetBrains.Space.Client;
 [JsonConverter(typeof(EnumStringConverter))]
 public enum OrgSizeDTO
 {
-    [EnumMember(Value = "N_1_5")]
-    N15,
+    [EnumMember(Value = "JUST_ME")]
+    JUSTME,
     
-    [EnumMember(Value = "N_6_15")]
-    N615,
+    [EnumMember(Value = "N_2_10")]
+    N210,
     
-    [EnumMember(Value = "N_16_25")]
-    N1625,
+    [EnumMember(Value = "N_11_50")]
+    N1150,
     
-    [EnumMember(Value = "N_26_50")]
-    N2650,
+    [EnumMember(Value = "N_51_250")]
+    N51250,
     
-    [EnumMember(Value = "MORE_THAN_50")]
-    MORETHAN50,
+    [EnumMember(Value = "N_251_500")]
+    N251500,
+    
+    [EnumMember(Value = "N_501_1000")]
+    N5011000,
+    
+    [EnumMember(Value = "N_1001_5000")]
+    N10015000,
+    
+    [EnumMember(Value = "MORE_THAN_5000")]
+    MORETHAN5000,
     
 }
 

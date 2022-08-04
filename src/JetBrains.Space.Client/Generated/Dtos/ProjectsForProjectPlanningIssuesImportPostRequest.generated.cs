@@ -34,7 +34,7 @@ public class ProjectsForProjectPlanningIssuesImportPostRequest
 {
     public ProjectsForProjectPlanningIssuesImportPostRequest() { }
     
-    public ProjectsForProjectPlanningIssuesImportPostRequest(ImportMetadata metadata, List<ExternalIssue> issues, ImportMissingPolicy assigneeMissingPolicy, ImportMissingPolicy statusMissingPolicy, ImportExistsPolicy onExistsPolicy, bool dryRun)
+    public ProjectsForProjectPlanningIssuesImportPostRequest(ImportMetadata metadata, List<ExternalIssue> issues, ImportMissingPolicy assigneeMissingPolicy, ImportMissingPolicy statusMissingPolicy, ImportExistsPolicy onExistsPolicy, bool dryRun, bool notifySubscribers = true)
     {
         Metadata = metadata;
         Issues = issues;
@@ -42,6 +42,7 @@ public class ProjectsForProjectPlanningIssuesImportPostRequest
         StatusMissingPolicy = statusMissingPolicy;
         OnExistsPolicy = onExistsPolicy;
         IsDryRun = dryRun;
+        IsNotifySubscribers = notifySubscribers;
     }
     
     private PropertyValue<ImportMetadata> _metadata = new PropertyValue<ImportMetadata>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(Metadata), "metadata");
@@ -101,6 +102,15 @@ public class ProjectsForProjectPlanningIssuesImportPostRequest
         set => _dryRun.SetValue(value);
     }
 
+    private PropertyValue<bool> _notifySubscribers = new PropertyValue<bool>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(IsNotifySubscribers), "notifySubscribers");
+    
+    [JsonPropertyName("notifySubscribers")]
+    public bool IsNotifySubscribers
+    {
+        get => _notifySubscribers.GetValue(InlineErrors);
+        set => _notifySubscribers.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _metadata.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -109,6 +119,7 @@ public class ProjectsForProjectPlanningIssuesImportPostRequest
         _statusMissingPolicy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _onExistsPolicy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _dryRun.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notifySubscribers.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

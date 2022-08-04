@@ -42,6 +42,9 @@ public abstract class ESPackageRepositorySettings
     public static ESContainerRegistrySettings ESContainerRegistrySettings(bool immutableTags, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
         => new ESContainerRegistrySettings(immutableTags: immutableTags, retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
     
+    public static ESDartRepositorySettings ESDartRepositorySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
+        => new ESDartRepositorySettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
+    
     public static ESFileRepositorySettings ESFileRepositorySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
         => new ESFileRepositorySettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
     

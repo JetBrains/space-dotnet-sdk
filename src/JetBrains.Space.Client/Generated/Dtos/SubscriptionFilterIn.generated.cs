@@ -50,8 +50,8 @@ public interface SubscriptionFilterIn
     public static DeploymentsSubscriptionFilterIn Deployments(string project, List<string>? repositories = null, List<string>? targetIdentifiers = null)
         => new DeploymentsSubscriptionFilterIn(project: project, repositories: repositories, targetIdentifiers: targetIdentifiers);
     
-    public static DocumentCustomSubscriptionFilterIn DocumentCustom(List<string> documents, string? project = null, List<string>? books = null, List<string>? folders = null)
-        => new DocumentCustomSubscriptionFilterIn(documents: documents, project: project, books: books, folders: folders);
+    public static DocumentCustomSubscriptionFilterIn DocumentCustom(List<string> documents, string? project = null, List<string>? folders = null)
+        => new DocumentCustomSubscriptionFilterIn(documents: documents, project: project, folders: folders);
     
     public static MemberCommonSubscriptionFilterIn MemberCommon(List<string> teams, List<string> locations, List<ProfileIdentifier>? profiles = null)
         => new MemberCommonSubscriptionFilterIn(teams: teams, locations: locations, profiles: profiles);

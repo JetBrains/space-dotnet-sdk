@@ -37,10 +37,9 @@ public sealed class DocumentCustomSubscriptionFilterIn
     
     public DocumentCustomSubscriptionFilterIn() { }
     
-    public DocumentCustomSubscriptionFilterIn(List<string> documents, string? project = null, List<string>? books = null, List<string>? folders = null)
+    public DocumentCustomSubscriptionFilterIn(List<string> documents, string? project = null, List<string>? folders = null)
     {
         Project = project;
-        Books = books;
         Folders = folders;
         Documents = documents;
     }
@@ -52,15 +51,6 @@ public sealed class DocumentCustomSubscriptionFilterIn
     {
         get => _project.GetValue(InlineErrors);
         set => _project.SetValue(value);
-    }
-
-    private PropertyValue<List<string>?> _books = new PropertyValue<List<string>?>(nameof(DocumentCustomSubscriptionFilterIn), nameof(Books), "books");
-    
-    [JsonPropertyName("books")]
-    public List<string>? Books
-    {
-        get => _books.GetValue(InlineErrors);
-        set => _books.SetValue(value);
     }
 
     private PropertyValue<List<string>?> _folders = new PropertyValue<List<string>?>(nameof(DocumentCustomSubscriptionFilterIn), nameof(Folders), "folders");
@@ -85,7 +75,6 @@ public sealed class DocumentCustomSubscriptionFilterIn
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _books.SetAccessPath(parentChainPath, validateHasBeenSet);
         _folders.SetAccessPath(parentChainPath, validateHasBeenSet);
         _documents.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

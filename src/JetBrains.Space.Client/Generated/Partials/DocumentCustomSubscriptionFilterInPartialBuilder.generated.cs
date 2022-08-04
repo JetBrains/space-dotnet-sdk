@@ -34,9 +34,6 @@ public static class DocumentCustomSubscriptionFilterInPartialExtensions
     public static Partial<DocumentCustomSubscriptionFilterIn> WithProject(this Partial<DocumentCustomSubscriptionFilterIn> it)
         => it.AddFieldName("project");
     
-    public static Partial<DocumentCustomSubscriptionFilterIn> WithBooks(this Partial<DocumentCustomSubscriptionFilterIn> it)
-        => it.AddFieldName("books");
-    
     public static Partial<DocumentCustomSubscriptionFilterIn> WithFolders(this Partial<DocumentCustomSubscriptionFilterIn> it)
         => it.AddFieldName("folders");
     

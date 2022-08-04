@@ -148,17 +148,26 @@ public static class IssuePartialExtensions
     public static Partial<Issue> WithDescription(this Partial<Issue> it)
         => it.AddFieldName("description");
     
+    public static Partial<Issue> WithParents(this Partial<Issue> it)
+        => it.AddFieldName("parents");
+    
+    public static Partial<Issue> WithParentsRecursive(this Partial<Issue> it)
+        => it.AddFieldName("parents!");
+    
+    public static Partial<Issue> WithParents(this Partial<Issue> it, Func<Partial<Issue>, Partial<Issue>> partialBuilder)
+        => it.AddFieldName("parents", partialBuilder(new Partial<Issue>(it)));
+    
     public static Partial<Issue> WithSprints(this Partial<Issue> it)
         => it.AddFieldName("sprints");
     
     public static Partial<Issue> WithSprints(this Partial<Issue> it, Func<Partial<SprintRecord>, Partial<SprintRecord>> partialBuilder)
         => it.AddFieldName("sprints", partialBuilder(new Partial<SprintRecord>(it)));
     
-    public static Partial<Issue> WithTopics(this Partial<Issue> it)
-        => it.AddFieldName("topics");
+    public static Partial<Issue> WithSubItemsList(this Partial<Issue> it)
+        => it.AddFieldName("subItemsList");
     
-    public static Partial<Issue> WithTopics(this Partial<Issue> it, Func<Partial<Topic>, Partial<Topic>> partialBuilder)
-        => it.AddFieldName("topics", partialBuilder(new Partial<Topic>(it)));
+    public static Partial<Issue> WithSubItemsList(this Partial<Issue> it, Func<Partial<Checklist>, Partial<Checklist>> partialBuilder)
+        => it.AddFieldName("subItemsList", partialBuilder(new Partial<Checklist>(it)));
     
     public static Partial<Issue> WithUnfurls(this Partial<Issue> it)
         => it.AddFieldName("unfurls");

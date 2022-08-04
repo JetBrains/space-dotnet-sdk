@@ -34,7 +34,7 @@ public sealed class Issue
 {
     public Issue() { }
     
-    public Issue(string id, bool archived, PRProject projectRef, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<SprintRecord> sprints, List<Topic> topics, string? projectId = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, int? subItemsCount = null, int? doneSubItemsCount = null, int? commentsCount = null, CPrincipal? deletedBy = null, DateTime? deletedTime = null, ChannelItemRecord? messageOrigin = null, string? description = null, List<AttachmentInfo>? unfurls = null)
+    public Issue(string id, bool archived, PRProject projectRef, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<Issue> parents, List<SprintRecord> sprints, Checklist subItemsList, string? projectId = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, int? subItemsCount = null, int? doneSubItemsCount = null, int? commentsCount = null, CPrincipal? deletedBy = null, DateTime? deletedTime = null, ChannelItemRecord? messageOrigin = null, string? description = null, List<AttachmentInfo>? unfurls = null)
     {
         Id = id;
         IsArchived = archived;
@@ -62,8 +62,9 @@ public sealed class Issue
         Checklists = checklists;
         CustomFields = customFields;
         Description = description;
+        Parents = parents;
         Sprints = sprints;
-        Topics = topics;
+        SubItemsList = subItemsList;
         Unfurls = unfurls;
     }
     
@@ -317,6 +318,16 @@ public sealed class Issue
         set => _description.SetValue(value);
     }
 
+    private PropertyValue<List<Issue>> _parents = new PropertyValue<List<Issue>>(nameof(Issue), nameof(Parents), "parents", new List<Issue>());
+    
+    [Required]
+    [JsonPropertyName("parents")]
+    public List<Issue> Parents
+    {
+        get => _parents.GetValue(InlineErrors);
+        set => _parents.SetValue(value);
+    }
+
     private PropertyValue<List<SprintRecord>> _sprints = new PropertyValue<List<SprintRecord>>(nameof(Issue), nameof(Sprints), "sprints", new List<SprintRecord>());
     
     [Required]
@@ -327,14 +338,14 @@ public sealed class Issue
         set => _sprints.SetValue(value);
     }
 
-    private PropertyValue<List<Topic>> _topics = new PropertyValue<List<Topic>>(nameof(Issue), nameof(Topics), "topics", new List<Topic>());
+    private PropertyValue<Checklist> _subItemsList = new PropertyValue<Checklist>(nameof(Issue), nameof(SubItemsList), "subItemsList");
     
     [Required]
-    [JsonPropertyName("topics")]
-    public List<Topic> Topics
+    [JsonPropertyName("subItemsList")]
+    public Checklist SubItemsList
     {
-        get => _topics.GetValue(InlineErrors);
-        set => _topics.SetValue(value);
+        get => _subItemsList.GetValue(InlineErrors);
+        set => _subItemsList.SetValue(value);
     }
 
     private PropertyValue<List<AttachmentInfo>?> _unfurls = new PropertyValue<List<AttachmentInfo>?>(nameof(Issue), nameof(Unfurls), "unfurls");
@@ -374,8 +385,9 @@ public sealed class Issue
         _checklists.SetAccessPath(parentChainPath, validateHasBeenSet);
         _customFields.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _parents.SetAccessPath(parentChainPath, validateHasBeenSet);
         _sprints.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _topics.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _subItemsList.SetAccessPath(parentChainPath, validateHasBeenSet);
         _unfurls.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

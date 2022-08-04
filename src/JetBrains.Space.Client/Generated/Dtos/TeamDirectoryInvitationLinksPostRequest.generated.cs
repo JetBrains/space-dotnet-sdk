@@ -34,7 +34,7 @@ public class TeamDirectoryInvitationLinksPostRequest
 {
     public TeamDirectoryInvitationLinksPostRequest() { }
     
-    public TeamDirectoryInvitationLinksPostRequest(string name, DateTime expiresAt, int inviteeLimit, string? team = null, string? role = null, ProjectIdentifier? project = null, ProjectTeamRole? projectRole = null)
+    public TeamDirectoryInvitationLinksPostRequest(string name, DateTime expiresAt, int inviteeLimit, string? team = null, string? role = null, ProjectIdentifier? project = null, ProjectTeamRole? projectRole = null, GlobalRole? globalRole = null)
     {
         Name = name;
         ExpiresAt = expiresAt;
@@ -43,6 +43,7 @@ public class TeamDirectoryInvitationLinksPostRequest
         Role = role;
         Project = project;
         ProjectRole = projectRole;
+        GlobalRole = globalRole;
     }
     
     private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryInvitationLinksPostRequest), nameof(Name), "name");
@@ -124,6 +125,18 @@ public class TeamDirectoryInvitationLinksPostRequest
         set => _projectRole.SetValue(value);
     }
 
+    private PropertyValue<GlobalRole?> _globalRole = new PropertyValue<GlobalRole?>(nameof(TeamDirectoryInvitationLinksPostRequest), nameof(GlobalRole), "globalRole");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("globalRole")]
+    public GlobalRole? GlobalRole
+    {
+        get => _globalRole.GetValue(InlineErrors);
+        set => _globalRole.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -133,6 +146,7 @@ public class TeamDirectoryInvitationLinksPostRequest
         _role.SetAccessPath(parentChainPath, validateHasBeenSet);
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
         _projectRole.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _globalRole.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

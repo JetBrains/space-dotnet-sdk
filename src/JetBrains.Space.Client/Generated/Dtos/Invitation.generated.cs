@@ -34,7 +34,7 @@ public sealed class Invitation
 {
     public Invitation() { }
     
-    public Invitation(string id, DateTime expiresAt, string inviteeEmail, bool inviteeEmailBlocked, CPrincipal inviter, string? inviteeEmailBlockedReason = null, string? inviteeFirstName = null, string? inviteeLastName = null, TDMemberProfile? invitee = null, TDTeam? team = null, TDRole? role = null, PRProject? project = null, ProjectTeamRole? projectRole = null, bool? revoked = null)
+    public Invitation(string id, DateTime expiresAt, string inviteeEmail, bool inviteeEmailBlocked, CPrincipal inviter, string? inviteeEmailBlockedReason = null, string? inviteeFirstName = null, string? inviteeLastName = null, TDMemberProfile? invitee = null, TDTeam? team = null, TDRole? role = null, PRProject? project = null, ProjectTeamRole? projectRole = null, GlobalRole? globalRole = null, bool? revoked = null)
     {
         Id = id;
         ExpiresAt = expiresAt;
@@ -49,6 +49,7 @@ public sealed class Invitation
         Role = role;
         Project = project;
         ProjectRole = projectRole;
+        GlobalRole = globalRole;
         IsRevoked = revoked;
     }
     
@@ -175,6 +176,15 @@ public sealed class Invitation
         set => _projectRole.SetValue(value);
     }
 
+    private PropertyValue<GlobalRole?> _globalRole = new PropertyValue<GlobalRole?>(nameof(Invitation), nameof(GlobalRole), "globalRole");
+    
+    [JsonPropertyName("globalRole")]
+    public GlobalRole? GlobalRole
+    {
+        get => _globalRole.GetValue(InlineErrors);
+        set => _globalRole.SetValue(value);
+    }
+
     private PropertyValue<bool?> _revoked = new PropertyValue<bool?>(nameof(Invitation), nameof(IsRevoked), "revoked");
     
     [JsonPropertyName("revoked")]
@@ -199,6 +209,7 @@ public sealed class Invitation
         _role.SetAccessPath(parentChainPath, validateHasBeenSet);
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
         _projectRole.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _globalRole.SetAccessPath(parentChainPath, validateHasBeenSet);
         _revoked.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

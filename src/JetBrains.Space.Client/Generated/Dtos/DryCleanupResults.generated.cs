@@ -39,8 +39,8 @@ public class DryCleanupResults
     public static DryCleanupResultsFailure Failure(string error)
         => new DryCleanupResultsFailure(error: error);
     
-    public static DryCleanupResultsResults Results(long totalSize, List<PackageVersionRef> packageVersions)
-        => new DryCleanupResultsResults(totalSize: totalSize, packageVersions: packageVersions);
+    public static DryCleanupResultsResults Results(long totalSize, int totalCount, List<PackageVersionRef> packageVersions)
+        => new DryCleanupResultsResults(totalSize: totalSize, totalCount: totalCount, packageVersions: packageVersions);
     
     public DryCleanupResults() { }
     

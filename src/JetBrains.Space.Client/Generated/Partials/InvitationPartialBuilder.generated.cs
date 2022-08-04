@@ -88,6 +88,12 @@ public static class InvitationPartialExtensions
     public static Partial<Invitation> WithProjectRole(this Partial<Invitation> it, Func<Partial<ProjectTeamRole>, Partial<ProjectTeamRole>> partialBuilder)
         => it.AddFieldName("projectRole", partialBuilder(new Partial<ProjectTeamRole>(it)));
     
+    public static Partial<Invitation> WithGlobalRole(this Partial<Invitation> it)
+        => it.AddFieldName("globalRole");
+    
+    public static Partial<Invitation> WithGlobalRole(this Partial<Invitation> it, Func<Partial<GlobalRole>, Partial<GlobalRole>> partialBuilder)
+        => it.AddFieldName("globalRole", partialBuilder(new Partial<GlobalRole>(it)));
+    
     public static Partial<Invitation> WithIsRevoked(this Partial<Invitation> it)
         => it.AddFieldName("revoked");
     

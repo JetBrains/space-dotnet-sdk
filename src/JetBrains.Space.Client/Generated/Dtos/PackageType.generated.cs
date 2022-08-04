@@ -38,6 +38,9 @@ public interface PackageType
     public static ContainerPackageType Container(string id)
         => new ContainerPackageType(id: id);
     
+    public static DartPackageType Dart(string id)
+        => new DartPackageType(id: id);
+    
     public static FileType FileType(string id)
         => new FileType(id: id);
     

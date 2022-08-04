@@ -316,7 +316,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// <summary>
         /// Create an organization-wide invitation link
         /// </summary>
-        public async Task<Pair<string, InvitationLink>> CreateInvitationLinkAsync(string name, DateTime expiresAt, int inviteeLimit, string? team = null, string? role = null, ProjectIdentifier? project = null, ProjectTeamRole? projectRole = null, Func<Partial<Pair<string, InvitationLink>>, Partial<Pair<string, InvitationLink>>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Pair<string, InvitationLink>> CreateInvitationLinkAsync(string name, DateTime expiresAt, int inviteeLimit, string? team = null, string? role = null, ProjectIdentifier? project = null, ProjectTeamRole? projectRole = null, GlobalRole? globalRole = null, Func<Partial<Pair<string, InvitationLink>>, Partial<Pair<string, InvitationLink>>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Pair<string, InvitationLink>>()) : Partial<Pair<string, InvitationLink>>.Default()).ToString());
@@ -331,6 +331,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                     Role = role,
                     Project = project,
                     ProjectRole = projectRole,
+                    GlobalRole = globalRole,
                 }, cancellationToken);
         }
         
@@ -404,7 +405,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// <summary>
         /// Create an invitation to join the current organization. Optionally, the team and/or role to join when accepting the invitation can be specified.
         /// </summary>
-        public async Task<Invitation> CreateInvitationAsync(string inviteeEmail, string? inviteeFirstName = null, string? inviteeLastName = null, string? team = null, string? role = null, ProjectIdentifier? project = null, ProjectTeamRole? projectRole = null, Func<Partial<Invitation>, Partial<Invitation>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Invitation> CreateInvitationAsync(string inviteeEmail, string? inviteeFirstName = null, string? inviteeLastName = null, string? team = null, string? role = null, ProjectIdentifier? project = null, ProjectTeamRole? projectRole = null, GlobalRole? globalRole = null, Func<Partial<Invitation>, Partial<Invitation>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Invitation>()) : Partial<Invitation>.Default()).ToString());
@@ -419,6 +420,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                     Role = role,
                     Project = project,
                     ProjectRole = projectRole,
+                    GlobalRole = globalRole,
                 }, cancellationToken);
         }
         
@@ -1502,7 +1504,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<TDMemberProfile> CreateProfileAsync(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? externalId = null, string? location = null, bool? guest = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<TDMemberProfile> CreateProfileAsync(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? externalId = null, string? location = null, bool? guest = null, ProjectIdentifier? project = null, ProjectTeamRole? projectRole = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
@@ -1530,6 +1532,8 @@ public partial class TeamDirectoryClient : ISpaceClient
                     ExternalId = externalId,
                     Location = location,
                     IsGuest = guest,
+                    Project = project,
+                    ProjectRole = projectRole,
                 }, cancellationToken);
         }
         
@@ -1545,7 +1549,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<Batch<TDMemberProfile>> GetAllProfilesAsync(string query = "", bool reportPastMembers = false, bool meOnTop = false, ProfileOrgRelation orgRelation = ProfileOrgRelation.MEMBER, string? skip = null, int? top = 100, bool? reportFutureMembers = false, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<TDMemberProfile>> GetAllProfilesAsync(string query = "", bool reportPastMembers = false, bool meOnTop = false, ProfileOrgRelation orgRelation = ProfileOrgRelation.MEMBER, string? skip = null, int? top = 100, bool? reportFutureMembers = false, bool? reportCurrentMembers = true, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             if (skip != null) queryParameters.Append("$skip", skip);
@@ -1553,6 +1557,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             queryParameters.Append("query", query);
             queryParameters.Append("reportPastMembers", reportPastMembers.ToString("l"));
             if (reportFutureMembers != null) queryParameters.Append("reportFutureMembers", reportFutureMembers?.ToString("l"));
+            if (reportCurrentMembers != null) queryParameters.Append("reportCurrentMembers", reportCurrentMembers?.ToString("l"));
             if (teamId != null) queryParameters.Append("teamId", teamId);
             if (locationId != null) queryParameters.Append("locationId", locationId);
             if (roleId != null) queryParameters.Append("roleId", roleId);
@@ -1576,8 +1581,8 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public IAsyncEnumerable<TDMemberProfile> GetAllProfilesAsyncEnumerable(string query = "", bool reportPastMembers = false, bool meOnTop = false, ProfileOrgRelation orgRelation = ProfileOrgRelation.MEMBER, string? skip = null, int? top = 100, bool? reportFutureMembers = false, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProfilesAsync(query: query, reportPastMembers: reportPastMembers, meOnTop: meOnTop, orgRelation: orgRelation, top: top, reportFutureMembers: reportFutureMembers, teamId: teamId, locationId: locationId, roleId: roleId, order: order, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
+        public IAsyncEnumerable<TDMemberProfile> GetAllProfilesAsyncEnumerable(string query = "", bool reportPastMembers = false, bool meOnTop = false, ProfileOrgRelation orgRelation = ProfileOrgRelation.MEMBER, string? skip = null, int? top = 100, bool? reportFutureMembers = false, bool? reportCurrentMembers = true, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProfilesAsync(query: query, reportPastMembers: reportPastMembers, meOnTop: meOnTop, orgRelation: orgRelation, top: top, reportFutureMembers: reportFutureMembers, reportCurrentMembers: reportCurrentMembers, teamId: teamId, locationId: locationId, roleId: roleId, order: order, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
     
         /// <summary>
         /// Get profile information by email address
@@ -2745,6 +2750,27 @@ public partial class TeamDirectoryClient : ISpaceClient
                             Name = name,
                             Folder = folder,
                         }, cancellationToken);
+                }
+                
+            
+            }
+        
+            public DeleteForeverClient DeleteForever => new DeleteForeverClient(_connection);
+            
+            public partial class DeleteForeverClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public DeleteForeverClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task DeleteDocumentForeverAsync(ProfileIdentifier profile, string documentId, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/documents/{documentId}/delete-forever{queryParameters.ToQueryString()}", cancellationToken);
                 }
                 
             
