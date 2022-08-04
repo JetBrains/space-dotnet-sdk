@@ -92,15 +92,15 @@ public static class Program
                         MessageSectionElement.MessageSection(
                             elements: new()
                             {
-                                MessageElement.MessageText("JetBrains Space", size: MessageTextSize.LARGE),
+                                MessageBlockElement.MessageText("JetBrains Space", size: MessageTextSize.LARGE),
                                 
-                                MessageElement.MessageText("JetBrains Space is an Integrated Team Environment.",
+                                MessageBlockElement.MessageText("JetBrains Space is an Integrated Team Environment.",
                                 MessageAccessoryElement.MessageIcon(new ApiIcon("space"), MessageStyle.SUCCESS)),
-                                MessageElement.MessageText("Have you tried JetBrains Space?"),
-                                MessageElement.MessageDivider(),
-                                MessageElement.MessageText("Get access at https://www.jetbrains.com/space/"),
+                                MessageBlockElement.MessageText("Have you tried JetBrains Space?"),
+                                MessageBlockElement.MessageDivider(),
+                                MessageBlockElement.MessageText("Get access at https://www.jetbrains.com/space/"),
                                 
-                                MessageElement.MessageText("Check it out at https://www.jetbrains.com/space/", size: MessageTextSize.SMALL)
+                                MessageBlockElement.MessageText("Check it out at https://www.jetbrains.com/space/", size: MessageTextSize.SMALL)
                             })
                     },
                     style: MessageStyle.SUCCESS),

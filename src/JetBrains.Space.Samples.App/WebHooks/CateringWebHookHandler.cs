@@ -71,10 +71,10 @@ public class CateringWebHookHandler : SpaceWebHookHandler
                     MessageSectionElement.MessageSection(
                         elements: new()
                         {
-                            MessageElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
+                            MessageBlockElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
                             
-                            MessageElement.MessageText("Anything to eat or drink while we are on our way to Space?"),
-                            MessageElement.MessageControlGroup(new List<MessageControlElement>
+                            MessageBlockElement.MessageText("Anything to eat or drink while we are on our way to Space?"),
+                            MessageBlockElement.MessageControlGroup(new List<MessageControlElement>
                             {
                                 MessageControlElement.MessageButton("Yes, please", MessageButtonStyle.PRIMARY, 
                                     MessageAction.Post("catering-start", ""))
@@ -126,10 +126,10 @@ public class CateringWebHookHandler : SpaceWebHookHandler
                         MessageSectionElement.MessageSection(
                             elements: new()
                             {
-                                MessageElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
+                                MessageBlockElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
                                 
-                                MessageElement.MessageText("Would you prefer chicken or pasta?"),
-                                MessageElement.MessageControlGroup(new List<MessageControlElement>
+                                MessageBlockElement.MessageText("Would you prefer chicken or pasta?"),
+                                MessageBlockElement.MessageControlGroup(new List<MessageControlElement>
                                 {
                                     MessageControlElement.MessageButton("Chicken", MessageButtonStyle.REGULAR,
                                         MessageAction.Post(ActionId.Food, "🍗 Chicken")),
@@ -156,10 +156,10 @@ public class CateringWebHookHandler : SpaceWebHookHandler
                         MessageSectionElement.MessageSection(
                             elements: new()
                             {
-                                MessageElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
+                                MessageBlockElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
                                 
-                                MessageElement.MessageText("Any drinks? Coffee or tea?"),
-                                MessageElement.MessageControlGroup(new List<MessageControlElement>
+                                MessageBlockElement.MessageText("Any drinks? Coffee or tea?"),
+                                MessageBlockElement.MessageControlGroup(new List<MessageControlElement>
                                 {
                                     MessageControlElement.MessageButton("Water", MessageButtonStyle.REGULAR, 
                                         MessageAction.Post(ActionId.Drinks, "🥛 Water")),
@@ -190,10 +190,10 @@ public class CateringWebHookHandler : SpaceWebHookHandler
                         MessageSectionElement.MessageSection(
                             elements: new()
                             {
-                                MessageElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
+                                MessageBlockElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
                                 
-                                MessageElement.MessageText("Any drinks? Coffee or tea?"),
-                                MessageElement.MessageControlGroup(new List<MessageControlElement>
+                                MessageBlockElement.MessageText("Any drinks? Coffee or tea?"),
+                                MessageBlockElement.MessageControlGroup(new List<MessageControlElement>
                                 {
                                     MessageControlElement.MessageButton("Water", MessageButtonStyle.REGULAR, 
                                         MessageAction.Post(ActionId.Drinks, "🥛 Water")),
@@ -222,10 +222,10 @@ public class CateringWebHookHandler : SpaceWebHookHandler
                         MessageSectionElement.MessageSection(
                             elements: new()
                             {
-                                MessageElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
+                                MessageBlockElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
                                 
-                                MessageElement.MessageText("Thank you, we'll be right there!"),
-                                MessageElement.MessageFields(new List<MessageFieldElement>
+                                MessageBlockElement.MessageText("Thank you, we'll be right there!"),
+                                MessageBlockElement.MessageFields(new List<MessageFieldElement>
                                 {
                                     MessageFieldElement.MessageField("Food choice:", cateringSession.SelectedFood),
                                     MessageFieldElement.MessageField("Drinks choice:", cateringSession.SelectedDrinks
