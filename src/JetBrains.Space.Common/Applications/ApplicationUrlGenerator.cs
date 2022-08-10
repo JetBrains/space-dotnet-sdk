@@ -49,7 +49,7 @@ public static class ApplicationUrlGenerator
     /// <param name="authFlows">Authentication flow(s) that the application will use to access the Space API.</param>
     /// <param name="authForMessagesFromSpace">Authentication for messages sent by Space to the application. Recommended value is <see cref="AuthForMessagesFromSpace.PublicKeySignature"/>.</param>
     /// <returns>A URL for installing an app to any Space organization.</returns>
-    public static Uri GenerateInstallUrl(
+    public static Uri GenerateInstallGenericUrl(
         string applicationName, 
         Uri applicationEndpoint, 
         string? state = null,
@@ -63,6 +63,22 @@ public static class ApplicationUrlGenerator
             state: state,
             authFlows: authFlows,
             authForMessagesFromSpace: authForMessagesFromSpace);
+    }
+    
+    /// <summary>
+    /// Creates a URL for installing an app from the JetBrains Marketplace.
+    /// </summary>
+    /// <param name="marketplaceApplicationId">The marketplace application id.</param>
+    /// <param name="applicationName">Default application name. Can be changed by users in each Space organization.</param>
+    /// <returns>A URL for installing an app from the JetBrains Marketplace.</returns>
+    public static Uri GenerateInstallFromMarketplaceUrl(
+        string marketplaceApplicationId,
+        string applicationName)
+    {
+        var builder = new UriBuilder("https://jetbrains.com/space/app/install-app");
+        builder.Query += $"marketplace-app={marketplaceApplicationId}";
+        builder.Query += $"&name={Uri.EscapeDataString(applicationName)}";
+        return builder.Uri;
     }
     
     /// <summary>

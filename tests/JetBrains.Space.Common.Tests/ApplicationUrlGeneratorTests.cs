@@ -7,13 +7,13 @@ namespace JetBrains.Space.Client.Tests;
 public class ApplicationUrlGeneratorTests
 {
     [Fact]
-    public void GenerateInstallUrl_Simple()
+    public void GenerateInstallUrlTest()
     {
         // Arrange & Act
         var result = ApplicationUrlGenerator.GenerateInstallUrl(
-            new Uri("https://my-org.jetbrains.space/"),
-            "My app",
-            new Uri("https://my-server.domain.com/api")
+            serverUrl: new Uri("https://my-org.jetbrains.space/"),
+            applicationName: "My app",
+            applicationEndpoint: new Uri("https://my-server.domain.com/api")
         );
         
         // Assert
@@ -28,7 +28,7 @@ public class ApplicationUrlGeneratorTests
     }
     
     [Fact]
-    public void GenerateInstallUrl_Advanced()
+    public void GenerateInstallUrlWithAuthFlowsTest()
     {
         // Arrange & Act
         var result = ApplicationUrlGenerator.GenerateInstallUrl(
@@ -66,12 +66,12 @@ public class ApplicationUrlGeneratorTests
     }
     
     [Fact]
-    public void GenerateInstallUrl_Any()
+    public void GenerateInstallGenericUrlTest()
     {
         // Arrange & Act
-        var result = ApplicationUrlGenerator.GenerateInstallUrl(
-            "My app",
-            new Uri("https://my-server.domain.com/api")
+        var result = ApplicationUrlGenerator.GenerateInstallGenericUrl(
+            applicationName: "My app",
+            applicationEndpoint: new Uri("https://my-server.domain.com/api")
         );
         
         // Assert
@@ -82,6 +82,23 @@ public class ApplicationUrlGeneratorTests
             "&endpoint=https%3A%2F%2Fmy-server.domain.com%2Fapi" +
             "&client-credentials-flow-enabled=true" +
             "&has-public-key-signature=true",
+            result.AbsoluteUri);
+    }
+    
+    [Fact]
+    public void GenerateInstallFromMarketplaceUrlTest()
+    {
+        // Arrange & Act
+        var result = ApplicationUrlGenerator.GenerateInstallFromMarketplaceUrl(
+            marketplaceApplicationId: "1234",
+            applicationName: "My app"
+        );
+        
+        // Assert
+        Assert.Equal(
+            "https://jetbrains.com/space/app/install-app?" +
+            "marketplace-app=1234" +
+            "&name=My%20app",
             result.AbsoluteUri);
     }
 }
