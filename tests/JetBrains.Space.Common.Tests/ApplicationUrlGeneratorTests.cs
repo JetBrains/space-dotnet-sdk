@@ -64,4 +64,24 @@ public class ApplicationUrlGeneratorTests
             "&has-signing-key=true",
             result.AbsoluteUri);
     }
+    
+    [Fact]
+    public void GenerateInstallUrl_Any()
+    {
+        // Arrange & Act
+        var result = ApplicationUrlGenerator.GenerateInstallUrl(
+            "My app",
+            new Uri("https://my-server.domain.com/api")
+        );
+        
+        // Assert
+        Assert.Equal(
+            "https://jetbrains.com/space/app/install-app?" +
+            "name=My%20app" +
+            "&pair=true" +
+            "&endpoint=https%3A%2F%2Fmy-server.domain.com%2Fapi" +
+            "&client-credentials-flow-enabled=true" +
+            "&has-public-key-signature=true",
+            result.AbsoluteUri);
+    }
 }

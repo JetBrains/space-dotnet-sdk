@@ -42,8 +42,8 @@ public class SpaceDurationConverterTests
         Assert.NotNull(result);
         if (result != null)
         {
-            Assert.Equal(1, result?.Hours);
-            Assert.Equal(30, result?.Minutes);
+            Assert.Equal(1, result.Value.Hours);
+            Assert.Equal(30, result.Value.Minutes);
         }
     }
 }
