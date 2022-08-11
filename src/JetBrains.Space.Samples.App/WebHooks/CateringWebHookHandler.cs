@@ -167,6 +167,8 @@ public class CateringWebHookHandler : SpaceWebHookHandler
                                         MessageAction.Post(ActionId.Drinks, "☕ Coffee")),
                                     MessageControlElement.MessageButton("Tea", MessageButtonStyle.REGULAR, 
                                         MessageAction.Post(ActionId.Drinks, "☕ Tea")),
+                                    MessageControlElement.MessageButton("Juice", MessageButtonStyle.REGULAR, 
+                                        MessageAction.Post(ActionId.Drinks, "🧃 Juice")),
                                     MessageControlElement.MessageButton("No drinks", MessageButtonStyle.REGULAR, 
                                         MessageAction.Post(ActionId.Drinks, "🤷 None"))
                                 })
@@ -192,17 +194,17 @@ public class CateringWebHookHandler : SpaceWebHookHandler
                             {
                                 MessageBlockElement.MessageText("JetBrains Space - Catering", size: MessageTextSize.SMALL),
                                 
-                                MessageBlockElement.MessageText("Any drinks? Coffee or tea?"),
+                                MessageBlockElement.MessageText("How would you like your coffee?"),
                                 MessageBlockElement.MessageControlGroup(new List<MessageControlElement>
                                 {
-                                    MessageControlElement.MessageButton("Water", MessageButtonStyle.REGULAR, 
-                                        MessageAction.Post(ActionId.Drinks, "🥛 Water")),
-                                    MessageControlElement.MessageButton("Coffee", MessageButtonStyle.REGULAR,
-                                        MessageAction.Post(ActionId.Drinks, "☕ Coffee")),
-                                    MessageControlElement.MessageButton("Tea", MessageButtonStyle.REGULAR, 
-                                        MessageAction.Post(ActionId.Drinks, "☕ Tea")),
-                                    MessageControlElement.MessageButton("No drinks", MessageButtonStyle.REGULAR, 
-                                        MessageAction.Post(ActionId.Drinks, "🤷 None"))
+                                    MessageControlElement.MessageButton("Milk", MessageButtonStyle.REGULAR, 
+                                        MessageAction.Post(ActionId.DrinkAdditions, "🥛 with milk")),
+                                    MessageControlElement.MessageButton("Sugar", MessageButtonStyle.REGULAR,
+                                        MessageAction.Post(ActionId.DrinkAdditions, "🍁 with sugar")),
+                                    MessageControlElement.MessageButton("Milk & sugar", MessageButtonStyle.REGULAR, 
+                                        MessageAction.Post(ActionId.DrinkAdditions, "🥛🍁 with milk and sugar")),
+                                    MessageControlElement.MessageButton("No additions", MessageButtonStyle.REGULAR, 
+                                        MessageAction.Post(ActionId.DrinkAdditions, "🤷 no additions"))
                                 })
                             })
                     },
