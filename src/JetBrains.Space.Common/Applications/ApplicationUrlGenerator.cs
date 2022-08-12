@@ -69,7 +69,7 @@ public static class ApplicationUrlGenerator
     /// Creates a URL for installing an app from the JetBrains Marketplace.
     /// </summary>
     /// <param name="marketplaceApplicationId">The marketplace application id.</param>
-    /// <param name="applicationName">Default application name. Can be changed by users in each Space organization.</param>
+    /// <param name="applicationName">Name of the application. The parameter is currently required because of a technical limitation and should be removed soon.</param>
     /// <returns>A URL for installing an app from the JetBrains Marketplace.</returns>
     public static Uri GenerateInstallFromMarketplaceUrl(
         string marketplaceApplicationId,
