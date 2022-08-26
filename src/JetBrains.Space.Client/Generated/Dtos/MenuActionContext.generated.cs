@@ -38,6 +38,9 @@ public interface MenuActionContext
     public static ChannelMessageMenuActionContext ChannelMessage(ChannelIdentifier channelIdentifier, ChatMessageIdentifier messageIdentifier)
         => new ChannelMessageMenuActionContext(channelIdentifier: channelIdentifier, messageIdentifier: messageIdentifier);
     
+    public static CodeReviewMenuActionContext CodeReview(ProjectIdentifier projectIdentifier, ReviewIdentifier codeReviewIdentifier)
+        => new CodeReviewMenuActionContext(projectIdentifier: projectIdentifier, codeReviewIdentifier: codeReviewIdentifier);
+    
     public static DocumentFolderMenuActionContext DocumentFolder(FolderIdentifier folderIdentifier, ProjectIdentifier? projectIdentifier = null)
         => new DocumentFolderMenuActionContext(folderIdentifier: folderIdentifier, projectIdentifier: projectIdentifier);
     

@@ -38,6 +38,9 @@ public abstract class ContextMenuItemUiExtensionIn
     public static ChatMessageMenuItemUiExtensionIn ChatMessageMenuItemUiExtensionIn(string displayName, string menuItemUniqueCode, List<ChatMessageMenuItemVisibilityFilterIn> visibilityFilters, string? description = null)
         => new ChatMessageMenuItemUiExtensionIn(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
     
+    public static CodeReviewMenuItemUiExtensionIn CodeReviewMenuItemUiExtensionIn(string displayName, string menuItemUniqueCode, List<CodeReviewMenuItemVisibilityFilterIn> visibilityFilters, string? description = null)
+        => new CodeReviewMenuItemUiExtensionIn(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
+    
     public static DocumentFolderMenuItemUiExtensionIn DocumentFolderMenuItemUiExtensionIn(string displayName, string menuItemUniqueCode, List<DocumentFolderMenuItemVisibilityFilterIn> visibilityFilters, string? description = null)
         => new DocumentFolderMenuItemUiExtensionIn(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
     

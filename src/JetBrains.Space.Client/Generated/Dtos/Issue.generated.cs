@@ -34,7 +34,7 @@ public sealed class Issue
 {
     public Issue() { }
     
-    public Issue(string id, bool archived, PRProject projectRef, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<Issue> parents, List<SprintRecord> sprints, Checklist subItemsList, string? projectId = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, int? subItemsCount = null, int? doneSubItemsCount = null, int? commentsCount = null, CPrincipal? deletedBy = null, DateTime? deletedTime = null, ChannelItemRecord? messageOrigin = null, string? description = null, List<AttachmentInfo>? unfurls = null)
+    public Issue(string id, bool archived, PRProject projectRef, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<Issue> parents, List<SprintRecord> sprints, Checklist subItemsList, string? projectId = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, int? subItemsCount = null, int? doneSubItemsCount = null, int? commentsCount = null, CPrincipal? deletedBy = null, DateTime? deletedTime = null, string? description = null, ChannelItemRecord? messageOrigin = null, List<AttachmentInfo>? unfurls = null)
     {
         Id = id;
         IsArchived = archived;
@@ -56,12 +56,12 @@ public sealed class Issue
         CommentsCount = commentsCount;
         DeletedBy = deletedBy;
         DeletedTime = deletedTime;
-        MessageOrigin = messageOrigin;
         Attachments = attachments;
         Channel = channel;
         Checklists = checklists;
         CustomFields = customFields;
         Description = description;
+        MessageOrigin = messageOrigin;
         Parents = parents;
         Sprints = sprints;
         SubItemsList = subItemsList;
@@ -260,15 +260,6 @@ public sealed class Issue
         set => _deletedTime.SetValue(value);
     }
 
-    private PropertyValue<ChannelItemRecord?> _messageOrigin = new PropertyValue<ChannelItemRecord?>(nameof(Issue), nameof(MessageOrigin), "messageOrigin");
-    
-    [JsonPropertyName("messageOrigin")]
-    public ChannelItemRecord? MessageOrigin
-    {
-        get => _messageOrigin.GetValue(InlineErrors);
-        set => _messageOrigin.SetValue(value);
-    }
-
     private PropertyValue<List<AttachmentInfo>> _attachments = new PropertyValue<List<AttachmentInfo>>(nameof(Issue), nameof(Attachments), "attachments", new List<AttachmentInfo>());
     
     [Required]
@@ -316,6 +307,15 @@ public sealed class Issue
     {
         get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
+    }
+
+    private PropertyValue<ChannelItemRecord?> _messageOrigin = new PropertyValue<ChannelItemRecord?>(nameof(Issue), nameof(MessageOrigin), "messageOrigin");
+    
+    [JsonPropertyName("messageOrigin")]
+    public ChannelItemRecord? MessageOrigin
+    {
+        get => _messageOrigin.GetValue(InlineErrors);
+        set => _messageOrigin.SetValue(value);
     }
 
     private PropertyValue<List<Issue>> _parents = new PropertyValue<List<Issue>>(nameof(Issue), nameof(Parents), "parents", new List<Issue>());
@@ -379,12 +379,12 @@ public sealed class Issue
         _commentsCount.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deletedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deletedTime.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _messageOrigin.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
         _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
         _checklists.SetAccessPath(parentChainPath, validateHasBeenSet);
         _customFields.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _messageOrigin.SetAccessPath(parentChainPath, validateHasBeenSet);
         _parents.SetAccessPath(parentChainPath, validateHasBeenSet);
         _sprints.SetAccessPath(parentChainPath, validateHasBeenSet);
         _subItemsList.SetAccessPath(parentChainPath, validateHasBeenSet);

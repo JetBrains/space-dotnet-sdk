@@ -34,13 +34,13 @@ public sealed class OrganizationForUpdateDTO
 {
     public OrganizationForUpdateDTO() { }
     
-    public OrganizationForUpdateDTO(string name, string? slogan = null, string? logoSmall = null, string? logo = null, string? logoId = null, string? slackWorkspace = null, bool? onboardingRequired = null, bool? userAgreementAccepted = null, ATimeZone? timezone = null, string? license = null, OrgSizeDTO? orgSize = null, OrgIndustryDTO? orgIndustry = null)
+    public OrganizationForUpdateDTO(string name, string? slogan = null, string? logoId = null, string? logoSmall = null, string? logo = null, string? slackWorkspace = null, bool? onboardingRequired = null, bool? userAgreementAccepted = null, ATimeZone? timezone = null, string? license = null, OrgSizeDTO? orgSize = null, OrgIndustryDTO? orgIndustry = null)
     {
         Name = name;
         Slogan = slogan;
+        LogoId = logoId;
         LogoSmall = logoSmall;
         Logo = logo;
-        LogoId = logoId;
         SlackWorkspace = slackWorkspace;
         IsOnboardingRequired = onboardingRequired;
         IsUserAgreementAccepted = userAgreementAccepted;
@@ -69,6 +69,15 @@ public sealed class OrganizationForUpdateDTO
         set => _slogan.SetValue(value);
     }
 
+    private PropertyValue<string?> _logoId = new PropertyValue<string?>(nameof(OrganizationForUpdateDTO), nameof(LogoId), "logoId");
+    
+    [JsonPropertyName("logoId")]
+    public string? LogoId
+    {
+        get => _logoId.GetValue(InlineErrors);
+        set => _logoId.SetValue(value);
+    }
+
     private PropertyValue<string?> _logoSmall = new PropertyValue<string?>(nameof(OrganizationForUpdateDTO), nameof(LogoSmall), "logoSmall");
     
     [JsonPropertyName("logoSmall")]
@@ -85,15 +94,6 @@ public sealed class OrganizationForUpdateDTO
     {
         get => _logo.GetValue(InlineErrors);
         set => _logo.SetValue(value);
-    }
-
-    private PropertyValue<string?> _logoId = new PropertyValue<string?>(nameof(OrganizationForUpdateDTO), nameof(LogoId), "logoId");
-    
-    [JsonPropertyName("logoId")]
-    public string? LogoId
-    {
-        get => _logoId.GetValue(InlineErrors);
-        set => _logoId.SetValue(value);
     }
 
     private PropertyValue<string?> _slackWorkspace = new PropertyValue<string?>(nameof(OrganizationForUpdateDTO), nameof(SlackWorkspace), "slackWorkspace");
@@ -164,9 +164,9 @@ public sealed class OrganizationForUpdateDTO
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _slogan.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _logoId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _logoSmall.SetAccessPath(parentChainPath, validateHasBeenSet);
         _logo.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _logoId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _slackWorkspace.SetAccessPath(parentChainPath, validateHasBeenSet);
         _onboardingRequired.SetAccessPath(parentChainPath, validateHasBeenSet);
         _userAgreementAccepted.SetAccessPath(parentChainPath, validateHasBeenSet);

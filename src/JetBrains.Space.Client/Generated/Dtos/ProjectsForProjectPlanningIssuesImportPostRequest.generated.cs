@@ -34,7 +34,7 @@ public class ProjectsForProjectPlanningIssuesImportPostRequest
 {
     public ProjectsForProjectPlanningIssuesImportPostRequest() { }
     
-    public ProjectsForProjectPlanningIssuesImportPostRequest(ImportMetadata metadata, List<ExternalIssue> issues, ImportMissingPolicy assigneeMissingPolicy, ImportMissingPolicy statusMissingPolicy, ImportExistsPolicy onExistsPolicy, bool dryRun, bool notifySubscribers = true)
+    public ProjectsForProjectPlanningIssuesImportPostRequest(ImportMetadata metadata, List<ExternalIssue> issues, ImportMissingPolicy assigneeMissingPolicy, ImportMissingPolicy statusMissingPolicy, ImportExistsPolicy onExistsPolicy, bool dryRun, bool notifySubscribers = false)
     {
         Metadata = metadata;
         Issues = issues;
@@ -104,6 +104,7 @@ public class ProjectsForProjectPlanningIssuesImportPostRequest
 
     private PropertyValue<bool> _notifySubscribers = new PropertyValue<bool>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(IsNotifySubscribers), "notifySubscribers");
     
+    [Obsolete("The option to notify subscribers during issue import is no longer supported (since 2022-08-11)")]
     [JsonPropertyName("notifySubscribers")]
     public bool IsNotifySubscribers
     {

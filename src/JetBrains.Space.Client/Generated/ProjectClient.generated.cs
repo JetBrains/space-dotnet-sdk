@@ -2049,7 +2049,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<IssueImportResult> ImportIssuesAsync(ProjectIdentifier project, ImportMetadata metadata, List<ExternalIssue> issues, ImportMissingPolicy assigneeMissingPolicy, ImportMissingPolicy statusMissingPolicy, ImportExistsPolicy onExistsPolicy, bool dryRun, bool notifySubscribers = true, Func<Partial<IssueImportResult>, Partial<IssueImportResult>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<IssueImportResult> ImportIssuesAsync(ProjectIdentifier project, ImportMetadata metadata, List<ExternalIssue> issues, ImportMissingPolicy assigneeMissingPolicy, ImportMissingPolicy statusMissingPolicy, ImportExistsPolicy onExistsPolicy, bool dryRun, bool notifySubscribers = false, Func<Partial<IssueImportResult>, Partial<IssueImportResult>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<IssueImportResult>()) : Partial<IssueImportResult>.Default()).ToString());

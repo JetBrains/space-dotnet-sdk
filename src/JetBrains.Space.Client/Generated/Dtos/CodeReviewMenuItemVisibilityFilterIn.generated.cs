@@ -29,14 +29,11 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public static class SdkInfo
+public interface CodeReviewMenuItemVisibilityFilterIn
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2022.2.0-DEV.110314";
+    public static CodeReviewEditableByMe CodeReviewEditableByMe()
+        => new CodeReviewEditableByMe();
+    
 }
 
