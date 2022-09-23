@@ -37,7 +37,7 @@ public sealed class BlogWebhookEvent
     
     public BlogWebhookEvent() { }
     
-    public BlogWebhookEvent(KMetaMod meta, ArticleRecord article, bool textChanged, string? action = null, Modification<TDMemberProfile>? author = null, Modification<DateTime>? created = null, Modification<string>? title = null, Modification<bool>? unpublished = null, Modification<List<TDMemberProfile>>? teams = null, Modification<List<TDMemberProfile>>? locations = null, Modification<long>? externalEntityInfo = null)
+    public BlogWebhookEvent(KMetaMod meta, ArticleRecord article, bool textChanged, string? action = null, Modification<TDMemberProfile>? author = null, Modification<DateTime>? created = null, Modification<string>? title = null, Modification<bool>? unpublished = null, Modification<List<TDTeam>>? teams = null, Modification<List<TDLocation>>? locations = null, Modification<long>? externalEntityInfo = null)
     {
         Meta = meta;
         Article = article;
@@ -127,19 +127,19 @@ public sealed class BlogWebhookEvent
         set => _unpublished.SetValue(value);
     }
 
-    private PropertyValue<Modification<List<TDMemberProfile>>?> _teams = new PropertyValue<Modification<List<TDMemberProfile>>?>(nameof(BlogWebhookEvent), nameof(Teams), "teams");
+    private PropertyValue<Modification<List<TDTeam>>?> _teams = new PropertyValue<Modification<List<TDTeam>>?>(nameof(BlogWebhookEvent), nameof(Teams), "teams");
     
     [JsonPropertyName("teams")]
-    public Modification<List<TDMemberProfile>>? Teams
+    public Modification<List<TDTeam>>? Teams
     {
         get => _teams.GetValue(InlineErrors);
         set => _teams.SetValue(value);
     }
 
-    private PropertyValue<Modification<List<TDMemberProfile>>?> _locations = new PropertyValue<Modification<List<TDMemberProfile>>?>(nameof(BlogWebhookEvent), nameof(Locations), "locations");
+    private PropertyValue<Modification<List<TDLocation>>?> _locations = new PropertyValue<Modification<List<TDLocation>>?>(nameof(BlogWebhookEvent), nameof(Locations), "locations");
     
     [JsonPropertyName("locations")]
-    public Modification<List<TDMemberProfile>>? Locations
+    public Modification<List<TDLocation>>? Locations
     {
         get => _locations.GetValue(InlineErrors);
         set => _locations.SetValue(value);

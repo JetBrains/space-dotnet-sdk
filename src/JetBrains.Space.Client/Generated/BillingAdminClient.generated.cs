@@ -38,6 +38,26 @@ public partial class BillingAdminClient : ISpaceClient
         _connection = connection;
     }
     
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>Grant permissions to other members</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task ActivateTrialAsync(Tier trialTier, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        
+        await _connection.RequestResourceAsync("PUT", $"api/http/billing-admin/trial{queryParameters.ToQueryString()}", 
+            new BillingAdminTrialPutRequest
+            { 
+                TrialTier = trialTier,
+            }, cancellationToken);
+    }
+    
+
     public OverdraftClient Overdrafts => new OverdraftClient(_connection);
     
     public partial class OverdraftClient : ISpaceClient

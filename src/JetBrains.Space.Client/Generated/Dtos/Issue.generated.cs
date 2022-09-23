@@ -34,7 +34,7 @@ public sealed class Issue
 {
     public Issue() { }
     
-    public Issue(string id, bool archived, PRProject projectRef, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<Issue> parents, List<SprintRecord> sprints, Checklist subItemsList, string? projectId = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, int? subItemsCount = null, int? doneSubItemsCount = null, int? commentsCount = null, CPrincipal? deletedBy = null, DateTime? deletedTime = null, string? description = null, ChannelItemRecord? messageOrigin = null, List<AttachmentInfo>? unfurls = null)
+    public Issue(string id, bool archived, PRProject projectRef, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<Issue> parents, List<SprintRecord> sprints, Checklist subItemsList, string? projectId = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, int? subItemsCount = null, int? doneSubItemsCount = null, int? commentsCount = null, CPrincipal? deletedBy = null, DateTime? deletedTime = null, string? description = null, string? messagePermalink = null, List<AttachmentInfo>? unfurls = null)
     {
         Id = id;
         IsArchived = archived;
@@ -61,7 +61,7 @@ public sealed class Issue
         Checklists = checklists;
         CustomFields = customFields;
         Description = description;
-        MessageOrigin = messageOrigin;
+        MessagePermalink = messagePermalink;
         Parents = parents;
         Sprints = sprints;
         SubItemsList = subItemsList;
@@ -309,13 +309,13 @@ public sealed class Issue
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<ChannelItemRecord?> _messageOrigin = new PropertyValue<ChannelItemRecord?>(nameof(Issue), nameof(MessageOrigin), "messageOrigin");
+    private PropertyValue<string?> _messagePermalink = new PropertyValue<string?>(nameof(Issue), nameof(MessagePermalink), "messagePermalink");
     
-    [JsonPropertyName("messageOrigin")]
-    public ChannelItemRecord? MessageOrigin
+    [JsonPropertyName("messagePermalink")]
+    public string? MessagePermalink
     {
-        get => _messageOrigin.GetValue(InlineErrors);
-        set => _messageOrigin.SetValue(value);
+        get => _messagePermalink.GetValue(InlineErrors);
+        set => _messagePermalink.SetValue(value);
     }
 
     private PropertyValue<List<Issue>> _parents = new PropertyValue<List<Issue>>(nameof(Issue), nameof(Parents), "parents", new List<Issue>());
@@ -384,7 +384,7 @@ public sealed class Issue
         _checklists.SetAccessPath(parentChainPath, validateHasBeenSet);
         _customFields.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _messageOrigin.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _messagePermalink.SetAccessPath(parentChainPath, validateHasBeenSet);
         _parents.SetAccessPath(parentChainPath, validateHasBeenSet);
         _sprints.SetAccessPath(parentChainPath, validateHasBeenSet);
         _subItemsList.SetAccessPath(parentChainPath, validateHasBeenSet);

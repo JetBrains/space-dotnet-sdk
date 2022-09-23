@@ -32,38 +32,11 @@ namespace JetBrains.Space.Client;
 public interface BlockNode
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static RtBlockquote RtBlockquote(List<BlockNode> children, List<DocumentMark> marks)
-        => new RtBlockquote(children: children, marks: marks);
-    
-    public static RtBulletList RtBulletList(List<RtListItem> children, List<DocumentMark> marks)
-        => new RtBulletList(children: children, marks: marks);
-    
     public static RtCode RtCode(string lang, List<RtText> children)
         => new RtCode(lang: lang, children: children);
     
-    public static RtDocument RtDocument(List<BlockNode> children, List<DocumentMark> marks)
-        => new RtDocument(children: children, marks: marks);
-    
-    public static RtHeading RtHeading(int level, List<InlineNode> children, List<DocumentMark> marks)
-        => new RtHeading(level: level, children: children, marks: marks);
-    
     public static RtHorizontalRule RtHorizontalRule()
         => new RtHorizontalRule();
-    
-    public static RtListItem RtListItem(List<BlockNode> children, List<DocumentMark> marks)
-        => new RtListItem(children: children, marks: marks);
-    
-    public static RtOrderedList RtOrderedList(int startNumber, List<RtListItem> children, List<DocumentMark> marks)
-        => new RtOrderedList(startNumber: startNumber, children: children, marks: marks);
-    
-    public static RtParagraph RtParagraph(List<InlineNode> children, List<DocumentMark> marks)
-        => new RtParagraph(children: children, marks: marks);
-    
-    public static RtTable RtTable(List<RtTableRow> children, List<DocumentMark> marks)
-        => new RtTable(children: children, marks: marks);
-    
-    public static RtTableRow RtTableRow(List<RtTableRowContent> children, List<DocumentMark> marks)
-        => new RtTableRow(children: children, marks: marks);
     
 }
 

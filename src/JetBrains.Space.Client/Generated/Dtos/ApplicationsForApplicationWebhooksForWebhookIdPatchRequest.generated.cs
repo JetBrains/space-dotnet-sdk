@@ -34,7 +34,7 @@ public class ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
 {
     public ApplicationsForApplicationWebhooksForWebhookIdPatchRequest() { }
     
-    public ApplicationsForApplicationWebhooksForWebhookIdPatchRequest(List<int> acceptedHttpResponseCodes, string? name = null, bool? enabled = null, bool? doRetries = null, string? description = null, ExternalEndpointUpdateDTO? endpoint = null, EndpointAuthUpdateDTO? endpointAuth = null)
+    public ApplicationsForApplicationWebhooksForWebhookIdPatchRequest(List<int> acceptedHttpResponseCodes, string? name = null, bool? enabled = null, bool? doRetries = null, string? description = null, ExternalEndpointUpdateDTO? endpoint = null, EndpointAuthUpdateDTO? endpointAuth = null, string? payloadFields = null)
     {
         Name = name;
         Description = description;
@@ -43,6 +43,7 @@ public class ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
         EndpointAuth = endpointAuth;
         AcceptedHttpResponseCodes = acceptedHttpResponseCodes;
         IsDoRetries = doRetries;
+        PayloadFields = payloadFields;
     }
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ApplicationsForApplicationWebhooksForWebhookIdPatchRequest), nameof(Name), "name");
@@ -126,6 +127,18 @@ public class ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
         set => _doRetries.SetValue(value);
     }
 
+    private PropertyValue<string?> _payloadFields = new PropertyValue<string?>(nameof(ApplicationsForApplicationWebhooksForWebhookIdPatchRequest), nameof(PayloadFields), "payloadFields");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("payloadFields")]
+    public string? PayloadFields
+    {
+        get => _payloadFields.GetValue(InlineErrors);
+        set => _payloadFields.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -135,6 +148,7 @@ public class ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
         _endpointAuth.SetAccessPath(parentChainPath, validateHasBeenSet);
         _acceptedHttpResponseCodes.SetAccessPath(parentChainPath, validateHasBeenSet);
         _doRetries.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _payloadFields.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

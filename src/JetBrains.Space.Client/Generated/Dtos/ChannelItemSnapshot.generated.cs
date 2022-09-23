@@ -30,8 +30,11 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class ChannelItemSnapshot
-     : IPropagatePropertyAccessPath
+     : AttachmentUnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ChannelItemSnapshot";
+    
     public ChannelItemSnapshot() { }
     
     public ChannelItemSnapshot(string id, string text, CPrincipal author, DateTime created, long time, string? channelId = null, M2ItemContentDetails? details = null, List<AttachmentInfo>? attachments = null, List<EntityMention>? mentions = null)

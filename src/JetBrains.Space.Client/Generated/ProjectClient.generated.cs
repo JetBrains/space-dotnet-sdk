@@ -69,6 +69,14 @@ public partial class ProjectClient : ISpaceClient
     /// <summary>
     /// Get/search all projects. Parameters are applied as 'AND' filters.
     /// </summary>
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View project details</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
     public async Task<Batch<PRProject>> GetAllProjectsAsync(string? skip = null, int? top = 100, string? term = null, string? tag = null, bool? starred = null, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
@@ -86,12 +94,28 @@ public partial class ProjectClient : ISpaceClient
     /// <summary>
     /// Get/search all projects. Parameters are applied as 'AND' filters.
     /// </summary>
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View project details</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
     public IAsyncEnumerable<PRProject> GetAllProjectsAsyncEnumerable(string? skip = null, int? top = 100, string? term = null, string? tag = null, bool? starred = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsAsync(top: top, term: term, tag: tag, starred: starred, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
 
     /// <summary>
     /// Get all projects in which given user is a collaborator
     /// </summary>
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View project details</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
     public async Task<Batch<PRProject>> GetAllProjectsByCollaboratorAsync(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
@@ -106,12 +130,28 @@ public partial class ProjectClient : ISpaceClient
     /// <summary>
     /// Get all projects in which given user is a collaborator
     /// </summary>
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View project details</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
     public IAsyncEnumerable<PRProject> GetAllProjectsByCollaboratorAsyncEnumerable(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsByCollaboratorAsync(profile: profile, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
 
     /// <summary>
     /// Get all projects for a member
     /// </summary>
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View project details</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
     public async Task<Batch<PRProject>> GetAllProjectsByMemberAsync(ProfileIdentifier member, string? skip = null, int? top = 100, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
@@ -126,9 +166,25 @@ public partial class ProjectClient : ISpaceClient
     /// <summary>
     /// Get all projects for a member
     /// </summary>
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View project details</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
     public IAsyncEnumerable<PRProject> GetAllProjectsByMemberAsyncEnumerable(ProfileIdentifier member, string? skip = null, int? top = 100, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsByMemberAsync(member: member, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
 
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View project details</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
     public async Task<Batch<PRProject>> GetAllProjectsWithRightAsync(string rightCode, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
@@ -143,9 +199,25 @@ public partial class ProjectClient : ISpaceClient
     }
     
     
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View project details</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
     public IAsyncEnumerable<PRProject> GetAllProjectsWithRightAsyncEnumerable(string rightCode, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsWithRightAsync(rightCode: rightCode, top: top, term: term, path: path, starred: starred, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
 
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View project details</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
     public async Task<Batch<PRProject>> GetAllProjectsWithRightCodeAsync(string right, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
@@ -160,13 +232,29 @@ public partial class ProjectClient : ISpaceClient
     }
     
     
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View project details</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
     public IAsyncEnumerable<PRProject> GetAllProjectsWithRightCodeAsyncEnumerable(string right, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsWithRightCodeAsync(right: right, top: top, term: term, path: path, starred: starred, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
 
     /// <summary>
     /// Get all projects for a team
     /// </summary>
-    public async Task<Batch<PRProject>> GetAllProjectsByTeamAsync(string team, string? skip = null, int? top = 100, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View project details</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task<Batch<PRProject>> GetAllProjectsByTeamAsync(TeamIdentifier team, string? skip = null, int? top = 100, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         if (skip != null) queryParameters.Append("$skip", skip);
@@ -180,12 +268,28 @@ public partial class ProjectClient : ISpaceClient
     /// <summary>
     /// Get all projects for a team
     /// </summary>
-    public IAsyncEnumerable<PRProject> GetAllProjectsByTeamAsyncEnumerable(string team, string? skip = null, int? top = 100, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View project details</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public IAsyncEnumerable<PRProject> GetAllProjectsByTeamAsyncEnumerable(TeamIdentifier team, string? skip = null, int? top = 100, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsByTeamAsync(team: team, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
 
     /// <summary>
     /// Get project by ID or project key
     /// </summary>
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View project details</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
     public async Task<PRProject> GetProjectAsync(ProjectIdentifier project, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
@@ -198,6 +302,14 @@ public partial class ProjectClient : ISpaceClient
     /// <summary>
     /// Update an existing project. Optional parameters will be ignored when not specified and updated otherwise.
     /// </summary>
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>Manage project permission scheme</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
     public async Task<PRProject> UpdateProjectAsync(ProjectIdentifier project, ProjectKey? key = null, string? name = null, string? description = null, bool? @private = null, List<string>? tags = null, string? icon = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
@@ -562,11 +674,12 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task CreateAsync(ProjectIdentifier project, string key, string name, string description, List<DeployTargetRepositoryDTO>? repositories = null, CancellationToken cancellationToken = default)
+            public async Task<DeployTargetRecord> CreateAsync(ProjectIdentifier project, string key, string name, string description, List<DeployTargetRepositoryDTO>? repositories = null, Func<Partial<DeployTargetRecord>, Partial<DeployTargetRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<DeployTargetRecord>()) : Partial<DeployTargetRecord>.Default()).ToString());
                 
-                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/automation/deployment-targets{queryParameters.ToQueryString()}", 
+                return await _connection.RequestResourceAsync<ProjectsForProjectAutomationDeploymentTargetsPostRequest, DeployTargetRecord>("POST", $"api/http/projects/{project}/automation/deployment-targets{queryParameters.ToQueryString()}", 
                     new ProjectsForProjectAutomationDeploymentTargetsPostRequest
                     { 
                         Key = key,
@@ -586,7 +699,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Batch<DeployTargetDTO>> ListAsync(ProjectIdentifier project, string? search = null, string? sortBy = null, ColumnSortOrder? sortOrder = null, string? skip = null, int? top = 100, Func<Partial<Batch<DeployTargetDTO>>, Partial<Batch<DeployTargetDTO>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Batch<DeployTargetRecord>> ListAsync(ProjectIdentifier project, string? search = null, string? sortBy = null, ColumnSortOrder? sortOrder = null, string? skip = null, int? top = 100, Func<Partial<Batch<DeployTargetRecord>>, Partial<Batch<DeployTargetRecord>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 if (search != null) queryParameters.Append("search", search);
@@ -594,9 +707,9 @@ public partial class ProjectClient : ISpaceClient
                 queryParameters.Append("sortOrder", sortOrder.ToEnumString());
                 if (skip != null) queryParameters.Append("$skip", skip);
                 if (top != null) queryParameters.Append("$top", top?.ToString());
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<DeployTargetDTO>>()) : Partial<Batch<DeployTargetDTO>>.Default()).ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<DeployTargetRecord>>()) : Partial<Batch<DeployTargetRecord>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<DeployTargetDTO>>("GET", $"api/http/projects/{project}/automation/deployment-targets{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<DeployTargetRecord>>("GET", $"api/http/projects/{project}/automation/deployment-targets{queryParameters.ToQueryString()}", cancellationToken);
             }
             
             
@@ -609,8 +722,8 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public IAsyncEnumerable<DeployTargetDTO> ListAsyncEnumerable(ProjectIdentifier project, string? search = null, string? sortBy = null, ColumnSortOrder? sortOrder = null, string? skip = null, int? top = 100, Func<Partial<DeployTargetDTO>, Partial<DeployTargetDTO>>? partial = null, CancellationToken cancellationToken = default)
-                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListAsync(project: project, search: search, sortBy: sortBy, sortOrder: sortOrder, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<DeployTargetDTO>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DeployTargetDTO>.Default())), skip, cancellationToken);
+            public IAsyncEnumerable<DeployTargetRecord> ListAsyncEnumerable(ProjectIdentifier project, string? search = null, string? sortBy = null, ColumnSortOrder? sortOrder = null, string? skip = null, int? top = 100, Func<Partial<DeployTargetRecord>, Partial<DeployTargetRecord>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListAsync(project: project, search: search, sortBy: sortBy, sortOrder: sortOrder, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<DeployTargetRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DeployTargetRecord>.Default())), skip, cancellationToken);
         
             /// <remarks>
             /// Required permissions:
@@ -641,21 +754,21 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<DeployTargetRecord> GetAsync(ProjectIdentifier project, TargetIdentifier identifier, Func<Partial<DeployTargetRecord>, Partial<DeployTargetRecord>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<DeployTargetRecord> GetAsync(ProjectIdentifier project, TargetIdentifier target, Func<Partial<DeployTargetRecord>, Partial<DeployTargetRecord>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<DeployTargetRecord>()) : Partial<DeployTargetRecord>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<DeployTargetRecord>("GET", $"api/http/projects/{project}/automation/deployment-targets/{identifier}{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<DeployTargetRecord>("GET", $"api/http/projects/{project}/automation/deployment-targets/{target}{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
-            public async Task UpdateAsync(ProjectIdentifier project, TargetIdentifier identifier, string name, string description, List<DeployTargetRepositoryDTO> repositories, bool manualControl = true, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null, CancellationToken cancellationToken = default)
+            public async Task UpdateAsync(ProjectIdentifier project, TargetIdentifier target, string? name = null, string? description = null, List<DeployTargetRepositoryDTO>? repositories = null, bool? manualControl = null, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("PUT", $"api/http/projects/{project}/automation/deployment-targets/{identifier}{queryParameters.ToQueryString()}", 
-                    new ProjectsForProjectAutomationDeploymentTargetsForIdentifierPutRequest
+                await _connection.RequestResourceAsync("PUT", $"api/http/projects/{project}/automation/deployment-targets/{target}{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest
                     { 
                         Name = name,
                         Description = description,
@@ -676,11 +789,11 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task DeleteAsync(ProjectIdentifier project, TargetIdentifier identifier, CancellationToken cancellationToken = default)
+            public async Task DeleteAsync(ProjectIdentifier project, TargetIdentifier target, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/automation/deployment-targets/{identifier}{queryParameters.ToQueryString()}", cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/automation/deployment-targets/{target}{queryParameters.ToQueryString()}", cancellationToken);
             }
             
         
@@ -2828,6 +2941,14 @@ public partial class ProjectClient : ISpaceClient
         /// <summary>
         /// Request access to a project
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>List restricted projects</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task RequestAccessToProjectAsync(ProjectIdentifier project, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -2839,6 +2960,17 @@ public partial class ProjectClient : ISpaceClient
         /// <summary>
         /// List private projects in the current organization
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>List restricted projects</term>
+        /// </item>
+        /// <item>
+        /// <term>View project details</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<List<PRPrivateProject>> GetAllPrivateProjectsAsync(Func<Partial<PRPrivateProject>, Partial<PRPrivateProject>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -2933,6 +3065,16 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
+        public async Task<List<BranchInfo>> CommitBranchesAsync(ProjectIdentifier project, string repository, string commit, Func<Partial<BranchInfo>, Partial<BranchInfo>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("commit", commit);
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<BranchInfo>()) : Partial<BranchInfo>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<BranchInfo>>("GET", $"api/http/projects/{project}/repositories/{repository}/commit-branches{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
+    
         public async Task<Batch<GitCommitInfo>> CommitsAsync(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<GitCommitInfo>>, Partial<Batch<GitCommitInfo>>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -2947,6 +3089,17 @@ public partial class ProjectClient : ISpaceClient
         
         public IAsyncEnumerable<GitCommitInfo> CommitsAsyncEnumerable(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => CommitsAsync(project: project, repository: repository, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<GitCommitInfo>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<GitCommitInfo>.Default())), skip, cancellationToken);
+    
+        public async Task<List<GitFile>> FilesAsync(ProjectIdentifier project, string repository, string commit, string path, Func<Partial<GitFile>, Partial<GitFile>>? partial = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("commit", commit);
+            queryParameters.Append("path", path);
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitFile>()) : Partial<GitFile>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<GitFile>>("GET", $"api/http/projects/{project}/repositories/{repository}/files{queryParameters.ToQueryString()}", cancellationToken);
+        }
+        
     
         public async Task<RepositoryUrls> UrlAsync(ProjectIdentifier project, string repository, Func<Partial<RepositoryUrls>, Partial<RepositoryUrls>>? partial = null, CancellationToken cancellationToken = default)
         {
@@ -2964,6 +3117,39 @@ public partial class ProjectClient : ISpaceClient
             await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/repositories/{repository}{queryParameters.ToQueryString()}", cancellationToken);
         }
         
+    
+        public ReadonlyClient Readonly => new ReadonlyClient(_connection);
+        
+        public partial class ReadonlyClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public ReadonlyClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task SetRepositoryFrozenStateAsync(ProjectIdentifier project, string repository, bool freeze, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/readonly{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectRepositoriesForRepositoryReadonlyPostRequest
+                    { 
+                        IsFreeze = freeze,
+                    }, cancellationToken);
+            }
+            
+        
+            public async Task<bool> GetRepositoryFrozenStateAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                return await _connection.RequestResourceAsync<bool>("GET", $"api/http/projects/{project}/repositories/{repository}/readonly{queryParameters.ToQueryString()}", cancellationToken);
+            }
+            
+        
+        }
     
         public RevisionClient Revisions => new RevisionClient(_connection);
         
@@ -3440,6 +3626,14 @@ public partial class ProjectClient : ISpaceClient
         /// <summary>
         /// List all tags, mapped to the number of projects they are used in
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View project details</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<List<PRTag>> GetAllTagsAsync(Func<Partial<PRTag>, Partial<PRTag>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3592,6 +3786,14 @@ public partial class ProjectClient : ISpaceClient
             /// <summary>
             /// Returns the list of all project administrators
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View project details</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<List<TDMemberProfile>> GetAllAdminsAsync(ProjectIdentifier project, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -3615,6 +3817,14 @@ public partial class ProjectClient : ISpaceClient
                 /// <summary>
                 /// Add a member as administrator to a project
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage project permission scheme</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task AddAdministratorAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3630,6 +3840,14 @@ public partial class ProjectClient : ISpaceClient
                 /// <summary>
                 /// Remove a member as administrator from a project
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage project permission scheme</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task RemoveAdministratorAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3654,6 +3872,14 @@ public partial class ProjectClient : ISpaceClient
                 /// <summary>
                 /// Add a team as administrators to a project
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage project permission scheme</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task AddAdministratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3669,6 +3895,14 @@ public partial class ProjectClient : ISpaceClient
                 /// <summary>
                 /// Remove a team as administrators from a project
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage project permission scheme</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task RemoveAdministratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3692,6 +3926,14 @@ public partial class ProjectClient : ISpaceClient
                 _connection = connection;
             }
             
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View project details</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<List<TDMemberProfile>> GetAllCollaboratorsProfilesAsync(ProjectIdentifier project, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -3712,6 +3954,14 @@ public partial class ProjectClient : ISpaceClient
                     _connection = connection;
                 }
                 
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage project permission scheme</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task AddACollaboratorAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3724,6 +3974,14 @@ public partial class ProjectClient : ISpaceClient
                 }
                 
             
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View project details</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task<List<TDMemberProfile>> GetAllIndividualCollaboratorsAsync(ProjectIdentifier project, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3733,6 +3991,14 @@ public partial class ProjectClient : ISpaceClient
                 }
                 
             
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage project permission scheme</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task RemoveACollaboratorAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3755,6 +4021,14 @@ public partial class ProjectClient : ISpaceClient
                     _connection = connection;
                 }
                 
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage project permission scheme</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task AddACollaboratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3767,6 +4041,14 @@ public partial class ProjectClient : ISpaceClient
                 }
                 
             
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View project details</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task<List<TDTeam>> GetAllCollaboratorsTeamsAsync(ProjectIdentifier project, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3776,6 +4058,14 @@ public partial class ProjectClient : ISpaceClient
                 }
                 
             
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage project permission scheme</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task RemoveACollaboratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3865,6 +4155,14 @@ public partial class ProjectClient : ISpaceClient
                 /// <summary>
                 /// Add a member to a project
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage project permission scheme</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task AddMemberAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3880,6 +4178,14 @@ public partial class ProjectClient : ISpaceClient
                 /// <summary>
                 /// Remove a member from a project
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage project permission scheme</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task RemoveMemberAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3904,6 +4210,14 @@ public partial class ProjectClient : ISpaceClient
                 /// <summary>
                 /// Add a team to a project
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage project permission scheme</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task AddTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3919,6 +4233,14 @@ public partial class ProjectClient : ISpaceClient
                 /// <summary>
                 /// Remove a team from a project
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Manage project permission scheme</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task RemoveTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3945,6 +4267,14 @@ public partial class ProjectClient : ISpaceClient
             /// <summary>
             /// Get organization members who can view a project
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View project details</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<Batch<TDMemberProfile>> OrganizationProfilesThatCanViewTheProjectAsync(ProjectIdentifier project, string term, bool meOnTop = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -3961,6 +4291,14 @@ public partial class ProjectClient : ISpaceClient
             /// <summary>
             /// Get organization members who can view a project
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View project details</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public IAsyncEnumerable<TDMemberProfile> OrganizationProfilesThatCanViewTheProjectAsyncEnumerable(ProjectIdentifier project, string term, bool meOnTop = false, string? skip = null, int? top = 100, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => OrganizationProfilesThatCanViewTheProjectAsync(project: project, term: term, meOnTop: meOnTop, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
         
@@ -4016,7 +4354,7 @@ public partial class ProjectClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<CommitSetReviewRecord> CreateReviewBasedOnCommitSetAsync(ProjectIdentifier project, string repository, List<string> revisions, string? title = null, List<string>? authorProfileIds = null, Func<Partial<CommitSetReviewRecord>, Partial<CommitSetReviewRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<CommitSetReviewRecord> CreateReviewBasedOnCommitSetAsync(ProjectIdentifier project, string repository, List<string> revisions, string? title = null, List<string>? authorProfileIds = null, FileSetInReview? files = null, Func<Partial<CommitSetReviewRecord>, Partial<CommitSetReviewRecord>>? partial = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<CommitSetReviewRecord>()) : Partial<CommitSetReviewRecord>.Default()).ToString());
@@ -4028,6 +4366,7 @@ public partial class ProjectClient : ISpaceClient
                     Revisions = revisions,
                     Title = title,
                     AuthorProfileIds = authorProfileIds,
+                    Files = files,
                 }, cancellationToken);
         }
         
@@ -4203,23 +4542,6 @@ public partial class ProjectClient : ISpaceClient
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
             
             return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/suggested-reviewers{queryParameters.ToQueryString()}", cancellationToken);
-        }
-        
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>View code reviews</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<List<ReviewCommitIn>> GetUnreadRevisionsAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<ReviewCommitIn>, Partial<ReviewCommitIn>>? partial = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<ReviewCommitIn>()) : Partial<ReviewCommitIn>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<List<ReviewCommitIn>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/unread-revisions{queryParameters.ToQueryString()}", cancellationToken);
         }
         
     

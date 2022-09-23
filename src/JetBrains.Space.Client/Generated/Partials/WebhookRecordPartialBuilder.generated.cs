@@ -82,5 +82,8 @@ public static class WebhookRecordPartialExtensions
     public static Partial<WebhookRecord> WithIsDoRetries(this Partial<WebhookRecord> it)
         => it.AddFieldName("doRetries");
     
+    public static Partial<WebhookRecord> WithPayloadFields(this Partial<WebhookRecord> it)
+        => it.AddFieldName("payloadFields");
+    
 }
 

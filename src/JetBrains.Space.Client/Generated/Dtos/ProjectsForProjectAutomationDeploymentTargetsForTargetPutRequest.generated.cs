@@ -29,12 +29,12 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class ProjectsForProjectAutomationDeploymentTargetsForIdentifierPutRequest
+public class ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest
      : IPropagatePropertyAccessPath
 {
-    public ProjectsForProjectAutomationDeploymentTargetsForIdentifierPutRequest() { }
+    public ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest() { }
     
-    public ProjectsForProjectAutomationDeploymentTargetsForIdentifierPutRequest(string name, string description, List<DeployTargetRepositoryDTO> repositories, bool manualControl = true, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null)
+    public ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest(string? name = null, string? description = null, List<DeployTargetRepositoryDTO>? repositories = null, bool? manualControl = null, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null)
     {
         Name = name;
         Description = description;
@@ -44,46 +44,55 @@ public class ProjectsForProjectAutomationDeploymentTargetsForIdentifierPutReques
         FailTimeoutMinutes = failTimeoutMinutes;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectAutomationDeploymentTargetsForIdentifierPutRequest), nameof(Name), "name");
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest), nameof(Name), "name");
     
-    [Required]
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("name")]
-    public string Name
+    public string? Name
     {
         get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _description = new PropertyValue<string>(nameof(ProjectsForProjectAutomationDeploymentTargetsForIdentifierPutRequest), nameof(Description), "description");
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest), nameof(Description), "description");
     
-    [Required]
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("description")]
-    public string Description
+    public string? Description
     {
         get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<List<DeployTargetRepositoryDTO>> _repositories = new PropertyValue<List<DeployTargetRepositoryDTO>>(nameof(ProjectsForProjectAutomationDeploymentTargetsForIdentifierPutRequest), nameof(Repositories), "repositories", new List<DeployTargetRepositoryDTO>());
+    private PropertyValue<List<DeployTargetRepositoryDTO>?> _repositories = new PropertyValue<List<DeployTargetRepositoryDTO>?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest), nameof(Repositories), "repositories");
     
-    [Required]
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("repositories")]
-    public List<DeployTargetRepositoryDTO> Repositories
+    public List<DeployTargetRepositoryDTO>? Repositories
     {
         get => _repositories.GetValue(InlineErrors);
         set => _repositories.SetValue(value);
     }
 
-    private PropertyValue<bool> _manualControl = new PropertyValue<bool>(nameof(ProjectsForProjectAutomationDeploymentTargetsForIdentifierPutRequest), nameof(IsManualControl), "manualControl");
+    private PropertyValue<bool?> _manualControl = new PropertyValue<bool?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest), nameof(IsManualControl), "manualControl");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("manualControl")]
-    public bool IsManualControl
+    public bool? IsManualControl
     {
         get => _manualControl.GetValue(InlineErrors);
         set => _manualControl.SetValue(value);
     }
 
-    private PropertyValue<int?> _hangTimeoutMinutes = new PropertyValue<int?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForIdentifierPutRequest), nameof(HangTimeoutMinutes), "hangTimeoutMinutes");
+    private PropertyValue<int?> _hangTimeoutMinutes = new PropertyValue<int?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest), nameof(HangTimeoutMinutes), "hangTimeoutMinutes");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -95,7 +104,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsForIdentifierPutReques
         set => _hangTimeoutMinutes.SetValue(value);
     }
 
-    private PropertyValue<int?> _failTimeoutMinutes = new PropertyValue<int?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForIdentifierPutRequest), nameof(FailTimeoutMinutes), "failTimeoutMinutes");
+    private PropertyValue<int?> _failTimeoutMinutes = new PropertyValue<int?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest), nameof(FailTimeoutMinutes), "failTimeoutMinutes");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]

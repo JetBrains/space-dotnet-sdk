@@ -34,12 +34,13 @@ public class ProjectsForProjectCodeReviewsCommitSetReviewPostRequest
 {
     public ProjectsForProjectCodeReviewsCommitSetReviewPostRequest() { }
     
-    public ProjectsForProjectCodeReviewsCommitSetReviewPostRequest(string repository, List<string> revisions, string? title = null, List<string>? authorProfileIds = null)
+    public ProjectsForProjectCodeReviewsCommitSetReviewPostRequest(string repository, List<string> revisions, string? title = null, List<string>? authorProfileIds = null, FileSetInReview? files = null)
     {
         Repository = repository;
         Revisions = revisions;
         Title = title;
         AuthorProfileIds = authorProfileIds;
+        Files = files;
     }
     
     private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(Repository), "repository");
@@ -86,12 +87,25 @@ public class ProjectsForProjectCodeReviewsCommitSetReviewPostRequest
         set => _authorProfileIds.SetValue(value);
     }
 
+    private PropertyValue<FileSetInReview?> _files = new PropertyValue<FileSetInReview?>(nameof(ProjectsForProjectCodeReviewsCommitSetReviewPostRequest), nameof(Files), "files");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("files")]
+    public FileSetInReview? Files
+    {
+        get => _files.GetValue(InlineErrors);
+        set => _files.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
         _revisions.SetAccessPath(parentChainPath, validateHasBeenSet);
         _title.SetAccessPath(parentChainPath, validateHasBeenSet);
         _authorProfileIds.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _files.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

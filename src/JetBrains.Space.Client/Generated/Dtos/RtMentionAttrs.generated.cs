@@ -29,70 +29,17 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class RtMentionAttrs
-     : IPropagatePropertyAccessPath
+public interface RtMentionAttrs
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public RtMentionAttrs() { }
+    public static RtPredefinedMentionAttrs RtPredefinedMentionAttrs(string type)
+        => new RtPredefinedMentionAttrs(type: type);
     
-    public RtMentionAttrs(string href, string id, string type, string clientView)
-    {
-        Href = href;
-        Id = id;
-        Type = type;
-        ClientView = clientView;
-    }
+    public static RtProfileMentionAttrs RtProfileMentionAttrs(string id, string userName, string href)
+        => new RtProfileMentionAttrs(id: id, userName: userName, href: href);
     
-    private PropertyValue<string> _href = new PropertyValue<string>(nameof(RtMentionAttrs), nameof(Href), "href");
+    public static RtTeamMentionAttrs RtTeamMentionAttrs(string id, string teamName, string href)
+        => new RtTeamMentionAttrs(id: id, teamName: teamName, href: href);
     
-    [Required]
-    [JsonPropertyName("href")]
-    public string Href
-    {
-        get => _href.GetValue(InlineErrors);
-        set => _href.SetValue(value);
-    }
-
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(RtMentionAttrs), nameof(Id), "id");
-    
-    [Required]
-    [JsonPropertyName("id")]
-    public string Id
-    {
-        get => _id.GetValue(InlineErrors);
-        set => _id.SetValue(value);
-    }
-
-    private PropertyValue<string> _type = new PropertyValue<string>(nameof(RtMentionAttrs), nameof(Type), "type");
-    
-    [Required]
-    [JsonPropertyName("type")]
-    public string Type
-    {
-        get => _type.GetValue(InlineErrors);
-        set => _type.SetValue(value);
-    }
-
-    private PropertyValue<string> _clientView = new PropertyValue<string>(nameof(RtMentionAttrs), nameof(ClientView), "clientView");
-    
-    [Required]
-    [JsonPropertyName("clientView")]
-    public string ClientView
-    {
-        get => _clientView.GetValue(InlineErrors);
-        set => _clientView.SetValue(value);
-    }
-
-    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-        _href.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _clientView.SetAccessPath(parentChainPath, validateHasBeenSet);
-    }
-    
-    /// <inheritdoc />
-    [JsonPropertyName("$errors")]
-    public List<ApiInlineError> InlineErrors { get; set; } = new();
-
 }
 

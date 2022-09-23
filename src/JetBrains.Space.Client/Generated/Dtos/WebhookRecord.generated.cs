@@ -34,7 +34,7 @@ public sealed class WebhookRecord
 {
     public WebhookRecord() { }
     
-    public WebhookRecord(string id, bool archived, ESApp app, List<SubscriptionDTO> subscriptions, string name, bool useAppEndpoint, EndpointDTO endpoint, bool useAppEndpointAuth, EndpointAuthDTO endpointAuth, bool enabled, List<int> acceptedHttpResponseCodes, bool doRetries, string? description = null)
+    public WebhookRecord(string id, bool archived, ESApp app, List<SubscriptionDTO> subscriptions, string name, bool useAppEndpoint, EndpointDTO endpoint, bool useAppEndpointAuth, EndpointAuthDTO endpointAuth, bool enabled, List<int> acceptedHttpResponseCodes, bool doRetries, string? description = null, string? payloadFields = null)
     {
         Id = id;
         IsArchived = archived;
@@ -49,6 +49,7 @@ public sealed class WebhookRecord
         IsEnabled = enabled;
         AcceptedHttpResponseCodes = acceptedHttpResponseCodes;
         IsDoRetries = doRetries;
+        PayloadFields = payloadFields;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(WebhookRecord), nameof(Id), "id");
@@ -180,6 +181,15 @@ public sealed class WebhookRecord
         set => _doRetries.SetValue(value);
     }
 
+    private PropertyValue<string?> _payloadFields = new PropertyValue<string?>(nameof(WebhookRecord), nameof(PayloadFields), "payloadFields");
+    
+    [JsonPropertyName("payloadFields")]
+    public string? PayloadFields
+    {
+        get => _payloadFields.GetValue(InlineErrors);
+        set => _payloadFields.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -195,6 +205,7 @@ public sealed class WebhookRecord
         _enabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _acceptedHttpResponseCodes.SetAccessPath(parentChainPath, validateHasBeenSet);
         _doRetries.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _payloadFields.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

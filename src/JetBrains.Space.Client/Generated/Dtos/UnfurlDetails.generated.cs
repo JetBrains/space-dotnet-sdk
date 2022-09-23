@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public interface UnfurlDetails
-     : IPropagatePropertyAccessPath
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
 }
 

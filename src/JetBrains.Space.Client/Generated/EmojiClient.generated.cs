@@ -110,12 +110,13 @@ public partial class EmojiClient : ISpaceClient
     /// <summary>
     /// Search for emoji
     /// </summary>
-    public async Task<Batch<EmojiSearchMatchData>> SearchEmojiAsync(string query, string? skip = null, int? top = 100, Func<Partial<Batch<EmojiSearchMatchData>>, Partial<Batch<EmojiSearchMatchData>>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<Batch<EmojiSearchMatchData>> SearchEmojiAsync(string query, string? skip = null, int? top = 100, string? version = null, Func<Partial<Batch<EmojiSearchMatchData>>, Partial<Batch<EmojiSearchMatchData>>>? partial = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         if (skip != null) queryParameters.Append("$skip", skip);
         if (top != null) queryParameters.Append("$top", top?.ToString());
         queryParameters.Append("query", query);
+        if (version != null) queryParameters.Append("version", version);
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<EmojiSearchMatchData>>()) : Partial<Batch<EmojiSearchMatchData>>.Default()).ToString());
         
         return await _connection.RequestResourceAsync<Batch<EmojiSearchMatchData>>("GET", $"api/http/emojis/search{queryParameters.ToQueryString()}", cancellationToken);
@@ -125,8 +126,8 @@ public partial class EmojiClient : ISpaceClient
     /// <summary>
     /// Search for emoji
     /// </summary>
-    public IAsyncEnumerable<EmojiSearchMatchData> SearchEmojiAsyncEnumerable(string query, string? skip = null, int? top = 100, Func<Partial<EmojiSearchMatchData>, Partial<EmojiSearchMatchData>>? partial = null, CancellationToken cancellationToken = default)
-        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => SearchEmojiAsync(query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<EmojiSearchMatchData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EmojiSearchMatchData>.Default())), skip, cancellationToken);
+    public IAsyncEnumerable<EmojiSearchMatchData> SearchEmojiAsyncEnumerable(string query, string? skip = null, int? top = 100, string? version = null, Func<Partial<EmojiSearchMatchData>, Partial<EmojiSearchMatchData>>? partial = null, CancellationToken cancellationToken = default)
+        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => SearchEmojiAsync(query: query, top: top, version: version, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<EmojiSearchMatchData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EmojiSearchMatchData>.Default())), skip, cancellationToken);
 
 }
 

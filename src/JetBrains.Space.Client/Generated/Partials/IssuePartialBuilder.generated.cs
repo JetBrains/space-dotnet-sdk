@@ -142,11 +142,8 @@ public static class IssuePartialExtensions
     public static Partial<Issue> WithDescription(this Partial<Issue> it)
         => it.AddFieldName("description");
     
-    public static Partial<Issue> WithMessageOrigin(this Partial<Issue> it)
-        => it.AddFieldName("messageOrigin");
-    
-    public static Partial<Issue> WithMessageOrigin(this Partial<Issue> it, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>> partialBuilder)
-        => it.AddFieldName("messageOrigin", partialBuilder(new Partial<ChannelItemRecord>(it)));
+    public static Partial<Issue> WithMessagePermalink(this Partial<Issue> it)
+        => it.AddFieldName("messagePermalink");
     
     public static Partial<Issue> WithParents(this Partial<Issue> it)
         => it.AddFieldName("parents");

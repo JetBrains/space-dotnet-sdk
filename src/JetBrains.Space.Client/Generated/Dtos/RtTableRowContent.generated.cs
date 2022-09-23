@@ -31,7 +31,7 @@ namespace JetBrains.Space.Client;
 
 [JsonConverter(typeof(ClassNameDtoTypeConverter))]
 public abstract class RtTableRowContent
-     : BlockNode, IClassNameConvertible, IPropagatePropertyAccessPath
+     : BlockNodeWithMarks, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public virtual string? ClassName => "RtTableRowContent";

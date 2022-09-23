@@ -27,36 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.UnfurlDetailsLocationPartialBuilder;
 
-public class RdWorkspacesReloadConfigPostRequest
-     : IPropagatePropertyAccessPath
+public static class UnfurlDetailsLocationPartialExtensions
 {
-    public RdWorkspacesReloadConfigPostRequest() { }
+    public static Partial<UnfurlDetailsLocation> WithLocation(this Partial<UnfurlDetailsLocation> it)
+        => it.AddFieldName("location");
     
-    public RdWorkspacesReloadConfigPostRequest(WorkspaceIdentifier workspace)
-    {
-        Workspace = workspace;
-    }
+    public static Partial<UnfurlDetailsLocation> WithLocation(this Partial<UnfurlDetailsLocation> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
+        => it.AddFieldName("location", partialBuilder(new Partial<TDLocation>(it)));
     
-    private PropertyValue<WorkspaceIdentifier> _workspace = new PropertyValue<WorkspaceIdentifier>(nameof(RdWorkspacesReloadConfigPostRequest), nameof(Workspace), "workspace");
+    public static Partial<UnfurlDetailsLocation> WithIsStrikeThrough(this Partial<UnfurlDetailsLocation> it)
+        => it.AddFieldName("strikeThrough");
     
-    [Required]
-    [JsonPropertyName("workspace")]
-    public WorkspaceIdentifier Workspace
-    {
-        get => _workspace.GetValue(InlineErrors);
-        set => _workspace.SetValue(value);
-    }
-
-    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-        _workspace.SetAccessPath(parentChainPath, validateHasBeenSet);
-    }
-    
-    /// <inheritdoc />
-    [JsonPropertyName("$errors")]
-    public List<ApiInlineError> InlineErrors { get; set; } = new();
-
 }
 

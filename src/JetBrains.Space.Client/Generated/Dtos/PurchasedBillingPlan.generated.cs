@@ -34,7 +34,7 @@ public sealed class PurchasedBillingPlan
 {
     public PurchasedBillingPlan() { }
     
-    public PurchasedBillingPlan(string id, string plan, string billingPeriod, DateTime since, DateTime till, Currency currency, double addUserPrice, double addStoragePrice, double addBandwidthPrice, double addCiCreditPrice, int minActiveUsers, int prepaidUsers, int storagePerUser, int storageOverall, int bandwidthPerUser, int bandwidthOverall, int ciCredits, int ciCreditsReserve, int integrations, int searchHistory, double balance, double hardLimitAmount, string? jetSalesId = null, double? ciCreditsRateForExternalWorker = null, bool? hasCardVerifiedAdmin = null, bool? isTrial = null, List<string>? spentTrials = null)
+    public PurchasedBillingPlan(string id, string plan, string billingPeriod, DateTime since, DateTime till, Currency currency, double addUserPrice, double addStoragePrice, double addBandwidthPrice, double addCiCreditPrice, int minActiveUsers, int prepaidUsers, int storagePerUser, int storageOverall, int bandwidthPerUser, int bandwidthOverall, int ciCredits, int ciCreditsReserve, int integrations, int searchHistory, double balance, double hardLimitAmount, string? jetSalesId = null, double? ciCreditsRateForExternalWorker = null, bool? hasCardVerifiedAdmin = null, bool? isTrial = null, List<string>? spentTrials = null, string? trialBasePlan = null)
     {
         Id = id;
         JetSalesId = jetSalesId;
@@ -63,6 +63,7 @@ public sealed class PurchasedBillingPlan
         IsHasCardVerifiedAdmin = hasCardVerifiedAdmin;
         IsTrial = isTrial;
         SpentTrials = spentTrials;
+        TrialBasePlan = trialBasePlan;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(PurchasedBillingPlan), nameof(Id), "id");
@@ -332,6 +333,15 @@ public sealed class PurchasedBillingPlan
         set => _spentTrials.SetValue(value);
     }
 
+    private PropertyValue<string?> _trialBasePlan = new PropertyValue<string?>(nameof(PurchasedBillingPlan), nameof(TrialBasePlan), "trialBasePlan");
+    
+    [JsonPropertyName("trialBasePlan")]
+    public string? TrialBasePlan
+    {
+        get => _trialBasePlan.GetValue(InlineErrors);
+        set => _trialBasePlan.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -361,6 +371,7 @@ public sealed class PurchasedBillingPlan
         _hasCardVerifiedAdmin.SetAccessPath(parentChainPath, validateHasBeenSet);
         _isTrial.SetAccessPath(parentChainPath, validateHasBeenSet);
         _spentTrials.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _trialBasePlan.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

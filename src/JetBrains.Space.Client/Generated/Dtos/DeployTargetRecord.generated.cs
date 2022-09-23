@@ -34,7 +34,7 @@ public sealed class DeployTargetRecord
 {
     public DeployTargetRecord() { }
     
-    public DeployTargetRecord(string id, string projectId, string name, string key, string description, string createdAt, string channelId, M2ChannelRecord channel, List<DeployTargetRepositoryDTO> repositories, bool manualControl, bool archived, CPrincipal? createdBy = null, string? lastUpdated = null, string? lastDeployed = null, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null)
+    public DeployTargetRecord(string id, string projectId, string name, string key, string description, string createdAt, M2ChannelRecord channel, bool archived, string channelId, bool manualControl, List<DeployTargetRepositoryDTO> repositories, string? lastUpdated = null, string? lastDeployed = null, CPrincipal? createdBy = null, DeploymentInfo? current = null, int? failTimeoutMinutes = null, int? hangTimeoutMinutes = null, DeploymentInfo? next = null)
     {
         Id = id;
         ProjectId = projectId;
@@ -42,16 +42,18 @@ public sealed class DeployTargetRecord
         Key = key;
         Description = description;
         CreatedAt = createdAt;
-        CreatedBy = createdBy;
         LastUpdated = lastUpdated;
         LastDeployed = lastDeployed;
-        ChannelId = channelId;
         Channel = channel;
-        Repositories = repositories;
-        IsManualControl = manualControl;
-        HangTimeoutMinutes = hangTimeoutMinutes;
-        FailTimeoutMinutes = failTimeoutMinutes;
         IsArchived = archived;
+        ChannelId = channelId;
+        CreatedBy = createdBy;
+        Current = current;
+        FailTimeoutMinutes = failTimeoutMinutes;
+        HangTimeoutMinutes = hangTimeoutMinutes;
+        IsManualControl = manualControl;
+        Next = next;
+        Repositories = repositories;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(DeployTargetRecord), nameof(Id), "id");
@@ -114,15 +116,6 @@ public sealed class DeployTargetRecord
         set => _createdAt.SetValue(value);
     }
 
-    private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(DeployTargetRecord), nameof(CreatedBy), "createdBy");
-    
-    [JsonPropertyName("createdBy")]
-    public CPrincipal? CreatedBy
-    {
-        get => _createdBy.GetValue(InlineErrors);
-        set => _createdBy.SetValue(value);
-    }
-
     private PropertyValue<string?> _lastUpdated = new PropertyValue<string?>(nameof(DeployTargetRecord), nameof(LastUpdated), "lastUpdated");
     
     [JsonPropertyName("lastUpdated")]
@@ -141,16 +134,6 @@ public sealed class DeployTargetRecord
         set => _lastDeployed.SetValue(value);
     }
 
-    private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(DeployTargetRecord), nameof(ChannelId), "channelId");
-    
-    [Required]
-    [JsonPropertyName("channelId")]
-    public string ChannelId
-    {
-        get => _channelId.GetValue(InlineErrors);
-        set => _channelId.SetValue(value);
-    }
-
     private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(DeployTargetRecord), nameof(Channel), "channel");
     
     [Required]
@@ -159,44 +142,6 @@ public sealed class DeployTargetRecord
     {
         get => _channel.GetValue(InlineErrors);
         set => _channel.SetValue(value);
-    }
-
-    private PropertyValue<List<DeployTargetRepositoryDTO>> _repositories = new PropertyValue<List<DeployTargetRepositoryDTO>>(nameof(DeployTargetRecord), nameof(Repositories), "repositories", new List<DeployTargetRepositoryDTO>());
-    
-    [Required]
-    [JsonPropertyName("repositories")]
-    public List<DeployTargetRepositoryDTO> Repositories
-    {
-        get => _repositories.GetValue(InlineErrors);
-        set => _repositories.SetValue(value);
-    }
-
-    private PropertyValue<bool> _manualControl = new PropertyValue<bool>(nameof(DeployTargetRecord), nameof(IsManualControl), "manualControl");
-    
-    [Required]
-    [JsonPropertyName("manualControl")]
-    public bool IsManualControl
-    {
-        get => _manualControl.GetValue(InlineErrors);
-        set => _manualControl.SetValue(value);
-    }
-
-    private PropertyValue<int?> _hangTimeoutMinutes = new PropertyValue<int?>(nameof(DeployTargetRecord), nameof(HangTimeoutMinutes), "hangTimeoutMinutes");
-    
-    [JsonPropertyName("hangTimeoutMinutes")]
-    public int? HangTimeoutMinutes
-    {
-        get => _hangTimeoutMinutes.GetValue(InlineErrors);
-        set => _hangTimeoutMinutes.SetValue(value);
-    }
-
-    private PropertyValue<int?> _failTimeoutMinutes = new PropertyValue<int?>(nameof(DeployTargetRecord), nameof(FailTimeoutMinutes), "failTimeoutMinutes");
-    
-    [JsonPropertyName("failTimeoutMinutes")]
-    public int? FailTimeoutMinutes
-    {
-        get => _failTimeoutMinutes.GetValue(InlineErrors);
-        set => _failTimeoutMinutes.SetValue(value);
     }
 
     private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(DeployTargetRecord), nameof(IsArchived), "archived");
@@ -209,6 +154,81 @@ public sealed class DeployTargetRecord
         set => _archived.SetValue(value);
     }
 
+    private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(DeployTargetRecord), nameof(ChannelId), "channelId");
+    
+    [Required]
+    [JsonPropertyName("channelId")]
+    public string ChannelId
+    {
+        get => _channelId.GetValue(InlineErrors);
+        set => _channelId.SetValue(value);
+    }
+
+    private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(DeployTargetRecord), nameof(CreatedBy), "createdBy");
+    
+    [JsonPropertyName("createdBy")]
+    public CPrincipal? CreatedBy
+    {
+        get => _createdBy.GetValue(InlineErrors);
+        set => _createdBy.SetValue(value);
+    }
+
+    private PropertyValue<DeploymentInfo?> _current = new PropertyValue<DeploymentInfo?>(nameof(DeployTargetRecord), nameof(Current), "current");
+    
+    [JsonPropertyName("current")]
+    public DeploymentInfo? Current
+    {
+        get => _current.GetValue(InlineErrors);
+        set => _current.SetValue(value);
+    }
+
+    private PropertyValue<int?> _failTimeoutMinutes = new PropertyValue<int?>(nameof(DeployTargetRecord), nameof(FailTimeoutMinutes), "failTimeoutMinutes");
+    
+    [JsonPropertyName("failTimeoutMinutes")]
+    public int? FailTimeoutMinutes
+    {
+        get => _failTimeoutMinutes.GetValue(InlineErrors);
+        set => _failTimeoutMinutes.SetValue(value);
+    }
+
+    private PropertyValue<int?> _hangTimeoutMinutes = new PropertyValue<int?>(nameof(DeployTargetRecord), nameof(HangTimeoutMinutes), "hangTimeoutMinutes");
+    
+    [JsonPropertyName("hangTimeoutMinutes")]
+    public int? HangTimeoutMinutes
+    {
+        get => _hangTimeoutMinutes.GetValue(InlineErrors);
+        set => _hangTimeoutMinutes.SetValue(value);
+    }
+
+    private PropertyValue<bool> _manualControl = new PropertyValue<bool>(nameof(DeployTargetRecord), nameof(IsManualControl), "manualControl");
+    
+    [Required]
+    [JsonPropertyName("manualControl")]
+    public bool IsManualControl
+    {
+        get => _manualControl.GetValue(InlineErrors);
+        set => _manualControl.SetValue(value);
+    }
+
+    private PropertyValue<DeploymentInfo?> _next = new PropertyValue<DeploymentInfo?>(nameof(DeployTargetRecord), nameof(Next), "next");
+    
+    [JsonPropertyName("next")]
+    public DeploymentInfo? Next
+    {
+        get => _next.GetValue(InlineErrors);
+        set => _next.SetValue(value);
+    }
+
+    private PropertyValue<List<DeployTargetRepositoryDTO>> _repositories = new PropertyValue<List<DeployTargetRepositoryDTO>>(nameof(DeployTargetRecord), nameof(Repositories), "repositories", new List<DeployTargetRepositoryDTO>());
+    
+    [Required]
+    [JsonPropertyName("repositories")]
+    public List<DeployTargetRepositoryDTO> Repositories
+    {
+        get => _repositories.GetValue(InlineErrors);
+        set => _repositories.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -217,16 +237,18 @@ public sealed class DeployTargetRecord
         _key.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _createdAt.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _createdBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _lastUpdated.SetAccessPath(parentChainPath, validateHasBeenSet);
         _lastDeployed.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _repositories.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _manualControl.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _hangTimeoutMinutes.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _failTimeoutMinutes.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _createdBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _current.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _failTimeoutMinutes.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hangTimeoutMinutes.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _manualControl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _next.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repositories.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

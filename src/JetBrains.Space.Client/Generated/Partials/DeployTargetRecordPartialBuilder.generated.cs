@@ -49,20 +49,11 @@ public static class DeployTargetRecordPartialExtensions
     public static Partial<DeployTargetRecord> WithCreatedAt(this Partial<DeployTargetRecord> it)
         => it.AddFieldName("createdAt");
     
-    public static Partial<DeployTargetRecord> WithCreatedBy(this Partial<DeployTargetRecord> it)
-        => it.AddFieldName("createdBy");
-    
-    public static Partial<DeployTargetRecord> WithCreatedBy(this Partial<DeployTargetRecord> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-        => it.AddFieldName("createdBy", partialBuilder(new Partial<CPrincipal>(it)));
-    
     public static Partial<DeployTargetRecord> WithLastUpdated(this Partial<DeployTargetRecord> it)
         => it.AddFieldName("lastUpdated");
     
     public static Partial<DeployTargetRecord> WithLastDeployed(this Partial<DeployTargetRecord> it)
         => it.AddFieldName("lastDeployed");
-    
-    public static Partial<DeployTargetRecord> WithChannelId(this Partial<DeployTargetRecord> it)
-        => it.AddFieldName("channelId");
     
     public static Partial<DeployTargetRecord> WithChannel(this Partial<DeployTargetRecord> it)
         => it.AddFieldName("channel");
@@ -70,23 +61,44 @@ public static class DeployTargetRecordPartialExtensions
     public static Partial<DeployTargetRecord> WithChannel(this Partial<DeployTargetRecord> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
         => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecord>(it)));
     
+    public static Partial<DeployTargetRecord> WithIsArchived(this Partial<DeployTargetRecord> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<DeployTargetRecord> WithChannelId(this Partial<DeployTargetRecord> it)
+        => it.AddFieldName("channelId");
+    
+    public static Partial<DeployTargetRecord> WithCreatedBy(this Partial<DeployTargetRecord> it)
+        => it.AddFieldName("createdBy");
+    
+    public static Partial<DeployTargetRecord> WithCreatedBy(this Partial<DeployTargetRecord> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("createdBy", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<DeployTargetRecord> WithCurrent(this Partial<DeployTargetRecord> it)
+        => it.AddFieldName("current");
+    
+    public static Partial<DeployTargetRecord> WithCurrent(this Partial<DeployTargetRecord> it, Func<Partial<DeploymentInfo>, Partial<DeploymentInfo>> partialBuilder)
+        => it.AddFieldName("current", partialBuilder(new Partial<DeploymentInfo>(it)));
+    
+    public static Partial<DeployTargetRecord> WithFailTimeoutMinutes(this Partial<DeployTargetRecord> it)
+        => it.AddFieldName("failTimeoutMinutes");
+    
+    public static Partial<DeployTargetRecord> WithHangTimeoutMinutes(this Partial<DeployTargetRecord> it)
+        => it.AddFieldName("hangTimeoutMinutes");
+    
+    public static Partial<DeployTargetRecord> WithIsManualControl(this Partial<DeployTargetRecord> it)
+        => it.AddFieldName("manualControl");
+    
+    public static Partial<DeployTargetRecord> WithNext(this Partial<DeployTargetRecord> it)
+        => it.AddFieldName("next");
+    
+    public static Partial<DeployTargetRecord> WithNext(this Partial<DeployTargetRecord> it, Func<Partial<DeploymentInfo>, Partial<DeploymentInfo>> partialBuilder)
+        => it.AddFieldName("next", partialBuilder(new Partial<DeploymentInfo>(it)));
+    
     public static Partial<DeployTargetRecord> WithRepositories(this Partial<DeployTargetRecord> it)
         => it.AddFieldName("repositories");
     
     public static Partial<DeployTargetRecord> WithRepositories(this Partial<DeployTargetRecord> it, Func<Partial<DeployTargetRepositoryDTO>, Partial<DeployTargetRepositoryDTO>> partialBuilder)
         => it.AddFieldName("repositories", partialBuilder(new Partial<DeployTargetRepositoryDTO>(it)));
-    
-    public static Partial<DeployTargetRecord> WithIsManualControl(this Partial<DeployTargetRecord> it)
-        => it.AddFieldName("manualControl");
-    
-    public static Partial<DeployTargetRecord> WithHangTimeoutMinutes(this Partial<DeployTargetRecord> it)
-        => it.AddFieldName("hangTimeoutMinutes");
-    
-    public static Partial<DeployTargetRecord> WithFailTimeoutMinutes(this Partial<DeployTargetRecord> it)
-        => it.AddFieldName("failTimeoutMinutes");
-    
-    public static Partial<DeployTargetRecord> WithIsArchived(this Partial<DeployTargetRecord> it)
-        => it.AddFieldName("archived");
     
 }
 

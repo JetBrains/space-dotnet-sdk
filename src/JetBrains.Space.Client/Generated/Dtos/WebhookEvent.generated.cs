@@ -59,7 +59,7 @@ public interface WebhookEvent
     public static AutomationJobEvent AutomationJobEvent(KMetaMod meta, string executionId, PRProject project, string repositoryName, string jobName, long executionNumber, JobExecutionTrigger trigger, DateTime triggerTime, Modification<JobExecutionStatus>? status = null, Modification<List<FailureConditionType>>? failureReasons = null, Modification<CPrincipal>? stoppedBy = null, Modification<DateTime>? startTime = null, Modification<DateTime>? endTime = null)
         => new AutomationJobEvent(meta: meta, executionId: executionId, project: project, repositoryName: repositoryName, jobName: jobName, executionNumber: executionNumber, trigger: trigger, triggerTime: triggerTime, status: status, failureReasons: failureReasons, stoppedBy: stoppedBy, startTime: startTime, endTime: endTime);
     
-    public static BlogWebhookEvent Blog(KMetaMod meta, ArticleRecord article, bool textChanged, string? action = null, Modification<TDMemberProfile>? author = null, Modification<DateTime>? created = null, Modification<string>? title = null, Modification<bool>? unpublished = null, Modification<List<TDMemberProfile>>? teams = null, Modification<List<TDMemberProfile>>? locations = null, Modification<long>? externalEntityInfo = null)
+    public static BlogWebhookEvent Blog(KMetaMod meta, ArticleRecord article, bool textChanged, string? action = null, Modification<TDMemberProfile>? author = null, Modification<DateTime>? created = null, Modification<string>? title = null, Modification<bool>? unpublished = null, Modification<List<TDTeam>>? teams = null, Modification<List<TDLocation>>? locations = null, Modification<long>? externalEntityInfo = null)
         => new BlogWebhookEvent(meta: meta, article: article, textChanged: textChanged, action: action, author: author, created: created, title: title, unpublished: unpublished, teams: teams, locations: locations, externalEntityInfo: externalEntityInfo);
     
     public static ChannelEvent ChannelEvent(KMetaMod meta, M2ChannelRecord channel, Modification<string>? name = null, Modification<string>? description = null, Modification<string>? icon = null, bool? restored = null, bool? archived = null)
@@ -71,11 +71,26 @@ public interface WebhookEvent
     public static ChatMessageDeletedEvent ChatMessageDeletedEvent(string channelId, ChannelItemRecord message, string? threadId = null)
         => new ChatMessageDeletedEvent(channelId: channelId, message: message, threadId: threadId);
     
+    public static ChatMessageReactionAddedEvent ChatMessageReactionAddedEvent(string messageId, string channelId, CPrincipal actor, string emoji, int newCount, string? threadId = null)
+        => new ChatMessageReactionAddedEvent(messageId: messageId, channelId: channelId, actor: actor, emoji: emoji, newCount: newCount, threadId: threadId);
+    
+    public static ChatMessageReactionRemovedEvent ChatMessageReactionRemovedEvent(string messageId, string channelId, CPrincipal actor, string emoji, int newCount, string? threadId = null)
+        => new ChatMessageReactionRemovedEvent(messageId: messageId, channelId: channelId, actor: actor, emoji: emoji, newCount: newCount, threadId: threadId);
+    
     public static ChatMessageUpdatedEvent ChatMessageUpdatedEvent(string channelId, ChannelItemRecord message, string? threadId = null, Modification<DateTime>? edited = null, Modification<bool>? pinned = null)
         => new ChatMessageUpdatedEvent(channelId: channelId, message: message, threadId: threadId, edited: edited, pinned: pinned);
     
     public static CodeReviewWebhookEvent CodeReview(ProjectKey projectKey, string repository, string reviewId, string title, bool isMergeRequest)
         => new CodeReviewWebhookEvent(projectKey: projectKey, repository: repository, reviewId: reviewId, title: title, isMergeRequest: isMergeRequest);
+    
+    public static CustomEmojiAddedEvent CustomEmojiAddedEvent(string emoji, CPrincipal owner, string attachmentId, DateTime uploadedAt)
+        => new CustomEmojiAddedEvent(emoji: emoji, owner: owner, attachmentId: attachmentId, uploadedAt: uploadedAt);
+    
+    public static CustomEmojiDeletedEvent CustomEmojiDeletedEvent(string emoji, CPrincipal owner)
+        => new CustomEmojiDeletedEvent(emoji: emoji, owner: owner);
+    
+    public static CustomEmojiUpdatedEvent CustomEmojiUpdatedEvent(string emoji, CPrincipal owner, Modification<string>? attachmentId = null, Modification<DateTime>? uploadedAt = null)
+        => new CustomEmojiUpdatedEvent(emoji: emoji, owner: owner, attachmentId: attachmentId, uploadedAt: uploadedAt);
     
     public static DeploymentWebhookEvent Deployment(KMetaMod meta, string projectKey, string targetId, string deploymentId, Modification<DeploymentStatus>? statusMod = null)
         => new DeploymentWebhookEvent(meta: meta, projectKey: projectKey, targetId: targetId, deploymentId: deploymentId, statusMod: statusMod);

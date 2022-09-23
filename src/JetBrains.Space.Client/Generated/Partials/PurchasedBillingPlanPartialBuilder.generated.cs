@@ -115,5 +115,8 @@ public static class PurchasedBillingPlanPartialExtensions
     public static Partial<PurchasedBillingPlan> WithSpentTrials(this Partial<PurchasedBillingPlan> it)
         => it.AddFieldName("spentTrials");
     
+    public static Partial<PurchasedBillingPlan> WithTrialBasePlan(this Partial<PurchasedBillingPlan> it)
+        => it.AddFieldName("trialBasePlan");
+    
 }
 

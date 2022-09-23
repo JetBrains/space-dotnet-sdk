@@ -37,5 +37,8 @@ public static class DeployTargetRepositoryDTOPartialExtensions
     public static Partial<DeployTargetRepositoryDTO> WithIsMissing(this Partial<DeployTargetRepositoryDTO> it)
         => it.AddFieldName("missing");
     
+    public static Partial<DeployTargetRepositoryDTO> WithRepositoryId(this Partial<DeployTargetRepositoryDTO> it)
+        => it.AddFieldName("repositoryId");
+    
 }
 

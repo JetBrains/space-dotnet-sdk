@@ -34,7 +34,7 @@ public sealed class EventTypeInfoDTO
 {
     public EventTypeInfoDTO() { }
     
-    public EventTypeInfoDTO(string code, string name, string description, List<CRight> rights, int sortOrder, string? featureFlag = null)
+    public EventTypeInfoDTO(string code, string name, string description, List<CRight> rights, int sortOrder, string? featureFlag = null, string? payloadApiClassName = null)
     {
         Code = code;
         Name = name;
@@ -42,6 +42,7 @@ public sealed class EventTypeInfoDTO
         Rights = rights;
         FeatureFlag = featureFlag;
         SortOrder = sortOrder;
+        PayloadApiClassName = payloadApiClassName;
     }
     
     private PropertyValue<string> _code = new PropertyValue<string>(nameof(EventTypeInfoDTO), nameof(Code), "code");
@@ -103,6 +104,15 @@ public sealed class EventTypeInfoDTO
         set => _sortOrder.SetValue(value);
     }
 
+    private PropertyValue<string?> _payloadApiClassName = new PropertyValue<string?>(nameof(EventTypeInfoDTO), nameof(PayloadApiClassName), "payloadApiClassName");
+    
+    [JsonPropertyName("payloadApiClassName")]
+    public string? PayloadApiClassName
+    {
+        get => _payloadApiClassName.GetValue(InlineErrors);
+        set => _payloadApiClassName.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _code.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -111,6 +121,7 @@ public sealed class EventTypeInfoDTO
         _rights.SetAccessPath(parentChainPath, validateHasBeenSet);
         _featureFlag.SetAccessPath(parentChainPath, validateHasBeenSet);
         _sortOrder.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _payloadApiClassName.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

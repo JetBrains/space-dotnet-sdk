@@ -31,17 +31,5 @@ namespace JetBrains.Space.Client.RtMentionAttrsPartialBuilder;
 
 public static class RtMentionAttrsPartialExtensions
 {
-    public static Partial<RtMentionAttrs> WithHref(this Partial<RtMentionAttrs> it)
-        => it.AddFieldName("href");
-    
-    public static Partial<RtMentionAttrs> WithId(this Partial<RtMentionAttrs> it)
-        => it.AddFieldName("id");
-    
-    public static Partial<RtMentionAttrs> WithType(this Partial<RtMentionAttrs> it)
-        => it.AddFieldName("type");
-    
-    public static Partial<RtMentionAttrs> WithClientView(this Partial<RtMentionAttrs> it)
-        => it.AddFieldName("clientView");
-    
 }
 

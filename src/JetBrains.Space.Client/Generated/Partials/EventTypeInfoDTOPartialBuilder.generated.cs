@@ -52,5 +52,8 @@ public static class EventTypeInfoDTOPartialExtensions
     public static Partial<EventTypeInfoDTO> WithSortOrder(this Partial<EventTypeInfoDTO> it)
         => it.AddFieldName("sortOrder");
     
+    public static Partial<EventTypeInfoDTO> WithPayloadApiClassName(this Partial<EventTypeInfoDTO> it)
+        => it.AddFieldName("payloadApiClassName");
+    
 }
 
