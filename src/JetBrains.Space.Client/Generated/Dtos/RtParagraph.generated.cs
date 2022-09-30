@@ -37,10 +37,11 @@ public sealed class RtParagraph
     
     public RtParagraph() { }
     
-    public RtParagraph(List<InlineNode> children, List<DocumentMark> marks)
+    public RtParagraph(List<InlineNode> children, List<DocumentMark> marks, PmNodeTextAlign textAlign)
     {
         Children = children;
         Marks = marks;
+        TextAlign = textAlign;
     }
     
     private PropertyValue<List<InlineNode>> _children = new PropertyValue<List<InlineNode>>(nameof(RtParagraph), nameof(Children), "children", new List<InlineNode>());
@@ -63,10 +64,21 @@ public sealed class RtParagraph
         set => _marks.SetValue(value);
     }
 
+    private PropertyValue<PmNodeTextAlign> _textAlign = new PropertyValue<PmNodeTextAlign>(nameof(RtParagraph), nameof(TextAlign), "textAlign");
+    
+    [Required]
+    [JsonPropertyName("textAlign")]
+    public PmNodeTextAlign TextAlign
+    {
+        get => _textAlign.GetValue(InlineErrors);
+        set => _textAlign.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _children.SetAccessPath(parentChainPath, validateHasBeenSet);
         _marks.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _textAlign.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

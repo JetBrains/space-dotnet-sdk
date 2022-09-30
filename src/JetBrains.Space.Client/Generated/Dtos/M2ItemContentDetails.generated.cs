@@ -119,6 +119,9 @@ public interface M2ItemContentDetails
     public static MembershipMCExtension MembershipMCExtension()
         => new MembershipMCExtension();
     
+    public static StickerContentDetails StickerContentDetails(Sticker sticker, StickerPackInfo? pack = null)
+        => new StickerContentDetails(sticker: sticker, pack: pack);
+    
     public static TeamAddedItemDetails TeamAddedItemDetails(TDTeam team)
         => new TeamAddedItemDetails(team: team);
     

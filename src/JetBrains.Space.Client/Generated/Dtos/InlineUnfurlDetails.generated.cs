@@ -89,6 +89,9 @@ public interface InlineUnfurlDetails
     public static UnfurlDetailsIssueId UnfurlDetailsIssueId(string projectId, string issueId)
         => new UnfurlDetailsIssueId(projectId: projectId, issueId: issueId);
     
+    public static UnfurlDetailsIssueImportTransaction UnfurlDetailsIssueImportTransaction(ImportTransactionRecord importTransaction)
+        => new UnfurlDetailsIssueImportTransaction(importTransaction: importTransaction);
+    
     public static UnfurlDetailsIssueStatus UnfurlDetailsIssueStatus(IssueStatus status)
         => new UnfurlDetailsIssueStatus(status: status);
     

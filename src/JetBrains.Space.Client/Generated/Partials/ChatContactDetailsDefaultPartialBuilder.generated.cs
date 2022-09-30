@@ -37,9 +37,6 @@ public static class ChatContactDetailsDefaultPartialExtensions
     public static Partial<ChatContactDetailsDefault> WithName(this Partial<ChatContactDetailsDefault> it)
         => it.AddFieldName("name");
     
-    public static Partial<ChatContactDetailsDefault> WithLegacyName(this Partial<ChatContactDetailsDefault> it)
-        => it.AddFieldName("legacyName");
-    
     public static Partial<ChatContactDetailsDefault> WithIcon(this Partial<ChatContactDetailsDefault> it)
         => it.AddFieldName("icon");
     

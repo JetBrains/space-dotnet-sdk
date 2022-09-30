@@ -29,14 +29,37 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public static class SdkInfo
+public sealed class CratesPackageType
+     : PackageType, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2022.2.0-DEV.113510";
+    [JsonPropertyName("className")]
+    public  string? ClassName => "CratesPackageType";
+    
+    public CratesPackageType() { }
+    
+    public CratesPackageType(string id)
+    {
+        Id = id;
+    }
+    
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(CratesPackageType), nameof(Id), "id");
+    
+    [Required]
+    [JsonPropertyName("id")]
+    public string Id
+    {
+        get => _id.GetValue(InlineErrors);
+        set => _id.SetValue(value);
+    }
+
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

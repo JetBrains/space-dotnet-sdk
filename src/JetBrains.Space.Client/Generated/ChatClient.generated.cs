@@ -926,7 +926,7 @@ public partial class ChatClient : ISpaceClient
         
     
         /// <summary>
-        /// This API method is intended to be used only by applications.
+        /// This API method is intended to be used only by applications. The `createdAtUtc` and `editedAtUtc` parameters are Unix epoch timestamps in *milliseconds*.
         /// </summary>
         /// <remarks>
         /// Required permissions:

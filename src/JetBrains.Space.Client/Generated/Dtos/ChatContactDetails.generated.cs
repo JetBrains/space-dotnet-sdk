@@ -42,8 +42,8 @@ public class ChatContactDetails
     public static ChatContactDetailsConversation Conversation(List<TDMemberProfile> users, string? subject = null)
         => new ChatContactDetailsConversation(users: users, subject: subject);
     
-    public static ChatContactDetailsDefault Default(string type, string name, string? legacyName = null, string? icon = null, string? fontIcon = null, PrivateFeedColor? fontIconColor = null, M2Access? access = null, bool? resolvedImpl = null, ContactExtraTag? extra = null)
-        => new ChatContactDetailsDefault(type: type, name: name, legacyName: legacyName, icon: icon, fontIcon: fontIcon, fontIconColor: fontIconColor, access: access, resolvedImpl: resolvedImpl, extra: extra);
+    public static ChatContactDetailsDefault Default(string type, string name, string? icon = null, string? fontIcon = null, PrivateFeedColor? fontIconColor = null, M2Access? access = null, bool? resolvedImpl = null, ContactExtraTag? extra = null)
+        => new ChatContactDetailsDefault(type: type, name: name, icon: icon, fontIcon: fontIcon, fontIconColor: fontIconColor, access: access, resolvedImpl: resolvedImpl, extra: extra);
     
     public static ChatContactDetailsProfile Profile(TDMemberProfile user)
         => new ChatContactDetailsProfile(user: user);

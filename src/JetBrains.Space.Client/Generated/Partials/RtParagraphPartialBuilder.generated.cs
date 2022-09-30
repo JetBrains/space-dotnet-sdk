@@ -43,5 +43,11 @@ public static class RtParagraphPartialExtensions
     public static Partial<RtParagraph> WithMarks(this Partial<RtParagraph> it, Func<Partial<DocumentMark>, Partial<DocumentMark>> partialBuilder)
         => it.AddFieldName("marks", partialBuilder(new Partial<DocumentMark>(it)));
     
+    public static Partial<RtParagraph> WithTextAlign(this Partial<RtParagraph> it)
+        => it.AddFieldName("textAlign");
+    
+    public static Partial<RtParagraph> WithTextAlign(this Partial<RtParagraph> it, Func<Partial<PmNodeTextAlign>, Partial<PmNodeTextAlign>> partialBuilder)
+        => it.AddFieldName("textAlign", partialBuilder(new Partial<PmNodeTextAlign>(it)));
+    
 }
 

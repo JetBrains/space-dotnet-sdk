@@ -37,11 +37,12 @@ public sealed class RtHeading
     
     public RtHeading() { }
     
-    public RtHeading(int level, List<InlineNode> children, List<DocumentMark> marks)
+    public RtHeading(int level, List<InlineNode> children, List<DocumentMark> marks, PmNodeTextAlign textAlign)
     {
         Level = level;
         Children = children;
         Marks = marks;
+        TextAlign = textAlign;
     }
     
     private PropertyValue<int> _level = new PropertyValue<int>(nameof(RtHeading), nameof(Level), "level");
@@ -74,11 +75,22 @@ public sealed class RtHeading
         set => _marks.SetValue(value);
     }
 
+    private PropertyValue<PmNodeTextAlign> _textAlign = new PropertyValue<PmNodeTextAlign>(nameof(RtHeading), nameof(TextAlign), "textAlign");
+    
+    [Required]
+    [JsonPropertyName("textAlign")]
+    public PmNodeTextAlign TextAlign
+    {
+        get => _textAlign.GetValue(InlineErrors);
+        set => _textAlign.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _level.SetAccessPath(parentChainPath, validateHasBeenSet);
         _children.SetAccessPath(parentChainPath, validateHasBeenSet);
         _marks.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _textAlign.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

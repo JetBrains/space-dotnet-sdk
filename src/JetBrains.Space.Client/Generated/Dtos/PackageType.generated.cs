@@ -38,6 +38,9 @@ public interface PackageType
     public static ContainerPackageType Container(string id)
         => new ContainerPackageType(id: id);
     
+    public static CratesPackageType Crates(string id)
+        => new CratesPackageType(id: id);
+    
     public static DartPackageType Dart(string id)
         => new DartPackageType(id: id);
     

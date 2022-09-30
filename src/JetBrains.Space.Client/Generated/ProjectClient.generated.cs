@@ -5905,7 +5905,7 @@ public partial class ProjectClient : ISpaceClient
             }
             
             /// <summary>
-            /// Creates a new package repository for a given project ID
+            /// Returns a list of available repository types.
             /// </summary>
             public async Task<List<PackageType>> GetAllTypesAsync(ProjectIdentifier project, Func<Partial<PackageType>, Partial<PackageType>>? partial = null, CancellationToken cancellationToken = default)
             {

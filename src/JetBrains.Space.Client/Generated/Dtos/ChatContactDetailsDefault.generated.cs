@@ -37,11 +37,10 @@ public sealed class ChatContactDetailsDefault
     
     public ChatContactDetailsDefault() { }
     
-    public ChatContactDetailsDefault(string type, string name, string? legacyName = null, string? icon = null, string? fontIcon = null, PrivateFeedColor? fontIconColor = null, M2Access? access = null, bool? resolvedImpl = null, ContactExtraTag? extra = null)
+    public ChatContactDetailsDefault(string type, string name, string? icon = null, string? fontIcon = null, PrivateFeedColor? fontIconColor = null, M2Access? access = null, bool? resolvedImpl = null, ContactExtraTag? extra = null)
     {
         Type = type;
         Name = name;
-        LegacyName = legacyName;
         Icon = icon;
         FontIcon = fontIcon;
         FontIconColor = fontIconColor;
@@ -68,15 +67,6 @@ public sealed class ChatContactDetailsDefault
     {
         get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
-    }
-
-    private PropertyValue<string?> _legacyName = new PropertyValue<string?>(nameof(ChatContactDetailsDefault), nameof(LegacyName), "legacyName");
-    
-    [JsonPropertyName("legacyName")]
-    public string? LegacyName
-    {
-        get => _legacyName.GetValue(InlineErrors);
-        set => _legacyName.SetValue(value);
     }
 
     private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(ChatContactDetailsDefault), nameof(Icon), "icon");
@@ -137,7 +127,6 @@ public sealed class ChatContactDetailsDefault
     {
         _type.SetAccessPath(parentChainPath, validateHasBeenSet);
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _legacyName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
         _fontIcon.SetAccessPath(parentChainPath, validateHasBeenSet);
         _fontIconColor.SetAccessPath(parentChainPath, validateHasBeenSet);

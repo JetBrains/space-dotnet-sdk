@@ -41,8 +41,8 @@ public interface BlockNodeWithMarks
     public static RtDocument RtDocument(List<BlockNode> children, List<DocumentMark> marks)
         => new RtDocument(children: children, marks: marks);
     
-    public static RtHeading RtHeading(int level, List<InlineNode> children, List<DocumentMark> marks)
-        => new RtHeading(level: level, children: children, marks: marks);
+    public static RtHeading RtHeading(int level, List<InlineNode> children, List<DocumentMark> marks, PmNodeTextAlign textAlign)
+        => new RtHeading(level: level, children: children, marks: marks, textAlign: textAlign);
     
     public static RtListItem RtListItem(List<BlockNode> children, List<DocumentMark> marks)
         => new RtListItem(children: children, marks: marks);
@@ -50,8 +50,8 @@ public interface BlockNodeWithMarks
     public static RtOrderedList RtOrderedList(int startNumber, List<RtListItem> children, List<DocumentMark> marks)
         => new RtOrderedList(startNumber: startNumber, children: children, marks: marks);
     
-    public static RtParagraph RtParagraph(List<InlineNode> children, List<DocumentMark> marks)
-        => new RtParagraph(children: children, marks: marks);
+    public static RtParagraph RtParagraph(List<InlineNode> children, List<DocumentMark> marks, PmNodeTextAlign textAlign)
+        => new RtParagraph(children: children, marks: marks, textAlign: textAlign);
     
     public static RtTable RtTable(List<RtTableRow> children, List<DocumentMark> marks)
         => new RtTable(children: children, marks: marks);

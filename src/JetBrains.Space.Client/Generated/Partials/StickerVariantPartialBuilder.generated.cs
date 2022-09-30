@@ -27,16 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.StickerVariantPartialBuilder;
 
-public static class SdkInfo
+public static class StickerVariantPartialExtensions
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2022.2.0-DEV.113510";
+    public static Partial<StickerVariant> WithId(this Partial<StickerVariant> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<StickerVariant> WithName(this Partial<StickerVariant> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<StickerVariant> WithWidth(this Partial<StickerVariant> it)
+        => it.AddFieldName("width");
+    
+    public static Partial<StickerVariant> WithHeight(this Partial<StickerVariant> it)
+        => it.AddFieldName("height");
+    
 }
 

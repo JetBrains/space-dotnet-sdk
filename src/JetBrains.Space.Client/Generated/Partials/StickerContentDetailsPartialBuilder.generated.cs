@@ -27,16 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.StickerContentDetailsPartialBuilder;
 
-public static class SdkInfo
+public static class StickerContentDetailsPartialExtensions
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2022.2.0-DEV.113510";
+    public static Partial<StickerContentDetails> WithSticker(this Partial<StickerContentDetails> it)
+        => it.AddFieldName("sticker");
+    
+    public static Partial<StickerContentDetails> WithSticker(this Partial<StickerContentDetails> it, Func<Partial<Sticker>, Partial<Sticker>> partialBuilder)
+        => it.AddFieldName("sticker", partialBuilder(new Partial<Sticker>(it)));
+    
+    public static Partial<StickerContentDetails> WithPack(this Partial<StickerContentDetails> it)
+        => it.AddFieldName("pack");
+    
+    public static Partial<StickerContentDetails> WithPack(this Partial<StickerContentDetails> it, Func<Partial<StickerPackInfo>, Partial<StickerPackInfo>> partialBuilder)
+        => it.AddFieldName("pack", partialBuilder(new Partial<StickerPackInfo>(it)));
+    
 }
 

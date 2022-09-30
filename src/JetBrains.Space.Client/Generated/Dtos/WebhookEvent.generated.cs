@@ -62,6 +62,9 @@ public interface WebhookEvent
     public static BlogWebhookEvent Blog(KMetaMod meta, ArticleRecord article, bool textChanged, string? action = null, Modification<TDMemberProfile>? author = null, Modification<DateTime>? created = null, Modification<string>? title = null, Modification<bool>? unpublished = null, Modification<List<TDTeam>>? teams = null, Modification<List<TDLocation>>? locations = null, Modification<long>? externalEntityInfo = null)
         => new BlogWebhookEvent(meta: meta, article: article, textChanged: textChanged, action: action, author: author, created: created, title: title, unpublished: unpublished, teams: teams, locations: locations, externalEntityInfo: externalEntityInfo);
     
+    public static BusinessEntityRelationEvent BusinessEntityRelationEvent(KMetaMod meta, string relation, string entity, TDMemberProfile member, Modification<DateTime>? since = null, Modification<DateTime>? till = null, Modification<bool>? archived = null)
+        => new BusinessEntityRelationEvent(meta: meta, relation: relation, entity: entity, member: member, since: since, till: till, archived: archived);
+    
     public static ChannelEvent ChannelEvent(KMetaMod meta, M2ChannelRecord channel, Modification<string>? name = null, Modification<string>? description = null, Modification<string>? icon = null, bool? restored = null, bool? archived = null)
         => new ChannelEvent(meta: meta, channel: channel, name: name, description: description, icon: icon, restored: restored, archived: archived);
     
@@ -109,6 +112,12 @@ public interface WebhookEvent
     
     public static FeatureFlagWebhookEvent FeatureFlag(KMetaMod meta, string name, int? issueNumber = null, Modification<bool>? enabledForAll = null, Modification<bool>? selfManageable = null, List<TDTeam>? addedTeams = null, List<TDTeam>? addedProfiles = null, List<TDMemberProfile>? removedTeams = null, List<TDMemberProfile>? removedProfiles = null)
         => new FeatureFlagWebhookEvent(meta: meta, name: name, issueNumber: issueNumber, enabledForAll: enabledForAll, selfManageable: selfManageable, addedTeams: addedTeams, addedProfiles: addedProfiles, removedTeams: removedTeams, removedProfiles: removedProfiles);
+    
+    public static GoogleIntegrationDisconnectedEvent GoogleIntegrationDisconnectedEvent(TDMemberProfile member)
+        => new GoogleIntegrationDisconnectedEvent(member: member);
+    
+    public static IssueImportTransactionWebhookEvent IssueImportTransaction(KMetaMod meta, ImportTransactionRecord importTransaction)
+        => new IssueImportTransactionWebhookEvent(meta: meta, importTransaction: importTransaction);
     
     public static IssueWebhookEvent Issue(KMetaMod meta, Issue issue, Modification<string>? title = null, Modification<string>? description = null, Modification<TDMemberProfile>? assignee = null, Modification<IssueStatus>? status = null, Modification<DateTime>? dueDate = null, Modification<List<PlanningTag>>? tagDelta = null, Modification<List<Topic>>? topicDelta = null, Modification<List<Checklist>>? checklistDelta = null, Modification<List<SprintRecord>>? sprintDelta = null, IssueWebhookCustomFieldUpdate? customFieldUpdate = null, Modification<bool>? deleted = null)
         => new IssueWebhookEvent(meta: meta, issue: issue, title: title, description: description, assignee: assignee, status: status, dueDate: dueDate, tagDelta: tagDelta, topicDelta: topicDelta, checklistDelta: checklistDelta, sprintDelta: sprintDelta, customFieldUpdate: customFieldUpdate, deleted: deleted);

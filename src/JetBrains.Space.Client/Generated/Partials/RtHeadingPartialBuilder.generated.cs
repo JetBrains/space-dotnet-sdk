@@ -46,5 +46,11 @@ public static class RtHeadingPartialExtensions
     public static Partial<RtHeading> WithMarks(this Partial<RtHeading> it, Func<Partial<DocumentMark>, Partial<DocumentMark>> partialBuilder)
         => it.AddFieldName("marks", partialBuilder(new Partial<DocumentMark>(it)));
     
+    public static Partial<RtHeading> WithTextAlign(this Partial<RtHeading> it)
+        => it.AddFieldName("textAlign");
+    
+    public static Partial<RtHeading> WithTextAlign(this Partial<RtHeading> it, Func<Partial<PmNodeTextAlign>, Partial<PmNodeTextAlign>> partialBuilder)
+        => it.AddFieldName("textAlign", partialBuilder(new Partial<PmNodeTextAlign>(it)));
+    
 }
 
