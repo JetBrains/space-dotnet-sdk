@@ -19,6 +19,17 @@ public class AuthenticationTokens
             accessToken: null,
             refreshToken: refreshToken,
             expires: null);
+    
+    /// <summary>
+    /// Creates a new <see cref="AuthenticationTokens"/> instance from access token.
+    /// </summary>
+    /// <param name="accessToken">The access token value.</param>
+    /// <returns>An <see cref="AuthenticationTokens"/> instance.</returns>
+    public static AuthenticationTokens FromAccessToken(string accessToken) =>
+        new AuthenticationTokens(
+            accessToken: accessToken,
+            refreshToken: null,
+            expires: null);
 
     /// <summary>
     /// Creates a new <see cref="AuthenticationTokens"/> instance.
