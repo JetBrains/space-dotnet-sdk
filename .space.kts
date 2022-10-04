@@ -79,6 +79,7 @@ job("Build and publish to NuGet.org (manual)") {
     }
 }
 
+/*
 job("Warmup - Rider") {
     git {
         depth = UNLIMITED_DEPTH
@@ -102,3 +103,4 @@ job("Warmup - Rider") {
         devfile = ".space/devfile.yml"
     }
 }
+*/
