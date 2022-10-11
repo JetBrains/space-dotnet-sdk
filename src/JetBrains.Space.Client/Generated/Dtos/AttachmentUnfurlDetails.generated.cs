@@ -50,6 +50,9 @@ public interface AttachmentUnfurlDetails
     public static UnfurlDetailsArticle UnfurlDetailsArticle(ArticleRecord article, ArticleContentRecord? content = null, ArticleChannelRecord? channel = null, ArticleDetailsRecord? details = null)
         => new UnfurlDetailsArticle(article: article, content: content, channel: channel, details: details);
     
+    public static UnfurlDetailsCodeDiffSnippet UnfurlDetailsCodeDiffSnippet(MCMessage header, List<AttachmentInfo> headerAttachments, List<InlineDiffLine> lines, int selectedLineIndex, int selectedLinesCount, string? sourceBranch = null, string? targetBranch = null)
+        => new UnfurlDetailsCodeDiffSnippet(header: header, headerAttachments: headerAttachments, lines: lines, selectedLineIndex: selectedLineIndex, selectedLinesCount: selectedLinesCount, sourceBranch: sourceBranch, targetBranch: targetBranch);
+    
     public static UnfurlDetailsCodeSnippet UnfurlDetailsCodeSnippet(CodeSnippetAnchor anchor, List<CodeLine> lines)
         => new UnfurlDetailsCodeSnippet(anchor: anchor, lines: lines);
     

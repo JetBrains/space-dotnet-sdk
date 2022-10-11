@@ -79,5 +79,8 @@ public static class GitCommitInfoPartialExtensions
     public static Partial<GitCommitInfo> WithSignature(this Partial<GitCommitInfo> it, Func<Partial<GitCommitSignature>, Partial<GitCommitSignature>> partialBuilder)
         => it.AddFieldName("signature", partialBuilder(new Partial<GitCommitSignature>(it)));
     
+    public static Partial<GitCommitInfo> WithIsCommitterIsSpace(this Partial<GitCommitInfo> it)
+        => it.AddFieldName("committerIsSpace");
+    
 }
 

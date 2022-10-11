@@ -34,7 +34,7 @@ public sealed class PRProject
 {
     public PRProject() { }
     
-    public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> collaboratorsProfiles, List<TDTeam> collaboratorsTeams, int daysInWeek, bool enable, DurationTextFormat format, List<TDMemberProfile> guestProfiles, int hoursInDay, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, string projectId, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, ProjectTeamType type, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null, List<ProjectFeatureState>? features = null, List<ProjectTeamMemberRecord>? members = null, TDTeam? team = null, List<TDTeam>? teams = null)
+    public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> collaboratorsProfiles, List<TDTeam> collaboratorsTeams, int daysInWeek, bool enable, DurationTextFormat format, List<TDMemberProfile> guestProfiles, int hoursInDay, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, ProjectTeamType type, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null, DateTime? createdAt = null, List<ProjectFeatureState>? features = null, List<ProjectFeatureUsage>? featuresUsage = null, List<ProjectTeamMemberRecord>? members = null, TDTeam? team = null, List<TDTeam>? teams = null)
     {
         Id = id;
         Key = key;
@@ -43,6 +43,7 @@ public sealed class PRProject
         Description = description;
         Icon = icon;
         LatestRepositoryActivity = latestRepositoryActivity;
+        CreatedAt = createdAt;
         IsArchived = archived;
         AdminProfiles = adminProfiles;
         AdminTeams = adminTeams;
@@ -52,6 +53,7 @@ public sealed class PRProject
         DaysInWeek = daysInWeek;
         IsEnable = enable;
         Features = features;
+        FeaturesUsage = featuresUsage;
         Format = format;
         GuestProfiles = guestProfiles;
         HoursInDay = hoursInDay;
@@ -59,7 +61,6 @@ public sealed class PRProject
         MemberTeams = memberTeams;
         Members = members;
         Packages = packages;
-        ProjectId = projectId;
         Repos = repos;
         Tags = tags;
         Team = team;
@@ -134,6 +135,16 @@ public sealed class PRProject
     {
         get => _latestRepositoryActivity.GetValue(InlineErrors);
         set => _latestRepositoryActivity.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _createdAt = new PropertyValue<DateTime?>(nameof(PRProject), nameof(CreatedAt), "createdAt");
+    
+    [JsonPropertyName("createdAt")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? CreatedAt
+    {
+        get => _createdAt.GetValue(InlineErrors);
+        set => _createdAt.SetValue(value);
     }
 
     private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(PRProject), nameof(IsArchived), "archived");
@@ -225,6 +236,15 @@ public sealed class PRProject
         set => _features.SetValue(value);
     }
 
+    private PropertyValue<List<ProjectFeatureUsage>?> _featuresUsage = new PropertyValue<List<ProjectFeatureUsage>?>(nameof(PRProject), nameof(FeaturesUsage), "featuresUsage");
+    
+    [JsonPropertyName("featuresUsage")]
+    public List<ProjectFeatureUsage>? FeaturesUsage
+    {
+        get => _featuresUsage.GetValue(InlineErrors);
+        set => _featuresUsage.SetValue(value);
+    }
+
     private PropertyValue<DurationTextFormat> _format = new PropertyValue<DurationTextFormat>(nameof(PRProject), nameof(Format), "format");
     
     [Required]
@@ -294,16 +314,6 @@ public sealed class PRProject
         set => _packages.SetValue(value);
     }
 
-    private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(PRProject), nameof(ProjectId), "projectId");
-    
-    [Required]
-    [JsonPropertyName("projectId")]
-    public string ProjectId
-    {
-        get => _projectId.GetValue(InlineErrors);
-        set => _projectId.SetValue(value);
-    }
-
     private PropertyValue<List<PRRepositoryInfo>> _repos = new PropertyValue<List<PRRepositoryInfo>>(nameof(PRProject), nameof(Repos), "repos", new List<PRRepositoryInfo>());
     
     [Required]
@@ -371,6 +381,7 @@ public sealed class PRProject
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
         _latestRepositoryActivity.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _createdAt.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
         _adminProfiles.SetAccessPath(parentChainPath, validateHasBeenSet);
         _adminTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -380,6 +391,7 @@ public sealed class PRProject
         _daysInWeek.SetAccessPath(parentChainPath, validateHasBeenSet);
         _enable.SetAccessPath(parentChainPath, validateHasBeenSet);
         _features.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _featuresUsage.SetAccessPath(parentChainPath, validateHasBeenSet);
         _format.SetAccessPath(parentChainPath, validateHasBeenSet);
         _guestProfiles.SetAccessPath(parentChainPath, validateHasBeenSet);
         _hoursInDay.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -387,7 +399,6 @@ public sealed class PRProject
         _memberTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _members.SetAccessPath(parentChainPath, validateHasBeenSet);
         _packages.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _projectId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _repos.SetAccessPath(parentChainPath, validateHasBeenSet);
         _tags.SetAccessPath(parentChainPath, validateHasBeenSet);
         _team.SetAccessPath(parentChainPath, validateHasBeenSet);

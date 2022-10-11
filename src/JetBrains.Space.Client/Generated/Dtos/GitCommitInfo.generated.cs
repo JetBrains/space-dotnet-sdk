@@ -34,7 +34,7 @@ public sealed class GitCommitInfo
 {
     public GitCommitInfo() { }
     
-    public GitCommitInfo(string id, string message, long authorDate, long commitDate, GitAuthorInfo author, GitAuthorInfo committer, List<string> parents, List<string> heads, TDMemberProfile? authorProfile = null, TDMemberProfile? committerProfile = null, GitCommitSignature? signature = null)
+    public GitCommitInfo(string id, string message, long authorDate, long commitDate, GitAuthorInfo author, GitAuthorInfo committer, List<string> parents, List<string> heads, TDMemberProfile? authorProfile = null, TDMemberProfile? committerProfile = null, GitCommitSignature? signature = null, bool? committerIsSpace = null)
     {
         Id = id;
         Message = message;
@@ -47,6 +47,7 @@ public sealed class GitCommitInfo
         Parents = parents;
         Heads = heads;
         Signature = signature;
+        IsCommitterIsSpace = committerIsSpace;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(GitCommitInfo), nameof(Id), "id");
@@ -156,6 +157,15 @@ public sealed class GitCommitInfo
         set => _signature.SetValue(value);
     }
 
+    private PropertyValue<bool?> _committerIsSpace = new PropertyValue<bool?>(nameof(GitCommitInfo), nameof(IsCommitterIsSpace), "committerIsSpace");
+    
+    [JsonPropertyName("committerIsSpace")]
+    public bool? IsCommitterIsSpace
+    {
+        get => _committerIsSpace.GetValue(InlineErrors);
+        set => _committerIsSpace.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -169,6 +179,7 @@ public sealed class GitCommitInfo
         _parents.SetAccessPath(parentChainPath, validateHasBeenSet);
         _heads.SetAccessPath(parentChainPath, validateHasBeenSet);
         _signature.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _committerIsSpace.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

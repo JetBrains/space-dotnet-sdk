@@ -55,6 +55,9 @@ public static class PRProjectPartialExtensions
     public static Partial<PRProject> WithLatestRepositoryActivity(this Partial<PRProject> it)
         => it.AddFieldName("latestRepositoryActivity");
     
+    public static Partial<PRProject> WithCreatedAt(this Partial<PRProject> it)
+        => it.AddFieldName("createdAt");
+    
     public static Partial<PRProject> WithIsArchived(this Partial<PRProject> it)
         => it.AddFieldName("archived");
     
@@ -100,6 +103,12 @@ public static class PRProjectPartialExtensions
     public static Partial<PRProject> WithFeatures(this Partial<PRProject> it, Func<Partial<ProjectFeatureState>, Partial<ProjectFeatureState>> partialBuilder)
         => it.AddFieldName("features", partialBuilder(new Partial<ProjectFeatureState>(it)));
     
+    public static Partial<PRProject> WithFeaturesUsage(this Partial<PRProject> it)
+        => it.AddFieldName("featuresUsage");
+    
+    public static Partial<PRProject> WithFeaturesUsage(this Partial<PRProject> it, Func<Partial<ProjectFeatureUsage>, Partial<ProjectFeatureUsage>> partialBuilder)
+        => it.AddFieldName("featuresUsage", partialBuilder(new Partial<ProjectFeatureUsage>(it)));
+    
     public static Partial<PRProject> WithFormat(this Partial<PRProject> it)
         => it.AddFieldName("format");
     
@@ -138,9 +147,6 @@ public static class PRProjectPartialExtensions
     
     public static Partial<PRProject> WithPackages(this Partial<PRProject> it, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>> partialBuilder)
         => it.AddFieldName("packages", partialBuilder(new Partial<ProjectPackageRepository>(it)));
-    
-    public static Partial<PRProject> WithProjectId(this Partial<PRProject> it)
-        => it.AddFieldName("projectId");
     
     public static Partial<PRProject> WithRepos(this Partial<PRProject> it)
         => it.AddFieldName("repos");

@@ -55,6 +55,9 @@ public static class OrganizationRecordPartialExtensions
     public static Partial<OrganizationRecord> WithCreatedAt(this Partial<OrganizationRecord> it)
         => it.AddFieldName("createdAt");
     
+    public static Partial<OrganizationRecord> WithIsCreatedWithNavigationV2(this Partial<OrganizationRecord> it)
+        => it.AddFieldName("createdWithNavigationV2");
+    
     public static Partial<OrganizationRecord> WithTimezone(this Partial<OrganizationRecord> it)
         => it.AddFieldName("timezone");
     

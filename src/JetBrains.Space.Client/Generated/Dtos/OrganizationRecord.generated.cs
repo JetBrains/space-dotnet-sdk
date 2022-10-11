@@ -34,7 +34,7 @@ public sealed class OrganizationRecord
 {
     public OrganizationRecord() { }
     
-    public OrganizationRecord(string id, string orgId, string name, string? slogan = null, string? logoId = null, bool? onboardingRequired = null, bool? allowDomainsEdit = null, long? createdAt = null, ATimeZone? timezone = null, OrgSizeDTO? orgSize = null, OrgIndustryDTO? orgIndustry = null, string? slackWorkspace = null)
+    public OrganizationRecord(string id, string orgId, string name, string? slogan = null, string? logoId = null, bool? onboardingRequired = null, bool? allowDomainsEdit = null, long? createdAt = null, bool? createdWithNavigationV2 = null, ATimeZone? timezone = null, OrgSizeDTO? orgSize = null, OrgIndustryDTO? orgIndustry = null, string? slackWorkspace = null)
     {
         Id = id;
         OrgId = orgId;
@@ -44,6 +44,7 @@ public sealed class OrganizationRecord
         IsOnboardingRequired = onboardingRequired;
         IsAllowDomainsEdit = allowDomainsEdit;
         CreatedAt = createdAt;
+        IsCreatedWithNavigationV2 = createdWithNavigationV2;
         Timezone = timezone;
         OrgSize = orgSize;
         OrgIndustry = orgIndustry;
@@ -125,6 +126,15 @@ public sealed class OrganizationRecord
         set => _createdAt.SetValue(value);
     }
 
+    private PropertyValue<bool?> _createdWithNavigationV2 = new PropertyValue<bool?>(nameof(OrganizationRecord), nameof(IsCreatedWithNavigationV2), "createdWithNavigationV2");
+    
+    [JsonPropertyName("createdWithNavigationV2")]
+    public bool? IsCreatedWithNavigationV2
+    {
+        get => _createdWithNavigationV2.GetValue(InlineErrors);
+        set => _createdWithNavigationV2.SetValue(value);
+    }
+
     private PropertyValue<ATimeZone?> _timezone = new PropertyValue<ATimeZone?>(nameof(OrganizationRecord), nameof(Timezone), "timezone");
     
     [JsonPropertyName("timezone")]
@@ -172,6 +182,7 @@ public sealed class OrganizationRecord
         _onboardingRequired.SetAccessPath(parentChainPath, validateHasBeenSet);
         _allowDomainsEdit.SetAccessPath(parentChainPath, validateHasBeenSet);
         _createdAt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _createdWithNavigationV2.SetAccessPath(parentChainPath, validateHasBeenSet);
         _timezone.SetAccessPath(parentChainPath, validateHasBeenSet);
         _orgSize.SetAccessPath(parentChainPath, validateHasBeenSet);
         _orgIndustry.SetAccessPath(parentChainPath, validateHasBeenSet);
