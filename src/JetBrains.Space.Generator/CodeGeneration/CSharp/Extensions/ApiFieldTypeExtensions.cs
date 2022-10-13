@@ -1,4 +1,3 @@
-using System.Text;
 using JetBrains.Space.Common;
 using JetBrains.Space.Generator.Model.HttpApi;
 using JetBrains.Space.Generator.CodeGeneration.Extensions;
@@ -39,7 +38,7 @@ public static class ApiFieldTypeExtensions
         {
             case ApiFieldType.Array apiFieldTypeArray:
             {
-                var sb = new StringBuilder();
+                var sb = new CSharpBuilder();
                 sb.Append("List<");
                 sb.Append(ToCSharpType(apiFieldTypeArray.ElementType, context));
                 sb.Append(">");
@@ -78,7 +77,7 @@ public static class ApiFieldTypeExtensions
                 
             case ApiFieldType.Map apiFieldTypeMap:
             {
-                var sb = new StringBuilder();
+                var sb = new CSharpBuilder();
                 sb.Append("Dictionary<string, ");
                 sb.Append(ToCSharpType(apiFieldTypeMap.ValueType, context));
                 sb.Append(">");
@@ -89,7 +88,7 @@ public static class ApiFieldTypeExtensions
                 if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.PAIR)
                 {
                     // Known anonymous type
-                    var sb = new StringBuilder();
+                    var sb = new CSharpBuilder();
                     sb.Append("Pair<");
                     sb.Append(ToCSharpType(apiFieldTypeObject.Fields[0].Type, context));
                     sb.Append(", ");
@@ -100,7 +99,7 @@ public static class ApiFieldTypeExtensions
                 else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.TRIPLE)
                 {
                     // Known anonymous type
-                    var sb = new StringBuilder();
+                    var sb = new CSharpBuilder();
                     sb.Append("Triple<");
                     sb.Append(ToCSharpType(apiFieldTypeObject.Fields[0].Type, context));
                     sb.Append(", ");
@@ -113,7 +112,7 @@ public static class ApiFieldTypeExtensions
                 else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.BATCH)
                 {
                     // Known anonymous type
-                    var sb = new StringBuilder();
+                    var sb = new CSharpBuilder();
                     sb.Append("Batch<");
                     sb.Append(ToCSharpType(apiFieldTypeObject.GetBatchDataType()!.ElementType, context));
                     sb.Append(">");
@@ -122,7 +121,7 @@ public static class ApiFieldTypeExtensions
                 else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.MOD)
                 {
                     // Known anonymous type
-                    var sb = new StringBuilder();
+                    var sb = new CSharpBuilder();
                     sb.Append("Modification<");
                     sb.Append(ToCSharpType(apiFieldTypeObject.Fields[0].Type, context));
                     sb.Append(">");

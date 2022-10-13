@@ -1,5 +1,4 @@
 using System;
-using System.Text;
 
 namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators;
 
@@ -8,7 +7,7 @@ public class CSharpDeploymentInfoGenerator
     public string GenerateSdkInfo(DeploymentInfo deploymentInfo)
     {
         var indent = new Indent();
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
 
         var typeNameForSdkInfo = "SdkInfo";
         

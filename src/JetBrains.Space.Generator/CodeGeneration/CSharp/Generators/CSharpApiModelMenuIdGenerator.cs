@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Text;
 using JetBrains.Space.Common.Utilities;
 using JetBrains.Space.Generator.Model.HttpApi;
 using JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions;
@@ -21,7 +20,7 @@ public class CSharpApiModelMenuIdGenerator
     public string GenerateMenuIds(IEnumerable<ApiMenuId> menuIds)
     {
         var indent = new Indent();
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
             
         builder.AppendLine($"{indent}public sealed class MenuId");
         builder.AppendLine($"{indent}{{");
@@ -43,7 +42,7 @@ public class CSharpApiModelMenuIdGenerator
     private string GenerateMenuIds(Node node)
     {
         var indent = new Indent();
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
 
         var lastDotIndexInPrefix = node.Prefix.LastIndexOf(".", StringComparison.Ordinal);
         var commonPrefix = lastDotIndexInPrefix >= 0

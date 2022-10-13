@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using JetBrains.Space.Common.Types;
 using JetBrains.Space.Generator.Model.HttpApi;
 using JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions;
@@ -19,7 +18,7 @@ public class CSharpApiModelDtoGenerator
     public string GenerateDtoDefinition(ApiDto apiDto)
     {
         var indent = new Indent();
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
             
         var typeNameForDto = apiDto.ToCSharpClassName();
             
@@ -195,7 +194,7 @@ public class CSharpApiModelDtoGenerator
     private string GenerateDtoFieldDefinition(string dtoId, string typeNameForDto, ApiField apiField)
     {
         var indent = new Indent();
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
 
         var propertyNameForField = apiField.ToCSharpPropertyName(typeNameForDto);
         var backingFieldNameForField = apiField.ToCSharpBackingFieldName();
@@ -324,7 +323,7 @@ public class CSharpApiModelDtoGenerator
     private static string GenerateDtoPropagatePropertyAccessPath(ApiDto apiDto, List<ApiDtoField> apiDtoFields)
     {
         var indent = new Indent();
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
                 
         var modifier = apiDto.Extends != null
             ? "override" 

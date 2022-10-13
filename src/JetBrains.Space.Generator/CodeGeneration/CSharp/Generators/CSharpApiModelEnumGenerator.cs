@@ -1,4 +1,3 @@
-using System.Text;
 using JetBrains.Space.Generator.Model.HttpApi;
 using JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions;
 
@@ -9,7 +8,7 @@ public class CSharpApiModelEnumGenerator
     public string GenerateEnumDefinition(ApiEnum apiEnum)
     {
         var indent = new Indent();
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
             
         var typeNameForEnum = apiEnum.ToCSharpClassName();
             

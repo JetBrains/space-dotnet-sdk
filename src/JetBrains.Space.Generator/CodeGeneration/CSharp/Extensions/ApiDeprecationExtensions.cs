@@ -1,4 +1,3 @@
-using System.Text;
 using JetBrains.Space.Common.Utilities;
 using JetBrains.Space.Generator.Model.HttpApi;
 
@@ -8,7 +7,7 @@ public static class ApiDeprecationExtensions
 {
     public static string ToCSharpDeprecation(this ApiDeprecation subject)
     {
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
         builder.Append("[Obsolete(\"");
         if (!string.IsNullOrEmpty(subject.Message))
         {

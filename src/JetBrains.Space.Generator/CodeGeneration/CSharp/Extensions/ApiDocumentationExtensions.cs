@@ -1,5 +1,4 @@
 using System.IO;
-using System.Text;
 using JetBrains.Space.Generator.Model.HttpApi;
 
 namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions;
@@ -28,7 +27,7 @@ public static class ApiDocumentationExtensions
     
     private static string ToCSharpDocumentationElement(this ApiDescription subject, string startElement, string endElement)
     {
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
         builder.AppendLine($"/// {startElement}");
         
         var reader = new StringReader(subject.Text);

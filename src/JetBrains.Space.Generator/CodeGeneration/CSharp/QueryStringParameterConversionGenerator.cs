@@ -97,7 +97,7 @@ public class QueryStringParameterConversionGenerator
         return new QueryStringParameterConversionGenerator(TargetNameValueCollectionName, _context, futureParameters);
     }
 
-    public void WriteTo(StringBuilder builder, Indent indent)
+    public void WriteTo(CSharpBuilder builder, Indent indent)
     {
         foreach (var parameter in _conversions)
         {

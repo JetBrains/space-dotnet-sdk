@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace JetBrains.Space.Common.Utilities;
 
@@ -12,7 +13,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="subject">The input <see cref="String"/>.</param>
     /// <returns>A <see cref="String"/> with the first character converted to uppercase. If the <paramref name="subject"/> is null or empty, the original <paramref name="subject"/> will be returned.</returns>
-    public static string? ToUppercaseFirst(this string? subject)
+    public static string? ToUppercaseFirst([NotNullIfNotNull("subject")] this string? subject)
     {
         if (!string.IsNullOrEmpty(subject) && subject.Length == 1)
         {
@@ -33,7 +34,7 @@ public static class StringExtensions
     /// <param name="subject">The input <see cref="String"/>.</param>
     /// <param name="prefix">The prefix <see cref="String"/> to remove, if it exists.</param>
     /// <returns>A <see cref="String"/> with the <paramref name="prefix"/> removed. If the <paramref name="subject"/> or <paramref name="prefix"/> is null or empty, the original <paramref name="subject"/> will be returned.</returns>
-    public static string? RemovePrefix(this string? subject, string prefix)
+    public static string? RemovePrefix([NotNullIfNotNull("subject")] this string? subject, string prefix)
     {
         if (string.IsNullOrEmpty(subject) || string.IsNullOrEmpty(prefix) || !subject.StartsWith(prefix))
         {
@@ -51,7 +52,7 @@ public static class StringExtensions
     /// <param name="delimiter">The delimiter <see cref="String"/>.</param>
     /// <param name="comparisonType">The <see cref="StringComparison"/> to use when comparing strings.</param>
     /// <returns>The substring of <paramref name="subject"/>, before <paramref name="delimiter"/> removed. If the <paramref name="subject"/> or <paramref name="delimiter"/> is null or empty, or the <paramref name="subject"/> does not contain <paramref name="delimiter"/>, the original <paramref name="subject"/> will be returned.</returns>
-    public static string? SubstringBefore(this string? subject, string delimiter, StringComparison comparisonType = StringComparison.CurrentCulture)
+    public static string? SubstringBefore([NotNullIfNotNull("subject")] this string? subject, string delimiter, StringComparison comparisonType = StringComparison.CurrentCulture)
     {
         if (string.IsNullOrEmpty(subject) || string.IsNullOrEmpty(delimiter))
         {

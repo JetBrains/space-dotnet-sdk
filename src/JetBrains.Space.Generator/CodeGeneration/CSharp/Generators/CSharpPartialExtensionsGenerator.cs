@@ -1,4 +1,3 @@
-using System.Text;
 using JetBrains.Space.Common;
 using JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions;
 using JetBrains.Space.Generator.Model.HttpApi;
@@ -18,7 +17,7 @@ public class CSharpPartialExtensionsGenerator
     public string GeneratePartialClassFor(ApiDto apiDto)
     {
         var indent = new Indent();
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
             
         var typeNameForDto = apiDto.ToCSharpClassName();
         var typeNameForPartialDto = $"Partial<{typeNameForDto}>";
@@ -43,7 +42,7 @@ public class CSharpPartialExtensionsGenerator
         ApiField apiField)
     {
         var indent = new Indent();
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
             
         var propertyName = apiField.ToCSharpPropertyName(currentDtoType);
         var apiFieldName = apiField.Name;
@@ -156,7 +155,7 @@ public class CSharpPartialExtensionsGenerator
                 if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.PAIR)
                 {
                     // Known anonymous type
-                    var sb = new StringBuilder();
+                    var sb = new CSharpBuilder();
                     sb.Append("Pair<");
                     sb.Append(GenerateCSharpTypeFrom(apiFieldTypeObject.Fields[0].Type));
                     sb.Append(", ");
@@ -167,7 +166,7 @@ public class CSharpPartialExtensionsGenerator
                 else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.TRIPLE)
                 {
                     // Known anonymous type
-                    var sb = new StringBuilder();
+                    var sb = new CSharpBuilder();
                     sb.Append("Triple<");
                     sb.Append(GenerateCSharpTypeFrom(apiFieldTypeObject.Fields[0].Type));
                     sb.Append(", ");
@@ -180,7 +179,7 @@ public class CSharpPartialExtensionsGenerator
                 else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.BATCH)
                 {
                     // Known anonymous type
-                    var sb = new StringBuilder();
+                    var sb = new CSharpBuilder();
                     sb.Append("Batch<");
                     sb.Append(GenerateCSharpTypeFrom(apiFieldTypeObject.GetBatchDataType()!));
                     sb.Append(">");
@@ -189,7 +188,7 @@ public class CSharpPartialExtensionsGenerator
                 else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.MOD)
                 {
                     // Known anonymous type
-                    var sb = new StringBuilder();
+                    var sb = new CSharpBuilder();
                     sb.Append("Modification<");
                     sb.Append(GenerateCSharpTypeFrom(apiFieldTypeObject.Fields[0].Type));
                     sb.Append(">");

@@ -101,7 +101,7 @@ public static class ApiFieldExtensions
         {
             var typeNameForArrayElement = subject.Type.GetArrayElementTypeOrType().ToCSharpType(context);
 
-            var builder = new StringBuilder();
+            var builder = new CSharpBuilder();
             builder.Append($"new List<{typeNameForArrayElement}>()");
 
             if (collection.Elements.Count > 0)
@@ -116,7 +116,7 @@ public static class ApiFieldExtensions
         {
             var typeNameForMapValue = subject.Type.GetMapValueTypeOrType().ToCSharpType(context);
 
-            var builder = new StringBuilder();
+            var builder = new CSharpBuilder();
             builder.Append($"new Dictionary<string, {typeNameForMapValue}>()");
 
             if (map.Elements.Count > 0)

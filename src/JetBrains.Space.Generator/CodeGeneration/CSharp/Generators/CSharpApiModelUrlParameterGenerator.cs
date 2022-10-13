@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using JetBrains.Space.Generator.Model.HttpApi;
 using JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions;
 
@@ -19,7 +18,7 @@ public class CSharpApiModelUrlParameterGenerator
     public string GenerateUrlParameterDefinition(ApiUrlParameter apiUrlParameter)
     {
         var indent = new Indent();
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
             
         var typeNameForUrlParameter = apiUrlParameter.ToCSharpClassName();
             
@@ -63,7 +62,7 @@ public class CSharpApiModelUrlParameterGenerator
         string typeNameForUrlParameter)
     {
         var indent = new Indent();
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
 
         var typeNameForUrlParameterOption = apiUrlParameterOption.ToCSharpClassName();
         var factoryMethodNameForUrlParameterOption = apiUrlParameterOption.ToCSharpFactoryMethodName(typeNameForUrlParameterOption, apiUrlParameter);
@@ -116,7 +115,7 @@ public class CSharpApiModelUrlParameterGenerator
         string typeNameForUrlParameter)
     {
         var indent = new Indent();
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
             
         var typeNameForUrlParameterOption = apiUrlParameterOption.ToCSharpClassName();
         

@@ -1,5 +1,4 @@
 using System.IO;
-using System.Text;
 using JetBrains.Space.Common.Utilities;
 using JetBrains.Space.Generator.Model.HttpApi;
 
@@ -9,7 +8,7 @@ public static class ApiExperimentalExtensions
 {
     public static string ToCSharpExperimental(this ApiExperimental subject)
     {
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
         builder.AppendLine($"#if NET6_0_OR_GREATER");
         
         builder.Append("[Obsolete(\"");
@@ -48,7 +47,7 @@ public static class ApiExperimentalExtensions
     
     private static string ToCSharpDocumentationElement(this ApiExperimental subject, string startElement, string endElement)
     {
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
         builder.AppendLine($"/// {startElement}");
         
         var reader = new StringReader(subject.Message ?? "This is an experimental API.");

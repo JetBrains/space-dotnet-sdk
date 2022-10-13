@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Text;
 using JetBrains.Space.Generator.Model.HttpApi;
 using JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions;
 using JetBrains.Space.Generator.CodeGeneration.Extensions;
@@ -33,7 +32,7 @@ public class CSharpApiModelResourceGenerator
         bool withConstructor)
     {
         var indent = new Indent();
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
             
         // Client class
         builder.AppendLine($"{indent}public partial class {typeNameForClient} : ISpaceClient");
@@ -109,7 +108,7 @@ public class CSharpApiModelResourceGenerator
 
     private string GenerateMethodsForApiEndpoint(ApiEndpoint apiEndpoint, string baseEndpointPath)
     {
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
         builder.AppendLine(GenerateMethodForApiEndpoint(apiEndpoint, baseEndpointPath));
             
         var isResponseBatch = apiEndpoint.ResponseBody is ApiFieldType.Object { Kind: ApiFieldType.Object.ObjectKind.BATCH };
@@ -125,7 +124,7 @@ public class CSharpApiModelResourceGenerator
     private string GenerateMethodForApiEndpoint(ApiEndpoint apiEndpoint, string baseEndpointPath)
     {
         var indent = new Indent();
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
             
         var endpointPath = (baseEndpointPath + "/" + apiEndpoint.Path.Segments.ToPath()).TrimEnd('/');
         
@@ -314,7 +313,7 @@ public class CSharpApiModelResourceGenerator
 
     private string ConstructNewRequestObject(Indent indent, ApiEndpoint apiEndpoint, string endpointPath)
     {
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
 
         builder.AppendLine();
         indent.Increment();
@@ -346,7 +345,7 @@ public class CSharpApiModelResourceGenerator
     private string GenerateEnumerableMethodForBatchApiEndpoint(ApiEndpoint apiEndpoint, string baseEndpointPath)
     {
         var indent = new Indent();
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
             
         var endpointPath = (baseEndpointPath + "/" + apiEndpoint.Path.Segments.ToPath()).TrimEnd('/');
 
@@ -425,7 +424,7 @@ public class CSharpApiModelResourceGenerator
     private static string GenerateMethodDocumentationForEndpoint(ApiEndpoint apiEndpoint, MethodParametersBuilder methodParametersBuilder)
     {
         var indent = new Indent();
-        var builder = new StringBuilder();
+        var builder = new CSharpBuilder();
             
         // Documentation for method
         ApiDocumentationUtilities.RenderCSharpDocumentation(apiEndpoint.Description, apiEndpoint.Experimental, output =>
