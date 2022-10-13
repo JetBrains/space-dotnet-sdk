@@ -78,29 +78,3 @@ job("Build and publish to NuGet.org (manual)") {
         }
     }
 }
-
-/*
-job("Warmup - Rider") {
-    git {
-        depth = UNLIMITED_DEPTH
-        refSpec = "refs/*:refs/*"
-    }
-
-    startOn {
-        schedule { cron("0 0 * * *") }
-
-        gitPush {
-            enabled = true
-
-            branchFilter {
-                +"refs/heads/main"
-            }
-        }
-    }
-
-    warmup(ide = Ide.Rider) {
-        scriptLocation = "dev-env-warmup.sh"
-        devfile = ".space/devfile.yml"
-    }
-}
-*/

@@ -5,6 +5,16 @@ attributes:
     editor:
       type: Rider
     projectRoot: JetBrains.Space.sln
+    warmup:
+      startOn:
+        #- type: schedule
+        #  cron: '0 20 * * *'
+        - type: gitPush
+          branchFilter:
+            include:
+              - 'refs/heads/main'
+      script: |
+        ./dev-env-warmup.sh
 components:
   - name: image-build
     image:
