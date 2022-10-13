@@ -104,7 +104,8 @@ namespace _build
             .TriggeredBy(Package)
             .OnlyWhenStatic(() =>
                 !string.IsNullOrEmpty(NuGetPublicSpaceTargetUrl) &&
-                !string.IsNullOrEmpty(NuGetPublicSpaceTargetApiKey))
+                !string.IsNullOrEmpty(NuGetPublicSpaceTargetApiKey) &&
+                NuGetPublicSpaceTargetUrl != " ")
             .WhenSkipped(DependencyBehavior.Execute)
             .Executes(() =>
             {
@@ -124,7 +125,8 @@ namespace _build
             .OnlyWhenStatic(() =>
                 (Environment.GetEnvironmentVariable("JB_SPACE_GIT_BRANCH") ?? "").Contains("main", StringComparison.OrdinalIgnoreCase) &&
                 !string.IsNullOrEmpty(NuGetOrgTargetUrl) &&
-                !string.IsNullOrEmpty(NuGetOrgTargetApiKey))
+                !string.IsNullOrEmpty(NuGetOrgTargetApiKey) &&
+                NuGetOrgTargetUrl != " ")
             .WhenSkipped(DependencyBehavior.Execute)
             .Executes(() =>
             {
