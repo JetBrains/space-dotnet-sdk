@@ -1,8 +1,11 @@
+using JetBrains.Annotations;
+
 namespace JetBrains.Space.Common;
 
 /// <summary>
 /// Represents a permission scope.
 /// </summary>
+[PublicAPI]
 public class PermissionScope
 {
     /// <summary>
