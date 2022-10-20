@@ -23,11 +23,12 @@ public sealed class CSharpType : Enumeration
     public static readonly CSharpType Double = new("double");
     public static readonly CSharpType Bool = new("bool", null, "l");
     public static readonly CSharpType String = new("string");
-    public static readonly CSharpType SpaceDate = new("DateTime", typeof(SpaceDateConverter), SpaceDateConverter.FormatString);
-    public static readonly CSharpType SpaceTime = new("DateTime", typeof(SpaceDateTimeConverter), SpaceDateTimeConverter.FormatString);
-    public static readonly CSharpType SpaceDuration = new("TimeSpan", typeof(SpaceDurationConverter));
+    public static readonly CSharpType SpaceDate = new(nameof(DateTime), typeof(SpaceDateConverter), SpaceDateConverter.FormatString);
+    public static readonly CSharpType SpaceTime = new(nameof(DateTime), typeof(SpaceDateTimeConverter), SpaceDateTimeConverter.FormatString);
+    public static readonly CSharpType SpaceDuration = new(nameof(TimeSpan), typeof(SpaceDurationConverter));
     public static readonly CSharpType Object = new("object");
 
     public static readonly CSharpType RequestHeaders = new("Dictionary<string, string>?");
-    public static readonly CSharpType CancellationToken = new("CancellationToken");
+    public static readonly CSharpType CancellationToken = new(nameof(System.Threading.CancellationToken));
+    public static readonly CSharpType PermissionScope = new(nameof(Common.PermissionScope));
 }

@@ -32,7 +32,7 @@ public class RefreshTokenConnection
     /// <param name="authenticationTokens">Authentication tokens to use while authenticating.</param>
     /// <param name="scopes">The list of permissions to request. The connection is initialized with the provided scope. When <value>null</value> or empty, default scope of "**" will be used.</param>
     /// <param name="httpClient">HTTP client to use for communication.</param>
-    public RefreshTokenConnection(Uri serverUrl, string clientId, string clientSecret, AuthenticationTokens authenticationTokens, IEnumerable<string>? scopes = null, HttpClient? httpClient = null)
+    public RefreshTokenConnection(Uri serverUrl, string clientId, string clientSecret, AuthenticationTokens authenticationTokens, IEnumerable<PermissionScope>? scopes = null, HttpClient? httpClient = null)
         : base(serverUrl, authenticationTokens, httpClient)
     {
         if (string.IsNullOrEmpty(authenticationTokens.RefreshToken))
@@ -53,7 +53,7 @@ public class RefreshTokenConnection
         }
         else
         {
-            Scope.Add("**");
+            Scope.Add(PermissionScope.All);
         }
     }
 
@@ -61,7 +61,7 @@ public class RefreshTokenConnection
     /// Gets the list of permissions to request. Defaults to "**" if no scope was provided when calling the constructor.
     /// </summary>
     // ReSharper disable once MemberCanBePrivate.Global
-    public ICollection<string> Scope { get; } = new HashSet<string>();
+    public ICollection<PermissionScope> Scope { get; } = new HashSet<PermissionScope>();
 
     /// <inheritdoc />
     protected override async Task EnsureAuthenticatedAsync(HttpRequestMessage request, CancellationToken cancellationToken)

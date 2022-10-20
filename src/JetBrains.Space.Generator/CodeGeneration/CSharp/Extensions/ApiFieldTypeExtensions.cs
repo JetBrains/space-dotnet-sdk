@@ -16,7 +16,9 @@ public static class ApiFieldTypeExtensions
             "Float" => CSharpType.Float,
             "Double" => CSharpType.Double,
             "Boolean" => CSharpType.Bool,
-            "String" => CSharpType.String,
+            "String" => subject.Tags.Contains(Constants.Tags.PermissionScopeTag)
+                ? CSharpType.PermissionScope
+                : CSharpType.String,
             "Date" => CSharpType.SpaceDate,
             "DateTime" => CSharpType.SpaceTime,
             "Duration" => CSharpType.SpaceDuration,

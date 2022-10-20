@@ -1,5 +1,6 @@
 using JetBrains.Space.AspNetCore.Authentication;
 using JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement;
+using JetBrains.Space.Common;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -47,7 +48,7 @@ public class Startup
         //     options.ClientId = Configuration["Space:ClientId"];
         //     options.ClientSecret = Configuration["Space:ClientSecret"];
         //
-        //     options.Scope.Add("**");
+        //     options.Scope.Add(PermissionScope.All);
         //     options.AccessType = AccessType.Offline;
         //     options.SaveTokens = true;
         // });

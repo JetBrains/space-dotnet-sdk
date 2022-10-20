@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using JetBrains.Space.Common;
 using Microsoft.Extensions.Options;
 
 namespace JetBrains.Space.AspNetCore.Authentication;
@@ -15,7 +16,7 @@ public class SpacePostConfigureOptions : IPostConfigureOptions<SpaceOptions>
         if (options.Scope.Count == 0)
         {
             // REVIEW: Should we use a more narrow scope here by default? https://www.jetbrains.com/help/space/client-credentials.html#request
-            options.Scope.Add("**");
+            options.Scope.Add(PermissionScope.All);
         }
     }
 }

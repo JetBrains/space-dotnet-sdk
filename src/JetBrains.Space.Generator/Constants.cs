@@ -12,4 +12,9 @@ internal static class Constants
  :///////+ooos+-    
  `//////+++/:`      
   `:/::--.    ";
+
+    public static class Tags
+    {
+        public const string PermissionScopeTag = "scope";
+    }
 }

@@ -98,7 +98,7 @@ Scope is a mechanism in OAuth 2.0 to limit an application's access to a user's a
 
 On a `Connection` instance, use the `Scope` property to specify the scope required by an application. 
 
-> **Warning:** By default, JetBrains.Space uses the `**` scope, which requests all available scopes. It is recommended to limit the scope to just those permissions that are needed by your application.
+> **Warning:** By default, JetBrains.Space uses the `**` scope (`PermissionScope.All`), which requests all available scopes. It is recommended to limit the scope to just those permissions that are needed by your application.
 
 Examples of [available scopes](https://www.jetbrains.com/help/space/oauth-2-0-authorization.html) are available in the Space documentation.
 
@@ -589,8 +589,8 @@ Optionally, we can further configure Space authentication behavior in our applic
 {
     Configuration.Bind("Space", options);
 
-    options.Scope.Add("**");   // Set scope (defaults to **)
-    options.SaveTokens = true; // Save tokens (defaults to true)
+    options.Scope.Add(PermissionScope.All); // Set scope (defaults to **)
+    options.SaveTokens = true;              // Save tokens (defaults to true)
 
     // ...
 });
