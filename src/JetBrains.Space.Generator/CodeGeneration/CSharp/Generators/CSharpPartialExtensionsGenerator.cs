@@ -188,7 +188,7 @@ public class CSharpPartialExtensionsGenerator
                 else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.SYNC_BATCH)
                 {
                     // Known anonymous type
-                    var sb = new StringBuilder();
+                    var sb = new CSharpBuilder();
                     sb.Append("SyncBatch<");
                     sb.Append(GenerateCSharpTypeFrom(apiFieldTypeObject.GetBatchDataType()!));
                     sb.Append(">");

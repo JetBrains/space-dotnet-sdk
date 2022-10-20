@@ -121,7 +121,7 @@ public static class ApiFieldTypeExtensions
                 else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.SYNC_BATCH)
                 {
                     // Known anonymous type
-                    var sb = new StringBuilder();
+                    var sb = new CSharpBuilder();
                     sb.Append("SyncBatch<");
                     sb.Append(ToCSharpType(apiFieldTypeObject.GetBatchDataType()!.ElementType, context));
                     sb.Append(">");
