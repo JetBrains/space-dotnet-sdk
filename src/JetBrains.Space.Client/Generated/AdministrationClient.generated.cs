@@ -60,12 +60,12 @@ public partial class AdministrationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<SupportProfileDTO> CreateSupportAsync(Func<Partial<SupportProfileDTO>, Partial<SupportProfileDTO>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<SupportProfileDTO> CreateSupportAsync(Func<Partial<SupportProfileDTO>, Partial<SupportProfileDTO>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<SupportProfileDTO>()) : Partial<SupportProfileDTO>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<SupportProfileDTO>("POST", $"api/http/administration/support{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<SupportProfileDTO>("POST", $"api/http/administration/support{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -82,12 +82,12 @@ public partial class AdministrationClient : ISpaceClient
             _connection = connection;
         }
         
-        public async Task<UAUserAgreement> GetUserAgreementAsync(Func<Partial<UAUserAgreement>, Partial<UAUserAgreement>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<UAUserAgreement> GetUserAgreementAsync(Func<Partial<UAUserAgreement>, Partial<UAUserAgreement>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<UAUserAgreement>()) : Partial<UAUserAgreement>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<UAUserAgreement>("GET", $"api/http/administration/user-agreement{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<UAUserAgreement>("GET", $"api/http/administration/user-agreement{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -99,7 +99,7 @@ public partial class AdministrationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<UAUserAgreement> UploadNewUserAgreementAsync(string newContent, bool invalidate, Func<Partial<UAUserAgreement>, Partial<UAUserAgreement>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<UAUserAgreement> UploadNewUserAgreementAsync(string newContent, bool invalidate, Func<Partial<UAUserAgreement>, Partial<UAUserAgreement>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<UAUserAgreement>()) : Partial<UAUserAgreement>.Default()).ToString());
@@ -109,7 +109,7 @@ public partial class AdministrationClient : ISpaceClient
                 { 
                     NewContent = newContent,
                     IsInvalidate = invalidate,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -132,7 +132,7 @@ public partial class AdministrationClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task EnableDisableUserAgreementAsync(bool enabled, CancellationToken cancellationToken = default)
+            public async Task EnableDisableUserAgreementAsync(bool enabled, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -140,15 +140,15 @@ public partial class AdministrationClient : ISpaceClient
                     new AdministrationUserAgreementEnabledPostRequest
                     { 
                         IsEnabled = enabled,
-                    }, cancellationToken);
+                    }, requestHeaders: null, cancellationToken: cancellationToken);
             }
             
         
-            public async Task<bool> IsUserAgreementEnabledAsync(CancellationToken cancellationToken = default)
+            public async Task<bool> IsUserAgreementEnabledAsync(Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                return await _connection.RequestResourceAsync<bool>("GET", $"api/http/administration/user-agreement/enabled{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<bool>("GET", $"api/http/administration/user-agreement/enabled{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
             }
             
         
@@ -173,7 +173,7 @@ public partial class AdministrationClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Batch<UAUserAgreementStatus>> GetAllUserAgreementStatusesAsync(string query = "", bool activeProfilesOnly = true, string? skip = null, int? top = 100, bool? accepted = null, Func<Partial<Batch<UAUserAgreementStatus>>, Partial<Batch<UAUserAgreementStatus>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Batch<UAUserAgreementStatus>> GetAllUserAgreementStatusesAsync(string query = "", bool activeProfilesOnly = true, string? skip = null, int? top = 100, bool? accepted = null, Func<Partial<Batch<UAUserAgreementStatus>>, Partial<Batch<UAUserAgreementStatus>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 if (skip != null) queryParameters.Append("$skip", skip);
@@ -183,9 +183,8 @@ public partial class AdministrationClient : ISpaceClient
                 queryParameters.Append("activeProfilesOnly", activeProfilesOnly.ToString("l"));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<UAUserAgreementStatus>>()) : Partial<Batch<UAUserAgreementStatus>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<UAUserAgreementStatus>>("GET", $"api/http/administration/user-agreement/status{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<UAUserAgreementStatus>>("GET", $"api/http/administration/user-agreement/status{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
             }
-            
             
             /// <remarks>
             /// Required permissions:
@@ -206,12 +205,12 @@ public partial class AdministrationClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<UAUserAgreementStatus> GetUserAgreementStatusForAProfileAsync(ProfileIdentifier profile, Func<Partial<UAUserAgreementStatus>, Partial<UAUserAgreementStatus>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<UAUserAgreementStatus> GetUserAgreementStatusForAProfileAsync(ProfileIdentifier profile, Func<Partial<UAUserAgreementStatus>, Partial<UAUserAgreementStatus>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<UAUserAgreementStatus>()) : Partial<UAUserAgreementStatus>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<UAUserAgreementStatus>("GET", $"api/http/administration/user-agreement/status/{profile}{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<UAUserAgreementStatus>("GET", $"api/http/administration/user-agreement/status/{profile}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
             }
             
         

@@ -55,11 +55,11 @@ public partial class ReactionClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task AddReactionAsync(ReactionItemIdentifier item, string emoji, CancellationToken cancellationToken = default)
+    public async Task AddReactionAsync(ReactionItemIdentifier item, string emoji, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("POST", $"api/http/reactions/{item}/{emoji}{queryParameters.ToQueryString()}", cancellationToken);
+        await _connection.RequestResourceAsync("POST", $"api/http/reactions/{item}/{emoji}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -80,12 +80,12 @@ public partial class ReactionClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<List<EmojiReaction>> ListReactionsAsync(ReactionItemIdentifier item, Func<Partial<EmojiReaction>, Partial<EmojiReaction>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<List<EmojiReaction>> ListReactionsAsync(ReactionItemIdentifier item, Func<Partial<EmojiReaction>, Partial<EmojiReaction>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<EmojiReaction>()) : Partial<EmojiReaction>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<List<EmojiReaction>>("GET", $"api/http/reactions/{item}{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<List<EmojiReaction>>("GET", $"api/http/reactions/{item}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -106,12 +106,12 @@ public partial class ReactionClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<List<CPrincipal>> ListReactedUsersAndApplicationsAsync(ReactionItemIdentifier item, string emoji, Func<Partial<CPrincipal>, Partial<CPrincipal>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<List<CPrincipal>> ListReactedUsersAndApplicationsAsync(ReactionItemIdentifier item, string emoji, Func<Partial<CPrincipal>, Partial<CPrincipal>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<CPrincipal>()) : Partial<CPrincipal>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<List<CPrincipal>>("GET", $"api/http/reactions/{item}/{emoji}{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<List<CPrincipal>>("GET", $"api/http/reactions/{item}/{emoji}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -132,11 +132,11 @@ public partial class ReactionClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task RemoveReactionAsync(ReactionItemIdentifier item, string emoji, CancellationToken cancellationToken = default)
+    public async Task RemoveReactionAsync(ReactionItemIdentifier item, string emoji, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("DELETE", $"api/http/reactions/{item}/{emoji}{queryParameters.ToQueryString()}", cancellationToken);
+        await _connection.RequestResourceAsync("DELETE", $"api/http/reactions/{item}/{emoji}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 

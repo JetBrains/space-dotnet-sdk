@@ -49,7 +49,7 @@ public partial class AbsenceClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<AbsenceRecord> CreateAbsenceAsync(string member, string reason, string description, DateTime since, DateTime till, string icon, bool available = false, string? location = null, List<CustomFieldInputValue>? customFieldValues = null, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<AbsenceRecord> CreateAbsenceAsync(string member, string reason, string description, DateTime since, DateTime till, string icon, bool available = false, string? location = null, List<CustomFieldInputValue>? customFieldValues = null, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceRecord>()) : Partial<AbsenceRecord>.Default()).ToString());
@@ -66,7 +66,7 @@ public partial class AbsenceClient : ISpaceClient
                 IsAvailable = available,
                 Icon = icon,
                 CustomFieldValues = customFieldValues,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -81,7 +81,7 @@ public partial class AbsenceClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task ApproveAbsenceAsync(string id, bool approve, CancellationToken cancellationToken = default)
+    public async Task ApproveAbsenceAsync(string id, bool approve, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -89,7 +89,7 @@ public partial class AbsenceClient : ISpaceClient
             new AbsencesForIdApprovePostRequest
             { 
                 IsApprove = approve,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -104,7 +104,7 @@ public partial class AbsenceClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<Batch<AbsenceRecord>> GetAllAbsencesAsync(AbsenceListMode viewMode = AbsenceListMode.All, string? skip = null, int? top = 100, string? member = null, List<string>? members = null, string? location = null, string? team = null, DateTime? since = null, DateTime? till = null, string? reason = null, Func<Partial<Batch<AbsenceRecord>>, Partial<Batch<AbsenceRecord>>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<Batch<AbsenceRecord>> GetAllAbsencesAsync(AbsenceListMode viewMode = AbsenceListMode.All, string? skip = null, int? top = 100, string? member = null, List<string>? members = null, string? location = null, string? team = null, DateTime? since = null, DateTime? till = null, string? reason = null, Func<Partial<Batch<AbsenceRecord>>, Partial<Batch<AbsenceRecord>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         if (skip != null) queryParameters.Append("$skip", skip);
@@ -119,9 +119,8 @@ public partial class AbsenceClient : ISpaceClient
         if (reason != null) queryParameters.Append("reason", reason);
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<AbsenceRecord>>()) : Partial<Batch<AbsenceRecord>>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<Batch<AbsenceRecord>>("GET", $"api/http/absences{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<Batch<AbsenceRecord>>("GET", $"api/http/absences{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
-    
     
     /// <summary>
     /// Search absences. Parameters are applied as 'AND' filters.
@@ -148,12 +147,12 @@ public partial class AbsenceClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<List<AbsenceRecord>> GetAllAbsencesByMemberAsync(string member, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<List<AbsenceRecord>> GetAllAbsencesByMemberAsync(string member, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceRecord>()) : Partial<AbsenceRecord>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<List<AbsenceRecord>>("GET", $"api/http/absences/member:{member}{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<List<AbsenceRecord>>("GET", $"api/http/absences/member:{member}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -168,12 +167,12 @@ public partial class AbsenceClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<AbsenceRecord> GetAbsenceAsync(string id, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<AbsenceRecord> GetAbsenceAsync(string id, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceRecord>()) : Partial<AbsenceRecord>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<AbsenceRecord>("GET", $"api/http/absences/{id}{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<AbsenceRecord>("GET", $"api/http/absences/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -188,7 +187,7 @@ public partial class AbsenceClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<AbsenceRecord> UpdateAbsenceAsync(string id, bool available, string? member = null, string? reason = null, string? description = null, string? location = null, DateTime? since = null, DateTime? till = null, string? icon = null, List<CustomFieldInputValue>? customFieldValues = null, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<AbsenceRecord> UpdateAbsenceAsync(string id, bool available, string? member = null, string? reason = null, string? description = null, string? location = null, DateTime? since = null, DateTime? till = null, string? icon = null, List<CustomFieldInputValue>? customFieldValues = null, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceRecord>()) : Partial<AbsenceRecord>.Default()).ToString());
@@ -205,7 +204,7 @@ public partial class AbsenceClient : ISpaceClient
                 IsAvailable = available,
                 Icon = icon,
                 CustomFieldValues = customFieldValues,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -223,12 +222,12 @@ public partial class AbsenceClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task DeleteAbsenceAsync(string id, bool delete = true, CancellationToken cancellationToken = default)
+    public async Task DeleteAbsenceAsync(string id, bool delete = true, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("delete", delete.ToString("l"));
         
-        await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}{queryParameters.ToQueryString()}", cancellationToken);
+        await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -243,11 +242,11 @@ public partial class AbsenceClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task DeleteAbsenceApprovalAsync(string id, CancellationToken cancellationToken = default)
+    public async Task DeleteAbsenceApprovalAsync(string id, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}/delete-approval{queryParameters.ToQueryString()}", cancellationToken);
+        await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}/delete-approval{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -273,7 +272,7 @@ public partial class AbsenceClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<AbsenceReasonRecord> CreateAbsenceReasonAsync(string name, string description, bool defaultAvailability, bool approvalRequired, string? icon = null, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<AbsenceReasonRecord> CreateAbsenceReasonAsync(string name, string description, bool defaultAvailability, bool approvalRequired, string? icon = null, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default()).ToString());
@@ -286,7 +285,7 @@ public partial class AbsenceClient : ISpaceClient
                     IsDefaultAvailability = defaultAvailability,
                     IsApprovalRequired = approvalRequired,
                     Icon = icon,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -301,13 +300,13 @@ public partial class AbsenceClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<List<AbsenceReasonRecord>> GetAllAbsenceReasonsAsync(bool withArchived = false, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<List<AbsenceReasonRecord>> GetAllAbsenceReasonsAsync(bool withArchived = false, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("withArchived", withArchived.ToString("l"));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<AbsenceReasonRecord>>("GET", $"api/http/absences/absence-reasons{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<List<AbsenceReasonRecord>>("GET", $"api/http/absences/absence-reasons{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -322,12 +321,12 @@ public partial class AbsenceClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<AbsenceReasonRecord> GetAbsenceReasonAsync(string id, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<AbsenceReasonRecord> GetAbsenceReasonAsync(string id, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<AbsenceReasonRecord>("GET", $"api/http/absences/absence-reasons/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<AbsenceReasonRecord>("GET", $"api/http/absences/absence-reasons/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -342,7 +341,7 @@ public partial class AbsenceClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<AbsenceReasonRecord> UpdateAbsenceReasonAsync(string id, string name, string description, bool defaultAvailability, bool approvalRequired, string? icon = null, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<AbsenceReasonRecord> UpdateAbsenceReasonAsync(string id, string name, string description, bool defaultAvailability, bool approvalRequired, string? icon = null, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default()).ToString());
@@ -355,7 +354,7 @@ public partial class AbsenceClient : ISpaceClient
                     IsDefaultAvailability = defaultAvailability,
                     IsApprovalRequired = approvalRequired,
                     Icon = icon,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -370,12 +369,12 @@ public partial class AbsenceClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task DeleteAbsenceReasonAsync(string id, bool delete = true, CancellationToken cancellationToken = default)
+        public async Task DeleteAbsenceReasonAsync(string id, bool delete = true, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("delete", delete.ToString("l"));
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/absences/absence-reasons/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/absences/absence-reasons/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     

@@ -53,13 +53,13 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
         /// Get all types that support custom fields
         /// </summary>
         [Obsolete("Use the new Custom Fields API (since 2020-09-06)")]
-        public async Task<List<ExtendedType>> GetAllExtendedTypesAsync(ExtendedTypeScopeType scope = ExtendedTypeScopeType.Org, Func<Partial<ExtendedType>, Partial<ExtendedType>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<List<ExtendedType>> GetAllExtendedTypesAsync(ExtendedTypeScopeType scope = ExtendedTypeScopeType.Org, Func<Partial<ExtendedType>, Partial<ExtendedType>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("scope", scope.ToEnumString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ExtendedType>()) : Partial<ExtendedType>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<ExtendedType>>("GET", $"api/http/custom-fields/extended-types{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<List<ExtendedType>>("GET", $"api/http/custom-fields/extended-types{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -80,7 +80,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
         /// Get all custom field values for a type. Optionally, extendedEntityIds can be used to get data for one or more entity IDs.
         /// </summary>
         [Obsolete("Use the new Custom Fields API (since 2020-09-06)")]
-        public async Task<Batch<CustomFieldsRecord>> GetAllValuesAsync(string typeKey, ExtendedTypeScope scope, string? skip = null, int? top = 100, List<string>? extendedEntityIds = null, Func<Partial<Batch<CustomFieldsRecord>>, Partial<Batch<CustomFieldsRecord>>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<CustomFieldsRecord>> GetAllValuesAsync(string typeKey, ExtendedTypeScope scope, string? skip = null, int? top = 100, List<string>? extendedEntityIds = null, Func<Partial<Batch<CustomFieldsRecord>>, Partial<Batch<CustomFieldsRecord>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             if (skip != null) queryParameters.Append("$skip", skip);
@@ -89,9 +89,8 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
             queryParameters.Append("scope", scope.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<CustomFieldsRecord>>()) : Partial<Batch<CustomFieldsRecord>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<CustomFieldsRecord>>("GET", $"api/http/custom-fields/{typeKey}/all-values{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<CustomFieldsRecord>>("GET", $"api/http/custom-fields/{typeKey}/all-values{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
-        
         
         /// <summary>
         /// Get all custom field values for a type. Optionally, extendedEntityIds can be used to get data for one or more entity IDs.
@@ -117,7 +116,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
         /// Add new option to custom field of `Select from options` type. Options can only be added via this API call if custom field has the `Open-ended` flag set. Returns saved records.
         /// </summary>
         [Obsolete("Use the new Custom Fields API (since 2020-09-06)")]
-        public async Task<List<EnumValueData>> CreateEnumValueAsync(string typeKey, string customFieldId, List<EnumValueData> valuesToAdd, ExtendedTypeScope scope, Func<Partial<EnumValueData>, Partial<EnumValueData>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<List<EnumValueData>> CreateEnumValueAsync(string typeKey, string customFieldId, List<EnumValueData> valuesToAdd, ExtendedTypeScope scope, Func<Partial<EnumValueData>, Partial<EnumValueData>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<EnumValueData>()) : Partial<EnumValueData>.Default()).ToString());
@@ -127,7 +126,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
                 { 
                     ValuesToAdd = valuesToAdd,
                     Scope = scope,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -135,7 +134,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
         /// Get a page of options for custom field of `Select from options` type with `Open-ended` flag set
         /// </summary>
         [Obsolete("Use the new Custom Fields API (since 2020-09-06)")]
-        public async Task<Batch<EnumValueData>> GetAllEnumValuesAsync(string typeKey, string customFieldId, ExtendedTypeScope scope, EnumValueOrdering ordering = EnumValueOrdering.NAMEASC, string? skip = null, int? top = 100, string? query = null, bool? countRecords = null, string? addedByProfileId = null, Func<Partial<Batch<EnumValueData>>, Partial<Batch<EnumValueData>>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<EnumValueData>> GetAllEnumValuesAsync(string typeKey, string customFieldId, ExtendedTypeScope scope, EnumValueOrdering ordering = EnumValueOrdering.NAMEASC, string? skip = null, int? top = 100, string? query = null, bool? countRecords = null, string? addedByProfileId = null, Func<Partial<Batch<EnumValueData>>, Partial<Batch<EnumValueData>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             if (skip != null) queryParameters.Append("$skip", skip);
@@ -147,9 +146,8 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
             queryParameters.Append("scope", scope.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<EnumValueData>>()) : Partial<Batch<EnumValueData>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<EnumValueData>>("GET", $"api/http/custom-fields/{typeKey}/enum-values/{customFieldId}{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<EnumValueData>>("GET", $"api/http/custom-fields/{typeKey}/enum-values/{customFieldId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
-        
         
         /// <summary>
         /// Get a page of options for custom field of `Select from options` type with `Open-ended` flag set
@@ -175,7 +173,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
         /// Create custom field for a type
         /// </summary>
         [Obsolete("Use the new Custom Fields API (since 2020-09-06)")]
-        public async Task<CustomField> CreateFieldAsync(string typeKey, string name, CFType type, bool required, bool @private, CFInputValue defaultValue, ExtendedTypeScope scope, string? description = null, CFConstraint? constraint = null, AccessType? access = null, CFEnumValuesModification? openEnumValuesModification = null, CFCreateParameters? cfParameters = null, Func<Partial<CustomField>, Partial<CustomField>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<CustomField> CreateFieldAsync(string typeKey, string name, CFType type, bool required, bool @private, CFInputValue defaultValue, ExtendedTypeScope scope, string? description = null, CFConstraint? constraint = null, AccessType? access = null, CFEnumValuesModification? openEnumValuesModification = null, CFCreateParameters? cfParameters = null, Func<Partial<CustomField>, Partial<CustomField>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomField>()) : Partial<CustomField>.Default()).ToString());
@@ -194,7 +192,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
                     OpenEnumValuesModification = openEnumValuesModification,
                     CfParameters = cfParameters,
                     Scope = scope,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -202,7 +200,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
         /// Re-order custom fields. Pass IDs of the custom fields in the order you wish the custom fields to be.
         /// </summary>
         [Obsolete("Use the new Custom Fields API (since 2020-09-06)")]
-        public async Task ReorderFieldsAsync(string typeKey, List<string> customFieldOrder, ExtendedTypeScope scope, CancellationToken cancellationToken = default)
+        public async Task ReorderFieldsAsync(string typeKey, List<string> customFieldOrder, ExtendedTypeScope scope, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -211,7 +209,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
                 { 
                     CustomFieldOrder = customFieldOrder,
                     Scope = scope,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -219,7 +217,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
         /// Archive a custom field for a type
         /// </summary>
         [Obsolete("Use the new Custom Fields API (since 2020-09-06)")]
-        public async Task ArchiveFieldAsync(string typeKey, string id, ExtendedTypeScope scope, CancellationToken cancellationToken = default)
+        public async Task ArchiveFieldAsync(string typeKey, string id, ExtendedTypeScope scope, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -227,7 +225,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
                 new CustomFieldsForTypeKeyFieldsForIdArchivePostRequest
                 { 
                     Scope = scope,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -235,7 +233,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
         /// Restore custom field for a type
         /// </summary>
         [Obsolete("Use the new Custom Fields API (since 2020-09-06)")]
-        public async Task RestoreFieldAsync(string typeKey, string id, ExtendedTypeScope scope, CancellationToken cancellationToken = default)
+        public async Task RestoreFieldAsync(string typeKey, string id, ExtendedTypeScope scope, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -243,7 +241,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
                 new CustomFieldsForTypeKeyFieldsForIdRestorePostRequest
                 { 
                     Scope = scope,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -251,14 +249,14 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
         /// Get custom fields for a type
         /// </summary>
         [Obsolete("Use the new Custom Fields API (since 2020-09-06)")]
-        public async Task<List<CustomField>> GetAllFieldsAsync(string typeKey, ExtendedTypeScope scope, bool withArchived = false, Func<Partial<CustomField>, Partial<CustomField>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<List<CustomField>> GetAllFieldsAsync(string typeKey, ExtendedTypeScope scope, bool withArchived = false, Func<Partial<CustomField>, Partial<CustomField>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("withArchived", withArchived.ToString("l"));
             queryParameters.Append("scope", scope.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomField>()) : Partial<CustomField>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<CustomField>>("GET", $"api/http/custom-fields/{typeKey}/fields{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<List<CustomField>>("GET", $"api/http/custom-fields/{typeKey}/fields{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -266,7 +264,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
         /// Update custom field for a type. Optional parameters will be ignored when not specified and updated otherwise.
         /// </summary>
         [Obsolete("Use the new Custom Fields API (since 2020-09-06)")]
-        public async Task UpdateFieldAsync(string typeKey, string id, ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFInputValue? defaultValue = null, List<EnumValueData>? enumValues = null, CFEnumValuesModification? openEnumValuesModification = null, CFUpdateParameters? cfParameters = null, CancellationToken cancellationToken = default)
+        public async Task UpdateFieldAsync(string typeKey, string id, ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFInputValue? defaultValue = null, List<EnumValueData>? enumValues = null, CFEnumValuesModification? openEnumValuesModification = null, CFUpdateParameters? cfParameters = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -284,7 +282,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
                     OpenEnumValuesModification = openEnumValuesModification,
                     CfParameters = cfParameters,
                     Scope = scope,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -292,12 +290,12 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
         /// Remove custom field for a type
         /// </summary>
         [Obsolete("Use the new Custom Fields API (since 2020-09-06)")]
-        public async Task DeleteFieldAsync(string typeKey, string id, ExtendedTypeScope scope, CancellationToken cancellationToken = default)
+        public async Task DeleteFieldAsync(string typeKey, string id, ExtendedTypeScope scope, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("scope", scope.ToString());
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields/{typeKey}/fields/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields/{typeKey}/fields/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -313,7 +311,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
             }
             
             [Obsolete("Use the new Custom Fields API (since 2020-09-06)")]
-            public async Task<Batch<CFValue>> GetAllFilterValuesAsync(string typeKey, string id, ExtendedTypeScope scope, bool calculateTotal = false, string? skip = null, int? top = 100, Func<Partial<Batch<CFValue>>, Partial<Batch<CFValue>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Batch<CFValue>> GetAllFilterValuesAsync(string typeKey, string id, ExtendedTypeScope scope, bool calculateTotal = false, string? skip = null, int? top = 100, Func<Partial<Batch<CFValue>>, Partial<Batch<CFValue>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 if (skip != null) queryParameters.Append("$skip", skip);
@@ -322,9 +320,8 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
                 queryParameters.Append("calculateTotal", calculateTotal.ToString("l"));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<CFValue>>()) : Partial<Batch<CFValue>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<CFValue>>("GET", $"api/http/custom-fields/{typeKey}/fields/{id}/filter-values{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<CFValue>>("GET", $"api/http/custom-fields/{typeKey}/fields/{id}/filter-values{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
             }
-            
             
             [Obsolete("Use the new Custom Fields API (since 2020-09-06)")]
             public IAsyncEnumerable<CFValue> GetAllFilterValuesAsyncEnumerable(string typeKey, string id, ExtendedTypeScope scope, bool calculateTotal = false, string? skip = null, int? top = 100, Func<Partial<CFValue>, Partial<CFValue>>? partial = null, CancellationToken cancellationToken = default)
@@ -349,13 +346,13 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
         /// Get custom field value for a type and entity ID
         /// </summary>
         [Obsolete("Use the new Custom Fields API (since 2020-09-06)")]
-        public async Task<CustomFieldsRecord> GetValueAsync(string typeKey, string entityId, ExtendedTypeScope scope, Func<Partial<CustomFieldsRecord>, Partial<CustomFieldsRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<CustomFieldsRecord> GetValueAsync(string typeKey, string entityId, ExtendedTypeScope scope, Func<Partial<CustomFieldsRecord>, Partial<CustomFieldsRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("scope", scope.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomFieldsRecord>()) : Partial<CustomFieldsRecord>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<CustomFieldsRecord>("GET", $"api/http/custom-fields/{typeKey}/{entityId}/values{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<CustomFieldsRecord>("GET", $"api/http/custom-fields/{typeKey}/{entityId}/values{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -363,7 +360,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
         /// Update custom field value(s) for a type and entity ID
         /// </summary>
         [Obsolete("Use the new Custom Fields API (since 2020-09-06)")]
-        public async Task UpdateValueAsync(string entityId, string typeKey, List<CustomFieldInputValue> values, ExtendedTypeScope scope, CancellationToken cancellationToken = default)
+        public async Task UpdateValueAsync(string entityId, string typeKey, List<CustomFieldInputValue> values, ExtendedTypeScope scope, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -372,7 +369,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
                 { 
                     Values = values,
                     Scope = scope,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     

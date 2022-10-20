@@ -44,7 +44,7 @@ public partial class UploadClient : ISpaceClient
     /// The 'storagePrefix' parameter can be one of file, maps, emoji or attachments.
     /// The 'mediaType' parameter can be omitted for all uploads. For image uploads that need to be resized automatically for specific use, such as chat stickers or emoji, use one of `chat-image-attachment`, `chat-sticker`, `emoji`.
     /// </summary>
-    public async Task<string> CreateUploadAsync(string storagePrefix, string? mediaType = null, CancellationToken cancellationToken = default)
+    public async Task<string> CreateUploadAsync(string storagePrefix, string? mediaType = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -53,7 +53,7 @@ public partial class UploadClient : ISpaceClient
             { 
                 StoragePrefix = storagePrefix,
                 MediaType = mediaType,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -82,11 +82,11 @@ public partial class UploadClient : ISpaceClient
             /// <summary>
             /// Returns a URL that can be used to access attachment file without authentication
             /// </summary>
-            public async Task<string> GetPublicUrlAsync(ChannelIdentifier channel, ChatMessageIdentifier message, string attachmentId, CancellationToken cancellationToken = default)
+            public async Task<string> GetPublicUrlAsync(ChannelIdentifier channel, ChatMessageIdentifier message, string attachmentId, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                return await _connection.RequestResourceAsync<string>("GET", $"api/http/uploads/chat/public-url/{channel}/{message}/{attachmentId}{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<string>("GET", $"api/http/uploads/chat/public-url/{channel}/{message}/{attachmentId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
             }
             
         
@@ -108,12 +108,12 @@ public partial class UploadClient : ISpaceClient
         /// <summary>
         /// Get meta information for a previously uploaded image
         /// </summary>
-        public async Task<ImageAttachmentMeta> GetImageAttachmentMetadataAsync(string id, Func<Partial<ImageAttachmentMeta>, Partial<ImageAttachmentMeta>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<ImageAttachmentMeta> GetImageAttachmentMetadataAsync(string id, Func<Partial<ImageAttachmentMeta>, Partial<ImageAttachmentMeta>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ImageAttachmentMeta>()) : Partial<ImageAttachmentMeta>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<ImageAttachmentMeta>("GET", $"api/http/uploads/image/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<ImageAttachmentMeta>("GET", $"api/http/uploads/image/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     

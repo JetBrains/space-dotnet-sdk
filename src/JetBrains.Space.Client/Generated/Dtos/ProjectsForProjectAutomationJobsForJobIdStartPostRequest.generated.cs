@@ -34,10 +34,11 @@ public class ProjectsForProjectAutomationJobsForJobIdStartPostRequest
 {
     public ProjectsForProjectAutomationJobsForJobIdStartPostRequest() { }
     
-    public ProjectsForProjectAutomationJobsForJobIdStartPostRequest(Branch branch, List<JobParameter>? parameters = null)
+    public ProjectsForProjectAutomationJobsForJobIdStartPostRequest(Branch branch, List<JobParameter>? parameters = null, List<CheckoutRevisionDTO>? checkoutRevisions = null)
     {
         Branch = branch;
         Parameters = parameters;
+        CheckoutRevisions = checkoutRevisions;
     }
     
     private PropertyValue<Branch> _branch = new PropertyValue<Branch>(nameof(ProjectsForProjectAutomationJobsForJobIdStartPostRequest), nameof(Branch), "branch");
@@ -62,10 +63,23 @@ public class ProjectsForProjectAutomationJobsForJobIdStartPostRequest
         set => _parameters.SetValue(value);
     }
 
+    private PropertyValue<List<CheckoutRevisionDTO>?> _checkoutRevisions = new PropertyValue<List<CheckoutRevisionDTO>?>(nameof(ProjectsForProjectAutomationJobsForJobIdStartPostRequest), nameof(CheckoutRevisions), "checkoutRevisions");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("checkoutRevisions")]
+    public List<CheckoutRevisionDTO>? CheckoutRevisions
+    {
+        get => _checkoutRevisions.GetValue(InlineErrors);
+        set => _checkoutRevisions.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _branch.SetAccessPath(parentChainPath, validateHasBeenSet);
         _parameters.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _checkoutRevisions.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

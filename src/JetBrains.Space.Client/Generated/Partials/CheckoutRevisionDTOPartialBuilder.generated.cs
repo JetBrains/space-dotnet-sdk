@@ -27,16 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.CheckoutRevisionDTOPartialBuilder;
 
-public static class SdkInfo
+public static class CheckoutRevisionDTOPartialExtensions
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2022.2.0-DEV.138752";
+    public static Partial<CheckoutRevisionDTO> WithRepoName(this Partial<CheckoutRevisionDTO> it)
+        => it.AddFieldName("repoName");
+    
+    public static Partial<CheckoutRevisionDTO> WithBranch(this Partial<CheckoutRevisionDTO> it)
+        => it.AddFieldName("branch");
+    
+    public static Partial<CheckoutRevisionDTO> WithBranch(this Partial<CheckoutRevisionDTO> it, Func<Partial<Branch>, Partial<Branch>> partialBuilder)
+        => it.AddFieldName("branch", partialBuilder(new Partial<Branch>(it)));
+    
+    public static Partial<CheckoutRevisionDTO> WithCommit(this Partial<CheckoutRevisionDTO> it)
+        => it.AddFieldName("commit");
+    
 }
 

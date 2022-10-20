@@ -41,7 +41,7 @@ public partial class EmojiClient : ISpaceClient
     /// <summary>
     /// Add custom emoji
     /// </summary>
-    public async Task AddEmojiAsync(string emoji, string attachmentId, CancellationToken cancellationToken = default)
+    public async Task AddEmojiAsync(string emoji, string attachmentId, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -50,14 +50,14 @@ public partial class EmojiClient : ISpaceClient
             { 
                 Emoji = emoji,
                 AttachmentId = attachmentId,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
     /// <summary>
     /// Delete an emoji by name
     /// </summary>
-    public async Task DeleteEmojiAsync(string emoji, CancellationToken cancellationToken = default)
+    public async Task DeleteEmojiAsync(string emoji, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -65,14 +65,14 @@ public partial class EmojiClient : ISpaceClient
             new EmojisDeletePostRequest
             { 
                 Emoji = emoji,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
     /// <summary>
     /// Record emojis usage and update frequently used list
     /// </summary>
-    public async Task RecordEmojisUsageAsync(List<string> emojis, CancellationToken cancellationToken = default)
+    public async Task RecordEmojisUsageAsync(List<string> emojis, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -80,37 +80,37 @@ public partial class EmojiClient : ISpaceClient
             new EmojisRecordUsagePostRequest
             { 
                 Emojis = emojis,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
     /// <summary>
     /// Check whether a given emoji name exists
     /// </summary>
-    public async Task<bool> CheckIfEmojiExistsAsync(string emoji, CancellationToken cancellationToken = default)
+    public async Task<bool> CheckIfEmojiExistsAsync(string emoji, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("emoji", emoji);
         
-        return await _connection.RequestResourceAsync<bool>("GET", $"api/http/emojis/exists{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<bool>("GET", $"api/http/emojis/exists{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
     /// <summary>
     /// List frequently used emojis
     /// </summary>
-    public async Task<List<string>> GetFrequentlyUsedEmojisAsync(CancellationToken cancellationToken = default)
+    public async Task<List<string>> GetFrequentlyUsedEmojisAsync(Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
-        return await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/emojis/frequently-used{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/emojis/frequently-used{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
     /// <summary>
     /// Search for emoji
     /// </summary>
-    public async Task<Batch<EmojiSearchMatchData>> SearchEmojiAsync(string query, string? skip = null, int? top = 100, string? version = null, Func<Partial<Batch<EmojiSearchMatchData>>, Partial<Batch<EmojiSearchMatchData>>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<Batch<EmojiSearchMatchData>> SearchEmojiAsync(string query, string? skip = null, int? top = 100, string? version = null, Func<Partial<Batch<EmojiSearchMatchData>>, Partial<Batch<EmojiSearchMatchData>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         if (skip != null) queryParameters.Append("$skip", skip);
@@ -119,9 +119,8 @@ public partial class EmojiClient : ISpaceClient
         if (version != null) queryParameters.Append("version", version);
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<EmojiSearchMatchData>>()) : Partial<Batch<EmojiSearchMatchData>>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<Batch<EmojiSearchMatchData>>("GET", $"api/http/emojis/search{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<Batch<EmojiSearchMatchData>>("GET", $"api/http/emojis/search{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
-    
     
     /// <summary>
     /// Search for emoji

@@ -34,13 +34,14 @@ public class ProjectsPostRequest
 {
     public ProjectsPostRequest() { }
     
-    public ProjectsPostRequest(ProjectKey key, string name, bool @private = false, List<string>? tags = null, string? description = null)
+    public ProjectsPostRequest(ProjectKey key, string name, bool @private = false, List<string>? tags = null, string? description = null, string? icon = null)
     {
         Key = key;
         Name = name;
         Description = description;
         IsPrivate = @private;
         Tags = (tags ?? new List<string>());
+        Icon = icon;
     }
     
     private PropertyValue<ProjectKey> _key = new PropertyValue<ProjectKey>(nameof(ProjectsPostRequest), nameof(Key), "key");
@@ -93,6 +94,18 @@ public class ProjectsPostRequest
         set => _tags.SetValue(value);
     }
 
+    private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(ProjectsPostRequest), nameof(Icon), "icon");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("icon")]
+    public string? Icon
+    {
+        get => _icon.GetValue(InlineErrors);
+        set => _icon.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _key.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -100,6 +113,7 @@ public class ProjectsPostRequest
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _private.SetAccessPath(parentChainPath, validateHasBeenSet);
         _tags.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

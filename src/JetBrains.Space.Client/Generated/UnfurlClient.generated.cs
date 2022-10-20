@@ -41,7 +41,7 @@ public partial class UnfurlClient : ISpaceClient
     /// <summary>
     /// Block link unfurling
     /// </summary>
-    public async Task BlockUnfurlAsync(string link, bool wholeHost, CancellationToken cancellationToken = default)
+    public async Task BlockUnfurlAsync(string link, bool wholeHost, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -50,14 +50,14 @@ public partial class UnfurlClient : ISpaceClient
             { 
                 Link = link,
                 IsWholeHost = wholeHost,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
     /// <summary>
     /// Block link unfurling for organization
     /// </summary>
-    public async Task BlockUnfurlGlobalAsync(string link, bool wholeHost, CancellationToken cancellationToken = default)
+    public async Task BlockUnfurlGlobalAsync(string link, bool wholeHost, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -66,11 +66,11 @@ public partial class UnfurlClient : ISpaceClient
             { 
                 Link = link,
                 IsWholeHost = wholeHost,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
-    public async Task<bool> CheckBlockedAsync(string link, CancellationToken cancellationToken = default)
+    public async Task<bool> CheckBlockedAsync(string link, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -78,14 +78,14 @@ public partial class UnfurlClient : ISpaceClient
             new UnfurlsCheckBlockedPostRequest
             { 
                 Link = link,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
     /// <summary>
     /// Unblock link unfurling
     /// </summary>
-    public async Task UnblockUnfurlAsync(string link, bool wholeHost, CancellationToken cancellationToken = default)
+    public async Task UnblockUnfurlAsync(string link, bool wholeHost, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -94,14 +94,14 @@ public partial class UnfurlClient : ISpaceClient
             { 
                 Link = link,
                 IsWholeHost = wholeHost,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
     /// <summary>
     /// Unblock link unfurling for organization
     /// </summary>
-    public async Task UnblockUnfurlGlobalAsync(string link, bool wholeHost, CancellationToken cancellationToken = default)
+    public async Task UnblockUnfurlGlobalAsync(string link, bool wholeHost, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -110,20 +110,19 @@ public partial class UnfurlClient : ISpaceClient
             { 
                 Link = link,
                 IsWholeHost = wholeHost,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
-    public async Task<Batch<UnfurlsBlockListEntry>> ListBlockedAsync(string? skip = null, int? top = 100, Func<Partial<Batch<UnfurlsBlockListEntry>>, Partial<Batch<UnfurlsBlockListEntry>>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<Batch<UnfurlsBlockListEntry>> ListBlockedAsync(string? skip = null, int? top = 100, Func<Partial<Batch<UnfurlsBlockListEntry>>, Partial<Batch<UnfurlsBlockListEntry>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         if (skip != null) queryParameters.Append("$skip", skip);
         if (top != null) queryParameters.Append("$top", top?.ToString());
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<UnfurlsBlockListEntry>>()) : Partial<Batch<UnfurlsBlockListEntry>>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<Batch<UnfurlsBlockListEntry>>("GET", $"api/http/unfurls/list-blocked{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<Batch<UnfurlsBlockListEntry>>("GET", $"api/http/unfurls/list-blocked{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
-    
     
     public IAsyncEnumerable<UnfurlsBlockListEntry> ListBlockedAsyncEnumerable(string? skip = null, int? top = 100, Func<Partial<UnfurlsBlockListEntry>, Partial<UnfurlsBlockListEntry>>? partial = null, CancellationToken cancellationToken = default)
         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListBlockedAsync(top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<UnfurlsBlockListEntry>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<UnfurlsBlockListEntry>.Default())), skip, cancellationToken);

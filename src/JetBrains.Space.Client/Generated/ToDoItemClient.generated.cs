@@ -49,7 +49,7 @@ public partial class ToDoItemClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<TodoItemRecord> CreateToDoItemAsync(string text, DateTime? dueDate = null, Func<Partial<TodoItemRecord>, Partial<TodoItemRecord>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<TodoItemRecord> CreateToDoItemAsync(string text, DateTime? dueDate = null, Func<Partial<TodoItemRecord>, Partial<TodoItemRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<TodoItemRecord>()) : Partial<TodoItemRecord>.Default()).ToString());
@@ -59,7 +59,7 @@ public partial class ToDoItemClient : ISpaceClient
             { 
                 Text = text,
                 DueDate = dueDate,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -74,7 +74,7 @@ public partial class ToDoItemClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<Batch<TodoItemRecord>> GetAllToDoItemsAsync(string? skip = null, int? top = 100, bool? open = null, DateTime? from = null, DateTime? till = null, Func<Partial<Batch<TodoItemRecord>>, Partial<Batch<TodoItemRecord>>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<Batch<TodoItemRecord>> GetAllToDoItemsAsync(string? skip = null, int? top = 100, bool? open = null, DateTime? from = null, DateTime? till = null, Func<Partial<Batch<TodoItemRecord>>, Partial<Batch<TodoItemRecord>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         if (skip != null) queryParameters.Append("$skip", skip);
@@ -84,9 +84,8 @@ public partial class ToDoItemClient : ISpaceClient
         if (till != null) queryParameters.Append("till", till?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TodoItemRecord>>()) : Partial<Batch<TodoItemRecord>>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<Batch<TodoItemRecord>>("GET", $"api/http/todo{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<Batch<TodoItemRecord>>("GET", $"api/http/todo{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
-    
     
     /// <summary>
     /// Get all To-Do items that match given parameters. Parameters are applied as 'AND' filters.
@@ -113,7 +112,7 @@ public partial class ToDoItemClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task UpdateToDoItemAsync(string id, string? text = null, DateTime? dueDate = null, bool? open = null, CancellationToken cancellationToken = default)
+    public async Task UpdateToDoItemAsync(string id, string? text = null, DateTime? dueDate = null, bool? open = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -123,7 +122,7 @@ public partial class ToDoItemClient : ISpaceClient
                 Text = text,
                 DueDate = dueDate,
                 IsOpen = open,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -138,11 +137,11 @@ public partial class ToDoItemClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task DeleteToDoItemAsync(string id, CancellationToken cancellationToken = default)
+    public async Task DeleteToDoItemAsync(string id, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("DELETE", $"api/http/todo/{id}{queryParameters.ToQueryString()}", cancellationToken);
+        await _connection.RequestResourceAsync("DELETE", $"api/http/todo/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 

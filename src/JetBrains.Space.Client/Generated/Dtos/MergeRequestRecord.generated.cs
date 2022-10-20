@@ -37,7 +37,7 @@ public sealed class MergeRequestRecord
     
     public MergeRequestRecord() { }
     
-    public MergeRequestRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, ExternalCodeReviewLink? externalLink = null)
+    public MergeRequestRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, string? feedChannelId = null, ExternalCodeReviewLink? externalLink = null)
     {
         Project = project;
         ProjectId = projectId;
@@ -49,6 +49,7 @@ public sealed class MergeRequestRecord
         CreatedBy = createdBy;
         IsTurnBased = turnBased;
         FeedChannel = feedChannel;
+        FeedChannelId = feedChannelId;
         BranchPairs = branchPairs;
         ExternalLink = externalLink;
     }
@@ -149,6 +150,15 @@ public sealed class MergeRequestRecord
         set => _feedChannel.SetValue(value);
     }
 
+    private PropertyValue<string?> _feedChannelId = new PropertyValue<string?>(nameof(MergeRequestRecord), nameof(FeedChannelId), "feedChannelId");
+    
+    [JsonPropertyName("feedChannelId")]
+    public string? FeedChannelId
+    {
+        get => _feedChannelId.GetValue(InlineErrors);
+        set => _feedChannelId.SetValue(value);
+    }
+
     private PropertyValue<List<MergeRequestBranchPair>> _branchPairs = new PropertyValue<List<MergeRequestBranchPair>>(nameof(MergeRequestRecord), nameof(BranchPairs), "branchPairs", new List<MergeRequestBranchPair>());
     
     [Required]
@@ -180,6 +190,7 @@ public sealed class MergeRequestRecord
         _createdBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _turnBased.SetAccessPath(parentChainPath, validateHasBeenSet);
         _feedChannel.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _feedChannelId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _branchPairs.SetAccessPath(parentChainPath, validateHasBeenSet);
         _externalLink.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

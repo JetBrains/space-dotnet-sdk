@@ -49,7 +49,7 @@ public partial class AuthModuleClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<ESAuthModule> CreateAuthModuleAsync(string key, string name, bool enabled, ESAuthModuleSettings settings, string? iconDataURI = null, Func<Partial<ESAuthModule>, Partial<ESAuthModule>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<ESAuthModule> CreateAuthModuleAsync(string key, string name, bool enabled, ESAuthModuleSettings settings, string? iconDataURI = null, Func<Partial<ESAuthModule>, Partial<ESAuthModule>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESAuthModule>()) : Partial<ESAuthModule>.Default()).ToString());
@@ -62,7 +62,7 @@ public partial class AuthModuleClient : ISpaceClient
                 IsEnabled = enabled,
                 IconDataURI = iconDataURI,
                 Settings = settings,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -77,7 +77,7 @@ public partial class AuthModuleClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task ReorderAuthenticationModulesAsync(List<string> order, CancellationToken cancellationToken = default)
+    public async Task ReorderAuthenticationModulesAsync(List<string> order, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -85,11 +85,11 @@ public partial class AuthModuleClient : ISpaceClient
             new AuthModulesReorderPostRequest
             { 
                 Order = order,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
-    public async Task<SamlMetadataResponse> SamlMetadataAsync(string id, string idpUrl, string idpEntityId, string idpCertificateSHA256, string spEntityId, SSLKeystore? sslKeystore = null, string? contactProfileId = null, Func<Partial<SamlMetadataResponse>, Partial<SamlMetadataResponse>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<SamlMetadataResponse> SamlMetadataAsync(string id, string idpUrl, string idpEntityId, string idpCertificateSHA256, string spEntityId, SSLKeystore? sslKeystore = null, string? contactProfileId = null, Func<Partial<SamlMetadataResponse>, Partial<SamlMetadataResponse>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<SamlMetadataResponse>()) : Partial<SamlMetadataResponse>.Default()).ToString());
@@ -103,20 +103,20 @@ public partial class AuthModuleClient : ISpaceClient
                 SpEntityId = spEntityId,
                 SslKeystore = sslKeystore,
                 ContactProfileId = contactProfileId,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
     /// <summary>
     /// Get all authentication modules
     /// </summary>
-    public async Task<List<ESAuthModule>> GetAllAuthModulesAsync(bool withDisabled = false, Func<Partial<ESAuthModule>, Partial<ESAuthModule>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<List<ESAuthModule>> GetAllAuthModulesAsync(bool withDisabled = false, Func<Partial<ESAuthModule>, Partial<ESAuthModule>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("withDisabled", withDisabled.ToString("l"));
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESAuthModule>()) : Partial<ESAuthModule>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<List<ESAuthModule>>("GET", $"api/http/auth-modules{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<List<ESAuthModule>>("GET", $"api/http/auth-modules{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -131,25 +131,25 @@ public partial class AuthModuleClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<OIDCDiscovery> DiscoverOidcAsync(string discoveryEndpoint, Func<Partial<OIDCDiscovery>, Partial<OIDCDiscovery>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<OIDCDiscovery> DiscoverOidcAsync(string discoveryEndpoint, Func<Partial<OIDCDiscovery>, Partial<OIDCDiscovery>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("discoveryEndpoint", discoveryEndpoint);
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<OIDCDiscovery>()) : Partial<OIDCDiscovery>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<OIDCDiscovery>("GET", $"api/http/auth-modules/discover-oidc{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<OIDCDiscovery>("GET", $"api/http/auth-modules/discover-oidc{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
     /// <summary>
     /// Get an existing authentication module
     /// </summary>
-    public async Task<ESAuthModule> GetAuthModuleByKeyAsync(string key, Func<Partial<ESAuthModule>, Partial<ESAuthModule>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<ESAuthModule> GetAuthModuleByKeyAsync(string key, Func<Partial<ESAuthModule>, Partial<ESAuthModule>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESAuthModule>()) : Partial<ESAuthModule>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<ESAuthModule>("GET", $"api/http/auth-modules/key:{key}{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<ESAuthModule>("GET", $"api/http/auth-modules/key:{key}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -164,7 +164,7 @@ public partial class AuthModuleClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task UpdateAuthModuleAsync(string id, string? key = null, string? name = null, bool? enabled = null, string? iconDataURI = null, ESAuthModuleSettings? settings = null, CancellationToken cancellationToken = default)
+    public async Task UpdateAuthModuleAsync(string id, string? key = null, string? name = null, bool? enabled = null, string? iconDataURI = null, ESAuthModuleSettings? settings = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -176,7 +176,7 @@ public partial class AuthModuleClient : ISpaceClient
                 IsEnabled = enabled,
                 IconDataURI = iconDataURI,
                 Settings = settings,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -191,11 +191,11 @@ public partial class AuthModuleClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task DeleteAuthModuleAsync(string id, CancellationToken cancellationToken = default)
+    public async Task DeleteAuthModuleAsync(string id, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}{queryParameters.ToQueryString()}", cancellationToken);
+        await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -221,12 +221,12 @@ public partial class AuthModuleClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<AuthConfig> GetConfigAsync(Func<Partial<AuthConfig>, Partial<AuthConfig>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<AuthConfig> GetConfigAsync(Func<Partial<AuthConfig>, Partial<AuthConfig>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<AuthConfig>()) : Partial<AuthConfig>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<AuthConfig>("GET", $"api/http/auth-modules/config{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<AuthConfig>("GET", $"api/http/auth-modules/config{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -241,7 +241,7 @@ public partial class AuthModuleClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task PutConfigAsync(int? dontRememberMeTtl = null, int? adminRememberMeTtl = null, int? userRememberMeTtl = null, CancellationToken cancellationToken = default)
+        public async Task PutConfigAsync(int? dontRememberMeTtl = null, int? adminRememberMeTtl = null, int? userRememberMeTtl = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -251,7 +251,7 @@ public partial class AuthModuleClient : ISpaceClient
                     DontRememberMeTtl = dontRememberMeTtl,
                     AdminRememberMeTtl = adminRememberMeTtl,
                     UserRememberMeTtl = userRememberMeTtl,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -266,12 +266,12 @@ public partial class AuthModuleClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<AuthConfig> DeleteConfigAsync(Func<Partial<AuthConfig>, Partial<AuthConfig>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<AuthConfig> DeleteConfigAsync(Func<Partial<AuthConfig>, Partial<AuthConfig>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<AuthConfig>()) : Partial<AuthConfig>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<AuthConfig>("DELETE", $"api/http/auth-modules/config{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<AuthConfig>("DELETE", $"api/http/auth-modules/config{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -291,7 +291,7 @@ public partial class AuthModuleClient : ISpaceClient
         /// <summary>
         /// For a username/password combination, test built-in authentication with updated settings
         /// </summary>
-        public async Task<TDMemberProfile> TestBuiltInSettingsAsync(ESBuiltinAuthModuleSettings settings, string username, string password, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<TDMemberProfile> TestBuiltInSettingsAsync(ESBuiltinAuthModuleSettings settings, string username, string password, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
@@ -302,14 +302,14 @@ public partial class AuthModuleClient : ISpaceClient
                     Settings = settings,
                     Username = username,
                     Password = password,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
         /// <summary>
         /// For a username/password combination, test LDAP authentication with updated settings
         /// </summary>
-        public async Task<ESDefaultProfileLoginDetails> TestLdapSettingsAsync(ESLdapAuthModuleSettings settings, string username, string password, Func<Partial<ESDefaultProfileLoginDetails>, Partial<ESDefaultProfileLoginDetails>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<ESDefaultProfileLoginDetails> TestLdapSettingsAsync(ESLdapAuthModuleSettings settings, string username, string password, Func<Partial<ESDefaultProfileLoginDetails>, Partial<ESDefaultProfileLoginDetails>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESDefaultProfileLoginDetails>()) : Partial<ESDefaultProfileLoginDetails>.Default()).ToString());
@@ -320,7 +320,7 @@ public partial class AuthModuleClient : ISpaceClient
                     Settings = settings,
                     Username = username,
                     Password = password,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -340,7 +340,7 @@ public partial class AuthModuleClient : ISpaceClient
         /// <summary>
         /// Returns logins that are currently subjected to rate limits when logging in to Space
         /// </summary>
-        public async Task<Batch<ThrottledLogin>> GetThrottledLoginsAsync(string? skip = null, int? top = 100, string? login = null, Func<Partial<Batch<ThrottledLogin>>, Partial<Batch<ThrottledLogin>>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<ThrottledLogin>> GetThrottledLoginsAsync(string? skip = null, int? top = 100, string? login = null, Func<Partial<Batch<ThrottledLogin>>, Partial<Batch<ThrottledLogin>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             if (skip != null) queryParameters.Append("$skip", skip);
@@ -348,9 +348,8 @@ public partial class AuthModuleClient : ISpaceClient
             if (login != null) queryParameters.Append("login", login);
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ThrottledLogin>>()) : Partial<Batch<ThrottledLogin>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<ThrottledLogin>>("GET", $"api/http/auth-modules/throttled-logins{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<ThrottledLogin>>("GET", $"api/http/auth-modules/throttled-logins{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
-        
         
         /// <summary>
         /// Returns logins that are currently subjected to rate limits when logging in to Space
@@ -361,12 +360,12 @@ public partial class AuthModuleClient : ISpaceClient
         /// <summary>
         /// Resets the counter that tracks failed login attempts for the account with the specified logins. The member who use these accounts are no longer blocked from attempting to log in to Space.
         /// </summary>
-        public async Task ResetThrottlingStatusAsync(List<string> logins, CancellationToken cancellationToken = default)
+        public async Task ResetThrottlingStatusAsync(List<string> logins, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("logins", logins.Select(it => it));
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/throttled-logins{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/throttled-logins{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -384,23 +383,23 @@ public partial class AuthModuleClient : ISpaceClient
             /// <summary>
             /// Returns date and time until which the organization are throttled
             /// </summary>
-            public async Task<OrgThrottlingStatus> GetOrganizationThrottlingStatusAsync(Func<Partial<OrgThrottlingStatus>, Partial<OrgThrottlingStatus>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<OrgThrottlingStatus> GetOrganizationThrottlingStatusAsync(Func<Partial<OrgThrottlingStatus>, Partial<OrgThrottlingStatus>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<OrgThrottlingStatus>()) : Partial<OrgThrottlingStatus>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<OrgThrottlingStatus>("GET", $"api/http/auth-modules/throttled-logins/org-status{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<OrgThrottlingStatus>("GET", $"api/http/auth-modules/throttled-logins/org-status{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
             }
             
         
             /// <summary>
             /// Resets date and time until which the organization are throttled
             /// </summary>
-            public async Task ResetOrganizationThrottlingAsync(CancellationToken cancellationToken = default)
+            public async Task ResetOrganizationThrottlingAsync(Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/throttled-logins/org-status{queryParameters.ToQueryString()}", cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/throttled-logins/org-status{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
             }
             
         
@@ -430,12 +429,12 @@ public partial class AuthModuleClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<List<AuthModuleUsage>> GetAllUsagesAsync(Func<Partial<AuthModuleUsage>, Partial<AuthModuleUsage>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<List<AuthModuleUsage>> GetAllUsagesAsync(Func<Partial<AuthModuleUsage>, Partial<AuthModuleUsage>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<AuthModuleUsage>()) : Partial<AuthModuleUsage>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<AuthModuleUsage>>("GET", $"api/http/auth-modules/usages{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<List<AuthModuleUsage>>("GET", $"api/http/auth-modules/usages{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -455,7 +454,7 @@ public partial class AuthModuleClient : ISpaceClient
         /// <summary>
         /// Change password for a given authentication module (id) and profile (identifier)
         /// </summary>
-        public async Task ChangePasswordAsync(string id, string identifier, string oldPassword, string newPassword, CancellationToken cancellationToken = default)
+        public async Task ChangePasswordAsync(string id, string identifier, string oldPassword, string newPassword, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -464,29 +463,29 @@ public partial class AuthModuleClient : ISpaceClient
                 { 
                     OldPassword = oldPassword,
                     NewPassword = newPassword,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
         /// <summary>
         /// Request a password reset for a given authentication module (id) and profile (identifier)
         /// </summary>
-        public async Task ResetPasswordAsync(string id, string identifier, CancellationToken cancellationToken = default)
+        public async Task ResetPasswordAsync(string id, string identifier, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/reset{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/reset{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
         /// <summary>
         /// Detach a profile login from an authentication module. The id parameter refers to the authentication module, the identifier parameter refers to the login.
         /// </summary>
-        public async Task DeleteLoginAsync(string identifier, string id, CancellationToken cancellationToken = default)
+        public async Task DeleteLoginAsync(string identifier, string id, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}/logins/{identifier}{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}/logins/{identifier}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     

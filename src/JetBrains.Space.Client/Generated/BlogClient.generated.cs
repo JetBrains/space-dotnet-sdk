@@ -46,7 +46,7 @@ public partial class BlogClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<ArticleRecord> PublishBlogPostAsync(string title, string content, List<string>? locations = null, List<string>? teams = null, BlogCalendarEvent? @event = null, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<ArticleRecord> PublishBlogPostAsync(string title, string content, List<string>? locations = null, List<string>? teams = null, BlogCalendarEvent? @event = null, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
@@ -59,7 +59,7 @@ public partial class BlogClient : ISpaceClient
                 Locations = locations,
                 Teams = teams,
                 Event = @event,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -71,7 +71,7 @@ public partial class BlogClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<List<ArticleImportResult>> ImportBlogPostsAsync(ImportMetadata metadata, List<ExternalArticle> articles, Func<Partial<ArticleImportResult>, Partial<ArticleImportResult>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<List<ArticleImportResult>> ImportBlogPostsAsync(ImportMetadata metadata, List<ExternalArticle> articles, Func<Partial<ArticleImportResult>, Partial<ArticleImportResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleImportResult>()) : Partial<ArticleImportResult>.Default()).ToString());
@@ -81,7 +81,7 @@ public partial class BlogClient : ISpaceClient
             { 
                 Metadata = metadata,
                 Articles = articles,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -93,7 +93,7 @@ public partial class BlogClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<Batch<ArticleRecord>> GetAllBlogPostsAsync(string? skip = null, int? top = 100, string? term = null, DateTime? dateFrom = null, DateTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<Batch<ArticleRecord>>, Partial<Batch<ArticleRecord>>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<Batch<ArticleRecord>> GetAllBlogPostsAsync(string? skip = null, int? top = 100, string? term = null, DateTime? dateFrom = null, DateTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<Batch<ArticleRecord>>, Partial<Batch<ArticleRecord>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         if (skip != null) queryParameters.Append("$skip", skip);
@@ -107,9 +107,8 @@ public partial class BlogClient : ISpaceClient
         if (forProfile != null) queryParameters.Append("forProfile", forProfile);
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ArticleRecord>>()) : Partial<Batch<ArticleRecord>>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<Batch<ArticleRecord>>("GET", $"api/http/blog{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<Batch<ArticleRecord>>("GET", $"api/http/blog{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
-    
     
     /// <remarks>
     /// Required permissions:
@@ -130,7 +129,7 @@ public partial class BlogClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<BGStats> GetStatsAsync(DateTime? dateFrom = null, DateTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, Func<Partial<BGStats>, Partial<BGStats>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<BGStats> GetStatsAsync(DateTime? dateFrom = null, DateTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, Func<Partial<BGStats>, Partial<BGStats>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         if (dateFrom != null) queryParameters.Append("dateFrom", dateFrom?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
@@ -140,7 +139,7 @@ public partial class BlogClient : ISpaceClient
         if (locationId != null) queryParameters.Append("locationId", locationId);
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<BGStats>()) : Partial<BGStats>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<BGStats>("GET", $"api/http/blog/stats{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<BGStats>("GET", $"api/http/blog/stats{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -152,12 +151,12 @@ public partial class BlogClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<ArticleRecord> GetBlogPostByAliasAsync(string alias, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<ArticleRecord> GetBlogPostByAliasAsync(string alias, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blog/alias:{alias}{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blog/alias:{alias}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -169,12 +168,12 @@ public partial class BlogClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<ArticleRecord> GetBlogPostByExternalIdAsync(string id, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<ArticleRecord> GetBlogPostByExternalIdAsync(string id, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blog/external-id:{id}{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blog/external-id:{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -186,12 +185,12 @@ public partial class BlogClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<ArticleRecord> GetBlogPostAsync(string id, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<ArticleRecord> GetBlogPostAsync(string id, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blog/{id}{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blog/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -203,7 +202,7 @@ public partial class BlogClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<ArticleRecord> UpdateBlogPostAsync(string id, string? title = null, string? content = null, List<string>? locations = null, List<string>? teams = null, BlogCalendarEvent? @event = null, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<ArticleRecord> UpdateBlogPostAsync(string id, string? title = null, string? content = null, List<string>? locations = null, List<string>? teams = null, BlogCalendarEvent? @event = null, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
@@ -216,7 +215,7 @@ public partial class BlogClient : ISpaceClient
                 Locations = locations,
                 Teams = teams,
                 Event = @event,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -228,11 +227,11 @@ public partial class BlogClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task UnpublishArticleAsync(string id, CancellationToken cancellationToken = default)
+    public async Task UnpublishArticleAsync(string id, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("DELETE", $"api/http/blog/{id}{queryParameters.ToQueryString()}", cancellationToken);
+        await _connection.RequestResourceAsync("DELETE", $"api/http/blog/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 

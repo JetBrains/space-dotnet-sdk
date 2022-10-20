@@ -52,7 +52,7 @@ public partial class ChecklistClient : ISpaceClient
         /// <summary>
         /// Create plan item as the last element of the top level in a checklist if parent plan item is null, or as the last child if parent plan item is provided.
         /// </summary>
-        public async Task<PlanItem> CreatePlanItemAsync(ChecklistIdentifier checklist, string itemText, PlanItemIdentifier? parentItem = null, Func<Partial<PlanItem>, Partial<PlanItem>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<PlanItem> CreatePlanItemAsync(ChecklistIdentifier checklist, string itemText, PlanItemIdentifier? parentItem = null, Func<Partial<PlanItem>, Partial<PlanItem>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PlanItem>()) : Partial<PlanItem>.Default()).ToString());
@@ -62,14 +62,14 @@ public partial class ChecklistClient : ISpaceClient
                 { 
                     ParentItem = parentItem,
                     ItemText = itemText,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
         /// <summary>
         /// Move plan item in a checklist
         /// </summary>
-        public async Task<PlanItem> MovePlanItemAsync(ChecklistIdentifier checklist, PlanItemIdentifier planItem, PlanItemIdentifier targetParent, PlanItemIdentifier? afterItem = null, Func<Partial<PlanItem>, Partial<PlanItem>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<PlanItem> MovePlanItemAsync(ChecklistIdentifier checklist, PlanItemIdentifier planItem, PlanItemIdentifier targetParent, PlanItemIdentifier? afterItem = null, Func<Partial<PlanItem>, Partial<PlanItem>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PlanItem>()) : Partial<PlanItem>.Default()).ToString());
@@ -79,26 +79,26 @@ public partial class ChecklistClient : ISpaceClient
                 { 
                     TargetParent = targetParent,
                     AfterItem = afterItem,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
         /// <summary>
         /// Get plan item by its identifier in a checklist
         /// </summary>
-        public async Task<PlanItem> GetPlanItemAsync(ChecklistIdentifier checklist, PlanItemIdentifier planItem, Func<Partial<PlanItem>, Partial<PlanItem>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<PlanItem> GetPlanItemAsync(ChecklistIdentifier checklist, PlanItemIdentifier planItem, Func<Partial<PlanItem>, Partial<PlanItem>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PlanItem>()) : Partial<PlanItem>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<PlanItem>("GET", $"api/http/checklists/{checklist}/items/{planItem}{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<PlanItem>("GET", $"api/http/checklists/{checklist}/items/{planItem}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
         /// <summary>
         /// Update plan item in a checklist
         /// </summary>
-        public async Task<PlanItem> UpdatePlanItemAsync(ChecklistIdentifier checklist, PlanItemIdentifier planItem, string? itemText = null, bool? itemDone = null, Func<Partial<PlanItem>, Partial<PlanItem>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<PlanItem> UpdatePlanItemAsync(ChecklistIdentifier checklist, PlanItemIdentifier planItem, string? itemText = null, bool? itemDone = null, Func<Partial<PlanItem>, Partial<PlanItem>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PlanItem>()) : Partial<PlanItem>.Default()).ToString());
@@ -108,18 +108,18 @@ public partial class ChecklistClient : ISpaceClient
                 { 
                     ItemText = itemText,
                     IsItemDone = itemDone,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
         /// <summary>
         /// Delete plan item and its children from a checklist
         /// </summary>
-        public async Task DeletePlanItemAsync(ChecklistIdentifier checklist, PlanItemIdentifier planItem, CancellationToken cancellationToken = default)
+        public async Task DeletePlanItemAsync(ChecklistIdentifier checklist, PlanItemIdentifier planItem, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/checklists/{checklist}/items/{planItem}{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/checklists/{checklist}/items/{planItem}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     

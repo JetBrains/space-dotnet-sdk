@@ -29,26 +29,36 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public partial class HTTPAPIModelClient : ISpaceClient
+[JsonConverter(typeof(UrlParameterConverter))]
+public abstract class TimeTrackingSubjectIdentifier : IUrlParameter
 {
-    private readonly Connection _connection;
+    public static TimeTrackingSubjectIdentifier Issue(IssueIdentifier issue)
+        => new TimeTrackingSubjectIdentifierIssue(issue);
     
-    public HTTPAPIModelClient(Connection connection)
+    public class TimeTrackingSubjectIdentifierIssue : TimeTrackingSubjectIdentifier
     {
-        _connection = connection;
-    }
-    
-    /// <summary>
-    /// Get the HTTP API model that describes the available HTTP APIs
-    /// </summary>
-    public async Task<HAModel> GetHttpApiModelAsync(Func<Partial<HAModel>, Partial<HAModel>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-    {
-        var queryParameters = new NameValueCollection();
-        queryParameters.Append("$fields", (partial != null ? partial(new Partial<HAModel>()) : Partial<HAModel>.Default()).ToString());
+        [Required]
+        [JsonPropertyName("issue")]
+#if NET6_0_OR_GREATER
+        public IssueIdentifier Issue { get; init; }
+#else
+        public IssueIdentifier Issue { get; set; }
+#endif
         
-        return await _connection.RequestResourceAsync<HAModel>("GET", $"api/http/http-api-model{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+#if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
+        public TimeTrackingSubjectIdentifierIssue() { }
+#pragma warning restore CS8618
+#endif
+        
+        public TimeTrackingSubjectIdentifierIssue(IssueIdentifier issue)
+        {
+            Issue = issue;
+        }
+        
+        public override string ToString()
+            => $"issue:{Issue}";
     }
     
-
 }
 

@@ -113,6 +113,12 @@ public interface WebhookEvent
     public static FeatureFlagWebhookEvent FeatureFlag(KMetaMod meta, string name, int? issueNumber = null, Modification<bool>? enabledForAll = null, Modification<bool>? selfManageable = null, List<TDTeam>? addedTeams = null, List<TDTeam>? addedProfiles = null, List<TDMemberProfile>? removedTeams = null, List<TDMemberProfile>? removedProfiles = null)
         => new FeatureFlagWebhookEvent(meta: meta, name: name, issueNumber: issueNumber, enabledForAll: enabledForAll, selfManageable: selfManageable, addedTeams: addedTeams, addedProfiles: addedProfiles, removedTeams: removedTeams, removedProfiles: removedProfiles);
     
+    public static FeedbackRepliedWebhookEvent FeedbackReplied()
+        => new FeedbackRepliedWebhookEvent();
+    
+    public static FeedbackRequestedWebhookEvent FeedbackRequested()
+        => new FeedbackRequestedWebhookEvent();
+    
     public static GoogleIntegrationDisconnectedEvent GoogleIntegrationDisconnectedEvent(TDMemberProfile member)
         => new GoogleIntegrationDisconnectedEvent(member: member);
     
@@ -125,11 +131,17 @@ public interface WebhookEvent
     public static LocationEvent LocationEvent(KMetaMod meta, TDLocation location)
         => new LocationEvent(meta: meta, location: location);
     
+    public static MeetingModWebhookEvent MeetingMod(KMetaMod meta, Meeting meeting)
+        => new MeetingModWebhookEvent(meta: meta, meeting: meeting);
+    
     public static MeetingWebhookEvent Meeting(KMetaMod meta, MeetingRecord meeting)
         => new MeetingWebhookEvent(meta: meta, meeting: meeting);
     
     public static PingWebhookEvent Ping(string webhookName)
         => new PingWebhookEvent(webhookName: webhookName);
+    
+    public static ProfileEvent ProfileEvent(KMetaMod meta, TDMemberProfile member)
+        => new ProfileEvent(meta: meta, member: member);
     
     public static ProfileOrganizationEvent ProfileOrganizationEvent(KMetaMod meta, TDMemberProfile member, bool joinedOrganization, bool leftOrganization)
         => new ProfileOrganizationEvent(meta: meta, member: member, joinedOrganization: joinedOrganization, leftOrganization: leftOrganization);

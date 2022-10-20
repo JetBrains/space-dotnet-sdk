@@ -41,7 +41,7 @@ public partial class RichTextClient : ISpaceClient
     /// <summary>
     /// Parses [Space markdown syntax](https://www.jetbrains.com/help/space/markdown-syntax.html) into a tree presentation
     /// </summary>
-    public async Task<RtDocument> ParseMarkdownAsync(string text, Func<Partial<RtDocument>, Partial<RtDocument>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<RtDocument> ParseMarkdownAsync(string text, Func<Partial<RtDocument>, Partial<RtDocument>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<RtDocument>()) : Partial<RtDocument>.Default()).ToString());
@@ -50,7 +50,7 @@ public partial class RichTextClient : ISpaceClient
             new RichTextParseMarkdownPostRequest
             { 
                 Text = text,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 

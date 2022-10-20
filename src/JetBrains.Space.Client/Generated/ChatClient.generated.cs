@@ -57,7 +57,7 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<M2ChannelRecord> AddNewChannelAsync(string name, string description, bool @private, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<M2ChannelRecord> AddNewChannelAsync(string name, string description, bool @private, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<M2ChannelRecord>()) : Partial<M2ChannelRecord>.Default()).ToString());
@@ -68,7 +68,7 @@ public partial class ChatClient : ISpaceClient
                     Name = name,
                     Description = description,
                     IsPrivate = @private,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -76,7 +76,7 @@ public partial class ChatClient : ISpaceClient
         /// Create or get a direct messages channel with a profile
         /// </summary>
         [Obsolete("Use POST chats/channels/{channel} (since 2021-12-13) (will be removed in a future version)")]
-        public async Task<M2ChannelRecord> GetOrCreateDirectMessagesChannelAsync(string profile, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<M2ChannelRecord> GetOrCreateDirectMessagesChannelAsync(string profile, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<M2ChannelRecord>()) : Partial<M2ChannelRecord>.Default()).ToString());
@@ -85,14 +85,14 @@ public partial class ChatClient : ISpaceClient
                 new ChatsChannelsDmPostRequest
                 { 
                     Profile = profile,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
         /// <summary>
         /// Check whether a channel name is available. Returns true when the channel name can be used to create a new channel, false otherwise.
         /// </summary>
-        public async Task<bool> IsNameFreeAsync(string name, CancellationToken cancellationToken = default)
+        public async Task<bool> IsNameFreeAsync(string name, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -100,7 +100,7 @@ public partial class ChatClient : ISpaceClient
                 new ChatsChannelsIsNameFreePostRequest
                 { 
                     Name = name,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -115,11 +115,11 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task RestoreArchivedChannelAsync(ChannelIdentifier channel, CancellationToken cancellationToken = default)
+        public async Task RestoreArchivedChannelAsync(ChannelIdentifier channel, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channel}/restore-archived{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channel}/restore-archived{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -137,7 +137,7 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<Batch<AllChannelsListEntry>> ListAllChannelsAsync(string query, string? skip = null, int? top = 100, AllChannelsFilter? quickFilter = null, AllChannelsSortColumn? sortColumn = null, ColumnSortOrder? sortOrder = ColumnSortOrder.ASC, bool? publicOnly = false, bool? withArchived = true, Func<Partial<Batch<AllChannelsListEntry>>, Partial<Batch<AllChannelsListEntry>>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<AllChannelsListEntry>> ListAllChannelsAsync(string query, string? skip = null, int? top = 100, AllChannelsFilter? quickFilter = null, AllChannelsSortColumn? sortColumn = null, ColumnSortOrder? sortOrder = ColumnSortOrder.ASC, bool? publicOnly = false, bool? withArchived = true, Func<Partial<Batch<AllChannelsListEntry>>, Partial<Batch<AllChannelsListEntry>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("query", query);
@@ -150,9 +150,8 @@ public partial class ChatClient : ISpaceClient
             if (withArchived != null) queryParameters.Append("withArchived", withArchived?.ToString("l"));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<AllChannelsListEntry>>()) : Partial<Batch<AllChannelsListEntry>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<AllChannelsListEntry>>("GET", $"api/http/chats/channels/all-channels{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<AllChannelsListEntry>>("GET", $"api/http/chats/channels/all-channels{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
-        
         
         /// <param name="query">
         /// Substring matching name or description of the channel
@@ -179,12 +178,12 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<M2ChannelRecord> GetChannelAsync(ChannelIdentifier channel, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<M2ChannelRecord> GetChannelAsync(ChannelIdentifier channel, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<M2ChannelRecord>()) : Partial<M2ChannelRecord>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<M2ChannelRecord>("GET", $"api/http/chats/channels/{channel}{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<M2ChannelRecord>("GET", $"api/http/chats/channels/{channel}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -199,11 +198,11 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task DeleteChannelAsync(ChannelIdentifier channel, CancellationToken cancellationToken = default)
+        public async Task DeleteChannelAsync(ChannelIdentifier channel, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channel}{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channel}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -218,11 +217,11 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task ArchiveChannelAsync(ChannelIdentifier channel, CancellationToken cancellationToken = default)
+        public async Task ArchiveChannelAsync(ChannelIdentifier channel, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channel}/archive{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channel}/archive{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -245,7 +244,7 @@ public partial class ChatClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<M2ChannelRecord> CreateConversationAsync(List<string> profileIds, string? subject = null, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<M2ChannelRecord> CreateConversationAsync(List<string> profileIds, string? subject = null, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<M2ChannelRecord>()) : Partial<M2ChannelRecord>.Default()).ToString());
@@ -255,7 +254,7 @@ public partial class ChatClient : ISpaceClient
                     { 
                         ProfileIds = profileIds,
                         Subject = subject,
-                    }, cancellationToken);
+                    }, requestHeaders: null, cancellationToken: cancellationToken);
             }
             
         
@@ -267,7 +266,7 @@ public partial class ChatClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<M2ChannelRecord> ConvertConversationToPrivateChannelAsync(ChannelIdentifier channel, string channelName, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<M2ChannelRecord> ConvertConversationToPrivateChannelAsync(ChannelIdentifier channel, string channelName, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<M2ChannelRecord>()) : Partial<M2ChannelRecord>.Default()).ToString());
@@ -276,7 +275,7 @@ public partial class ChatClient : ISpaceClient
                     new ChatsChannelsConversationsForChannelConvertPostRequest
                     { 
                         ChannelName = channelName,
-                    }, cancellationToken);
+                    }, requestHeaders: null, cancellationToken: cancellationToken);
             }
             
         
@@ -299,7 +298,7 @@ public partial class ChatClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task ChangeConversationSubjectAsync(ChannelIdentifier channel, string subject, CancellationToken cancellationToken = default)
+                public async Task ChangeConversationSubjectAsync(ChannelIdentifier channel, string subject, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -307,7 +306,7 @@ public partial class ChatClient : ISpaceClient
                         new ChatsChannelsConversationsForChannelSubjectPatchRequest
                         { 
                             Subject = subject,
-                        }, cancellationToken);
+                        }, requestHeaders: null, cancellationToken: cancellationToken);
                 }
                 
             
@@ -334,12 +333,12 @@ public partial class ChatClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<CPrincipal> GetChannelAdministratorAsync(ChannelIdentifier channel, Func<Partial<CPrincipal>, Partial<CPrincipal>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<CPrincipal> GetChannelAdministratorAsync(ChannelIdentifier channel, Func<Partial<CPrincipal>, Partial<CPrincipal>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<CPrincipal>()) : Partial<CPrincipal>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<CPrincipal>("GET", $"api/http/chats/channels/{channel}/administrator{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<CPrincipal>("GET", $"api/http/chats/channels/{channel}/administrator{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
             }
             
         
@@ -351,7 +350,7 @@ public partial class ChatClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task AssignChannelAdministratorAsync(ChannelIdentifier channel, ProfileIdentifier profile, CancellationToken cancellationToken = default)
+            public async Task AssignChannelAdministratorAsync(ChannelIdentifier channel, ProfileIdentifier profile, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -359,7 +358,7 @@ public partial class ChatClient : ISpaceClient
                     new ChatsChannelsForChannelAdministratorPatchRequest
                     { 
                         Profile = profile,
-                    }, cancellationToken);
+                    }, requestHeaders: null, cancellationToken: cancellationToken);
             }
             
         
@@ -384,16 +383,15 @@ public partial class ChatClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Batch<ChannelInfoAttachment>> ListAttachmentsInChannelAsync(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<Batch<ChannelInfoAttachment>>, Partial<Batch<ChannelInfoAttachment>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Batch<ChannelInfoAttachment>> ListAttachmentsInChannelAsync(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<Batch<ChannelInfoAttachment>>, Partial<Batch<ChannelInfoAttachment>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 if (skip != null) queryParameters.Append("$skip", skip);
                 if (top != null) queryParameters.Append("$top", top?.ToString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ChannelInfoAttachment>>()) : Partial<Batch<ChannelInfoAttachment>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<ChannelInfoAttachment>>("GET", $"api/http/chats/channels/{channel}/attachments{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<ChannelInfoAttachment>>("GET", $"api/http/chats/channels/{channel}/attachments{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
             }
-            
             
             /// <remarks>
             /// Required permissions:
@@ -425,16 +423,15 @@ public partial class ChatClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Batch<ChannelInfoAttachment>> ListFileAttachmentsInChannelAsync(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<Batch<ChannelInfoAttachment>>, Partial<Batch<ChannelInfoAttachment>>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Batch<ChannelInfoAttachment>> ListFileAttachmentsInChannelAsync(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<Batch<ChannelInfoAttachment>>, Partial<Batch<ChannelInfoAttachment>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     if (skip != null) queryParameters.Append("$skip", skip);
                     if (top != null) queryParameters.Append("$top", top?.ToString());
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ChannelInfoAttachment>>()) : Partial<Batch<ChannelInfoAttachment>>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<Batch<ChannelInfoAttachment>>("GET", $"api/http/chats/channels/{channel}/attachments/files{queryParameters.ToQueryString()}", cancellationToken);
+                    return await _connection.RequestResourceAsync<Batch<ChannelInfoAttachment>>("GET", $"api/http/chats/channels/{channel}/attachments/files{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
                 }
-                
                 
                 /// <remarks>
                 /// Required permissions:
@@ -468,16 +465,15 @@ public partial class ChatClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Batch<ChannelInfoAttachment>> ListImagesInChannelAsync(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<Batch<ChannelInfoAttachment>>, Partial<Batch<ChannelInfoAttachment>>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Batch<ChannelInfoAttachment>> ListImagesInChannelAsync(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<Batch<ChannelInfoAttachment>>, Partial<Batch<ChannelInfoAttachment>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     if (skip != null) queryParameters.Append("$skip", skip);
                     if (top != null) queryParameters.Append("$top", top?.ToString());
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ChannelInfoAttachment>>()) : Partial<Batch<ChannelInfoAttachment>>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<Batch<ChannelInfoAttachment>>("GET", $"api/http/chats/channels/{channel}/attachments/images{queryParameters.ToQueryString()}", cancellationToken);
+                    return await _connection.RequestResourceAsync<Batch<ChannelInfoAttachment>>("GET", $"api/http/chats/channels/{channel}/attachments/images{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
                 }
-                
                 
                 /// <remarks>
                 /// Required permissions:
@@ -511,16 +507,15 @@ public partial class ChatClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Batch<ChannelInfoAttachment>> ListLinksInChannelAsync(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<Batch<ChannelInfoAttachment>>, Partial<Batch<ChannelInfoAttachment>>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Batch<ChannelInfoAttachment>> ListLinksInChannelAsync(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<Batch<ChannelInfoAttachment>>, Partial<Batch<ChannelInfoAttachment>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     if (skip != null) queryParameters.Append("$skip", skip);
                     if (top != null) queryParameters.Append("$top", top?.ToString());
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ChannelInfoAttachment>>()) : Partial<Batch<ChannelInfoAttachment>>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<Batch<ChannelInfoAttachment>>("GET", $"api/http/chats/channels/{channel}/attachments/links{queryParameters.ToQueryString()}", cancellationToken);
+                    return await _connection.RequestResourceAsync<Batch<ChannelInfoAttachment>>("GET", $"api/http/chats/channels/{channel}/attachments/links{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
                 }
-                
                 
                 /// <remarks>
                 /// Required permissions:
@@ -554,16 +549,15 @@ public partial class ChatClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Batch<ChannelInfoAttachment>> ListVideosInChannelAsync(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<Batch<ChannelInfoAttachment>>, Partial<Batch<ChannelInfoAttachment>>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Batch<ChannelInfoAttachment>> ListVideosInChannelAsync(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<Batch<ChannelInfoAttachment>>, Partial<Batch<ChannelInfoAttachment>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     if (skip != null) queryParameters.Append("$skip", skip);
                     if (top != null) queryParameters.Append("$top", top?.ToString());
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ChannelInfoAttachment>>()) : Partial<Batch<ChannelInfoAttachment>>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<Batch<ChannelInfoAttachment>>("GET", $"api/http/chats/channels/{channel}/attachments/videos{queryParameters.ToQueryString()}", cancellationToken);
+                    return await _connection.RequestResourceAsync<Batch<ChannelInfoAttachment>>("GET", $"api/http/chats/channels/{channel}/attachments/videos{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
                 }
-                
                 
                 /// <remarks>
                 /// Required permissions:
@@ -599,7 +593,7 @@ public partial class ChatClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task ChangeChannelDescriptionAsync(ChannelIdentifier channel, string description, CancellationToken cancellationToken = default)
+            public async Task ChangeChannelDescriptionAsync(ChannelIdentifier channel, string description, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -607,7 +601,7 @@ public partial class ChatClient : ISpaceClient
                     new ChatsChannelsForChannelDescriptionPatchRequest
                     { 
                         Description = description,
-                    }, cancellationToken);
+                    }, requestHeaders: null, cancellationToken: cancellationToken);
             }
             
         
@@ -632,7 +626,7 @@ public partial class ChatClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task ChangeChannelIconAsync(ChannelIdentifier channel, string? icon = null, CancellationToken cancellationToken = default)
+            public async Task ChangeChannelIconAsync(ChannelIdentifier channel, string? icon = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -640,7 +634,7 @@ public partial class ChatClient : ISpaceClient
                     new ChatsChannelsForChannelIconPatchRequest
                     { 
                         Icon = icon,
-                    }, cancellationToken);
+                    }, requestHeaders: null, cancellationToken: cancellationToken);
             }
             
         
@@ -665,7 +659,7 @@ public partial class ChatClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task RenameChannelAsync(ChannelIdentifier channel, string name, CancellationToken cancellationToken = default)
+            public async Task RenameChannelAsync(ChannelIdentifier channel, string name, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -673,7 +667,7 @@ public partial class ChatClient : ISpaceClient
                     new ChatsChannelsForChannelNamePatchRequest
                     { 
                         Name = name,
-                    }, cancellationToken);
+                    }, requestHeaders: null, cancellationToken: cancellationToken);
             }
             
         
@@ -709,7 +703,7 @@ public partial class ChatClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task AddTeamsToChannelAsync(ChannelIdentifier channel, List<TeamIdentifier> teams, CancellationToken cancellationToken = default)
+                public async Task AddTeamsToChannelAsync(ChannelIdentifier channel, List<TeamIdentifier> teams, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -717,7 +711,7 @@ public partial class ChatClient : ISpaceClient
                         new ChatsChannelsForChannelSubscribersTeamsPostRequest
                         { 
                             Teams = teams,
-                        }, cancellationToken);
+                        }, requestHeaders: null, cancellationToken: cancellationToken);
                 }
                 
             
@@ -729,7 +723,7 @@ public partial class ChatClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Batch<TDTeam>> ListTeamsSubscribedToChannelAsync(ChannelIdentifier channel, string query, string? skip = null, int? top = 100, Func<Partial<Batch<TDTeam>>, Partial<Batch<TDTeam>>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Batch<TDTeam>> ListTeamsSubscribedToChannelAsync(ChannelIdentifier channel, string query, string? skip = null, int? top = 100, Func<Partial<Batch<TDTeam>>, Partial<Batch<TDTeam>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     if (skip != null) queryParameters.Append("$skip", skip);
@@ -737,9 +731,8 @@ public partial class ChatClient : ISpaceClient
                     queryParameters.Append("query", query);
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDTeam>>()) : Partial<Batch<TDTeam>>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<Batch<TDTeam>>("GET", $"api/http/chats/channels/{channel}/subscribers/teams{queryParameters.ToQueryString()}", cancellationToken);
+                    return await _connection.RequestResourceAsync<Batch<TDTeam>>("GET", $"api/http/chats/channels/{channel}/subscribers/teams{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
                 }
-                
                 
                 /// <remarks>
                 /// Required permissions:
@@ -760,12 +753,12 @@ public partial class ChatClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task RemoveTeamsFromChannelAsync(ChannelIdentifier channel, List<TeamIdentifier> teams, CancellationToken cancellationToken = default)
+                public async Task RemoveTeamsFromChannelAsync(ChannelIdentifier channel, List<TeamIdentifier> teams, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("teams", teams.Select(it => it.ToString()));
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channel}/subscribers/teams{queryParameters.ToQueryString()}", cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channel}/subscribers/teams{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
                 }
                 
             
@@ -790,7 +783,7 @@ public partial class ChatClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task AddUsersToChannelAsync(ChannelIdentifier channel, List<ProfileIdentifier> profiles, CancellationToken cancellationToken = default)
+                public async Task AddUsersToChannelAsync(ChannelIdentifier channel, List<ProfileIdentifier> profiles, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -798,7 +791,7 @@ public partial class ChatClient : ISpaceClient
                         new ChatsChannelsForChannelSubscribersUsersPostRequest
                         { 
                             Profiles = profiles,
-                        }, cancellationToken);
+                        }, requestHeaders: null, cancellationToken: cancellationToken);
                 }
                 
             
@@ -810,7 +803,7 @@ public partial class ChatClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Batch<TDMemberProfile>> ListUsersSubscribedToChannelAsync(ChannelIdentifier channel, string query, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Batch<TDMemberProfile>> ListUsersSubscribedToChannelAsync(ChannelIdentifier channel, string query, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     if (skip != null) queryParameters.Append("$skip", skip);
@@ -818,9 +811,8 @@ public partial class ChatClient : ISpaceClient
                     queryParameters.Append("query", query);
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/chats/channels/{channel}/subscribers/users{queryParameters.ToQueryString()}", cancellationToken);
+                    return await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/chats/channels/{channel}/subscribers/users{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
                 }
-                
                 
                 /// <remarks>
                 /// Required permissions:
@@ -841,12 +833,12 @@ public partial class ChatClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task RemoveUsersFromChannelAsync(ChannelIdentifier channel, List<ProfileIdentifier> profiles, CancellationToken cancellationToken = default)
+                public async Task RemoveUsersFromChannelAsync(ChannelIdentifier channel, List<ProfileIdentifier> profiles, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("profiles", profiles.Select(it => it.ToString()));
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channel}/subscribers/users{queryParameters.ToQueryString()}", cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channel}/subscribers/users{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
                 }
                 
             
@@ -881,7 +873,7 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task DeleteMessageAsync(ChannelIdentifier channel, ChatMessageIdentifier id, CancellationToken cancellationToken = default)
+        public async Task DeleteMessageAsync(ChannelIdentifier channel, ChatMessageIdentifier id, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -890,7 +882,7 @@ public partial class ChatClient : ISpaceClient
                 { 
                     Channel = channel,
                     Id = id,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -908,7 +900,7 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task EditMessageAsync(ChannelIdentifier channel, ChatMessageIdentifier message, ChatMessage content, List<AttachmentIn>? attachments = null, bool? unfurlLinks = null, bool? resolveNames = null, CancellationToken cancellationToken = default)
+        public async Task EditMessageAsync(ChannelIdentifier channel, ChatMessageIdentifier message, ChatMessage content, List<AttachmentIn>? attachments = null, bool? unfurlLinks = null, bool? resolveNames = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -921,7 +913,7 @@ public partial class ChatClient : ISpaceClient
                     Attachments = attachments,
                     IsUnfurlLinks = unfurlLinks,
                     IsResolveNames = resolveNames,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -936,7 +928,7 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task ImportMessagesAsync(ChannelIdentifier channel, List<ImportMessage> messages, bool suppressNotifications = false, CancellationToken cancellationToken = default)
+        public async Task ImportMessagesAsync(ChannelIdentifier channel, List<ImportMessage> messages, bool suppressNotifications = false, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -946,7 +938,7 @@ public partial class ChatClient : ISpaceClient
                     Channel = channel,
                     Messages = messages,
                     IsSuppressNotifications = suppressNotifications,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -962,7 +954,7 @@ public partial class ChatClient : ISpaceClient
         /// </list>
         /// </remarks>
         [Obsolete("Use POST chats/messages/send-message (since 2020-01-17) (will be removed in a future version)")]
-        public async Task<ChannelItemRecord> SendTextMessageAsync(string channel, string text, bool pending = false, string? temporaryId = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<ChannelItemRecord> SendTextMessageAsync(string channel, string text, bool pending = false, string? temporaryId = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ChannelItemRecord>()) : Partial<ChannelItemRecord>.Default()).ToString());
@@ -974,7 +966,7 @@ public partial class ChatClient : ISpaceClient
                     Text = text,
                     IsPending = pending,
                     TemporaryId = temporaryId,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -992,7 +984,7 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<ChannelItemRecord> SendMessageAsync(ChatMessage content, ChannelIdentifier? channel = null, List<AttachmentIn>? attachments = null, bool? unfurlLinks = null, string? externalId = null, bool? resolveNames = null, bool? pending = null, MessageRecipient? recipient = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<ChannelItemRecord> SendMessageAsync(ChatMessage content, ChannelIdentifier? channel = null, List<AttachmentIn>? attachments = null, bool? unfurlLinks = null, string? externalId = null, bool? resolveNames = null, bool? pending = null, MessageRecipient? recipient = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ChannelItemRecord>()) : Partial<ChannelItemRecord>.Default()).ToString());
@@ -1008,7 +1000,7 @@ public partial class ChatClient : ISpaceClient
                     IsResolveNames = resolveNames,
                     IsPending = pending,
                     Recipient = recipient,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -1023,7 +1015,7 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<GetMessagesResponse> GetChannelMessagesAsync(ChannelIdentifier channel, MessagesSorting sorting, int batchSize, DateTime? startFromDate = null, Func<Partial<GetMessagesResponse>, Partial<GetMessagesResponse>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<GetMessagesResponse> GetChannelMessagesAsync(ChannelIdentifier channel, MessagesSorting sorting, int batchSize, DateTime? startFromDate = null, Func<Partial<GetMessagesResponse>, Partial<GetMessagesResponse>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("channel", channel.ToString());
@@ -1032,7 +1024,7 @@ public partial class ChatClient : ISpaceClient
             queryParameters.Append("batchSize", batchSize.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<GetMessagesResponse>()) : Partial<GetMessagesResponse>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<GetMessagesResponse>("GET", $"api/http/chats/messages{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<GetMessagesResponse>("GET", $"api/http/chats/messages{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -1044,13 +1036,13 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<ChannelItemRecord> GetMessageAsync(ChatMessageIdentifier message, ChannelIdentifier channel, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<ChannelItemRecord> GetMessageAsync(ChatMessageIdentifier message, ChannelIdentifier channel, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("channel", channel.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ChannelItemRecord>()) : Partial<ChannelItemRecord>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<ChannelItemRecord>("GET", $"api/http/chats/messages/{message}{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<ChannelItemRecord>("GET", $"api/http/chats/messages/{message}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -1062,7 +1054,7 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task PinMessageAsync(ChannelIdentifier channel, ChatMessageIdentifier message, CancellationToken cancellationToken = default)
+        public async Task PinMessageAsync(ChannelIdentifier channel, ChatMessageIdentifier message, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -1071,7 +1063,7 @@ public partial class ChatClient : ISpaceClient
                 { 
                     Channel = channel,
                     Message = message,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -1083,7 +1075,7 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task UnpinMessageAsync(ChannelIdentifier channel, ChatMessageIdentifier message, CancellationToken cancellationToken = default)
+        public async Task UnpinMessageAsync(ChannelIdentifier channel, ChatMessageIdentifier message, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -1092,7 +1084,7 @@ public partial class ChatClient : ISpaceClient
                 { 
                     Channel = channel,
                     Message = message,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -1115,7 +1107,7 @@ public partial class ChatClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Batch<ChannelItemRecord>> ListPinnedMessagesInChannelAsync(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<Batch<ChannelItemRecord>>, Partial<Batch<ChannelItemRecord>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Batch<ChannelItemRecord>> ListPinnedMessagesInChannelAsync(ChannelIdentifier channel, string? skip = null, int? top = 100, Func<Partial<Batch<ChannelItemRecord>>, Partial<Batch<ChannelItemRecord>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("channel", channel.ToString());
@@ -1123,9 +1115,8 @@ public partial class ChatClient : ISpaceClient
                 if (top != null) queryParameters.Append("$top", top?.ToString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ChannelItemRecord>>()) : Partial<Batch<ChannelItemRecord>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<ChannelItemRecord>>("GET", $"api/http/chats/messages/pinned-messages{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<ChannelItemRecord>>("GET", $"api/http/chats/messages/pinned-messages{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
             }
-            
             
             /// <remarks>
             /// Required permissions:

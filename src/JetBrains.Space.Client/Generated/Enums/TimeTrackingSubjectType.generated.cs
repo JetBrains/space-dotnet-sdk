@@ -29,26 +29,11 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public partial class HTTPAPIModelClient : ISpaceClient
+[JsonConverter(typeof(EnumStringConverter))]
+public enum TimeTrackingSubjectType
 {
-    private readonly Connection _connection;
+    [EnumMember(Value = "ISSUE")]
+    ISSUE,
     
-    public HTTPAPIModelClient(Connection connection)
-    {
-        _connection = connection;
-    }
-    
-    /// <summary>
-    /// Get the HTTP API model that describes the available HTTP APIs
-    /// </summary>
-    public async Task<HAModel> GetHttpApiModelAsync(Func<Partial<HAModel>, Partial<HAModel>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-    {
-        var queryParameters = new NameValueCollection();
-        queryParameters.Append("$fields", (partial != null ? partial(new Partial<HAModel>()) : Partial<HAModel>.Default()).ToString());
-        
-        return await _connection.RequestResourceAsync<HAModel>("GET", $"api/http/http-api-model{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
-    }
-    
-
 }
 

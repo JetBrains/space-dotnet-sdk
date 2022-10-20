@@ -62,5 +62,8 @@ public enum HAPrimitive
     [EnumMember(Value = "DateTime")]
     DateTime,
     
+    [EnumMember(Value = "Duration")]
+    Duration,
+    
 }
 

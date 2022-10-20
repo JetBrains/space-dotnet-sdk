@@ -38,7 +38,7 @@ public partial class CallClient : ISpaceClient
         _connection = connection;
     }
     
-    public async Task<Room> CreateCallAsync(List<ProfileIdentifier> participants, bool @private, string? channelId = null, string? description = null, Func<Partial<Room>, Partial<Room>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<Room> CreateCallAsync(List<ProfileIdentifier> participants, bool @private, string? channelId = null, string? description = null, Func<Partial<Room>, Partial<Room>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Room>()) : Partial<Room>.Default()).ToString());
@@ -50,7 +50,7 @@ public partial class CallClient : ISpaceClient
                 IsPrivate = @private,
                 ChannelId = channelId,
                 Description = description,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 

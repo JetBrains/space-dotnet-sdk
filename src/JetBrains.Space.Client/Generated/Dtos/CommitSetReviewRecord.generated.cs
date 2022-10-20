@@ -37,7 +37,7 @@ public sealed class CommitSetReviewRecord
     
     public CommitSetReviewRecord() { }
     
-    public CommitSetReviewRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null)
+    public CommitSetReviewRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, string? feedChannelId = null)
     {
         Project = project;
         ProjectId = projectId;
@@ -49,6 +49,7 @@ public sealed class CommitSetReviewRecord
         CreatedBy = createdBy;
         IsTurnBased = turnBased;
         FeedChannel = feedChannel;
+        FeedChannelId = feedChannelId;
     }
     
     private PropertyValue<ProjectKey> _project = new PropertyValue<ProjectKey>(nameof(CommitSetReviewRecord), nameof(Project), "project");
@@ -147,6 +148,15 @@ public sealed class CommitSetReviewRecord
         set => _feedChannel.SetValue(value);
     }
 
+    private PropertyValue<string?> _feedChannelId = new PropertyValue<string?>(nameof(CommitSetReviewRecord), nameof(FeedChannelId), "feedChannelId");
+    
+    [JsonPropertyName("feedChannelId")]
+    public string? FeedChannelId
+    {
+        get => _feedChannelId.GetValue(InlineErrors);
+        set => _feedChannelId.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -159,6 +169,7 @@ public sealed class CommitSetReviewRecord
         _createdBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _turnBased.SetAccessPath(parentChainPath, validateHasBeenSet);
         _feedChannel.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _feedChannelId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

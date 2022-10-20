@@ -76,6 +76,9 @@ public static class CommitSetReviewRecordPartialExtensions
     public static Partial<CommitSetReviewRecord> WithFeedChannel(this Partial<CommitSetReviewRecord> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
         => it.AddFieldName("feedChannel", partialBuilder(new Partial<M2ChannelRecord>(it)));
     
+    public static Partial<CommitSetReviewRecord> WithFeedChannelId(this Partial<CommitSetReviewRecord> it)
+        => it.AddFieldName("feedChannelId");
+    
     [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<CommitSetReviewRecord> WithAuthors(this Partial<CommitSetReviewRecord> it)
         => it.AddFieldName("authors");

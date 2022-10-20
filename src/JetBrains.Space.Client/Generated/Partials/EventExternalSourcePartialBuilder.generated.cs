@@ -43,5 +43,8 @@ public static class EventExternalSourcePartialExtensions
     public static Partial<EventExternalSource> WithExternalTimestamp(this Partial<EventExternalSource> it)
         => it.AddFieldName("externalTimestamp");
     
+    public static Partial<EventExternalSource> WithSourceHash(this Partial<EventExternalSource> it)
+        => it.AddFieldName("sourceHash");
+    
 }
 

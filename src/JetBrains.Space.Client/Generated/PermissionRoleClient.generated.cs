@@ -55,7 +55,7 @@ public partial class PermissionRoleClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<RoleDTO> CreateRoleAsync(PermissionContextIdentifier contextIdentifier, string name, Func<Partial<RoleDTO>, Partial<RoleDTO>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<RoleDTO> CreateRoleAsync(PermissionContextIdentifier contextIdentifier, string name, Func<Partial<RoleDTO>, Partial<RoleDTO>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<RoleDTO>()) : Partial<RoleDTO>.Default()).ToString());
@@ -65,7 +65,7 @@ public partial class PermissionRoleClient : ISpaceClient
             { 
                 ContextIdentifier = contextIdentifier,
                 Name = name,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -86,7 +86,7 @@ public partial class PermissionRoleClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<List<RoleDTO>> GetRolesAsync(PermissionContextIdentifier contextIdentifier, Func<Partial<RoleDTO>, Partial<RoleDTO>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<List<RoleDTO>> GetRolesAsync(PermissionContextIdentifier contextIdentifier, Func<Partial<RoleDTO>, Partial<RoleDTO>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<RoleDTO>()) : Partial<RoleDTO>.Default()).ToString());
@@ -95,7 +95,7 @@ public partial class PermissionRoleClient : ISpaceClient
             new PermissionRolesGetPostRequest
             { 
                 ContextIdentifier = contextIdentifier,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -116,11 +116,11 @@ public partial class PermissionRoleClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task ResetRolePermissionsToDefaultAsync(string roleId, CancellationToken cancellationToken = default)
+    public async Task ResetRolePermissionsToDefaultAsync(string roleId, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("POST", $"api/http/permission-roles/{roleId}/reset-role-permissions-to-default{queryParameters.ToQueryString()}", cancellationToken);
+        await _connection.RequestResourceAsync("POST", $"api/http/permission-roles/{roleId}/reset-role-permissions-to-default{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -141,7 +141,7 @@ public partial class PermissionRoleClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task UpdateRoleAsync(string roleId, string name, CancellationToken cancellationToken = default)
+    public async Task UpdateRoleAsync(string roleId, string name, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -149,7 +149,7 @@ public partial class PermissionRoleClient : ISpaceClient
             new PermissionRolesForRoleIdPatchRequest
             { 
                 Name = name,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -170,11 +170,11 @@ public partial class PermissionRoleClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task DeleteRoleAsync(string roleId, CancellationToken cancellationToken = default)
+    public async Task DeleteRoleAsync(string roleId, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("DELETE", $"api/http/permission-roles/{roleId}{queryParameters.ToQueryString()}", cancellationToken);
+        await _connection.RequestResourceAsync("DELETE", $"api/http/permission-roles/{roleId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -206,12 +206,12 @@ public partial class PermissionRoleClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<TwoFactorAuthenticationRequirement> Get2faRequirementAsync(string roleId, Func<Partial<TwoFactorAuthenticationRequirement>, Partial<TwoFactorAuthenticationRequirement>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<TwoFactorAuthenticationRequirement> Get2faRequirementAsync(string roleId, Func<Partial<TwoFactorAuthenticationRequirement>, Partial<TwoFactorAuthenticationRequirement>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<TwoFactorAuthenticationRequirement>()) : Partial<TwoFactorAuthenticationRequirement>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<TwoFactorAuthenticationRequirement>("GET", $"api/http/permission-roles/{roleId}/2-fa-requirement{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<TwoFactorAuthenticationRequirement>("GET", $"api/http/permission-roles/{roleId}/2-fa-requirement{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -232,7 +232,7 @@ public partial class PermissionRoleClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task Set2faRequirementAsync(string roleId, bool? required = null, CancellationToken cancellationToken = default)
+        public async Task Set2faRequirementAsync(string roleId, bool? required = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -240,7 +240,7 @@ public partial class PermissionRoleClient : ISpaceClient
                 new PermissionRolesForRoleId2FaRequirementPatchRequest
                 { 
                     IsRequired = required,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -274,7 +274,7 @@ public partial class PermissionRoleClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task GrantRolePermissionsAsync(string roleId, List<string> rightCodes, CancellationToken cancellationToken = default)
+        public async Task GrantRolePermissionsAsync(string roleId, List<string> rightCodes, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -282,7 +282,7 @@ public partial class PermissionRoleClient : ISpaceClient
                 new PermissionRolesForRoleIdPermissionsPostRequest
                 { 
                     RightCodes = rightCodes,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -303,12 +303,12 @@ public partial class PermissionRoleClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<List<RightDTO>> GetRolePermissionsAsync(string roleId, Func<Partial<RightDTO>, Partial<RightDTO>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<List<RightDTO>> GetRolePermissionsAsync(string roleId, Func<Partial<RightDTO>, Partial<RightDTO>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<RightDTO>()) : Partial<RightDTO>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<RightDTO>>("GET", $"api/http/permission-roles/{roleId}/permissions{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<List<RightDTO>>("GET", $"api/http/permission-roles/{roleId}/permissions{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -329,12 +329,12 @@ public partial class PermissionRoleClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task RevokeRolePermissionsAsync(string roleId, List<string> rightCodes, CancellationToken cancellationToken = default)
+        public async Task RevokeRolePermissionsAsync(string roleId, List<string> rightCodes, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("rightCodes", rightCodes.Select(it => it));
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/permission-roles/{roleId}/permissions{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/permission-roles/{roleId}/permissions{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -368,11 +368,11 @@ public partial class PermissionRoleClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task AddRoleMemberAsync(string roleId, ProfileIdentifier profile, CancellationToken cancellationToken = default)
+        public async Task AddRoleMemberAsync(string roleId, ProfileIdentifier profile, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/permission-roles/{roleId}/profiles/{profile}{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/permission-roles/{roleId}/profiles/{profile}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -393,12 +393,12 @@ public partial class PermissionRoleClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<List<TDMemberProfile>> GetRoleMembersAsync(string roleId, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<List<TDMemberProfile>> GetRoleMembersAsync(string roleId, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/permission-roles/{roleId}/profiles{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/permission-roles/{roleId}/profiles{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -419,11 +419,11 @@ public partial class PermissionRoleClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task RemoveRoleMemberAsync(string roleId, ProfileIdentifier profile, CancellationToken cancellationToken = default)
+        public async Task RemoveRoleMemberAsync(string roleId, ProfileIdentifier profile, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/permission-roles/{roleId}/profiles/{profile}{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/permission-roles/{roleId}/profiles/{profile}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -457,11 +457,11 @@ public partial class PermissionRoleClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task AddRoleTeamAsync(string roleId, TeamIdentifier team, CancellationToken cancellationToken = default)
+        public async Task AddRoleTeamAsync(string roleId, TeamIdentifier team, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/permission-roles/{roleId}/teams/{team}{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/permission-roles/{roleId}/teams/{team}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -482,12 +482,12 @@ public partial class PermissionRoleClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<List<TDTeam>> GetRoleTeamsAsync(string roleId, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<List<TDTeam>> GetRoleTeamsAsync(string roleId, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<TDTeam>>("GET", $"api/http/permission-roles/{roleId}/teams{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<List<TDTeam>>("GET", $"api/http/permission-roles/{roleId}/teams{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -508,11 +508,11 @@ public partial class PermissionRoleClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task RemoveRoleTeamAsync(string roleId, TeamIdentifier team, CancellationToken cancellationToken = default)
+        public async Task RemoveRoleTeamAsync(string roleId, TeamIdentifier team, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/permission-roles/{roleId}/teams/{team}{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/permission-roles/{roleId}/teams/{team}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     

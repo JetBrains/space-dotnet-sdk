@@ -34,12 +34,13 @@ public sealed class EventExternalSource
 {
     public EventExternalSource() { }
     
-    public EventExternalSource(string sourceName, string externalId, string? sourceLink = null, long? externalTimestamp = null)
+    public EventExternalSource(string sourceName, string externalId, string? sourceLink = null, long? externalTimestamp = null, string? sourceHash = null)
     {
         SourceName = sourceName;
         ExternalId = externalId;
         SourceLink = sourceLink;
         ExternalTimestamp = externalTimestamp;
+        SourceHash = sourceHash;
     }
     
     private PropertyValue<string> _sourceName = new PropertyValue<string>(nameof(EventExternalSource), nameof(SourceName), "sourceName");
@@ -80,12 +81,22 @@ public sealed class EventExternalSource
         set => _externalTimestamp.SetValue(value);
     }
 
+    private PropertyValue<string?> _sourceHash = new PropertyValue<string?>(nameof(EventExternalSource), nameof(SourceHash), "sourceHash");
+    
+    [JsonPropertyName("sourceHash")]
+    public string? SourceHash
+    {
+        get => _sourceHash.GetValue(InlineErrors);
+        set => _sourceHash.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _sourceName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _externalId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _sourceLink.SetAccessPath(parentChainPath, validateHasBeenSet);
         _externalTimestamp.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sourceHash.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

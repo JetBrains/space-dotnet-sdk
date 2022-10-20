@@ -76,6 +76,9 @@ public static class MergeRequestRecordPartialExtensions
     public static Partial<MergeRequestRecord> WithFeedChannel(this Partial<MergeRequestRecord> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
         => it.AddFieldName("feedChannel", partialBuilder(new Partial<M2ChannelRecord>(it)));
     
+    public static Partial<MergeRequestRecord> WithFeedChannelId(this Partial<MergeRequestRecord> it)
+        => it.AddFieldName("feedChannelId");
+    
     public static Partial<MergeRequestRecord> WithBranchPairs(this Partial<MergeRequestRecord> it)
         => it.AddFieldName("branchPairs");
     

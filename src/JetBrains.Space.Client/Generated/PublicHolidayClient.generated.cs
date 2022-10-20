@@ -52,7 +52,7 @@ public partial class PublicHolidayClient : ISpaceClient
         /// <summary>
         /// Create a public holiday calendar for a location
         /// </summary>
-        public async Task<PublicHolidayCalendarRecord> CreateCalendarAsync(string name, string location, Func<Partial<PublicHolidayCalendarRecord>, Partial<PublicHolidayCalendarRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<PublicHolidayCalendarRecord> CreateCalendarAsync(string name, string location, Func<Partial<PublicHolidayCalendarRecord>, Partial<PublicHolidayCalendarRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PublicHolidayCalendarRecord>()) : Partial<PublicHolidayCalendarRecord>.Default()).ToString());
@@ -62,14 +62,14 @@ public partial class PublicHolidayClient : ISpaceClient
                 { 
                     Name = name,
                     Location = location,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
         /// <summary>
         /// Import holidays in a public holiday calendar, using an attachment (.ics format) as the source
         /// </summary>
-        public async Task<string> ImportCalendarAsync(string calendar, string attachmentId, CancellationToken cancellationToken = default)
+        public async Task<string> ImportCalendarAsync(string calendar, string attachmentId, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -78,23 +78,22 @@ public partial class PublicHolidayClient : ISpaceClient
                 { 
                     Calendar = calendar,
                     AttachmentId = attachmentId,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
         /// <summary>
         /// Get all public holiday calendars
         /// </summary>
-        public async Task<Batch<PublicHolidayCalendarRecord>> GetAllCalendarsAsync(string? skip = null, int? top = 100, Func<Partial<Batch<PublicHolidayCalendarRecord>>, Partial<Batch<PublicHolidayCalendarRecord>>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<PublicHolidayCalendarRecord>> GetAllCalendarsAsync(string? skip = null, int? top = 100, Func<Partial<Batch<PublicHolidayCalendarRecord>>, Partial<Batch<PublicHolidayCalendarRecord>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             if (skip != null) queryParameters.Append("$skip", skip);
             if (top != null) queryParameters.Append("$top", top?.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PublicHolidayCalendarRecord>>()) : Partial<Batch<PublicHolidayCalendarRecord>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<PublicHolidayCalendarRecord>>("GET", $"api/http/public-holidays/calendars{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<PublicHolidayCalendarRecord>>("GET", $"api/http/public-holidays/calendars{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
-        
         
         /// <summary>
         /// Get all public holiday calendars
@@ -105,7 +104,7 @@ public partial class PublicHolidayClient : ISpaceClient
         /// <summary>
         /// Update an existing public holiday calendar
         /// </summary>
-        public async Task<PublicHolidayCalendarRecord> UpdateCalendarAsync(string id, string name, string location, Func<Partial<PublicHolidayCalendarRecord>, Partial<PublicHolidayCalendarRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<PublicHolidayCalendarRecord> UpdateCalendarAsync(string id, string name, string location, Func<Partial<PublicHolidayCalendarRecord>, Partial<PublicHolidayCalendarRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PublicHolidayCalendarRecord>()) : Partial<PublicHolidayCalendarRecord>.Default()).ToString());
@@ -115,18 +114,18 @@ public partial class PublicHolidayClient : ISpaceClient
                 { 
                     Name = name,
                     Location = location,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
         /// <summary>
         /// Delete a public holiday calendar
         /// </summary>
-        public async Task DeleteCalendarAsync(string id, CancellationToken cancellationToken = default)
+        public async Task DeleteCalendarAsync(string id, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/calendars/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/calendars/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -146,7 +145,7 @@ public partial class PublicHolidayClient : ISpaceClient
         /// <summary>
         /// Add a holiday to a public holiday calendar and specify if it is a working day or not
         /// </summary>
-        public async Task<PublicHoliday> CreateHolidayAsync(string calendar, string name, DateTime date, bool workingDay, bool? halfDay = false, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<PublicHoliday> CreateHolidayAsync(string calendar, string name, DateTime date, bool workingDay, bool? halfDay = false, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PublicHoliday>()) : Partial<PublicHoliday>.Default()).ToString());
@@ -159,14 +158,14 @@ public partial class PublicHolidayClient : ISpaceClient
                     Date = date,
                     IsWorkingDay = workingDay,
                     IsHalfDay = halfDay,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
         /// <summary>
         /// Get/search all holidays in a public holiday calendar. Parameters are applied as 'AND' filters.
         /// </summary>
-        public async Task<Batch<PublicHoliday>> GetAllHolidaysAsync(string? skip = null, int? top = 100, string? calendar = null, string? location = null, DateTime? startDate = null, DateTime? endDate = null, Func<Partial<Batch<PublicHoliday>>, Partial<Batch<PublicHoliday>>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<PublicHoliday>> GetAllHolidaysAsync(string? skip = null, int? top = 100, string? calendar = null, string? location = null, DateTime? startDate = null, DateTime? endDate = null, Func<Partial<Batch<PublicHoliday>>, Partial<Batch<PublicHoliday>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             if (skip != null) queryParameters.Append("$skip", skip);
@@ -177,9 +176,8 @@ public partial class PublicHolidayClient : ISpaceClient
             if (endDate != null) queryParameters.Append("endDate", endDate?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PublicHoliday>>()) : Partial<Batch<PublicHoliday>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<PublicHoliday>>("GET", $"api/http/public-holidays/holidays{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<PublicHoliday>>("GET", $"api/http/public-holidays/holidays{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
-        
         
         /// <summary>
         /// Get/search all holidays in a public holiday calendar. Parameters are applied as 'AND' filters.
@@ -190,7 +188,7 @@ public partial class PublicHolidayClient : ISpaceClient
         /// <summary>
         /// Update a holiday in a public holiday calendar. Optional parameters will be ignored when not specified and updated otherwise.
         /// </summary>
-        public async Task<PublicHoliday> UpdateHolidayAsync(string id, string? calendar = null, string? name = null, DateTime? date = null, bool? workingDay = null, bool? halfDay = null, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<PublicHoliday> UpdateHolidayAsync(string id, string? calendar = null, string? name = null, DateTime? date = null, bool? workingDay = null, bool? halfDay = null, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PublicHoliday>()) : Partial<PublicHoliday>.Default()).ToString());
@@ -203,18 +201,18 @@ public partial class PublicHolidayClient : ISpaceClient
                     Date = date,
                     IsWorkingDay = workingDay,
                     IsHalfDay = halfDay,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
         /// <summary>
         /// Delete a holiday from a public holiday calendar
         /// </summary>
-        public async Task DeleteHolidayAsync(string id, CancellationToken cancellationToken = default)
+        public async Task DeleteHolidayAsync(string id, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/holidays/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/holidays/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -232,7 +230,7 @@ public partial class PublicHolidayClient : ISpaceClient
             /// <summary>
             /// Get holidays observed in the location(s) of the current profile during the selected period
             /// </summary>
-            public async Task<List<PublicHoliday>> GetAllProfileHolidaysAsync(DateTime startDate, DateTime endDate, string profile, bool? workingDays = null, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<List<PublicHoliday>> GetAllProfileHolidaysAsync(DateTime startDate, DateTime endDate, string profile, bool? workingDays = null, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("startDate", startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
@@ -241,7 +239,7 @@ public partial class PublicHolidayClient : ISpaceClient
                 if (workingDays != null) queryParameters.Append("workingDays", workingDays?.ToString("l"));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<PublicHoliday>()) : Partial<PublicHoliday>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<PublicHoliday>>("GET", $"api/http/public-holidays/holidays/profile-holidays{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<List<PublicHoliday>>("GET", $"api/http/public-holidays/holidays/profile-holidays{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
             }
             
         
@@ -261,7 +259,7 @@ public partial class PublicHolidayClient : ISpaceClient
             /// <summary>
             /// Search related holidays in all public holiday calendars, during the selected period
             /// </summary>
-            public async Task<Batch<PublicHoliday>> GetAllRelatedHolidaysAsync(string? skip = null, int? top = 100, DateTime? startDate = null, DateTime? endDate = null, Func<Partial<Batch<PublicHoliday>>, Partial<Batch<PublicHoliday>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Batch<PublicHoliday>> GetAllRelatedHolidaysAsync(string? skip = null, int? top = 100, DateTime? startDate = null, DateTime? endDate = null, Func<Partial<Batch<PublicHoliday>>, Partial<Batch<PublicHoliday>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 if (skip != null) queryParameters.Append("$skip", skip);
@@ -270,9 +268,8 @@ public partial class PublicHolidayClient : ISpaceClient
                 if (endDate != null) queryParameters.Append("endDate", endDate?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PublicHoliday>>()) : Partial<Batch<PublicHoliday>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<PublicHoliday>>("GET", $"api/http/public-holidays/holidays/related-holidays{queryParameters.ToQueryString()}", cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<PublicHoliday>>("GET", $"api/http/public-holidays/holidays/related-holidays{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
             }
-            
             
             /// <summary>
             /// Search related holidays in all public holiday calendars, during the selected period

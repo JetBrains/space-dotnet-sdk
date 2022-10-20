@@ -38,7 +38,7 @@ public partial class PermissionClient : ISpaceClient
         _connection = connection;
     }
     
-    public async Task<bool> CheckPermissionAsync(PrincipalIn principal, string uniqueRightCode, PermissionTarget target, CancellationToken cancellationToken = default)
+    public async Task<bool> CheckPermissionAsync(PrincipalIn principal, string uniqueRightCode, PermissionTarget target, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -48,16 +48,16 @@ public partial class PermissionClient : ISpaceClient
                 Principal = principal,
                 UniqueRightCode = uniqueRightCode,
                 Target = target,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
-    public async Task<RightsWithHierarchy> GetAllPermissionsAsync(Func<Partial<RightsWithHierarchy>, Partial<RightsWithHierarchy>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<RightsWithHierarchy> GetAllPermissionsAsync(Func<Partial<RightsWithHierarchy>, Partial<RightsWithHierarchy>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<RightsWithHierarchy>()) : Partial<RightsWithHierarchy>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<RightsWithHierarchy>("GET", $"api/http/permissions{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<RightsWithHierarchy>("GET", $"api/http/permissions{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 

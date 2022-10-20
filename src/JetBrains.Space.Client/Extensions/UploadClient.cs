@@ -39,7 +39,7 @@ public partial class UploadClient
     {
         var uploadHttpClient = httpClient ?? SharedHttpClient.Instance;
             
-        var uploadPath = await CreateUploadAsync(storagePrefix, mediaType, cancellationToken);
+        var uploadPath = await CreateUploadAsync(storagePrefix, mediaType, null, cancellationToken);
 
         var request = new HttpRequestMessage(HttpMethod.Put, _connection.ServerUrl + uploadPath.TrimStart('/') + "/" + fileName.TrimStart('/'))
         {

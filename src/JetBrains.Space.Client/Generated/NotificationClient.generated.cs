@@ -41,12 +41,12 @@ public partial class NotificationClient : ISpaceClient
     /// <summary>
     /// List all subscription subjects
     /// </summary>
-    public async Task<List<EventSubjectInfoDTO>> GetAllNotificationsAsync(Func<Partial<EventSubjectInfoDTO>, Partial<EventSubjectInfoDTO>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<List<EventSubjectInfoDTO>> GetAllNotificationsAsync(Func<Partial<EventSubjectInfoDTO>, Partial<EventSubjectInfoDTO>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<EventSubjectInfoDTO>()) : Partial<EventSubjectInfoDTO>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<List<EventSubjectInfoDTO>>("GET", $"api/http/notifications{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<List<EventSubjectInfoDTO>>("GET", $"api/http/notifications{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
@@ -72,7 +72,7 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<SubscriptionDTO> CreateChannelSubscriptionAsync(ChatChannel channel, string name, CustomGenericSubscriptionIn subscription, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<SubscriptionDTO> CreateChannelSubscriptionAsync(ChatChannel channel, string name, CustomGenericSubscriptionIn subscription, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubscriptionDTO>()) : Partial<SubscriptionDTO>.Default()).ToString());
@@ -83,7 +83,7 @@ public partial class NotificationClient : ISpaceClient
                     Channel = channel,
                     Name = name,
                     Subscription = subscription,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -98,11 +98,11 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task RequestMissingRightsAsync(string id, CancellationToken cancellationToken = default)
+        public async Task RequestMissingRightsAsync(string id, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/notifications/channel-subscriptions/{id}/request-missing-rights{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/notifications/channel-subscriptions/{id}/request-missing-rights{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -117,13 +117,13 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<List<SubscriptionDTO>> GetAllChannelSubscriptionsAsync(ChatChannel channel, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<List<SubscriptionDTO>> GetAllChannelSubscriptionsAsync(ChatChannel channel, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("channel", channel.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubscriptionDTO>()) : Partial<SubscriptionDTO>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<SubscriptionDTO>>("GET", $"api/http/notifications/channel-subscriptions{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<List<SubscriptionDTO>>("GET", $"api/http/notifications/channel-subscriptions{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -138,7 +138,7 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<SubscriptionDTO> UpdateChannelSubscriptionAsync(string id, string? name = null, bool? enabled = null, CustomGenericSubscriptionIn? subscription = null, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<SubscriptionDTO> UpdateChannelSubscriptionAsync(string id, string? name = null, bool? enabled = null, CustomGenericSubscriptionIn? subscription = null, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubscriptionDTO>()) : Partial<SubscriptionDTO>.Default()).ToString());
@@ -149,7 +149,7 @@ public partial class NotificationClient : ISpaceClient
                     Name = name,
                     IsEnabled = enabled,
                     Subscription = subscription,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -164,11 +164,11 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task DeleteChannelSubscriptionAsync(string id, CancellationToken cancellationToken = default)
+        public async Task DeleteChannelSubscriptionAsync(string id, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/notifications/channel-subscriptions/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/notifications/channel-subscriptions/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -196,7 +196,7 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<SubscriptionDTO> CreatePersonalCustomSubscriptionAsync(ProfileIdentifier profile, string name, string feed, CustomGenericSubscriptionIn subscription, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<SubscriptionDTO> CreatePersonalCustomSubscriptionAsync(ProfileIdentifier profile, string name, string feed, CustomGenericSubscriptionIn subscription, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubscriptionDTO>()) : Partial<SubscriptionDTO>.Default()).ToString());
@@ -208,7 +208,7 @@ public partial class NotificationClient : ISpaceClient
                     Name = name,
                     Feed = feed,
                     Subscription = subscription,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -223,13 +223,13 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<List<SubscriptionDTO>> GetAllPersonalCustomSubscriptionsAsync(ProfileIdentifier profile, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<List<SubscriptionDTO>> GetAllPersonalCustomSubscriptionsAsync(ProfileIdentifier profile, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("profile", profile.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubscriptionDTO>()) : Partial<SubscriptionDTO>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<SubscriptionDTO>>("GET", $"api/http/notifications/personal-custom-subscriptions{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<List<SubscriptionDTO>>("GET", $"api/http/notifications/personal-custom-subscriptions{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -244,7 +244,7 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<SubscriptionDTO> UpdatePersonalCustomSubscriptionAsync(string id, string? name = null, bool? enabled = null, string? feed = null, CustomGenericSubscriptionIn? subscription = null, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<SubscriptionDTO> UpdatePersonalCustomSubscriptionAsync(string id, string? name = null, bool? enabled = null, string? feed = null, CustomGenericSubscriptionIn? subscription = null, Func<Partial<SubscriptionDTO>, Partial<SubscriptionDTO>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubscriptionDTO>()) : Partial<SubscriptionDTO>.Default()).ToString());
@@ -256,7 +256,7 @@ public partial class NotificationClient : ISpaceClient
                     IsEnabled = enabled,
                     Feed = feed,
                     Subscription = subscription,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -271,11 +271,11 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task DeletePersonalCustomSubscriptionAsync(string id, CancellationToken cancellationToken = default)
+        public async Task DeletePersonalCustomSubscriptionAsync(string id, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/notifications/personal-custom-subscriptions/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/notifications/personal-custom-subscriptions/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -303,7 +303,7 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task UpdatePersonalSubscriptionSubjectAsync(ProfileIdentifier profile, string subjectCode, string feed, bool enabled, CancellationToken cancellationToken = default)
+        public async Task UpdatePersonalSubscriptionSubjectAsync(ProfileIdentifier profile, string subjectCode, string feed, bool enabled, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -314,7 +314,7 @@ public partial class NotificationClient : ISpaceClient
                     SubjectCode = subjectCode,
                     Feed = feed,
                     IsEnabled = enabled,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -329,7 +329,7 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task UpdatePersonalSubscriptionTargetAsync(ProfileIdentifier profile, string targetCode, string feed, List<string> eventCodes, CancellationToken cancellationToken = default)
+        public async Task UpdatePersonalSubscriptionTargetAsync(ProfileIdentifier profile, string targetCode, string feed, List<string> eventCodes, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -340,19 +340,19 @@ public partial class NotificationClient : ISpaceClient
                     TargetCode = targetCode,
                     Feed = feed,
                     EventCodes = eventCodes,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
         /// <summary>
         /// List all personal subscription targets
         /// </summary>
-        public async Task<List<PersonalSubscriptionTarget>> AllPersonalSubscriptionTargetsAsync(Func<Partial<PersonalSubscriptionTarget>, Partial<PersonalSubscriptionTarget>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<List<PersonalSubscriptionTarget>> AllPersonalSubscriptionTargetsAsync(Func<Partial<PersonalSubscriptionTarget>, Partial<PersonalSubscriptionTarget>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PersonalSubscriptionTarget>()) : Partial<PersonalSubscriptionTarget>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<PersonalSubscriptionTarget>>("GET", $"api/http/notifications/personal-subscriptions/all-personal-subscription-targets{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<List<PersonalSubscriptionTarget>>("GET", $"api/http/notifications/personal-subscriptions/all-personal-subscription-targets{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -367,14 +367,14 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<PersonalSubscriptionSettings> GetPersonalSubscriptionSettingsAsync(ProfileIdentifier profile, string feed, Func<Partial<PersonalSubscriptionSettings>, Partial<PersonalSubscriptionSettings>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<PersonalSubscriptionSettings> GetPersonalSubscriptionSettingsAsync(ProfileIdentifier profile, string feed, Func<Partial<PersonalSubscriptionSettings>, Partial<PersonalSubscriptionSettings>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("profile", profile.ToString());
             queryParameters.Append("feed", feed);
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PersonalSubscriptionSettings>()) : Partial<PersonalSubscriptionSettings>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<PersonalSubscriptionSettings>("GET", $"api/http/notifications/personal-subscriptions/personal-subscription-settings{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<PersonalSubscriptionSettings>("GET", $"api/http/notifications/personal-subscriptions/personal-subscription-settings{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -402,7 +402,7 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<PrivateFeed> CreatePrivateFeedAsync(ProfileIdentifier profile, string name, string icon, PrivateFeedColor color, Func<Partial<PrivateFeed>, Partial<PrivateFeed>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<PrivateFeed> CreatePrivateFeedAsync(ProfileIdentifier profile, string name, string icon, PrivateFeedColor color, Func<Partial<PrivateFeed>, Partial<PrivateFeed>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PrivateFeed>()) : Partial<PrivateFeed>.Default()).ToString());
@@ -414,7 +414,7 @@ public partial class NotificationClient : ISpaceClient
                     Name = name,
                     Icon = icon,
                     Color = color,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -429,13 +429,13 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<List<PrivateFeed>> GetAllPrivateFeedsAsync(ProfileIdentifier profile, Func<Partial<PrivateFeed>, Partial<PrivateFeed>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<List<PrivateFeed>> GetAllPrivateFeedsAsync(ProfileIdentifier profile, Func<Partial<PrivateFeed>, Partial<PrivateFeed>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("profile", profile.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PrivateFeed>()) : Partial<PrivateFeed>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<PrivateFeed>>("GET", $"api/http/notifications/private-feeds{queryParameters.ToQueryString()}", cancellationToken);
+            return await _connection.RequestResourceAsync<List<PrivateFeed>>("GET", $"api/http/notifications/private-feeds{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -450,7 +450,7 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<PrivateFeed> UpdatePrivateFeedAsync(string id, string? name = null, string? icon = null, PrivateFeedColor? color = null, Func<Partial<PrivateFeed>, Partial<PrivateFeed>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<PrivateFeed> UpdatePrivateFeedAsync(string id, string? name = null, string? icon = null, PrivateFeedColor? color = null, Func<Partial<PrivateFeed>, Partial<PrivateFeed>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PrivateFeed>()) : Partial<PrivateFeed>.Default()).ToString());
@@ -461,7 +461,7 @@ public partial class NotificationClient : ISpaceClient
                     Name = name,
                     Icon = icon,
                     Color = color,
-                }, cancellationToken);
+                }, requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     
@@ -476,11 +476,11 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task DeletePrivateFeedAsync(string id, CancellationToken cancellationToken = default)
+        public async Task DeletePrivateFeedAsync(string id, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/notifications/private-feeds/{id}{queryParameters.ToQueryString()}", cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/notifications/private-feeds/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
     

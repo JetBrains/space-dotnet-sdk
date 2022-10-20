@@ -38,7 +38,7 @@ public partial class TrustedCertificateClient : ISpaceClient
         _connection = connection;
     }
     
-    public async Task<TrustedCertificate> CreateTrustedCertificateAsync(string alias, string data, bool archived, Func<Partial<TrustedCertificate>, Partial<TrustedCertificate>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<TrustedCertificate> CreateTrustedCertificateAsync(string alias, string data, bool archived, Func<Partial<TrustedCertificate>, Partial<TrustedCertificate>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<TrustedCertificate>()) : Partial<TrustedCertificate>.Default()).ToString());
@@ -49,30 +49,30 @@ public partial class TrustedCertificateClient : ISpaceClient
                 Alias = alias,
                 Data = data,
                 IsArchived = archived,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
-    public async Task<List<TrustedCertificate>> GetAllTrustedCertificatesAsync(Func<Partial<TrustedCertificate>, Partial<TrustedCertificate>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<List<TrustedCertificate>> GetAllTrustedCertificatesAsync(Func<Partial<TrustedCertificate>, Partial<TrustedCertificate>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<TrustedCertificate>()) : Partial<TrustedCertificate>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<List<TrustedCertificate>>("GET", $"api/http/trusted-certificates{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<List<TrustedCertificate>>("GET", $"api/http/trusted-certificates{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
-    public async Task<CertificateInfo> GetCertificateInfoAsync(string data, Func<Partial<CertificateInfo>, Partial<CertificateInfo>>? partial = null, CancellationToken cancellationToken = default)
+    public async Task<CertificateInfo> GetCertificateInfoAsync(string data, Func<Partial<CertificateInfo>, Partial<CertificateInfo>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("data", data);
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<CertificateInfo>()) : Partial<CertificateInfo>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<CertificateInfo>("GET", $"api/http/trusted-certificates/info{queryParameters.ToQueryString()}", cancellationToken);
+        return await _connection.RequestResourceAsync<CertificateInfo>("GET", $"api/http/trusted-certificates/info{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
-    public async Task UpdateTrustedCertificateAsync(string id, string? alias = null, string? data = null, bool? archived = false, CancellationToken cancellationToken = default)
+    public async Task UpdateTrustedCertificateAsync(string id, string? alias = null, string? data = null, bool? archived = false, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -82,15 +82,15 @@ public partial class TrustedCertificateClient : ISpaceClient
                 Alias = alias,
                 Data = data,
                 IsArchived = archived,
-            }, cancellationToken);
+            }, requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
-    public async Task DeleteTrustedCertificateAsync(string id, CancellationToken cancellationToken = default)
+    public async Task DeleteTrustedCertificateAsync(string id, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("DELETE", $"api/http/trusted-certificates/{id}{queryParameters.ToQueryString()}", cancellationToken);
+        await _connection.RequestResourceAsync("DELETE", $"api/http/trusted-certificates/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
     }
     
 
