@@ -73,7 +73,7 @@ namespace _build
         {
             // [last two digits of year][day of year number]
 
-            var x = DateTime.UtcNow.Year.ToString().Substring(-2) + DateTime.UtcNow.DayOfYear;
+            var x = new string(DateTime.UtcNow.Year.ToString().Skip(2).Take(2).ToArray()) + DateTime.UtcNow.DayOfYear;
             var y = DateTime.UtcNow.ToString("HHmmss");
         
             return new VersionInfo(
