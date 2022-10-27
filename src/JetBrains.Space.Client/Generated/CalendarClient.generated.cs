@@ -543,6 +543,58 @@ public partial class CalendarClient : ISpaceClient
         }
         
     
+        public ConferenceRoomClient ConferenceRooms => new ConferenceRoomClient(_connection);
+        
+        public partial class ConferenceRoomClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public ConferenceRoomClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Manage meeting conference rooms</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task AddConferenceRoomAsync(string id, string roomId, DateTime dateTime, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/calendars/meetings/{id}/conference-rooms{queryParameters.ToQueryString()}", 
+                    new CalendarsMeetingsForIdConferenceRoomsPostRequest
+                    { 
+                        RoomId = roomId,
+                        DateTime = dateTime,
+                    }, requestHeaders: null, cancellationToken: cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Manage meeting conference rooms</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task RemoveConferenceRoomAsync(string id, string roomId, DateTime dateTime, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("roomId", roomId);
+                queryParameters.Append("dateTime", dateTime.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/calendars/meetings/{id}/conference-rooms{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            }
+            
+        
+        }
+    
         public ParticipationStatuClient ParticipationStatus => new ParticipationStatuClient(_connection);
         
         public partial class ParticipationStatuClient : ISpaceClient

@@ -85,5 +85,8 @@ public static class ChatContactRecordPartialExtensions
     public static Partial<ChatContactRecord> WithIsDeleted(this Partial<ChatContactRecord> it)
         => it.AddFieldName("deleted");
     
+    public static Partial<ChatContactRecord> WithIsMuted(this Partial<ChatContactRecord> it)
+        => it.AddFieldName("muted");
+    
 }
 

@@ -37,7 +37,7 @@ public sealed class CommitSetReviewRecord
     
     public CommitSetReviewRecord() { }
     
-    public CommitSetReviewRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, string? feedChannelId = null)
+    public CommitSetReviewRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, bool? canBeReopened = null, TDMemberProfile? createdBy = null, long? timestamp = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, string? feedChannelId = null)
     {
         Project = project;
         ProjectId = projectId;
@@ -47,6 +47,7 @@ public sealed class CommitSetReviewRecord
         CanBeReopened = canBeReopened;
         CreatedAt = createdAt;
         CreatedBy = createdBy;
+        Timestamp = timestamp;
         IsTurnBased = turnBased;
         FeedChannel = feedChannel;
         FeedChannelId = feedChannelId;
@@ -130,6 +131,15 @@ public sealed class CommitSetReviewRecord
         set => _createdBy.SetValue(value);
     }
 
+    private PropertyValue<long?> _timestamp = new PropertyValue<long?>(nameof(CommitSetReviewRecord), nameof(Timestamp), "timestamp");
+    
+    [JsonPropertyName("timestamp")]
+    public long? Timestamp
+    {
+        get => _timestamp.GetValue(InlineErrors);
+        set => _timestamp.SetValue(value);
+    }
+
     private PropertyValue<bool?> _turnBased = new PropertyValue<bool?>(nameof(CommitSetReviewRecord), nameof(IsTurnBased), "turnBased");
     
     [JsonPropertyName("turnBased")]
@@ -167,6 +177,7 @@ public sealed class CommitSetReviewRecord
         _canBeReopened.SetAccessPath(parentChainPath, validateHasBeenSet);
         _createdAt.SetAccessPath(parentChainPath, validateHasBeenSet);
         _createdBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _timestamp.SetAccessPath(parentChainPath, validateHasBeenSet);
         _turnBased.SetAccessPath(parentChainPath, validateHasBeenSet);
         _feedChannel.SetAccessPath(parentChainPath, validateHasBeenSet);
         _feedChannelId.SetAccessPath(parentChainPath, validateHasBeenSet);

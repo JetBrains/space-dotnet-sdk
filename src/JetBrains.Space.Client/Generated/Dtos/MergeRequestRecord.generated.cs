@@ -37,7 +37,7 @@ public sealed class MergeRequestRecord
     
     public MergeRequestRecord() { }
     
-    public MergeRequestRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, string? feedChannelId = null, ExternalCodeReviewLink? externalLink = null)
+    public MergeRequestRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, long? timestamp = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, string? feedChannelId = null, ExternalCodeReviewLink? externalLink = null)
     {
         Project = project;
         ProjectId = projectId;
@@ -47,6 +47,7 @@ public sealed class MergeRequestRecord
         CanBeReopened = canBeReopened;
         CreatedAt = createdAt;
         CreatedBy = createdBy;
+        Timestamp = timestamp;
         IsTurnBased = turnBased;
         FeedChannel = feedChannel;
         FeedChannelId = feedChannelId;
@@ -132,6 +133,15 @@ public sealed class MergeRequestRecord
         set => _createdBy.SetValue(value);
     }
 
+    private PropertyValue<long?> _timestamp = new PropertyValue<long?>(nameof(MergeRequestRecord), nameof(Timestamp), "timestamp");
+    
+    [JsonPropertyName("timestamp")]
+    public long? Timestamp
+    {
+        get => _timestamp.GetValue(InlineErrors);
+        set => _timestamp.SetValue(value);
+    }
+
     private PropertyValue<bool?> _turnBased = new PropertyValue<bool?>(nameof(MergeRequestRecord), nameof(IsTurnBased), "turnBased");
     
     [JsonPropertyName("turnBased")]
@@ -188,6 +198,7 @@ public sealed class MergeRequestRecord
         _canBeReopened.SetAccessPath(parentChainPath, validateHasBeenSet);
         _createdAt.SetAccessPath(parentChainPath, validateHasBeenSet);
         _createdBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _timestamp.SetAccessPath(parentChainPath, validateHasBeenSet);
         _turnBased.SetAccessPath(parentChainPath, validateHasBeenSet);
         _feedChannel.SetAccessPath(parentChainPath, validateHasBeenSet);
         _feedChannelId.SetAccessPath(parentChainPath, validateHasBeenSet);

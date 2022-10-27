@@ -67,6 +67,9 @@ public static class MergeRequestRecordPartialExtensions
     public static Partial<MergeRequestRecord> WithCreatedBy(this Partial<MergeRequestRecord> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
         => it.AddFieldName("createdBy", partialBuilder(new Partial<TDMemberProfile>(it)));
     
+    public static Partial<MergeRequestRecord> WithTimestamp(this Partial<MergeRequestRecord> it)
+        => it.AddFieldName("timestamp");
+    
     public static Partial<MergeRequestRecord> WithIsTurnBased(this Partial<MergeRequestRecord> it)
         => it.AddFieldName("turnBased");
     

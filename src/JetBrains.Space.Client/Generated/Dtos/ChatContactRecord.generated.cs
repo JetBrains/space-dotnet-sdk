@@ -34,7 +34,7 @@ public sealed class ChatContactRecord
 {
     public ChatContactRecord() { }
     
-    public ChatContactRecord(string id, bool archived, string key, ChatContactDetails details, string channelType, DateTime subscribedSince, bool pinned, MessageInfo? lastMessage = null, M2UnreadStatus? unreadStatus = null, DateTime? readTime = null, string? pinnedPrevId = null, string? draft = null, long? draftTime = null, long? lastChildMessageTime = null, bool? deleted = null)
+    public ChatContactRecord(string id, bool archived, string key, ChatContactDetails details, string channelType, DateTime subscribedSince, bool pinned, MessageInfo? lastMessage = null, M2UnreadStatus? unreadStatus = null, DateTime? readTime = null, string? pinnedPrevId = null, string? draft = null, long? draftTime = null, long? lastChildMessageTime = null, bool? deleted = null, bool? muted = null)
     {
         Id = id;
         IsArchived = archived;
@@ -51,6 +51,7 @@ public sealed class ChatContactRecord
         DraftTime = draftTime;
         LastChildMessageTime = lastChildMessageTime;
         IsDeleted = deleted;
+        IsMuted = muted;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(ChatContactRecord), nameof(Id), "id");
@@ -197,6 +198,15 @@ public sealed class ChatContactRecord
         set => _deleted.SetValue(value);
     }
 
+    private PropertyValue<bool?> _muted = new PropertyValue<bool?>(nameof(ChatContactRecord), nameof(IsMuted), "muted");
+    
+    [JsonPropertyName("muted")]
+    public bool? IsMuted
+    {
+        get => _muted.GetValue(InlineErrors);
+        set => _muted.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -214,6 +224,7 @@ public sealed class ChatContactRecord
         _draftTime.SetAccessPath(parentChainPath, validateHasBeenSet);
         _lastChildMessageTime.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deleted.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _muted.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -67,6 +67,9 @@ public static class CommitSetReviewRecordPartialExtensions
     public static Partial<CommitSetReviewRecord> WithCreatedBy(this Partial<CommitSetReviewRecord> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
         => it.AddFieldName("createdBy", partialBuilder(new Partial<TDMemberProfile>(it)));
     
+    public static Partial<CommitSetReviewRecord> WithTimestamp(this Partial<CommitSetReviewRecord> it)
+        => it.AddFieldName("timestamp");
+    
     public static Partial<CommitSetReviewRecord> WithIsTurnBased(this Partial<CommitSetReviewRecord> it)
         => it.AddFieldName("turnBased");
     

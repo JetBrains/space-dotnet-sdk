@@ -44,5 +44,8 @@ public enum IssueListGrouping
     [EnumMember(Value = "STATUS")]
     STATUS,
     
+    [EnumMember(Value = "PROJECT")]
+    PROJECT,
+    
 }
 

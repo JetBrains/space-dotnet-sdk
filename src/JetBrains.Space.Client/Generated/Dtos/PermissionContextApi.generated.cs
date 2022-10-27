@@ -35,12 +35,6 @@ public interface PermissionContextApi
     public static ChannelPermissionContext ChannelPermissionContext(M2ChannelRecord channel)
         => new ChannelPermissionContext(channel: channel);
     
-    public static DocumentFolderPermissionContext DocumentFolderPermissionContext(DocumentFolder folder)
-        => new DocumentFolderPermissionContext(folder: folder);
-    
-    public static DocumentPermissionContext DocumentPermissionContext(Document document)
-        => new DocumentPermissionContext(document: document);
-    
     public static GlobalPermissionContext GlobalPermissionContext()
         => new GlobalPermissionContext();
     
@@ -50,14 +44,8 @@ public interface PermissionContextApi
     public static PrivateProjectPermissionContext PrivateProjectPermissionContext(string projectId)
         => new PrivateProjectPermissionContext(projectId: projectId);
     
-    public static ProfilePermissionContext ProfilePermissionContext(TDMemberProfile profile)
-        => new ProfilePermissionContext(profile: profile);
-    
     public static ProjectPermissionContext ProjectPermissionContext(PRProject project)
         => new ProjectPermissionContext(project: project);
-    
-    public static TeamPermissionContext TeamPermissionContext(TDTeam team)
-        => new TeamPermissionContext(team: team);
     
 }
 
