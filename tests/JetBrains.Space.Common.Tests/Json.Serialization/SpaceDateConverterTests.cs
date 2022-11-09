@@ -1,4 +1,3 @@
-using System;
 using System.Text.Json;
 using JetBrains.Space.Common.Json.Serialization;
 using Xunit;

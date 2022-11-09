@@ -1,9 +1,7 @@
-using System.Threading.Tasks;
 using JetBrains.Annotations;
 using JetBrains.Space.Common;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Logging;
 
 namespace JetBrains.Space.Samples.Web;
 

@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0-focal
+FROM mcr.microsoft.com/dotnet/sdk:7.0-jammy
 
 ENV LANG=C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
@@ -20,11 +20,11 @@ RUN set -ex && \
 
 ## .NET
 RUN set -ex && \
-    wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+    wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
     dpkg -i packages-microsoft-prod.deb && \
     rm packages-microsoft-prod.deb && \
     apt-get update && \
-    apt-get install -y dotnet-sdk-3.1 dotnet-sdk-6.0
+    apt-get install -y dotnet-sdk-6.0 dotnet-sdk-7.0
 
 ## Clean up packages list
 RUN rm -rf /var/lib/apt/lists/*

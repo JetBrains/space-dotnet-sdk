@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using JetBrains.Space.Client;
+﻿using JetBrains.Space.Client;
 using JetBrains.Space.Client.TDMemberProfilePartialBuilder;
 using JetBrains.Space.Common;
 

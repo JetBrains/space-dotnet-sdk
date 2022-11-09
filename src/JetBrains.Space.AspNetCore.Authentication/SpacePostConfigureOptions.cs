@@ -10,7 +10,7 @@ namespace JetBrains.Space.AspNetCore.Authentication;
 public class SpacePostConfigureOptions : IPostConfigureOptions<SpaceOptions>
 {
     /// <inheritdoc />
-    public void PostConfigure(string name, SpaceOptions options)
+    public void PostConfigure(string? name, SpaceOptions options)
     {
         if (options.Scope.Count == 0)
         {

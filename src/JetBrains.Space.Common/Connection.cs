@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 using JetBrains.Annotations;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
@@ -106,13 +102,12 @@ public abstract class Connection
             
         return value;
     }
-        
+
     /// <summary>
     /// Requests a blob resource at a given URL.
     /// </summary>
     /// <param name="httpMethod">The HTTP method to use.</param>
     /// <param name="urlPath">The path to access the resource.</param>
-    /// <param name="requestHeaders">Request headers to send to the resource.</param>
     /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
     /// <returns>The requested resource.</returns>
     /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>

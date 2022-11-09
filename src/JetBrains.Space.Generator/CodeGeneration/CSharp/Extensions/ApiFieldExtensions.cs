@@ -1,4 +1,3 @@
-using System;
 using System.Text;
 using JetBrains.Space.Generator.Model.HttpApi;
 using JetBrains.Space.Generator.CodeGeneration.Extensions;

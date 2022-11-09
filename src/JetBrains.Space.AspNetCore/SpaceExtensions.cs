@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using JetBrains.Annotations;
 using JetBrains.Space.Client;
 using JetBrains.Space.Common;

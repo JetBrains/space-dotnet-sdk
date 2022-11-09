@@ -10,7 +10,7 @@ namespace JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement
 public class SpaceTokenManagementPostConfigureOptions : IPostConfigureOptions<SpaceOptions>
 {
     /// <inheritdoc />
-    public void PostConfigure(string name, SpaceOptions options)
+    public void PostConfigure(string? name, SpaceOptions options)
     {
         // Ensure refresh tokens are provided and stored
         options.AccessType = AccessType.Offline;

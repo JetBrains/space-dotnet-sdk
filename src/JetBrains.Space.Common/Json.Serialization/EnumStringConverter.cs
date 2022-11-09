@@ -26,8 +26,6 @@
  * https://github.com/Macross-Software/core/blob/develop/ClassLibraries/Macross.Json.Extensions/Code/System.Text.Json.Serialization/JsonStringEnumMemberConverter%7BT%7D.cs
  */
 
-using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using System.Runtime.Serialization;

@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netcoreapp3.1;net6.0</TargetFrameworks>
         <Description>Utilities to work with JetBrains.Space, the .NET SDK for JetBrains Space, in ASP.NET Core.</Description>
         <PackageTags>JetBrains Space API aspnetcore webhooks applications</PackageTags>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -10,7 +9,10 @@
 
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
-        <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="JetBrains.Annotations" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>

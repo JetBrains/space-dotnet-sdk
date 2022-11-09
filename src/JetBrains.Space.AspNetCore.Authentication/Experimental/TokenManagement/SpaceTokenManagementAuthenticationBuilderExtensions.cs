@@ -1,4 +1,3 @@
-using System;
 using JetBrains.Annotations;
 using JetBrains.Space.Common;
 using Microsoft.AspNetCore.Authentication;

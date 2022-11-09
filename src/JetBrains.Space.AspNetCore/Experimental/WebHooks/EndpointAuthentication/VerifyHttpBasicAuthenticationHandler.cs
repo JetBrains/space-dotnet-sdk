@@ -1,7 +1,5 @@
-using System;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 using JetBrains.Annotations;
 using JetBrains.Space.AspNetCore.Experimental.WebHooks.Options;
 using JetBrains.Space.Client;

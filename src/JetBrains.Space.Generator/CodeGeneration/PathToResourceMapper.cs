@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using JetBrains.Space.Generator.Model.HttpApi;
 
 namespace JetBrains.Space.Generator.CodeGeneration;

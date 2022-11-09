@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Net;
-using System.Threading.Tasks;
 using JetBrains.Annotations;
 using JetBrains.Space.Common;
 using Microsoft.AspNetCore.Http;

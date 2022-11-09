@@ -11,7 +11,7 @@ public static class ApiDeprecationExtensions
         builder.Append("[Obsolete(\"");
         if (!string.IsNullOrEmpty(subject.Message))
         {
-            builder.Append(subject.Message.ToUppercaseFirst());
+            builder.Append(subject.Message.ToUppercaseFirst()!);
         }
         else
         {

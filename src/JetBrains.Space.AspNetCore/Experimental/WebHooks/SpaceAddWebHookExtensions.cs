@@ -1,4 +1,3 @@
-using System;
 using JetBrains.Annotations;
 using JetBrains.Space.AspNetCore.Experimental.WebHooks;
 using JetBrains.Space.AspNetCore.Experimental.WebHooks.EndpointAuthentication;

@@ -1,6 +1,5 @@
-using System;
-using System.Collections.Generic;
 using JetBrains.Annotations;
+#pragma warning disable CS1574
 
 namespace JetBrains.Space.Common.Applications;
 

@@ -1,4 +1,3 @@
-using System.Linq;
 using JetBrains.Space.Common.Utilities;
 
 namespace JetBrains.Space.Generator.CodeGeneration.CSharp;
