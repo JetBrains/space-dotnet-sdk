@@ -8,7 +8,14 @@ ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 RUN apt-get update && apt-get install -y apt-utils apt-transport-https
 
-## Standard tools, Git, Docker
+## .NET feed
+RUN set -ex && \
+    wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb && \
+    rm packages-microsoft-prod.deb && \
+    apt-get update
+
+## Tools
 RUN set -ex && \
     apt-get install -y \
     # Utilities \
@@ -16,15 +23,9 @@ RUN set -ex && \
     # VCS \
     git \
     # Docker
-    docker docker-compose
-
-## .NET
-RUN set -ex && \
-    wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
-    dpkg -i packages-microsoft-prod.deb && \
-    rm packages-microsoft-prod.deb && \
-    apt-get update && \
-    apt-get install -y dotnet-sdk-6.0 dotnet-sdk-7.0
+    docker docker-compose \
+    # .NET
+    docker dotnet-sdk-6.0 dotnet-sdk-7.0
 
 ## Clean up packages list
 RUN rm -rf /var/lib/apt/lists/*
