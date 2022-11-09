@@ -14,4 +14,8 @@
       <ProjectReference Include="..\JetBrains.Space.Common\JetBrains.Space.Common.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Generated\JsonSerializationContext.generated.cs" />
+    </ItemGroup>
+
 </Project>
