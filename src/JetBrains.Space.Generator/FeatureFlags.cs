@@ -17,9 +17,22 @@ internal static class FeatureFlags
     /// <summary>
     /// Generate enumerable method for SyncBatch API endpoints?
     ///
-    /// 
+    ///
     /// When true, will generate enumerable method for SyncBatch API endpoints.
     /// When false, will not generate enumerable method for SyncBatch API endpoints.
     /// </summary>
     public static bool GenerateEnumerableMethodForSyncBatchApiEndpoint = false;
+
+    /// <summary>
+    /// Generate optimized serialization logic?
+    ///
+    /// When true, will generate JsonContext for all types.
+    /// When false, will not generate JsonContext for all types and rely on reflection only.
+    ///
+    /// Recommended value: false (work in progress)
+    /// </summary>
+    /// <remarks>
+    /// See <a href="https://devblogs.microsoft.com/dotnet/announcing-net-6-preview-5/#generating-optimized-serialization-logic">here</a>.
+    /// </remarks>
+    public static bool GenerateOptimizedJsonSerializationContext = true;
 }

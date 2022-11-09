@@ -67,7 +67,16 @@ public class CSharpApiModelGenerator
         WriteToDocument(clientDocumentWriter, 
             "MenuIds.generated.cs",
             menuIdsGenerator.GenerateMenuIds(_codeGenerationContext.GetMenuIds()));
-        
+
+        // JSON serialization context
+        if (FeatureFlags.GenerateOptimizedJsonSerializationContext)
+        {
+            var jsonContextGenerator = new CSharpApiModelJsonSerializationContextGenerator(_codeGenerationContext);
+            WriteToDocument(clientDocumentWriter,
+                "JsonSerializationContext.generated.cs",
+                jsonContextGenerator.GenerateJsonSerializationContextClass());
+        }
+
         // Version info
         var deploymentInfoGenerator = new CSharpDeploymentInfoGenerator();
         WriteToDocument(commonDocumentWriter, 
