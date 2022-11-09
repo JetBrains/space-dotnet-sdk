@@ -1,13 +1,12 @@
 val dotNetInstallScript = """
     apt-get update && apt-get install -y apt-utils apt-transport-https
     apt-get install -y curl unzip wget software-properties-common git
-    
+
     wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
     dpkg -i packages-microsoft-prod.deb
     rm packages-microsoft-prod.deb
-    apt-get update
-    apt-get install -y dotnet-sdk-6.0 dotnet-sdk-7.0
 
+    apt-get update && apt-get install -y dotnet-sdk-6.0 #dotnet-sdk-7.0
 """.trimIndent()
 
 job("Continuous integration build") {
@@ -15,10 +14,10 @@ job("Continuous integration build") {
         gitPush { enabled = true }
     }
     
-    container("mcr.microsoft.com/dotnet/sdk:7.0-jammy") {
+    container("ubuntu:22.04") {
         resources {
             cpu = 2.cpu
-            memory = 2.gb
+            memory = 4.gb
         }
         
         env.set("DOTNET_SKIP_FIRST_TIME_EXPERIENCE", "1")
@@ -56,10 +55,10 @@ job("Build and publish to NuGet.org (manual)") {
         }
     }
     
-    container("mcr.microsoft.com/dotnet/sdk:7.0-jammy") {
+    container("ubuntu:22.04") {
         resources {
             cpu = 2.cpu
-            memory = 2.gb
+            memory = 4.gb
         }
         
         env.set("DOTNET_SKIP_FIRST_TIME_EXPERIENCE", "1")
