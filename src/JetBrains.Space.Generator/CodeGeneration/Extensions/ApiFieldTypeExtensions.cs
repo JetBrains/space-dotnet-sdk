@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using JetBrains.Space.Generator.Model.HttpApi;
 
 namespace JetBrains.Space.Generator.CodeGeneration.Extensions;

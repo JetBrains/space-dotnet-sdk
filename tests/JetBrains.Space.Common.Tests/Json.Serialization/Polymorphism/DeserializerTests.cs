@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Text.Json;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using Xunit;

@@ -1,9 +1,5 @@
 #nullable enable
 
-using System.IO;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 using JetBrains.Annotations;
 using JetBrains.Space.Common;
 using JetBrains.Space.Common.Utilities;

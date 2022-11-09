@@ -1,4 +1,3 @@
-using System.IO;
 using JetBrains.Space.Common.Utilities;
 using JetBrains.Space.Generator.Model.HttpApi;
 
@@ -14,7 +13,7 @@ public static class ApiExperimentalExtensions
         builder.Append("[Obsolete(\"");
         if (!string.IsNullOrEmpty(subject.Message))
         {
-            builder.Append(subject.Message.ToUppercaseFirst());
+            builder.Append(subject.Message.ToUppercaseFirst()!);
         }
         else
         {
@@ -27,7 +26,7 @@ public static class ApiExperimentalExtensions
         builder.Append("[Obsolete(\"");
         if (!string.IsNullOrEmpty(subject.Message))
         {
-            builder.Append(subject.Message.ToUppercaseFirst());
+            builder.Append(subject.Message.ToUppercaseFirst()!);
         }
         else
         {

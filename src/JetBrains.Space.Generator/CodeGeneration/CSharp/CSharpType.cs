@@ -1,4 +1,3 @@
-using System;
 using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Types;
 

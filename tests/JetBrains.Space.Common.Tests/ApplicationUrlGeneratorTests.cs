@@ -1,4 +1,3 @@
-using System;
 using JetBrains.Space.Common.Applications;
 using Xunit;
 

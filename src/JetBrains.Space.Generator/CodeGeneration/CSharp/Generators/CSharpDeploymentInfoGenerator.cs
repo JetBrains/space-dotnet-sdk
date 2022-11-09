@@ -1,5 +1,3 @@
-using System;
-
 namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators;
 
 public class CSharpDeploymentInfoGenerator

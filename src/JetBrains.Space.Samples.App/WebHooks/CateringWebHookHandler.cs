@@ -1,9 +1,6 @@
 #pragma warning disable 1998 // This async method lacks 'await' operators
 
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using JetBrains.Annotations;
 using JetBrains.Space.AspNetCore.Experimental.WebHooks;
 using JetBrains.Space.Client;

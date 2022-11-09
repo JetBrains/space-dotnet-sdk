@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Text;
 using JetBrains.Space.Common;
 using JetBrains.Space.Generator.Model.HttpApi;

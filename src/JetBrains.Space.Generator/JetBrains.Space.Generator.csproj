@@ -2,12 +2,11 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFrameworks>netcoreapp3.1;net6.0</TargetFrameworks>
         <Description>Generates the SDK client for the JetBrains Space API.</Description>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" PrivateAssets="All" />
+      <PackageReference Include="JetBrains.Annotations" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>

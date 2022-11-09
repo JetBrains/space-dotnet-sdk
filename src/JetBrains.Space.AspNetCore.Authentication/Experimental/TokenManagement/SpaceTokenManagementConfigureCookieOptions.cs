@@ -27,7 +27,7 @@ public class SpaceTokenManagementConfigureCookieOptions : IConfigureNamedOptions
     public void Configure(CookieAuthenticationOptions options) { }
 
     /// <inheritdoc />
-    public void Configure(string schemeName, CookieAuthenticationOptions options)
+    public void Configure(string? schemeName, CookieAuthenticationOptions options)
     {
         if (schemeName == _scheme.Name)
         {

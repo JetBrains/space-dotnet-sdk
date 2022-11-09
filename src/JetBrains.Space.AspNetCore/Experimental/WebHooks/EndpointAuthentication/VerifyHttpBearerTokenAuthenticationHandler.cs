@@ -1,6 +1,4 @@
-using System;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
 using JetBrains.Space.AspNetCore.Experimental.WebHooks.Options;
 using JetBrains.Space.Client;
 using Microsoft.AspNetCore.Http;

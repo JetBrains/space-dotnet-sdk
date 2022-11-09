@@ -1,13 +1,5 @@
-using System;
-using System.Net.Http;
 using JetBrains.Space.Common;
 using JetBrains.Space.Samples.App.WebHooks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace JetBrains.Space.Samples.App;
 

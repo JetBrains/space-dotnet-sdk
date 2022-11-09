@@ -1,4 +1,3 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace JetBrains.Space.Common.Utilities;
@@ -13,7 +12,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="subject">The input <see cref="String"/>.</param>
     /// <returns>A <see cref="String"/> with the first character converted to uppercase. If the <paramref name="subject"/> is null or empty, the original <paramref name="subject"/> will be returned.</returns>
-    public static string? ToUppercaseFirst([NotNullIfNotNull("subject")] this string? subject)
+    public static string? ToUppercaseFirst([NotNullIfNotNull(nameof(subject))] this string? subject)
     {
         if (!string.IsNullOrEmpty(subject) && subject.Length == 1)
         {

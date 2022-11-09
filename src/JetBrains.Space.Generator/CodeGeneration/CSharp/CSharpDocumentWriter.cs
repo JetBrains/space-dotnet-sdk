@@ -1,5 +1,3 @@
-using System.IO;
-
 namespace JetBrains.Space.Generator.CodeGeneration.CSharp;
 
 public class CSharpDocumentWriter : IDocumentWriter

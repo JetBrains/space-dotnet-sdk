@@ -1,4 +1,3 @@
-using System;
 using JetBrains.Annotations;
 
 namespace JetBrains.Space.AspNetCore.Experimental.WebHooks.Options;

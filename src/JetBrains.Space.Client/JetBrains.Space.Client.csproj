@@ -1,14 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netcoreapp3.1;net6.0</TargetFrameworks>
         <Description>Generated SDK client for the JetBrains Space API.</Description>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" PrivateAssets="All" />
+      <PackageReference Include="JetBrains.Annotations" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>
