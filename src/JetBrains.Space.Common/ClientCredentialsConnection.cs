@@ -41,7 +41,7 @@ public class ClientCredentialsConnection
     /// A list of rights required to access specific resources in Space. Defaults to "**" (PermissionScope.All).
     /// </summary>
     // ReSharper disable once MemberCanBePrivate.Global
-    public ICollection<PermissionScope> Scope { get; set; } = new HashSet<PermissionScope> { PermissionScope.All };
+    public PermissionScope Scope { get; set; } = PermissionScope.All;
 
     /// <inheritdoc />
     protected override async Task EnsureAuthenticatedAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -60,7 +60,7 @@ public class ClientCredentialsConnection
                 Content = new FormUrlEncodedContent(new []
                 {
                     new KeyValuePair<string?, string?>("grant_type", "client_credentials"),
-                    new KeyValuePair<string?, string?>("scope", string.Join(" ", Scope))
+                    new KeyValuePair<string?, string?>("scope", Scope)
                 })
             }.WithClientAndSdkHeaders(SdkInfo.Version);
 

@@ -30,10 +30,7 @@ public class PermissionScope
     /// </summary>
     /// <param name="scope">The <see cref="PermissionScope"/> to convert.</param>
     /// <returns>The <see cref="string"/> representation for the scope.</returns>
-    public static implicit operator string(PermissionScope scope)
-    {
-        return scope.ToString();
-    }
+    public static implicit operator string(PermissionScope scope) => scope.ToString();
 
     /// <inheritdoc />
     public override int GetHashCode() => _scope.GetHashCode();
