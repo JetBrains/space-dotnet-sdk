@@ -24,7 +24,7 @@ public static class PermissionScopeBuilder
     /// <summary>
     /// Build a <see cref="PermissionScope"/> based on a set of <see cref="PermissionScopeElement"/>.
     /// </summary>
-    /// <param name="elements">The other <see cref="PermissionScopeElement"/> to build a scope for.</param>
+    /// <param name="elements">The enumerable of <see cref="PermissionScopeElement"/> to build a scope for.</param>
     /// <returns>A <see cref="PermissionScope"/> that represents the set of <see cref="PermissionScopeElement"/>.</returns>
     [SuppressMessage("ReSharper", "RedundantToStringCall")]
     public static PermissionScope FromElements(IEnumerable<PermissionScopeElement> elements) =>
@@ -34,7 +34,7 @@ public static class PermissionScopeBuilder
     /// <summary>
     /// Build a <see cref="PermissionScope"/> based on a set of <see cref="PermissionScopeElement"/>.
     /// </summary>
-    /// <param name="elements">The other <see cref="PermissionScopeElement"/> to build a scope for.</param>
+    /// <param name="elements">The <see cref="PermissionScopeElement"/> to build a scope for.</param>
     /// <returns>A <see cref="PermissionScope"/> that represents the set of <see cref="PermissionScopeElement"/>.</returns>
     [SuppressMessage("ReSharper", "RedundantToStringCall")]
     public static PermissionScope FromElements(params PermissionScopeElement[] elements) =>
