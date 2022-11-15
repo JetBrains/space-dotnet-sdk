@@ -34,7 +34,7 @@ public sealed class ChannelItemRecord
 {
     public ChannelItemRecord() { }
     
-    public ChannelItemRecord(string text, CPrincipal author, DateTime created, long time, string id, bool archived, List<Issue> issues, M2ItemContentDetails? details = null, AllReactionsToItemRecord? reactions = null, M2ChannelRecord? thread = null, ChannelItemRecord? projectedItem = null, List<AttachmentInfo>? attachments = null, string? externalId = null, bool? pending = null, DateTime? edited = null, bool? pinned = null, List<CPrincipal>? suggestedParticipants = null, List<EntityMention>? mentions = null, string? channelId = null)
+    public ChannelItemRecord(string text, CPrincipal author, DateTime created, long time, string id, bool archived, List<Issue> issues, M2ItemContentDetails? details = null, AllReactionsToItemRecord? reactions = null, M2ChannelRecord? thread = null, ChannelItemRecord? projectedItem = null, List<AttachmentInfo>? attachments = null, string? externalId = null, bool? pending = null, DateTime? edited = null, bool? pinned = null, List<CPrincipal>? suggestedParticipants = null, List<EntityMention>? mentions = null, string? channelId = null, string? importerAppId = null)
     {
         Text = text;
         Details = details;
@@ -54,6 +54,7 @@ public sealed class ChannelItemRecord
         SuggestedParticipants = suggestedParticipants;
         Mentions = mentions;
         ChannelId = channelId;
+        ImporterAppId = importerAppId;
         Issues = issues;
     }
     
@@ -227,6 +228,15 @@ public sealed class ChannelItemRecord
         set => _channelId.SetValue(value);
     }
 
+    private PropertyValue<string?> _importerAppId = new PropertyValue<string?>(nameof(ChannelItemRecord), nameof(ImporterAppId), "importerAppId");
+    
+    [JsonPropertyName("importerAppId")]
+    public string? ImporterAppId
+    {
+        get => _importerAppId.GetValue(InlineErrors);
+        set => _importerAppId.SetValue(value);
+    }
+
     private PropertyValue<List<Issue>> _issues = new PropertyValue<List<Issue>>(nameof(ChannelItemRecord), nameof(Issues), "issues", new List<Issue>());
     
     [Required]
@@ -257,6 +267,7 @@ public sealed class ChannelItemRecord
         _suggestedParticipants.SetAccessPath(parentChainPath, validateHasBeenSet);
         _mentions.SetAccessPath(parentChainPath, validateHasBeenSet);
         _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _importerAppId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _issues.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

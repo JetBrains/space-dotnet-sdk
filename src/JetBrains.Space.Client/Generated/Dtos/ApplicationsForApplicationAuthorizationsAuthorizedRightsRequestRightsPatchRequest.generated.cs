@@ -34,7 +34,7 @@ public class ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRigh
 {
     public ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest() { }
     
-    public ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest(PermissionContextIdentifier contextIdentifier, List<string> rightCodes)
+    public ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest(PermissionContextIdentifier contextIdentifier, List<PermissionIdentifier> rightCodes)
     {
         ContextIdentifier = contextIdentifier;
         RightCodes = rightCodes;
@@ -50,11 +50,11 @@ public class ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRigh
         set => _contextIdentifier.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _rightCodes = new PropertyValue<List<string>>(nameof(ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest), nameof(RightCodes), "rightCodes", new List<string>());
+    private PropertyValue<List<PermissionIdentifier>> _rightCodes = new PropertyValue<List<PermissionIdentifier>>(nameof(ApplicationsForApplicationAuthorizationsAuthorizedRightsRequestRightsPatchRequest), nameof(RightCodes), "rightCodes", new List<PermissionIdentifier>());
     
     [Required]
     [JsonPropertyName("rightCodes")]
-    public List<string> RightCodes
+    public List<PermissionIdentifier> RightCodes
     {
         get => _rightCodes.GetValue(InlineErrors);
         set => _rightCodes.SetValue(value);

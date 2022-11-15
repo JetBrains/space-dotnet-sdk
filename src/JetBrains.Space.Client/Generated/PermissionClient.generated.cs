@@ -38,7 +38,7 @@ public partial class PermissionClient : ISpaceClient
         _connection = connection;
     }
     
-    public async Task<bool> CheckPermissionAsync(PrincipalIn principal, string uniqueRightCode, PermissionTarget target, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    public async Task<bool> CheckPermissionAsync(PrincipalIn principal, PermissionIdentifier uniqueRightCode, PermissionTarget target, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         

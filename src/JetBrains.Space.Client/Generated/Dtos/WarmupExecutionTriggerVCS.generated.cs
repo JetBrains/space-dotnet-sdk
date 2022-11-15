@@ -29,14 +29,21 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public static class SdkInfo
+public sealed class WarmupExecutionTriggerVCS
+     : WarmupExecutionTrigger, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2022.2.0-DEV.141109";
+    [JsonPropertyName("className")]
+    public override string? ClassName => "WarmupExecutionTrigger.VCS";
+    
+    public WarmupExecutionTriggerVCS() { }
+    
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

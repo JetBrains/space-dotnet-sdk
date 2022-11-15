@@ -34,7 +34,7 @@ public class TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchReques
 {
     public TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest() { }
     
-    public TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest(string? name = null, string? scope = null, DateTime? expires = null)
+    public TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest(string? name = null, PermissionScope? scope = null, DateTime? expires = null)
     {
         Name = name;
         Scope = scope;
@@ -53,13 +53,13 @@ public class TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchReques
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _scope = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest), nameof(Scope), "scope");
+    private PropertyValue<PermissionScope?> _scope = new PropertyValue<PermissionScope?>(nameof(TeamDirectoryProfilesForProfilePermanentTokensForTokenIdPatchRequest), nameof(Scope), "scope");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
     [JsonPropertyName("scope")]
-    public string? Scope
+    public PermissionScope? Scope
     {
         get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);

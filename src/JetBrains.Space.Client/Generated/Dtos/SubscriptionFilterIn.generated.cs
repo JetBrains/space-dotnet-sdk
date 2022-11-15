@@ -62,6 +62,9 @@ public interface SubscriptionFilterIn
     public static ProjectCommonSubscriptionFilterIn ProjectCommon(string? project = null)
         => new ProjectCommonSubscriptionFilterIn(project: project);
     
+    public static RdWarmupSubscriptionFilterIn RdWarmup(string project, string? repositoryName = null, List<string>? branchSpec = null)
+        => new RdWarmupSubscriptionFilterIn(project: project, repositoryName: repositoryName, branchSpec: branchSpec);
+    
     public static RepoCommitsSubscriptionFilterIn RepoCommits(string repository, RepoCommitsSubscriptionFilterSpec spec, string? project = null)
         => new RepoCommitsSubscriptionFilterIn(repository: repository, spec: spec, project: project);
     

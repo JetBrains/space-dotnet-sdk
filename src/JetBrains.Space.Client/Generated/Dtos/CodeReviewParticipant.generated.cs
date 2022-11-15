@@ -34,11 +34,12 @@ public sealed class CodeReviewParticipant
 {
     public CodeReviewParticipant() { }
     
-    public CodeReviewParticipant(TDMemberProfile user, CodeReviewParticipantRole role, ReviewerState? state = null, bool? theirTurn = null, List<CodeReviewParticipantQualityGateSlot>? qualityGateSlots = null, List<CodeReviewParticipantCodeOwnerSlot>? codeOwnerSlots = null, DateTime? addedAt = null)
+    public CodeReviewParticipant(TDMemberProfile user, CodeReviewParticipantRole role, ReviewerState? state = null, bool? isApproveSticky = null, bool? theirTurn = null, List<CodeReviewParticipantQualityGateSlot>? qualityGateSlots = null, List<CodeReviewParticipantCodeOwnerSlot>? codeOwnerSlots = null, DateTime? addedAt = null)
     {
         User = user;
         Role = role;
         State = state;
+        IsApproveSticky = isApproveSticky;
         IsTheirTurn = theirTurn;
         QualityGateSlots = qualityGateSlots;
         CodeOwnerSlots = codeOwnerSlots;
@@ -72,6 +73,15 @@ public sealed class CodeReviewParticipant
     {
         get => _state.GetValue(InlineErrors);
         set => _state.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _isApproveSticky = new PropertyValue<bool?>(nameof(CodeReviewParticipant), nameof(IsApproveSticky), "isApproveSticky");
+    
+    [JsonPropertyName("isApproveSticky")]
+    public bool? IsApproveSticky
+    {
+        get => _isApproveSticky.GetValue(InlineErrors);
+        set => _isApproveSticky.SetValue(value);
     }
 
     private PropertyValue<bool?> _theirTurn = new PropertyValue<bool?>(nameof(CodeReviewParticipant), nameof(IsTheirTurn), "theirTurn");
@@ -116,6 +126,7 @@ public sealed class CodeReviewParticipant
         _user.SetAccessPath(parentChainPath, validateHasBeenSet);
         _role.SetAccessPath(parentChainPath, validateHasBeenSet);
         _state.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _isApproveSticky.SetAccessPath(parentChainPath, validateHasBeenSet);
         _theirTurn.SetAccessPath(parentChainPath, validateHasBeenSet);
         _qualityGateSlots.SetAccessPath(parentChainPath, validateHasBeenSet);
         _codeOwnerSlots.SetAccessPath(parentChainPath, validateHasBeenSet);

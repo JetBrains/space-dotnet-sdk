@@ -34,7 +34,7 @@ public sealed class ESApplicationPermanentToken
 {
     public ESApplicationPermanentToken() { }
     
-    public ESApplicationPermanentToken(string id, string name, ESApp application, string scope, XScopeApi apiScope, DateTime created, DateTime? expires = null, AccessRecord? lastAccess = null)
+    public ESApplicationPermanentToken(string id, string name, ESApp application, PermissionScope scope, XScopeApi apiScope, DateTime created, DateTime? expires = null, AccessRecord? lastAccess = null)
     {
         Id = id;
         Name = name;
@@ -76,11 +76,11 @@ public sealed class ESApplicationPermanentToken
         set => _application.SetValue(value);
     }
 
-    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESApplicationPermanentToken), nameof(Scope), "scope");
+    private PropertyValue<PermissionScope> _scope = new PropertyValue<PermissionScope>(nameof(ESApplicationPermanentToken), nameof(Scope), "scope");
     
     [Required]
     [JsonPropertyName("scope")]
-    public string Scope
+    public PermissionScope Scope
     {
         get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);

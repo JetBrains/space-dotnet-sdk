@@ -27,16 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.IdeNamesPartialBuilder;
 
-public static class SdkInfo
+public static class IdeNamesPartialExtensions
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2022.2.0-DEV.141109";
+    public static Partial<IdeNames> WithBackendFullName(this Partial<IdeNames> it)
+        => it.AddFieldName("backendFullName");
+    
+    public static Partial<IdeNames> WithBackendShortName(this Partial<IdeNames> it)
+        => it.AddFieldName("backendShortName");
+    
+    public static Partial<IdeNames> WithClientFullName(this Partial<IdeNames> it)
+        => it.AddFieldName("clientFullName");
+    
+    public static Partial<IdeNames> WithClientShortName(this Partial<IdeNames> it)
+        => it.AddFieldName("clientShortName");
+    
+    public static Partial<IdeNames> WithIsUsesSeparateClientProduct(this Partial<IdeNames> it)
+        => it.AddFieldName("usesSeparateClientProduct");
+    
 }
 

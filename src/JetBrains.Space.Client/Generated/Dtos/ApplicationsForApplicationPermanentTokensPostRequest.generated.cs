@@ -34,7 +34,7 @@ public class ApplicationsForApplicationPermanentTokensPostRequest
 {
     public ApplicationsForApplicationPermanentTokensPostRequest() { }
     
-    public ApplicationsForApplicationPermanentTokensPostRequest(string name, string scope, DateTime? expires = null)
+    public ApplicationsForApplicationPermanentTokensPostRequest(string name, PermissionScope scope, DateTime? expires = null)
     {
         Name = name;
         Scope = scope;
@@ -51,11 +51,11 @@ public class ApplicationsForApplicationPermanentTokensPostRequest
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ApplicationsForApplicationPermanentTokensPostRequest), nameof(Scope), "scope");
+    private PropertyValue<PermissionScope> _scope = new PropertyValue<PermissionScope>(nameof(ApplicationsForApplicationPermanentTokensPostRequest), nameof(Scope), "scope");
     
     [Required]
     [JsonPropertyName("scope")]
-    public string Scope
+    public PermissionScope Scope
     {
         get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);

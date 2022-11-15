@@ -34,13 +34,15 @@ public sealed class FileData
 {
     public FileData() { }
     
-    public FileData(PackageType type, string repository, string name, string path, FileDataType fileType)
+    public FileData(PackageType type, string repository, string name, string path, FileDataType fileType, long created, long size)
     {
         Type = type;
         Repository = repository;
         Name = name;
         Path = path;
         FileType = fileType;
+        Created = created;
+        Size = size;
     }
     
     private PropertyValue<PackageType> _type = new PropertyValue<PackageType>(nameof(FileData), nameof(Type), "type");
@@ -93,6 +95,26 @@ public sealed class FileData
         set => _fileType.SetValue(value);
     }
 
+    private PropertyValue<long> _created = new PropertyValue<long>(nameof(FileData), nameof(Created), "created");
+    
+    [Required]
+    [JsonPropertyName("created")]
+    public long Created
+    {
+        get => _created.GetValue(InlineErrors);
+        set => _created.SetValue(value);
+    }
+
+    private PropertyValue<long> _size = new PropertyValue<long>(nameof(FileData), nameof(Size), "size");
+    
+    [Required]
+    [JsonPropertyName("size")]
+    public long Size
+    {
+        get => _size.GetValue(InlineErrors);
+        set => _size.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _type.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -100,6 +122,8 @@ public sealed class FileData
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _path.SetAccessPath(parentChainPath, validateHasBeenSet);
         _fileType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _size.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

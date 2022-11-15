@@ -49,6 +49,9 @@ public static class CodeReviewParticipantPartialExtensions
     public static Partial<CodeReviewParticipant> WithState(this Partial<CodeReviewParticipant> it, Func<Partial<ReviewerState>, Partial<ReviewerState>> partialBuilder)
         => it.AddFieldName("state", partialBuilder(new Partial<ReviewerState>(it)));
     
+    public static Partial<CodeReviewParticipant> WithIsApproveSticky(this Partial<CodeReviewParticipant> it)
+        => it.AddFieldName("isApproveSticky");
+    
     public static Partial<CodeReviewParticipant> WithIsTheirTurn(this Partial<CodeReviewParticipant> it)
         => it.AddFieldName("theirTurn");
     

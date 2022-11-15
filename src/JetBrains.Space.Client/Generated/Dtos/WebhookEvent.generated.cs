@@ -134,9 +134,6 @@ public interface WebhookEvent
     public static MeetingModWebhookEvent MeetingMod(KMetaMod meta, Meeting meeting)
         => new MeetingModWebhookEvent(meta: meta, meeting: meeting);
     
-    public static MeetingWebhookEvent Meeting(KMetaMod meta, MeetingRecord meeting)
-        => new MeetingWebhookEvent(meta: meta, meeting: meeting);
-    
     public static PingWebhookEvent Ping(string webhookName)
         => new PingWebhookEvent(webhookName: webhookName);
     
@@ -148,6 +145,9 @@ public interface WebhookEvent
     
     public static ProjectEvent ProjectEvent(KMetaMod meta, PRProject project)
         => new ProjectEvent(meta: meta, project: project);
+    
+    public static RdWarmupEvent RdWarmupEvent(KMetaMod meta, RdWarmupExec warmupExecution)
+        => new RdWarmupEvent(meta: meta, warmupExecution: warmupExecution);
     
     public static SPackageRepositoryWebhookEvent SPackageRepository(ProjectKey projectKey, string repository, PackageType repositoryType, PackageRepositoryEventAction action, PackageVersionRef packageInfo)
         => new SPackageRepositoryWebhookEvent(projectKey: projectKey, repository: repository, repositoryType: repositoryType, action: action, packageInfo: packageInfo);

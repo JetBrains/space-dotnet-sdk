@@ -386,7 +386,7 @@ public partial class ApplicationClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task RequestRightsAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, List<string> rightCodes, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task RequestRightsAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, List<PermissionIdentifier> rightCodes, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -455,7 +455,7 @@ public partial class ApplicationClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task UpdateRequiredRightAsync(ApplicationIdentifier application, List<string> rightCodesToAdd, List<string> rightCodesToRemove, bool requestRightsInAuthorizedContexts, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task UpdateRequiredRightAsync(ApplicationIdentifier application, List<PermissionIdentifier> rightCodesToAdd, List<PermissionIdentifier> rightCodesToRemove, bool requestRightsInAuthorizedContexts, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -731,7 +731,7 @@ public partial class ApplicationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<Pair<ESApplicationPermanentToken, string>> CreatePermanentTokenAsync(ApplicationIdentifier application, string name, string scope, DateTime? expires = null, Func<Partial<Pair<ESApplicationPermanentToken, string>>, Partial<Pair<ESApplicationPermanentToken, string>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<Pair<ESApplicationPermanentToken, string>> CreatePermanentTokenAsync(ApplicationIdentifier application, string name, PermissionScope scope, DateTime? expires = null, Func<Partial<Pair<ESApplicationPermanentToken, string>>, Partial<Pair<ESApplicationPermanentToken, string>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Pair<ESApplicationPermanentToken, string>>()) : Partial<Pair<ESApplicationPermanentToken, string>>.Default()).ToString());
@@ -792,7 +792,7 @@ public partial class ApplicationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task UpdatePermanentTokenAsync(ApplicationIdentifier application, string tokenId, string? name = null, string? scope = null, DateTime? expires = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task UpdatePermanentTokenAsync(ApplicationIdentifier application, string tokenId, string? name = null, PermissionScope? scope = null, DateTime? expires = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             

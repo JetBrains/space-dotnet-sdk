@@ -34,17 +34,17 @@ public sealed class RightUpdateDTO
 {
     public RightUpdateDTO() { }
     
-    public RightUpdateDTO(string rightCode, RightStatus status)
+    public RightUpdateDTO(PermissionIdentifier rightCode, RightStatus status)
     {
         RightCode = rightCode;
         Status = status;
     }
     
-    private PropertyValue<string> _rightCode = new PropertyValue<string>(nameof(RightUpdateDTO), nameof(RightCode), "rightCode");
+    private PropertyValue<PermissionIdentifier> _rightCode = new PropertyValue<PermissionIdentifier>(nameof(RightUpdateDTO), nameof(RightCode), "rightCode");
     
     [Required]
     [JsonPropertyName("rightCode")]
-    public string RightCode
+    public PermissionIdentifier RightCode
     {
         get => _rightCode.GetValue(InlineErrors);
         set => _rightCode.SetValue(value);

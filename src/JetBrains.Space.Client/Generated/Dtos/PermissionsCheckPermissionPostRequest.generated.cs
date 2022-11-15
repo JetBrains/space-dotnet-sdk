@@ -34,7 +34,7 @@ public class PermissionsCheckPermissionPostRequest
 {
     public PermissionsCheckPermissionPostRequest() { }
     
-    public PermissionsCheckPermissionPostRequest(PrincipalIn principal, string uniqueRightCode, PermissionTarget target)
+    public PermissionsCheckPermissionPostRequest(PrincipalIn principal, PermissionIdentifier uniqueRightCode, PermissionTarget target)
     {
         Principal = principal;
         UniqueRightCode = uniqueRightCode;
@@ -51,11 +51,11 @@ public class PermissionsCheckPermissionPostRequest
         set => _principal.SetValue(value);
     }
 
-    private PropertyValue<string> _uniqueRightCode = new PropertyValue<string>(nameof(PermissionsCheckPermissionPostRequest), nameof(UniqueRightCode), "uniqueRightCode");
+    private PropertyValue<PermissionIdentifier> _uniqueRightCode = new PropertyValue<PermissionIdentifier>(nameof(PermissionsCheckPermissionPostRequest), nameof(UniqueRightCode), "uniqueRightCode");
     
     [Required]
     [JsonPropertyName("uniqueRightCode")]
-    public string UniqueRightCode
+    public PermissionIdentifier UniqueRightCode
     {
         get => _uniqueRightCode.GetValue(InlineErrors);
         set => _uniqueRightCode.SetValue(value);

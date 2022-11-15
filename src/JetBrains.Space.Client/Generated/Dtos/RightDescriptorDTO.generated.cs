@@ -34,7 +34,7 @@ public sealed class RightDescriptorDTO
 {
     public RightDescriptorDTO() { }
     
-    public RightDescriptorDTO(string rightCode, string name, string group, string description, string targetName, List<string> dependencies)
+    public RightDescriptorDTO(PermissionIdentifier rightCode, string name, string group, string description, string targetName, List<string> dependencies)
     {
         RightCode = rightCode;
         Name = name;
@@ -44,11 +44,11 @@ public sealed class RightDescriptorDTO
         Dependencies = dependencies;
     }
     
-    private PropertyValue<string> _rightCode = new PropertyValue<string>(nameof(RightDescriptorDTO), nameof(RightCode), "rightCode");
+    private PropertyValue<PermissionIdentifier> _rightCode = new PropertyValue<PermissionIdentifier>(nameof(RightDescriptorDTO), nameof(RightCode), "rightCode");
     
     [Required]
     [JsonPropertyName("rightCode")]
-    public string RightCode
+    public PermissionIdentifier RightCode
     {
         get => _rightCode.GetValue(InlineErrors);
         set => _rightCode.SetValue(value);

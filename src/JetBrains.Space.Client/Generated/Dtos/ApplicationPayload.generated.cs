@@ -59,7 +59,7 @@ public interface ApplicationPayload
     public static NewUnfurlQueueItemsPayload NewUnfurlQueueItemsPayload(string clientId, string? verificationToken = null)
         => new NewUnfurlQueueItemsPayload(clientId: clientId, verificationToken: verificationToken);
     
-    public static RefreshTokenPayload RefreshTokenPayload(string refreshToken, string scope, string clientId, string userId, string? verificationToken = null)
+    public static RefreshTokenPayload RefreshTokenPayload(string refreshToken, PermissionScope scope, string clientId, string userId, string? verificationToken = null)
         => new RefreshTokenPayload(refreshToken: refreshToken, scope: scope, clientId: clientId, userId: userId, verificationToken: verificationToken);
     
     public static UnfurlActionPayload UnfurlActionPayload(string actionId, string actionValue, string link, ApplicationUnfurlContext context, string clientId, string userId, string? verificationToken = null)

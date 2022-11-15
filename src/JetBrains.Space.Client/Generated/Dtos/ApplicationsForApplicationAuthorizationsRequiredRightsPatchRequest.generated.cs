@@ -34,28 +34,28 @@ public class ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest
 {
     public ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest() { }
     
-    public ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest(List<string> rightCodesToAdd, List<string> rightCodesToRemove, bool requestRightsInAuthorizedContexts)
+    public ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest(List<PermissionIdentifier> rightCodesToAdd, List<PermissionIdentifier> rightCodesToRemove, bool requestRightsInAuthorizedContexts)
     {
         RightCodesToAdd = rightCodesToAdd;
         RightCodesToRemove = rightCodesToRemove;
         IsRequestRightsInAuthorizedContexts = requestRightsInAuthorizedContexts;
     }
     
-    private PropertyValue<List<string>> _rightCodesToAdd = new PropertyValue<List<string>>(nameof(ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest), nameof(RightCodesToAdd), "rightCodesToAdd", new List<string>());
+    private PropertyValue<List<PermissionIdentifier>> _rightCodesToAdd = new PropertyValue<List<PermissionIdentifier>>(nameof(ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest), nameof(RightCodesToAdd), "rightCodesToAdd", new List<PermissionIdentifier>());
     
     [Required]
     [JsonPropertyName("rightCodesToAdd")]
-    public List<string> RightCodesToAdd
+    public List<PermissionIdentifier> RightCodesToAdd
     {
         get => _rightCodesToAdd.GetValue(InlineErrors);
         set => _rightCodesToAdd.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _rightCodesToRemove = new PropertyValue<List<string>>(nameof(ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest), nameof(RightCodesToRemove), "rightCodesToRemove", new List<string>());
+    private PropertyValue<List<PermissionIdentifier>> _rightCodesToRemove = new PropertyValue<List<PermissionIdentifier>>(nameof(ApplicationsForApplicationAuthorizationsRequiredRightsPatchRequest), nameof(RightCodesToRemove), "rightCodesToRemove", new List<PermissionIdentifier>());
     
     [Required]
     [JsonPropertyName("rightCodesToRemove")]
-    public List<string> RightCodesToRemove
+    public List<PermissionIdentifier> RightCodesToRemove
     {
         get => _rightCodesToRemove.GetValue(InlineErrors);
         set => _rightCodesToRemove.SetValue(value);

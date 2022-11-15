@@ -27,21 +27,23 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.MeetingWebhookEventPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class MeetingWebhookEventPartialExtensions
+public sealed class WarmupExecutionTriggerLegacy
+     : WarmupExecutionTrigger, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static Partial<MeetingWebhookEvent> WithMeta(this Partial<MeetingWebhookEvent> it)
-        => it.AddFieldName("meta");
+    [JsonPropertyName("className")]
+    public override string? ClassName => "WarmupExecutionTrigger.Legacy";
     
-    public static Partial<MeetingWebhookEvent> WithMeta(this Partial<MeetingWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
-        => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
+    public WarmupExecutionTriggerLegacy() { }
     
-    public static Partial<MeetingWebhookEvent> WithMeeting(this Partial<MeetingWebhookEvent> it)
-        => it.AddFieldName("meeting");
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+    }
     
-    public static Partial<MeetingWebhookEvent> WithMeeting(this Partial<MeetingWebhookEvent> it, Func<Partial<MeetingRecord>, Partial<MeetingRecord>> partialBuilder)
-        => it.AddFieldName("meeting", partialBuilder(new Partial<MeetingRecord>(it)));
-    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

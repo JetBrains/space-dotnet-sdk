@@ -29,41 +29,44 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class AuthCodeFlowPermissionsRequest
-     : IPropagatePropertyAccessPath
+public sealed class RdWarmupEvent
+     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public AuthCodeFlowPermissionsRequest() { }
+    [JsonPropertyName("className")]
+    public  string? ClassName => "RdWarmupEvent";
     
-    public AuthCodeFlowPermissionsRequest(PermissionScope scope, string purpose)
+    public RdWarmupEvent() { }
+    
+    public RdWarmupEvent(KMetaMod meta, RdWarmupExec warmupExecution)
     {
-        Scope = scope;
-        Purpose = purpose;
+        Meta = meta;
+        WarmupExecution = warmupExecution;
     }
     
-    private PropertyValue<PermissionScope> _scope = new PropertyValue<PermissionScope>(nameof(AuthCodeFlowPermissionsRequest), nameof(Scope), "scope");
+    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(RdWarmupEvent), nameof(Meta), "meta");
     
     [Required]
-    [JsonPropertyName("scope")]
-    public PermissionScope Scope
+    [JsonPropertyName("meta")]
+    public KMetaMod Meta
     {
-        get => _scope.GetValue(InlineErrors);
-        set => _scope.SetValue(value);
+        get => _meta.GetValue(InlineErrors);
+        set => _meta.SetValue(value);
     }
 
-    private PropertyValue<string> _purpose = new PropertyValue<string>(nameof(AuthCodeFlowPermissionsRequest), nameof(Purpose), "purpose");
+    private PropertyValue<RdWarmupExec> _warmupExecution = new PropertyValue<RdWarmupExec>(nameof(RdWarmupEvent), nameof(WarmupExecution), "warmupExecution");
     
     [Required]
-    [JsonPropertyName("purpose")]
-    public string Purpose
+    [JsonPropertyName("warmupExecution")]
+    public RdWarmupExec WarmupExecution
     {
-        get => _purpose.GetValue(InlineErrors);
-        set => _purpose.SetValue(value);
+        get => _warmupExecution.GetValue(InlineErrors);
+        set => _warmupExecution.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _purpose.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _warmupExecution.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

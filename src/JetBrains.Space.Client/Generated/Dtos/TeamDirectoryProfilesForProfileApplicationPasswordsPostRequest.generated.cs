@@ -34,7 +34,7 @@ public class TeamDirectoryProfilesForProfileApplicationPasswordsPostRequest
 {
     public TeamDirectoryProfilesForProfileApplicationPasswordsPostRequest() { }
     
-    public TeamDirectoryProfilesForProfileApplicationPasswordsPostRequest(string name, string scope)
+    public TeamDirectoryProfilesForProfileApplicationPasswordsPostRequest(string name, PermissionScope scope)
     {
         Name = name;
         Scope = scope;
@@ -50,11 +50,11 @@ public class TeamDirectoryProfilesForProfileApplicationPasswordsPostRequest
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileApplicationPasswordsPostRequest), nameof(Scope), "scope");
+    private PropertyValue<PermissionScope> _scope = new PropertyValue<PermissionScope>(nameof(TeamDirectoryProfilesForProfileApplicationPasswordsPostRequest), nameof(Scope), "scope");
     
     [Required]
     [JsonPropertyName("scope")]
-    public string Scope
+    public PermissionScope Scope
     {
         get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);

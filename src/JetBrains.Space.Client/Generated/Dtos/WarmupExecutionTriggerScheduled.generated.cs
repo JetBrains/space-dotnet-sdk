@@ -29,44 +29,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class MeetingWebhookEvent
-     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class WarmupExecutionTriggerScheduled
+     : WarmupExecutionTrigger, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public  string? ClassName => "MeetingWebhookEvent";
+    public override string? ClassName => "WarmupExecutionTrigger.Scheduled";
     
-    public MeetingWebhookEvent() { }
+    public WarmupExecutionTriggerScheduled() { }
     
-    public MeetingWebhookEvent(KMetaMod meta, MeetingRecord meeting)
+    public WarmupExecutionTriggerScheduled(List<string> cronExpressions)
     {
-        Meta = meta;
-        Meeting = meeting;
+        CronExpressions = cronExpressions;
     }
     
-    private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(MeetingWebhookEvent), nameof(Meta), "meta");
+    private PropertyValue<List<string>> _cronExpressions = new PropertyValue<List<string>>(nameof(WarmupExecutionTriggerScheduled), nameof(CronExpressions), "cronExpressions", new List<string>());
     
     [Required]
-    [JsonPropertyName("meta")]
-    public KMetaMod Meta
+    [JsonPropertyName("cronExpressions")]
+    public List<string> CronExpressions
     {
-        get => _meta.GetValue(InlineErrors);
-        set => _meta.SetValue(value);
+        get => _cronExpressions.GetValue(InlineErrors);
+        set => _cronExpressions.SetValue(value);
     }
 
-    private PropertyValue<MeetingRecord> _meeting = new PropertyValue<MeetingRecord>(nameof(MeetingWebhookEvent), nameof(Meeting), "meeting");
-    
-    [Required]
-    [JsonPropertyName("meeting")]
-    public MeetingRecord Meeting
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        get => _meeting.GetValue(InlineErrors);
-        set => _meeting.SetValue(value);
-    }
-
-    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-        _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _meeting.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _cronExpressions.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -60,7 +60,7 @@ public class ClientCredentialsConnection
                 Content = new FormUrlEncodedContent(new []
                 {
                     new KeyValuePair<string?, string?>("grant_type", "client_credentials"),
-                    new KeyValuePair<string?, string?>("scope", Scope)
+                    new KeyValuePair<string?, string?>("scope", Scope.ToString())
                 })
             }.WithClientAndSdkHeaders(SdkInfo.Version);
 

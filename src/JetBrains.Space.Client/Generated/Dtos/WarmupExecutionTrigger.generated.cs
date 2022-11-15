@@ -29,41 +29,29 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class AuthCodeFlowPermissionsRequest
-     : IPropagatePropertyAccessPath
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class WarmupExecutionTrigger
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public AuthCodeFlowPermissionsRequest() { }
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "WarmupExecutionTrigger";
     
-    public AuthCodeFlowPermissionsRequest(PermissionScope scope, string purpose)
-    {
-        Scope = scope;
-        Purpose = purpose;
-    }
+    public static WarmupExecutionTriggerLegacy Legacy()
+        => new WarmupExecutionTriggerLegacy();
     
-    private PropertyValue<PermissionScope> _scope = new PropertyValue<PermissionScope>(nameof(AuthCodeFlowPermissionsRequest), nameof(Scope), "scope");
+    public static WarmupExecutionTriggerManual Manual(TDMemberProfile? user = null)
+        => new WarmupExecutionTriggerManual(user: user);
     
-    [Required]
-    [JsonPropertyName("scope")]
-    public PermissionScope Scope
-    {
-        get => _scope.GetValue(InlineErrors);
-        set => _scope.SetValue(value);
-    }
-
-    private PropertyValue<string> _purpose = new PropertyValue<string>(nameof(AuthCodeFlowPermissionsRequest), nameof(Purpose), "purpose");
+    public static WarmupExecutionTriggerScheduled Scheduled(List<string> cronExpressions)
+        => new WarmupExecutionTriggerScheduled(cronExpressions: cronExpressions);
     
-    [Required]
-    [JsonPropertyName("purpose")]
-    public string Purpose
+    public static WarmupExecutionTriggerVCS VCS()
+        => new WarmupExecutionTriggerVCS();
+    
+    public WarmupExecutionTrigger() { }
+    
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        get => _purpose.GetValue(InlineErrors);
-        set => _purpose.SetValue(value);
-    }
-
-    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-        _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _purpose.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

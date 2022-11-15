@@ -215,7 +215,7 @@ public partial class ProjectClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<Batch<PRProject>> GetAllProjectsWithRightCodeAsync(string right, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    public async Task<Batch<PRProject>> GetAllProjectsWithRightCodeAsync(PermissionIdentifier right, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         if (skip != null) queryParameters.Append("$skip", skip);
@@ -236,7 +236,7 @@ public partial class ProjectClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public IAsyncEnumerable<PRProject> GetAllProjectsWithRightCodeAsyncEnumerable(string right, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
+    public IAsyncEnumerable<PRProject> GetAllProjectsWithRightCodeAsyncEnumerable(PermissionIdentifier right, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsWithRightCodeAsync(right: right, top: top, term: term, path: path, starred: starred, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
 
     /// <summary>
@@ -2988,7 +2988,21 @@ public partial class ProjectClient : ISpaceClient
                 _connection = connection;
             }
             
-            public async Task<Batch<RepositoryDetails>> GetAllFindAsync(string term, string? skip = null, int? top = 100, Func<Partial<Batch<RepositoryDetails>>, Partial<Batch<RepositoryDetails>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            /// <summary>
+            /// Find repositories by name substring.
+            /// </summary>
+            /// <param name="term">
+            /// Specifies a substring that should be found in repository name.
+            /// </param>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Read Git repositories</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Batch<RepositoryDetails>> FindRepositoriesAsync(string term, string? skip = null, int? top = 100, Func<Partial<Batch<RepositoryDetails>>, Partial<Batch<RepositoryDetails>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 if (skip != null) queryParameters.Append("$skip", skip);
@@ -2999,8 +3013,22 @@ public partial class ProjectClient : ISpaceClient
                 return await _connection.RequestResourceAsync<Batch<RepositoryDetails>>("GET", $"api/http/projects/repositories/find{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
             }
             
-            public IAsyncEnumerable<RepositoryDetails> GetAllFindAsyncEnumerable(string term, string? skip = null, int? top = 100, Func<Partial<RepositoryDetails>, Partial<RepositoryDetails>>? partial = null, CancellationToken cancellationToken = default)
-                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllFindAsync(term: term, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<RepositoryDetails>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<RepositoryDetails>.Default())), skip, cancellationToken);
+            /// <summary>
+            /// Find repositories by name substring.
+            /// </summary>
+            /// <param name="term">
+            /// Specifies a substring that should be found in repository name.
+            /// </param>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Read Git repositories</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public IAsyncEnumerable<RepositoryDetails> FindRepositoriesAsyncEnumerable(string term, string? skip = null, int? top = 100, Func<Partial<RepositoryDetails>, Partial<RepositoryDetails>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => FindRepositoriesAsync(term: term, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<RepositoryDetails>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<RepositoryDetails>.Default())), skip, cancellationToken);
         
         }
     
@@ -3048,10 +3076,12 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
-        public async Task<List<BranchInfo>> CommitBranchesAsync(ProjectIdentifier project, string repository, string commit, Func<Partial<BranchInfo>, Partial<BranchInfo>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<List<BranchInfo>> CommitBranchesAsync(ProjectIdentifier project, string repository, string commit, string? prefix = null, int? limit = null, Func<Partial<BranchInfo>, Partial<BranchInfo>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("commit", commit);
+            if (prefix != null) queryParameters.Append("prefix", prefix);
+            if (limit != null) queryParameters.Append("limit", limit?.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<BranchInfo>()) : Partial<BranchInfo>.Default()).ToString());
             
             return await _connection.RequestResourceAsync<List<BranchInfo>>("GET", $"api/http/projects/{project}/repositories/{repository}/commit-branches{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
@@ -4445,6 +4475,9 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
+        /// <summary>
+        /// List files changed in commits under code review
+        /// </summary>
         /// <remarks>
         /// Required permissions:
         /// <list type="bullet">
@@ -4463,6 +4496,9 @@ public partial class ProjectClient : ISpaceClient
             return await _connection.RequestResourceAsync<Batch<ChangeInReview>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/files{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
+        /// <summary>
+        /// List files changed in commits under code review
+        /// </summary>
         /// <remarks>
         /// Required permissions:
         /// <list type="bullet">
@@ -4474,6 +4510,9 @@ public partial class ProjectClient : ISpaceClient
         public IAsyncEnumerable<ChangeInReview> GetTheModifiedFilesInCodeReviewAsyncEnumerable(ProjectIdentifier project, ReviewIdentifier reviewId, string? skip = null, int? top = 100, Func<Partial<ChangeInReview>, Partial<ChangeInReview>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetTheModifiedFilesInCodeReviewAsync(project: project, reviewId: reviewId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ChangeInReview>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ChangeInReview>.Default())), skip, cancellationToken);
     
+        /// <summary>
+        /// List files in merge request which will be merged into target branch
+        /// </summary>
         /// <remarks>
         /// Required permissions:
         /// <list type="bullet">
@@ -4492,6 +4531,9 @@ public partial class ProjectClient : ISpaceClient
             return await _connection.RequestResourceAsync<Batch<GitMergedFile>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/merge-files{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
         }
         
+        /// <summary>
+        /// List files in merge request which will be merged into target branch
+        /// </summary>
         /// <remarks>
         /// Required permissions:
         /// <list type="bullet">
@@ -4571,7 +4613,7 @@ public partial class ProjectClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<GitMergeResultHttp> MergeAMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, GitMergeMode mergeMode, Func<Partial<GitMergeResultHttp>, Partial<GitMergeResultHttp>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<GitMergeResultHttp> MergeMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, GitMergeMode mergeMode, Func<Partial<GitMergeResultHttp>, Partial<GitMergeResultHttp>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitMergeResultHttp>()) : Partial<GitMergeResultHttp>.Default()).ToString());
@@ -4596,7 +4638,7 @@ public partial class ProjectClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<GitRebaseResultHttp> RebaseAMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, GitRebaseMode rebaseMode, bool squash, string? squashedCommitMessage = null, Func<Partial<GitRebaseResultHttp>, Partial<GitRebaseResultHttp>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<GitRebaseResultHttp> RebaseMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, GitRebaseMode rebaseMode, bool squash, string? squashedCommitMessage = null, Func<Partial<GitRebaseResultHttp>, Partial<GitRebaseResultHttp>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitRebaseResultHttp>()) : Partial<GitRebaseResultHttp>.Default()).ToString());
@@ -4651,7 +4693,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task RemoveReviewParticipantAsync(ProjectIdentifier project, ReviewIdentifier reviewId, ProfileIdentifier user, CodeReviewParticipantRole role, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task RemoveReviewParticiopantAsync(ProjectIdentifier project, ReviewIdentifier reviewId, ProfileIdentifier user, CodeReviewParticipantRole role, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("role", role.ToEnumString());
@@ -5407,6 +5449,25 @@ public partial class ProjectClient : ISpaceClient
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<FileDetails>()) : Partial<FileDetails>.Default()).ToString());
                     
                     return await _connection.RequestResourceAsync<FileDetails>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/files/name:{filePath}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// Removes a folder in repository for a given project ID
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Write package repositories</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task DeleteFolderAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string folderPath, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}/files/folder:{folderPath}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
                 }
                 
             

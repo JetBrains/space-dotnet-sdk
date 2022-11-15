@@ -27,16 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.RdWarmupEventPartialBuilder;
 
-public static class SdkInfo
+public static class RdWarmupEventPartialExtensions
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2022.2.0-DEV.141109";
+    public static Partial<RdWarmupEvent> WithMeta(this Partial<RdWarmupEvent> it)
+        => it.AddFieldName("meta");
+    
+    public static Partial<RdWarmupEvent> WithMeta(this Partial<RdWarmupEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
+        => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
+    
+    public static Partial<RdWarmupEvent> WithWarmupExecution(this Partial<RdWarmupEvent> it)
+        => it.AddFieldName("warmupExecution");
+    
+    public static Partial<RdWarmupEvent> WithWarmupExecution(this Partial<RdWarmupEvent> it, Func<Partial<RdWarmupExec>, Partial<RdWarmupExec>> partialBuilder)
+        => it.AddFieldName("warmupExecution", partialBuilder(new Partial<RdWarmupExec>(it)));
+    
 }
 

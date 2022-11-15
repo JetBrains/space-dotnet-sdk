@@ -34,7 +34,7 @@ public sealed class ESPersonalToken
 {
     public ESPersonalToken() { }
     
-    public ESPersonalToken(string id, string name, TDMemberProfile profile, string scope, XScopeApi apiScope, DateTime created, DateTime? expires = null, AccessRecord? lastAccess = null)
+    public ESPersonalToken(string id, string name, TDMemberProfile profile, PermissionScope scope, XScopeApi apiScope, DateTime created, DateTime? expires = null, AccessRecord? lastAccess = null)
     {
         Id = id;
         Name = name;
@@ -76,11 +76,11 @@ public sealed class ESPersonalToken
         set => _profile.SetValue(value);
     }
 
-    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESPersonalToken), nameof(Scope), "scope");
+    private PropertyValue<PermissionScope> _scope = new PropertyValue<PermissionScope>(nameof(ESPersonalToken), nameof(Scope), "scope");
     
     [Required]
     [JsonPropertyName("scope")]
-    public string Scope
+    public PermissionScope Scope
     {
         get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);

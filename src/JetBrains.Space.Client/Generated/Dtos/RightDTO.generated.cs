@@ -34,7 +34,7 @@ public sealed class RightDTO
 {
     public RightDTO() { }
     
-    public RightDTO(string rightCode, string name, string group, string description, string targetName, bool editable, RightStatus status, List<string> dependencies, CPrincipal? modificationAuthor = null, DateTime? modificationTimestamp = null)
+    public RightDTO(PermissionIdentifier rightCode, string name, string group, string description, string targetName, bool editable, RightStatus status, List<string> dependencies, CPrincipal? modificationAuthor = null, DateTime? modificationTimestamp = null)
     {
         RightCode = rightCode;
         Name = name;
@@ -48,11 +48,11 @@ public sealed class RightDTO
         Dependencies = dependencies;
     }
     
-    private PropertyValue<string> _rightCode = new PropertyValue<string>(nameof(RightDTO), nameof(RightCode), "rightCode");
+    private PropertyValue<PermissionIdentifier> _rightCode = new PropertyValue<PermissionIdentifier>(nameof(RightDTO), nameof(RightCode), "rightCode");
     
     [Required]
     [JsonPropertyName("rightCode")]
-    public string RightCode
+    public PermissionIdentifier RightCode
     {
         get => _rightCode.GetValue(InlineErrors);
         set => _rightCode.SetValue(value);

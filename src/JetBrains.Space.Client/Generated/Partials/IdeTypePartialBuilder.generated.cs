@@ -27,16 +27,27 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.IdeTypePartialBuilder;
 
-public static class SdkInfo
+public static class IdeTypePartialExtensions
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2022.2.0-DEV.141109";
+    public static Partial<IdeType> WithId(this Partial<IdeType> it)
+        => it.AddFieldName("id");
+    
+    public static Partial<IdeType> WithToolboxId(this Partial<IdeType> it)
+        => it.AddFieldName("toolboxId");
+    
+    public static Partial<IdeType> WithNames(this Partial<IdeType> it)
+        => it.AddFieldName("names");
+    
+    public static Partial<IdeType> WithNames(this Partial<IdeType> it, Func<Partial<IdeNames>, Partial<IdeNames>> partialBuilder)
+        => it.AddFieldName("names", partialBuilder(new Partial<IdeNames>(it)));
+    
+    public static Partial<IdeType> WithDescription(this Partial<IdeType> it)
+        => it.AddFieldName("description");
+    
+    public static Partial<IdeType> WithDefaultWarmupProfile(this Partial<IdeType> it)
+        => it.AddFieldName("defaultWarmupProfile");
+    
 }
 

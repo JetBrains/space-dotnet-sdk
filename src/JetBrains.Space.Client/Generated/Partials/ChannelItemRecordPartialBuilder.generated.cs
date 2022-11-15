@@ -112,6 +112,9 @@ public static class ChannelItemRecordPartialExtensions
     public static Partial<ChannelItemRecord> WithChannelId(this Partial<ChannelItemRecord> it)
         => it.AddFieldName("channelId");
     
+    public static Partial<ChannelItemRecord> WithImporterAppId(this Partial<ChannelItemRecord> it)
+        => it.AddFieldName("importerAppId");
+    
     public static Partial<ChannelItemRecord> WithIssues(this Partial<ChannelItemRecord> it)
         => it.AddFieldName("issues");
     

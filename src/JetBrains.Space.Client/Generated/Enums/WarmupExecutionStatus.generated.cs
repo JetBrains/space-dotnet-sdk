@@ -29,14 +29,23 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public static class SdkInfo
+[JsonConverter(typeof(EnumStringConverter))]
+public enum WarmupExecutionStatus
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2022.2.0-DEV.141109";
+    [EnumMember(Value = "Started")]
+    Started,
+    
+    [EnumMember(Value = "Failed")]
+    Failed,
+    
+    [EnumMember(Value = "Terminated")]
+    Terminated,
+    
+    [EnumMember(Value = "SnapshotCreated")]
+    SnapshotCreated,
+    
+    [EnumMember(Value = "SnapshotDeleted")]
+    SnapshotDeleted,
+    
 }
 

@@ -34,7 +34,7 @@ public class TeamDirectoryProfilesForProfilePermanentTokensPostRequest
 {
     public TeamDirectoryProfilesForProfilePermanentTokensPostRequest() { }
     
-    public TeamDirectoryProfilesForProfilePermanentTokensPostRequest(string name, string scope, DateTime? expires = null)
+    public TeamDirectoryProfilesForProfilePermanentTokensPostRequest(string name, PermissionScope scope, DateTime? expires = null)
     {
         Name = name;
         Scope = scope;
@@ -51,11 +51,11 @@ public class TeamDirectoryProfilesForProfilePermanentTokensPostRequest
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfilePermanentTokensPostRequest), nameof(Scope), "scope");
+    private PropertyValue<PermissionScope> _scope = new PropertyValue<PermissionScope>(nameof(TeamDirectoryProfilesForProfilePermanentTokensPostRequest), nameof(Scope), "scope");
     
     [Required]
     [JsonPropertyName("scope")]
-    public string Scope
+    public PermissionScope Scope
     {
         get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);

@@ -34,7 +34,7 @@ public class ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest
 {
     public ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest() { }
     
-    public ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest(string? name = null, string? scope = null, DateTime? expires = null)
+    public ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest(string? name = null, PermissionScope? scope = null, DateTime? expires = null)
     {
         Name = name;
         Scope = scope;
@@ -53,13 +53,13 @@ public class ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _scope = new PropertyValue<string?>(nameof(ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest), nameof(Scope), "scope");
+    private PropertyValue<PermissionScope?> _scope = new PropertyValue<PermissionScope?>(nameof(ApplicationsForApplicationPermanentTokensForTokenIdPatchRequest), nameof(Scope), "scope");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
     [JsonPropertyName("scope")]
-    public string? Scope
+    public PermissionScope? Scope
     {
         get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);

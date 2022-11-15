@@ -17,5 +17,6 @@ public static class PermissionScopeBuilder
     /// <returns>A <see cref="PermissionScope"/> that represents the set of <see cref="PermissionScopeElement"/>.</returns>
     public static PermissionScope Build(params PermissionScopeElement[] elements) =>
         new(string.Join(" ", elements.Select(
+            // ReSharper disable once RedundantToStringCall
             it => it.Context.ToString() + ":" + it.Permission.ToString())));
 }

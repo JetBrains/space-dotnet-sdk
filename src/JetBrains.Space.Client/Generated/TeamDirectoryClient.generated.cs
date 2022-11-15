@@ -339,12 +339,14 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// <summary>
         /// Get organization-wide invitation links
         /// </summary>
-        public async Task<Batch<InvitationLink>> GetAllInvitationLinksAsync(bool withDeleted = false, string? skip = null, int? top = 100, Func<Partial<Batch<InvitationLink>>, Partial<Batch<InvitationLink>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<InvitationLink>> GetAllInvitationLinksAsync(bool withDeleted = false, string? skip = null, int? top = 100, List<ProjectIdentifier>? projects = null, List<string>? teams = null, Func<Partial<Batch<InvitationLink>>, Partial<Batch<InvitationLink>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             if (skip != null) queryParameters.Append("$skip", skip);
             if (top != null) queryParameters.Append("$top", top?.ToString());
             queryParameters.Append("withDeleted", withDeleted.ToString("l"));
+            if (projects != null) queryParameters.Append("projects", projects.Select(it => it.ToString()));
+            if (teams != null) queryParameters.Append("teams", teams.Select(it => it));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<InvitationLink>>()) : Partial<Batch<InvitationLink>>.Default()).ToString());
             
             return await _connection.RequestResourceAsync<Batch<InvitationLink>>("GET", $"api/http/team-directory/invitation-links{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
@@ -353,8 +355,8 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// <summary>
         /// Get organization-wide invitation links
         /// </summary>
-        public IAsyncEnumerable<InvitationLink> GetAllInvitationLinksAsyncEnumerable(bool withDeleted = false, string? skip = null, int? top = 100, Func<Partial<InvitationLink>, Partial<InvitationLink>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllInvitationLinksAsync(withDeleted: withDeleted, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<InvitationLink>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<InvitationLink>.Default())), skip, cancellationToken);
+        public IAsyncEnumerable<InvitationLink> GetAllInvitationLinksAsyncEnumerable(bool withDeleted = false, string? skip = null, int? top = 100, List<ProjectIdentifier>? projects = null, List<string>? teams = null, Func<Partial<InvitationLink>, Partial<InvitationLink>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllInvitationLinksAsync(withDeleted: withDeleted, top: top, projects: projects, teams: teams, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<InvitationLink>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<InvitationLink>.Default())), skip, cancellationToken);
     
         /// <summary>
         /// Update an organization-wide invitation link
@@ -427,12 +429,14 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// <summary>
         /// Get a list of invitations
         /// </summary>
-        public async Task<Batch<Invitation>> GetAllInvitationsAsync(bool withDeleted = false, string? skip = null, int? top = 100, Func<Partial<Batch<Invitation>>, Partial<Batch<Invitation>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<Invitation>> GetAllInvitationsAsync(bool withDeleted = false, string? skip = null, int? top = 100, List<ProjectIdentifier>? projects = null, List<string>? teams = null, Func<Partial<Batch<Invitation>>, Partial<Batch<Invitation>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             if (skip != null) queryParameters.Append("$skip", skip);
             if (top != null) queryParameters.Append("$top", top?.ToString());
             queryParameters.Append("withDeleted", withDeleted.ToString("l"));
+            if (projects != null) queryParameters.Append("projects", projects.Select(it => it.ToString()));
+            if (teams != null) queryParameters.Append("teams", teams.Select(it => it));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Invitation>>()) : Partial<Batch<Invitation>>.Default()).ToString());
             
             return await _connection.RequestResourceAsync<Batch<Invitation>>("GET", $"api/http/team-directory/invitations{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
@@ -441,8 +445,8 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// <summary>
         /// Get a list of invitations
         /// </summary>
-        public IAsyncEnumerable<Invitation> GetAllInvitationsAsyncEnumerable(bool withDeleted = false, string? skip = null, int? top = 100, Func<Partial<Invitation>, Partial<Invitation>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllInvitationsAsync(withDeleted: withDeleted, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Invitation>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Invitation>.Default())), skip, cancellationToken);
+        public IAsyncEnumerable<Invitation> GetAllInvitationsAsyncEnumerable(bool withDeleted = false, string? skip = null, int? top = 100, List<ProjectIdentifier>? projects = null, List<string>? teams = null, Func<Partial<Invitation>, Partial<Invitation>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllInvitationsAsync(withDeleted: withDeleted, top: top, projects: projects, teams: teams, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Invitation>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Invitation>.Default())), skip, cancellationToken);
     
         /// <summary>
         /// Update an invitation. Optional parameters will be ignored when not specified and updated otherwise.
@@ -2182,7 +2186,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Set up two-factor authentication for yourself. Create application passwords.</term>
+                /// <term>Set up two-factor authentication for yourself and create application passwords</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -2202,7 +2206,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Set up two-factor authentication for yourself. Create application passwords.</term>
+                /// <term>Set up two-factor authentication for yourself and create application passwords</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -2225,7 +2229,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Manage two-factor authentication. Manage application passwords.</term>
+                /// <term>Manage two-factor authentication and application passwords</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -2248,7 +2252,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Manage two-factor authentication. Manage application passwords.</term>
+                /// <term>Manage two-factor authentication and application passwords</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -2275,7 +2279,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                 _connection = connection;
             }
             
-            public async Task<Pair<ESApplicationPassword, string>> CreateApplicationPasswordAsync(ProfileIdentifier profile, string name, string scope, Func<Partial<Pair<ESApplicationPassword, string>>, Partial<Pair<ESApplicationPassword, string>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task<Pair<ESApplicationPassword, string>> CreateApplicationPasswordAsync(ProfileIdentifier profile, string name, PermissionScope scope, Func<Partial<Pair<ESApplicationPassword, string>>, Partial<Pair<ESApplicationPassword, string>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Pair<ESApplicationPassword, string>>()) : Partial<Pair<ESApplicationPassword, string>>.Default()).ToString());
@@ -2302,7 +2306,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             public IAsyncEnumerable<ESApplicationPassword> GetAllApplicationPasswordsAsyncEnumerable(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<ESApplicationPassword>, Partial<ESApplicationPassword>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllApplicationPasswordsAsync(profile: profile, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESApplicationPassword>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESApplicationPassword>.Default())), skip, cancellationToken);
         
-            public async Task UpdateApplicationPasswordAsync(ProfileIdentifier profile, string passwordId, string? name = null, string? scope = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task UpdateApplicationPasswordAsync(ProfileIdentifier profile, string passwordId, string? name = null, PermissionScope? scope = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -3069,7 +3073,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Pair<ESPersonalToken, string>> CreatePermanentTokenAsync(ProfileIdentifier profile, string name, string scope, DateTime? expires = null, Func<Partial<Pair<ESPersonalToken, string>>, Partial<Pair<ESPersonalToken, string>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task<Pair<ESPersonalToken, string>> CreatePermanentTokenAsync(ProfileIdentifier profile, string name, PermissionScope scope, DateTime? expires = null, Func<Partial<Pair<ESPersonalToken, string>>, Partial<Pair<ESPersonalToken, string>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Pair<ESPersonalToken, string>>()) : Partial<Pair<ESPersonalToken, string>>.Default()).ToString());
@@ -3130,7 +3134,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task UpdatePermanentTokenAsync(ProfileIdentifier profile, string tokenId, string? name = null, string? scope = null, DateTime? expires = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task UpdatePermanentTokenAsync(ProfileIdentifier profile, string tokenId, string? name = null, PermissionScope? scope = null, DateTime? expires = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 

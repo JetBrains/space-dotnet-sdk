@@ -37,7 +37,7 @@ public sealed class RefreshTokenPayload
     
     public RefreshTokenPayload() { }
     
-    public RefreshTokenPayload(string refreshToken, string scope, string clientId, string userId, string? verificationToken = null)
+    public RefreshTokenPayload(string refreshToken, PermissionScope scope, string clientId, string userId, string? verificationToken = null)
     {
         RefreshToken = refreshToken;
         Scope = scope;
@@ -56,11 +56,11 @@ public sealed class RefreshTokenPayload
         set => _refreshToken.SetValue(value);
     }
 
-    private PropertyValue<string> _scope = new PropertyValue<string>(nameof(RefreshTokenPayload), nameof(Scope), "scope");
+    private PropertyValue<PermissionScope> _scope = new PropertyValue<PermissionScope>(nameof(RefreshTokenPayload), nameof(Scope), "scope");
     
     [Required]
     [JsonPropertyName("scope")]
-    public string Scope
+    public PermissionScope Scope
     {
         get => _scope.GetValue(InlineErrors);
         set => _scope.SetValue(value);

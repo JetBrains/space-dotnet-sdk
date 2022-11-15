@@ -34,6 +34,9 @@ public static class RightDTOPartialExtensions
     public static Partial<RightDTO> WithRightCode(this Partial<RightDTO> it)
         => it.AddFieldName("rightCode");
     
+    public static Partial<RightDTO> WithRightCode(this Partial<RightDTO> it, Func<Partial<PermissionIdentifier>, Partial<PermissionIdentifier>> partialBuilder)
+        => it.AddFieldName("rightCode", partialBuilder(new Partial<PermissionIdentifier>(it)));
+    
     public static Partial<RightDTO> WithName(this Partial<RightDTO> it)
         => it.AddFieldName("name");
     

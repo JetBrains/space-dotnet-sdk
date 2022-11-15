@@ -52,5 +52,11 @@ public static class FileDataPartialExtensions
     public static Partial<FileData> WithFileType(this Partial<FileData> it, Func<Partial<FileDataType>, Partial<FileDataType>> partialBuilder)
         => it.AddFieldName("fileType", partialBuilder(new Partial<FileDataType>(it)));
     
+    public static Partial<FileData> WithCreated(this Partial<FileData> it)
+        => it.AddFieldName("created");
+    
+    public static Partial<FileData> WithSize(this Partial<FileData> it)
+        => it.AddFieldName("size");
+    
 }
 

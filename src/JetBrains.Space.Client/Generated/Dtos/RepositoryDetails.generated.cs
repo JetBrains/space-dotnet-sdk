@@ -63,6 +63,9 @@ public sealed class RepositoryDetails
 
     private PropertyValue<bool> _starred = new PropertyValue<bool>(nameof(RepositoryDetails), nameof(IsStarred), "starred");
     
+    /// <summary>
+    /// if the repository is marked as favorite
+    /// </summary>
     [Required]
     [JsonPropertyName("starred")]
     public bool IsStarred

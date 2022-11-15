@@ -37,6 +37,9 @@ public static class RepositoryDetailsPartialExtensions
     public static Partial<RepositoryDetails> WithRepository(this Partial<RepositoryDetails> it)
         => it.AddFieldName("repository");
     
+    /// <summary>
+    /// if the repository is marked as favorite
+    /// </summary>
     public static Partial<RepositoryDetails> WithIsStarred(this Partial<RepositoryDetails> it)
         => it.AddFieldName("starred");
     

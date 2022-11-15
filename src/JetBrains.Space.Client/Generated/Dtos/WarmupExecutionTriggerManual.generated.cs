@@ -29,41 +29,31 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class AuthCodeFlowPermissionsRequest
-     : IPropagatePropertyAccessPath
+public sealed class WarmupExecutionTriggerManual
+     : WarmupExecutionTrigger, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public AuthCodeFlowPermissionsRequest() { }
+    [JsonPropertyName("className")]
+    public override string? ClassName => "WarmupExecutionTrigger.Manual";
     
-    public AuthCodeFlowPermissionsRequest(PermissionScope scope, string purpose)
+    public WarmupExecutionTriggerManual() { }
+    
+    public WarmupExecutionTriggerManual(TDMemberProfile? user = null)
     {
-        Scope = scope;
-        Purpose = purpose;
+        User = user;
     }
     
-    private PropertyValue<PermissionScope> _scope = new PropertyValue<PermissionScope>(nameof(AuthCodeFlowPermissionsRequest), nameof(Scope), "scope");
+    private PropertyValue<TDMemberProfile?> _user = new PropertyValue<TDMemberProfile?>(nameof(WarmupExecutionTriggerManual), nameof(User), "user");
     
-    [Required]
-    [JsonPropertyName("scope")]
-    public PermissionScope Scope
+    [JsonPropertyName("user")]
+    public TDMemberProfile? User
     {
-        get => _scope.GetValue(InlineErrors);
-        set => _scope.SetValue(value);
-    }
-
-    private PropertyValue<string> _purpose = new PropertyValue<string>(nameof(AuthCodeFlowPermissionsRequest), nameof(Purpose), "purpose");
-    
-    [Required]
-    [JsonPropertyName("purpose")]
-    public string Purpose
-    {
-        get => _purpose.GetValue(InlineErrors);
-        set => _purpose.SetValue(value);
+        get => _user.GetValue(InlineErrors);
+        set => _user.SetValue(value);
     }
 
-    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _purpose.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _user.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

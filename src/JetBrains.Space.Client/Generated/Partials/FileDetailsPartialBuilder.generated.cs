@@ -67,6 +67,9 @@ public static class FileDetailsPartialExtensions
     public static Partial<FileDetails> WithPath(this Partial<FileDetails> it)
         => it.AddFieldName("path");
     
+    public static Partial<FileDetails> WithContentType(this Partial<FileDetails> it)
+        => it.AddFieldName("contentType");
+    
     public static Partial<FileDetails> WithMetadata(this Partial<FileDetails> it)
         => it.AddFieldName("metadata");
     

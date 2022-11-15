@@ -34,7 +34,7 @@ public sealed class FileDetails
 {
     public FileDetails() { }
     
-    public FileDetails(PackageType type, string repository, string name, long created, long downloads, long diskSize, string path, long? lastModified = null, List<CPrincipal>? authors = null, string? description = null, Dictionary<string, string>? metadata = null)
+    public FileDetails(PackageType type, string repository, string name, long created, long downloads, long diskSize, string path, long? lastModified = null, List<CPrincipal>? authors = null, string? description = null, string? contentType = null, Dictionary<string, string>? metadata = null)
     {
         Type = type;
         Repository = repository;
@@ -46,6 +46,7 @@ public sealed class FileDetails
         Authors = authors;
         Description = description;
         Path = path;
+        ContentType = contentType;
         Metadata = metadata;
     }
     
@@ -146,6 +147,15 @@ public sealed class FileDetails
         set => _path.SetValue(value);
     }
 
+    private PropertyValue<string?> _contentType = new PropertyValue<string?>(nameof(FileDetails), nameof(ContentType), "contentType");
+    
+    [JsonPropertyName("contentType")]
+    public string? ContentType
+    {
+        get => _contentType.GetValue(InlineErrors);
+        set => _contentType.SetValue(value);
+    }
+
     private PropertyValue<Dictionary<string, string>?> _metadata = new PropertyValue<Dictionary<string, string>?>(nameof(FileDetails), nameof(Metadata), "metadata");
     
     [JsonPropertyName("metadata")]
@@ -167,6 +177,7 @@ public sealed class FileDetails
         _authors.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _path.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _contentType.SetAccessPath(parentChainPath, validateHasBeenSet);
         _metadata.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
