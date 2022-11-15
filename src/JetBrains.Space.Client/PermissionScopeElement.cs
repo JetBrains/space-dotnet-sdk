@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 
 namespace JetBrains.Space.Client;
@@ -47,4 +48,10 @@ public class PermissionScopeElement
         Context = context;
         Permission = permission;
     }
+
+    /// <inheritdoc />
+    public override int GetHashCode() => HashCode.Combine(Context.ToString(), Permission.ToString());
+
+    /// <inheritdoc />
+    public override string ToString() => $"{Context}:{Permission}";
 }
