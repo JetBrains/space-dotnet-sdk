@@ -12,21 +12,21 @@ namespace JetBrains.Space.Client;
 public static class PermissionScopeBuilder
 {
     /// <summary>
-    /// Create a <see cref="PermissionScope"/> based on a <see cref="PermissionScopeElement"/>.
+    /// Build a <see cref="PermissionScope"/> based on a <see cref="PermissionScopeElement"/>.
     /// </summary>
     /// <param name="element">The <see cref="PermissionScopeElement"/> to build a scope for.</param>
     /// <returns>A <see cref="PermissionScope"/> that represents the set of <see cref="PermissionScopeElement"/>.</returns>
     [SuppressMessage("ReSharper", "RedundantToStringCall")]
-    public static PermissionScope CreateFromElement(PermissionScopeElement element) =>
+    public static PermissionScope FromElement(PermissionScopeElement element) =>
         new($"{element.Context}:{element.Permission}");
 
     /// <summary>
-    /// Create a <see cref="PermissionScope"/> based on a set of <see cref="PermissionScopeElement"/>.
+    /// Build a <see cref="PermissionScope"/> based on a set of <see cref="PermissionScopeElement"/>.
     /// </summary>
     /// <param name="elements">The other <see cref="PermissionScopeElement"/> to build a scope for.</param>
     /// <returns>A <see cref="PermissionScope"/> that represents the set of <see cref="PermissionScopeElement"/>.</returns>
     [SuppressMessage("ReSharper", "RedundantToStringCall")]
-    public static PermissionScope CreateFromElements(params PermissionScopeElement[] elements) =>
+    public static PermissionScope FromElements(params PermissionScopeElement[] elements) =>
         new(string.Join(" ", elements.Select(
             it => it.Context.ToString() + ":" + it.Permission.ToString())));
 }
