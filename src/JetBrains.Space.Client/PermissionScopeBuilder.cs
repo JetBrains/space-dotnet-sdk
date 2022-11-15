@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using JetBrains.Annotations;
@@ -19,6 +20,16 @@ public static class PermissionScopeBuilder
     [SuppressMessage("ReSharper", "RedundantToStringCall")]
     public static PermissionScope FromElement(PermissionScopeElement element) =>
         new($"{element.Context}:{element.Permission}");
+
+    /// <summary>
+    /// Build a <see cref="PermissionScope"/> based on a set of <see cref="PermissionScopeElement"/>.
+    /// </summary>
+    /// <param name="elements">The other <see cref="PermissionScopeElement"/> to build a scope for.</param>
+    /// <returns>A <see cref="PermissionScope"/> that represents the set of <see cref="PermissionScopeElement"/>.</returns>
+    [SuppressMessage("ReSharper", "RedundantToStringCall")]
+    public static PermissionScope FromElements(IEnumerable<PermissionScopeElement> elements) =>
+        new(string.Join(" ", elements.Select(
+            it => it.Context.ToString() + ":" + it.Permission.ToString())));
 
     /// <summary>
     /// Build a <see cref="PermissionScope"/> based on a set of <see cref="PermissionScopeElement"/>.
