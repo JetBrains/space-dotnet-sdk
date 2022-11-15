@@ -32,36 +32,27 @@ public class RefreshTokenConnection
     /// <param name="authenticationTokens">Authentication tokens to use while authenticating.</param>
     /// <param name="scopes">The list of permissions to request. The connection is initialized with the provided scope. When <value>null</value> or empty, default scope of "**" will be used.</param>
     /// <param name="httpClient">HTTP client to use for communication.</param>
-    public RefreshTokenConnection(Uri serverUrl, string clientId, string clientSecret, AuthenticationTokens authenticationTokens, IEnumerable<PermissionScope>? scopes = null, HttpClient? httpClient = null)
+    public RefreshTokenConnection(Uri serverUrl, string clientId, string clientSecret, AuthenticationTokens authenticationTokens, PermissionScope? scopes = null, HttpClient? httpClient = null)
         : base(serverUrl, authenticationTokens, httpClient)
     {
         if (string.IsNullOrEmpty(authenticationTokens.RefreshToken))
         {
             throw new ArgumentException("The authentication tokens do not contain a valid refresh token. Make sure the refresh token is not null or an empty string.", nameof(authenticationTokens));
         }
-            
+
         _clientId = clientId;
         _clientSecret = clientSecret;
 
         // Add provided scope, or default scope
-        if (scopes != null)
-        {
-            foreach (var scope in scopes)
-            {
-                Scope.Add(scope);
-            }
-        }
-        else
-        {
-            Scope.Add(PermissionScope.All);
-        }
+        Scope = scopes ?? PermissionScope.All;
     }
 
     /// <summary>
     /// Gets the list of permissions to request. Defaults to "**" if no scope was provided when calling the constructor.
     /// </summary>
     // ReSharper disable once MemberCanBePrivate.Global
-    public ICollection<PermissionScope> Scope { get; } = new HashSet<PermissionScope>();
+    // ReSharper disable once MemberInitializerValueIgnored
+    public PermissionScope Scope { get; set; } = PermissionScope.All;
 
     /// <inheritdoc />
     protected override async Task EnsureAuthenticatedAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -82,7 +73,7 @@ public class RefreshTokenConnection
                     {
                         new KeyValuePair<string?, string?>("grant_type", "refresh_token"),
                         new KeyValuePair<string?, string?>("refresh_token", AuthenticationTokens.RefreshToken),
-                        new KeyValuePair<string?, string?>("scope", string.Join(" ", Scope))
+                        new KeyValuePair<string?, string?>("scope", Scope.ToString())
                     })
                 }
                 .WithClientAndSdkHeaders(SdkInfo.Version);
