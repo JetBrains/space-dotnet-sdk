@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 
 namespace JetBrains.Space.Common;
@@ -37,4 +39,31 @@ public class PermissionScope
 
     /// <inheritdoc />
     public override string ToString() => _scope;
+
+    /// <summary>
+    /// Combines two <see cref="PermissionScope"/>.
+    /// </summary>
+    /// <param name="first">The first <see cref="PermissionScope"/> to combine.</param>
+    /// <param name="second">The second <see cref="PermissionScope"/> to combine.</param>
+    /// <returns>The combined <see cref="PermissionScope"/>.</returns>
+    public static PermissionScope operator +(PermissionScope first, PermissionScope second) => first.Combine(second);
+
+    /// <summary>
+    /// Combines a <see cref="PermissionScope"/> with the current scope.
+    /// </summary>
+    /// <param name="other"><see cref="PermissionScope"/> to combine with the current scope.</param>
+    /// <returns>The combined <see cref="PermissionScope"/>.</returns>
+    public PermissionScope Combine(PermissionScope other)
+    {
+        var scopes = !string.IsNullOrEmpty(_scope)
+            ? new HashSet<string>(_scope.Split(' ', StringSplitOptions.RemoveEmptyEntries), StringComparer.OrdinalIgnoreCase)
+            : new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var otherScope in other._scope.Split(' ', StringSplitOptions.RemoveEmptyEntries))
+        {
+            scopes.Add(otherScope);
+        }
+
+        return new PermissionScope(string.Join(' ', scopes));
+    }
 }
