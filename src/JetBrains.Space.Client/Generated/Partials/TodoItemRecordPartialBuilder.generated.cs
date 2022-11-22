@@ -55,5 +55,11 @@ public static class TodoItemRecordPartialExtensions
     public static Partial<TodoItemRecord> WithDueDate(this Partial<TodoItemRecord> it)
         => it.AddFieldName("dueDate");
     
+    public static Partial<TodoItemRecord> WithDueTime(this Partial<TodoItemRecord> it)
+        => it.AddFieldName("dueTime");
+    
+    public static Partial<TodoItemRecord> WithIsNotificationRequired(this Partial<TodoItemRecord> it)
+        => it.AddFieldName("notificationRequired");
+    
 }
 

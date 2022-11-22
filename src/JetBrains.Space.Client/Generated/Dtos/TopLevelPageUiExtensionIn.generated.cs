@@ -29,12 +29,6 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-#if NET6_0_OR_GREATER
-[Obsolete("Top level page extensions are in Beta. The API may be changed without backwards compatibility.", DiagnosticId = "SPC001")]
-#else
-[Obsolete("Top level page extensions are in Beta. The API may be changed without backwards compatibility.")]
-#endif
-
 public sealed class TopLevelPageUiExtensionIn
      : AppUiExtensionIn, IClassNameConvertible, IPropagatePropertyAccessPath
 {

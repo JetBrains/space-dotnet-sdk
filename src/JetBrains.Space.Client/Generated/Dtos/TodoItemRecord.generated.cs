@@ -34,7 +34,7 @@ public sealed class TodoItemRecord
 {
     public TodoItemRecord() { }
     
-    public TodoItemRecord(string id, bool archived, DateTime created, DateTime updated, TodoItemContent content, string _status, DateTime? dueDate = null)
+    public TodoItemRecord(string id, bool archived, DateTime created, DateTime updated, TodoItemContent content, string _status, DateTime? dueDate = null, DateTime? dueTime = null, bool? notificationRequired = null)
     {
         Id = id;
         IsArchived = archived;
@@ -43,6 +43,8 @@ public sealed class TodoItemRecord
         Content = content;
         Status = _status;
         DueDate = dueDate;
+        DueTime = dueTime;
+        IsNotificationRequired = notificationRequired;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(TodoItemRecord), nameof(Id), "id");
@@ -117,6 +119,25 @@ public sealed class TodoItemRecord
         set => _dueDate.SetValue(value);
     }
 
+    private PropertyValue<DateTime?> _dueTime = new PropertyValue<DateTime?>(nameof(TodoItemRecord), nameof(DueTime), "dueTime");
+    
+    [JsonPropertyName("dueTime")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? DueTime
+    {
+        get => _dueTime.GetValue(InlineErrors);
+        set => _dueTime.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _notificationRequired = new PropertyValue<bool?>(nameof(TodoItemRecord), nameof(IsNotificationRequired), "notificationRequired");
+    
+    [JsonPropertyName("notificationRequired")]
+    public bool? IsNotificationRequired
+    {
+        get => _notificationRequired.GetValue(InlineErrors);
+        set => _notificationRequired.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -126,6 +147,8 @@ public sealed class TodoItemRecord
         _content.SetAccessPath(parentChainPath, validateHasBeenSet);
         __status.SetAccessPath(parentChainPath, validateHasBeenSet);
         _dueDate.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _dueTime.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _notificationRequired.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

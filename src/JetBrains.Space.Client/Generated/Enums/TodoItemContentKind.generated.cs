@@ -53,5 +53,8 @@ public enum TodoItemContentKind
     [EnumMember(Value = "MEETING")]
     MEETING,
     
+    [EnumMember(Value = "CODE_REVIEW")]
+    CODEREVIEW,
+    
 }
 
