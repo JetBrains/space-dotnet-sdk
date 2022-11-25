@@ -211,7 +211,7 @@ public class BearerTokenConnection
             
             if (!response.IsSuccessStatusCode)
             {
-                var exception = await BuildException(response);
+                var exception = await BuildException(request, response);
                 throw exception;
             }
 
@@ -222,9 +222,10 @@ public class BearerTokenConnection
     /// <summary>
     /// Build a <see cref="ResourceException"/> from a <see cref="HttpResponseMessage"/>.
     /// </summary>
+    /// <param name="request">The <see cref="HttpRequestMessage"/> to build a <see cref="ResourceException"/> from.</param>
     /// <param name="response">The <see cref="HttpResponseMessage"/> to build a <see cref="ResourceException"/> from.</param>
-    /// <returns>The <see cref="ResourceException"/>, matching lal characteristics of the <see cref="HttpResponseMessage"/> body.</returns>
-    protected static async Task<ResourceException> BuildException(HttpResponseMessage response)
+    /// <returns>The <see cref="ResourceException"/>, matching all characteristics of the <see cref="HttpResponseMessage"/> body.</returns>
+    protected static async Task<ResourceException> BuildException(HttpRequestMessage request, HttpResponseMessage response)
     {
         // 1. Determine Space error
         SpaceError? spaceError = null;
@@ -243,17 +244,17 @@ public class BearerTokenConnection
         {
             exception = spaceError.Error switch
             {
-                ErrorCodes.ValidationError => new ValidationException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
+                ErrorCodes.ValidationError => new ValidationException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase),
                 ErrorCodes.AuthenticationRequired => !string.IsNullOrEmpty(spaceError.Description) && spaceError.Description.Equals("Refresh token associated with the access token is revoked", StringComparison.InvariantCulture)
-                    ? new RefreshTokenRevokedException(spaceError.Description, response.StatusCode, response.ReasonPhrase)
-                    : new AuthenticationRequiredException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
-                ErrorCodes.PermissionDenied => new PermissionDeniedException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
-                ErrorCodes.DuplicatedEntity => new DuplicatedEntityException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
-                ErrorCodes.RequestError => new ResourceException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
-                ErrorCodes.NotFound => new NotFoundException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
-                ErrorCodes.RateLimited => new RateLimitedException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
-                ErrorCodes.PayloadTooLarge => new PayloadTooLargeException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
-                ErrorCodes.InternalServerError => new InternalServerErrorException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
+                    ? new RefreshTokenRevokedException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase)
+                    : new AuthenticationRequiredException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase),
+                ErrorCodes.PermissionDenied => new PermissionDeniedException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase),
+                ErrorCodes.DuplicatedEntity => new DuplicatedEntityException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase),
+                ErrorCodes.RequestError => new ResourceException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase),
+                ErrorCodes.NotFound => new NotFoundException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase),
+                ErrorCodes.RateLimited => new RateLimitedException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase),
+                ErrorCodes.PayloadTooLarge => new PayloadTooLargeException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase),
+                ErrorCodes.InternalServerError => new InternalServerErrorException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase),
                 _ => exception
             };
         }
@@ -261,20 +262,21 @@ public class BearerTokenConnection
         {
             exception = response.StatusCode switch
             {
-                HttpStatusCode.BadRequest => new ResourceException("Bad Request", response.StatusCode, response.ReasonPhrase),
-                HttpStatusCode.Unauthorized => new AuthenticationRequiredException("Unauthorized", response.StatusCode, response.ReasonPhrase),
-                HttpStatusCode.Forbidden => new PermissionDeniedException("Forbidden", response.StatusCode, response.ReasonPhrase),
-                HttpStatusCode.NotFound => new NotFoundException("Not Found", response.StatusCode, response.ReasonPhrase),
-                HttpStatusCode.TooManyRequests => new RateLimitedException("Too Many Requests", response.StatusCode, response.ReasonPhrase),
-                HttpStatusCode.RequestEntityTooLarge => new PayloadTooLargeException("Bad Request", response.StatusCode, response.ReasonPhrase),
-                HttpStatusCode.RequestHeaderFieldsTooLarge => new PayloadTooLargeException("Bad Request", response.StatusCode, response.ReasonPhrase),
-                HttpStatusCode.InternalServerError => new InternalServerErrorException("Internal Server Error", response.StatusCode, response.ReasonPhrase),
+                HttpStatusCode.BadRequest => new ResourceException("Bad Request", request.RequestUri, response.StatusCode, response.ReasonPhrase),
+                HttpStatusCode.Unauthorized => new AuthenticationRequiredException("Unauthorized", request.RequestUri, response.StatusCode, response.ReasonPhrase),
+                HttpStatusCode.Forbidden => new PermissionDeniedException("Forbidden", request.RequestUri, response.StatusCode, response.ReasonPhrase),
+                HttpStatusCode.NotFound => new NotFoundException("Not Found", request.RequestUri, response.StatusCode, response.ReasonPhrase),
+                HttpStatusCode.TooManyRequests => new RateLimitedException("Too Many Requests", request.RequestUri, response.StatusCode, response.ReasonPhrase),
+                HttpStatusCode.RequestEntityTooLarge => new PayloadTooLargeException("Bad Request", request.RequestUri, response.StatusCode, response.ReasonPhrase),
+                HttpStatusCode.RequestHeaderFieldsTooLarge => new PayloadTooLargeException("Bad Request", request.RequestUri, response.StatusCode, response.ReasonPhrase),
+                HttpStatusCode.InternalServerError => new InternalServerErrorException("Internal Server Error", request.RequestUri, response.StatusCode, response.ReasonPhrase),
                 _ => exception
             };
         }
 
         exception ??= new ResourceException(
             "An error occurred while accessing the resource.",
+            request.RequestUri,
             response.StatusCode,
             response.ReasonPhrase);
             

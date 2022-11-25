@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using JetBrains.Annotations;
 
@@ -22,8 +23,8 @@ public class PermissionDeniedException
     }
 
     /// <inheritdoc />
-    public PermissionDeniedException(string message, HttpStatusCode statusCode, string? response) 
-        : base(message, statusCode, response)
+    public PermissionDeniedException(string message, Uri? requestUri, HttpStatusCode statusCode, string? response) 
+        : base(message, requestUri, statusCode, response)
     {
     }
 }

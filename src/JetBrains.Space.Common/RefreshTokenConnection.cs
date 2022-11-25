@@ -81,7 +81,7 @@ public class RefreshTokenConnection
             var spaceTokenResponse = await HttpClient.SendAsync(spaceTokenRequest, cancellationToken);
             if (!spaceTokenResponse.IsSuccessStatusCode)
             {
-                var exception = await BuildException(spaceTokenResponse);
+                var exception = await BuildException(spaceTokenRequest, spaceTokenResponse);
                 throw exception;
             }
                 

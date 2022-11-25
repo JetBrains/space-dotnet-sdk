@@ -68,7 +68,7 @@ public class ClientCredentialsConnection
             if (!spaceTokenResponse.IsSuccessStatusCode)
             {
                 throw new ResourceException($"Unable to connect to Space organization. Attempted endpoint was: {ServerUrl + "oauth/token"}",
-                    spaceTokenResponse.StatusCode, spaceTokenResponse.ReasonPhrase);
+                    spaceTokenRequest.RequestUri, spaceTokenResponse.StatusCode, spaceTokenResponse.ReasonPhrase);
             }
                 
             using var spaceTokenDocument = await JsonDocument.ParseAsync(await spaceTokenResponse.Content.ReadAsStreamAsync(), cancellationToken: cancellationToken);

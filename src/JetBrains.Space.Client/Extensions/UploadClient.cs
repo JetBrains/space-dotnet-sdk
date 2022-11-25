@@ -50,9 +50,6 @@ public partial class UploadClient
     /// <summary>
     /// Upload an attachment to Space. Wrapper method over <see cref="CreateUploadAsync"/>.
     /// </summary>
-    /// <remarks>
-    /// Make sure the <paramref name="uploadStream"/> has its position set to 0. The Space SDK uses the stream as-is, and will not rewind or dispose the stream.
-    /// </remarks>
     /// <param name="storagePrefix">Storage prefix. See <see cref="CreateUploadAsync"/> for supported values.</param>
     /// <param name="fileName">File name, e.g. 'image.png'.</param>
     /// <param name="httpContent"><see cref="HttpContent"/> to upload. The content is used as-is, and will not be rewound or disposed.</param>
@@ -84,10 +81,10 @@ public partial class UploadClient
 #if NET6_0_OR_GREATER
             return await response.Content.ReadAsStringAsync(cancellationToken);
 #else
-                return await response.Content.ReadAsStringAsync() ?? string.Empty;
+            return await response.Content.ReadAsStringAsync() ?? string.Empty;
 #endif
         }
 
-        throw new ResourceException("Could not upload stream.", response.StatusCode, response.ReasonPhrase);
+        throw new ResourceException("Could not upload stream.", request.RequestUri, response.StatusCode, response.ReasonPhrase);
     }
 }

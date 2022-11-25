@@ -87,7 +87,7 @@ public sealed class PropertyValue<T>
                     if (inaccessibleFields.Fields.Contains(_fieldName))
                     {
                         throw new PropertyValueInaccessibleException(
-                            message: $"{inaccessibleFields.Message}. Property {_propertyName} on {_className} is not accessible.", 
+                            message: $"{inaccessibleFields.Message.TrimEnd('.')}. Property {_propertyName} on {_className} is not accessible.", 
                             typeName: _className, 
                             propertyName: _propertyName);
                     }

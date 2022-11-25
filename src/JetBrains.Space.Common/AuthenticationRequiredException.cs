@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using JetBrains.Annotations;
 
@@ -22,8 +23,8 @@ public class AuthenticationRequiredException
     }
 
     /// <inheritdoc />
-    public AuthenticationRequiredException(string message, HttpStatusCode statusCode, string? response) 
-        : base(message, statusCode, response)
+    public AuthenticationRequiredException(string message, Uri? requestUri, HttpStatusCode statusCode, string? response) 
+        : base(message, requestUri, statusCode, response)
     {
     }
 }
