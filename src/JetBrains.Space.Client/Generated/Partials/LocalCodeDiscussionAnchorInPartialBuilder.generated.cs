@@ -27,18 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewUnfurlContextPartialBuilder;
+namespace JetBrains.Space.Client.LocalCodeDiscussionAnchorInPartialBuilder;
 
-public static class CodeReviewUnfurlContextPartialExtensions
+public static class LocalCodeDiscussionAnchorInPartialExtensions
 {
-    public static Partial<CodeReviewUnfurlContext> WithReviewId(this Partial<CodeReviewUnfurlContext> it)
-        => it.AddFieldName("reviewId");
+    public static Partial<LocalCodeDiscussionAnchorIn> WithRevision(this Partial<LocalCodeDiscussionAnchorIn> it)
+        => it.AddFieldName("revision");
     
-    public static Partial<CodeReviewUnfurlContext> WithField(this Partial<CodeReviewUnfurlContext> it)
-        => it.AddFieldName("field");
+    public static Partial<LocalCodeDiscussionAnchorIn> WithFilename(this Partial<LocalCodeDiscussionAnchorIn> it)
+        => it.AddFieldName("filename");
     
-    public static Partial<CodeReviewUnfurlContext> WithField(this Partial<CodeReviewUnfurlContext> it, Func<Partial<CodeReviewUnfurlContextField>, Partial<CodeReviewUnfurlContextField>> partialBuilder)
-        => it.AddFieldName("field", partialBuilder(new Partial<CodeReviewUnfurlContextField>(it)));
+    public static Partial<LocalCodeDiscussionAnchorIn> WithLine(this Partial<LocalCodeDiscussionAnchorIn> it)
+        => it.AddFieldName("line");
+    
+    public static Partial<LocalCodeDiscussionAnchorIn> WithOldLine(this Partial<LocalCodeDiscussionAnchorIn> it)
+        => it.AddFieldName("oldLine");
     
 }
 

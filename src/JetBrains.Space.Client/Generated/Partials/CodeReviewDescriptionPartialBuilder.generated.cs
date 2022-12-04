@@ -27,18 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewUnfurlContextPartialBuilder;
+namespace JetBrains.Space.Client.CodeReviewDescriptionPartialBuilder;
 
-public static class CodeReviewUnfurlContextPartialExtensions
+public static class CodeReviewDescriptionPartialExtensions
 {
-    public static Partial<CodeReviewUnfurlContext> WithReviewId(this Partial<CodeReviewUnfurlContext> it)
-        => it.AddFieldName("reviewId");
+    public static Partial<CodeReviewDescription> WithText(this Partial<CodeReviewDescription> it)
+        => it.AddFieldName("text");
     
-    public static Partial<CodeReviewUnfurlContext> WithField(this Partial<CodeReviewUnfurlContext> it)
-        => it.AddFieldName("field");
+    public static Partial<CodeReviewDescription> WithUnfurls(this Partial<CodeReviewDescription> it)
+        => it.AddFieldName("unfurls");
     
-    public static Partial<CodeReviewUnfurlContext> WithField(this Partial<CodeReviewUnfurlContext> it, Func<Partial<CodeReviewUnfurlContextField>, Partial<CodeReviewUnfurlContextField>> partialBuilder)
-        => it.AddFieldName("field", partialBuilder(new Partial<CodeReviewUnfurlContextField>(it)));
+    public static Partial<CodeReviewDescription> WithUnfurls(this Partial<CodeReviewDescription> it, Func<Partial<Attachment>, Partial<Attachment>> partialBuilder)
+        => it.AddFieldName("unfurls", partialBuilder(new Partial<Attachment>(it)));
     
 }
 

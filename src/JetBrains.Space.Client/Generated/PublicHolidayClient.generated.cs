@@ -62,7 +62,7 @@ public partial class PublicHolidayClient : ISpaceClient
                 { 
                     Name = name,
                     Location = location,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreateCalendar", cancellationToken: cancellationToken);
         }
         
     
@@ -78,7 +78,7 @@ public partial class PublicHolidayClient : ISpaceClient
                 { 
                     Calendar = calendar,
                     AttachmentId = attachmentId,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "ImportCalendar", cancellationToken: cancellationToken);
         }
         
     
@@ -92,7 +92,7 @@ public partial class PublicHolidayClient : ISpaceClient
             if (top != null) queryParameters.Append("$top", top?.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PublicHolidayCalendarRecord>>()) : Partial<Batch<PublicHolidayCalendarRecord>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<PublicHolidayCalendarRecord>>("GET", $"api/http/public-holidays/calendars{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<PublicHolidayCalendarRecord>>("GET", $"api/http/public-holidays/calendars{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllCalendars", cancellationToken: cancellationToken);
         }
         
         /// <summary>
@@ -114,7 +114,7 @@ public partial class PublicHolidayClient : ISpaceClient
                 { 
                     Name = name,
                     Location = location,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdateCalendar", cancellationToken: cancellationToken);
         }
         
     
@@ -125,7 +125,7 @@ public partial class PublicHolidayClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/calendars/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/calendars/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteCalendar", cancellationToken: cancellationToken);
         }
         
     
@@ -158,7 +158,7 @@ public partial class PublicHolidayClient : ISpaceClient
                     Date = date,
                     IsWorkingDay = workingDay,
                     IsHalfDay = halfDay,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreateHoliday", cancellationToken: cancellationToken);
         }
         
     
@@ -176,7 +176,7 @@ public partial class PublicHolidayClient : ISpaceClient
             if (endDate != null) queryParameters.Append("endDate", endDate?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PublicHoliday>>()) : Partial<Batch<PublicHoliday>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<PublicHoliday>>("GET", $"api/http/public-holidays/holidays{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<PublicHoliday>>("GET", $"api/http/public-holidays/holidays{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllHolidays", cancellationToken: cancellationToken);
         }
         
         /// <summary>
@@ -201,7 +201,7 @@ public partial class PublicHolidayClient : ISpaceClient
                     Date = date,
                     IsWorkingDay = workingDay,
                     IsHalfDay = halfDay,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdateHoliday", cancellationToken: cancellationToken);
         }
         
     
@@ -212,7 +212,7 @@ public partial class PublicHolidayClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/holidays/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/holidays/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteHoliday", cancellationToken: cancellationToken);
         }
         
     
@@ -239,7 +239,7 @@ public partial class PublicHolidayClient : ISpaceClient
                 if (workingDays != null) queryParameters.Append("workingDays", workingDays?.ToString("l"));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<PublicHoliday>()) : Partial<PublicHoliday>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<PublicHoliday>>("GET", $"api/http/public-holidays/holidays/profile-holidays{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<List<PublicHoliday>>("GET", $"api/http/public-holidays/holidays/profile-holidays{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllProfileHolidays", cancellationToken: cancellationToken);
             }
             
         
@@ -268,7 +268,7 @@ public partial class PublicHolidayClient : ISpaceClient
                 if (endDate != null) queryParameters.Append("endDate", endDate?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PublicHoliday>>()) : Partial<Batch<PublicHoliday>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<PublicHoliday>>("GET", $"api/http/public-holidays/holidays/related-holidays{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<PublicHoliday>>("GET", $"api/http/public-holidays/holidays/related-holidays{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllRelatedHolidays", cancellationToken: cancellationToken);
             }
             
             /// <summary>

@@ -50,7 +50,7 @@ public partial class CallClient : ISpaceClient
                 IsPrivate = @private,
                 ChannelId = channelId,
                 Description = description,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "CreateCall", cancellationToken: cancellationToken);
     }
     
 

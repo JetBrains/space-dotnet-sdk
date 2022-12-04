@@ -62,7 +62,7 @@ public partial class AuthModuleClient : ISpaceClient
                 IsEnabled = enabled,
                 IconDataURI = iconDataURI,
                 Settings = settings,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "CreateAuthModule", cancellationToken: cancellationToken);
     }
     
 
@@ -85,7 +85,7 @@ public partial class AuthModuleClient : ISpaceClient
             new AuthModulesReorderPostRequest
             { 
                 Order = order,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "ReorderAuthenticationModules", cancellationToken: cancellationToken);
     }
     
 
@@ -103,7 +103,7 @@ public partial class AuthModuleClient : ISpaceClient
                 SpEntityId = spEntityId,
                 SslKeystore = sslKeystore,
                 ContactProfileId = contactProfileId,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "SamlMetadata", cancellationToken: cancellationToken);
     }
     
 
@@ -116,7 +116,7 @@ public partial class AuthModuleClient : ISpaceClient
         queryParameters.Append("withDisabled", withDisabled.ToString("l"));
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESAuthModule>()) : Partial<ESAuthModule>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<List<ESAuthModule>>("GET", $"api/http/auth-modules{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<List<ESAuthModule>>("GET", $"api/http/auth-modules{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllAuthModules", cancellationToken: cancellationToken);
     }
     
 
@@ -137,7 +137,7 @@ public partial class AuthModuleClient : ISpaceClient
         queryParameters.Append("discoveryEndpoint", discoveryEndpoint);
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<OIDCDiscovery>()) : Partial<OIDCDiscovery>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<OIDCDiscovery>("GET", $"api/http/auth-modules/discover-oidc{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<OIDCDiscovery>("GET", $"api/http/auth-modules/discover-oidc{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DiscoverOidc", cancellationToken: cancellationToken);
     }
     
 
@@ -149,7 +149,7 @@ public partial class AuthModuleClient : ISpaceClient
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESAuthModule>()) : Partial<ESAuthModule>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<ESAuthModule>("GET", $"api/http/auth-modules/key:{key}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<ESAuthModule>("GET", $"api/http/auth-modules/key:{key}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAuthModuleByKey", cancellationToken: cancellationToken);
     }
     
 
@@ -176,7 +176,7 @@ public partial class AuthModuleClient : ISpaceClient
                 IsEnabled = enabled,
                 IconDataURI = iconDataURI,
                 Settings = settings,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "UpdateAuthModule", cancellationToken: cancellationToken);
     }
     
 
@@ -195,7 +195,7 @@ public partial class AuthModuleClient : ISpaceClient
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteAuthModule", cancellationToken: cancellationToken);
     }
     
 
@@ -226,7 +226,7 @@ public partial class AuthModuleClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<AuthConfig>()) : Partial<AuthConfig>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<AuthConfig>("GET", $"api/http/auth-modules/config{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<AuthConfig>("GET", $"api/http/auth-modules/config{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetConfig", cancellationToken: cancellationToken);
         }
         
     
@@ -251,7 +251,7 @@ public partial class AuthModuleClient : ISpaceClient
                     DontRememberMeTtl = dontRememberMeTtl,
                     AdminRememberMeTtl = adminRememberMeTtl,
                     UserRememberMeTtl = userRememberMeTtl,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "PutConfig", cancellationToken: cancellationToken);
         }
         
     
@@ -271,7 +271,7 @@ public partial class AuthModuleClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<AuthConfig>()) : Partial<AuthConfig>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<AuthConfig>("DELETE", $"api/http/auth-modules/config{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<AuthConfig>("DELETE", $"api/http/auth-modules/config{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteConfig", cancellationToken: cancellationToken);
         }
         
     
@@ -302,7 +302,7 @@ public partial class AuthModuleClient : ISpaceClient
                     Settings = settings,
                     Username = username,
                     Password = password,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "TestBuiltInSettings", cancellationToken: cancellationToken);
         }
         
     
@@ -320,7 +320,7 @@ public partial class AuthModuleClient : ISpaceClient
                     Settings = settings,
                     Username = username,
                     Password = password,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "TestLdapSettings", cancellationToken: cancellationToken);
         }
         
     
@@ -348,7 +348,7 @@ public partial class AuthModuleClient : ISpaceClient
             if (login != null) queryParameters.Append("login", login);
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ThrottledLogin>>()) : Partial<Batch<ThrottledLogin>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<ThrottledLogin>>("GET", $"api/http/auth-modules/throttled-logins{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<ThrottledLogin>>("GET", $"api/http/auth-modules/throttled-logins{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetThrottledLogins", cancellationToken: cancellationToken);
         }
         
         /// <summary>
@@ -365,7 +365,7 @@ public partial class AuthModuleClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("logins", logins.Select(it => it));
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/throttled-logins{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/throttled-logins{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ResetThrottlingStatus", cancellationToken: cancellationToken);
         }
         
     
@@ -388,7 +388,7 @@ public partial class AuthModuleClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<OrgThrottlingStatus>()) : Partial<OrgThrottlingStatus>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<OrgThrottlingStatus>("GET", $"api/http/auth-modules/throttled-logins/org-status{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<OrgThrottlingStatus>("GET", $"api/http/auth-modules/throttled-logins/org-status{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetOrganizationThrottlingStatus", cancellationToken: cancellationToken);
             }
             
         
@@ -399,7 +399,7 @@ public partial class AuthModuleClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/throttled-logins/org-status{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/throttled-logins/org-status{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ResetOrganizationThrottling", cancellationToken: cancellationToken);
             }
             
         
@@ -434,7 +434,7 @@ public partial class AuthModuleClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<AuthModuleUsage>()) : Partial<AuthModuleUsage>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<AuthModuleUsage>>("GET", $"api/http/auth-modules/usages{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<AuthModuleUsage>>("GET", $"api/http/auth-modules/usages{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllUsages", cancellationToken: cancellationToken);
         }
         
     
@@ -463,7 +463,7 @@ public partial class AuthModuleClient : ISpaceClient
                 { 
                     OldPassword = oldPassword,
                     NewPassword = newPassword,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "ChangePassword", cancellationToken: cancellationToken);
         }
         
     
@@ -474,7 +474,7 @@ public partial class AuthModuleClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/reset{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/reset{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ResetPassword", cancellationToken: cancellationToken);
         }
         
     
@@ -485,7 +485,7 @@ public partial class AuthModuleClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}/logins/{identifier}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}/logins/{identifier}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteLogin", cancellationToken: cancellationToken);
         }
         
     

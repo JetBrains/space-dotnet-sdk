@@ -29,43 +29,44 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class CodeReviewUnfurlContext
-     : ApplicationUnfurlContext, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class UnfurlDetailsReviewDescriptionDiff
+     : InlineUnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public  string? ClassName => "CodeReviewUnfurlContext";
+    public  string? ClassName => "UnfurlDetailsReviewDescriptionDiff";
     
-    public CodeReviewUnfurlContext() { }
+    public UnfurlDetailsReviewDescriptionDiff() { }
     
-    public CodeReviewUnfurlContext(string reviewId, CodeReviewUnfurlContextField? field = null)
+    public UnfurlDetailsReviewDescriptionDiff(string snapshotId, string baseSnapshotId)
     {
-        ReviewId = reviewId;
-        Field = field;
+        SnapshotId = snapshotId;
+        BaseSnapshotId = baseSnapshotId;
     }
     
-    private PropertyValue<string> _reviewId = new PropertyValue<string>(nameof(CodeReviewUnfurlContext), nameof(ReviewId), "reviewId");
+    private PropertyValue<string> _snapshotId = new PropertyValue<string>(nameof(UnfurlDetailsReviewDescriptionDiff), nameof(SnapshotId), "snapshotId");
     
     [Required]
-    [JsonPropertyName("reviewId")]
-    public string ReviewId
+    [JsonPropertyName("snapshotId")]
+    public string SnapshotId
     {
-        get => _reviewId.GetValue(InlineErrors);
-        set => _reviewId.SetValue(value);
+        get => _snapshotId.GetValue(InlineErrors);
+        set => _snapshotId.SetValue(value);
     }
 
-    private PropertyValue<CodeReviewUnfurlContextField?> _field = new PropertyValue<CodeReviewUnfurlContextField?>(nameof(CodeReviewUnfurlContext), nameof(Field), "field");
+    private PropertyValue<string> _baseSnapshotId = new PropertyValue<string>(nameof(UnfurlDetailsReviewDescriptionDiff), nameof(BaseSnapshotId), "baseSnapshotId");
     
-    [JsonPropertyName("field")]
-    public CodeReviewUnfurlContextField? Field
+    [Required]
+    [JsonPropertyName("baseSnapshotId")]
+    public string BaseSnapshotId
     {
-        get => _field.GetValue(InlineErrors);
-        set => _field.SetValue(value);
+        get => _baseSnapshotId.GetValue(InlineErrors);
+        set => _baseSnapshotId.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _reviewId.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _field.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _snapshotId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _baseSnapshotId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

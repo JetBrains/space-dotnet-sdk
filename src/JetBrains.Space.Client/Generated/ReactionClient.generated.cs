@@ -59,7 +59,7 @@ public partial class ReactionClient : ISpaceClient
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("POST", $"api/http/reactions/{item}/{emoji}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        await _connection.RequestResourceAsync("POST", $"api/http/reactions/{item}/{emoji}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "AddReaction", cancellationToken: cancellationToken);
     }
     
 
@@ -85,7 +85,7 @@ public partial class ReactionClient : ISpaceClient
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<EmojiReaction>()) : Partial<EmojiReaction>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<List<EmojiReaction>>("GET", $"api/http/reactions/{item}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<List<EmojiReaction>>("GET", $"api/http/reactions/{item}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ListReactions", cancellationToken: cancellationToken);
     }
     
 
@@ -111,7 +111,7 @@ public partial class ReactionClient : ISpaceClient
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<CPrincipal>()) : Partial<CPrincipal>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<List<CPrincipal>>("GET", $"api/http/reactions/{item}/{emoji}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<List<CPrincipal>>("GET", $"api/http/reactions/{item}/{emoji}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ListReactedUsersAndApplications", cancellationToken: cancellationToken);
     }
     
 
@@ -136,7 +136,7 @@ public partial class ReactionClient : ISpaceClient
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("DELETE", $"api/http/reactions/{item}/{emoji}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        await _connection.RequestResourceAsync("DELETE", $"api/http/reactions/{item}/{emoji}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveReaction", cancellationToken: cancellationToken);
     }
     
 

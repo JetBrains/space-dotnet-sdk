@@ -50,7 +50,7 @@ public partial class UnfurlClient : ISpaceClient
             { 
                 Link = link,
                 IsWholeHost = wholeHost,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "BlockUnfurl", cancellationToken: cancellationToken);
     }
     
 
@@ -66,7 +66,7 @@ public partial class UnfurlClient : ISpaceClient
             { 
                 Link = link,
                 IsWholeHost = wholeHost,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "BlockUnfurlGlobal", cancellationToken: cancellationToken);
     }
     
 
@@ -78,7 +78,7 @@ public partial class UnfurlClient : ISpaceClient
             new UnfurlsCheckBlockedPostRequest
             { 
                 Link = link,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "CheckBlocked", cancellationToken: cancellationToken);
     }
     
 
@@ -94,7 +94,7 @@ public partial class UnfurlClient : ISpaceClient
             { 
                 Link = link,
                 IsWholeHost = wholeHost,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "UnblockUnfurl", cancellationToken: cancellationToken);
     }
     
 
@@ -110,7 +110,7 @@ public partial class UnfurlClient : ISpaceClient
             { 
                 Link = link,
                 IsWholeHost = wholeHost,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "UnblockUnfurlGlobal", cancellationToken: cancellationToken);
     }
     
 
@@ -121,7 +121,7 @@ public partial class UnfurlClient : ISpaceClient
         if (top != null) queryParameters.Append("$top", top?.ToString());
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<UnfurlsBlockListEntry>>()) : Partial<Batch<UnfurlsBlockListEntry>>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<Batch<UnfurlsBlockListEntry>>("GET", $"api/http/unfurls/list-blocked{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<Batch<UnfurlsBlockListEntry>>("GET", $"api/http/unfurls/list-blocked{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ListBlocked", cancellationToken: cancellationToken);
     }
     
     public IAsyncEnumerable<UnfurlsBlockListEntry> ListBlockedAsyncEnumerable(string? skip = null, int? top = 100, Func<Partial<UnfurlsBlockListEntry>, Partial<UnfurlsBlockListEntry>>? partial = null, CancellationToken cancellationToken = default)

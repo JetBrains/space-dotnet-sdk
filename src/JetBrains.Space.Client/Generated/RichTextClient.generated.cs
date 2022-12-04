@@ -50,7 +50,7 @@ public partial class RichTextClient : ISpaceClient
             new RichTextParseMarkdownPostRequest
             { 
                 Text = text,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "ParseMarkdown", cancellationToken: cancellationToken);
     }
     
 

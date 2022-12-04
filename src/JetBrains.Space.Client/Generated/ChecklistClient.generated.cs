@@ -62,7 +62,7 @@ public partial class ChecklistClient : ISpaceClient
                 { 
                     ParentItem = parentItem,
                     ItemText = itemText,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreatePlanItem", cancellationToken: cancellationToken);
         }
         
     
@@ -79,7 +79,7 @@ public partial class ChecklistClient : ISpaceClient
                 { 
                     TargetParent = targetParent,
                     AfterItem = afterItem,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "MovePlanItem", cancellationToken: cancellationToken);
         }
         
     
@@ -91,7 +91,7 @@ public partial class ChecklistClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PlanItem>()) : Partial<PlanItem>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<PlanItem>("GET", $"api/http/checklists/{checklist}/items/{planItem}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<PlanItem>("GET", $"api/http/checklists/{checklist}/items/{planItem}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetPlanItem", cancellationToken: cancellationToken);
         }
         
     
@@ -108,7 +108,7 @@ public partial class ChecklistClient : ISpaceClient
                 { 
                     ItemText = itemText,
                     IsItemDone = itemDone,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdatePlanItem", cancellationToken: cancellationToken);
         }
         
     
@@ -119,7 +119,7 @@ public partial class ChecklistClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/checklists/{checklist}/items/{planItem}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/checklists/{checklist}/items/{planItem}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeletePlanItem", cancellationToken: cancellationToken);
         }
         
     

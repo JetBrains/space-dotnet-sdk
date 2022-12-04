@@ -34,17 +34,21 @@ public class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
 {
     public ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest() { }
     
-    public ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest(string text, string repository, string revision, bool pending = false, DiffContext? diffContext = null, string? filename = null, int? line = null, int? oldLine = null, ReviewIdentifier? reviewId = null)
+    public ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest(string text, string repository, bool pending = false, List<AttachmentIn>? attachments = null, DiffContext? diffContext = null, string? revision = null, string? filename = null, int? line = null, int? oldLine = null, LocalCodeDiscussionAnchorIn? anchor = null, LocalCodeDiscussionAnchorIn? endAnchor = null, ReviewIdentifier? reviewId = null, CodeDiscussionSuggestedEditRequest? suggestedEdit = null)
     {
         Text = text;
+        Attachments = attachments;
         DiffContext = diffContext;
         Repository = repository;
         Revision = revision;
         Filename = filename;
         Line = line;
         OldLine = oldLine;
+        Anchor = anchor;
+        EndAnchor = endAnchor;
         IsPending = pending;
         ReviewId = reviewId;
+        SuggestedEdit = suggestedEdit;
     }
     
     private PropertyValue<string> _text = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Text), "text");
@@ -55,6 +59,18 @@ public class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
     {
         get => _text.GetValue(InlineErrors);
         set => _text.SetValue(value);
+    }
+
+    private PropertyValue<List<AttachmentIn>?> _attachments = new PropertyValue<List<AttachmentIn>?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Attachments), "attachments");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("attachments")]
+    public List<AttachmentIn>? Attachments
+    {
+        get => _attachments.GetValue(InlineErrors);
+        set => _attachments.SetValue(value);
     }
 
     private PropertyValue<DiffContext?> _diffContext = new PropertyValue<DiffContext?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(DiffContext), "diffContext");
@@ -79,11 +95,14 @@ public class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
         set => _repository.SetValue(value);
     }
 
-    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Revision), "revision");
+    private PropertyValue<string?> _revision = new PropertyValue<string?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Revision), "revision");
     
-    [Required]
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [Obsolete("Use anchor parameter instead (since 2022-11-23) (will be removed in a future version)")]
     [JsonPropertyName("revision")]
-    public string Revision
+    public string? Revision
     {
         get => _revision.GetValue(InlineErrors);
         set => _revision.SetValue(value);
@@ -94,6 +113,7 @@ public class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
+    [Obsolete("Use anchor parameter instead (since 2022-11-23) (will be removed in a future version)")]
     [JsonPropertyName("filename")]
     public string? Filename
     {
@@ -106,6 +126,7 @@ public class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
+    [Obsolete("Use anchor parameter instead (since 2022-11-23) (will be removed in a future version)")]
     [JsonPropertyName("line")]
     public int? Line
     {
@@ -118,11 +139,36 @@ public class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
+    [Obsolete("Use anchor parameter instead (since 2022-11-23) (will be removed in a future version)")]
     [JsonPropertyName("oldLine")]
     public int? OldLine
     {
         get => _oldLine.GetValue(InlineErrors);
         set => _oldLine.SetValue(value);
+    }
+
+    private PropertyValue<LocalCodeDiscussionAnchorIn?> _anchor = new PropertyValue<LocalCodeDiscussionAnchorIn?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(Anchor), "anchor");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("anchor")]
+    public LocalCodeDiscussionAnchorIn? Anchor
+    {
+        get => _anchor.GetValue(InlineErrors);
+        set => _anchor.SetValue(value);
+    }
+
+    private PropertyValue<LocalCodeDiscussionAnchorIn?> _endAnchor = new PropertyValue<LocalCodeDiscussionAnchorIn?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(EndAnchor), "endAnchor");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("endAnchor")]
+    public LocalCodeDiscussionAnchorIn? EndAnchor
+    {
+        get => _endAnchor.GetValue(InlineErrors);
+        set => _endAnchor.SetValue(value);
     }
 
     private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(IsPending), "pending");
@@ -146,17 +192,33 @@ public class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
         set => _reviewId.SetValue(value);
     }
 
+    private PropertyValue<CodeDiscussionSuggestedEditRequest?> _suggestedEdit = new PropertyValue<CodeDiscussionSuggestedEditRequest?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(SuggestedEdit), "suggestedEdit");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("suggestedEdit")]
+    public CodeDiscussionSuggestedEditRequest? SuggestedEdit
+    {
+        get => _suggestedEdit.GetValue(InlineErrors);
+        set => _suggestedEdit.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
         _diffContext.SetAccessPath(parentChainPath, validateHasBeenSet);
         _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
         _revision.SetAccessPath(parentChainPath, validateHasBeenSet);
         _filename.SetAccessPath(parentChainPath, validateHasBeenSet);
         _line.SetAccessPath(parentChainPath, validateHasBeenSet);
         _oldLine.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _anchor.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _endAnchor.SetAccessPath(parentChainPath, validateHasBeenSet);
         _pending.SetAccessPath(parentChainPath, validateHasBeenSet);
         _reviewId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _suggestedEdit.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

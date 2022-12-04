@@ -59,7 +59,7 @@ public partial class ExternalLinkPatternClient : ISpaceClient
             { 
                 Pattern = pattern,
                 LinkReplacement = linkReplacement,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "CreateExternalLinkPattern", cancellationToken: cancellationToken);
     }
     
 
@@ -80,7 +80,7 @@ public partial class ExternalLinkPatternClient : ISpaceClient
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ExternalLinkPattern>()) : Partial<ExternalLinkPattern>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<List<ExternalLinkPattern>>("GET", $"api/http/external-link-patterns{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<List<ExternalLinkPattern>>("GET", $"api/http/external-link-patterns{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllExternalLinkPatterns", cancellationToken: cancellationToken);
     }
     
 
@@ -101,7 +101,7 @@ public partial class ExternalLinkPatternClient : ISpaceClient
         var queryParameters = new NameValueCollection();
         queryParameters.Append("pattern", pattern);
         
-        await _connection.RequestResourceAsync("DELETE", $"api/http/external-link-patterns{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        await _connection.RequestResourceAsync("DELETE", $"api/http/external-link-patterns{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteExternalLinkPattern", cancellationToken: cancellationToken);
     }
     
 

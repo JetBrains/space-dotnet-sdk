@@ -48,6 +48,9 @@ public static class CodeReviewRecordPartialExtensions
     public static Partial<CodeReviewRecord> WithCommits(this Partial<CodeReviewRecord> it, Func<Partial<ReviewCommit>, Partial<ReviewCommit>> partialBuilder)
         => it.AddFieldName("commits", partialBuilder(new Partial<ReviewCommit>(it)));
     
+    public static Partial<CodeReviewRecord> WithDescription(this Partial<CodeReviewRecord> it)
+        => it.AddFieldName("description");
+    
     public static Partial<CodeReviewRecord> WithDiscussionCounter(this Partial<CodeReviewRecord> it)
         => it.AddFieldName("discussionCounter");
     
@@ -70,6 +73,12 @@ public static class CodeReviewRecordPartialExtensions
     [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<CodeReviewRecord> WithReviewers(this Partial<CodeReviewRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
         => it.AddFieldName("reviewers", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
+    
+    public static Partial<CodeReviewRecord> WithUnfurls(this Partial<CodeReviewRecord> it)
+        => it.AddFieldName("unfurls");
+    
+    public static Partial<CodeReviewRecord> WithUnfurls(this Partial<CodeReviewRecord> it, Func<Partial<Attachment>, Partial<Attachment>> partialBuilder)
+        => it.AddFieldName("unfurls", partialBuilder(new Partial<Attachment>(it)));
     
     [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<CodeReviewRecord> WithWatchers(this Partial<CodeReviewRecord> it)

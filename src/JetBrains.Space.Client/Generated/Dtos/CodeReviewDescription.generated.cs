@@ -29,43 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class CodeReviewUnfurlContext
-     : ApplicationUnfurlContext, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class CodeReviewDescription
+     : IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public  string? ClassName => "CodeReviewUnfurlContext";
+    public CodeReviewDescription() { }
     
-    public CodeReviewUnfurlContext() { }
-    
-    public CodeReviewUnfurlContext(string reviewId, CodeReviewUnfurlContextField? field = null)
+    public CodeReviewDescription(string text, List<Attachment> unfurls)
     {
-        ReviewId = reviewId;
-        Field = field;
+        Text = text;
+        Unfurls = unfurls;
     }
     
-    private PropertyValue<string> _reviewId = new PropertyValue<string>(nameof(CodeReviewUnfurlContext), nameof(ReviewId), "reviewId");
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(CodeReviewDescription), nameof(Text), "text");
     
     [Required]
-    [JsonPropertyName("reviewId")]
-    public string ReviewId
+    [JsonPropertyName("text")]
+    public string Text
     {
-        get => _reviewId.GetValue(InlineErrors);
-        set => _reviewId.SetValue(value);
+        get => _text.GetValue(InlineErrors);
+        set => _text.SetValue(value);
     }
 
-    private PropertyValue<CodeReviewUnfurlContextField?> _field = new PropertyValue<CodeReviewUnfurlContextField?>(nameof(CodeReviewUnfurlContext), nameof(Field), "field");
+    private PropertyValue<List<Attachment>> _unfurls = new PropertyValue<List<Attachment>>(nameof(CodeReviewDescription), nameof(Unfurls), "unfurls", new List<Attachment>());
     
-    [JsonPropertyName("field")]
-    public CodeReviewUnfurlContextField? Field
+    [Required]
+    [JsonPropertyName("unfurls")]
+    public List<Attachment> Unfurls
     {
-        get => _field.GetValue(InlineErrors);
-        set => _field.SetValue(value);
+        get => _unfurls.GetValue(InlineErrors);
+        set => _unfurls.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _reviewId.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _field.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _unfurls.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

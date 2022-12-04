@@ -76,7 +76,7 @@ public partial class ApplicationClient : ISpaceClient
                 BearerAuthToken = bearerAuthToken,
                 IsConnectToSpace = connectToSpace,
                 State = state,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "CreateApplication", cancellationToken: cancellationToken);
     }
     
 
@@ -92,7 +92,7 @@ public partial class ApplicationClient : ISpaceClient
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/restore{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/restore{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RestoreApplication", cancellationToken: cancellationToken);
     }
     
 
@@ -116,7 +116,7 @@ public partial class ApplicationClient : ISpaceClient
         queryParameters.Append("ordering", ordering.ToEnumString());
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ESApp>>()) : Partial<Batch<ESApp>>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<Batch<ESApp>>("GET", $"api/http/applications/paged{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<Batch<ESApp>>("GET", $"api/http/applications/paged{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllApplications", cancellationToken: cancellationToken);
     }
     
     /// <remarks>
@@ -143,7 +143,7 @@ public partial class ApplicationClient : ISpaceClient
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<ESApp>("GET", $"api/http/applications/{application}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<ESApp>("GET", $"api/http/applications/{application}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetApplication", cancellationToken: cancellationToken);
     }
     
 
@@ -159,7 +159,7 @@ public partial class ApplicationClient : ISpaceClient
     {
         var queryParameters = new NameValueCollection();
         
-        return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/bearer-token{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/bearer-token{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "BearerToken", cancellationToken: cancellationToken);
     }
     
 
@@ -176,7 +176,7 @@ public partial class ApplicationClient : ISpaceClient
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<AccessRecord>()) : Partial<AccessRecord>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<AccessRecord>("GET", $"api/http/applications/{application}/last-client-credentials-access{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<AccessRecord>("GET", $"api/http/applications/{application}/last-client-credentials-access{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetLastClientCredentialsAccessInfo", cancellationToken: cancellationToken);
     }
     
 
@@ -195,7 +195,7 @@ public partial class ApplicationClient : ISpaceClient
     {
         var queryParameters = new NameValueCollection();
         
-        return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/public-keys{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/public-keys{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "PublicKeys", cancellationToken: cancellationToken);
     }
     
 
@@ -211,7 +211,7 @@ public partial class ApplicationClient : ISpaceClient
             { 
                 ContextIdentifier = contextIdentifier,
                 Extensions = extensions,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "SetUiExtensions", cancellationToken: cancellationToken);
     }
     
 
@@ -251,7 +251,7 @@ public partial class ApplicationClient : ISpaceClient
                 BasicAuthUsername = basicAuthUsername,
                 BasicAuthPassword = basicAuthPassword,
                 BearerAuthToken = bearerAuthToken,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "UpdateApplication", cancellationToken: cancellationToken);
     }
     
 
@@ -267,7 +267,7 @@ public partial class ApplicationClient : ISpaceClient
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteApplication", cancellationToken: cancellationToken);
     }
     
 
@@ -299,7 +299,7 @@ public partial class ApplicationClient : ISpaceClient
             queryParameters.Append("contextIdentifier", contextIdentifier.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<ESApp>>("GET", $"api/http/applications/authorizations/authorized-applications{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<ESApp>>("GET", $"api/http/applications/authorizations/authorized-applications{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetApplicationsAuthorizedInContext", cancellationToken: cancellationToken);
         }
         
     
@@ -323,7 +323,7 @@ public partial class ApplicationClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PermissionContextApi>()) : Partial<PermissionContextApi>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<PermissionContextApi>>("GET", $"api/http/applications/{application}/authorizations/authorized-contexts{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<PermissionContextApi>>("GET", $"api/http/applications/{application}/authorizations/authorized-contexts{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllAuthorizedContexts", cancellationToken: cancellationToken);
         }
         
     
@@ -355,7 +355,7 @@ public partial class ApplicationClient : ISpaceClient
                 queryParameters.Append("contextIdentifier", contextIdentifier.ToString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<RightDTO>()) : Partial<RightDTO>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<RightDTO>>("GET", $"api/http/applications/{application}/authorizations/authorized-rights{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<List<RightDTO>>("GET", $"api/http/applications/{application}/authorizations/authorized-rights{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllAuthorizedRights", cancellationToken: cancellationToken);
             }
             
         
@@ -371,7 +371,7 @@ public partial class ApplicationClient : ISpaceClient
                     { 
                         ContextIdentifier = contextIdentifier,
                         Updates = updates,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "UpdateAuthorizedRight", cancellationToken: cancellationToken);
             }
             
         
@@ -395,7 +395,7 @@ public partial class ApplicationClient : ISpaceClient
                     { 
                         ContextIdentifier = contextIdentifier,
                         RightCodes = rightCodes,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "RequestRights", cancellationToken: cancellationToken);
             }
             
         
@@ -407,7 +407,7 @@ public partial class ApplicationClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("contextIdentifier", contextIdentifier.ToString());
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/authorizations/authorized-rights{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/authorizations/authorized-rights{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteAuthorizedRight", cancellationToken: cancellationToken);
             }
             
         
@@ -440,7 +440,7 @@ public partial class ApplicationClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<RightDTO>()) : Partial<RightDTO>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<RightDTO>>("GET", $"api/http/applications/{application}/authorizations/required-rights{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<List<RightDTO>>("GET", $"api/http/applications/{application}/authorizations/required-rights{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllRequiredRights", cancellationToken: cancellationToken);
             }
             
         
@@ -465,7 +465,7 @@ public partial class ApplicationClient : ISpaceClient
                         RightCodesToAdd = rightCodesToAdd,
                         RightCodesToRemove = rightCodesToRemove,
                         IsRequestRightsInAuthorizedContexts = requestRightsInAuthorizedContexts,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "UpdateRequiredRight", cancellationToken: cancellationToken);
             }
             
         
@@ -514,7 +514,7 @@ public partial class ApplicationClient : ISpaceClient
                     new ApplicationsUnfurlsDomainsPatchRequest
                     { 
                         Domains = domains,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "UpdateUnfurledDomains", cancellationToken: cancellationToken);
             }
             
         
@@ -550,7 +550,7 @@ public partial class ApplicationClient : ISpaceClient
                     new ApplicationsUnfurlsPatternsPatchRequest
                     { 
                         Patterns = patterns,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "UpdateUnfurledPatterns", cancellationToken: cancellationToken);
             }
             
         
@@ -587,7 +587,7 @@ public partial class ApplicationClient : ISpaceClient
                     new ApplicationsUnfurlsQueueContentPostRequest
                     { 
                         Unfurls = unfurls,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "PostUnfurlsContent", cancellationToken: cancellationToken);
             }
             
         
@@ -611,7 +611,7 @@ public partial class ApplicationClient : ISpaceClient
                     { 
                         QueueItemId = queueItemId,
                         Message = message,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "RequestExternalSystemAuthentication", cancellationToken: cancellationToken);
             }
             
         
@@ -634,7 +634,7 @@ public partial class ApplicationClient : ISpaceClient
                     new ApplicationsUnfurlsQueueResetExternalAuthRequestsPostRequest
                     { 
                         UserId = userId,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "ClearExternalSystemAuthenticationRequests", cancellationToken: cancellationToken);
             }
             
         
@@ -656,7 +656,7 @@ public partial class ApplicationClient : ISpaceClient
                 queryParameters.Append("batchSize", batchSize.ToString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<ApplicationUnfurlQueueItem>()) : Partial<ApplicationUnfurlQueueItem>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<ApplicationUnfurlQueueItem>>("GET", $"api/http/applications/unfurls/queue{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<List<ApplicationUnfurlQueueItem>>("GET", $"api/http/applications/unfurls/queue{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetUnfurlQueueItems", cancellationToken: cancellationToken);
             }
             
         
@@ -687,7 +687,7 @@ public partial class ApplicationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/client-secret/regenerate{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/client-secret/regenerate{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RegenerateAppSecret", cancellationToken: cancellationToken);
         }
         
     
@@ -703,7 +703,7 @@ public partial class ApplicationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/client-secret{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/client-secret{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetClientSecret", cancellationToken: cancellationToken);
         }
         
     
@@ -742,7 +742,7 @@ public partial class ApplicationClient : ISpaceClient
                     Name = name,
                     Scope = scope,
                     Expires = expires,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreatePermanentToken", cancellationToken: cancellationToken);
         }
         
     
@@ -764,7 +764,7 @@ public partial class ApplicationClient : ISpaceClient
             if (top != null) queryParameters.Append("$top", top?.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ESApplicationPermanentToken>>()) : Partial<Batch<ESApplicationPermanentToken>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<ESApplicationPermanentToken>>("GET", $"api/http/applications/{application}/permanent-tokens{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<ESApplicationPermanentToken>>("GET", $"api/http/applications/{application}/permanent-tokens{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllPermanentTokens", cancellationToken: cancellationToken);
         }
         
         /// <summary>
@@ -802,7 +802,7 @@ public partial class ApplicationClient : ISpaceClient
                     Name = name,
                     Scope = scope,
                     Expires = expires,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdatePermanentToken", cancellationToken: cancellationToken);
         }
         
     
@@ -821,7 +821,7 @@ public partial class ApplicationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/permanent-tokens/{tokenId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/permanent-tokens/{tokenId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeletePermanentToken", cancellationToken: cancellationToken);
         }
         
     
@@ -843,7 +843,7 @@ public partial class ApplicationClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/permanent-tokens/current{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/permanent-tokens/current{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteCurrentPermanentToken", cancellationToken: cancellationToken);
             }
             
         
@@ -874,7 +874,7 @@ public partial class ApplicationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/signing-key/regenerate{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/signing-key/regenerate{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RegenerateSigningKey", cancellationToken: cancellationToken);
         }
         
     
@@ -890,7 +890,7 @@ public partial class ApplicationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/signing-key{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/signing-key{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetSigningKey", cancellationToken: cancellationToken);
         }
         
     
@@ -924,7 +924,7 @@ public partial class ApplicationClient : ISpaceClient
                 { 
                     PublicKey = publicKey,
                     Comment = comment,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "AddSshKey", cancellationToken: cancellationToken);
         }
         
     
@@ -941,7 +941,7 @@ public partial class ApplicationClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<SshKeyData>()) : Partial<SshKeyData>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<SshKeyData>>("GET", $"api/http/applications/{application}/ssh-keys{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<SshKeyData>>("GET", $"api/http/applications/{application}/ssh-keys{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetSshKeys", cancellationToken: cancellationToken);
         }
         
     
@@ -957,7 +957,7 @@ public partial class ApplicationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/ssh-keys/{fingerprint}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/ssh-keys/{fingerprint}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteSshKey", cancellationToken: cancellationToken);
         }
         
     
@@ -991,7 +991,7 @@ public partial class ApplicationClient : ISpaceClient
             queryParameters.Append("contextIdentifier", contextIdentifier.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<AppUiExtensionApi>()) : Partial<AppUiExtensionApi>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<AppUiExtensionApi>>("GET", $"api/http/applications/{application}/ui-extensions{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<AppUiExtensionApi>>("GET", $"api/http/applications/{application}/ui-extensions{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetUiExtensions", cancellationToken: cancellationToken);
         }
         
     
@@ -1023,7 +1023,7 @@ public partial class ApplicationClient : ISpaceClient
                 new ApplicationsForApplicationUiExtensionsDisableForEverybodyPatchRequest
                 { 
                     ContextIdentifier = contextIdentifier,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "DisableApplicationUi", cancellationToken: cancellationToken);
         }
         
     
@@ -1046,7 +1046,7 @@ public partial class ApplicationClient : ISpaceClient
                 new ApplicationsForApplicationUiExtensionsDisableForMePatchRequest
                 { 
                     ContextIdentifier = contextIdentifier,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "DisableApplicationUiForMe", cancellationToken: cancellationToken);
         }
         
     
@@ -1078,7 +1078,7 @@ public partial class ApplicationClient : ISpaceClient
                 new ApplicationsForApplicationUiExtensionsEnableForEverybodyPatchRequest
                 { 
                     ContextIdentifier = contextIdentifier,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "EnableApplicationUi", cancellationToken: cancellationToken);
         }
         
     
@@ -1101,7 +1101,7 @@ public partial class ApplicationClient : ISpaceClient
                 new ApplicationsForApplicationUiExtensionsEnableForMePatchRequest
                 { 
                     ContextIdentifier = contextIdentifier,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "EnableApplicationUiForMe", cancellationToken: cancellationToken);
         }
         
     
@@ -1138,7 +1138,7 @@ public partial class ApplicationClient : ISpaceClient
                 { 
                     Domains = domains,
                     IsApprove = approve,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "AuthorizeUnfurledDomains", cancellationToken: cancellationToken);
         }
         
     
@@ -1158,7 +1158,7 @@ public partial class ApplicationClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ApplicationUnfurlDomain>()) : Partial<ApplicationUnfurlDomain>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<ApplicationUnfurlDomain>>("GET", $"api/http/applications/{application}/unfurl-domains{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<ApplicationUnfurlDomain>>("GET", $"api/http/applications/{application}/unfurl-domains{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllUnfurlDomains", cancellationToken: cancellationToken);
         }
         
     
@@ -1195,7 +1195,7 @@ public partial class ApplicationClient : ISpaceClient
                 { 
                     Patterns = patterns,
                     IsApprove = approve,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "AuthorizeUnfurledPatterns", cancellationToken: cancellationToken);
         }
         
     
@@ -1215,7 +1215,7 @@ public partial class ApplicationClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ApplicationUnfurlPattern>()) : Partial<ApplicationUnfurlPattern>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<ApplicationUnfurlPattern>>("GET", $"api/http/applications/{application}/unfurl-patterns{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<ApplicationUnfurlPattern>>("GET", $"api/http/applications/{application}/unfurl-patterns{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllUnfurlPatterns", cancellationToken: cancellationToken);
         }
         
     
@@ -1244,7 +1244,7 @@ public partial class ApplicationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/verification-token/regenerate{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/verification-token/regenerate{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RegenerateVerificationToken", cancellationToken: cancellationToken);
         }
         
     
@@ -1260,7 +1260,7 @@ public partial class ApplicationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/verification-token{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/verification-token{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetVerificationToken", cancellationToken: cancellationToken);
         }
         
     
@@ -1304,7 +1304,7 @@ public partial class ApplicationClient : ISpaceClient
                     AcceptedHttpResponseCodes = acceptedHttpResponseCodes,
                     IsDoRetries = doRetries,
                     PayloadFields = payloadFields,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreateWebhook", cancellationToken: cancellationToken);
         }
         
     
@@ -1323,7 +1323,7 @@ public partial class ApplicationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/webhooks/{webhookId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/webhooks/{webhookId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "PostWebhook", cancellationToken: cancellationToken);
         }
         
     
@@ -1347,7 +1347,7 @@ public partial class ApplicationClient : ISpaceClient
             if (top != null) queryParameters.Append("$top", top?.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<FullWebhookDTO>>()) : Partial<Batch<FullWebhookDTO>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<FullWebhookDTO>>("GET", $"api/http/applications/{application}/webhooks{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<FullWebhookDTO>>("GET", $"api/http/applications/{application}/webhooks{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllWebhooks", cancellationToken: cancellationToken);
         }
         
         /// <summary>
@@ -1376,7 +1376,7 @@ public partial class ApplicationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/webhooks/{webhookId}/bearer-token{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/webhooks/{webhookId}/bearer-token{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "BearerToken", cancellationToken: cancellationToken);
         }
         
     
@@ -1406,7 +1406,7 @@ public partial class ApplicationClient : ISpaceClient
                     AcceptedHttpResponseCodes = acceptedHttpResponseCodes,
                     IsDoRetries = doRetries,
                     PayloadFields = payloadFields,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdateWebhook", cancellationToken: cancellationToken);
         }
         
     
@@ -1425,7 +1425,7 @@ public partial class ApplicationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/webhooks/{webhookId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/webhooks/{webhookId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteWebhook", cancellationToken: cancellationToken);
         }
         
     
@@ -1456,7 +1456,7 @@ public partial class ApplicationClient : ISpaceClient
                     new ApplicationsForApplicationWebhooksForWebhookIdCustomHeadersPostRequest
                     { 
                         Headers = headers,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "PostCustomHeader", cancellationToken: cancellationToken);
             }
             
         
@@ -1473,7 +1473,7 @@ public partial class ApplicationClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomHttpHeaderDTO>()) : Partial<CustomHttpHeaderDTO>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<CustomHttpHeaderDTO>>("GET", $"api/http/applications/{application}/webhooks/{webhookId}/custom-headers{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<List<CustomHttpHeaderDTO>>("GET", $"api/http/applications/{application}/webhooks/{webhookId}/custom-headers{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetCustomHeader", cancellationToken: cancellationToken);
             }
             
         
@@ -1502,7 +1502,7 @@ public partial class ApplicationClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/webhooks/{webhookId}/signing-key/regenerate{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/webhooks/{webhookId}/signing-key/regenerate{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "Regenerate", cancellationToken: cancellationToken);
             }
             
         
@@ -1518,7 +1518,7 @@ public partial class ApplicationClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/webhooks/{webhookId}/signing-key{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/{application}/webhooks/{webhookId}/signing-key{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetSigningKey", cancellationToken: cancellationToken);
             }
             
         
@@ -1556,7 +1556,7 @@ public partial class ApplicationClient : ISpaceClient
                     { 
                         Name = name,
                         Subscription = subscription,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "CreateSubscription", cancellationToken: cancellationToken);
             }
             
         
@@ -1567,7 +1567,7 @@ public partial class ApplicationClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions/{subscriptionId}/request-missing-rights{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions/{subscriptionId}/request-missing-rights{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RequestMissingRights", cancellationToken: cancellationToken);
             }
             
         
@@ -1587,7 +1587,7 @@ public partial class ApplicationClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubscriptionDTO>()) : Partial<SubscriptionDTO>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<SubscriptionDTO>>("GET", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<List<SubscriptionDTO>>("GET", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllSubscriptions", cancellationToken: cancellationToken);
             }
             
         
@@ -1613,7 +1613,7 @@ public partial class ApplicationClient : ISpaceClient
                         Name = name,
                         IsEnabled = enabled,
                         Subscription = subscription,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "UpdateSubscription", cancellationToken: cancellationToken);
             }
             
         
@@ -1632,7 +1632,7 @@ public partial class ApplicationClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions/{subscriptionId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions/{subscriptionId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteSubscription", cancellationToken: cancellationToken);
             }
             
         

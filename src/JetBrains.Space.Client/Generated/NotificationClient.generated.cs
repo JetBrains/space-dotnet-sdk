@@ -46,7 +46,7 @@ public partial class NotificationClient : ISpaceClient
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<EventSubjectInfoDTO>()) : Partial<EventSubjectInfoDTO>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<List<EventSubjectInfoDTO>>("GET", $"api/http/notifications{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<List<EventSubjectInfoDTO>>("GET", $"api/http/notifications{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllNotifications", cancellationToken: cancellationToken);
     }
     
 
@@ -83,7 +83,7 @@ public partial class NotificationClient : ISpaceClient
                     Channel = channel,
                     Name = name,
                     Subscription = subscription,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreateChannelSubscription", cancellationToken: cancellationToken);
         }
         
     
@@ -102,7 +102,7 @@ public partial class NotificationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/notifications/channel-subscriptions/{id}/request-missing-rights{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/notifications/channel-subscriptions/{id}/request-missing-rights{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RequestMissingRights", cancellationToken: cancellationToken);
         }
         
     
@@ -123,7 +123,7 @@ public partial class NotificationClient : ISpaceClient
             queryParameters.Append("channel", channel.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubscriptionDTO>()) : Partial<SubscriptionDTO>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<SubscriptionDTO>>("GET", $"api/http/notifications/channel-subscriptions{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<SubscriptionDTO>>("GET", $"api/http/notifications/channel-subscriptions{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllChannelSubscriptions", cancellationToken: cancellationToken);
         }
         
     
@@ -149,7 +149,7 @@ public partial class NotificationClient : ISpaceClient
                     Name = name,
                     IsEnabled = enabled,
                     Subscription = subscription,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdateChannelSubscription", cancellationToken: cancellationToken);
         }
         
     
@@ -168,7 +168,7 @@ public partial class NotificationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/notifications/channel-subscriptions/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/notifications/channel-subscriptions/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteChannelSubscription", cancellationToken: cancellationToken);
         }
         
     
@@ -208,7 +208,7 @@ public partial class NotificationClient : ISpaceClient
                     Name = name,
                     Feed = feed,
                     Subscription = subscription,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreatePersonalCustomSubscription", cancellationToken: cancellationToken);
         }
         
     
@@ -229,7 +229,7 @@ public partial class NotificationClient : ISpaceClient
             queryParameters.Append("profile", profile.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubscriptionDTO>()) : Partial<SubscriptionDTO>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<SubscriptionDTO>>("GET", $"api/http/notifications/personal-custom-subscriptions{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<SubscriptionDTO>>("GET", $"api/http/notifications/personal-custom-subscriptions{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllPersonalCustomSubscriptions", cancellationToken: cancellationToken);
         }
         
     
@@ -256,7 +256,7 @@ public partial class NotificationClient : ISpaceClient
                     IsEnabled = enabled,
                     Feed = feed,
                     Subscription = subscription,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdatePersonalCustomSubscription", cancellationToken: cancellationToken);
         }
         
     
@@ -275,7 +275,7 @@ public partial class NotificationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/notifications/personal-custom-subscriptions/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/notifications/personal-custom-subscriptions/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeletePersonalCustomSubscription", cancellationToken: cancellationToken);
         }
         
     
@@ -314,7 +314,7 @@ public partial class NotificationClient : ISpaceClient
                     SubjectCode = subjectCode,
                     Feed = feed,
                     IsEnabled = enabled,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdatePersonalSubscriptionSubject", cancellationToken: cancellationToken);
         }
         
     
@@ -340,7 +340,7 @@ public partial class NotificationClient : ISpaceClient
                     TargetCode = targetCode,
                     Feed = feed,
                     EventCodes = eventCodes,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdatePersonalSubscriptionTarget", cancellationToken: cancellationToken);
         }
         
     
@@ -352,7 +352,7 @@ public partial class NotificationClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PersonalSubscriptionTarget>()) : Partial<PersonalSubscriptionTarget>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<PersonalSubscriptionTarget>>("GET", $"api/http/notifications/personal-subscriptions/all-personal-subscription-targets{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<PersonalSubscriptionTarget>>("GET", $"api/http/notifications/personal-subscriptions/all-personal-subscription-targets{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "AllPersonalSubscriptionTargets", cancellationToken: cancellationToken);
         }
         
     
@@ -374,7 +374,7 @@ public partial class NotificationClient : ISpaceClient
             queryParameters.Append("feed", feed);
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PersonalSubscriptionSettings>()) : Partial<PersonalSubscriptionSettings>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<PersonalSubscriptionSettings>("GET", $"api/http/notifications/personal-subscriptions/personal-subscription-settings{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<PersonalSubscriptionSettings>("GET", $"api/http/notifications/personal-subscriptions/personal-subscription-settings{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetPersonalSubscriptionSettings", cancellationToken: cancellationToken);
         }
         
     
@@ -414,7 +414,7 @@ public partial class NotificationClient : ISpaceClient
                     Name = name,
                     Icon = icon,
                     Color = color,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreatePrivateFeed", cancellationToken: cancellationToken);
         }
         
     
@@ -435,7 +435,7 @@ public partial class NotificationClient : ISpaceClient
             queryParameters.Append("profile", profile.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PrivateFeed>()) : Partial<PrivateFeed>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<PrivateFeed>>("GET", $"api/http/notifications/private-feeds{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<PrivateFeed>>("GET", $"api/http/notifications/private-feeds{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllPrivateFeeds", cancellationToken: cancellationToken);
         }
         
     
@@ -461,7 +461,7 @@ public partial class NotificationClient : ISpaceClient
                     Name = name,
                     Icon = icon,
                     Color = color,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdatePrivateFeed", cancellationToken: cancellationToken);
         }
         
     
@@ -480,7 +480,7 @@ public partial class NotificationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/notifications/private-feeds/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/notifications/private-feeds/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeletePrivateFeed", cancellationToken: cancellationToken);
         }
         
     

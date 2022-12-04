@@ -54,7 +54,7 @@ public partial class BillingAdminClient : ISpaceClient
             new BillingAdminTrialPutRequest
             { 
                 TrialTier = trialTier,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "ActivateTrial", cancellationToken: cancellationToken);
     }
     
 
@@ -82,7 +82,7 @@ public partial class BillingAdminClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Overdrafts>()) : Partial<Overdrafts>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Overdrafts>("GET", $"api/http/billing-admin/overdrafts{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<Overdrafts>("GET", $"api/http/billing-admin/overdrafts{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetOverdrafts", cancellationToken: cancellationToken);
         }
         
     
@@ -104,7 +104,7 @@ public partial class BillingAdminClient : ISpaceClient
                     Storage = storage,
                     Bandwidth = bandwidth,
                     CiCredits = ciCredits,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "SetOverdrafts", cancellationToken: cancellationToken);
         }
         
     
@@ -137,7 +137,7 @@ public partial class BillingAdminClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<BillingReport>()) : Partial<BillingReport>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<BillingReport>("GET", $"api/http/billing-admin/reports/{billingPeriod}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<BillingReport>("GET", $"api/http/billing-admin/reports/{billingPeriod}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetBillingReport", cancellationToken: cancellationToken);
         }
         
     
@@ -169,7 +169,7 @@ public partial class BillingAdminClient : ISpaceClient
                 queryParameters.Append("date", date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<TodayBillingReport>()) : Partial<TodayBillingReport>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<TodayBillingReport>("GET", $"api/http/billing-admin/reports/today{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<TodayBillingReport>("GET", $"api/http/billing-admin/reports/today{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetBillingReportForToday", cancellationToken: cancellationToken);
             }
             
         

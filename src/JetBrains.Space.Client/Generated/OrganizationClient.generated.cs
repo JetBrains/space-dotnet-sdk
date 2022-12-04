@@ -43,7 +43,7 @@ public partial class OrganizationClient : ISpaceClient
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<OrganizationRecord>()) : Partial<OrganizationRecord>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<OrganizationRecord>("GET", $"api/http/organization{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<OrganizationRecord>("GET", $"api/http/organization{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetOrganization", cancellationToken: cancellationToken);
     }
     
 
@@ -55,7 +55,7 @@ public partial class OrganizationClient : ISpaceClient
             new OrganizationPatchRequest
             { 
                 OrgData = orgData,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "UpdateOrganization", cancellationToken: cancellationToken);
     }
     
 
@@ -75,7 +75,7 @@ public partial class OrganizationClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<OrgDomainDTO>()) : Partial<OrgDomainDTO>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<OrgDomainDTO>>("GET", $"api/http/organization/domains{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<OrgDomainDTO>>("GET", $"api/http/organization/domains{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllDomains", cancellationToken: cancellationToken);
         }
         
     
@@ -85,7 +85,7 @@ public partial class OrganizationClient : ISpaceClient
             queryParameters.Append("domain", domain);
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<CDomainStatus>()) : Partial<CDomainStatus>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<CDomainStatus>("GET", $"api/http/organization/domains/check{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<CDomainStatus>("GET", $"api/http/organization/domains/check{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "CheckDomainAvailability", cancellationToken: cancellationToken);
         }
         
     
@@ -97,7 +97,7 @@ public partial class OrganizationClient : ISpaceClient
                 new OrganizationDomainsPatchRequest
                 { 
                     Domain = domain,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdateOrganizationDomain", cancellationToken: cancellationToken);
         }
         
     
@@ -118,7 +118,7 @@ public partial class OrganizationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            return await _connection.RequestResourceAsync<string>("GET", $"api/http/organization/jet-sales/url{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<string>("GET", $"api/http/organization/jet-sales/url{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "CheckDomainAvailability", cancellationToken: cancellationToken);
         }
         
     

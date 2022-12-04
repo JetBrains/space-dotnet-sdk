@@ -82,7 +82,7 @@ public partial class TimeTrackingClient : ISpaceClient
                     Date = date,
                     Duration = duration,
                     Description = description,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreateItem", cancellationToken: cancellationToken);
         }
         
     
@@ -106,7 +106,7 @@ public partial class TimeTrackingClient : ISpaceClient
             if (top != null) queryParameters.Append("$top", top?.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TimeTrackingItem>>()) : Partial<Batch<TimeTrackingItem>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<TimeTrackingItem>>("GET", $"api/http/time-tracking/items{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<TimeTrackingItem>>("GET", $"api/http/time-tracking/items{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllItems", cancellationToken: cancellationToken);
         }
         
         /// <summary>
@@ -151,7 +151,7 @@ public partial class TimeTrackingClient : ISpaceClient
                     Date = date,
                     Duration = duration,
                     Description = description,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdateItem", cancellationToken: cancellationToken);
         }
         
     
@@ -175,7 +175,7 @@ public partial class TimeTrackingClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/time-tracking/items/{itemId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/time-tracking/items/{itemId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteItem", cancellationToken: cancellationToken);
         }
         
     

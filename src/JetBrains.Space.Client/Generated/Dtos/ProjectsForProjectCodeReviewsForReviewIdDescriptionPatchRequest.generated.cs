@@ -29,26 +29,34 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public partial class HTTPAPIModelClient : ISpaceClient
+public class ProjectsForProjectCodeReviewsForReviewIdDescriptionPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    private readonly Connection _connection;
+    public ProjectsForProjectCodeReviewsForReviewIdDescriptionPatchRequest() { }
     
-    public HTTPAPIModelClient(Connection connection)
+    public ProjectsForProjectCodeReviewsForReviewIdDescriptionPatchRequest(string description)
     {
-        _connection = connection;
+        Description = description;
     }
     
-    /// <summary>
-    /// Get the HTTP API model that describes the available HTTP APIs
-    /// </summary>
-    public async Task<HAModel> GetHttpApiModelAsync(Func<Partial<HAModel>, Partial<HAModel>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    private PropertyValue<string> _description = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsForReviewIdDescriptionPatchRequest), nameof(Description), "description");
+    
+    [Required]
+    [JsonPropertyName("description")]
+    public string Description
     {
-        var queryParameters = new NameValueCollection();
-        queryParameters.Append("$fields", (partial != null ? partial(new Partial<HAModel>()) : Partial<HAModel>.Default()).ToString());
-        
-        return await _connection.RequestResourceAsync<HAModel>("GET", $"api/http/http-api-model{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetHttpApiModel", cancellationToken: cancellationToken);
+        get => _description.GetValue(InlineErrors);
+        set => _description.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
 
 }
 

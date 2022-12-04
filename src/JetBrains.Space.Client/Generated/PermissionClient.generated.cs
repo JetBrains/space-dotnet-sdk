@@ -48,7 +48,7 @@ public partial class PermissionClient : ISpaceClient
                 Principal = principal,
                 UniqueRightCode = uniqueRightCode,
                 Target = target,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "CheckPermission", cancellationToken: cancellationToken);
     }
     
 
@@ -57,7 +57,7 @@ public partial class PermissionClient : ISpaceClient
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<RightsWithHierarchy>()) : Partial<RightsWithHierarchy>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<RightsWithHierarchy>("GET", $"api/http/permissions{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<RightsWithHierarchy>("GET", $"api/http/permissions{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllPermissions", cancellationToken: cancellationToken);
     }
     
 

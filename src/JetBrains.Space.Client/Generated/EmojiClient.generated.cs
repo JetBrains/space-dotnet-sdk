@@ -50,7 +50,7 @@ public partial class EmojiClient : ISpaceClient
             { 
                 Emoji = emoji,
                 AttachmentId = attachmentId,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "AddEmoji", cancellationToken: cancellationToken);
     }
     
 
@@ -65,7 +65,7 @@ public partial class EmojiClient : ISpaceClient
             new EmojisDeletePostRequest
             { 
                 Emoji = emoji,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "DeleteEmoji", cancellationToken: cancellationToken);
     }
     
 
@@ -80,7 +80,7 @@ public partial class EmojiClient : ISpaceClient
             new EmojisRecordUsagePostRequest
             { 
                 Emojis = emojis,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "RecordEmojisUsage", cancellationToken: cancellationToken);
     }
     
 
@@ -92,7 +92,7 @@ public partial class EmojiClient : ISpaceClient
         var queryParameters = new NameValueCollection();
         queryParameters.Append("emoji", emoji);
         
-        return await _connection.RequestResourceAsync<bool>("GET", $"api/http/emojis/exists{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<bool>("GET", $"api/http/emojis/exists{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "CheckIfEmojiExists", cancellationToken: cancellationToken);
     }
     
 
@@ -103,7 +103,7 @@ public partial class EmojiClient : ISpaceClient
     {
         var queryParameters = new NameValueCollection();
         
-        return await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/emojis/frequently-used{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/emojis/frequently-used{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetFrequentlyUsedEmojis", cancellationToken: cancellationToken);
     }
     
 
@@ -119,7 +119,7 @@ public partial class EmojiClient : ISpaceClient
         if (version != null) queryParameters.Append("version", version);
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<EmojiSearchMatchData>>()) : Partial<Batch<EmojiSearchMatchData>>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<Batch<EmojiSearchMatchData>>("GET", $"api/http/emojis/search{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<Batch<EmojiSearchMatchData>>("GET", $"api/http/emojis/search{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "SearchEmoji", cancellationToken: cancellationToken);
     }
     
     /// <summary>

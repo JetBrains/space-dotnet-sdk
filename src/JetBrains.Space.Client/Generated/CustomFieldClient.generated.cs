@@ -57,7 +57,7 @@ public partial class CustomFieldClient : ISpaceClient
                 new CustomFieldsV2ValuesForEntityPostRequest
                 { 
                     CustomFieldValues = customFieldValues,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "SetValuesForEntity", cancellationToken: cancellationToken);
         }
         
     
@@ -69,7 +69,7 @@ public partial class CustomFieldClient : ISpaceClient
                 new CustomFieldsV2ValuesForEntityForCustomFieldPostRequest
                 { 
                     NewValue = newValue,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "SetSingleValue", cancellationToken: cancellationToken);
         }
         
     
@@ -78,7 +78,7 @@ public partial class CustomFieldClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomFieldValueData>()) : Partial<CustomFieldValueData>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<CustomFieldValueData>>("GET", $"api/http/custom-fields-v2/values/{entity}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<CustomFieldValueData>>("GET", $"api/http/custom-fields-v2/values/{entity}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllValuesForEntity", cancellationToken: cancellationToken);
         }
         
     
@@ -87,7 +87,7 @@ public partial class CustomFieldClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomFieldValueData>()) : Partial<CustomFieldValueData>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<CustomFieldValueData>("GET", $"api/http/custom-fields-v2/values/{entity}/{customField}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<CustomFieldValueData>("GET", $"api/http/custom-fields-v2/values/{entity}/{customField}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetSingleValue", cancellationToken: cancellationToken);
         }
         
     
@@ -121,7 +121,7 @@ public partial class CustomFieldClient : ISpaceClient
                     Constraint = constraint,
                     Description = description,
                     Order = order,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreateCustomField", cancellationToken: cancellationToken);
         }
         
     
@@ -136,7 +136,7 @@ public partial class CustomFieldClient : ISpaceClient
                 new CustomFieldsV2ForEntityTypeFieldsReorderPostRequest
                 { 
                     CustomFields = customFields,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "ReorderCustomFields", cancellationToken: cancellationToken);
         }
         
     
@@ -144,7 +144,7 @@ public partial class CustomFieldClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/archive{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/archive{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ArchiveCustomField", cancellationToken: cancellationToken);
         }
         
     
@@ -152,7 +152,7 @@ public partial class CustomFieldClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/restore{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/restore{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RestoreCustomField", cancellationToken: cancellationToken);
         }
         
     
@@ -165,7 +165,7 @@ public partial class CustomFieldClient : ISpaceClient
             queryParameters.Append("withArchived", withArchived.ToString("l"));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomFieldData>()) : Partial<CustomFieldData>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<CustomFieldData>>("GET", $"api/http/custom-fields-v2/{entityType}/fields{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<CustomFieldData>>("GET", $"api/http/custom-fields-v2/{entityType}/fields{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetCustomFields", cancellationToken: cancellationToken);
         }
         
     
@@ -177,7 +177,7 @@ public partial class CustomFieldClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomFieldData>()) : Partial<CustomFieldData>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<CustomFieldData>("GET", $"api/http/custom-fields-v2/{entityType}/fields/{customField}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<CustomFieldData>("GET", $"api/http/custom-fields-v2/{entityType}/fields/{customField}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetSingleCustomField", cancellationToken: cancellationToken);
         }
         
     
@@ -194,7 +194,7 @@ public partial class CustomFieldClient : ISpaceClient
                     DefaultValue = defaultValue,
                     Constraint = constraint,
                     Description = description,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdateCustomField", cancellationToken: cancellationToken);
         }
         
     
@@ -202,7 +202,7 @@ public partial class CustomFieldClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields-v2/{entityType}/fields/{customField}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields-v2/{entityType}/fields/{customField}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteCustomField", cancellationToken: cancellationToken);
         }
         
     
@@ -226,7 +226,7 @@ public partial class CustomFieldClient : ISpaceClient
                     new CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesPostRequest
                     { 
                         EnumValueToAdd = enumValueToAdd,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "CreateEnumValue", cancellationToken: cancellationToken);
             }
             
         
@@ -238,7 +238,7 @@ public partial class CustomFieldClient : ISpaceClient
                     new CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest
                     { 
                         EnumValueModifications = enumValueModifications,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "BulkUpdateEnumValues", cancellationToken: cancellationToken);
             }
             
         
@@ -252,7 +252,7 @@ public partial class CustomFieldClient : ISpaceClient
                 if (top != null) queryParameters.Append("$top", top?.ToString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<CFEnumValue>>()) : Partial<Batch<CFEnumValue>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<CFEnumValue>>("GET", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/enum-values{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<CFEnumValue>>("GET", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/enum-values{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetEnumValues", cancellationToken: cancellationToken);
             }
             
             public IAsyncEnumerable<CFEnumValue> GetEnumValuesAsyncEnumerable(CFEntityTypeIdentifier entityType, CFIdentifier customField, string? query = null, EnumValueOrdering? ordering = EnumValueOrdering.NAMEASC, string? addedByProfileId = null, string? skip = null, int? top = 100, Func<Partial<CFEnumValue>, Partial<CFEnumValue>>? partial = null, CancellationToken cancellationToken = default)
@@ -267,7 +267,7 @@ public partial class CustomFieldClient : ISpaceClient
                     { 
                         EnumValueToUpdate = enumValueToUpdate,
                         NewName = newName,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "UpdateEnumValue", cancellationToken: cancellationToken);
             }
             
         
@@ -275,7 +275,7 @@ public partial class CustomFieldClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/enum-values/{enumValueToRemove}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/enum-values/{enumValueToRemove}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteEnumValue", cancellationToken: cancellationToken);
             }
             
         

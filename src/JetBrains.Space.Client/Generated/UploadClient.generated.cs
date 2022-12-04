@@ -53,7 +53,7 @@ public partial class UploadClient : ISpaceClient
             { 
                 StoragePrefix = storagePrefix,
                 MediaType = mediaType,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "CreateUpload", cancellationToken: cancellationToken);
     }
     
 
@@ -86,7 +86,7 @@ public partial class UploadClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                return await _connection.RequestResourceAsync<string>("GET", $"api/http/uploads/chat/public-url/{channel}/{message}/{attachmentId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<string>("GET", $"api/http/uploads/chat/public-url/{channel}/{message}/{attachmentId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetPublicUrl", cancellationToken: cancellationToken);
             }
             
         
@@ -113,7 +113,7 @@ public partial class UploadClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ImageAttachmentMeta>()) : Partial<ImageAttachmentMeta>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<ImageAttachmentMeta>("GET", $"api/http/uploads/image/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<ImageAttachmentMeta>("GET", $"api/http/uploads/image/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetImageAttachmentMetadata", cancellationToken: cancellationToken);
         }
         
     

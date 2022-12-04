@@ -108,6 +108,9 @@ public static class MergeRequestRecordPartialExtensions
     public static Partial<MergeRequestRecord> WithCommits(this Partial<MergeRequestRecord> it, Func<Partial<ReviewCommit>, Partial<ReviewCommit>> partialBuilder)
         => it.AddFieldName("commits", partialBuilder(new Partial<ReviewCommit>(it)));
     
+    public static Partial<MergeRequestRecord> WithDescription(this Partial<MergeRequestRecord> it)
+        => it.AddFieldName("description");
+    
     public static Partial<MergeRequestRecord> WithDiscussionCounter(this Partial<MergeRequestRecord> it)
         => it.AddFieldName("discussionCounter");
     
@@ -130,6 +133,12 @@ public static class MergeRequestRecordPartialExtensions
     [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<MergeRequestRecord> WithReviewers(this Partial<MergeRequestRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
         => it.AddFieldName("reviewers", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
+    
+    public static Partial<MergeRequestRecord> WithUnfurls(this Partial<MergeRequestRecord> it)
+        => it.AddFieldName("unfurls");
+    
+    public static Partial<MergeRequestRecord> WithUnfurls(this Partial<MergeRequestRecord> it, Func<Partial<Attachment>, Partial<Attachment>> partialBuilder)
+        => it.AddFieldName("unfurls", partialBuilder(new Partial<Attachment>(it)));
     
     [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<MergeRequestRecord> WithWatchers(this Partial<MergeRequestRecord> it)

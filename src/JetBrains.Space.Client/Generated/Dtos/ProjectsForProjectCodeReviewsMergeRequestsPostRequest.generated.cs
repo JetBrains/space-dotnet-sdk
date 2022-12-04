@@ -34,12 +34,13 @@ public class ProjectsForProjectCodeReviewsMergeRequestsPostRequest
 {
     public ProjectsForProjectCodeReviewsMergeRequestsPostRequest() { }
     
-    public ProjectsForProjectCodeReviewsMergeRequestsPostRequest(string repository, string sourceBranch, string targetBranch, string title, List<ReviewerParam>? reviewers = null)
+    public ProjectsForProjectCodeReviewsMergeRequestsPostRequest(string repository, string sourceBranch, string targetBranch, string title, string? description = null, List<ReviewerParam>? reviewers = null)
     {
         Repository = repository;
         SourceBranch = sourceBranch;
         TargetBranch = targetBranch;
         Title = title;
+        Description = description;
         Reviewers = reviewers;
     }
     
@@ -83,6 +84,18 @@ public class ProjectsForProjectCodeReviewsMergeRequestsPostRequest
         set => _title.SetValue(value);
     }
 
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectCodeReviewsMergeRequestsPostRequest), nameof(Description), "description");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue(InlineErrors);
+        set => _description.SetValue(value);
+    }
+
     private PropertyValue<List<ReviewerParam>?> _reviewers = new PropertyValue<List<ReviewerParam>?>(nameof(ProjectsForProjectCodeReviewsMergeRequestsPostRequest), nameof(Reviewers), "reviewers");
     
 #if NET6_0_OR_GREATER
@@ -101,6 +114,7 @@ public class ProjectsForProjectCodeReviewsMergeRequestsPostRequest
         _sourceBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
         _targetBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
         _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _reviewers.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

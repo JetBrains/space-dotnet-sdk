@@ -485,8 +485,8 @@ public abstract class PermissionIdentifier : IUrlParameter
     /// <summary>
     /// Allow publish static web sites or applications
     /// </summary>
-    public static PermissionIdentifier PublishSitesOrApps
-        => new PermissionIdentifierPublishSitesOrApps();
+    public static PermissionIdentifier PublishSitesOrApplications
+        => new PermissionIdentifierPublishSitesOrApplications();
     
     public static PermissionIdentifier PublishVisionProject
         => new PermissionIdentifierPublishVisionProject();
@@ -1748,10 +1748,10 @@ public abstract class PermissionIdentifier : IUrlParameter
     /// <summary>
     /// Allow publish static web sites or applications
     /// </summary>
-    public class PermissionIdentifierPublishSitesOrApps : PermissionIdentifier
+    public class PermissionIdentifierPublishSitesOrApplications : PermissionIdentifier
     {
         public override string ToString()
-            => "Project.Hosting.PublishStaticSite";
+            => "Project.Hosting.Publish";
     }
     
     public class PermissionIdentifierPublishVisionProject : PermissionIdentifier

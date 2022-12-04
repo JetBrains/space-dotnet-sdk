@@ -27,18 +27,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewUnfurlContextPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class CodeReviewUnfurlContextPartialExtensions
+[JsonConverter(typeof(EnumStringConverter))]
+public enum CodeReviewUnfurlContextField
 {
-    public static Partial<CodeReviewUnfurlContext> WithReviewId(this Partial<CodeReviewUnfurlContext> it)
-        => it.AddFieldName("reviewId");
+    [EnumMember(Value = "Title")]
+    Title,
     
-    public static Partial<CodeReviewUnfurlContext> WithField(this Partial<CodeReviewUnfurlContext> it)
-        => it.AddFieldName("field");
-    
-    public static Partial<CodeReviewUnfurlContext> WithField(this Partial<CodeReviewUnfurlContext> it, Func<Partial<CodeReviewUnfurlContextField>, Partial<CodeReviewUnfurlContextField>> partialBuilder)
-        => it.AddFieldName("field", partialBuilder(new Partial<CodeReviewUnfurlContextField>(it)));
+    [EnumMember(Value = "Description")]
+    Description,
     
 }
 

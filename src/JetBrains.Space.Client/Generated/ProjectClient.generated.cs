@@ -63,7 +63,7 @@ public partial class ProjectClient : ISpaceClient
                 IsPrivate = @private,
                 Tags = (tags ?? new List<string>()),
                 Icon = icon,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "CreateProject", cancellationToken: cancellationToken);
     }
     
 
@@ -88,7 +88,7 @@ public partial class ProjectClient : ISpaceClient
         if (starred != null) queryParameters.Append("starred", starred?.ToString("l"));
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllProjects", cancellationToken: cancellationToken);
     }
     
     /// <summary>
@@ -123,7 +123,7 @@ public partial class ProjectClient : ISpaceClient
         if (top != null) queryParameters.Append("$top", top?.ToString());
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/collaborator:{profile}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/collaborator:{profile}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllProjectsByCollaborator", cancellationToken: cancellationToken);
     }
     
     /// <summary>
@@ -158,7 +158,7 @@ public partial class ProjectClient : ISpaceClient
         if (top != null) queryParameters.Append("$top", top?.ToString());
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/member:{member}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/member:{member}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllProjectsByMember", cancellationToken: cancellationToken);
     }
     
     /// <summary>
@@ -193,7 +193,7 @@ public partial class ProjectClient : ISpaceClient
         if (starred != null) queryParameters.Append("starred", starred?.ToString("l"));
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/right-code:{rightCode}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/right-code:{rightCode}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllProjectsWithRight", cancellationToken: cancellationToken);
     }
     
     /// <remarks>
@@ -215,7 +215,7 @@ public partial class ProjectClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<Batch<PRProject>> GetAllProjectsWithRightCodeAsync(PermissionIdentifier right, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    public async Task<Batch<PRProject>> GetAllProjectsWithRightCodeAsync(PermissionIdentifier right, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, bool? @private = null, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         if (skip != null) queryParameters.Append("$skip", skip);
@@ -223,9 +223,10 @@ public partial class ProjectClient : ISpaceClient
         if (term != null) queryParameters.Append("term", term);
         if (path != null) queryParameters.Append("path", path);
         if (starred != null) queryParameters.Append("starred", starred?.ToString("l"));
+        if (@private != null) queryParameters.Append("private", @private?.ToString("l"));
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/right-unique-code:{right}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/right-unique-code:{right}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllProjectsWithRightCode", cancellationToken: cancellationToken);
     }
     
     /// <remarks>
@@ -236,8 +237,8 @@ public partial class ProjectClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public IAsyncEnumerable<PRProject> GetAllProjectsWithRightCodeAsyncEnumerable(PermissionIdentifier right, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
-        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsWithRightCodeAsync(right: right, top: top, term: term, path: path, starred: starred, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
+    public IAsyncEnumerable<PRProject> GetAllProjectsWithRightCodeAsyncEnumerable(PermissionIdentifier right, string? skip = null, int? top = 100, string? term = null, string? path = null, bool? starred = null, bool? @private = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
+        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsWithRightCodeAsync(right: right, top: top, term: term, path: path, starred: starred, @private: @private, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
 
     /// <summary>
     /// Get all projects for a team
@@ -257,7 +258,7 @@ public partial class ProjectClient : ISpaceClient
         if (top != null) queryParameters.Append("$top", top?.ToString());
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/team:{team}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/team:{team}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllProjectsByTeam", cancellationToken: cancellationToken);
     }
     
     /// <summary>
@@ -290,7 +291,7 @@ public partial class ProjectClient : ISpaceClient
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRProject>()) : Partial<PRProject>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<PRProject>("GET", $"api/http/projects/{project}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<PRProject>("GET", $"api/http/projects/{project}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetProject", cancellationToken: cancellationToken);
     }
     
 
@@ -319,7 +320,7 @@ public partial class ProjectClient : ISpaceClient
                 IsPrivate = @private,
                 Tags = tags,
                 Icon = icon,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "UpdateProject", cancellationToken: cancellationToken);
     }
     
 
@@ -338,7 +339,7 @@ public partial class ProjectClient : ISpaceClient
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteProject", cancellationToken: cancellationToken);
     }
     
 
@@ -369,7 +370,7 @@ public partial class ProjectClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<DslEvaluationConfig>()) : Partial<DslEvaluationConfig>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<DslEvaluationConfig>("GET", $"api/http/projects/automation/dsl-evaluations/config{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<DslEvaluationConfig>("GET", $"api/http/projects/automation/dsl-evaluations/config{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetDslEvaluationConfiguration", cancellationToken: cancellationToken);
             }
             
         
@@ -401,7 +402,7 @@ public partial class ProjectClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("POST", $"api/http/projects/automation/graph-executions/{id}/stop{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/automation/graph-executions/{id}/stop{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "StopExecution", cancellationToken: cancellationToken);
             }
             
         
@@ -418,7 +419,7 @@ public partial class ProjectClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<JobExecutionDTO>()) : Partial<JobExecutionDTO>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<JobExecutionDTO>("GET", $"api/http/projects/automation/graph-executions/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<JobExecutionDTO>("GET", $"api/http/projects/automation/graph-executions/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetGraphExecution", cancellationToken: cancellationToken);
             }
             
         
@@ -448,7 +449,7 @@ public partial class ProjectClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<JobExecutionDTO>()) : Partial<JobExecutionDTO>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<JobExecutionDTO>("GET", $"api/http/projects/automation/job-executions/current{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<JobExecutionDTO>("GET", $"api/http/projects/automation/job-executions/current{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetCurrent", cancellationToken: cancellationToken);
             }
             
         
@@ -479,7 +480,7 @@ public partial class ProjectClient : ISpaceClient
                 queryParameters.Append("project", project.ToString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<JobDTO>()) : Partial<JobDTO>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<JobDTO>("GET", $"api/http/projects/automation/jobs/{jobId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<JobDTO>("GET", $"api/http/projects/automation/jobs/{jobId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetJob", cancellationToken: cancellationToken);
             }
             
         
@@ -523,7 +524,7 @@ public partial class ProjectClient : ISpaceClient
                         var queryParameters = new NameValueCollection();
                         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ParameterLastUsageDTO>()) : Partial<ParameterLastUsageDTO>.Default()).ToString());
                         
-                        return await _connection.RequestResourceAsync<List<ParameterLastUsageDTO>>("GET", $"api/http/projects/automation/step-executions/used-parameters/param/{parameterId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                        return await _connection.RequestResourceAsync<List<ParameterLastUsageDTO>>("GET", $"api/http/projects/automation/step-executions/used-parameters/param/{parameterId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetParam", cancellationToken: cancellationToken);
                     }
                     
                 
@@ -545,7 +546,7 @@ public partial class ProjectClient : ISpaceClient
                         var queryParameters = new NameValueCollection();
                         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ParameterLastUsageDTO>()) : Partial<ParameterLastUsageDTO>.Default()).ToString());
                         
-                        return await _connection.RequestResourceAsync<List<ParameterLastUsageDTO>>("GET", $"api/http/projects/automation/step-executions/used-parameters/secret/{secretId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                        return await _connection.RequestResourceAsync<List<ParameterLastUsageDTO>>("GET", $"api/http/projects/automation/step-executions/used-parameters/secret/{secretId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetSecret", cancellationToken: cancellationToken);
                     }
                     
                 
@@ -568,7 +569,7 @@ public partial class ProjectClient : ISpaceClient
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    return await _connection.RequestResourceAsync<string>("GET", $"api/http/projects/automation/step-executions/{stepExecId}/parameters/{key}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<string>("GET", $"api/http/projects/automation/step-executions/{stepExecId}/parameters/{key}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetParameter", cancellationToken: cancellationToken);
                 }
                 
             
@@ -580,7 +581,7 @@ public partial class ProjectClient : ISpaceClient
                         new ProjectsAutomationStepExecutionsForStepExecIdParametersForKeyPatchRequest
                         { 
                             Value = value,
-                        }, requestHeaders: null, cancellationToken: cancellationToken);
+                        }, requestHeaders: null, functionName: "UpdateParameter", cancellationToken: cancellationToken);
                 }
                 
             
@@ -588,7 +589,7 @@ public partial class ProjectClient : ISpaceClient
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/automation/step-executions/{stepExecId}/parameters/{key}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/automation/step-executions/{stepExecId}/parameters/{key}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteParameter", cancellationToken: cancellationToken);
                 }
                 
             
@@ -637,7 +638,7 @@ public partial class ProjectClient : ISpaceClient
                     if (jobId != null) queryParameters.Append("jobId", jobId);
                     queryParameters.Append("unsubscribedOnly", unsubscribedOnly.ToString("l"));
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/automation/subscriptions/legacy-channels{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/automation/subscriptions/legacy-channels{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteLegacyChannels", cancellationToken: cancellationToken);
                 }
                 
             
@@ -681,7 +682,7 @@ public partial class ProjectClient : ISpaceClient
                         Name = name,
                         Description = description,
                         Repositories = (repositories ?? new List<DeployTargetRepositoryDTO>()),
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "Create", cancellationToken: cancellationToken);
             }
             
         
@@ -704,7 +705,7 @@ public partial class ProjectClient : ISpaceClient
                 if (top != null) queryParameters.Append("$top", top?.ToString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<DeployTargetRecord>>()) : Partial<Batch<DeployTargetRecord>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<DeployTargetRecord>>("GET", $"api/http/projects/{project}/automation/deployment-targets{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<DeployTargetRecord>>("GET", $"api/http/projects/{project}/automation/deployment-targets{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "List", cancellationToken: cancellationToken);
             }
             
             /// <remarks>
@@ -735,7 +736,7 @@ public partial class ProjectClient : ISpaceClient
                 queryParameters.Append("sortOrder", sortOrder.ToEnumString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<DeployTargetRecord>()) : Partial<DeployTargetRecord>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<DeployTargetRecord>>("GET", $"api/http/projects/{project}/automation/deployment-targets/favorites{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<List<DeployTargetRecord>>("GET", $"api/http/projects/{project}/automation/deployment-targets/favorites{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ListFavorites", cancellationToken: cancellationToken);
             }
             
         
@@ -753,7 +754,7 @@ public partial class ProjectClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<DeployTargetRecord>()) : Partial<DeployTargetRecord>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<DeployTargetRecord>("GET", $"api/http/projects/{project}/automation/deployment-targets/{target}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<DeployTargetRecord>("GET", $"api/http/projects/{project}/automation/deployment-targets/{target}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "Get", cancellationToken: cancellationToken);
             }
             
         
@@ -770,7 +771,7 @@ public partial class ProjectClient : ISpaceClient
                         IsManualControl = manualControl,
                         HangTimeoutMinutes = hangTimeoutMinutes,
                         FailTimeoutMinutes = failTimeoutMinutes,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "Update", cancellationToken: cancellationToken);
             }
             
         
@@ -787,7 +788,7 @@ public partial class ProjectClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/automation/deployment-targets/{target}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/automation/deployment-targets/{target}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "Delete", cancellationToken: cancellationToken);
             }
             
         
@@ -822,7 +823,7 @@ public partial class ProjectClient : ISpaceClient
                     new ProjectsForProjectAutomationDeploymentsFailPostRequest
                     { 
                         TargetIdentifier = targetIdentifier,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "Fail", cancellationToken: cancellationToken);
             }
             
         
@@ -849,7 +850,7 @@ public partial class ProjectClient : ISpaceClient
                         Description = description,
                         CommitRefs = commitRefs,
                         ExternalLink = externalLink,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "Finish", cancellationToken: cancellationToken);
             }
             
         
@@ -876,7 +877,7 @@ public partial class ProjectClient : ISpaceClient
                         Description = description,
                         CommitRefs = commitRefs,
                         ExternalLink = externalLink,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "Schedule", cancellationToken: cancellationToken);
             }
             
         
@@ -904,7 +905,7 @@ public partial class ProjectClient : ISpaceClient
                         CommitRefs = commitRefs,
                         ExternalLink = externalLink,
                         IsSyncWithAutomationJob = syncWithAutomationJob,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "Start", cancellationToken: cancellationToken);
             }
             
         
@@ -926,7 +927,7 @@ public partial class ProjectClient : ISpaceClient
                 if (top != null) queryParameters.Append("$top", top?.ToString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<DeploymentRecord>>()) : Partial<Batch<DeploymentRecord>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<DeploymentRecord>>("GET", $"api/http/projects/{project}/automation/deployments{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<DeploymentRecord>>("GET", $"api/http/projects/{project}/automation/deployments{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "List", cancellationToken: cancellationToken);
             }
             
             /// <remarks>
@@ -955,7 +956,7 @@ public partial class ProjectClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<DeploymentRecord>()) : Partial<DeploymentRecord>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<DeploymentRecord>("GET", $"api/http/projects/{project}/automation/deployments/{targetIdentifier}/{deploymentIdentifier}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<DeploymentRecord>("GET", $"api/http/projects/{project}/automation/deployments/{targetIdentifier}/{deploymentIdentifier}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "Get", cancellationToken: cancellationToken);
             }
             
         
@@ -983,7 +984,7 @@ public partial class ProjectClient : ISpaceClient
                         Description = description,
                         CommitRefs = commitRefs,
                         ExternalLink = externalLink,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "Update", cancellationToken: cancellationToken);
             }
             
         
@@ -1000,7 +1001,7 @@ public partial class ProjectClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/automation/deployments/{targetIdentifier}/{deploymentIdentifier}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/automation/deployments/{targetIdentifier}/{deploymentIdentifier}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "Delete", cancellationToken: cancellationToken);
             }
             
         
@@ -1030,7 +1031,7 @@ public partial class ProjectClient : ISpaceClient
                 if (top != null) queryParameters.Append("$top", top?.ToString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<JobExecutionDTO>>()) : Partial<Batch<JobExecutionDTO>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<JobExecutionDTO>>("GET", $"api/http/projects/{project}/automation/graph-executions{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<JobExecutionDTO>>("GET", $"api/http/projects/{project}/automation/graph-executions{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllGraphExecutions", cancellationToken: cancellationToken);
             }
             
             /// <summary>
@@ -1073,7 +1074,7 @@ public partial class ProjectClient : ISpaceClient
                         Branch = branch,
                         Parameters = parameters,
                         CheckoutRevisions = checkoutRevisions,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "StartJob", cancellationToken: cancellationToken);
             }
             
         
@@ -1098,7 +1099,7 @@ public partial class ProjectClient : ISpaceClient
                 if (top != null) queryParameters.Append("$top", top?.ToString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<JobDTO>>()) : Partial<Batch<JobDTO>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<JobDTO>>("GET", $"api/http/projects/{project}/automation/jobs{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<JobDTO>>("GET", $"api/http/projects/{project}/automation/jobs{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllJobs", cancellationToken: cancellationToken);
             }
             
             /// <summary>
@@ -1150,7 +1151,7 @@ public partial class ProjectClient : ISpaceClient
                 { 
                     Value = value,
                     Description = description,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdateParam", cancellationToken: cancellationToken);
         }
         
     
@@ -1169,7 +1170,7 @@ public partial class ProjectClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/params/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/params/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteParam", cancellationToken: cancellationToken);
         }
         
     
@@ -1206,7 +1207,7 @@ public partial class ProjectClient : ISpaceClient
                         Key = key,
                         Value = value,
                         Description = description,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "CreateDefaultBundle", cancellationToken: cancellationToken);
             }
             
         
@@ -1229,7 +1230,7 @@ public partial class ProjectClient : ISpaceClient
                 if (top != null) queryParameters.Append("$top", top?.ToString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PlainParameterRecord>>()) : Partial<Batch<PlainParameterRecord>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<PlainParameterRecord>>("GET", $"api/http/projects/params/default-bundle{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<PlainParameterRecord>>("GET", $"api/http/projects/params/default-bundle{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllDefaultBundle", cancellationToken: cancellationToken);
             }
             
             /// <summary>
@@ -1278,7 +1279,7 @@ public partial class ProjectClient : ISpaceClient
                         ProjectId = projectId,
                         Key = key,
                         Value = value,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "CreateInDefaultBundle", cancellationToken: cancellationToken);
             }
             
         
@@ -1302,7 +1303,7 @@ public partial class ProjectClient : ISpaceClient
                 if (top != null) queryParameters.Append("$top", top?.ToString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PlainParameterRecord>>()) : Partial<Batch<PlainParameterRecord>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<PlainParameterRecord>>("GET", $"api/http/projects/params/in-default-bundle{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<PlainParameterRecord>>("GET", $"api/http/projects/params/in-default-bundle{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllInDefaultBundle", cancellationToken: cancellationToken);
             }
             
             /// <summary>
@@ -1363,7 +1364,7 @@ public partial class ProjectClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<BoardRecord>()) : Partial<BoardRecord>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<BoardRecord>("GET", $"api/http/projects/planning/boards/{board}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<BoardRecord>("GET", $"api/http/projects/planning/boards/{board}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetBoard", cancellationToken: cancellationToken);
             }
             
         
@@ -1393,7 +1394,7 @@ public partial class ProjectClient : ISpaceClient
                         IssueFields = issueFields,
                         MemberOwners = memberOwners,
                         TeamOwners = teamOwners,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "UpdateBoard", cancellationToken: cancellationToken);
             }
             
         
@@ -1413,7 +1414,7 @@ public partial class ProjectClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/planning/boards/{board}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/planning/boards/{board}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteBoard", cancellationToken: cancellationToken);
             }
             
         
@@ -1454,7 +1455,7 @@ public partial class ProjectClient : ISpaceClient
                             From = from,
                             To = to,
                             Launch = launch,
-                        }, requestHeaders: null, cancellationToken: cancellationToken);
+                        }, requestHeaders: null, functionName: "CreateSprint", cancellationToken: cancellationToken);
                 }
                 
             
@@ -1479,7 +1480,7 @@ public partial class ProjectClient : ISpaceClient
                         { 
                             IsMoveUnresolvedIssuesFromCurrentSprint = moveUnresolvedIssuesFromCurrentSprint,
                             IsNotifySubscribers = notifySubscribers,
-                        }, requestHeaders: null, cancellationToken: cancellationToken);
+                        }, requestHeaders: null, functionName: "LaunchPlannedSprint", cancellationToken: cancellationToken);
                 }
                 
             
@@ -1507,7 +1508,7 @@ public partial class ProjectClient : ISpaceClient
                             From = from,
                             To = to,
                             Launch = launch,
-                        }, requestHeaders: null, cancellationToken: cancellationToken);
+                        }, requestHeaders: null, functionName: "UpdateSprint", cancellationToken: cancellationToken);
                 }
                 
             
@@ -1538,7 +1539,7 @@ public partial class ProjectClient : ISpaceClient
                     {
                         var queryParameters = new NameValueCollection();
                         
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/planning/boards/sprints/{sprint}/archive{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/planning/boards/sprints/{sprint}/archive{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ArchiveSprint", cancellationToken: cancellationToken);
                     }
                     
                 
@@ -1571,7 +1572,7 @@ public partial class ProjectClient : ISpaceClient
                     {
                         var queryParameters = new NameValueCollection();
                         
-                        await _connection.RequestResourceAsync("POST", $"api/http/projects/planning/boards/sprints/{sprint}/issues/{issue}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                        await _connection.RequestResourceAsync("POST", $"api/http/projects/planning/boards/sprints/{sprint}/issues/{issue}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "AddIssueToSprint", cancellationToken: cancellationToken);
                     }
                     
                 
@@ -1595,7 +1596,7 @@ public partial class ProjectClient : ISpaceClient
                         queryParameters.Append("unresolvedOnly", unresolvedOnly.ToString("l"));
                         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Issue>>()) : Partial<Batch<Issue>>.Default()).ToString());
                         
-                        return await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/planning/boards/sprints/{sprint}/issues{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                        return await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/planning/boards/sprints/{sprint}/issues{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllIssuesInSprint", cancellationToken: cancellationToken);
                     }
                     
                     /// <summary>
@@ -1629,7 +1630,7 @@ public partial class ProjectClient : ISpaceClient
                     {
                         var queryParameters = new NameValueCollection();
                         
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/planning/boards/sprints/{sprint}/issues/{issue}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/planning/boards/sprints/{sprint}/issues/{issue}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveIssueFromSprint", cancellationToken: cancellationToken);
                     }
                     
                 
@@ -1664,7 +1665,7 @@ public partial class ProjectClient : ISpaceClient
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("POST", $"api/http/projects/planning/boards/{board}/issues/{issue}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/planning/boards/{board}/issues/{issue}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "AddIssueToBoard", cancellationToken: cancellationToken);
                 }
                 
             
@@ -1687,7 +1688,7 @@ public partial class ProjectClient : ISpaceClient
                     if (top != null) queryParameters.Append("$top", top?.ToString());
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Issue>>()) : Partial<Batch<Issue>>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/planning/boards/{board}/issues{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/planning/boards/{board}/issues{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllIssuesOnBoard", cancellationToken: cancellationToken);
                 }
                 
                 /// <summary>
@@ -1721,7 +1722,7 @@ public partial class ProjectClient : ISpaceClient
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/planning/boards/{board}/issues/{issue}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/planning/boards/{board}/issues/{issue}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveIssueFromBoard", cancellationToken: cancellationToken);
                 }
                 
             
@@ -1757,7 +1758,7 @@ public partial class ProjectClient : ISpaceClient
                     { 
                         Name = name,
                         Description = description,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "CreateBoard", cancellationToken: cancellationToken);
             }
             
         
@@ -1781,7 +1782,7 @@ public partial class ProjectClient : ISpaceClient
                 if (query != null) queryParameters.Append("query", query);
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<BoardRecord>>()) : Partial<Batch<BoardRecord>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<BoardRecord>>("GET", $"api/http/projects/{project}/planning/boards{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<BoardRecord>>("GET", $"api/http/projects/{project}/planning/boards{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllBoards", cancellationToken: cancellationToken);
             }
             
             /// <summary>
@@ -1822,7 +1823,7 @@ public partial class ProjectClient : ISpaceClient
                     if (query != null) queryParameters.Append("query", query);
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<SprintRecord>>()) : Partial<Batch<SprintRecord>>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<Batch<SprintRecord>>("GET", $"api/http/projects/{project}/planning/boards/sprints{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<Batch<SprintRecord>>("GET", $"api/http/projects/{project}/planning/boards/sprints{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllSprints", cancellationToken: cancellationToken);
                 }
                 
                 /// <summary>
@@ -1870,7 +1871,7 @@ public partial class ProjectClient : ISpaceClient
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<BoardRecord>()) : Partial<BoardRecord>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<List<BoardRecord>>("GET", $"api/http/projects/{project}/planning/boards/starred{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<List<BoardRecord>>("GET", $"api/http/projects/{project}/planning/boards/starred{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllStarredBoards", cancellationToken: cancellationToken);
                 }
                 
             
@@ -1904,7 +1905,7 @@ public partial class ProjectClient : ISpaceClient
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/boards/{board}/archive{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/boards/{board}/archive{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ArchiveBoard", cancellationToken: cancellationToken);
                 }
                 
             
@@ -1936,7 +1937,7 @@ public partial class ProjectClient : ISpaceClient
                     new ProjectsForProjectPlanningChecklistsPostRequest
                     { 
                         Name = name,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "CreateChecklist", cancellationToken: cancellationToken);
             }
             
         
@@ -1956,7 +1957,7 @@ public partial class ProjectClient : ISpaceClient
                     { 
                         Name = name,
                         TabIndentedLines = tabIndentedLines,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "ImportChecklist", cancellationToken: cancellationToken);
             }
             
         
@@ -1974,7 +1975,7 @@ public partial class ProjectClient : ISpaceClient
                         TargetParentId = targetParentId,
                         AfterItemId = afterItemId,
                         TabIndentedLines = tabIndentedLines,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "ImportChecklistLines", cancellationToken: cancellationToken);
             }
             
         
@@ -1992,7 +1993,7 @@ public partial class ProjectClient : ISpaceClient
                 queryParameters.Append("descending", descending.ToString("l"));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Checklist>>()) : Partial<Batch<Checklist>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<Checklist>>("GET", $"api/http/projects/{project}/planning/checklists{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<Checklist>>("GET", $"api/http/projects/{project}/planning/checklists{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllChecklists", cancellationToken: cancellationToken);
             }
             
             /// <summary>
@@ -2018,7 +2019,7 @@ public partial class ProjectClient : ISpaceClient
                         Owner = owner,
                         Tag = tag,
                         Topics = topics,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "UpdateChecklist", cancellationToken: cancellationToken);
             }
             
         
@@ -2030,7 +2031,7 @@ public partial class ProjectClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/checklists/{checklistId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/checklists/{checklistId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteChecklist", cancellationToken: cancellationToken);
             }
             
         
@@ -2054,7 +2055,7 @@ public partial class ProjectClient : ISpaceClient
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<List<Checklist>>("GET", $"api/http/projects/{project}/planning/checklists/starred{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<List<Checklist>>("GET", $"api/http/projects/{project}/planning/checklists/starred{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllStarredChecklists", cancellationToken: cancellationToken);
                 }
                 
             
@@ -2079,7 +2080,7 @@ public partial class ProjectClient : ISpaceClient
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<PlanItemChildren>()) : Partial<PlanItemChildren>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<List<PlanItemChildren>>("GET", $"api/http/projects/{project}/planning/checklists/{checklistId}/full-checklist-tree{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<List<PlanItemChildren>>("GET", $"api/http/projects/{project}/planning/checklists/{checklistId}/full-checklist-tree{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetFullChecklistTree", cancellationToken: cancellationToken);
                 }
                 
             
@@ -2131,7 +2132,7 @@ public partial class ProjectClient : ISpaceClient
                         CustomFields = customFields,
                         Topics = topics,
                         Parents = parents,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "CreateIssue", cancellationToken: cancellationToken);
             }
             
         
@@ -2162,7 +2163,7 @@ public partial class ProjectClient : ISpaceClient
                         OnExistsPolicy = onExistsPolicy,
                         IsDryRun = dryRun,
                         IsNotifySubscribers = notifySubscribers,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "ImportIssues", cancellationToken: cancellationToken);
             }
             
         
@@ -2182,7 +2183,7 @@ public partial class ProjectClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/restore{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/restore{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RestoreIssue", cancellationToken: cancellationToken);
             }
             
         
@@ -2206,7 +2207,7 @@ public partial class ProjectClient : ISpaceClient
                     new ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest
                     { 
                         IsResolved = resolved,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "ToggleIssueResolvedStatus", cancellationToken: cancellationToken);
             }
             
         
@@ -2249,7 +2250,7 @@ public partial class ProjectClient : ISpaceClient
                 if (deployment != null) queryParameters.Append("deployment", deployment);
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Issue>>()) : Partial<Batch<Issue>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/{project}/planning/issues{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/{project}/planning/issues{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllIssues", cancellationToken: cancellationToken);
             }
             
             /// <summary>
@@ -2286,7 +2287,7 @@ public partial class ProjectClient : ISpaceClient
                 if (withDeleted != null) queryParameters.Append("withDeleted", withDeleted?.ToString("l"));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Issue>("GET", $"api/http/projects/{project}/planning/issues/number:{number}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Issue>("GET", $"api/http/projects/{project}/planning/issues/number:{number}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetIssueByNumber", cancellationToken: cancellationToken);
             }
             
         
@@ -2305,7 +2306,7 @@ public partial class ProjectClient : ISpaceClient
                 if (withDeleted != null) queryParameters.Append("withDeleted", withDeleted?.ToString("l"));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Issue>("GET", $"api/http/projects/{project}/planning/issues/{issueId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Issue>("GET", $"api/http/projects/{project}/planning/issues/{issueId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetIssue", cancellationToken: cancellationToken);
             }
             
         
@@ -2335,7 +2336,7 @@ public partial class ProjectClient : ISpaceClient
                         DueDate = dueDate,
                         CustomFields = (customFields ?? new List<CustomFieldInputValue>()),
                         IsNotifySubscribers = notifySubscribers,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "UpdateIssue", cancellationToken: cancellationToken);
             }
             
         
@@ -2355,7 +2356,7 @@ public partial class ProjectClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteIssue", cancellationToken: cancellationToken);
             }
             
         
@@ -2387,7 +2388,7 @@ public partial class ProjectClient : ISpaceClient
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<IssueStatus>()) : Partial<IssueStatus>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<List<IssueStatus>>("GET", $"api/http/projects/{project}/planning/issues/statuses{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<List<IssueStatus>>("GET", $"api/http/projects/{project}/planning/issues/statuses{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllIssueStatuses", cancellationToken: cancellationToken);
                 }
                 
             
@@ -2411,7 +2412,7 @@ public partial class ProjectClient : ISpaceClient
                         new ProjectsForProjectPlanningIssuesStatusesPatchRequest
                         { 
                             Statuses = statuses,
-                        }, requestHeaders: null, cancellationToken: cancellationToken);
+                        }, requestHeaders: null, functionName: "UpdateIssueStatusesList", cancellationToken: cancellationToken);
                 }
                 
             
@@ -2443,7 +2444,7 @@ public partial class ProjectClient : ISpaceClient
                         var queryParameters = new NameValueCollection();
                         queryParameters.Append("$fields", (partial != null ? partial(new Partial<IssueStatus>()) : Partial<IssueStatus>.Default()).ToString());
                         
-                        return await _connection.RequestResourceAsync<IssueStatus>("GET", $"api/http/projects/{project}/planning/issues/statuses/auto-update-on-merge-request-merge{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                        return await _connection.RequestResourceAsync<IssueStatus>("GET", $"api/http/projects/{project}/planning/issues/statuses/auto-update-on-merge-request-merge{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAutoUpdateTargetIssueStatusForMergeRequestMerge", cancellationToken: cancellationToken);
                     }
                     
                 
@@ -2467,7 +2468,7 @@ public partial class ProjectClient : ISpaceClient
                             new ProjectsForProjectPlanningIssuesStatusesAutoUpdateOnMergeRequestMergePatchRequest
                             { 
                                 StatusId = statusId,
-                            }, requestHeaders: null, cancellationToken: cancellationToken);
+                            }, requestHeaders: null, functionName: "SetAutoUpdateTargetIssueStatusForMergeRequestMerge", cancellationToken: cancellationToken);
                     }
                     
                 
@@ -2501,7 +2502,7 @@ public partial class ProjectClient : ISpaceClient
                         var queryParameters = new NameValueCollection();
                         queryParameters.Append("$fields", (partial != null ? partial(new Partial<IssueStatusWithUsages>()) : Partial<IssueStatusWithUsages>.Default()).ToString());
                         
-                        return await _connection.RequestResourceAsync<List<IssueStatusWithUsages>>("GET", $"api/http/projects/{project}/planning/issues/statuses/distribution{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                        return await _connection.RequestResourceAsync<List<IssueStatusWithUsages>>("GET", $"api/http/projects/{project}/planning/issues/statuses/distribution{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetIssueStatusDistribution", cancellationToken: cancellationToken);
                     }
                     
                 
@@ -2540,7 +2541,7 @@ public partial class ProjectClient : ISpaceClient
                         new ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest
                         { 
                             Attachments = attachments,
-                        }, requestHeaders: null, cancellationToken: cancellationToken);
+                        }, requestHeaders: null, functionName: "AddAttachments", cancellationToken: cancellationToken);
                 }
                 
             
@@ -2561,7 +2562,7 @@ public partial class ProjectClient : ISpaceClient
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("identities", identities.Select(it => it));
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/attachments{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/attachments{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveAttachments", cancellationToken: cancellationToken);
                 }
                 
             
@@ -2597,7 +2598,7 @@ public partial class ProjectClient : ISpaceClient
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/checklists/{checklistId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/checklists/{checklistId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "AddIssueChecklist", cancellationToken: cancellationToken);
                 }
                 
             
@@ -2620,7 +2621,7 @@ public partial class ProjectClient : ISpaceClient
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/checklists/{checklistId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/checklists/{checklistId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveIssueChecklist", cancellationToken: cancellationToken);
                 }
                 
             
@@ -2657,7 +2658,7 @@ public partial class ProjectClient : ISpaceClient
                         new ProjectsForProjectPlanningIssuesForIssueIdCodeReviewsPostRequest
                         { 
                             CodeReviewIds = codeReviewIds,
-                        }, requestHeaders: null, cancellationToken: cancellationToken);
+                        }, requestHeaders: null, functionName: "AddCodeReviewLinks", cancellationToken: cancellationToken);
                 }
                 
             
@@ -2678,7 +2679,7 @@ public partial class ProjectClient : ISpaceClient
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("codeReviewIds", codeReviewIds.Select(it => it.ToString()));
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/code-reviews{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/code-reviews{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveCodeReviewLinks", cancellationToken: cancellationToken);
                 }
                 
             
@@ -2713,7 +2714,7 @@ public partial class ProjectClient : ISpaceClient
                         new ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest
                         { 
                             Comments = comments,
-                        }, requestHeaders: null, cancellationToken: cancellationToken);
+                        }, requestHeaders: null, functionName: "ImportIssueCommentHistory", cancellationToken: cancellationToken);
                 }
                 
             
@@ -2751,7 +2752,7 @@ public partial class ProjectClient : ISpaceClient
                         { 
                             Repository = repository,
                             CommitIds = commitIds,
-                        }, requestHeaders: null, cancellationToken: cancellationToken);
+                        }, requestHeaders: null, functionName: "AddCommitLinks", cancellationToken: cancellationToken);
                 }
                 
             
@@ -2773,7 +2774,7 @@ public partial class ProjectClient : ISpaceClient
                     queryParameters.Append("repository", repository);
                     queryParameters.Append("commitIds", commitIds.Select(it => it));
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/commits{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/commits{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveCommitLinks", cancellationToken: cancellationToken);
                 }
                 
             
@@ -2806,7 +2807,7 @@ public partial class ProjectClient : ISpaceClient
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/tags/{tagId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/tags/{tagId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "AddIssueTag", cancellationToken: cancellationToken);
                 }
                 
             
@@ -2826,7 +2827,7 @@ public partial class ProjectClient : ISpaceClient
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/tags/{tagId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/tags/{tagId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveIssueTag", cancellationToken: cancellationToken);
                 }
                 
             
@@ -2867,7 +2868,7 @@ public partial class ProjectClient : ISpaceClient
                     { 
                         ParentTagId = parentTagId,
                         Path = path,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "CreateHierarchicalTag", cancellationToken: cancellationToken);
             }
             
         
@@ -2890,7 +2891,7 @@ public partial class ProjectClient : ISpaceClient
                 if (query != null) queryParameters.Append("query", query);
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PlanningTag>>()) : Partial<Batch<PlanningTag>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<PlanningTag>>("GET", $"api/http/projects/{project}/planning/tags{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<PlanningTag>>("GET", $"api/http/projects/{project}/planning/tags{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllHierarchicalTags", cancellationToken: cancellationToken);
             }
             
             /// <summary>
@@ -2937,7 +2938,7 @@ public partial class ProjectClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/projects/private-projects/{project}/request-access{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/projects/private-projects/{project}/request-access{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RequestAccessToProject", cancellationToken: cancellationToken);
         }
         
     
@@ -2960,7 +2961,7 @@ public partial class ProjectClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRPrivateProject>()) : Partial<PRPrivateProject>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<PRPrivateProject>>("GET", $"api/http/projects/private-projects{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<PRPrivateProject>>("GET", $"api/http/projects/private-projects{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllPrivateProjects", cancellationToken: cancellationToken);
         }
         
     
@@ -3010,7 +3011,7 @@ public partial class ProjectClient : ISpaceClient
                 queryParameters.Append("term", term);
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<RepositoryDetails>>()) : Partial<Batch<RepositoryDetails>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<RepositoryDetails>>("GET", $"api/http/projects/repositories/find{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<RepositoryDetails>>("GET", $"api/http/projects/repositories/find{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "FindRepositories", cancellationToken: cancellationToken);
             }
             
             /// <summary>
@@ -3048,7 +3049,7 @@ public partial class ProjectClient : ISpaceClient
                     DefaultBranch = defaultBranch,
                     IsInitialize = initialize,
                     IsDefaultSetup = defaultSetup,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreateNewRepository", cancellationToken: cancellationToken);
         }
         
     
@@ -3064,7 +3065,7 @@ public partial class ProjectClient : ISpaceClient
                     TargetBranch = targetBranch,
                     CommitMessage = commitMessage,
                     Files = files,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "Commit", cancellationToken: cancellationToken);
         }
         
     
@@ -3072,7 +3073,7 @@ public partial class ProjectClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/gc{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/gc{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "Gc", cancellationToken: cancellationToken);
         }
         
     
@@ -3084,7 +3085,7 @@ public partial class ProjectClient : ISpaceClient
             if (limit != null) queryParameters.Append("limit", limit?.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<BranchInfo>()) : Partial<BranchInfo>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<BranchInfo>>("GET", $"api/http/projects/{project}/repositories/{repository}/commit-branches{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<BranchInfo>>("GET", $"api/http/projects/{project}/repositories/{repository}/commit-branches{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "CommitBranches", cancellationToken: cancellationToken);
         }
         
     
@@ -3096,7 +3097,7 @@ public partial class ProjectClient : ISpaceClient
             if (query != null) queryParameters.Append("query", query);
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<GitCommitInfo>>()) : Partial<Batch<GitCommitInfo>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<GitCommitInfo>>("GET", $"api/http/projects/{project}/repositories/{repository}/commits{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<GitCommitInfo>>("GET", $"api/http/projects/{project}/repositories/{repository}/commits{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "Commits", cancellationToken: cancellationToken);
         }
         
         public IAsyncEnumerable<GitCommitInfo> CommitsAsyncEnumerable(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>>? partial = null, CancellationToken cancellationToken = default)
@@ -3109,7 +3110,7 @@ public partial class ProjectClient : ISpaceClient
             queryParameters.Append("path", path);
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitFile>()) : Partial<GitFile>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<GitFile>>("GET", $"api/http/projects/{project}/repositories/{repository}/files{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<GitFile>>("GET", $"api/http/projects/{project}/repositories/{repository}/files{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "Files", cancellationToken: cancellationToken);
         }
         
     
@@ -3118,7 +3119,7 @@ public partial class ProjectClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<RepositoryUrls>()) : Partial<RepositoryUrls>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<RepositoryUrls>("GET", $"api/http/projects/{project}/repositories/{repository}/url{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<RepositoryUrls>("GET", $"api/http/projects/{project}/repositories/{repository}/url{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "Url", cancellationToken: cancellationToken);
         }
         
     
@@ -3126,7 +3127,7 @@ public partial class ProjectClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/repositories/{repository}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/repositories/{repository}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteRepository", cancellationToken: cancellationToken);
         }
         
     
@@ -3149,7 +3150,7 @@ public partial class ProjectClient : ISpaceClient
                     new ProjectsForProjectRepositoriesForRepositoryReadonlyPostRequest
                     { 
                         IsFreeze = freeze,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "SetRepositoryFrozenState", cancellationToken: cancellationToken);
             }
             
         
@@ -3157,7 +3158,7 @@ public partial class ProjectClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                return await _connection.RequestResourceAsync<bool>("GET", $"api/http/projects/{project}/repositories/{repository}/readonly{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<bool>("GET", $"api/http/projects/{project}/repositories/{repository}/readonly{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetRepositoryFrozenState", cancellationToken: cancellationToken);
             }
             
         
@@ -3201,7 +3202,7 @@ public partial class ProjectClient : ISpaceClient
                             TaskId = taskId,
                             Timestamp = timestamp,
                             Description = description,
-                        }, requestHeaders: null, cancellationToken: cancellationToken);
+                        }, requestHeaders: null, functionName: "ReportExternalCheckStatus", cancellationToken: cancellationToken);
                 }
                 
             
@@ -3210,7 +3211,7 @@ public partial class ProjectClient : ISpaceClient
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<ExternalCheckDTO>()) : Partial<ExternalCheckDTO>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<List<ExternalCheckDTO>>("GET", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/external-checks{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<List<ExternalCheckDTO>>("GET", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/external-checks{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetExternalChecksForACommit", cancellationToken: cancellationToken);
                 }
                 
             
@@ -3244,7 +3245,7 @@ public partial class ProjectClient : ISpaceClient
                     SubjectId = subjectId,
                     Summary = summary,
                     Notes = notes,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "AddResponsibility", cancellationToken: cancellationToken);
         }
         
     
@@ -3260,7 +3261,7 @@ public partial class ProjectClient : ISpaceClient
                 { 
                     Summary = summary,
                     Notes = notes,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdateResponsibility", cancellationToken: cancellationToken);
         }
         
     
@@ -3271,7 +3272,7 @@ public partial class ProjectClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/{responsibilityId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/{responsibilityId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteResponsibility", cancellationToken: cancellationToken);
         }
         
     
@@ -3294,7 +3295,7 @@ public partial class ProjectClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 if (project != null) queryParameters.Append("project", project?.ToString());
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/subjects/{subjectId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/subjects/{subjectId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteResponsibilitySubject", cancellationToken: cancellationToken);
             }
             
         
@@ -3323,7 +3324,7 @@ public partial class ProjectClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<SubjectResponsibilitiesTable>()) : Partial<SubjectResponsibilitiesTable>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<SubjectResponsibilitiesTable>>("GET", $"api/http/projects/{project}/responsibilities/scheme{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<List<SubjectResponsibilitiesTable>>("GET", $"api/http/projects/{project}/responsibilities/scheme{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetProjectResponsibilityScheme", cancellationToken: cancellationToken);
             }
             
         
@@ -3342,7 +3343,7 @@ public partial class ProjectClient : ISpaceClient
                     new ProjectsForProjectResponsibilitiesSubjectsPostRequest
                     { 
                         Name = name,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "AddResponsibilitySubject", cancellationToken: cancellationToken);
             }
             
         
@@ -3357,7 +3358,7 @@ public partial class ProjectClient : ISpaceClient
                     new ProjectsForProjectResponsibilitiesSubjectsForSubjectIdPatchRequest
                     { 
                         Name = name,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "EditResponsibilitySubject", cancellationToken: cancellationToken);
             }
             
         
@@ -3385,7 +3386,7 @@ public partial class ProjectClient : ISpaceClient
                     new ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdPostRequest
                     { 
                         Role = role,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "AssignResponsible", cancellationToken: cancellationToken);
             }
             
         
@@ -3397,7 +3398,7 @@ public partial class ProjectClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 if (role != null) queryParameters.Append("role", role);
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/responsibilities/{responsibilityId}/assignees/{profileId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/responsibilities/{responsibilityId}/assignees/{profileId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveResponsible", cancellationToken: cancellationToken);
             }
             
         
@@ -3437,7 +3438,7 @@ public partial class ProjectClient : ISpaceClient
                     ValueBase64 = valueBase64,
                     PublicKeyId = publicKeyId,
                     Description = description,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdateSecret", cancellationToken: cancellationToken);
         }
         
     
@@ -3456,7 +3457,7 @@ public partial class ProjectClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/secrets/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/secrets/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteSecret", cancellationToken: cancellationToken);
         }
         
     
@@ -3494,7 +3495,7 @@ public partial class ProjectClient : ISpaceClient
                         ValueBase64 = valueBase64,
                         PublicKeyId = publicKeyId,
                         Description = description,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "CreateDefaultBundle", cancellationToken: cancellationToken);
             }
             
         
@@ -3517,7 +3518,7 @@ public partial class ProjectClient : ISpaceClient
                 if (top != null) queryParameters.Append("$top", top?.ToString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<SecretParameterRecord>>()) : Partial<Batch<SecretParameterRecord>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<SecretParameterRecord>>("GET", $"api/http/projects/secrets/default-bundle{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<SecretParameterRecord>>("GET", $"api/http/projects/secrets/default-bundle{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllDefaultBundle", cancellationToken: cancellationToken);
             }
             
             /// <summary>
@@ -3567,7 +3568,7 @@ public partial class ProjectClient : ISpaceClient
                         Key = key,
                         ValueBase64 = valueBase64,
                         PublicKeyId = publicKeyId,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "CreateInDefaultBundle", cancellationToken: cancellationToken);
             }
             
         
@@ -3588,7 +3589,7 @@ public partial class ProjectClient : ISpaceClient
                 if (top != null) queryParameters.Append("$top", top?.ToString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<SecretParameterRecord>>()) : Partial<Batch<SecretParameterRecord>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<SecretParameterRecord>>("GET", $"api/http/projects/secrets/in-default-bundle{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<SecretParameterRecord>>("GET", $"api/http/projects/secrets/in-default-bundle{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllInDefaultBundle", cancellationToken: cancellationToken);
             }
             
             /// <remarks>
@@ -3629,7 +3630,7 @@ public partial class ProjectClient : ISpaceClient
                 new ProjectsTagsTrackAccessPostRequest
                 { 
                     Tag = tag,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "TrackTagAccess", cancellationToken: cancellationToken);
         }
         
     
@@ -3649,7 +3650,7 @@ public partial class ProjectClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRTag>()) : Partial<PRTag>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<PRTag>>("GET", $"api/http/projects/tags{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<PRTag>>("GET", $"api/http/projects/tags{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllTags", cancellationToken: cancellationToken);
         }
         
     
@@ -3693,7 +3694,7 @@ public partial class ProjectClient : ISpaceClient
                     AppRoleEndpointPath = appRoleEndpointPath,
                     AppRoleId = appRoleId,
                     AppRoleSecretIdBase64 = appRoleSecretIdBase64,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreateVault", cancellationToken: cancellationToken);
         }
         
     
@@ -3715,7 +3716,7 @@ public partial class ProjectClient : ISpaceClient
             queryParameters.Append("project", project.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<VaultConnectionRecord>()) : Partial<VaultConnectionRecord>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<VaultConnectionRecord>>("GET", $"api/http/projects/vault{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<VaultConnectionRecord>>("GET", $"api/http/projects/vault{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetVault", cancellationToken: cancellationToken);
         }
         
     
@@ -3745,7 +3746,7 @@ public partial class ProjectClient : ISpaceClient
                     AppRoleEndpointPath = appRoleEndpointPath,
                     AppRoleId = appRoleId,
                     AppRoleSecretIdBase64 = appRoleSecretIdBase64,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdateVault", cancellationToken: cancellationToken);
         }
         
     
@@ -3765,7 +3766,7 @@ public partial class ProjectClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/vault/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/vault/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteVault", cancellationToken: cancellationToken);
         }
         
     
@@ -3809,7 +3810,7 @@ public partial class ProjectClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/admins{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/admins{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllAdmins", cancellationToken: cancellationToken);
             }
             
         
@@ -3843,7 +3844,7 @@ public partial class ProjectClient : ISpaceClient
                         new ProjectsForProjectAccessAdminsProfilesPostRequest
                         { 
                             Profile = profile,
-                        }, requestHeaders: null, cancellationToken: cancellationToken);
+                        }, requestHeaders: null, functionName: "AddAdministrator", cancellationToken: cancellationToken);
                 }
                 
             
@@ -3862,7 +3863,7 @@ public partial class ProjectClient : ISpaceClient
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/admins/profiles/{profile}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/admins/profiles/{profile}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveAdministrator", cancellationToken: cancellationToken);
                 }
                 
             
@@ -3898,7 +3899,7 @@ public partial class ProjectClient : ISpaceClient
                         new ProjectsForProjectAccessAdminsTeamsPostRequest
                         { 
                             TeamId = teamId,
-                        }, requestHeaders: null, cancellationToken: cancellationToken);
+                        }, requestHeaders: null, functionName: "AddAdministratorsTeam", cancellationToken: cancellationToken);
                 }
                 
             
@@ -3917,7 +3918,7 @@ public partial class ProjectClient : ISpaceClient
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/admins/teams/{teamId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/admins/teams/{teamId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveAdministratorsTeam", cancellationToken: cancellationToken);
                 }
                 
             
@@ -3949,7 +3950,7 @@ public partial class ProjectClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/collaborators{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/collaborators{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllCollaboratorsProfiles", cancellationToken: cancellationToken);
             }
             
         
@@ -3980,7 +3981,7 @@ public partial class ProjectClient : ISpaceClient
                         new ProjectsForProjectAccessCollaboratorsProfilesPostRequest
                         { 
                             Profile = profile,
-                        }, requestHeaders: null, cancellationToken: cancellationToken);
+                        }, requestHeaders: null, functionName: "AddACollaborator", cancellationToken: cancellationToken);
                 }
                 
             
@@ -3997,7 +3998,7 @@ public partial class ProjectClient : ISpaceClient
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/collaborators/profiles{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/collaborators/profiles{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllIndividualCollaborators", cancellationToken: cancellationToken);
                 }
                 
             
@@ -4014,7 +4015,7 @@ public partial class ProjectClient : ISpaceClient
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("profile", profile.ToString());
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/collaborators/profiles{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/collaborators/profiles{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveACollaborator", cancellationToken: cancellationToken);
                 }
                 
             
@@ -4047,7 +4048,7 @@ public partial class ProjectClient : ISpaceClient
                         new ProjectsForProjectAccessCollaboratorsTeamsPostRequest
                         { 
                             TeamId = teamId,
-                        }, requestHeaders: null, cancellationToken: cancellationToken);
+                        }, requestHeaders: null, functionName: "AddACollaboratorsTeam", cancellationToken: cancellationToken);
                 }
                 
             
@@ -4064,7 +4065,7 @@ public partial class ProjectClient : ISpaceClient
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<List<TDTeam>>("GET", $"api/http/projects/{project}/access/collaborators/teams{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<List<TDTeam>>("GET", $"api/http/projects/{project}/access/collaborators/teams{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllCollaboratorsTeams", cancellationToken: cancellationToken);
                 }
                 
             
@@ -4081,7 +4082,7 @@ public partial class ProjectClient : ISpaceClient
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("teamId", teamId);
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/collaborators/teams{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/collaborators/teams{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveACollaboratorsTeam", cancellationToken: cancellationToken);
                 }
                 
             
@@ -4120,7 +4121,7 @@ public partial class ProjectClient : ISpaceClient
                 queryParameters.Append("includingAdmins", includingAdmins.ToString("l"));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/member-profiles{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/member-profiles{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllMemberProfiles", cancellationToken: cancellationToken);
             }
             
             /// <summary>
@@ -4180,7 +4181,7 @@ public partial class ProjectClient : ISpaceClient
                         new ProjectsForProjectAccessMembersProfilesPostRequest
                         { 
                             Profile = profile,
-                        }, requestHeaders: null, cancellationToken: cancellationToken);
+                        }, requestHeaders: null, functionName: "AddMember", cancellationToken: cancellationToken);
                 }
                 
             
@@ -4199,7 +4200,7 @@ public partial class ProjectClient : ISpaceClient
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/members/profiles/{profile}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/members/profiles/{profile}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveMember", cancellationToken: cancellationToken);
                 }
                 
             
@@ -4235,7 +4236,7 @@ public partial class ProjectClient : ISpaceClient
                         new ProjectsForProjectAccessMembersTeamsPostRequest
                         { 
                             TeamId = teamId,
-                        }, requestHeaders: null, cancellationToken: cancellationToken);
+                        }, requestHeaders: null, functionName: "AddTeam", cancellationToken: cancellationToken);
                 }
                 
             
@@ -4254,7 +4255,7 @@ public partial class ProjectClient : ISpaceClient
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/members/teams/{teamId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/members/teams/{teamId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveTeam", cancellationToken: cancellationToken);
                 }
                 
             
@@ -4293,7 +4294,7 @@ public partial class ProjectClient : ISpaceClient
                 queryParameters.Append("meOnTop", meOnTop.ToString("l"));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/viewers{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/viewers{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "OrganizationProfilesThatCanViewTheProject", cancellationToken: cancellationToken);
             }
             
             /// <summary>
@@ -4329,35 +4330,6 @@ public partial class ProjectClient : ISpaceClient
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
-        /// <term>Create suggested edit</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<CodeDiscussionRecord> CreateCodeDiscussionAsync(ProjectIdentifier project, string text, string repository, string revision, bool pending = false, DiffContext? diffContext = null, string? filename = null, int? line = null, int? oldLine = null, ReviewIdentifier? reviewId = null, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeDiscussionRecord>()) : Partial<CodeDiscussionRecord>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest, CodeDiscussionRecord>("POST", $"api/http/projects/{project}/code-reviews/code-discussions{queryParameters.ToQueryString()}", 
-                new ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
-                { 
-                    Text = text,
-                    DiffContext = diffContext,
-                    Repository = repository,
-                    Revision = revision,
-                    Filename = filename,
-                    Line = line,
-                    OldLine = oldLine,
-                    IsPending = pending,
-                    ReviewId = reviewId,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
-        }
-        
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
         /// <term>Create code reviews</term>
         /// </item>
         /// </list>
@@ -4375,7 +4347,7 @@ public partial class ProjectClient : ISpaceClient
                     Title = title,
                     AuthorProfileIds = authorProfileIds,
                     Files = files,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreateReviewBasedOnCommitSet", cancellationToken: cancellationToken);
         }
         
     
@@ -4387,7 +4359,7 @@ public partial class ProjectClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<MergeRequestRecord> CreateMergeRequestAsync(ProjectIdentifier project, string repository, string sourceBranch, string targetBranch, string title, List<ReviewerParam>? reviewers = null, Func<Partial<MergeRequestRecord>, Partial<MergeRequestRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<MergeRequestRecord> CreateMergeRequestAsync(ProjectIdentifier project, string repository, string sourceBranch, string targetBranch, string title, string? description = null, List<ReviewerParam>? reviewers = null, Func<Partial<MergeRequestRecord>, Partial<MergeRequestRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<MergeRequestRecord>()) : Partial<MergeRequestRecord>.Default()).ToString());
@@ -4399,8 +4371,9 @@ public partial class ProjectClient : ISpaceClient
                     SourceBranch = sourceBranch,
                     TargetBranch = targetBranch,
                     Title = title,
+                    Description = description,
                     Reviewers = reviewers,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreateMergeRequest", cancellationToken: cancellationToken);
         }
         
     
@@ -4427,7 +4400,7 @@ public partial class ProjectClient : ISpaceClient
             queryParameters.Append("type", type.ToEnumString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<CodeReviewWithCount>>()) : Partial<Batch<CodeReviewWithCount>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<CodeReviewWithCount>>("GET", $"api/http/projects/{project}/code-reviews{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<CodeReviewWithCount>>("GET", $"api/http/projects/{project}/code-reviews{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllCodeReviews", cancellationToken: cancellationToken);
         }
         
         /// <remarks>
@@ -4454,7 +4427,7 @@ public partial class ProjectClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeReviewRecord>()) : Partial<CodeReviewRecord>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<CodeReviewRecord>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<CodeReviewRecord>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetCodeReview", cancellationToken: cancellationToken);
         }
         
     
@@ -4471,7 +4444,7 @@ public partial class ProjectClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeReviewDetailedInfo>()) : Partial<CodeReviewDetailedInfo>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<CodeReviewDetailedInfo>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/details{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<CodeReviewDetailedInfo>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/details{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetReviewDetails", cancellationToken: cancellationToken);
         }
         
     
@@ -4493,7 +4466,7 @@ public partial class ProjectClient : ISpaceClient
             if (top != null) queryParameters.Append("$top", top?.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ChangeInReview>>()) : Partial<Batch<ChangeInReview>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<ChangeInReview>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/files{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<ChangeInReview>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/files{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetTheModifiedFilesInCodeReview", cancellationToken: cancellationToken);
         }
         
         /// <summary>
@@ -4528,7 +4501,7 @@ public partial class ProjectClient : ISpaceClient
             if (top != null) queryParameters.Append("$top", top?.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<GitMergedFile>>()) : Partial<Batch<GitMergedFile>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<GitMergedFile>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/merge-files{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<GitMergedFile>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/merge-files{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetTheMergeRequestFiles", cancellationToken: cancellationToken);
         }
         
         /// <summary>
@@ -4558,7 +4531,27 @@ public partial class ProjectClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/suggested-reviewers{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/suggested-reviewers{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetSuggestedReviewers", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Edit code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task EditReviewDescriptionAsync(ProjectIdentifier project, ReviewIdentifier reviewId, string description, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/code-reviews/{reviewId}/description{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectCodeReviewsForReviewIdDescriptionPatchRequest
+                { 
+                    Description = description,
+                }, requestHeaders: null, functionName: "EditReviewDescription", cancellationToken: cancellationToken);
         }
         
     
@@ -4578,7 +4571,7 @@ public partial class ProjectClient : ISpaceClient
                 new ProjectsForProjectCodeReviewsForReviewIdStatePatchRequest
                 { 
                     State = state,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "EditReviewState", cancellationToken: cancellationToken);
         }
         
     
@@ -4598,7 +4591,7 @@ public partial class ProjectClient : ISpaceClient
                 new ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest
                 { 
                     Title = title,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "EditReviewTitle", cancellationToken: cancellationToken);
         }
         
     
@@ -4623,7 +4616,7 @@ public partial class ProjectClient : ISpaceClient
                 { 
                     IsDeleteSourceBranch = deleteSourceBranch,
                     MergeMode = mergeMode,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "MergeMergeRequest", cancellationToken: cancellationToken);
         }
         
     
@@ -4650,9 +4643,134 @@ public partial class ProjectClient : ISpaceClient
                     RebaseMode = rebaseMode,
                     IsSquash = squash,
                     SquashedCommitMessage = squashedCommitMessage,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "RebaseMergeRequest", cancellationToken: cancellationToken);
         }
         
+    
+        public CodeDiscussionClient CodeDiscussions => new CodeDiscussionClient(_connection);
+        
+        public partial class CodeDiscussionClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public CodeDiscussionClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Create suggested edit</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<CodeDiscussionRecord> CreateCodeDiscussionAsync(ProjectIdentifier project, string text, string repository, bool pending = false, List<AttachmentIn>? attachments = null, DiffContext? diffContext = null, string? revision = null, string? filename = null, int? line = null, int? oldLine = null, LocalCodeDiscussionAnchorIn? anchor = null, LocalCodeDiscussionAnchorIn? endAnchor = null, ReviewIdentifier? reviewId = null, CodeDiscussionSuggestedEditRequest? suggestedEdit = null, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeDiscussionRecord>()) : Partial<CodeDiscussionRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest, CodeDiscussionRecord>("POST", $"api/http/projects/{project}/code-reviews/code-discussions{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
+                    { 
+                        Text = text,
+                        Attachments = attachments,
+                        DiffContext = diffContext,
+                        Repository = repository,
+                        Revision = revision,
+                        Filename = filename,
+                        Line = line,
+                        OldLine = oldLine,
+                        Anchor = anchor,
+                        EndAnchor = endAnchor,
+                        IsPending = pending,
+                        ReviewId = reviewId,
+                        SuggestedEdit = suggestedEdit,
+                    }, requestHeaders: null, functionName: "CreateCodeDiscussion", cancellationToken: cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Moderate suggestions</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task AcceptSuggestedEditAsync(ProjectIdentifier project, string discussionId, string commitMessage, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/code-reviews/code-discussions/{discussionId}/accept-suggested-edit{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectCodeReviewsCodeDiscussionsForDiscussionIdAcceptSuggestedEditPostRequest
+                    { 
+                        CommitMessage = commitMessage,
+                    }, requestHeaders: null, functionName: "AcceptSuggestedEdit", cancellationToken: cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Moderate suggestions</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task RejectSuggestedEditAsync(ProjectIdentifier project, string discussionId, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/code-reviews/code-discussions/{discussionId}/reject-suggested-edit{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RejectSuggestedEdit", cancellationToken: cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Moderate suggestions</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task ReopenSuggestedEditAsync(ProjectIdentifier project, string discussionId, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/code-reviews/code-discussions/{discussionId}/reopen-suggested-edit{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ReopenSuggestedEdit", cancellationToken: cancellationToken);
+            }
+            
+        
+            public SuggestedEditClient SuggestedEdit => new SuggestedEditClient(_connection);
+            
+            public partial class SuggestedEditClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public SuggestedEditClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task AlterSuggestedEditAsync(ProjectIdentifier project, string discussionId, string text, List<AttachmentIn> attachments, string? snippetContent = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/code-reviews/code-discussions/{discussionId}/suggested-edit{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectCodeReviewsCodeDiscussionsForDiscussionIdSuggestedEditPatchRequest
+                        { 
+                            Text = text,
+                            Attachments = attachments,
+                            SnippetContent = snippetContent,
+                        }, requestHeaders: null, functionName: "AlterSuggestedEdit", cancellationToken: cancellationToken);
+                }
+                
+            
+            }
+        
+        }
     
         public ParticipantClient Participants => new ParticipantClient(_connection);
         
@@ -4681,7 +4799,7 @@ public partial class ProjectClient : ISpaceClient
                     new ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest
                     { 
                         Role = role,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "AddReviewParticipant", cancellationToken: cancellationToken);
             }
             
         
@@ -4698,7 +4816,7 @@ public partial class ProjectClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("role", role.ToEnumString());
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/code-reviews/{reviewId}/participants/{user}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/code-reviews/{reviewId}/participants/{user}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveReviewParticiopant", cancellationToken: cancellationToken);
             }
             
         
@@ -4731,7 +4849,7 @@ public partial class ProjectClient : ISpaceClient
                     new ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest
                     { 
                         Revisions = revisions,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "AddRevisionsToReview", cancellationToken: cancellationToken);
             }
             
         
@@ -4748,7 +4866,7 @@ public partial class ProjectClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("revisions", revisions.Select(it => it));
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/code-reviews/{reviewId}/revisions{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/code-reviews/{reviewId}/revisions{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveRevisionsFromReview", cancellationToken: cancellationToken);
             }
             
         
@@ -4779,7 +4897,7 @@ public partial class ProjectClient : ISpaceClient
                     Folder = folder,
                     BodyIn = bodyIn,
                     PublicationDetailsIn = publicationDetailsIn,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreateDocument", cancellationToken: cancellationToken);
         }
         
     
@@ -4788,7 +4906,7 @@ public partial class ProjectClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Document>()) : Partial<Document>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Document>("GET", $"api/http/projects/{project}/documents/{documentId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<Document>("GET", $"api/http/projects/{project}/documents/{documentId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetDocument", cancellationToken: cancellationToken);
         }
         
     
@@ -4803,7 +4921,7 @@ public partial class ProjectClient : ISpaceClient
                     Name = name,
                     UpdateIn = updateIn,
                     PublicationDetailsIn = publicationDetailsIn,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdateDocument", cancellationToken: cancellationToken);
         }
         
     
@@ -4811,7 +4929,7 @@ public partial class ProjectClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/documents/{documentId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/documents/{documentId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ArchiveDocument", cancellationToken: cancellationToken);
         }
         
     
@@ -4836,7 +4954,7 @@ public partial class ProjectClient : ISpaceClient
                     { 
                         Name = name,
                         ParentFolder = parentFolder,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "CreateFolder", cancellationToken: cancellationToken);
             }
             
         
@@ -4845,7 +4963,7 @@ public partial class ProjectClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<DocumentFolder>()) : Partial<DocumentFolder>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<DocumentFolder>("GET", $"api/http/projects/{project}/documents/folders/{folder}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<DocumentFolder>("GET", $"api/http/projects/{project}/documents/folders/{folder}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetFolder", cancellationToken: cancellationToken);
             }
             
         
@@ -4857,7 +4975,7 @@ public partial class ProjectClient : ISpaceClient
                     new ProjectsForProjectDocumentsFoldersForFolderPatchRequest
                     { 
                         Name = name,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "RenameFolder", cancellationToken: cancellationToken);
             }
             
         
@@ -4865,7 +4983,7 @@ public partial class ProjectClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/documents/folders/{folder}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/documents/folders/{folder}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ArchiveFolder", cancellationToken: cancellationToken);
             }
             
         
@@ -4890,7 +5008,7 @@ public partial class ProjectClient : ISpaceClient
                     if (top != null) queryParameters.Append("$top", top?.ToString());
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Document>>()) : Partial<Batch<Document>>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<Batch<Document>>("GET", $"api/http/projects/{project}/documents/folders/{folder}/documents{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<Batch<Document>>("GET", $"api/http/projects/{project}/documents/folders/{folder}/documents{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ListDocumentsInFolder", cancellationToken: cancellationToken);
                 }
                 
                 public IAsyncEnumerable<Document> ListDocumentsInFolderAsyncEnumerable(ProjectIdentifier project, FolderIdentifier folder, bool withArchived = false, string? sortBy = null, ColumnSortOrder? order = null, string? skip = null, int? top = 100, Func<Partial<Document>, Partial<Document>>? partial = null, CancellationToken cancellationToken = default)
@@ -4913,7 +5031,7 @@ public partial class ProjectClient : ISpaceClient
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/documents/folders/{folder}/introduction/{documentId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/documents/folders/{folder}/introduction/{documentId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "AddFolderIntroduction", cancellationToken: cancellationToken);
                 }
                 
             
@@ -4921,7 +5039,7 @@ public partial class ProjectClient : ISpaceClient
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/documents/folders/{folder}/introduction{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/documents/folders/{folder}/introduction{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveFolderIntroduction", cancellationToken: cancellationToken);
                 }
                 
             
@@ -4947,7 +5065,7 @@ public partial class ProjectClient : ISpaceClient
                         new ProjectsForProjectDocumentsFoldersForFolderMovePatchRequest
                         { 
                             ParentFolder = parentFolder,
-                        }, requestHeaders: null, cancellationToken: cancellationToken);
+                        }, requestHeaders: null, functionName: "MoveFolder", cancellationToken: cancellationToken);
                 }
                 
             
@@ -4974,7 +5092,7 @@ public partial class ProjectClient : ISpaceClient
                     if (top != null) queryParameters.Append("$top", top?.ToString());
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<DocumentFolder>>()) : Partial<Batch<DocumentFolder>>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<Batch<DocumentFolder>>("GET", $"api/http/projects/{project}/documents/folders/{folder}/subfolders{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<Batch<DocumentFolder>>("GET", $"api/http/projects/{project}/documents/folders/{folder}/subfolders{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ListSubfolders", cancellationToken: cancellationToken);
                 }
                 
                 public IAsyncEnumerable<DocumentFolder> ListSubfoldersAsyncEnumerable(ProjectIdentifier project, FolderIdentifier folder, bool withArchived = false, string? sortBy = null, ColumnSortOrder? order = null, string? skip = null, int? top = 100, Func<Partial<DocumentFolder>, Partial<DocumentFolder>>? partial = null, CancellationToken cancellationToken = default)
@@ -5005,7 +5123,7 @@ public partial class ProjectClient : ISpaceClient
                     { 
                         Name = name,
                         Folder = folder,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "CopyDocument", cancellationToken: cancellationToken);
             }
             
         
@@ -5026,7 +5144,7 @@ public partial class ProjectClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/documents/{documentId}/delete-forever{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/documents/{documentId}/delete-forever{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteDocumentForever", cancellationToken: cancellationToken);
             }
             
         
@@ -5052,7 +5170,7 @@ public partial class ProjectClient : ISpaceClient
                     new ProjectsForProjectDocumentsForDocumentIdMovePatchRequest
                     { 
                         Folder = folder,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "MoveDocument", cancellationToken: cancellationToken);
             }
             
         
@@ -5074,7 +5192,7 @@ public partial class ProjectClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Document>()) : Partial<Document>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Document>("PATCH", $"api/http/projects/{project}/documents/{documentId}/unarchive{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Document>("PATCH", $"api/http/projects/{project}/documents/{documentId}/unarchive{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "UnarchiveDocument", cancellationToken: cancellationToken);
             }
             
         
@@ -5130,7 +5248,7 @@ public partial class ProjectClient : ISpaceClient
                         Settings = settings,
                         Mode = mode,
                         Connection = connection,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "CreateNewRepository", cancellationToken: cancellationToken);
             }
             
         
@@ -5152,7 +5270,7 @@ public partial class ProjectClient : ISpaceClient
                 if (query != null) queryParameters.Append("query", query);
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<ProjectPackageRepository>>("GET", $"api/http/projects/{project}/packages/repositories{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<List<ProjectPackageRepository>>("GET", $"api/http/projects/{project}/packages/repositories{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetRepositories", cancellationToken: cancellationToken);
             }
             
         
@@ -5172,7 +5290,7 @@ public partial class ProjectClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<ProjectPackageRepository>("GET", $"api/http/projects/{project}/packages/repositories/{repository}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<ProjectPackageRepository>("GET", $"api/http/projects/{project}/packages/repositories/{repository}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetRepository", cancellationToken: cancellationToken);
             }
             
         
@@ -5199,7 +5317,7 @@ public partial class ProjectClient : ISpaceClient
                         IsPublic = @public,
                         IsCleanupEnabled = cleanupEnabled,
                         Settings = settings,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "UpdateRepository", cancellationToken: cancellationToken);
             }
             
         
@@ -5218,7 +5336,7 @@ public partial class ProjectClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteRepository", cancellationToken: cancellationToken);
             }
             
         
@@ -5253,7 +5371,7 @@ public partial class ProjectClient : ISpaceClient
                         new ProjectsForProjectPackagesRepositoriesForRepositoryCleanupPostRequest
                         { 
                             RetentionPolicyParams = retentionPolicyParams,
-                        }, requestHeaders: null, cancellationToken: cancellationToken);
+                        }, requestHeaders: null, functionName: "CleanupRepository", cancellationToken: cancellationToken);
                 }
                 
             
@@ -5288,7 +5406,7 @@ public partial class ProjectClient : ISpaceClient
                             new ProjectsForProjectPackagesRepositoriesForRepositoryCleanupDryPostRequest
                             { 
                                 RetentionParams = retentionParams,
-                            }, requestHeaders: null, cancellationToken: cancellationToken);
+                            }, requestHeaders: null, functionName: "DryRunRepositoryCleanup", cancellationToken: cancellationToken);
                     }
                     
                 
@@ -5323,7 +5441,7 @@ public partial class ProjectClient : ISpaceClient
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageRepositoryConnection>()) : Partial<PackageRepositoryConnection>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<List<PackageRepositoryConnection>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/connections{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<List<PackageRepositoryConnection>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/connections{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllRemoteRepositories", cancellationToken: cancellationToken);
                 }
                 
             
@@ -5357,7 +5475,7 @@ public partial class ProjectClient : ISpaceClient
                             new ProjectsForProjectPackagesRepositoriesForRepositoryConnectionsForConnectionIdPublishPostRequest
                             { 
                                 Source = source,
-                            }, requestHeaders: null, cancellationToken: cancellationToken);
+                            }, requestHeaders: null, functionName: "PublishPackagesToRemoteRepository", cancellationToken: cancellationToken);
                     }
                     
                 
@@ -5379,7 +5497,7 @@ public partial class ProjectClient : ISpaceClient
                         if (top != null) queryParameters.Append("$top", top?.ToString());
                         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackagesPublishing>>()) : Partial<Batch<PackagesPublishing>>.Default()).ToString());
                         
-                        return await _connection.RequestResourceAsync<Batch<PackagesPublishing>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/connections/{connectionId}/publish{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                        return await _connection.RequestResourceAsync<Batch<PackagesPublishing>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/connections/{connectionId}/publish{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetListOfPublishingToRemoteRepository", cancellationToken: cancellationToken);
                     }
                     
                     /// <summary>
@@ -5428,7 +5546,7 @@ public partial class ProjectClient : ISpaceClient
                     if (parentPath != null) queryParameters.Append("parentPath", parentPath);
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<FileData>()) : Partial<FileData>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<List<FileData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/files{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<List<FileData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/files{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetListOfFiles", cancellationToken: cancellationToken);
                 }
                 
             
@@ -5448,7 +5566,7 @@ public partial class ProjectClient : ISpaceClient
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<FileDetails>()) : Partial<FileDetails>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<FileDetails>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/files/name:{filePath}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<FileDetails>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/files/name:{filePath}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetFileDetails", cancellationToken: cancellationToken);
                 }
                 
             
@@ -5467,7 +5585,7 @@ public partial class ProjectClient : ISpaceClient
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}/files/folder:{folderPath}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}/files/folder:{folderPath}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteFolder", cancellationToken: cancellationToken);
                 }
                 
             
@@ -5486,7 +5604,7 @@ public partial class ProjectClient : ISpaceClient
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}/files/name:{filePath}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}/files/name:{filePath}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteFile", cancellationToken: cancellationToken);
                 }
                 
             
@@ -5523,7 +5641,7 @@ public partial class ProjectClient : ISpaceClient
                     if (top != null) queryParameters.Append("$top", top?.ToString());
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageData>>()) : Partial<Batch<PackageData>>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<Batch<PackageData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<Batch<PackageData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllPackages", cancellationToken: cancellationToken);
                 }
                 
                 /// <summary>
@@ -5555,7 +5673,7 @@ public partial class ProjectClient : ISpaceClient
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeletePackage", cancellationToken: cancellationToken);
                 }
                 
             
@@ -5578,7 +5696,7 @@ public partial class ProjectClient : ISpaceClient
                         var queryParameters = new NameValueCollection();
                         queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageMetadata>()) : Partial<PackageMetadata>.Default()).ToString());
                         
-                        return await _connection.RequestResourceAsync<PackageMetadata>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/metadata{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                        return await _connection.RequestResourceAsync<PackageMetadata>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/metadata{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetPackageMetadata", cancellationToken: cancellationToken);
                     }
                     
                 
@@ -5593,7 +5711,7 @@ public partial class ProjectClient : ISpaceClient
                             new ProjectsForProjectPackagesRepositoriesForRepositoryPackagesNameForPackageNameMetadataPutRequest
                             { 
                                 ConnectionId = connectionId,
-                            }, requestHeaders: null, cancellationToken: cancellationToken);
+                            }, requestHeaders: null, functionName: "ReportPackageMetadata", cancellationToken: cancellationToken);
                     }
                     
                 
@@ -5609,7 +5727,7 @@ public partial class ProjectClient : ISpaceClient
                             { 
                                 IsPin = pin,
                                 Comment = comment,
-                            }, requestHeaders: null, cancellationToken: cancellationToken);
+                            }, requestHeaders: null, functionName: "ReportPackageVersionMetadata", cancellationToken: cancellationToken);
                     }
                     
                 
@@ -5649,7 +5767,7 @@ public partial class ProjectClient : ISpaceClient
                         queryParameters.Append("sortOrder", sortOrder.ToEnumString());
                         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default()).ToString());
                         
-                        return await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                        return await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllPackageVersions", cancellationToken: cancellationToken);
                     }
                     
                     /// <summary>
@@ -5682,7 +5800,7 @@ public partial class ProjectClient : ISpaceClient
                         var queryParameters = new NameValueCollection();
                         queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageVersionDetails>()) : Partial<PackageVersionDetails>.Default()).ToString());
                         
-                        return await _connection.RequestResourceAsync<PackageVersionDetails>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                        return await _connection.RequestResourceAsync<PackageVersionDetails>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetPackageVersionDetails", cancellationToken: cancellationToken);
                     }
                     
                 
@@ -5701,7 +5819,7 @@ public partial class ProjectClient : ISpaceClient
                     {
                         var queryParameters = new NameValueCollection();
                         
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeletePackageVersion", cancellationToken: cancellationToken);
                     }
                     
                 
@@ -5731,7 +5849,7 @@ public partial class ProjectClient : ISpaceClient
                     if (top != null) queryParameters.Append("$top", top?.ToString());
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageData>>()) : Partial<Batch<PackageData>>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<Batch<PackageData>>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<Batch<PackageData>>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllPackages", cancellationToken: cancellationToken);
                 }
                 
                 /// <summary>
@@ -5773,7 +5891,7 @@ public partial class ProjectClient : ISpaceClient
                         queryParameters.Append("sortOrder", sortOrder.ToEnumString());
                         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default()).ToString());
                         
-                        return await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                        return await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllPackageVersions", cancellationToken: cancellationToken);
                     }
                     
                     /// <summary>
@@ -5808,7 +5926,7 @@ public partial class ProjectClient : ISpaceClient
                         var queryParameters = new NameValueCollection();
                         queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageVersionDetails>()) : Partial<PackageVersionDetails>.Default()).ToString());
                         
-                        return await _connection.RequestResourceAsync<PackageVersionDetails>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                        return await _connection.RequestResourceAsync<PackageVersionDetails>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetPackageVersionDetails", cancellationToken: cancellationToken);
                     }
                     
                 
@@ -5828,7 +5946,7 @@ public partial class ProjectClient : ISpaceClient
                     {
                         var queryParameters = new NameValueCollection();
                         
-                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                        await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions/version:{packageVersion}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeletePackageVersion", cancellationToken: cancellationToken);
                     }
                     
                 
@@ -5862,7 +5980,7 @@ public partial class ProjectClient : ISpaceClient
                 {
                     var queryParameters = new NameValueCollection();
                     
-                    return await _connection.RequestResourceAsync<string>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/url{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<string>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/url{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetRepositoryUrl", cancellationToken: cancellationToken);
                 }
                 
             
@@ -5902,7 +6020,7 @@ public partial class ProjectClient : ISpaceClient
                 if (top != null) queryParameters.Append("$top", top?.ToString());
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/search{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/search{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "FindPackagesInRepository", cancellationToken: cancellationToken);
             }
             
             /// <summary>
@@ -5940,7 +6058,7 @@ public partial class ProjectClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<PackageType>()) : Partial<PackageType>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<PackageType>>("GET", $"api/http/projects/{project}/packages/types{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<List<PackageType>>("GET", $"api/http/projects/{project}/packages/types{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllTypes", cancellationToken: cancellationToken);
             }
             
         
@@ -5969,7 +6087,7 @@ public partial class ProjectClient : ISpaceClient
                 { 
                     Name = name,
                     ParentTopicId = parentTopicId,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreateTopic", cancellationToken: cancellationToken);
         }
         
     
@@ -5981,7 +6099,7 @@ public partial class ProjectClient : ISpaceClient
                 new ProjectsForProjectTopicsRemoveTopicsPostRequest
                 { 
                     Ids = ids,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "RemoveTopics", cancellationToken: cancellationToken);
         }
         
     
@@ -5994,7 +6112,7 @@ public partial class ProjectClient : ISpaceClient
                 { 
                     TopicId = topicId,
                     Responsible = responsible,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "SetResponsible", cancellationToken: cancellationToken);
         }
         
     
@@ -6003,7 +6121,7 @@ public partial class ProjectClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Topic>()) : Partial<Topic>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<Topic>>("GET", $"api/http/projects/{project}/topics{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<Topic>>("GET", $"api/http/projects/{project}/topics{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetTopic", cancellationToken: cancellationToken);
         }
         
     
@@ -6017,7 +6135,7 @@ public partial class ProjectClient : ISpaceClient
                 { 
                     Name = name,
                     ParentTopicId = parentTopicId,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdateTopic", cancellationToken: cancellationToken);
         }
         
     

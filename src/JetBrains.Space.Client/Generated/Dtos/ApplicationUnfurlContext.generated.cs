@@ -38,8 +38,8 @@ public interface ApplicationUnfurlContext
     public static ChatMessageUnfurlContext ChatMessageUnfurlContext(string channel, ChatMessageIdentifier messageId)
         => new ChatMessageUnfurlContext(channel: channel, messageId: messageId);
     
-    public static CodeReviewUnfurlContext CodeReviewUnfurlContext(string reviewId)
-        => new CodeReviewUnfurlContext(reviewId: reviewId);
+    public static CodeReviewUnfurlContext CodeReviewUnfurlContext(string reviewId, CodeReviewUnfurlContextField? field = null)
+        => new CodeReviewUnfurlContext(reviewId: reviewId, field: field);
     
     public static CommitMessageUnfurlContext CommitMessageUnfurlContext(string projectId, string repo, string commitId)
         => new CommitMessageUnfurlContext(projectId: projectId, repo: repo, commitId: commitId);

@@ -59,7 +59,7 @@ public partial class ToDoItemClient : ISpaceClient
             { 
                 Text = text,
                 DueDate = dueDate,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "CreateToDoItem", cancellationToken: cancellationToken);
     }
     
 
@@ -84,7 +84,7 @@ public partial class ToDoItemClient : ISpaceClient
         if (till != null) queryParameters.Append("till", till?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TodoItemRecord>>()) : Partial<Batch<TodoItemRecord>>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<Batch<TodoItemRecord>>("GET", $"api/http/todo{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<Batch<TodoItemRecord>>("GET", $"api/http/todo{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllToDoItems", cancellationToken: cancellationToken);
     }
     
     /// <summary>
@@ -122,7 +122,7 @@ public partial class ToDoItemClient : ISpaceClient
                 Text = text,
                 DueDate = dueDate,
                 IsOpen = open,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "UpdateToDoItem", cancellationToken: cancellationToken);
     }
     
 
@@ -141,7 +141,7 @@ public partial class ToDoItemClient : ISpaceClient
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("DELETE", $"api/http/todo/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        await _connection.RequestResourceAsync("DELETE", $"api/http/todo/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteToDoItem", cancellationToken: cancellationToken);
     }
     
 

@@ -73,6 +73,15 @@ public abstract class CodeReviewRecord
         set => _commits.SetValue(value);
     }
 
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CodeReviewRecord), nameof(Description), "description");
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue(InlineErrors);
+        set => _description.SetValue(value);
+    }
+
     private PropertyValue<DiscussionCounter> _discussionCounter = new PropertyValue<DiscussionCounter>(nameof(CodeReviewRecord), nameof(DiscussionCounter), "discussionCounter");
     
     [Required]
@@ -113,6 +122,16 @@ public abstract class CodeReviewRecord
         set => _reviewers.SetValue(value);
     }
 
+    private PropertyValue<List<Attachment>> _unfurls = new PropertyValue<List<Attachment>>(nameof(CodeReviewRecord), nameof(Unfurls), "unfurls", new List<Attachment>());
+    
+    [Required]
+    [JsonPropertyName("unfurls")]
+    public List<Attachment> Unfurls
+    {
+        get => _unfurls.GetValue(InlineErrors);
+        set => _unfurls.SetValue(value);
+    }
+
     private PropertyValue<List<CodeReviewParticipantRecord>> _watchers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Watchers), "watchers", new List<CodeReviewParticipantRecord>());
     
     [Required]
@@ -129,10 +148,12 @@ public abstract class CodeReviewRecord
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
         _authors.SetAccessPath(parentChainPath, validateHasBeenSet);
         _commits.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _discussionCounter.SetAccessPath(parentChainPath, validateHasBeenSet);
         _issueIds.SetAccessPath(parentChainPath, validateHasBeenSet);
         _participants.SetAccessPath(parentChainPath, validateHasBeenSet);
         _reviewers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _unfurls.SetAccessPath(parentChainPath, validateHasBeenSet);
         _watchers.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

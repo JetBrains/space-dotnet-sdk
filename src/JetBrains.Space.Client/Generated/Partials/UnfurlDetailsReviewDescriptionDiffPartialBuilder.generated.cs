@@ -27,18 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewUnfurlContextPartialBuilder;
+namespace JetBrains.Space.Client.UnfurlDetailsReviewDescriptionDiffPartialBuilder;
 
-public static class CodeReviewUnfurlContextPartialExtensions
+public static class UnfurlDetailsReviewDescriptionDiffPartialExtensions
 {
-    public static Partial<CodeReviewUnfurlContext> WithReviewId(this Partial<CodeReviewUnfurlContext> it)
-        => it.AddFieldName("reviewId");
+    public static Partial<UnfurlDetailsReviewDescriptionDiff> WithSnapshotId(this Partial<UnfurlDetailsReviewDescriptionDiff> it)
+        => it.AddFieldName("snapshotId");
     
-    public static Partial<CodeReviewUnfurlContext> WithField(this Partial<CodeReviewUnfurlContext> it)
-        => it.AddFieldName("field");
-    
-    public static Partial<CodeReviewUnfurlContext> WithField(this Partial<CodeReviewUnfurlContext> it, Func<Partial<CodeReviewUnfurlContextField>, Partial<CodeReviewUnfurlContextField>> partialBuilder)
-        => it.AddFieldName("field", partialBuilder(new Partial<CodeReviewUnfurlContextField>(it)));
+    public static Partial<UnfurlDetailsReviewDescriptionDiff> WithBaseSnapshotId(this Partial<UnfurlDetailsReviewDescriptionDiff> it)
+        => it.AddFieldName("baseSnapshotId");
     
 }
 

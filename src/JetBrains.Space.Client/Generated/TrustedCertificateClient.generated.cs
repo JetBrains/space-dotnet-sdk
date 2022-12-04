@@ -49,7 +49,7 @@ public partial class TrustedCertificateClient : ISpaceClient
                 Alias = alias,
                 Data = data,
                 IsArchived = archived,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "CreateTrustedCertificate", cancellationToken: cancellationToken);
     }
     
 
@@ -58,7 +58,7 @@ public partial class TrustedCertificateClient : ISpaceClient
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<TrustedCertificate>()) : Partial<TrustedCertificate>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<List<TrustedCertificate>>("GET", $"api/http/trusted-certificates{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<List<TrustedCertificate>>("GET", $"api/http/trusted-certificates{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllTrustedCertificates", cancellationToken: cancellationToken);
     }
     
 
@@ -68,7 +68,7 @@ public partial class TrustedCertificateClient : ISpaceClient
         queryParameters.Append("data", data);
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<CertificateInfo>()) : Partial<CertificateInfo>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<CertificateInfo>("GET", $"api/http/trusted-certificates/info{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<CertificateInfo>("GET", $"api/http/trusted-certificates/info{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetCertificateInfo", cancellationToken: cancellationToken);
     }
     
 
@@ -82,7 +82,7 @@ public partial class TrustedCertificateClient : ISpaceClient
                 Alias = alias,
                 Data = data,
                 IsArchived = archived,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "UpdateTrustedCertificate", cancellationToken: cancellationToken);
     }
     
 
@@ -90,7 +90,7 @@ public partial class TrustedCertificateClient : ISpaceClient
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("DELETE", $"api/http/trusted-certificates/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        await _connection.RequestResourceAsync("DELETE", $"api/http/trusted-certificates/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteTrustedCertificate", cancellationToken: cancellationToken);
     }
     
 

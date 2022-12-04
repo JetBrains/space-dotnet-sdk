@@ -59,7 +59,7 @@ public partial class BlogClient : ISpaceClient
                 Locations = locations,
                 Teams = teams,
                 Event = @event,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "PublishBlogPost", cancellationToken: cancellationToken);
     }
     
 
@@ -81,7 +81,7 @@ public partial class BlogClient : ISpaceClient
             { 
                 Metadata = metadata,
                 Articles = articles,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "ImportBlogPosts", cancellationToken: cancellationToken);
     }
     
 
@@ -107,7 +107,7 @@ public partial class BlogClient : ISpaceClient
         if (forProfile != null) queryParameters.Append("forProfile", forProfile);
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ArticleRecord>>()) : Partial<Batch<ArticleRecord>>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<Batch<ArticleRecord>>("GET", $"api/http/blog{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<Batch<ArticleRecord>>("GET", $"api/http/blog{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllBlogPosts", cancellationToken: cancellationToken);
     }
     
     /// <remarks>
@@ -139,7 +139,7 @@ public partial class BlogClient : ISpaceClient
         if (locationId != null) queryParameters.Append("locationId", locationId);
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<BGStats>()) : Partial<BGStats>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<BGStats>("GET", $"api/http/blog/stats{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<BGStats>("GET", $"api/http/blog/stats{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetStats", cancellationToken: cancellationToken);
     }
     
 
@@ -156,7 +156,7 @@ public partial class BlogClient : ISpaceClient
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blog/alias:{alias}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blog/alias:{alias}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetBlogPostByAlias", cancellationToken: cancellationToken);
     }
     
 
@@ -173,7 +173,7 @@ public partial class BlogClient : ISpaceClient
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blog/external-id:{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blog/external-id:{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetBlogPostByExternalId", cancellationToken: cancellationToken);
     }
     
 
@@ -190,7 +190,7 @@ public partial class BlogClient : ISpaceClient
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blog/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blog/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetBlogPost", cancellationToken: cancellationToken);
     }
     
 
@@ -215,7 +215,7 @@ public partial class BlogClient : ISpaceClient
                 Locations = locations,
                 Teams = teams,
                 Event = @event,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "UpdateBlogPost", cancellationToken: cancellationToken);
     }
     
 
@@ -231,7 +231,7 @@ public partial class BlogClient : ISpaceClient
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("DELETE", $"api/http/blog/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        await _connection.RequestResourceAsync("DELETE", $"api/http/blog/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "UnpublishArticle", cancellationToken: cancellationToken);
     }
     
 

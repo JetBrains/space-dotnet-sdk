@@ -119,6 +119,9 @@ public interface InlineUnfurlDetails
     public static UnfurlDetailsRepositoryBranch UnfurlDetailsRepositoryBranch(PRProject project, string repository, string branchHead, bool deleted, bool? isDefault = null)
         => new UnfurlDetailsRepositoryBranch(project: project, repository: repository, branchHead: branchHead, deleted: deleted, isDefault: isDefault);
     
+    public static UnfurlDetailsReviewDescriptionDiff UnfurlDetailsReviewDescriptionDiff(string snapshotId, string baseSnapshotId)
+        => new UnfurlDetailsReviewDescriptionDiff(snapshotId: snapshotId, baseSnapshotId: baseSnapshotId);
+    
     public static UnfurlDetailsRole UnfurlDetailsRole(TDRole role)
         => new UnfurlDetailsRole(role: role);
     

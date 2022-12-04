@@ -59,7 +59,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
             queryParameters.Append("scope", scope.ToEnumString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ExtendedType>()) : Partial<ExtendedType>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<ExtendedType>>("GET", $"api/http/custom-fields/extended-types{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<ExtendedType>>("GET", $"api/http/custom-fields/extended-types{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllExtendedTypes", cancellationToken: cancellationToken);
         }
         
     
@@ -89,7 +89,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
             queryParameters.Append("scope", scope.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<CustomFieldsRecord>>()) : Partial<Batch<CustomFieldsRecord>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<CustomFieldsRecord>>("GET", $"api/http/custom-fields/{typeKey}/all-values{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<CustomFieldsRecord>>("GET", $"api/http/custom-fields/{typeKey}/all-values{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllValues", cancellationToken: cancellationToken);
         }
         
         /// <summary>
@@ -126,7 +126,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
                 { 
                     ValuesToAdd = valuesToAdd,
                     Scope = scope,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreateEnumValue", cancellationToken: cancellationToken);
         }
         
     
@@ -146,7 +146,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
             queryParameters.Append("scope", scope.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<EnumValueData>>()) : Partial<Batch<EnumValueData>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<EnumValueData>>("GET", $"api/http/custom-fields/{typeKey}/enum-values/{customFieldId}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<EnumValueData>>("GET", $"api/http/custom-fields/{typeKey}/enum-values/{customFieldId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllEnumValues", cancellationToken: cancellationToken);
         }
         
         /// <summary>
@@ -192,7 +192,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
                     OpenEnumValuesModification = openEnumValuesModification,
                     CfParameters = cfParameters,
                     Scope = scope,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreateField", cancellationToken: cancellationToken);
         }
         
     
@@ -209,7 +209,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
                 { 
                     CustomFieldOrder = customFieldOrder,
                     Scope = scope,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "ReorderFields", cancellationToken: cancellationToken);
         }
         
     
@@ -225,7 +225,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
                 new CustomFieldsForTypeKeyFieldsForIdArchivePostRequest
                 { 
                     Scope = scope,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "ArchiveField", cancellationToken: cancellationToken);
         }
         
     
@@ -241,7 +241,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
                 new CustomFieldsForTypeKeyFieldsForIdRestorePostRequest
                 { 
                     Scope = scope,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "RestoreField", cancellationToken: cancellationToken);
         }
         
     
@@ -256,7 +256,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
             queryParameters.Append("scope", scope.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomField>()) : Partial<CustomField>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<CustomField>>("GET", $"api/http/custom-fields/{typeKey}/fields{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<CustomField>>("GET", $"api/http/custom-fields/{typeKey}/fields{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllFields", cancellationToken: cancellationToken);
         }
         
     
@@ -282,7 +282,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
                     OpenEnumValuesModification = openEnumValuesModification,
                     CfParameters = cfParameters,
                     Scope = scope,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdateField", cancellationToken: cancellationToken);
         }
         
     
@@ -295,7 +295,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("scope", scope.ToString());
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields/{typeKey}/fields/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields/{typeKey}/fields/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteField", cancellationToken: cancellationToken);
         }
         
     
@@ -320,7 +320,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
                 queryParameters.Append("calculateTotal", calculateTotal.ToString("l"));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<CFValue>>()) : Partial<Batch<CFValue>>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<Batch<CFValue>>("GET", $"api/http/custom-fields/{typeKey}/fields/{id}/filter-values{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<Batch<CFValue>>("GET", $"api/http/custom-fields/{typeKey}/fields/{id}/filter-values{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllFilterValues", cancellationToken: cancellationToken);
             }
             
             [Obsolete("Use the new Custom Fields API (since 2020-09-06)")]
@@ -352,7 +352,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
             queryParameters.Append("scope", scope.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<CustomFieldsRecord>()) : Partial<CustomFieldsRecord>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<CustomFieldsRecord>("GET", $"api/http/custom-fields/{typeKey}/{entityId}/values{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<CustomFieldsRecord>("GET", $"api/http/custom-fields/{typeKey}/{entityId}/values{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetValue", cancellationToken: cancellationToken);
         }
         
     
@@ -369,7 +369,7 @@ public partial class CustomFieldDeprecatedClient : ISpaceClient
                 { 
                     Values = values,
                     Scope = scope,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdateValue", cancellationToken: cancellationToken);
         }
         
     

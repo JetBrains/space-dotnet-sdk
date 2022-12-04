@@ -62,7 +62,7 @@ public partial class CalendarClient : ISpaceClient
             if (role != null) queryParameters.Append("role", role);
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceEvent>()) : Partial<AbsenceEvent>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<AbsenceEvent>>("GET", $"api/http/calendars/absence-events{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<AbsenceEvent>>("GET", $"api/http/calendars/absence-events{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllAbsenceEvents", cancellationToken: cancellationToken);
         }
         
     
@@ -92,7 +92,7 @@ public partial class CalendarClient : ISpaceClient
             if (role != null) queryParameters.Append("role", role);
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<BirthdayEvent>()) : Partial<BirthdayEvent>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<BirthdayEvent>>("GET", $"api/http/calendars/birthday-events{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<BirthdayEvent>>("GET", $"api/http/calendars/birthday-events{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllBirthdayEvents", cancellationToken: cancellationToken);
         }
         
     
@@ -117,7 +117,7 @@ public partial class CalendarClient : ISpaceClient
                 queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<BirthdayEvent>()) : Partial<BirthdayEvent>.Default()).ToString());
                 
-                return await _connection.RequestResourceAsync<List<BirthdayEvent>>("GET", $"api/http/calendars/birthday-events/starred{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                return await _connection.RequestResourceAsync<List<BirthdayEvent>>("GET", $"api/http/calendars/birthday-events/starred{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllStarredBirthdayEvents", cancellationToken: cancellationToken);
             }
             
         
@@ -148,7 +148,7 @@ public partial class CalendarClient : ISpaceClient
                 new CalendarsEventParticipationsForIdPatchRequest
                 { 
                     NewStatus = newStatus,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdateEventParticipation", cancellationToken: cancellationToken);
         }
         
     
@@ -175,7 +175,7 @@ public partial class CalendarClient : ISpaceClient
             queryParameters.Append("dateTo", dateTo.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<MeetingRecord>>("GET", $"api/http/calendars/events{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<MeetingRecord>>("GET", $"api/http/calendars/events{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllEvents", cancellationToken: cancellationToken);
         }
         
     
@@ -187,7 +187,7 @@ public partial class CalendarClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<MeetingRecord>("GET", $"api/http/calendars/events/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<MeetingRecord>("GET", $"api/http/calendars/events/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetEvent", cancellationToken: cancellationToken);
         }
         
     
@@ -218,7 +218,7 @@ public partial class CalendarClient : ISpaceClient
             if (workingDays != null) queryParameters.Append("workingDays", workingDays?.ToString("l"));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<HolidaysEvent>()) : Partial<HolidaysEvent>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<HolidaysEvent>>("GET", $"api/http/calendars/holidays{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<HolidaysEvent>>("GET", $"api/http/calendars/holidays{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllHolidays", cancellationToken: cancellationToken);
         }
         
     
@@ -269,7 +269,7 @@ public partial class CalendarClient : ISpaceClient
                     ConferenceData = conferenceData,
                     Attachments = attachments,
                     CalendarId = calendarId,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreateMeeting", cancellationToken: cancellationToken);
         }
         
     
@@ -303,7 +303,7 @@ public partial class CalendarClient : ISpaceClient
             queryParameters.Append("includeMeetingInstances", includeMeetingInstances.ToString("l"));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<Meeting>>()) : Partial<Batch<Meeting>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Batch<Meeting>>("GET", $"api/http/calendars/meetings{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<Batch<Meeting>>("GET", $"api/http/calendars/meetings{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllMeetings", cancellationToken: cancellationToken);
         }
         
         /// <summary>
@@ -338,7 +338,7 @@ public partial class CalendarClient : ISpaceClient
             if (since != null) queryParameters.Append("since", since?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<MeetingOccurrenceTime>()) : Partial<MeetingOccurrenceTime>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<MeetingOccurrenceTime>("GET", $"api/http/calendars/meetings/next-occurrence{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<MeetingOccurrenceTime>("GET", $"api/http/calendars/meetings/next-occurrence{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetNextMeetingOccurrence", cancellationToken: cancellationToken);
         }
         
     
@@ -362,7 +362,7 @@ public partial class CalendarClient : ISpaceClient
             if (limit != null) queryParameters.Append("limit", limit?.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<MeetingOccurrenceTime>()) : Partial<MeetingOccurrenceTime>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<MeetingOccurrenceTime>>("GET", $"api/http/calendars/meetings/occurrences{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<MeetingOccurrenceTime>>("GET", $"api/http/calendars/meetings/occurrences{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetMeetingOccurrencesForPeriod", cancellationToken: cancellationToken);
         }
         
     
@@ -386,7 +386,7 @@ public partial class CalendarClient : ISpaceClient
             if (limit != null) queryParameters.Append("limit", limit?.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<MeetingWithOccurrenceTime>()) : Partial<MeetingWithOccurrenceTime>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<MeetingWithOccurrenceTime>>("GET", $"api/http/calendars/meetings/occurrences-by-meeting{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<MeetingWithOccurrenceTime>>("GET", $"api/http/calendars/meetings/occurrences-by-meeting{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetMeetingOccurrencesForPeriodForMultipleMeetings", cancellationToken: cancellationToken);
         }
         
     
@@ -405,7 +405,7 @@ public partial class CalendarClient : ISpaceClient
             queryParameters.Append("profileIds", profileIds.Select(it => it));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<EventParticipationStatus>()) : Partial<EventParticipationStatus>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<EventParticipationStatus>>("GET", $"api/http/calendars/meetings/participation-statuses{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<EventParticipationStatus>>("GET", $"api/http/calendars/meetings/participation-statuses{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetMeetingParticipationStatusesForProfiles", cancellationToken: cancellationToken);
         }
         
     
@@ -424,7 +424,7 @@ public partial class CalendarClient : ISpaceClient
             queryParameters.Append("emails", emails.Select(it => it));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<EventParticipationStatus>()) : Partial<EventParticipationStatus>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<EventParticipationStatus>>("GET", $"api/http/calendars/meetings/participation-statuses-external{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<EventParticipationStatus>>("GET", $"api/http/calendars/meetings/participation-statuses-external{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetRsvpStatusesForExternalUsers", cancellationToken: cancellationToken);
         }
         
     
@@ -444,7 +444,7 @@ public partial class CalendarClient : ISpaceClient
             queryParameters.Append("events", events.Select(it => it));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Pair<string, EventParticipationStatus>>()) : Partial<Pair<string, EventParticipationStatus>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<Pair<string, EventParticipationStatus>>>("GET", $"api/http/calendars/meetings/profile-participation{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<Pair<string, EventParticipationStatus>>>("GET", $"api/http/calendars/meetings/profile-participation{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetProfileParticipationStatusesForMeetings", cancellationToken: cancellationToken);
         }
         
     
@@ -463,7 +463,7 @@ public partial class CalendarClient : ISpaceClient
             queryParameters.Append("events", events.Select(it => it));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<MeetingRSVP>()) : Partial<MeetingRSVP>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<MeetingRSVP>>("GET", $"api/http/calendars/meetings/profile-participation-records{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<MeetingRSVP>>("GET", $"api/http/calendars/meetings/profile-participation-records{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetProfileParticipationStatusRecordsForMeetings", cancellationToken: cancellationToken);
         }
         
     
@@ -480,7 +480,7 @@ public partial class CalendarClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Meeting>("GET", $"api/http/calendars/meetings/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<Meeting>("GET", $"api/http/calendars/meetings/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetMeeting", cancellationToken: cancellationToken);
         }
         
     
@@ -520,7 +520,7 @@ public partial class CalendarClient : ISpaceClient
                     ConferenceData = conferenceData,
                     Attachments = attachments,
                     CalendarId = calendarId,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdateMeeting", cancellationToken: cancellationToken);
         }
         
     
@@ -539,7 +539,7 @@ public partial class CalendarClient : ISpaceClient
             queryParameters.Append("modificationKind", modificationKind.ToEnumString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<Meeting>("DELETE", $"api/http/calendars/meetings/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<Meeting>("DELETE", $"api/http/calendars/meetings/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteMeeting", cancellationToken: cancellationToken);
         }
         
     
@@ -571,7 +571,7 @@ public partial class CalendarClient : ISpaceClient
                     { 
                         RoomId = roomId,
                         DateTime = dateTime,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "AddConferenceRoom", cancellationToken: cancellationToken);
             }
             
         
@@ -589,7 +589,7 @@ public partial class CalendarClient : ISpaceClient
                 queryParameters.Append("roomId", roomId);
                 queryParameters.Append("dateTime", dateTime.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
                 
-                await _connection.RequestResourceAsync("DELETE", $"api/http/calendars/meetings/{id}/conference-rooms{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("DELETE", $"api/http/calendars/meetings/{id}/conference-rooms{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveConferenceRoom", cancellationToken: cancellationToken);
             }
             
         
@@ -629,7 +629,7 @@ public partial class CalendarClient : ISpaceClient
                         Status = status,
                         TargetDate = targetDate,
                         ModificationKind = modificationKind,
-                    }, requestHeaders: null, cancellationToken: cancellationToken);
+                    }, requestHeaders: null, functionName: "UpdateProfileParticipationStatus", cancellationToken: cancellationToken);
             }
             
         
@@ -669,7 +669,7 @@ public partial class CalendarClient : ISpaceClient
             if (role != null) queryParameters.Append("role", role);
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<MembershipEvent>()) : Partial<MembershipEvent>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<MembershipEvent>>("GET", $"api/http/calendars/membership-events{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<MembershipEvent>>("GET", $"api/http/calendars/membership-events{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllMembershipEvents", cancellationToken: cancellationToken);
         }
         
     
@@ -700,7 +700,7 @@ public partial class CalendarClient : ISpaceClient
             if (role != null) queryParameters.Append("role", role);
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<NonWorkingDaysEvent>()) : Partial<NonWorkingDaysEvent>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<NonWorkingDaysEvent>>("GET", $"api/http/calendars/non-working-days-events{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<NonWorkingDaysEvent>>("GET", $"api/http/calendars/non-working-days-events{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllNonWorkingDaysEvents", cancellationToken: cancellationToken);
         }
         
     

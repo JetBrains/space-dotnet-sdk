@@ -66,7 +66,7 @@ public partial class AbsenceClient : ISpaceClient
                 IsAvailable = available,
                 Icon = icon,
                 CustomFieldValues = customFieldValues,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "CreateAbsence", cancellationToken: cancellationToken);
     }
     
 
@@ -89,7 +89,7 @@ public partial class AbsenceClient : ISpaceClient
             new AbsencesForIdApprovePostRequest
             { 
                 IsApprove = approve,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "ApproveAbsence", cancellationToken: cancellationToken);
     }
     
 
@@ -119,7 +119,7 @@ public partial class AbsenceClient : ISpaceClient
         if (reason != null) queryParameters.Append("reason", reason);
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<AbsenceRecord>>()) : Partial<Batch<AbsenceRecord>>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<Batch<AbsenceRecord>>("GET", $"api/http/absences{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<Batch<AbsenceRecord>>("GET", $"api/http/absences{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllAbsences", cancellationToken: cancellationToken);
     }
     
     /// <summary>
@@ -152,7 +152,7 @@ public partial class AbsenceClient : ISpaceClient
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceRecord>()) : Partial<AbsenceRecord>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<List<AbsenceRecord>>("GET", $"api/http/absences/member:{member}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<List<AbsenceRecord>>("GET", $"api/http/absences/member:{member}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllAbsencesByMember", cancellationToken: cancellationToken);
     }
     
 
@@ -172,7 +172,7 @@ public partial class AbsenceClient : ISpaceClient
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceRecord>()) : Partial<AbsenceRecord>.Default()).ToString());
         
-        return await _connection.RequestResourceAsync<AbsenceRecord>("GET", $"api/http/absences/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        return await _connection.RequestResourceAsync<AbsenceRecord>("GET", $"api/http/absences/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAbsence", cancellationToken: cancellationToken);
     }
     
 
@@ -204,7 +204,7 @@ public partial class AbsenceClient : ISpaceClient
                 IsAvailable = available,
                 Icon = icon,
                 CustomFieldValues = customFieldValues,
-            }, requestHeaders: null, cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "UpdateAbsence", cancellationToken: cancellationToken);
     }
     
 
@@ -227,7 +227,7 @@ public partial class AbsenceClient : ISpaceClient
         var queryParameters = new NameValueCollection();
         queryParameters.Append("delete", delete.ToString("l"));
         
-        await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteAbsence", cancellationToken: cancellationToken);
     }
     
 
@@ -246,7 +246,7 @@ public partial class AbsenceClient : ISpaceClient
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}/delete-approval{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+        await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}/delete-approval{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteAbsenceApproval", cancellationToken: cancellationToken);
     }
     
 
@@ -285,7 +285,7 @@ public partial class AbsenceClient : ISpaceClient
                     IsDefaultAvailability = defaultAvailability,
                     IsApprovalRequired = approvalRequired,
                     Icon = icon,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "CreateAbsenceReason", cancellationToken: cancellationToken);
         }
         
     
@@ -306,7 +306,7 @@ public partial class AbsenceClient : ISpaceClient
             queryParameters.Append("withArchived", withArchived.ToString("l"));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<AbsenceReasonRecord>>("GET", $"api/http/absences/absence-reasons{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<List<AbsenceReasonRecord>>("GET", $"api/http/absences/absence-reasons{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllAbsenceReasons", cancellationToken: cancellationToken);
         }
         
     
@@ -326,7 +326,7 @@ public partial class AbsenceClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<AbsenceReasonRecord>("GET", $"api/http/absences/absence-reasons/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<AbsenceReasonRecord>("GET", $"api/http/absences/absence-reasons/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAbsenceReason", cancellationToken: cancellationToken);
         }
         
     
@@ -354,7 +354,7 @@ public partial class AbsenceClient : ISpaceClient
                     IsDefaultAvailability = defaultAvailability,
                     IsApprovalRequired = approvalRequired,
                     Icon = icon,
-                }, requestHeaders: null, cancellationToken: cancellationToken);
+                }, requestHeaders: null, functionName: "UpdateAbsenceReason", cancellationToken: cancellationToken);
         }
         
     
@@ -374,7 +374,7 @@ public partial class AbsenceClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("delete", delete.ToString("l"));
             
-            await _connection.RequestResourceAsync("DELETE", $"api/http/absences/absence-reasons/{id}{queryParameters.ToQueryString()}", requestHeaders: null, cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("DELETE", $"api/http/absences/absence-reasons/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteAbsenceReason", cancellationToken: cancellationToken);
         }
         
     
