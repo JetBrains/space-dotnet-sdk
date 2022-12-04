@@ -64,7 +64,7 @@ public class SpaceAttachmentProxyMiddleware
         try
         {
             // Stream response
-            var upstreamBlob = await connection.RequestBlobResourceAsync("GET", $"d/{resourceId}");
+            var upstreamBlob = await connection.RequestBlobResourceAsync("GET", $"d/{resourceId}", functionName: null);
             await using var upstreamResponseStream = upstreamBlob.Stream;
 
             // Not found

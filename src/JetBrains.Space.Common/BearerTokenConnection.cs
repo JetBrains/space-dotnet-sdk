@@ -67,7 +67,7 @@ public class BearerTokenConnection
     }
 
     /// <inheritdoc />
-    protected override async Task RequestResourceInternalAsync(string httpMethod, string urlPath, Dictionary<string, string>? requestHeaders, CancellationToken cancellationToken)
+    protected override async Task RequestResourceInternalAsync(string httpMethod, string urlPath, Dictionary<string, string>? requestHeaders, string? functionName, CancellationToken cancellationToken)
     {
         var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
             {
@@ -79,11 +79,11 @@ public class BearerTokenConnection
             .WithClientAndSdkHeaders(SdkInfo.Version)
             .WithHeaders(requestHeaders);
             
-        await SendRequestAsync(request, cancellationToken);
+        await SendRequestAsync(functionName, request, cancellationToken);
     }
 
     /// <inheritdoc />
-    protected override async Task<TResult> RequestResourceInternalAsync<TResult>(string httpMethod, string urlPath, Dictionary<string, string>? requestHeaders, CancellationToken cancellationToken)
+    protected override async Task<TResult> RequestResourceInternalAsync<TResult>(string httpMethod, string urlPath, Dictionary<string, string>? requestHeaders, string? functionName, CancellationToken cancellationToken)
     {
         var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
             {
@@ -95,7 +95,7 @@ public class BearerTokenConnection
             .WithClientAndSdkHeaders(SdkInfo.Version)
             .WithHeaders(requestHeaders);
             
-        var response = await SendRequestAsync(request, cancellationToken);
+        var response = await SendRequestAsync(functionName, request, cancellationToken);
 
 #if NET6_0_OR_GREATER
         return (await JsonSerializer.DeserializeAsync<TResult>(
@@ -107,7 +107,7 @@ public class BearerTokenConnection
     }
 
     /// <inheritdoc />
-    protected override async Task RequestResourceInternalAsync<TPayload>(string httpMethod, string urlPath, TPayload payload, Dictionary<string, string>? requestHeaders, CancellationToken cancellationToken)
+    protected override async Task RequestResourceInternalAsync<TPayload>(string httpMethod, string urlPath, TPayload payload, Dictionary<string, string>? requestHeaders, string? functionName, CancellationToken cancellationToken)
     {
         var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
             {
@@ -120,11 +120,11 @@ public class BearerTokenConnection
             .WithClientAndSdkHeaders(SdkInfo.Version)
             .WithHeaders(requestHeaders);
             
-        await SendRequestAsync(request, cancellationToken);
+        await SendRequestAsync(functionName, request, cancellationToken);
     }
         
     /// <inheritdoc />
-    protected override async Task<TResult> RequestResourceInternalAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload, Dictionary<string, string>? requestHeaders, CancellationToken cancellationToken)
+    protected override async Task<TResult> RequestResourceInternalAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload, Dictionary<string, string>? requestHeaders, string? functionName, CancellationToken cancellationToken)
     {
         var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
             {
@@ -137,7 +137,7 @@ public class BearerTokenConnection
             .WithClientAndSdkHeaders(SdkInfo.Version)
             .WithHeaders(requestHeaders);
             
-        var response = await SendRequestAsync(request, cancellationToken);
+        var response = await SendRequestAsync(functionName, request, cancellationToken);
             
 #if NET6_0_OR_GREATER
         return (await JsonSerializer.DeserializeAsync<TResult>(
@@ -149,12 +149,12 @@ public class BearerTokenConnection
     }
 
     /// <inheritdoc />
-    protected override async Task<SpaceBlob> RequestBlobResourceInternalAsync(string httpMethod, string urlPath, CancellationToken cancellationToken)
+    protected override async Task<SpaceBlob> RequestBlobResourceInternalAsync(string httpMethod, string urlPath, string? functionName, CancellationToken cancellationToken)
     {
         var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
             .WithClientAndSdkHeaders(SdkInfo.Version);
             
-        var response = await SendRequestAsync(request, cancellationToken);
+        var response = await SendRequestAsync(functionName, request, cancellationToken);
 
         return new SpaceBlob
         {
@@ -177,10 +177,11 @@ public class BearerTokenConnection
     /// Ensure the request is authenticated, if needed.
     /// Can be used in derived classes to update authorization headers to communicate with the Space organization.
     /// </summary>
+    /// <param name="functionName">The function name that generated the request to the server.</param>
     /// <param name="request">The <see cref="HttpRequestMessage"/> to authenticate.</param>
     /// <param name="cancellationToken">A <see cref="CancellationToken"/> that can be used to cancel the operation.</param>
     /// <returns>A <see cref="Task"/> that represents the current operation.</returns>
-    protected virtual Task EnsureAuthenticatedAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+    protected virtual Task EnsureAuthenticatedAsync(string? functionName, HttpRequestMessage request, CancellationToken cancellationToken)
     {
         if (AuthenticationTokens != null && !AuthenticationTokens.HasExpired())
         {
@@ -193,15 +194,16 @@ public class BearerTokenConnection
     /// <summary>
     /// Sends an HTTP request as an asynchronous operation.
     /// </summary>
+    /// <param name="functionName">The function name that generated the request to the server.</param>
     /// <param name="request">The <see cref="HttpRequestMessage"/> to send.</param>
     /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
     /// <returns>A <see cref="Task"/> that represents the HTTP response.</returns>
     /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
-    protected virtual async Task<HttpResponseMessage> SendRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+    protected virtual async Task<HttpResponseMessage> SendRequestAsync(string? functionName, HttpRequestMessage request, CancellationToken cancellationToken)
     {
         return await ResourceRetryPolicy.ExecuteAsync(async () =>
         {
-            await EnsureAuthenticatedAsync(request, cancellationToken);
+            await EnsureAuthenticatedAsync(functionName, request, cancellationToken);
 
             request = await _epochTrackerHttpMessageInterceptor.BeforeRequestAsync(ServerUrl, request, cancellationToken);
             
@@ -211,7 +213,7 @@ public class BearerTokenConnection
             
             if (!response.IsSuccessStatusCode)
             {
-                var exception = await BuildException(request, response);
+                var exception = await BuildException(functionName, request, response);
                 throw exception;
             }
 
@@ -222,10 +224,11 @@ public class BearerTokenConnection
     /// <summary>
     /// Build a <see cref="ResourceException"/> from a <see cref="HttpResponseMessage"/>.
     /// </summary>
+    /// <param name="functionName">The function name that generated the request to the server.</param>
     /// <param name="request">The <see cref="HttpRequestMessage"/> to build a <see cref="ResourceException"/> from.</param>
     /// <param name="response">The <see cref="HttpResponseMessage"/> to build a <see cref="ResourceException"/> from.</param>
     /// <returns>The <see cref="ResourceException"/>, matching all characteristics of the <see cref="HttpResponseMessage"/> body.</returns>
-    protected static async Task<ResourceException> BuildException(HttpRequestMessage request, HttpResponseMessage response)
+    protected static async Task<ResourceException> BuildException(string? functionName, HttpRequestMessage? request, HttpResponseMessage response)
     {
         // 1. Determine Space error
         SpaceError? spaceError = null;
@@ -244,17 +247,17 @@ public class BearerTokenConnection
         {
             exception = spaceError.Error switch
             {
-                ErrorCodes.ValidationError => new ValidationException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase),
+                ErrorCodes.ValidationError => new ValidationException(spaceError.Description, request?.RequestUri, functionName, response.StatusCode, response.ReasonPhrase),
                 ErrorCodes.AuthenticationRequired => !string.IsNullOrEmpty(spaceError.Description) && spaceError.Description.Equals("Refresh token associated with the access token is revoked", StringComparison.InvariantCulture)
-                    ? new RefreshTokenRevokedException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase)
-                    : new AuthenticationRequiredException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase),
-                ErrorCodes.PermissionDenied => new PermissionDeniedException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase),
-                ErrorCodes.DuplicatedEntity => new DuplicatedEntityException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase),
-                ErrorCodes.RequestError => new ResourceException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase),
-                ErrorCodes.NotFound => new NotFoundException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase),
-                ErrorCodes.RateLimited => new RateLimitedException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase),
-                ErrorCodes.PayloadTooLarge => new PayloadTooLargeException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase),
-                ErrorCodes.InternalServerError => new InternalServerErrorException(spaceError.Description, request.RequestUri, response.StatusCode, response.ReasonPhrase),
+                    ? new RefreshTokenRevokedException(spaceError.Description, request?.RequestUri, functionName, response.StatusCode, response.ReasonPhrase)
+                    : new AuthenticationRequiredException(spaceError.Description, request?.RequestUri, functionName, response.StatusCode, response.ReasonPhrase),
+                ErrorCodes.PermissionDenied => new PermissionDeniedException(spaceError.Description, request?.RequestUri, functionName, response.StatusCode, response.ReasonPhrase),
+                ErrorCodes.DuplicatedEntity => new DuplicatedEntityException(spaceError.Description, request?.RequestUri, functionName, response.StatusCode, response.ReasonPhrase),
+                ErrorCodes.RequestError => new ResourceException(spaceError.Description, request?.RequestUri, functionName, response.StatusCode, response.ReasonPhrase),
+                ErrorCodes.NotFound => new NotFoundException(spaceError.Description, request?.RequestUri, functionName, response.StatusCode, response.ReasonPhrase),
+                ErrorCodes.RateLimited => new RateLimitedException(spaceError.Description, request?.RequestUri, functionName, response.StatusCode, response.ReasonPhrase),
+                ErrorCodes.PayloadTooLarge => new PayloadTooLargeException(spaceError.Description, request?.RequestUri, functionName, response.StatusCode, response.ReasonPhrase),
+                ErrorCodes.InternalServerError => new InternalServerErrorException(spaceError.Description, request?.RequestUri, functionName, response.StatusCode, response.ReasonPhrase),
                 _ => exception
             };
         }
@@ -262,21 +265,22 @@ public class BearerTokenConnection
         {
             exception = response.StatusCode switch
             {
-                HttpStatusCode.BadRequest => new ResourceException("Bad Request", request.RequestUri, response.StatusCode, response.ReasonPhrase),
-                HttpStatusCode.Unauthorized => new AuthenticationRequiredException("Unauthorized", request.RequestUri, response.StatusCode, response.ReasonPhrase),
-                HttpStatusCode.Forbidden => new PermissionDeniedException("Forbidden", request.RequestUri, response.StatusCode, response.ReasonPhrase),
-                HttpStatusCode.NotFound => new NotFoundException("Not Found", request.RequestUri, response.StatusCode, response.ReasonPhrase),
-                HttpStatusCode.TooManyRequests => new RateLimitedException("Too Many Requests", request.RequestUri, response.StatusCode, response.ReasonPhrase),
-                HttpStatusCode.RequestEntityTooLarge => new PayloadTooLargeException("Bad Request", request.RequestUri, response.StatusCode, response.ReasonPhrase),
-                HttpStatusCode.RequestHeaderFieldsTooLarge => new PayloadTooLargeException("Bad Request", request.RequestUri, response.StatusCode, response.ReasonPhrase),
-                HttpStatusCode.InternalServerError => new InternalServerErrorException("Internal Server Error", request.RequestUri, response.StatusCode, response.ReasonPhrase),
+                HttpStatusCode.BadRequest => new ResourceException("Bad Request", request?.RequestUri, functionName, response.StatusCode, response.ReasonPhrase),
+                HttpStatusCode.Unauthorized => new AuthenticationRequiredException("Unauthorized", request?.RequestUri, functionName, response.StatusCode, response.ReasonPhrase),
+                HttpStatusCode.Forbidden => new PermissionDeniedException("Forbidden", request?.RequestUri, functionName, response.StatusCode, response.ReasonPhrase),
+                HttpStatusCode.NotFound => new NotFoundException("Not Found", request?.RequestUri, functionName, response.StatusCode, response.ReasonPhrase),
+                HttpStatusCode.TooManyRequests => new RateLimitedException("Too Many Requests", request?.RequestUri, functionName, response.StatusCode, response.ReasonPhrase),
+                HttpStatusCode.RequestEntityTooLarge => new PayloadTooLargeException("Bad Request", request?.RequestUri, functionName, response.StatusCode, response.ReasonPhrase),
+                HttpStatusCode.RequestHeaderFieldsTooLarge => new PayloadTooLargeException("Bad Request", request?.RequestUri, functionName, response.StatusCode, response.ReasonPhrase),
+                HttpStatusCode.InternalServerError => new InternalServerErrorException("Internal Server Error", request?.RequestUri, functionName, response.StatusCode, response.ReasonPhrase),
                 _ => exception
             };
         }
 
         exception ??= new ResourceException(
             "An error occurred while accessing the resource.",
-            request.RequestUri,
+            request?.RequestUri,
+            functionName,
             response.StatusCode,
             response.ReasonPhrase);
             

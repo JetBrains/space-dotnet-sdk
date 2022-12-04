@@ -23,8 +23,8 @@ public class PermissionDeniedException
     }
 
     /// <inheritdoc />
-    public PermissionDeniedException(string message, Uri? requestUri, HttpStatusCode statusCode, string? response) 
-        : base(message, requestUri, statusCode, response)
+    public PermissionDeniedException(string message, Uri? requestUri, string? functionName, HttpStatusCode statusCode, string? response) 
+        : base(message, requestUri, functionName, statusCode, response)
     {
     }
 }

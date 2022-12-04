@@ -229,6 +229,7 @@ public class CSharpApiModelResourceGenerator
             {
                 builder.Append($", requestHeaders: {nameof(EpochTrackerHeaders)}.{nameof(EpochTrackerHeaders.GenerateFrom)}(_connection.ServerUrl, {nameof(EpochTracker)}.{nameof(EpochTracker.Instance)})");
             }
+            builder.Append($", functionName: \"{methodNameForEndpoint}\"");
             builder.Append(", cancellationToken: cancellationToken");
             builder.AppendLine(");");
             indent.Decrement();
@@ -335,6 +336,7 @@ public class CSharpApiModelResourceGenerator
             {
                 builder.Append($", requestHeaders: {nameof(EpochTrackerHeaders)}.{nameof(EpochTrackerHeaders.GenerateFrom)}(_connection.ServerUrl, {nameof(EpochTracker)}.{nameof(EpochTracker.Instance)})");
             }
+            builder.Append($", functionName: \"{methodNameForEndpoint}\"");
             builder.Append(", cancellationToken: cancellationToken");
             builder.AppendLine(");");
             indent.Decrement();

@@ -100,7 +100,7 @@ public static class Program
                     httpClient);
             
                 var apiModel = await connection.RequestResourceAsync<ApiModel>(
-                    "GET", "api/http/http-api-model?$fields=dto,enums,urlParams,resources(*,nestedResources!),menuIds", requestHeaders: null);
+                    "GET", "api/http/http-api-model?$fields=dto,enums,urlParams,resources(*,nestedResources!),menuIds", requestHeaders: null, functionName: null);
                     
                 return apiModel;
             },

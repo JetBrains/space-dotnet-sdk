@@ -55,7 +55,7 @@ public class RefreshTokenConnection
     public PermissionScope Scope { get; set; } = PermissionScope.All;
 
     /// <inheritdoc />
-    protected override async Task EnsureAuthenticatedAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+    protected override async Task EnsureAuthenticatedAsync(string? functionName, HttpRequestMessage request, CancellationToken cancellationToken)
     {
         // Authenticate when token expired or when no access token is provided (but refresh token is known)
         if (AuthenticationTokens != null &&
@@ -81,7 +81,7 @@ public class RefreshTokenConnection
             var spaceTokenResponse = await HttpClient.SendAsync(spaceTokenRequest, cancellationToken);
             if (!spaceTokenResponse.IsSuccessStatusCode)
             {
-                var exception = await BuildException(spaceTokenRequest, spaceTokenResponse);
+                var exception = await BuildException(functionName, spaceTokenRequest, spaceTokenResponse);
                 throw exception;
             }
                 
@@ -96,6 +96,6 @@ public class RefreshTokenConnection
             );
         }
 
-        await base.EnsureAuthenticatedAsync(request, cancellationToken);
+        await base.EnsureAuthenticatedAsync(functionName, request, cancellationToken);
     }
 }

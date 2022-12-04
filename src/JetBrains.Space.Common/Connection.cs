@@ -49,11 +49,12 @@ public abstract class Connection
     /// <param name="httpMethod">The HTTP method to use.</param>
     /// <param name="urlPath">The path to access the resource.</param>
     /// <param name="requestHeaders">Request headers to send to the resource.</param>
+    /// <param name="functionName">The function name that generated the request to the server.</param>
     /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
     /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
-    public async Task RequestResourceAsync(string httpMethod, string urlPath, Dictionary<string, string>? requestHeaders, CancellationToken cancellationToken = default)
+    public async Task RequestResourceAsync(string httpMethod, string urlPath, Dictionary<string, string>? requestHeaders, string? functionName, CancellationToken cancellationToken = default)
     {
-        await RequestResourceInternalAsync(httpMethod, urlPath, requestHeaders, cancellationToken);
+        await RequestResourceInternalAsync(httpMethod, urlPath, requestHeaders, functionName, cancellationToken);
     }
         
     /// <summary>
@@ -62,12 +63,13 @@ public abstract class Connection
     /// <param name="httpMethod">The HTTP method to use.</param>
     /// <param name="urlPath">The path to access the resource.</param>
     /// <param name="requestHeaders">Request headers to send to the resource.</param>
+    /// <param name="functionName">The function name that generated the request to the server.</param>
     /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
     /// <returns>The requested resource.</returns>
     /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
-    public async Task<TResult> RequestResourceAsync<TResult>(string httpMethod, string urlPath, Dictionary<string, string>? requestHeaders, CancellationToken cancellationToken = default)
+    public async Task<TResult> RequestResourceAsync<TResult>(string httpMethod, string urlPath, Dictionary<string, string>? requestHeaders, string? functionName, CancellationToken cancellationToken = default)
     {
-        var value = await RequestResourceInternalAsync<TResult>(httpMethod, urlPath, requestHeaders, cancellationToken);
+        var value = await RequestResourceInternalAsync<TResult>(httpMethod, urlPath, requestHeaders, functionName, cancellationToken);
            
         PropagatePropertyAccessPathHelper.SetAccessPathForValue(typeof(TResult).Name, true, value);
             
@@ -81,11 +83,12 @@ public abstract class Connection
     /// <param name="urlPath">The path to access the resource.</param>
     /// <param name="payload">The payload to send to the resource.</param>
     /// <param name="requestHeaders">Request headers to send to the resource.</param>
+    /// <param name="functionName">The function name that generated the request to the server.</param>
     /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
     /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
-    public async Task RequestResourceAsync<TPayload>(string httpMethod, string urlPath, TPayload payload, Dictionary<string, string>? requestHeaders, CancellationToken cancellationToken = default)
+    public async Task RequestResourceAsync<TPayload>(string httpMethod, string urlPath, TPayload payload, Dictionary<string, string>? requestHeaders, string functionName, CancellationToken cancellationToken = default)
     {
-        await RequestResourceInternalAsync(httpMethod, urlPath, payload, requestHeaders, cancellationToken);
+        await RequestResourceInternalAsync(httpMethod, urlPath, payload, requestHeaders, functionName, cancellationToken);
     }
         
     /// <summary>
@@ -95,12 +98,13 @@ public abstract class Connection
     /// <param name="urlPath">The path to access the resource.</param>
     /// <param name="payload">The payload to send to the resource.</param>
     /// <param name="requestHeaders">Request headers to send to the resource.</param>
+    /// <param name="functionName">The function name that generated the request to the server.</param>
     /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
     /// <returns>The requested resource.</returns>
     /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
-    public async Task<TResult> RequestResourceAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload, Dictionary<string, string>? requestHeaders, CancellationToken cancellationToken = default)
+    public async Task<TResult> RequestResourceAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload, Dictionary<string, string>? requestHeaders, string? functionName, CancellationToken cancellationToken = default)
     {
-        var value = await RequestResourceInternalAsync<TPayload, TResult>(httpMethod, urlPath, payload, requestHeaders, cancellationToken);
+        var value = await RequestResourceInternalAsync<TPayload, TResult>(httpMethod, urlPath, payload, requestHeaders, functionName, cancellationToken);
             
         PropagatePropertyAccessPathHelper.SetAccessPathForValue(typeof(TResult).Name, true, value);
             
@@ -112,13 +116,13 @@ public abstract class Connection
     /// </summary>
     /// <param name="httpMethod">The HTTP method to use.</param>
     /// <param name="urlPath">The path to access the resource.</param>
-    /// <param name="requestHeaders">Request headers to send to the resource.</param>
+    /// <param name="functionName">The function name that generated the request to the server.</param>
     /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
     /// <returns>The requested resource.</returns>
     /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
-    public async Task<SpaceBlob> RequestBlobResourceAsync(string httpMethod, string urlPath, CancellationToken cancellationToken = default)
+    public async Task<SpaceBlob> RequestBlobResourceAsync(string httpMethod, string urlPath, string? functionName, CancellationToken cancellationToken = default)
     {
-        return await RequestBlobResourceInternalAsync(httpMethod, urlPath, cancellationToken);
+        return await RequestBlobResourceInternalAsync(httpMethod, urlPath, functionName, cancellationToken);
     }
         
     /// <summary>
@@ -127,9 +131,10 @@ public abstract class Connection
     /// <param name="httpMethod">The HTTP method to use.</param>
     /// <param name="urlPath">The path to access the resource.</param>
     /// <param name="requestHeaders">Request headers to send to the resource.</param>
+    /// <param name="functionName">The function name that generated the request to the server.</param>
     /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
     /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
-    protected abstract Task RequestResourceInternalAsync(string httpMethod, string urlPath, Dictionary<string, string>? requestHeaders, CancellationToken cancellationToken);
+    protected abstract Task RequestResourceInternalAsync(string httpMethod, string urlPath, Dictionary<string, string>? requestHeaders, string? functionName, CancellationToken cancellationToken);
         
     /// <summary>
     /// Requests a resource at a given URL.
@@ -137,10 +142,11 @@ public abstract class Connection
     /// <param name="httpMethod">The HTTP method to use.</param>
     /// <param name="urlPath">The path to access the resource.</param>
     /// <param name="requestHeaders">Request headers to send to the resource.</param>
+    /// <param name="functionName">The function name that generated the request to the server.</param>
     /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
     /// <returns>The requested resource.</returns>
     /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
-    protected abstract Task<TResult> RequestResourceInternalAsync<TResult>(string httpMethod, string urlPath, Dictionary<string, string>? requestHeaders, CancellationToken cancellationToken);
+    protected abstract Task<TResult> RequestResourceInternalAsync<TResult>(string httpMethod, string urlPath, Dictionary<string, string>? requestHeaders, string? functionName, CancellationToken cancellationToken);
         
     /// <summary>
     /// Sends a payload to a resource at a given URL.
@@ -149,9 +155,10 @@ public abstract class Connection
     /// <param name="urlPath">The path to access the resource.</param>
     /// <param name="payload">The payload to send to the resource.</param>
     /// <param name="requestHeaders">Request headers to send to the resource.</param>
+    /// <param name="functionName">The function name that generated the request to the server.</param>
     /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
     /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
-    protected abstract Task RequestResourceInternalAsync<TPayload>(string httpMethod, string urlPath, TPayload payload, Dictionary<string, string>? requestHeaders, CancellationToken cancellationToken);
+    protected abstract Task RequestResourceInternalAsync<TPayload>(string httpMethod, string urlPath, TPayload payload, Dictionary<string, string>? requestHeaders, string? functionName, CancellationToken cancellationToken);
         
     /// <summary>
     /// Sends a payload to a resource at a given URL.
@@ -160,18 +167,20 @@ public abstract class Connection
     /// <param name="urlPath">The path to access the resource.</param>
     /// <param name="payload">The payload to send to the resource.</param>
     /// <param name="requestHeaders">Request headers to send to the resource.</param>
+    /// <param name="functionName">The function name that generated the request to the server.</param>
     /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
     /// <returns>The requested resource.</returns>
     /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
-    protected abstract Task<TResult> RequestResourceInternalAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload, Dictionary<string, string>? requestHeaders, CancellationToken cancellationToken);
+    protected abstract Task<TResult> RequestResourceInternalAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload, Dictionary<string, string>? requestHeaders, string? functionName, CancellationToken cancellationToken);
         
     /// <summary>
     /// Requests a blob resource at a given URL.
     /// </summary>
     /// <param name="httpMethod">The HTTP method to use.</param>
     /// <param name="urlPath">The path to access the resource.</param>
+    /// <param name="functionName">The function name that generated the request to the server.</param>
     /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
     /// <returns>The requested resource.</returns>
     /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
-    protected abstract Task<SpaceBlob> RequestBlobResourceInternalAsync(string httpMethod, string urlPath, CancellationToken cancellationToken);
+    protected abstract Task<SpaceBlob> RequestBlobResourceInternalAsync(string httpMethod, string urlPath, string? functionName, CancellationToken cancellationToken);
 }

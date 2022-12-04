@@ -36,13 +36,15 @@ public class ResourceException
     /// </summary>
     /// <param name="message">A message that describes the current exception.</param>
     /// <param name="requestUri">The requested URI.</param>
+    /// <param name="functionName">The function name that generated the request to the server.</param>
     /// <param name="statusCode">The <see cref="T:System.Net.Http.HttpStatusCode" /> that was received from the server.</param>
     /// <param name="response">The HTTP response body which was received from the server.</param>
     /// <param name="innerException">Inner exception, if available.</param>
-    public ResourceException(string message, Uri? requestUri, HttpStatusCode statusCode, string? response, Exception? innerException = null) 
+    public ResourceException(string message, Uri? requestUri, string? functionName, HttpStatusCode statusCode, string? response, Exception? innerException = null) 
         : base(message, innerException)
     {
         RequestUri = requestUri;
+        FunctionName = functionName;
         StatusCode = statusCode;
         Response = response;
     }
@@ -51,6 +53,11 @@ public class ResourceException
     /// Get the <see cref="T:System.Uri" /> that was requested from the server.
     /// </summary>
     public Uri? RequestUri { get; }
+        
+    /// <summary>
+    /// Get the function name that generated the request to the server.
+    /// </summary>
+    public string? FunctionName { get; }
         
     /// <summary>
     /// Get the <see cref="T:System.Net.Http.HttpStatusCode" /> that was received from the server.

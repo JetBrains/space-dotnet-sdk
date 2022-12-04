@@ -85,6 +85,6 @@ public partial class UploadClient
 #endif
         }
 
-        throw new ResourceException("Could not upload stream.", request.RequestUri, response.StatusCode, response.ReasonPhrase);
+        throw new ResourceException("Could not upload stream.", request.RequestUri, nameof(UploadAsync), response.StatusCode, response.ReasonPhrase);
     }
 }

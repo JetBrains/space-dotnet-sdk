@@ -44,7 +44,7 @@ public class ClientCredentialsConnection
     public PermissionScope Scope { get; set; } = PermissionScope.All;
 
     /// <inheritdoc />
-    protected override async Task EnsureAuthenticatedAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+    protected override async Task EnsureAuthenticatedAsync(string? functionName, HttpRequestMessage request, CancellationToken cancellationToken)
     {
         // Authenticate?
         if (AuthenticationTokens == null || AuthenticationTokens.HasExpired())
@@ -68,7 +68,7 @@ public class ClientCredentialsConnection
             if (!spaceTokenResponse.IsSuccessStatusCode)
             {
                 throw new ResourceException($"Unable to connect to Space organization. Attempted endpoint was: {ServerUrl + "oauth/token"}",
-                    spaceTokenRequest.RequestUri, spaceTokenResponse.StatusCode, spaceTokenResponse.ReasonPhrase);
+                    spaceTokenRequest.RequestUri, functionName, spaceTokenResponse.StatusCode, spaceTokenResponse.ReasonPhrase);
             }
                 
             using var spaceTokenDocument = await JsonDocument.ParseAsync(await spaceTokenResponse.Content.ReadAsStreamAsync(), cancellationToken: cancellationToken);
@@ -81,6 +81,6 @@ public class ClientCredentialsConnection
             );
         }
 
-        await base.EnsureAuthenticatedAsync(request, cancellationToken);
+        await base.EnsureAuthenticatedAsync(functionName, request, cancellationToken);
     }
 }

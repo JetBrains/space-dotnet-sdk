@@ -23,8 +23,8 @@ public class NotFoundException
     }
 
     /// <inheritdoc />
-    public NotFoundException(string message, Uri? requestUri, HttpStatusCode statusCode, string? response) 
-        : base(message, requestUri, statusCode, response)
+    public NotFoundException(string message, Uri? requestUri, string? functionName, HttpStatusCode statusCode, string? response) 
+        : base(message, requestUri, functionName, statusCode, response)
     {
     }
 }
