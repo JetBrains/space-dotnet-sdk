@@ -34,7 +34,7 @@ public sealed class CratesPackageDependency
 {
     public CratesPackageDependency() { }
     
-    public CratesPackageDependency(string name, string versionReq, List<string> features, bool optional, bool defaultFeatures, string kind, string? target = null, string? registry = null, string? explicitNameInToml = null)
+    public CratesPackageDependency(string name, string versionReq, List<string> features, bool optional, bool defaultFeatures, string kind, string? target = null, string? registry = null)
     {
         Name = name;
         VersionReq = versionReq;
@@ -44,7 +44,6 @@ public sealed class CratesPackageDependency
         Target = target;
         Kind = kind;
         Registry = registry;
-        ExplicitNameInToml = explicitNameInToml;
     }
     
     private PropertyValue<string> _name = new PropertyValue<string>(nameof(CratesPackageDependency), nameof(Name), "name");
@@ -125,15 +124,6 @@ public sealed class CratesPackageDependency
         set => _registry.SetValue(value);
     }
 
-    private PropertyValue<string?> _explicitNameInToml = new PropertyValue<string?>(nameof(CratesPackageDependency), nameof(ExplicitNameInToml), "explicitNameInToml");
-    
-    [JsonPropertyName("explicitNameInToml")]
-    public string? ExplicitNameInToml
-    {
-        get => _explicitNameInToml.GetValue(InlineErrors);
-        set => _explicitNameInToml.SetValue(value);
-    }
-
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -144,7 +134,6 @@ public sealed class CratesPackageDependency
         _target.SetAccessPath(parentChainPath, validateHasBeenSet);
         _kind.SetAccessPath(parentChainPath, validateHasBeenSet);
         _registry.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _explicitNameInToml.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

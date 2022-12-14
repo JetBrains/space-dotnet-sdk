@@ -34,7 +34,7 @@ public class ApplicationsPostRequest
 {
     public ApplicationsPostRequest() { }
     
-    public ApplicationsPostRequest(string name, bool endpointSslVerification = true, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? connectToSpace = false, string? state = null)
+    public ApplicationsPostRequest(string name, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = true, bool? codeFlowEnabled = false, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = false, string? implicitFlowRedirectURIs = null, string? endpointUri = null, bool? endpointSslVerification = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? connectToSpace = false, string? state = null)
     {
         Name = name;
         PictureAttachmentId = pictureAttachmentId;
@@ -62,6 +62,9 @@ public class ApplicationsPostRequest
     
     private PropertyValue<string> _name = new PropertyValue<string>(nameof(ApplicationsPostRequest), nameof(Name), "name");
     
+    /// <summary>
+    /// Displayed application name
+    /// </summary>
     [Required]
     [JsonPropertyName("name")]
     public string Name
@@ -72,6 +75,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _pictureAttachmentId = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(PictureAttachmentId), "pictureAttachmentId");
     
+    /// <summary>
+    /// Identifier of an image attachment. You can get image attachment id by uploading an image, see [Create upload URL](/extensions/httpApiPlayground?resource=hosting_xxx_site&endpoint=http_post_xxx_upload-url).
+    /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
@@ -84,6 +90,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _defaultExternalPicture = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(DefaultExternalPicture), "defaultExternalPicture");
     
+    /// <summary>
+    /// URL of an image to be used as the application icon
+    /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
@@ -96,6 +105,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _clientId = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(ClientId), "clientId");
     
+    /// <summary>
+    /// `clientId` is generated automatically if this parameter is omitted. Application's `clientId` is returned in response
+    /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
@@ -108,6 +120,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _clientSecret = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(ClientSecret), "clientSecret");
     
+    /// <summary>
+    /// `clientSecret` is generated automatically if this parameter is omitted. Application's `clientSecret` can be retrieved through [Get Client Secret](/extensions/httpApiPlayground?resource=applications_xxx_client-secret&endpoint=http_get) endpoint.
+    /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
@@ -120,6 +135,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<bool?> _clientCredentialsFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsClientCredentialsFlowEnabled), "clientCredentialsFlowEnabled");
     
+    /// <summary>
+    /// Client Credentials flow is enabled by default. Pass `false` if the application only uses other flows.
+    /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
@@ -132,6 +150,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<bool?> _codeFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsCodeFlowEnabled), "codeFlowEnabled");
     
+    /// <summary>
+    /// Pass `true` to enable Authorization Code Flow for the application. Learn more in the [documentation](https://www.jetbrains.com/help/space/authorization-code.html).
+    /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
@@ -144,6 +165,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _codeFlowRedirectURIs = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(CodeFlowRedirectURIs), "codeFlowRedirectURIs");
     
+    /// <summary>
+    /// When Authorization Code Flow is enabled, specifies redirect URIs that can be used in the flow. Learn more in the [documentation](https://www.jetbrains.com/help/space/authorization-code.html).
+    /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
@@ -156,6 +180,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<bool?> _pkceRequired = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsPkceRequired), "pkceRequired");
     
+    /// <summary>
+    /// When Authorization Code Flow is enabled, specifies whether PKCE extension must be used. Learn more in the [documentation](https://www.jetbrains.com/help/space/authorization-code.html).
+    /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
@@ -171,6 +198,7 @@ public class ApplicationsPostRequest
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
+    [Obsolete("Implicit flow deprecated as not secure. Not available for new applications. Please use Authorization Code Flow with PKCE instead. (since 2022-11-30) (will be removed in a future version)")]
     [JsonPropertyName("implicitFlowEnabled")]
     public bool? IsImplicitFlowEnabled
     {
@@ -183,6 +211,7 @@ public class ApplicationsPostRequest
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
+    [Obsolete("Implicit flow deprecated as not secure. Not available for new applications. Please use Authorization Code Flow with PKCE instead. (since 2022-11-30) (will be removed in a future version)")]
     [JsonPropertyName("implicitFlowRedirectURIs")]
     public string? ImplicitFlowRedirectURIs
     {
@@ -192,6 +221,11 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _endpointUri = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(EndpointUri), "endpointUri");
     
+    /// <summary>
+    /// Space will send payloads (for example, `InitPayload`) to application using this URL.
+    /// 
+    /// This is also a default URL for webhook requests (`WebhookRequestPayload`). The URL for webhook requests can be redefined for each webhook.
+    /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
@@ -202,10 +236,16 @@ public class ApplicationsPostRequest
         set => _endpointUri.SetValue(value);
     }
 
-    private PropertyValue<bool> _endpointSslVerification = new PropertyValue<bool>(nameof(ApplicationsPostRequest), nameof(IsEndpointSslVerification), "endpointSslVerification");
+    private PropertyValue<bool?> _endpointSslVerification = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsEndpointSslVerification), "endpointSslVerification");
     
+    /// <summary>
+    /// SSL verification is turned on by default for connections that are established with application endpoint. Passing `false` will turn the verification off.
+    /// </summary>
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("endpointSslVerification")]
-    public bool IsEndpointSslVerification
+    public bool? IsEndpointSslVerification
     {
         get => _endpointSslVerification.GetValue(InlineErrors);
         set => _endpointSslVerification.SetValue(value);
@@ -213,6 +253,11 @@ public class ApplicationsPostRequest
 
     private PropertyValue<EndpointAuthCreate?> _appLevelAuth = new PropertyValue<EndpointAuthCreate?>(nameof(ApplicationsPostRequest), nameof(AppLevelAuth), "appLevelAuth");
     
+    /// <summary>
+    /// Type of authentication used by application server to make sure that payloads coming from Space are authentic.
+    /// 
+    /// Payloads from Space contain `serverUrl` property: the URL of the Space server sending the request. Authenticating the request (making sure it indeed comes from the referenced Space server) is essential to prevent fraudulent actions with your application.
+    /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
@@ -225,6 +270,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _sslKeystoreAuth = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(SslKeystoreAuth), "sslKeystoreAuth");
     
+    /// <summary>
+    /// Name of the SSL Keystore to be used when sending payloads to the application. You can create an SSL Keystore in Administration -&gt; SSL Keystores.
+    /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
@@ -302,6 +350,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<bool?> _connectToSpace = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsConnectToSpace), "connectToSpace");
     
+    /// <summary>
+    /// Pass `true` to create a multi-org application and connect application server to the current Space instance. Learn more in the [documentation](https://www.jetbrains.com/help/space/distribute-your-application.html).
+    /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
@@ -314,6 +365,9 @@ public class ApplicationsPostRequest
 
     private PropertyValue<string?> _state = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(State), "state");
     
+    /// <summary>
+    /// When passing `connectToSpace = true`, Space will send `InitPayload` to the application endpoint. The `state` value is passed in that `InitPayload`. Use this to perform multi-step application installation.
+    /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif

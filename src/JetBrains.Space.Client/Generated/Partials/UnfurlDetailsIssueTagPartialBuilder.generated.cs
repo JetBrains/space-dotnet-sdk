@@ -40,5 +40,11 @@ public static class UnfurlDetailsIssueTagPartialExtensions
     public static Partial<UnfurlDetailsIssueTag> WithIsStrikeThrough(this Partial<UnfurlDetailsIssueTag> it)
         => it.AddFieldName("strikeThrough");
     
+    public static Partial<UnfurlDetailsIssueTag> WithTextSize(this Partial<UnfurlDetailsIssueTag> it)
+        => it.AddFieldName("textSize");
+    
+    public static Partial<UnfurlDetailsIssueTag> WithTextSize(this Partial<UnfurlDetailsIssueTag> it, Func<Partial<MessageTextSize>, Partial<MessageTextSize>> partialBuilder)
+        => it.AddFieldName("textSize", partialBuilder(new Partial<MessageTextSize>(it)));
+    
 }
 

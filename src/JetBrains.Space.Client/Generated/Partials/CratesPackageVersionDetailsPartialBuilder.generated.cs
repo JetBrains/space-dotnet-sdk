@@ -91,15 +91,6 @@ public static class CratesPackageVersionDetailsPartialExtensions
     public static Partial<CratesPackageVersionDetails> WithDependencies(this Partial<CratesPackageVersionDetails> it, Func<Partial<CratesPackageDependency>, Partial<CratesPackageDependency>> partialBuilder)
         => it.AddFieldName("dependencies", partialBuilder(new Partial<CratesPackageDependency>(it)));
     
-    public static Partial<CratesPackageVersionDetails> WithFeatures(this Partial<CratesPackageVersionDetails> it)
-        => it.AddFieldName("features");
-    
-    public static Partial<CratesPackageVersionDetails> WithFeatures(this Partial<CratesPackageVersionDetails> it, Func<Partial<string>, Partial<string>> partialBuilder)
-        => it.AddFieldName("features", partialBuilder(new Partial<string>(it)));
-    
-    public static Partial<CratesPackageVersionDetails> WithAuthorsFromPackageDetails(this Partial<CratesPackageVersionDetails> it)
-        => it.AddFieldName("authorsFromPackageDetails");
-    
     public static Partial<CratesPackageVersionDetails> WithDescription(this Partial<CratesPackageVersionDetails> it)
         => it.AddFieldName("description");
     
@@ -111,9 +102,6 @@ public static class CratesPackageVersionDetailsPartialExtensions
     
     public static Partial<CratesPackageVersionDetails> WithReadme(this Partial<CratesPackageVersionDetails> it)
         => it.AddFieldName("readme");
-    
-    public static Partial<CratesPackageVersionDetails> WithReadmeFilePath(this Partial<CratesPackageVersionDetails> it)
-        => it.AddFieldName("readmeFilePath");
     
     public static Partial<CratesPackageVersionDetails> WithKeywords(this Partial<CratesPackageVersionDetails> it)
         => it.AddFieldName("keywords");
@@ -129,12 +117,6 @@ public static class CratesPackageVersionDetailsPartialExtensions
     
     public static Partial<CratesPackageVersionDetails> WithGitRepository(this Partial<CratesPackageVersionDetails> it)
         => it.AddFieldName("gitRepository");
-    
-    public static Partial<CratesPackageVersionDetails> WithBadges(this Partial<CratesPackageVersionDetails> it)
-        => it.AddFieldName("badges");
-    
-    public static Partial<CratesPackageVersionDetails> WithBadges(this Partial<CratesPackageVersionDetails> it, Func<Partial<string>, Partial<string>> partialBuilder)
-        => it.AddFieldName("badges", partialBuilder(new Partial<string>(it)));
     
     public static Partial<CratesPackageVersionDetails> WithLinks(this Partial<CratesPackageVersionDetails> it)
         => it.AddFieldName("links");

@@ -37,10 +37,11 @@ public sealed class UnfurlDetailsIssueTag
     
     public UnfurlDetailsIssueTag() { }
     
-    public UnfurlDetailsIssueTag(PlanningTag tag, bool strikeThrough)
+    public UnfurlDetailsIssueTag(PlanningTag tag, bool strikeThrough, MessageTextSize? textSize = null)
     {
         Tag = tag;
         IsStrikeThrough = strikeThrough;
+        TextSize = textSize;
     }
     
     private PropertyValue<PlanningTag> _tag = new PropertyValue<PlanningTag>(nameof(UnfurlDetailsIssueTag), nameof(Tag), "tag");
@@ -63,10 +64,20 @@ public sealed class UnfurlDetailsIssueTag
         set => _strikeThrough.SetValue(value);
     }
 
+    private PropertyValue<MessageTextSize?> _textSize = new PropertyValue<MessageTextSize?>(nameof(UnfurlDetailsIssueTag), nameof(TextSize), "textSize");
+    
+    [JsonPropertyName("textSize")]
+    public MessageTextSize? TextSize
+    {
+        get => _textSize.GetValue(InlineErrors);
+        set => _textSize.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _tag.SetAccessPath(parentChainPath, validateHasBeenSet);
         _strikeThrough.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _textSize.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -37,7 +37,7 @@ public sealed class CratesPackageVersionDetails
     
     public CratesPackageVersionDetails() { }
     
-    public CratesPackageVersionDetails(string repository, string name, string version, long created, long downloads, bool pinned, long diskSize, List<CratesPackageDependency> dependencies, List<string> authorsFromPackageDetails, List<string> keywords, List<string> categories, List<string>? tags = null, long? accessed = null, string? comment = null, CPrincipal? author = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, Dictionary<string, string>? metadata = null, Dictionary<string, List<string>>? features = null, string? description = null, string? documentation = null, string? homepage = null, string? readme = null, string? readmeFilePath = null, string? license = null, string? licenseFileContent = null, string? gitRepository = null, Dictionary<string, Dictionary<string, string>>? badges = null, string? links = null)
+    public CratesPackageVersionDetails(string repository, string name, string version, long created, long downloads, bool pinned, long diskSize, List<CratesPackageDependency> dependencies, List<string> keywords, List<string> categories, List<string>? tags = null, long? accessed = null, string? comment = null, CPrincipal? author = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, Dictionary<string, string>? metadata = null, string? description = null, string? documentation = null, string? homepage = null, string? readme = null, string? license = null, string? licenseFileContent = null, string? gitRepository = null, string? links = null)
     {
         Repository = repository;
         Name = name;
@@ -54,19 +54,15 @@ public sealed class CratesPackageVersionDetails
         Origin = origin;
         Metadata = metadata;
         Dependencies = dependencies;
-        Features = features;
-        AuthorsFromPackageDetails = authorsFromPackageDetails;
         Description = description;
         Documentation = documentation;
         Homepage = homepage;
         Readme = readme;
-        ReadmeFilePath = readmeFilePath;
         Keywords = keywords;
         Categories = categories;
         License = license;
         LicenseFileContent = licenseFileContent;
         GitRepository = gitRepository;
-        Badges = badges;
         Links = links;
     }
     
@@ -213,25 +209,6 @@ public sealed class CratesPackageVersionDetails
         set => _dependencies.SetValue(value);
     }
 
-    private PropertyValue<Dictionary<string, List<string>>?> _features = new PropertyValue<Dictionary<string, List<string>>?>(nameof(CratesPackageVersionDetails), nameof(Features), "features");
-    
-    [JsonPropertyName("features")]
-    public Dictionary<string, List<string>>? Features
-    {
-        get => _features.GetValue(InlineErrors);
-        set => _features.SetValue(value);
-    }
-
-    private PropertyValue<List<string>> _authorsFromPackageDetails = new PropertyValue<List<string>>(nameof(CratesPackageVersionDetails), nameof(AuthorsFromPackageDetails), "authorsFromPackageDetails", new List<string>());
-    
-    [Required]
-    [JsonPropertyName("authorsFromPackageDetails")]
-    public List<string> AuthorsFromPackageDetails
-    {
-        get => _authorsFromPackageDetails.GetValue(InlineErrors);
-        set => _authorsFromPackageDetails.SetValue(value);
-    }
-
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CratesPackageVersionDetails), nameof(Description), "description");
     
     [JsonPropertyName("description")]
@@ -266,15 +243,6 @@ public sealed class CratesPackageVersionDetails
     {
         get => _readme.GetValue(InlineErrors);
         set => _readme.SetValue(value);
-    }
-
-    private PropertyValue<string?> _readmeFilePath = new PropertyValue<string?>(nameof(CratesPackageVersionDetails), nameof(ReadmeFilePath), "readmeFilePath");
-    
-    [JsonPropertyName("readmeFilePath")]
-    public string? ReadmeFilePath
-    {
-        get => _readmeFilePath.GetValue(InlineErrors);
-        set => _readmeFilePath.SetValue(value);
     }
 
     private PropertyValue<List<string>> _keywords = new PropertyValue<List<string>>(nameof(CratesPackageVersionDetails), nameof(Keywords), "keywords", new List<string>());
@@ -324,15 +292,6 @@ public sealed class CratesPackageVersionDetails
         set => _gitRepository.SetValue(value);
     }
 
-    private PropertyValue<Dictionary<string, Dictionary<string, string>>?> _badges = new PropertyValue<Dictionary<string, Dictionary<string, string>>?>(nameof(CratesPackageVersionDetails), nameof(Badges), "badges");
-    
-    [JsonPropertyName("badges")]
-    public Dictionary<string, Dictionary<string, string>>? Badges
-    {
-        get => _badges.GetValue(InlineErrors);
-        set => _badges.SetValue(value);
-    }
-
     private PropertyValue<string?> _links = new PropertyValue<string?>(nameof(CratesPackageVersionDetails), nameof(Links), "links");
     
     [JsonPropertyName("links")]
@@ -359,19 +318,15 @@ public sealed class CratesPackageVersionDetails
         _origin.SetAccessPath(parentChainPath, validateHasBeenSet);
         _metadata.SetAccessPath(parentChainPath, validateHasBeenSet);
         _dependencies.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _features.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _authorsFromPackageDetails.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _documentation.SetAccessPath(parentChainPath, validateHasBeenSet);
         _homepage.SetAccessPath(parentChainPath, validateHasBeenSet);
         _readme.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _readmeFilePath.SetAccessPath(parentChainPath, validateHasBeenSet);
         _keywords.SetAccessPath(parentChainPath, validateHasBeenSet);
         _categories.SetAccessPath(parentChainPath, validateHasBeenSet);
         _license.SetAccessPath(parentChainPath, validateHasBeenSet);
         _licenseFileContent.SetAccessPath(parentChainPath, validateHasBeenSet);
         _gitRepository.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _badges.SetAccessPath(parentChainPath, validateHasBeenSet);
         _links.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

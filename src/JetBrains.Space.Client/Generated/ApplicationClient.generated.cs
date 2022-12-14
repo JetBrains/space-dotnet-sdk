@@ -38,6 +38,11 @@ public partial class ApplicationClient : ISpaceClient
         _connection = connection;
     }
     
+    /// <summary>
+    /// Creates a new application. Marketplace application cannot be installed using this endpoint.
+    /// 
+    /// To create a multi-org application (and connect application server to the current Space instance), pass `connectToSpace = true`. Learn more about multi-org applications in the [documentation](https://www.jetbrains.com/help/space/distribute-your-application.html).
+    /// </summary>
     /// <remarks>
     /// Required permissions:
     /// <list type="bullet">
@@ -46,7 +51,7 @@ public partial class ApplicationClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<ESApp> CreateApplicationAsync(string name, bool endpointSslVerification = true, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? connectToSpace = false, string? state = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    public async Task<ESApp> CreateApplicationAsync(string name, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = true, bool? codeFlowEnabled = false, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = false, string? implicitFlowRedirectURIs = null, string? endpointUri = null, bool? endpointSslVerification = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? connectToSpace = false, string? state = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
@@ -215,6 +220,12 @@ public partial class ApplicationClient : ISpaceClient
     }
     
 
+    /// <summary>
+    /// Update existing application. Multi-org applications (created with the parameter `connectToSpace = true` or installed from JetBrains Marketplace) can only be updated by the application itself. Learn more about multi-org applications in the [documentation](https://www.jetbrains.com/help/space/distribute-your-application.html).
+    /// </summary>
+    /// <param name="application">
+    /// The application that needs to be updated
+    /// </param>
     /// <remarks>
     /// Required permissions:
     /// <list type="bullet">
@@ -223,7 +234,7 @@ public partial class ApplicationClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<ESApp> UpdateApplicationAsync(ApplicationIdentifier application, bool? endpointSslVerification = null, bool? hasVerificationToken = null, bool? hasPublicKeySignature = null, bool? hasSigningKey = null, EndpointAppLevelAuthUpdateType? appLevelAuth = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? name = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    public async Task<ESApp> UpdateApplicationAsync(ApplicationIdentifier application, string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, bool? endpointSslVerification = null, bool? hasVerificationToken = null, bool? hasPublicKeySignature = null, bool? hasSigningKey = null, EndpointAppLevelAuthUpdateType? appLevelAuth = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? codeFlowRedirectURIs = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());

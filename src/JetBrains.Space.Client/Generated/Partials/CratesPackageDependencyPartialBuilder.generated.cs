@@ -55,8 +55,5 @@ public static class CratesPackageDependencyPartialExtensions
     public static Partial<CratesPackageDependency> WithRegistry(this Partial<CratesPackageDependency> it)
         => it.AddFieldName("registry");
     
-    public static Partial<CratesPackageDependency> WithExplicitNameInToml(this Partial<CratesPackageDependency> it)
-        => it.AddFieldName("explicitNameInToml");
-    
 }
 

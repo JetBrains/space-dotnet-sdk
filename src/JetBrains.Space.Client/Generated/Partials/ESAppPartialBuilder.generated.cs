@@ -34,18 +34,33 @@ public static class ESAppPartialExtensions
     public static Partial<ESApp> WithId(this Partial<ESApp> it)
         => it.AddFieldName("id");
     
+    /// <summary>
+    /// User that created/installed the application. `null` if the application was created/installed by another application, See `ownerApp`.
+    /// </summary>
     public static Partial<ESApp> WithOwner(this Partial<ESApp> it)
         => it.AddFieldName("owner");
     
+    /// <summary>
+    /// User that created/installed the application. `null` if the application was created/installed by another application, See `ownerApp`.
+    /// </summary>
     public static Partial<ESApp> WithOwner(this Partial<ESApp> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
         => it.AddFieldName("owner", partialBuilder(new Partial<TDMemberProfile>(it)));
     
+    /// <summary>
+    /// Application that created/installed the application. `null` if the application was created/installed by a user, See `owner`.
+    /// </summary>
     public static Partial<ESApp> WithOwnerApp(this Partial<ESApp> it)
         => it.AddFieldName("ownerApp");
     
+    /// <summary>
+    /// Application that created/installed the application. `null` if the application was created/installed by a user, See `owner`.
+    /// </summary>
     public static Partial<ESApp> WithOwnerAppRecursive(this Partial<ESApp> it)
         => it.AddFieldName("ownerApp!");
     
+    /// <summary>
+    /// Application that created/installed the application. `null` if the application was created/installed by a user, See `owner`.
+    /// </summary>
     public static Partial<ESApp> WithOwnerApp(this Partial<ESApp> it, Func<Partial<ESApp>, Partial<ESApp>> partialBuilder)
         => it.AddFieldName("ownerApp", partialBuilder(new Partial<ESApp>(it)));
     

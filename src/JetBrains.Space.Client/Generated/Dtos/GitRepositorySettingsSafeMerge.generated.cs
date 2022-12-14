@@ -29,14 +29,34 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public static class SdkInfo
+public sealed class GitRepositorySettingsSafeMerge
+     : IPropagatePropertyAccessPath
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2023.1.0-DEV.144528";
+    public GitRepositorySettingsSafeMerge() { }
+    
+    public GitRepositorySettingsSafeMerge(string configOid)
+    {
+        ConfigOid = configOid;
+    }
+    
+    private PropertyValue<string> _configOid = new PropertyValue<string>(nameof(GitRepositorySettingsSafeMerge), nameof(ConfigOid), "configOid");
+    
+    [Required]
+    [JsonPropertyName("configOid")]
+    public string ConfigOid
+    {
+        get => _configOid.GetValue(InlineErrors);
+        set => _configOid.SetValue(value);
+    }
+
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _configOid.SetAccessPath(parentChainPath, validateHasBeenSet);
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

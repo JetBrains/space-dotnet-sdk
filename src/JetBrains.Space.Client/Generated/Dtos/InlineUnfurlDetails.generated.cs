@@ -95,8 +95,8 @@ public interface InlineUnfurlDetails
     public static UnfurlDetailsIssueStatus UnfurlDetailsIssueStatus(IssueStatus status)
         => new UnfurlDetailsIssueStatus(status: status);
     
-    public static UnfurlDetailsIssueTag UnfurlDetailsIssueTag(PlanningTag tag, bool strikeThrough)
-        => new UnfurlDetailsIssueTag(tag: tag, strikeThrough: strikeThrough);
+    public static UnfurlDetailsIssueTag UnfurlDetailsIssueTag(PlanningTag tag, bool strikeThrough, MessageTextSize? textSize = null)
+        => new UnfurlDetailsIssueTag(tag: tag, strikeThrough: strikeThrough, textSize: textSize);
     
     public static UnfurlDetailsIssueTopic UnfurlDetailsIssueTopic(Topic topic, bool strikeThrough)
         => new UnfurlDetailsIssueTopic(topic: topic, strikeThrough: strikeThrough);

@@ -35,23 +35,11 @@ public abstract class PermissionContextIdentifier : IUrlParameter
     public static PermissionContextIdentifier Channel(string channel)
         => new ChannelPermissionContextIdentifier(channel);
     
-    public static PermissionContextIdentifier DocumentFolder(string folder)
-        => new DocumentFolderPermissionContextIdentifier(folder);
-    
-    public static PermissionContextIdentifier Document(string document)
-        => new DocumentPermissionContextIdentifier(document);
-    
     public static PermissionContextIdentifier Global
         => new GlobalPermissionContextIdentifier();
     
-    public static PermissionContextIdentifier Profile(ProfileIdentifier profile)
-        => new ProfilePermissionContextIdentifier(profile);
-    
     public static PermissionContextIdentifier Project(ProjectIdentifier project)
         => new ProjectPermissionContextIdentifier(project);
-    
-    public static PermissionContextIdentifier Team(TeamIdentifier team)
-        => new TeamPermissionContextIdentifier(team);
     
     public class ChannelPermissionContextIdentifier : PermissionContextIdentifier
     {
@@ -78,85 +66,10 @@ public abstract class PermissionContextIdentifier : IUrlParameter
             => $"channel:{Channel}";
     }
     
-    public class DocumentFolderPermissionContextIdentifier : PermissionContextIdentifier
-    {
-        [Required]
-        [JsonPropertyName("folder")]
-#if NET6_0_OR_GREATER
-        public string Folder { get; init; }
-#else
-        public string Folder { get; set; }
-#endif
-        
-#if !NET6_0_OR_GREATER
-#pragma warning disable CS8618
-        public DocumentFolderPermissionContextIdentifier() { }
-#pragma warning restore CS8618
-#endif
-        
-        public DocumentFolderPermissionContextIdentifier(string folder)
-        {
-            Folder = folder;
-        }
-        
-        public override string ToString()
-            => $"folder:{Folder}";
-    }
-    
-    public class DocumentPermissionContextIdentifier : PermissionContextIdentifier
-    {
-        [Required]
-        [JsonPropertyName("document")]
-#if NET6_0_OR_GREATER
-        public string Document { get; init; }
-#else
-        public string Document { get; set; }
-#endif
-        
-#if !NET6_0_OR_GREATER
-#pragma warning disable CS8618
-        public DocumentPermissionContextIdentifier() { }
-#pragma warning restore CS8618
-#endif
-        
-        public DocumentPermissionContextIdentifier(string document)
-        {
-            Document = document;
-        }
-        
-        public override string ToString()
-            => $"document:{Document}";
-    }
-    
     public class GlobalPermissionContextIdentifier : PermissionContextIdentifier
     {
         public override string ToString()
             => "global";
-    }
-    
-    public class ProfilePermissionContextIdentifier : PermissionContextIdentifier
-    {
-        [Required]
-        [JsonPropertyName("profile")]
-#if NET6_0_OR_GREATER
-        public ProfileIdentifier Profile { get; init; }
-#else
-        public ProfileIdentifier Profile { get; set; }
-#endif
-        
-#if !NET6_0_OR_GREATER
-#pragma warning disable CS8618
-        public ProfilePermissionContextIdentifier() { }
-#pragma warning restore CS8618
-#endif
-        
-        public ProfilePermissionContextIdentifier(ProfileIdentifier profile)
-        {
-            Profile = profile;
-        }
-        
-        public override string ToString()
-            => $"profile:{Profile}";
     }
     
     public class ProjectPermissionContextIdentifier : PermissionContextIdentifier
@@ -182,31 +95,6 @@ public abstract class PermissionContextIdentifier : IUrlParameter
         
         public override string ToString()
             => $"project:{Project}";
-    }
-    
-    public class TeamPermissionContextIdentifier : PermissionContextIdentifier
-    {
-        [Required]
-        [JsonPropertyName("team")]
-#if NET6_0_OR_GREATER
-        public TeamIdentifier Team { get; init; }
-#else
-        public TeamIdentifier Team { get; set; }
-#endif
-        
-#if !NET6_0_OR_GREATER
-#pragma warning disable CS8618
-        public TeamPermissionContextIdentifier() { }
-#pragma warning restore CS8618
-#endif
-        
-        public TeamPermissionContextIdentifier(TeamIdentifier team)
-        {
-            Team = team;
-        }
-        
-        public override string ToString()
-            => $"team:{Team}";
     }
     
 }

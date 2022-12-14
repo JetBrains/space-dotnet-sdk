@@ -3219,6 +3219,40 @@ public partial class ProjectClient : ISpaceClient
         
         }
     
+        public SettingClient Settings => new SettingClient(_connection);
+        
+        public partial class SettingClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public SettingClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task SetSettingsAsync(ProjectIdentifier project, string repository, GitRepositorySettings settings, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/settings{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectRepositoriesForRepositorySettingsPostRequest
+                    { 
+                        Settings = settings,
+                    }, requestHeaders: null, functionName: "SetSettings", cancellationToken: cancellationToken);
+            }
+            
+        
+            public async Task<GitRepositorySettings> GetSettingsAsync(ProjectIdentifier project, string repository, Func<Partial<GitRepositorySettings>, Partial<GitRepositorySettings>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitRepositorySettings>()) : Partial<GitRepositorySettings>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<GitRepositorySettings>("GET", $"api/http/projects/{project}/repositories/{repository}/settings{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetSettings", cancellationToken: cancellationToken);
+            }
+            
+        
+        }
+    
     }
 
     public ResponsibilityClient Responsibilities => new ResponsibilityClient(_connection);

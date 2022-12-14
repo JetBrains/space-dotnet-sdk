@@ -81,6 +81,9 @@ public sealed class ESApp
 
     private PropertyValue<TDMemberProfile?> _owner = new PropertyValue<TDMemberProfile?>(nameof(ESApp), nameof(Owner), "owner");
     
+    /// <summary>
+    /// User that created/installed the application. `null` if the application was created/installed by another application, See `ownerApp`.
+    /// </summary>
     [JsonPropertyName("owner")]
     public TDMemberProfile? Owner
     {
@@ -90,6 +93,9 @@ public sealed class ESApp
 
     private PropertyValue<ESApp?> _ownerApp = new PropertyValue<ESApp?>(nameof(ESApp), nameof(OwnerApp), "ownerApp");
     
+    /// <summary>
+    /// Application that created/installed the application. `null` if the application was created/installed by a user, See `owner`.
+    /// </summary>
     [JsonPropertyName("ownerApp")]
     public ESApp? OwnerApp
     {
