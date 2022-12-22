@@ -57,5 +57,14 @@ public static class WorkingDaysSpecPartialExtensions
     public static Partial<WorkingDaysSpec> WithTimezone(this Partial<WorkingDaysSpec> it, Func<Partial<ATimeZone>, Partial<ATimeZone>> partialBuilder)
         => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZone>(it)));
     
+    public static Partial<WorkingDaysSpec> WithBoundWeekdays(this Partial<WorkingDaysSpec> it)
+        => it.AddFieldName("boundWeekdays");
+    
+    public static Partial<WorkingDaysSpec> WithLocations(this Partial<WorkingDaysSpec> it)
+        => it.AddFieldName("locations");
+    
+    public static Partial<WorkingDaysSpec> WithLocations(this Partial<WorkingDaysSpec> it, Func<Partial<WeekDayLocation>, Partial<WeekDayLocation>> partialBuilder)
+        => it.AddFieldName("locations", partialBuilder(new Partial<WeekDayLocation>(it)));
+    
 }
 

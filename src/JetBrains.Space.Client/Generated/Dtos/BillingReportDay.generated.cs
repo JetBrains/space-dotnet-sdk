@@ -34,16 +34,18 @@ public sealed class BillingReportDay
 {
     public BillingReportDay() { }
     
-    public BillingReportDay(DateTime date, int activeUsers, int userUsage, double userCost, long storageTotalUsage, long storageFilesUsage, long storageGitUsage, long storagePackagesUsage, double storageCost, long bandwidthTotalUsageDelta, long bandwidthTotalUsage, long bandwidthFilesUsageDelta, long bandwidthFilesUsage, long bandwidthGitUsageDelta, long bandwidthGitUsage, long bandwidthPackagesUsageDelta, long bandwidthPackagesUsage, long bandwidthAutomationExternalTrafficUsageDelta, long bandwidthAutomationExternalTrafficUsage, long bandwidthAutomationInternalUsageDelta, long bandwidthAutomationInternalUsage, double bandwidthCost, long ciUsageDelta, long ciUsage, double ciCost, long appUsage, long chatUsage, double totalCost, int? activeGuests = null, int? paidActiveGuests = null, int? freeActiveGuests = null, double? guestCost = null, long? storageAllocationB = null)
+    public BillingReportDay(DateTime date, int activeUsers, int userUsage, double userCost, long storageTotalUsage, long storageFilesUsage, long storageGitUsage, long storagePackagesUsage, double storageCost, long bandwidthTotalUsageDelta, long bandwidthTotalUsage, long bandwidthFilesUsageDelta, long bandwidthFilesUsage, long bandwidthGitUsageDelta, long bandwidthGitUsage, long bandwidthPackagesUsageDelta, long bandwidthPackagesUsage, long bandwidthAutomationExternalTrafficUsageDelta, long bandwidthAutomationExternalTrafficUsage, long bandwidthAutomationInternalUsageDelta, long bandwidthAutomationInternalUsage, double bandwidthCost, long ciUsageDelta, long ciUsage, double ciCost, long appUsage, long chatUsage, double totalCost, int? userLimit = null, int? activeGuests = null, int? paidActiveGuests = null, int? freeActiveGuests = null, double? guestCost = null, int? guestLimit = null, long? storageAllocationB = null)
     {
         Date = date;
         ActiveUsers = activeUsers;
         UserUsage = userUsage;
         UserCost = userCost;
+        UserLimit = userLimit;
         ActiveGuests = activeGuests;
         PaidActiveGuests = paidActiveGuests;
         FreeActiveGuests = freeActiveGuests;
         GuestCost = guestCost;
+        GuestLimit = guestLimit;
         StorageAllocationB = storageAllocationB;
         StorageTotalUsage = storageTotalUsage;
         StorageFilesUsage = storageFilesUsage;
@@ -112,6 +114,15 @@ public sealed class BillingReportDay
         set => _userCost.SetValue(value);
     }
 
+    private PropertyValue<int?> _userLimit = new PropertyValue<int?>(nameof(BillingReportDay), nameof(UserLimit), "userLimit");
+    
+    [JsonPropertyName("userLimit")]
+    public int? UserLimit
+    {
+        get => _userLimit.GetValue(InlineErrors);
+        set => _userLimit.SetValue(value);
+    }
+
     private PropertyValue<int?> _activeGuests = new PropertyValue<int?>(nameof(BillingReportDay), nameof(ActiveGuests), "activeGuests");
     
     [JsonPropertyName("activeGuests")]
@@ -146,6 +157,15 @@ public sealed class BillingReportDay
     {
         get => _guestCost.GetValue(InlineErrors);
         set => _guestCost.SetValue(value);
+    }
+
+    private PropertyValue<int?> _guestLimit = new PropertyValue<int?>(nameof(BillingReportDay), nameof(GuestLimit), "guestLimit");
+    
+    [JsonPropertyName("guestLimit")]
+    public int? GuestLimit
+    {
+        get => _guestLimit.GetValue(InlineErrors);
+        set => _guestLimit.SetValue(value);
     }
 
     private PropertyValue<long?> _storageAllocationB = new PropertyValue<long?>(nameof(BillingReportDay), nameof(StorageAllocationB), "storageAllocationB");
@@ -403,10 +423,12 @@ public sealed class BillingReportDay
         _activeUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
         _userUsage.SetAccessPath(parentChainPath, validateHasBeenSet);
         _userCost.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _userLimit.SetAccessPath(parentChainPath, validateHasBeenSet);
         _activeGuests.SetAccessPath(parentChainPath, validateHasBeenSet);
         _paidActiveGuests.SetAccessPath(parentChainPath, validateHasBeenSet);
         _freeActiveGuests.SetAccessPath(parentChainPath, validateHasBeenSet);
         _guestCost.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _guestLimit.SetAccessPath(parentChainPath, validateHasBeenSet);
         _storageAllocationB.SetAccessPath(parentChainPath, validateHasBeenSet);
         _storageTotalUsage.SetAccessPath(parentChainPath, validateHasBeenSet);
         _storageFilesUsage.SetAccessPath(parentChainPath, validateHasBeenSet);

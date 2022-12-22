@@ -27,16 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.GitRebaseResultPartialBuilder;
 
-public static class SdkInfo
+public static class GitRebaseResultPartialExtensions
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2023.1.0-DEV.145486";
+    public static Partial<GitRebaseResult> WithIsSuccess(this Partial<GitRebaseResult> it)
+        => it.AddFieldName("success");
+    
+    public static Partial<GitRebaseResult> WithMessage(this Partial<GitRebaseResult> it)
+        => it.AddFieldName("message");
+    
+    public static Partial<GitRebaseResult> WithResultCommitIds(this Partial<GitRebaseResult> it)
+        => it.AddFieldName("resultCommitIds");
+    
 }
 

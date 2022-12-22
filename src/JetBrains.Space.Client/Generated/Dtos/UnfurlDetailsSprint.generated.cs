@@ -37,10 +37,11 @@ public sealed class UnfurlDetailsSprint
     
     public UnfurlDetailsSprint() { }
     
-    public UnfurlDetailsSprint(PRProject project, SprintRecord sprint)
+    public UnfurlDetailsSprint(PRProject project, SprintRecord sprint, bool? removed = null)
     {
         Project = project;
         Sprint = sprint;
+        IsRemoved = removed;
     }
     
     private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsSprint), nameof(Project), "project");
@@ -63,10 +64,20 @@ public sealed class UnfurlDetailsSprint
         set => _sprint.SetValue(value);
     }
 
+    private PropertyValue<bool?> _removed = new PropertyValue<bool?>(nameof(UnfurlDetailsSprint), nameof(IsRemoved), "removed");
+    
+    [JsonPropertyName("removed")]
+    public bool? IsRemoved
+    {
+        get => _removed.GetValue(InlineErrors);
+        set => _removed.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
         _sprint.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _removed.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

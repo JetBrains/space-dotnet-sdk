@@ -131,8 +131,8 @@ public interface InlineUnfurlDetails
     public static UnfurlDetailsSnapshotDiff UnfurlDetailsSnapshotDiff(string snapshotId, string baseSnapshotId)
         => new UnfurlDetailsSnapshotDiff(snapshotId: snapshotId, baseSnapshotId: baseSnapshotId);
     
-    public static UnfurlDetailsSprint UnfurlDetailsSprint(PRProject project, SprintRecord sprint)
-        => new UnfurlDetailsSprint(project: project, sprint: sprint);
+    public static UnfurlDetailsSprint UnfurlDetailsSprint(PRProject project, SprintRecord sprint, bool? removed = null)
+        => new UnfurlDetailsSprint(project: project, sprint: sprint, removed: removed);
     
     public static UnfurlDetailsTeam UnfurlDetailsTeam(TDTeam team, bool? strikeThrough = null)
         => new UnfurlDetailsTeam(team: team, strikeThrough: strikeThrough);

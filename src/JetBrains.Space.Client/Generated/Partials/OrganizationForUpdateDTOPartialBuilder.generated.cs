@@ -77,5 +77,8 @@ public static class OrganizationForUpdateDTOPartialExtensions
     public static Partial<OrganizationForUpdateDTO> WithOrgIndustry(this Partial<OrganizationForUpdateDTO> it, Func<Partial<OrgIndustryDTO>, Partial<OrgIndustryDTO>> partialBuilder)
         => it.AddFieldName("orgIndustry", partialBuilder(new Partial<OrgIndustryDTO>(it)));
     
+    public static Partial<OrganizationForUpdateDTO> WithIsSendAnonymousDataAgreementAccepted(this Partial<OrganizationForUpdateDTO> it)
+        => it.AddFieldName("sendAnonymousDataAgreementAccepted");
+    
 }
 

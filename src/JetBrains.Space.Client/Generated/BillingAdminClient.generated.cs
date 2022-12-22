@@ -46,7 +46,7 @@ public partial class BillingAdminClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task ActivateTrialAsync(Tier trialTier, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    public async Task ActivateTrialNotAvailableForOnPremisesInstallationsAsync(Tier trialTier, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         
@@ -54,7 +54,7 @@ public partial class BillingAdminClient : ISpaceClient
             new BillingAdminTrialPutRequest
             { 
                 TrialTier = trialTier,
-            }, requestHeaders: null, functionName: "ActivateTrial", cancellationToken: cancellationToken);
+            }, requestHeaders: null, functionName: "ActivateTrialNotAvailableForOnPremisesInstallations", cancellationToken: cancellationToken);
     }
     
 

@@ -34,7 +34,7 @@ public sealed class EndpointAuthUpdateDTO
 {
     public EndpointAuthUpdateDTO() { }
     
-    public EndpointAuthUpdateDTO(EndpointAppLevelAuthUpdateType appLevelAuth, string basicAuthUsername, string basicAuthPassword, string bearerAuthToken, bool hasVerificationToken, string? sslKeystoreAuth = null)
+    public EndpointAuthUpdateDTO(EndpointAppLevelAuthUpdateType? appLevelAuth = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? hasVerificationToken = null, string? sslKeystoreAuth = null)
     {
         AppLevelAuth = appLevelAuth;
         BasicAuthUsername = basicAuthUsername;
@@ -44,51 +44,46 @@ public sealed class EndpointAuthUpdateDTO
         SslKeystoreAuth = sslKeystoreAuth;
     }
     
-    private PropertyValue<EndpointAppLevelAuthUpdateType> _appLevelAuth = new PropertyValue<EndpointAppLevelAuthUpdateType>(nameof(EndpointAuthUpdateDTO), nameof(AppLevelAuth), "appLevelAuth");
+    private PropertyValue<EndpointAppLevelAuthUpdateType?> _appLevelAuth = new PropertyValue<EndpointAppLevelAuthUpdateType?>(nameof(EndpointAuthUpdateDTO), nameof(AppLevelAuth), "appLevelAuth");
     
-    [Required]
     [JsonPropertyName("appLevelAuth")]
-    public EndpointAppLevelAuthUpdateType AppLevelAuth
+    public EndpointAppLevelAuthUpdateType? AppLevelAuth
     {
         get => _appLevelAuth.GetValue(InlineErrors);
         set => _appLevelAuth.SetValue(value);
     }
 
-    private PropertyValue<string> _basicAuthUsername = new PropertyValue<string>(nameof(EndpointAuthUpdateDTO), nameof(BasicAuthUsername), "basicAuthUsername");
+    private PropertyValue<string?> _basicAuthUsername = new PropertyValue<string?>(nameof(EndpointAuthUpdateDTO), nameof(BasicAuthUsername), "basicAuthUsername");
     
-    [Required]
     [JsonPropertyName("basicAuthUsername")]
-    public string BasicAuthUsername
+    public string? BasicAuthUsername
     {
         get => _basicAuthUsername.GetValue(InlineErrors);
         set => _basicAuthUsername.SetValue(value);
     }
 
-    private PropertyValue<string> _basicAuthPassword = new PropertyValue<string>(nameof(EndpointAuthUpdateDTO), nameof(BasicAuthPassword), "basicAuthPassword");
+    private PropertyValue<string?> _basicAuthPassword = new PropertyValue<string?>(nameof(EndpointAuthUpdateDTO), nameof(BasicAuthPassword), "basicAuthPassword");
     
-    [Required]
     [JsonPropertyName("basicAuthPassword")]
-    public string BasicAuthPassword
+    public string? BasicAuthPassword
     {
         get => _basicAuthPassword.GetValue(InlineErrors);
         set => _basicAuthPassword.SetValue(value);
     }
 
-    private PropertyValue<string> _bearerAuthToken = new PropertyValue<string>(nameof(EndpointAuthUpdateDTO), nameof(BearerAuthToken), "bearerAuthToken");
+    private PropertyValue<string?> _bearerAuthToken = new PropertyValue<string?>(nameof(EndpointAuthUpdateDTO), nameof(BearerAuthToken), "bearerAuthToken");
     
-    [Required]
     [JsonPropertyName("bearerAuthToken")]
-    public string BearerAuthToken
+    public string? BearerAuthToken
     {
         get => _bearerAuthToken.GetValue(InlineErrors);
         set => _bearerAuthToken.SetValue(value);
     }
 
-    private PropertyValue<bool> _hasVerificationToken = new PropertyValue<bool>(nameof(EndpointAuthUpdateDTO), nameof(IsHasVerificationToken), "hasVerificationToken");
+    private PropertyValue<bool?> _hasVerificationToken = new PropertyValue<bool?>(nameof(EndpointAuthUpdateDTO), nameof(IsHasVerificationToken), "hasVerificationToken");
     
-    [Required]
     [JsonPropertyName("hasVerificationToken")]
-    public bool IsHasVerificationToken
+    public bool? IsHasVerificationToken
     {
         get => _hasVerificationToken.GetValue(InlineErrors);
         set => _hasVerificationToken.SetValue(value);

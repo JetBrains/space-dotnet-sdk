@@ -55,6 +55,9 @@ public static class ExternalCheckDTOPartialExtensions
     public static Partial<ExternalCheckDTO> WithTaskId(this Partial<ExternalCheckDTO> it)
         => it.AddFieldName("taskId");
     
+    public static Partial<ExternalCheckDTO> WithTaskBuildId(this Partial<ExternalCheckDTO> it)
+        => it.AddFieldName("taskBuildId");
+    
     public static Partial<ExternalCheckDTO> WithTimestamp(this Partial<ExternalCheckDTO> it)
         => it.AddFieldName("timestamp");
     

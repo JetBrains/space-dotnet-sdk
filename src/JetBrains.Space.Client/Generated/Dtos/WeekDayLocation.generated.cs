@@ -29,39 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ExternalEndpointUpdateDTO
+public sealed class WeekDayLocation
      : IPropagatePropertyAccessPath
 {
-    public ExternalEndpointUpdateDTO() { }
+    public WeekDayLocation() { }
     
-    public ExternalEndpointUpdateDTO(bool? sslVerification = null, string? url = null)
+    public WeekDayLocation(int day, bool remote)
     {
-        Url = url;
-        IsSslVerification = sslVerification;
+        Day = day;
+        IsRemote = remote;
     }
     
-    private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(ExternalEndpointUpdateDTO), nameof(Url), "url");
+    private PropertyValue<int> _day = new PropertyValue<int>(nameof(WeekDayLocation), nameof(Day), "day");
     
-    [JsonPropertyName("url")]
-    public string? Url
+    [Required]
+    [JsonPropertyName("day")]
+    public int Day
     {
-        get => _url.GetValue(InlineErrors);
-        set => _url.SetValue(value);
+        get => _day.GetValue(InlineErrors);
+        set => _day.SetValue(value);
     }
 
-    private PropertyValue<bool?> _sslVerification = new PropertyValue<bool?>(nameof(ExternalEndpointUpdateDTO), nameof(IsSslVerification), "sslVerification");
+    private PropertyValue<bool> _remote = new PropertyValue<bool>(nameof(WeekDayLocation), nameof(IsRemote), "remote");
     
-    [JsonPropertyName("sslVerification")]
-    public bool? IsSslVerification
+    [Required]
+    [JsonPropertyName("remote")]
+    public bool IsRemote
     {
-        get => _sslVerification.GetValue(InlineErrors);
-        set => _sslVerification.SetValue(value);
+        get => _remote.GetValue(InlineErrors);
+        set => _remote.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _url.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _sslVerification.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _day.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _remote.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

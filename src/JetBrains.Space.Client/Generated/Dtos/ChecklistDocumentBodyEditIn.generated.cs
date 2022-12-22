@@ -75,7 +75,6 @@ public sealed class ChecklistDocumentBodyEditIn
 
     private PropertyValue<List<string>> _topics = new PropertyValue<List<string>>(nameof(ChecklistDocumentBodyEditIn), nameof(Topics), "topics", new List<string>());
     
-    [Required]
     [JsonPropertyName("topics")]
     public List<string> Topics
     {

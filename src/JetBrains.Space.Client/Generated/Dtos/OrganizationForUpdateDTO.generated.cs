@@ -34,7 +34,7 @@ public sealed class OrganizationForUpdateDTO
 {
     public OrganizationForUpdateDTO() { }
     
-    public OrganizationForUpdateDTO(string name, string? slogan = null, string? logoId = null, string? logoSmall = null, string? logo = null, string? slackWorkspace = null, bool? onboardingRequired = null, bool? userAgreementAccepted = null, ATimeZone? timezone = null, string? license = null, OrgSizeDTO? orgSize = null, OrgIndustryDTO? orgIndustry = null)
+    public OrganizationForUpdateDTO(string name, string? slogan = null, string? logoId = null, string? logoSmall = null, string? logo = null, string? slackWorkspace = null, bool? onboardingRequired = null, bool? userAgreementAccepted = null, ATimeZone? timezone = null, string? license = null, OrgSizeDTO? orgSize = null, OrgIndustryDTO? orgIndustry = null, bool? sendAnonymousDataAgreementAccepted = null)
     {
         Name = name;
         Slogan = slogan;
@@ -48,6 +48,7 @@ public sealed class OrganizationForUpdateDTO
         License = license;
         OrgSize = orgSize;
         OrgIndustry = orgIndustry;
+        IsSendAnonymousDataAgreementAccepted = sendAnonymousDataAgreementAccepted;
     }
     
     private PropertyValue<string> _name = new PropertyValue<string>(nameof(OrganizationForUpdateDTO), nameof(Name), "name");
@@ -160,6 +161,15 @@ public sealed class OrganizationForUpdateDTO
         set => _orgIndustry.SetValue(value);
     }
 
+    private PropertyValue<bool?> _sendAnonymousDataAgreementAccepted = new PropertyValue<bool?>(nameof(OrganizationForUpdateDTO), nameof(IsSendAnonymousDataAgreementAccepted), "sendAnonymousDataAgreementAccepted");
+    
+    [JsonPropertyName("sendAnonymousDataAgreementAccepted")]
+    public bool? IsSendAnonymousDataAgreementAccepted
+    {
+        get => _sendAnonymousDataAgreementAccepted.GetValue(InlineErrors);
+        set => _sendAnonymousDataAgreementAccepted.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -174,6 +184,7 @@ public sealed class OrganizationForUpdateDTO
         _license.SetAccessPath(parentChainPath, validateHasBeenSet);
         _orgSize.SetAccessPath(parentChainPath, validateHasBeenSet);
         _orgIndustry.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sendAnonymousDataAgreementAccepted.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

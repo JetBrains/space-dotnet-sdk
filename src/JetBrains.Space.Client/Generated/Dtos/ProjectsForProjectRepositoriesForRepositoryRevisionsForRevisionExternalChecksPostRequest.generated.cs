@@ -34,7 +34,7 @@ public class ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExte
 {
     public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest() { }
     
-    public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest(CommitExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, string? branch = null, List<string>? changes = null, long? timestamp = null, string? description = null)
+    public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest(CommitExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, string? branch = null, List<string>? changes = null, string? taskBuildId = null, long? timestamp = null, string? description = null)
     {
         Branch = branch;
         Changes = changes;
@@ -43,6 +43,7 @@ public class ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExte
         ExternalServiceName = externalServiceName;
         TaskName = taskName;
         TaskId = taskId;
+        TaskBuildId = taskBuildId;
         Timestamp = timestamp;
         Description = description;
     }
@@ -121,6 +122,18 @@ public class ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExte
         set => _taskId.SetValue(value);
     }
 
+    private PropertyValue<string?> _taskBuildId = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(TaskBuildId), "taskBuildId");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("taskBuildId")]
+    public string? TaskBuildId
+    {
+        get => _taskBuildId.GetValue(InlineErrors);
+        set => _taskBuildId.SetValue(value);
+    }
+
     private PropertyValue<long?> _timestamp = new PropertyValue<long?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Timestamp), "timestamp");
     
 #if NET6_0_OR_GREATER
@@ -154,6 +167,7 @@ public class ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExte
         _externalServiceName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _taskName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _taskId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _taskBuildId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _timestamp.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

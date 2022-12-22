@@ -76,6 +76,9 @@ public static class OrganizationRecordPartialExtensions
     public static Partial<OrganizationRecord> WithOrgIndustry(this Partial<OrganizationRecord> it, Func<Partial<OrgIndustryDTO>, Partial<OrgIndustryDTO>> partialBuilder)
         => it.AddFieldName("orgIndustry", partialBuilder(new Partial<OrgIndustryDTO>(it)));
     
+    public static Partial<OrganizationRecord> WithIsSendAnonymousDataAgreementAccepted(this Partial<OrganizationRecord> it)
+        => it.AddFieldName("sendAnonymousDataAgreementAccepted");
+    
     [Obsolete("Slack integration is no longer supported (since 2021-10-13) (will be removed in a future version)")]
     public static Partial<OrganizationRecord> WithSlackWorkspace(this Partial<OrganizationRecord> it)
         => it.AddFieldName("slackWorkspace");

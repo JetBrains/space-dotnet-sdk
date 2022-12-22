@@ -3053,6 +3053,20 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
+        public async Task<GitCherryPickResult> CherryPickCommitAsync(ProjectIdentifier project, string repository, string commit, string targetBranch, Func<Partial<GitCherryPickResult>, Partial<GitCherryPickResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitCherryPickResult>()) : Partial<GitCherryPickResult>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryCherryPickCommitPostRequest, GitCherryPickResult>("POST", $"api/http/projects/{project}/repositories/{repository}/cherry-pick-commit{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectRepositoriesForRepositoryCherryPickCommitPostRequest
+                { 
+                    Commit = commit,
+                    TargetBranch = targetBranch,
+                }, requestHeaders: null, functionName: "CherryPickCommit", cancellationToken: cancellationToken);
+        }
+        
+    
         public async Task<GitCommitResult> CommitAsync(string project, string repository, string baseCommit, string targetBranch, string commitMessage, List<GitCommitFileRequest> files, Func<Partial<GitCommitResult>, Partial<GitCommitResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3069,11 +3083,56 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
+        public async Task DeleteBranchAsync(ProjectIdentifier project, string repository, string branch, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/delete-branch{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectRepositoriesForRepositoryDeleteBranchPostRequest
+                { 
+                    Branch = branch,
+                }, requestHeaders: null, functionName: "DeleteBranch", cancellationToken: cancellationToken);
+        }
+        
+    
         public async Task GcAsync(ProjectIdentifier project, string repository, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
             await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/gc{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "Gc", cancellationToken: cancellationToken);
+        }
+        
+    
+        public async Task<GitMergeBranchResult> MergeBranchAsync(ProjectIdentifier project, string repository, string sourceBranch, GitMergeMode mergeMode, string? targetBranch = null, string? commitMessage = null, Func<Partial<GitMergeBranchResult>, Partial<GitMergeBranchResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitMergeBranchResult>()) : Partial<GitMergeBranchResult>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryMergeBranchPostRequest, GitMergeBranchResult>("POST", $"api/http/projects/{project}/repositories/{repository}/merge-branch{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectRepositoriesForRepositoryMergeBranchPostRequest
+                { 
+                    SourceBranch = sourceBranch,
+                    TargetBranch = targetBranch,
+                    CommitMessage = commitMessage,
+                    MergeMode = mergeMode,
+                }, requestHeaders: null, functionName: "MergeBranch", cancellationToken: cancellationToken);
+        }
+        
+    
+        public async Task<GitRebaseResult> RebaseBranchAsync(ProjectIdentifier project, string repository, string sourceBranch, GitRebaseMode rebaseMode, GitSquashMode squash, string? targetBranch = null, string? squashedCommitMessage = null, Func<Partial<GitRebaseResult>, Partial<GitRebaseResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitRebaseResult>()) : Partial<GitRebaseResult>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryRebaseBranchPostRequest, GitRebaseResult>("POST", $"api/http/projects/{project}/repositories/{repository}/rebase-branch{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectRepositoriesForRepositoryRebaseBranchPostRequest
+                { 
+                    SourceBranch = sourceBranch,
+                    TargetBranch = targetBranch,
+                    RebaseMode = rebaseMode,
+                    Squash = squash,
+                    SquashedCommitMessage = squashedCommitMessage,
+                }, requestHeaders: null, functionName: "RebaseBranch", cancellationToken: cancellationToken);
         }
         
     
@@ -3186,7 +3245,7 @@ public partial class ProjectClient : ISpaceClient
                     _connection = connection;
                 }
                 
-                public async Task ReportExternalCheckStatusAsync(ProjectIdentifier project, string repository, string revision, CommitExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, string? branch = null, List<string>? changes = null, long? timestamp = null, string? description = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                public async Task ReportExternalCheckStatusAsync(ProjectIdentifier project, string repository, string revision, CommitExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, string? branch = null, List<string>? changes = null, string? taskBuildId = null, long? timestamp = null, string? description = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -3200,6 +3259,7 @@ public partial class ProjectClient : ISpaceClient
                             ExternalServiceName = externalServiceName,
                             TaskName = taskName,
                             TaskId = taskId,
+                            TaskBuildId = taskBuildId,
                             Timestamp = timestamp,
                             Description = description,
                         }, requestHeaders: null, functionName: "ReportExternalCheckStatus", cancellationToken: cancellationToken);

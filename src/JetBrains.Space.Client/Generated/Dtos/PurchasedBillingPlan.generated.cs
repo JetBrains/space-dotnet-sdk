@@ -34,14 +34,16 @@ public sealed class PurchasedBillingPlan
 {
     public PurchasedBillingPlan() { }
     
-    public PurchasedBillingPlan(string id, string plan, string billingPeriod, DateTime since, DateTime till, Currency currency, double addUserPrice, double addStoragePrice, double addBandwidthPrice, double addCiCreditPrice, int minActiveUsers, int prepaidUsers, int storagePerUser, int storageOverall, int bandwidthPerUser, int bandwidthOverall, int ciCredits, int ciCreditsReserve, int integrations, int searchHistory, double balance, double hardLimitAmount, string? jetSalesId = null, double? ciCreditsRateForExternalWorker = null, bool? hasCardVerifiedAdmin = null, bool? isTrial = null, List<string>? spentTrials = null, string? trialBasePlan = null)
+    public PurchasedBillingPlan(string id, string plan, string billingPeriod, DateTime since, DateTime till, Currency currency, double addUserPrice, double addStoragePrice, double addBandwidthPrice, double addCiCreditPrice, int minActiveUsers, int prepaidUsers, int storagePerUser, int storageOverall, int bandwidthPerUser, int bandwidthOverall, int ciCredits, int ciCreditsReserve, int integrations, int searchHistory, double balance, double hardLimitAmount, string? jetSalesId = null, string? installationPublicKey = null, DateTime? mayUseTill = null, double? ciCreditsRateForExternalWorker = null, bool? hasCardVerifiedAdmin = null, bool? isTrial = null, List<string>? spentTrials = null, string? trialBasePlan = null)
     {
         Id = id;
         JetSalesId = jetSalesId;
+        InstallationPublicKey = installationPublicKey;
         Plan = plan;
         BillingPeriod = billingPeriod;
         Since = since;
         Till = till;
+        MayUseTill = mayUseTill;
         Currency = currency;
         AddUserPrice = addUserPrice;
         AddStoragePrice = addStoragePrice;
@@ -85,6 +87,15 @@ public sealed class PurchasedBillingPlan
         set => _jetSalesId.SetValue(value);
     }
 
+    private PropertyValue<string?> _installationPublicKey = new PropertyValue<string?>(nameof(PurchasedBillingPlan), nameof(InstallationPublicKey), "installationPublicKey");
+    
+    [JsonPropertyName("installationPublicKey")]
+    public string? InstallationPublicKey
+    {
+        get => _installationPublicKey.GetValue(InlineErrors);
+        set => _installationPublicKey.SetValue(value);
+    }
+
     private PropertyValue<string> _plan = new PropertyValue<string>(nameof(PurchasedBillingPlan), nameof(Plan), "plan");
     
     [Required]
@@ -125,6 +136,16 @@ public sealed class PurchasedBillingPlan
     {
         get => _till.GetValue(InlineErrors);
         set => _till.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _mayUseTill = new PropertyValue<DateTime?>(nameof(PurchasedBillingPlan), nameof(MayUseTill), "mayUseTill");
+    
+    [JsonPropertyName("mayUseTill")]
+    [JsonConverter(typeof(SpaceDateConverter))]
+    public DateTime? MayUseTill
+    {
+        get => _mayUseTill.GetValue(InlineErrors);
+        set => _mayUseTill.SetValue(value);
     }
 
     private PropertyValue<Currency> _currency = new PropertyValue<Currency>(nameof(PurchasedBillingPlan), nameof(Currency), "currency");
@@ -346,10 +367,12 @@ public sealed class PurchasedBillingPlan
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
         _jetSalesId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _installationPublicKey.SetAccessPath(parentChainPath, validateHasBeenSet);
         _plan.SetAccessPath(parentChainPath, validateHasBeenSet);
         _billingPeriod.SetAccessPath(parentChainPath, validateHasBeenSet);
         _since.SetAccessPath(parentChainPath, validateHasBeenSet);
         _till.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mayUseTill.SetAccessPath(parentChainPath, validateHasBeenSet);
         _currency.SetAccessPath(parentChainPath, validateHasBeenSet);
         _addUserPrice.SetAccessPath(parentChainPath, validateHasBeenSet);
         _addStoragePrice.SetAccessPath(parentChainPath, validateHasBeenSet);

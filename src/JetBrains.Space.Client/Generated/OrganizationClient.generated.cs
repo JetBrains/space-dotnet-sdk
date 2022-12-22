@@ -114,11 +114,19 @@ public partial class OrganizationClient : ISpaceClient
             _connection = connection;
         }
         
-        public async Task<string> CheckDomainAvailabilityAsync(Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<string> GetLicenseActivationUrlAsync(Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
-            return await _connection.RequestResourceAsync<string>("GET", $"api/http/organization/jet-sales/url{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "CheckDomainAvailability", cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<string>("GET", $"api/http/organization/jet-sales/license-activation-url{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetLicenseActivationUrl", cancellationToken: cancellationToken);
+        }
+        
+    
+        public async Task<string> GetJetsalesUrlAsync(Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            return await _connection.RequestResourceAsync<string>("GET", $"api/http/organization/jet-sales/url{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetJetsalesUrl", cancellationToken: cancellationToken);
         }
         
     

@@ -29,14 +29,34 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public static class SdkInfo
+public class ProjectsForProjectRepositoriesForRepositoryDeleteBranchPostRequest
+     : IPropagatePropertyAccessPath
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2023.1.0-DEV.145486";
+    public ProjectsForProjectRepositoriesForRepositoryDeleteBranchPostRequest() { }
+    
+    public ProjectsForProjectRepositoriesForRepositoryDeleteBranchPostRequest(string branch)
+    {
+        Branch = branch;
+    }
+    
+    private PropertyValue<string> _branch = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryDeleteBranchPostRequest), nameof(Branch), "branch");
+    
+    [Required]
+    [JsonPropertyName("branch")]
+    public string Branch
+    {
+        get => _branch.GetValue(InlineErrors);
+        set => _branch.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _branch.SetAccessPath(parentChainPath, validateHasBeenSet);
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

@@ -29,14 +29,29 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public static class SdkInfo
+[JsonConverter(typeof(EnumStringConverter))]
+public enum GitMergeStatus
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2023.1.0-DEV.145486";
+    [EnumMember(Value = "Success")]
+    Success,
+    
+    [EnumMember(Value = "SuccessfulFastForward")]
+    SuccessfulFastForward,
+    
+    [EnumMember(Value = "Conflict")]
+    Conflict,
+    
+    [EnumMember(Value = "AlreadyMerged")]
+    AlreadyMerged,
+    
+    [EnumMember(Value = "MultipleMergeBase")]
+    MultipleMergeBase,
+    
+    [EnumMember(Value = "TooManyChanges")]
+    TooManyChanges,
+    
+    [EnumMember(Value = "Error")]
+    Error,
+    
 }
 

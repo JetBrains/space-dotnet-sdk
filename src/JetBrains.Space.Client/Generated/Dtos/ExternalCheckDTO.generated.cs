@@ -34,7 +34,7 @@ public sealed class ExternalCheckDTO
 {
     public ExternalCheckDTO() { }
     
-    public ExternalCheckDTO(string repository, string revision, CommitExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, long timestamp, string? description = null)
+    public ExternalCheckDTO(string repository, string revision, CommitExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, long timestamp, string? taskBuildId = null, string? description = null)
     {
         Repository = repository;
         Revision = revision;
@@ -43,6 +43,7 @@ public sealed class ExternalCheckDTO
         ExternalServiceName = externalServiceName;
         TaskName = taskName;
         TaskId = taskId;
+        TaskBuildId = taskBuildId;
         Timestamp = timestamp;
         Description = description;
     }
@@ -117,6 +118,15 @@ public sealed class ExternalCheckDTO
         set => _taskId.SetValue(value);
     }
 
+    private PropertyValue<string?> _taskBuildId = new PropertyValue<string?>(nameof(ExternalCheckDTO), nameof(TaskBuildId), "taskBuildId");
+    
+    [JsonPropertyName("taskBuildId")]
+    public string? TaskBuildId
+    {
+        get => _taskBuildId.GetValue(InlineErrors);
+        set => _taskBuildId.SetValue(value);
+    }
+
     private PropertyValue<long> _timestamp = new PropertyValue<long>(nameof(ExternalCheckDTO), nameof(Timestamp), "timestamp");
     
     [Required]
@@ -145,6 +155,7 @@ public sealed class ExternalCheckDTO
         _externalServiceName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _taskName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _taskId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _taskBuildId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _timestamp.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

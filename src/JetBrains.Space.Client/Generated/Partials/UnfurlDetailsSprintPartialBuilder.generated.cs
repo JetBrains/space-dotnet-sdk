@@ -43,5 +43,8 @@ public static class UnfurlDetailsSprintPartialExtensions
     public static Partial<UnfurlDetailsSprint> WithSprint(this Partial<UnfurlDetailsSprint> it, Func<Partial<SprintRecord>, Partial<SprintRecord>> partialBuilder)
         => it.AddFieldName("sprint", partialBuilder(new Partial<SprintRecord>(it)));
     
+    public static Partial<UnfurlDetailsSprint> WithIsRemoved(this Partial<UnfurlDetailsSprint> it)
+        => it.AddFieldName("removed");
+    
 }
 

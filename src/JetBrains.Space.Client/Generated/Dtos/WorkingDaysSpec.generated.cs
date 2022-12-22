@@ -34,12 +34,14 @@ public sealed class WorkingDaysSpec
 {
     public WorkingDaysSpec() { }
     
-    public WorkingDaysSpec(List<Workday> days, List<WeekDayTimeInterval>? workingHours = null, List<WeekDayTimeInterval>? notificationHours = null, ATimeZone? timezone = null)
+    public WorkingDaysSpec(List<Workday> days, List<WeekDayTimeInterval>? workingHours = null, List<WeekDayTimeInterval>? notificationHours = null, ATimeZone? timezone = null, List<int>? boundWeekdays = null, List<WeekDayLocation>? locations = null)
     {
         Days = days;
         WorkingHours = workingHours;
         NotificationHours = notificationHours;
         Timezone = timezone;
+        BoundWeekdays = boundWeekdays;
+        Locations = locations;
     }
     
     private PropertyValue<List<Workday>> _days = new PropertyValue<List<Workday>>(nameof(WorkingDaysSpec), nameof(Days), "days", new List<Workday>());
@@ -80,12 +82,32 @@ public sealed class WorkingDaysSpec
         set => _timezone.SetValue(value);
     }
 
+    private PropertyValue<List<int>?> _boundWeekdays = new PropertyValue<List<int>?>(nameof(WorkingDaysSpec), nameof(BoundWeekdays), "boundWeekdays");
+    
+    [JsonPropertyName("boundWeekdays")]
+    public List<int>? BoundWeekdays
+    {
+        get => _boundWeekdays.GetValue(InlineErrors);
+        set => _boundWeekdays.SetValue(value);
+    }
+
+    private PropertyValue<List<WeekDayLocation>?> _locations = new PropertyValue<List<WeekDayLocation>?>(nameof(WorkingDaysSpec), nameof(Locations), "locations");
+    
+    [JsonPropertyName("locations")]
+    public List<WeekDayLocation>? Locations
+    {
+        get => _locations.GetValue(InlineErrors);
+        set => _locations.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _days.SetAccessPath(parentChainPath, validateHasBeenSet);
         _workingHours.SetAccessPath(parentChainPath, validateHasBeenSet);
         _notificationHours.SetAccessPath(parentChainPath, validateHasBeenSet);
         _timezone.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _boundWeekdays.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _locations.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />
