@@ -37,10 +37,9 @@ public sealed class RtParagraph
     
     public RtParagraph() { }
     
-    public RtParagraph(List<InlineNode> children, List<DocumentMark> marks, PmNodeTextAlign textAlign)
+    public RtParagraph(List<InlineNode> children, RtTextAlign textAlign)
     {
         Children = children;
-        Marks = marks;
         TextAlign = textAlign;
     }
     
@@ -54,21 +53,11 @@ public sealed class RtParagraph
         set => _children.SetValue(value);
     }
 
-    private PropertyValue<List<DocumentMark>> _marks = new PropertyValue<List<DocumentMark>>(nameof(RtParagraph), nameof(Marks), "marks", new List<DocumentMark>());
-    
-    [Required]
-    [JsonPropertyName("marks")]
-    public List<DocumentMark> Marks
-    {
-        get => _marks.GetValue(InlineErrors);
-        set => _marks.SetValue(value);
-    }
-
-    private PropertyValue<PmNodeTextAlign> _textAlign = new PropertyValue<PmNodeTextAlign>(nameof(RtParagraph), nameof(TextAlign), "textAlign");
+    private PropertyValue<RtTextAlign> _textAlign = new PropertyValue<RtTextAlign>(nameof(RtParagraph), nameof(TextAlign), "textAlign");
     
     [Required]
     [JsonPropertyName("textAlign")]
-    public PmNodeTextAlign TextAlign
+    public RtTextAlign TextAlign
     {
         get => _textAlign.GetValue(InlineErrors);
         set => _textAlign.SetValue(value);
@@ -77,7 +66,6 @@ public sealed class RtParagraph
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _children.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _marks.SetAccessPath(parentChainPath, validateHasBeenSet);
         _textAlign.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

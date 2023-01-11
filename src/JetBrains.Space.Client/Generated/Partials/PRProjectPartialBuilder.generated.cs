@@ -97,6 +97,12 @@ public static class PRProjectPartialExtensions
     public static Partial<PRProject> WithIsEnable(this Partial<PRProject> it)
         => it.AddFieldName("enable");
     
+    public static Partial<PRProject> WithFeaturePins(this Partial<PRProject> it)
+        => it.AddFieldName("featurePins");
+    
+    public static Partial<PRProject> WithFeaturePins(this Partial<PRProject> it, Func<Partial<ProjectFeaturePins>, Partial<ProjectFeaturePins>> partialBuilder)
+        => it.AddFieldName("featurePins", partialBuilder(new Partial<ProjectFeaturePins>(it)));
+    
     public static Partial<PRProject> WithFeatures(this Partial<PRProject> it)
         => it.AddFieldName("features");
     
@@ -147,6 +153,12 @@ public static class PRProjectPartialExtensions
     
     public static Partial<PRProject> WithPackages(this Partial<PRProject> it, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>> partialBuilder)
         => it.AddFieldName("packages", partialBuilder(new Partial<ProjectPackageRepository>(it)));
+    
+    public static Partial<PRProject> WithPersonalFeaturePins(this Partial<PRProject> it)
+        => it.AddFieldName("personalFeaturePins");
+    
+    public static Partial<PRProject> WithPersonalFeaturePins(this Partial<PRProject> it, Func<Partial<ToggleableProjectFeaturePins>, Partial<ToggleableProjectFeaturePins>> partialBuilder)
+        => it.AddFieldName("personalFeaturePins", partialBuilder(new Partial<ToggleableProjectFeaturePins>(it)));
     
     public static Partial<PRProject> WithRepos(this Partial<PRProject> it)
         => it.AddFieldName("repos");

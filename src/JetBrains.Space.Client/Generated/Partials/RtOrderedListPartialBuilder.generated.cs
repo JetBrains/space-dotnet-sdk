@@ -40,11 +40,5 @@ public static class RtOrderedListPartialExtensions
     public static Partial<RtOrderedList> WithChildren(this Partial<RtOrderedList> it, Func<Partial<RtListItem>, Partial<RtListItem>> partialBuilder)
         => it.AddFieldName("children", partialBuilder(new Partial<RtListItem>(it)));
     
-    public static Partial<RtOrderedList> WithMarks(this Partial<RtOrderedList> it)
-        => it.AddFieldName("marks");
-    
-    public static Partial<RtOrderedList> WithMarks(this Partial<RtOrderedList> it, Func<Partial<DocumentMark>, Partial<DocumentMark>> partialBuilder)
-        => it.AddFieldName("marks", partialBuilder(new Partial<DocumentMark>(it)));
-    
 }
 

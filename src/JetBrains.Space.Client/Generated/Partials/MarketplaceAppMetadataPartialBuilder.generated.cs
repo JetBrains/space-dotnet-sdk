@@ -43,5 +43,14 @@ public static class MarketplaceAppMetadataPartialExtensions
     public static Partial<MarketplaceAppMetadata> WithConnectionStatus(this Partial<MarketplaceAppMetadata> it, Func<Partial<AppConnectionStatus>, Partial<AppConnectionStatus>> partialBuilder)
         => it.AddFieldName("connectionStatus", partialBuilder(new Partial<AppConnectionStatus>(it)));
     
+    public static Partial<MarketplaceAppMetadata> WithUninstallationStatus(this Partial<MarketplaceAppMetadata> it)
+        => it.AddFieldName("uninstallationStatus");
+    
+    public static Partial<MarketplaceAppMetadata> WithUninstallationStatus(this Partial<MarketplaceAppMetadata> it, Func<Partial<AppUninstallationStatus>, Partial<AppUninstallationStatus>> partialBuilder)
+        => it.AddFieldName("uninstallationStatus", partialBuilder(new Partial<AppUninstallationStatus>(it)));
+    
+    public static Partial<MarketplaceAppMetadata> WithUninstallationStartedAt(this Partial<MarketplaceAppMetadata> it)
+        => it.AddFieldName("uninstallationStartedAt");
+    
 }
 

@@ -77,6 +77,13 @@ public interface ISpaceWebHookHandler
     /// <param name="payload">The <see cref="InitPayload"/>.</param>
     /// <returns>The result of executing this action. The result message will be displayed in the Space user interface.</returns>
     Task<ApplicationExecutionResult> HandleInitAsync(InitPayload payload);
+
+    /// <summary>
+    /// Handle application uninstall event.
+    /// </summary>
+    /// <param name="payload">The <see cref="InitPayload"/>.</param>
+    /// <returns>The result of executing this action.</returns>
+    Task<ApplicationExecutionResult> HandleUninstalledAsync(ApplicationUninstalledPayload payload);
         
     /// <summary>
     /// Handle event when application client secret is updated in Space organization.

@@ -4756,6 +4756,9 @@ public partial class ProjectClient : ISpaceClient
             /// Required permissions:
             /// <list type="bullet">
             /// <item>
+            /// <term>View code reviews</term>
+            /// </item>
+            /// <item>
             /// <term>Create suggested edit</term>
             /// </item>
             /// </list>

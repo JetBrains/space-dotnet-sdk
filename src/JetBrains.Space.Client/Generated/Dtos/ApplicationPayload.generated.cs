@@ -35,6 +35,9 @@ public interface ApplicationPayload
     public static AppPublicationCheckPayload AppPublicationCheckPayload()
         => new AppPublicationCheckPayload();
     
+    public static ApplicationUninstalledPayload ApplicationUninstalledPayload(string serverUrl, string clientId, string? verificationToken = null)
+        => new ApplicationUninstalledPayload(serverUrl: serverUrl, clientId: clientId, verificationToken: verificationToken);
+    
     public static ChangeClientSecretPayload ChangeClientSecretPayload(string newClientSecret, string clientId, string? userId = null, string? verificationToken = null)
         => new ChangeClientSecretPayload(newClientSecret: newClientSecret, clientId: clientId, userId: userId, verificationToken: verificationToken);
     

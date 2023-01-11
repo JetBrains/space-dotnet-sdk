@@ -40,6 +40,7 @@ public static class ChangeClientSecretPayloadPartialExtensions
     public static Partial<ChangeClientSecretPayload> WithUserId(this Partial<ChangeClientSecretPayload> it)
         => it.AddFieldName("userId");
     
+    [Obsolete("Verification token is only sent for old applications that have the Verification Token authentication set up. New applications cannot use this authentication. (since 2022-11-16) (will be removed in a future version)")]
     public static Partial<ChangeClientSecretPayload> WithVerificationToken(this Partial<ChangeClientSecretPayload> it)
         => it.AddFieldName("verificationToken");
     

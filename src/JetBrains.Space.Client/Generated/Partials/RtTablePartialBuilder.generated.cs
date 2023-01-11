@@ -37,11 +37,5 @@ public static class RtTablePartialExtensions
     public static Partial<RtTable> WithChildren(this Partial<RtTable> it, Func<Partial<RtTableRow>, Partial<RtTableRow>> partialBuilder)
         => it.AddFieldName("children", partialBuilder(new Partial<RtTableRow>(it)));
     
-    public static Partial<RtTable> WithMarks(this Partial<RtTable> it)
-        => it.AddFieldName("marks");
-    
-    public static Partial<RtTable> WithMarks(this Partial<RtTable> it, Func<Partial<DocumentMark>, Partial<DocumentMark>> partialBuilder)
-        => it.AddFieldName("marks", partialBuilder(new Partial<DocumentMark>(it)));
-    
 }
 

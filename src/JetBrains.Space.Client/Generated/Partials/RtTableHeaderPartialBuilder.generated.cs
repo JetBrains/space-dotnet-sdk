@@ -37,12 +37,6 @@ public static class RtTableHeaderPartialExtensions
     public static Partial<RtTableHeader> WithChildren(this Partial<RtTableHeader> it, Func<Partial<BlockNode>, Partial<BlockNode>> partialBuilder)
         => it.AddFieldName("children", partialBuilder(new Partial<BlockNode>(it)));
     
-    public static Partial<RtTableHeader> WithMarks(this Partial<RtTableHeader> it)
-        => it.AddFieldName("marks");
-    
-    public static Partial<RtTableHeader> WithMarks(this Partial<RtTableHeader> it, Func<Partial<DocumentMark>, Partial<DocumentMark>> partialBuilder)
-        => it.AddFieldName("marks", partialBuilder(new Partial<DocumentMark>(it)));
-    
     public static Partial<RtTableHeader> WithAttrs(this Partial<RtTableHeader> it)
         => it.AddFieldName("attrs");
     

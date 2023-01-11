@@ -129,6 +129,9 @@ public partial class ChatClient : ISpaceClient
         /// <param name="quickFilter">
         /// Additional options to filter channels
         /// </param>
+        /// <param name="subscriber">
+        /// Filters the resulting list by the channel subscriber.
+        /// </param>
         /// <remarks>
         /// Required permissions:
         /// <list type="bullet">
@@ -137,7 +140,7 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<Batch<AllChannelsListEntry>> ListAllChannelsAsync(string query, string? skip = null, int? top = 100, AllChannelsFilter? quickFilter = null, AllChannelsSortColumn? sortColumn = null, ColumnSortOrder? sortOrder = ColumnSortOrder.ASC, bool? publicOnly = false, bool? withArchived = true, Func<Partial<Batch<AllChannelsListEntry>>, Partial<Batch<AllChannelsListEntry>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<AllChannelsListEntry>> ListAllChannelsAsync(string query, string? skip = null, int? top = 100, AllChannelsFilter? quickFilter = null, AllChannelsSortColumn? sortColumn = null, ColumnSortOrder? sortOrder = ColumnSortOrder.ASC, bool? publicOnly = false, bool? withArchived = true, ProfileIdentifier? subscriber = null, Func<Partial<Batch<AllChannelsListEntry>>, Partial<Batch<AllChannelsListEntry>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("query", query);
@@ -148,6 +151,7 @@ public partial class ChatClient : ISpaceClient
             queryParameters.Append("sortOrder", sortOrder.ToEnumString());
             if (publicOnly != null) queryParameters.Append("publicOnly", publicOnly?.ToString("l"));
             if (withArchived != null) queryParameters.Append("withArchived", withArchived?.ToString("l"));
+            if (subscriber != null) queryParameters.Append("subscriber", subscriber?.ToString());
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<AllChannelsListEntry>>()) : Partial<Batch<AllChannelsListEntry>>.Default()).ToString());
             
             return await _connection.RequestResourceAsync<Batch<AllChannelsListEntry>>("GET", $"api/http/chats/channels/all-channels{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ListAllChannels", cancellationToken: cancellationToken);
@@ -159,6 +163,9 @@ public partial class ChatClient : ISpaceClient
         /// <param name="quickFilter">
         /// Additional options to filter channels
         /// </param>
+        /// <param name="subscriber">
+        /// Filters the resulting list by the channel subscriber.
+        /// </param>
         /// <remarks>
         /// Required permissions:
         /// <list type="bullet">
@@ -167,8 +174,8 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public IAsyncEnumerable<AllChannelsListEntry> ListAllChannelsAsyncEnumerable(string query, string? skip = null, int? top = 100, AllChannelsFilter? quickFilter = null, AllChannelsSortColumn? sortColumn = null, ColumnSortOrder? sortOrder = ColumnSortOrder.ASC, bool? publicOnly = false, bool? withArchived = true, Func<Partial<AllChannelsListEntry>, Partial<AllChannelsListEntry>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListAllChannelsAsync(query: query, top: top, quickFilter: quickFilter, sortColumn: sortColumn, sortOrder: sortOrder, publicOnly: publicOnly, withArchived: withArchived, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AllChannelsListEntry>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AllChannelsListEntry>.Default())), skip, cancellationToken);
+        public IAsyncEnumerable<AllChannelsListEntry> ListAllChannelsAsyncEnumerable(string query, string? skip = null, int? top = 100, AllChannelsFilter? quickFilter = null, AllChannelsSortColumn? sortColumn = null, ColumnSortOrder? sortOrder = ColumnSortOrder.ASC, bool? publicOnly = false, bool? withArchived = true, ProfileIdentifier? subscriber = null, Func<Partial<AllChannelsListEntry>, Partial<AllChannelsListEntry>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListAllChannelsAsync(query: query, top: top, quickFilter: quickFilter, sortColumn: sortColumn, sortOrder: sortOrder, publicOnly: publicOnly, withArchived: withArchived, subscriber: subscriber, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AllChannelsListEntry>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AllChannelsListEntry>.Default())), skip, cancellationToken);
     
         /// <remarks>
         /// Required permissions:

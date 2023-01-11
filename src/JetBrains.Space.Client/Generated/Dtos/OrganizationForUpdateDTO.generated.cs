@@ -34,14 +34,13 @@ public sealed class OrganizationForUpdateDTO
 {
     public OrganizationForUpdateDTO() { }
     
-    public OrganizationForUpdateDTO(string name, string? slogan = null, string? logoId = null, string? logoSmall = null, string? logo = null, string? slackWorkspace = null, bool? onboardingRequired = null, bool? userAgreementAccepted = null, ATimeZone? timezone = null, string? license = null, OrgSizeDTO? orgSize = null, OrgIndustryDTO? orgIndustry = null, bool? sendAnonymousDataAgreementAccepted = null)
+    public OrganizationForUpdateDTO(string? name = null, bool? onboardingRequired = null, bool? userAgreementAccepted = null, bool? sendAnonymousDataAgreementAccepted = null, bool? marketplaceEnabled = null, string? slogan = null, string? logoId = null, string? logoSmall = null, string? logo = null, ATimeZone? timezone = null, string? license = null, OrgSizeDTO? orgSize = null, OrgIndustryDTO? orgIndustry = null)
     {
         Name = name;
         Slogan = slogan;
         LogoId = logoId;
         LogoSmall = logoSmall;
         Logo = logo;
-        SlackWorkspace = slackWorkspace;
         IsOnboardingRequired = onboardingRequired;
         IsUserAgreementAccepted = userAgreementAccepted;
         Timezone = timezone;
@@ -49,13 +48,13 @@ public sealed class OrganizationForUpdateDTO
         OrgSize = orgSize;
         OrgIndustry = orgIndustry;
         IsSendAnonymousDataAgreementAccepted = sendAnonymousDataAgreementAccepted;
+        IsMarketplaceEnabled = marketplaceEnabled;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(OrganizationForUpdateDTO), nameof(Name), "name");
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(OrganizationForUpdateDTO), nameof(Name), "name");
     
-    [Required]
     [JsonPropertyName("name")]
-    public string Name
+    public string? Name
     {
         get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
@@ -95,16 +94,6 @@ public sealed class OrganizationForUpdateDTO
     {
         get => _logo.GetValue(InlineErrors);
         set => _logo.SetValue(value);
-    }
-
-    private PropertyValue<string?> _slackWorkspace = new PropertyValue<string?>(nameof(OrganizationForUpdateDTO), nameof(SlackWorkspace), "slackWorkspace");
-    
-    [Obsolete("Is no longer supported (since 2021-10-13) (will be removed in a future version)")]
-    [JsonPropertyName("slackWorkspace")]
-    public string? SlackWorkspace
-    {
-        get => _slackWorkspace.GetValue(InlineErrors);
-        set => _slackWorkspace.SetValue(value);
     }
 
     private PropertyValue<bool?> _onboardingRequired = new PropertyValue<bool?>(nameof(OrganizationForUpdateDTO), nameof(IsOnboardingRequired), "onboardingRequired");
@@ -170,6 +159,15 @@ public sealed class OrganizationForUpdateDTO
         set => _sendAnonymousDataAgreementAccepted.SetValue(value);
     }
 
+    private PropertyValue<bool?> _marketplaceEnabled = new PropertyValue<bool?>(nameof(OrganizationForUpdateDTO), nameof(IsMarketplaceEnabled), "marketplaceEnabled");
+    
+    [JsonPropertyName("marketplaceEnabled")]
+    public bool? IsMarketplaceEnabled
+    {
+        get => _marketplaceEnabled.GetValue(InlineErrors);
+        set => _marketplaceEnabled.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -177,7 +175,6 @@ public sealed class OrganizationForUpdateDTO
         _logoId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _logoSmall.SetAccessPath(parentChainPath, validateHasBeenSet);
         _logo.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _slackWorkspace.SetAccessPath(parentChainPath, validateHasBeenSet);
         _onboardingRequired.SetAccessPath(parentChainPath, validateHasBeenSet);
         _userAgreementAccepted.SetAccessPath(parentChainPath, validateHasBeenSet);
         _timezone.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -185,6 +182,7 @@ public sealed class OrganizationForUpdateDTO
         _orgSize.SetAccessPath(parentChainPath, validateHasBeenSet);
         _orgIndustry.SetAccessPath(parentChainPath, validateHasBeenSet);
         _sendAnonymousDataAgreementAccepted.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _marketplaceEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

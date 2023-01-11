@@ -32,11 +32,48 @@ namespace JetBrains.Space.Client;
 [JsonConverter(typeof(UrlParameterConverter))]
 public abstract class IssueIdentifier : IUrlParameter
 {
+    public static IssueIdentifier ExternalId(ProjectIdentifier project, string externalId)
+        => new IssueIdentifierExternalId(project, externalId);
+    
     public static IssueIdentifier Id(string id)
         => new IssueIdentifierId(id);
     
     public static IssueIdentifier Key(string key)
         => new IssueIdentifierKey(key);
+    
+    public class IssueIdentifierExternalId : IssueIdentifier
+    {
+        [Required]
+        [JsonPropertyName("project")]
+#if NET6_0_OR_GREATER
+        public ProjectIdentifier Project { get; init; }
+#else
+        public ProjectIdentifier Project { get; set; }
+#endif
+        
+        [Required]
+        [JsonPropertyName("externalId")]
+#if NET6_0_OR_GREATER
+        public string ExternalId { get; init; }
+#else
+        public string ExternalId { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
+        public IssueIdentifierExternalId() { }
+#pragma warning restore CS8618
+#endif
+        
+        public IssueIdentifierExternalId(ProjectIdentifier project, string externalId)
+        {
+            Project = project;
+            ExternalId = externalId;
+        }
+        
+        public override string ToString()
+            => $"{{project:{Project},externalId:{ExternalId}}}";
+    }
     
     public class IssueIdentifierId : IssueIdentifier
     {

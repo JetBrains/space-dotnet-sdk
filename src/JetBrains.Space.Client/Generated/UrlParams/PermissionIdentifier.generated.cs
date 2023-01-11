@@ -377,6 +377,9 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ManageProjectPermissionScheme
         => new PermissionIdentifierManageProjectPermissionScheme();
     
+    public static PermissionIdentifier ManageProjectSidebarPins
+        => new PermissionIdentifierManageProjectSidebarPins();
+    
     public static PermissionIdentifier ManageSalaryEventsForDirectReports
         => new PermissionIdentifierManageSalaryEventsForDirectReports();
     
@@ -1551,6 +1554,12 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Project.Admin";
+    }
+    
+    public class PermissionIdentifierManageProjectSidebarPins : PermissionIdentifier
+    {
+        public override string ToString()
+            => "Project.ManagePins";
     }
     
     public class PermissionIdentifierManageSalaryEventsForDirectReports : PermissionIdentifier

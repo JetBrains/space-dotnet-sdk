@@ -37,5 +37,11 @@ public static class UnfurlDetailsFolderPartialExtensions
     public static Partial<UnfurlDetailsFolder> WithIsRoot(this Partial<UnfurlDetailsFolder> it)
         => it.AddFieldName("root");
     
+    public static Partial<UnfurlDetailsFolder> WithFolder(this Partial<UnfurlDetailsFolder> it)
+        => it.AddFieldName("folder");
+    
+    public static Partial<UnfurlDetailsFolder> WithFolder(this Partial<UnfurlDetailsFolder> it, Func<Partial<DocumentFolder>, Partial<DocumentFolder>> partialBuilder)
+        => it.AddFieldName("folder", partialBuilder(new Partial<DocumentFolder>(it)));
+    
 }
 

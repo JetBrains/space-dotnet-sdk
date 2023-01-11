@@ -34,7 +34,7 @@ public class TeamDirectoryProfilesPostRequest
 {
     public TeamDirectoryProfilesPostRequest() { }
     
-    public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? externalId = null, string? location = null, bool? guest = null, ProjectIdentifier? project = null, ProjectTeamRole? projectRole = null)
+    public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? externalId = null, string? location = null, bool? guest = null, GuestType? guestType = null, ProjectIdentifier? project = null, ProjectTeamRole? projectRole = null)
     {
         Username = username;
         FirstName = firstName;
@@ -56,6 +56,7 @@ public class TeamDirectoryProfilesPostRequest
         ExternalId = externalId;
         Location = location;
         IsGuest = guest;
+        GuestType = guestType;
         Project = project;
         ProjectRole = projectRole;
     }
@@ -280,6 +281,18 @@ public class TeamDirectoryProfilesPostRequest
         set => _guest.SetValue(value);
     }
 
+    private PropertyValue<GuestType?> _guestType = new PropertyValue<GuestType?>(nameof(TeamDirectoryProfilesPostRequest), nameof(GuestType), "guestType");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("guestType")]
+    public GuestType? GuestType
+    {
+        get => _guestType.GetValue(InlineErrors);
+        set => _guestType.SetValue(value);
+    }
+
     private PropertyValue<ProjectIdentifier?> _project = new PropertyValue<ProjectIdentifier?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Project), "project");
     
 #if NET6_0_OR_GREATER
@@ -326,6 +339,7 @@ public class TeamDirectoryProfilesPostRequest
         _externalId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _location.SetAccessPath(parentChainPath, validateHasBeenSet);
         _guest.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _guestType.SetAccessPath(parentChainPath, validateHasBeenSet);
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
         _projectRole.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

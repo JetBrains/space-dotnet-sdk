@@ -145,10 +145,16 @@ public class SpaceWebHookRequestHandler<TWebHookHandler>
                 await WriteApplicationExecutionResultAsync(context.Response, unfurlActionResult);
                 return;
             
-            // Application initialized in in Space organization?
+            // Application initialized in Space organization?
             case InitPayload initPayload:
                 var initActionResult = await handler.HandleInitAsync(initPayload);
                 await WriteApplicationExecutionResultAsync(context.Response, initActionResult);
+                return;
+
+            // Application uninstalled from Space organization?
+            case ApplicationUninstalledPayload uninstallPayload:
+                var uninstallActionResult = await handler.HandleUninstalledAsync(uninstallPayload);
+                await WriteApplicationExecutionResultAsync(context.Response, uninstallActionResult);
                 return;
                     
             // Client secret updated in Space organization?

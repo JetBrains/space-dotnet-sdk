@@ -85,6 +85,28 @@ public partial class ApplicationClient : ISpaceClient
     }
     
 
+    /// <summary>
+    /// Removes the application that has previously failed to respond with code 200 to `ApplicationUninstalledPayload` request, without sending additional `ApplicationUninstalledPayload` requests. The application is archived and its access terminated.
+    /// </summary>
+    /// <param name="application">
+    /// Identifier of the application to force-remove
+    /// </param>
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>Delete applications</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task ForceRemoveApplicationAsync(ApplicationIdentifier application, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        
+        await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/force-remove{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ForceRemoveApplication", cancellationToken: cancellationToken);
+    }
+    
+
     /// <remarks>
     /// Required permissions:
     /// <list type="bullet">
@@ -266,6 +288,16 @@ public partial class ApplicationClient : ISpaceClient
     }
     
 
+    /// <summary>
+    /// Removes specified application. If the application is connected (installed from Marketplace or through an install link), Space sends `ApplicationUninstalledPayload` to the application's server. The application is only actually deleted when the application server responds or when the `ApplicationUninstalledPayload` request times out multiple times.
+    /// 
+    /// This API method does not wait until the `ApplicationUninstalledPayload` request is finished and instead returns immediately. Consequently, the application may still be active right after this API method call.
+    /// 
+    /// If sending `ApplicationUninstalledPayload` has failed at least one time, a user may choose to force-remove the application. In this case the access for the application is terminated and it can no longer make requests. 
+    /// </summary>
+    /// <param name="application">
+    /// Identifier of the application to remove
+    /// </param>
     /// <remarks>
     /// Required permissions:
     /// <list type="bullet">

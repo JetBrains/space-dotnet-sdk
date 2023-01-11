@@ -34,9 +34,10 @@ public sealed class CheckoutRevisionDTO
 {
     public CheckoutRevisionDTO() { }
     
-    public CheckoutRevisionDTO(string repoName, Branch branch, string? commit = null)
+    public CheckoutRevisionDTO(string repoName, Branch branch, string? cloneDir = null, string? commit = null)
     {
         RepoName = repoName;
+        CloneDir = cloneDir;
         Branch = branch;
         Commit = commit;
     }
@@ -49,6 +50,15 @@ public sealed class CheckoutRevisionDTO
     {
         get => _repoName.GetValue(InlineErrors);
         set => _repoName.SetValue(value);
+    }
+
+    private PropertyValue<string?> _cloneDir = new PropertyValue<string?>(nameof(CheckoutRevisionDTO), nameof(CloneDir), "cloneDir");
+    
+    [JsonPropertyName("cloneDir")]
+    public string? CloneDir
+    {
+        get => _cloneDir.GetValue(InlineErrors);
+        set => _cloneDir.SetValue(value);
     }
 
     private PropertyValue<Branch> _branch = new PropertyValue<Branch>(nameof(CheckoutRevisionDTO), nameof(Branch), "branch");
@@ -73,6 +83,7 @@ public sealed class CheckoutRevisionDTO
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _repoName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _cloneDir.SetAccessPath(parentChainPath, validateHasBeenSet);
         _branch.SetAccessPath(parentChainPath, validateHasBeenSet);
         _commit.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

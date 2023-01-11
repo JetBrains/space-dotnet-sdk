@@ -40,5 +40,14 @@ public static class AdHocConnectedAppMetadataPartialExtensions
     public static Partial<AdHocConnectedAppMetadata> WithConnectionStatus(this Partial<AdHocConnectedAppMetadata> it, Func<Partial<AppConnectionStatus>, Partial<AppConnectionStatus>> partialBuilder)
         => it.AddFieldName("connectionStatus", partialBuilder(new Partial<AppConnectionStatus>(it)));
     
+    public static Partial<AdHocConnectedAppMetadata> WithUninstallationStatus(this Partial<AdHocConnectedAppMetadata> it)
+        => it.AddFieldName("uninstallationStatus");
+    
+    public static Partial<AdHocConnectedAppMetadata> WithUninstallationStatus(this Partial<AdHocConnectedAppMetadata> it, Func<Partial<AppUninstallationStatus>, Partial<AppUninstallationStatus>> partialBuilder)
+        => it.AddFieldName("uninstallationStatus", partialBuilder(new Partial<AppUninstallationStatus>(it)));
+    
+    public static Partial<AdHocConnectedAppMetadata> WithUninstallationStartedAt(this Partial<AdHocConnectedAppMetadata> it)
+        => it.AddFieldName("uninstallationStartedAt");
+    
 }
 

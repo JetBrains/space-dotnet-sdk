@@ -34,7 +34,7 @@ public sealed class OrganizationRecord
 {
     public OrganizationRecord() { }
     
-    public OrganizationRecord(string id, string orgId, string name, string? slogan = null, string? logoId = null, bool? onboardingRequired = null, bool? allowDomainsEdit = null, long? createdAt = null, bool? createdWithNavigationV2 = null, ATimeZone? timezone = null, OrgSizeDTO? orgSize = null, OrgIndustryDTO? orgIndustry = null, bool? sendAnonymousDataAgreementAccepted = null, string? slackWorkspace = null)
+    public OrganizationRecord(string id, string orgId, string name, string? slogan = null, string? logoId = null, bool? onboardingRequired = null, bool? allowDomainsEdit = null, long? createdAt = null, bool? createdWithNavigationV2 = null, ATimeZone? timezone = null, OrgSizeDTO? orgSize = null, OrgIndustryDTO? orgIndustry = null, bool? sendAnonymousDataAgreementAccepted = null, bool? marketplaceEnabled = null, string? slackWorkspace = null)
     {
         Id = id;
         OrgId = orgId;
@@ -49,6 +49,7 @@ public sealed class OrganizationRecord
         OrgSize = orgSize;
         OrgIndustry = orgIndustry;
         IsSendAnonymousDataAgreementAccepted = sendAnonymousDataAgreementAccepted;
+        IsMarketplaceEnabled = marketplaceEnabled;
         SlackWorkspace = slackWorkspace;
     }
     
@@ -172,6 +173,15 @@ public sealed class OrganizationRecord
         set => _sendAnonymousDataAgreementAccepted.SetValue(value);
     }
 
+    private PropertyValue<bool?> _marketplaceEnabled = new PropertyValue<bool?>(nameof(OrganizationRecord), nameof(IsMarketplaceEnabled), "marketplaceEnabled");
+    
+    [JsonPropertyName("marketplaceEnabled")]
+    public bool? IsMarketplaceEnabled
+    {
+        get => _marketplaceEnabled.GetValue(InlineErrors);
+        set => _marketplaceEnabled.SetValue(value);
+    }
+
     private PropertyValue<string?> _slackWorkspace = new PropertyValue<string?>(nameof(OrganizationRecord), nameof(SlackWorkspace), "slackWorkspace");
     
     [Obsolete("Slack integration is no longer supported (since 2021-10-13) (will be removed in a future version)")]
@@ -197,6 +207,7 @@ public sealed class OrganizationRecord
         _orgSize.SetAccessPath(parentChainPath, validateHasBeenSet);
         _orgIndustry.SetAccessPath(parentChainPath, validateHasBeenSet);
         _sendAnonymousDataAgreementAccepted.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _marketplaceEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _slackWorkspace.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

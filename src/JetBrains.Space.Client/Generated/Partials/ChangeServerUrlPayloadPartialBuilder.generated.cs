@@ -40,6 +40,7 @@ public static class ChangeServerUrlPayloadPartialExtensions
     public static Partial<ChangeServerUrlPayload> WithUserId(this Partial<ChangeServerUrlPayload> it)
         => it.AddFieldName("userId");
     
+    [Obsolete("Verification token is only sent for old applications that have the Verification Token authentication set up. New applications cannot use this authentication. (since 2022-11-16) (will be removed in a future version)")]
     public static Partial<ChangeServerUrlPayload> WithVerificationToken(this Partial<ChangeServerUrlPayload> it)
         => it.AddFieldName("verificationToken");
     

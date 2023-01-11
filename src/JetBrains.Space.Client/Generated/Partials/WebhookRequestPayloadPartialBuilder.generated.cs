@@ -31,6 +31,7 @@ namespace JetBrains.Space.Client.WebhookRequestPayloadPartialBuilder;
 
 public static class WebhookRequestPayloadPartialExtensions
 {
+    [Obsolete("Verification token is only sent for old applications that have the Verification Token authentication set up. New applications cannot use this authentication. (since 2022-11-16) (will be removed in a future version)")]
     public static Partial<WebhookRequestPayload> WithVerificationToken(this Partial<WebhookRequestPayload> it)
         => it.AddFieldName("verificationToken");
     

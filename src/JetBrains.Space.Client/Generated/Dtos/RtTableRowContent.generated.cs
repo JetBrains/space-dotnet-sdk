@@ -36,11 +36,11 @@ public abstract class RtTableRowContent
     [JsonPropertyName("className")]
     public virtual string? ClassName => "RtTableRowContent";
     
-    public static RtTableCell RtTableCell(List<BlockNode> children, List<DocumentMark> marks, RtTableCellAttrs? attrs = null)
-        => new RtTableCell(children: children, marks: marks, attrs: attrs);
+    public static RtTableCell RtTableCell(List<BlockNode> children, RtTableCellAttrs? attrs = null)
+        => new RtTableCell(children: children, attrs: attrs);
     
-    public static RtTableHeader RtTableHeader(List<BlockNode> children, List<DocumentMark> marks, RtTableCellAttrs? attrs = null)
-        => new RtTableHeader(children: children, marks: marks, attrs: attrs);
+    public static RtTableHeader RtTableHeader(List<BlockNode> children, RtTableCellAttrs? attrs = null)
+        => new RtTableHeader(children: children, attrs: attrs);
     
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {

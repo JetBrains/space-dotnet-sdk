@@ -27,22 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.ExternalCollaboratorTypePartialBuilder;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum PmNodeTextAlign
+public static class ExternalCollaboratorTypePartialExtensions
 {
-    [EnumMember(Value = "left")]
-    Left,
-    
-    [EnumMember(Value = "center")]
-    Center,
-    
-    [EnumMember(Value = "right")]
-    Right,
-    
-    [EnumMember(Value = "justify")]
-    Justify,
-    
 }
 

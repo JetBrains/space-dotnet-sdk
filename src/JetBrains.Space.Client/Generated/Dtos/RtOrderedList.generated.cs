@@ -37,11 +37,10 @@ public sealed class RtOrderedList
     
     public RtOrderedList() { }
     
-    public RtOrderedList(int startNumber, List<RtListItem> children, List<DocumentMark> marks)
+    public RtOrderedList(int startNumber, List<RtListItem> children)
     {
         StartNumber = startNumber;
         Children = children;
-        Marks = marks;
     }
     
     private PropertyValue<int> _startNumber = new PropertyValue<int>(nameof(RtOrderedList), nameof(StartNumber), "startNumber");
@@ -64,21 +63,10 @@ public sealed class RtOrderedList
         set => _children.SetValue(value);
     }
 
-    private PropertyValue<List<DocumentMark>> _marks = new PropertyValue<List<DocumentMark>>(nameof(RtOrderedList), nameof(Marks), "marks", new List<DocumentMark>());
-    
-    [Required]
-    [JsonPropertyName("marks")]
-    public List<DocumentMark> Marks
-    {
-        get => _marks.GetValue(InlineErrors);
-        set => _marks.SetValue(value);
-    }
-
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _startNumber.SetAccessPath(parentChainPath, validateHasBeenSet);
         _children.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _marks.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

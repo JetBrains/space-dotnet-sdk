@@ -49,6 +49,7 @@ public static class MessageActionPayloadPartialExtensions
     public static Partial<MessageActionPayload> WithUserId(this Partial<MessageActionPayload> it)
         => it.AddFieldName("userId");
     
+    [Obsolete("Verification token is only sent for old applications that have the Verification Token authentication set up. New applications cannot use this authentication. (since 2022-11-16) (will be removed in a future version)")]
     public static Partial<MessageActionPayload> WithVerificationToken(this Partial<MessageActionPayload> it)
         => it.AddFieldName("verificationToken");
     

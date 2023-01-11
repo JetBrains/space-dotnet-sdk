@@ -34,7 +34,7 @@ public sealed class CallSession
 {
     public CallSession() { }
     
-    public CallSession(string id, bool archived, Room room, string description, DateTime start, bool resourcesPrepared, List<SessionParticipationRecord> participations, DateTime? end = null, M2ChannelRecord? channel = null, ConnectionTopology? topology = null)
+    public CallSession(string id, bool archived, Room room, string description, DateTime start, bool resourcesPrepared, List<SessionParticipationRecord> participations, List<CallSession> subSessions, DateTime? end = null, M2ChannelRecord? channel = null, ConnectionTopology? topology = null, bool? active = null, CallSession? initialSession = null)
     {
         Id = id;
         IsArchived = archived;
@@ -45,7 +45,10 @@ public sealed class CallSession
         Channel = channel;
         Topology = topology;
         IsResourcesPrepared = resourcesPrepared;
+        IsActive = active;
+        InitialSession = initialSession;
         Participations = participations;
+        SubSessions = subSessions;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(CallSession), nameof(Id), "id");
@@ -137,6 +140,24 @@ public sealed class CallSession
         set => _resourcesPrepared.SetValue(value);
     }
 
+    private PropertyValue<bool?> _active = new PropertyValue<bool?>(nameof(CallSession), nameof(IsActive), "active");
+    
+    [JsonPropertyName("active")]
+    public bool? IsActive
+    {
+        get => _active.GetValue(InlineErrors);
+        set => _active.SetValue(value);
+    }
+
+    private PropertyValue<CallSession?> _initialSession = new PropertyValue<CallSession?>(nameof(CallSession), nameof(InitialSession), "initialSession");
+    
+    [JsonPropertyName("initialSession")]
+    public CallSession? InitialSession
+    {
+        get => _initialSession.GetValue(InlineErrors);
+        set => _initialSession.SetValue(value);
+    }
+
     private PropertyValue<List<SessionParticipationRecord>> _participations = new PropertyValue<List<SessionParticipationRecord>>(nameof(CallSession), nameof(Participations), "participations", new List<SessionParticipationRecord>());
     
     [Required]
@@ -145,6 +166,16 @@ public sealed class CallSession
     {
         get => _participations.GetValue(InlineErrors);
         set => _participations.SetValue(value);
+    }
+
+    private PropertyValue<List<CallSession>> _subSessions = new PropertyValue<List<CallSession>>(nameof(CallSession), nameof(SubSessions), "subSessions", new List<CallSession>());
+    
+    [Required]
+    [JsonPropertyName("subSessions")]
+    public List<CallSession> SubSessions
+    {
+        get => _subSessions.GetValue(InlineErrors);
+        set => _subSessions.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
@@ -158,7 +189,10 @@ public sealed class CallSession
         _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
         _topology.SetAccessPath(parentChainPath, validateHasBeenSet);
         _resourcesPrepared.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _active.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _initialSession.SetAccessPath(parentChainPath, validateHasBeenSet);
         _participations.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _subSessions.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

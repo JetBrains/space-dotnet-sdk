@@ -80,8 +80,8 @@ public interface InlineUnfurlDetails
     public static UnfurlDetailsDraft UnfurlDetailsDraft(string draft, string title, Document? document = null, bool? strikeThrough = null)
         => new UnfurlDetailsDraft(draft: draft, title: title, document: document, strikeThrough: strikeThrough);
     
-    public static UnfurlDetailsFolder UnfurlDetailsFolder(string name, bool root)
-        => new UnfurlDetailsFolder(name: name, root: root);
+    public static UnfurlDetailsFolder UnfurlDetailsFolder(string name, bool root, DocumentFolder? folder = null)
+        => new UnfurlDetailsFolder(name: name, root: root, folder: folder);
     
     public static UnfurlDetailsIssue UnfurlDetailsIssue(Issue issue, bool? strikeThrough = null, bool? compact = null)
         => new UnfurlDetailsIssue(issue: issue, strikeThrough: strikeThrough, compact: compact);

@@ -37,11 +37,13 @@ public sealed class MarketplaceAppMetadata
     
     public MarketplaceAppMetadata() { }
     
-    public MarketplaceAppMetadata(string marketplaceAppId, string lastSentServerUrl, AppConnectionStatus connectionStatus)
+    public MarketplaceAppMetadata(string marketplaceAppId, string lastSentServerUrl, AppConnectionStatus connectionStatus, AppUninstallationStatus? uninstallationStatus = null, DateTime? uninstallationStartedAt = null)
     {
         MarketplaceAppId = marketplaceAppId;
         LastSentServerUrl = lastSentServerUrl;
         ConnectionStatus = connectionStatus;
+        UninstallationStatus = uninstallationStatus;
+        UninstallationStartedAt = uninstallationStartedAt;
     }
     
     private PropertyValue<string> _marketplaceAppId = new PropertyValue<string>(nameof(MarketplaceAppMetadata), nameof(MarketplaceAppId), "marketplaceAppId");
@@ -74,11 +76,32 @@ public sealed class MarketplaceAppMetadata
         set => _connectionStatus.SetValue(value);
     }
 
+    private PropertyValue<AppUninstallationStatus?> _uninstallationStatus = new PropertyValue<AppUninstallationStatus?>(nameof(MarketplaceAppMetadata), nameof(UninstallationStatus), "uninstallationStatus");
+    
+    [JsonPropertyName("uninstallationStatus")]
+    public AppUninstallationStatus? UninstallationStatus
+    {
+        get => _uninstallationStatus.GetValue(InlineErrors);
+        set => _uninstallationStatus.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _uninstallationStartedAt = new PropertyValue<DateTime?>(nameof(MarketplaceAppMetadata), nameof(UninstallationStartedAt), "uninstallationStartedAt");
+    
+    [JsonPropertyName("uninstallationStartedAt")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? UninstallationStartedAt
+    {
+        get => _uninstallationStartedAt.GetValue(InlineErrors);
+        set => _uninstallationStartedAt.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _marketplaceAppId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _lastSentServerUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
         _connectionStatus.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _uninstallationStatus.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _uninstallationStartedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

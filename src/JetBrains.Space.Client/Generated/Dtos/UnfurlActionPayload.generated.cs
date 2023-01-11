@@ -110,6 +110,7 @@ public sealed class UnfurlActionPayload
 
     private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(UnfurlActionPayload), nameof(VerificationToken), "verificationToken");
     
+    [Obsolete("Verification token is only sent for old applications that have the Verification Token authentication set up. New applications cannot use this authentication. (since 2022-11-16) (will be removed in a future version)")]
     [JsonPropertyName("verificationToken")]
     public string? VerificationToken
     {

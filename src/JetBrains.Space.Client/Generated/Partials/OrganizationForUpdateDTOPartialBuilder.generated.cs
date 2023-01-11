@@ -46,10 +46,6 @@ public static class OrganizationForUpdateDTOPartialExtensions
     public static Partial<OrganizationForUpdateDTO> WithLogo(this Partial<OrganizationForUpdateDTO> it)
         => it.AddFieldName("logo");
     
-    [Obsolete("Is no longer supported (since 2021-10-13) (will be removed in a future version)")]
-    public static Partial<OrganizationForUpdateDTO> WithSlackWorkspace(this Partial<OrganizationForUpdateDTO> it)
-        => it.AddFieldName("slackWorkspace");
-    
     public static Partial<OrganizationForUpdateDTO> WithIsOnboardingRequired(this Partial<OrganizationForUpdateDTO> it)
         => it.AddFieldName("onboardingRequired");
     
@@ -79,6 +75,9 @@ public static class OrganizationForUpdateDTOPartialExtensions
     
     public static Partial<OrganizationForUpdateDTO> WithIsSendAnonymousDataAgreementAccepted(this Partial<OrganizationForUpdateDTO> it)
         => it.AddFieldName("sendAnonymousDataAgreementAccepted");
+    
+    public static Partial<OrganizationForUpdateDTO> WithIsMarketplaceEnabled(this Partial<OrganizationForUpdateDTO> it)
+        => it.AddFieldName("marketplaceEnabled");
     
 }
 

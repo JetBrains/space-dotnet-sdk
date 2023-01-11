@@ -37,10 +37,11 @@ public sealed class UnfurlDetailsFolder
     
     public UnfurlDetailsFolder() { }
     
-    public UnfurlDetailsFolder(string name, bool root)
+    public UnfurlDetailsFolder(string name, bool root, DocumentFolder? folder = null)
     {
         Name = name;
         IsRoot = root;
+        Folder = folder;
     }
     
     private PropertyValue<string> _name = new PropertyValue<string>(nameof(UnfurlDetailsFolder), nameof(Name), "name");
@@ -63,10 +64,20 @@ public sealed class UnfurlDetailsFolder
         set => _root.SetValue(value);
     }
 
+    private PropertyValue<DocumentFolder?> _folder = new PropertyValue<DocumentFolder?>(nameof(UnfurlDetailsFolder), nameof(Folder), "folder");
+    
+    [JsonPropertyName("folder")]
+    public DocumentFolder? Folder
+    {
+        get => _folder.GetValue(InlineErrors);
+        set => _folder.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _root.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _folder.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

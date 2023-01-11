@@ -37,10 +37,12 @@ public sealed class AdHocConnectedAppMetadata
     
     public AdHocConnectedAppMetadata() { }
     
-    public AdHocConnectedAppMetadata(string? lastSentServerUrl = null, AppConnectionStatus? connectionStatus = null)
+    public AdHocConnectedAppMetadata(string? lastSentServerUrl = null, AppConnectionStatus? connectionStatus = null, AppUninstallationStatus? uninstallationStatus = null, DateTime? uninstallationStartedAt = null)
     {
         LastSentServerUrl = lastSentServerUrl;
         ConnectionStatus = connectionStatus;
+        UninstallationStatus = uninstallationStatus;
+        UninstallationStartedAt = uninstallationStartedAt;
     }
     
     private PropertyValue<string?> _lastSentServerUrl = new PropertyValue<string?>(nameof(AdHocConnectedAppMetadata), nameof(LastSentServerUrl), "lastSentServerUrl");
@@ -61,10 +63,31 @@ public sealed class AdHocConnectedAppMetadata
         set => _connectionStatus.SetValue(value);
     }
 
+    private PropertyValue<AppUninstallationStatus?> _uninstallationStatus = new PropertyValue<AppUninstallationStatus?>(nameof(AdHocConnectedAppMetadata), nameof(UninstallationStatus), "uninstallationStatus");
+    
+    [JsonPropertyName("uninstallationStatus")]
+    public AppUninstallationStatus? UninstallationStatus
+    {
+        get => _uninstallationStatus.GetValue(InlineErrors);
+        set => _uninstallationStatus.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _uninstallationStartedAt = new PropertyValue<DateTime?>(nameof(AdHocConnectedAppMetadata), nameof(UninstallationStartedAt), "uninstallationStartedAt");
+    
+    [JsonPropertyName("uninstallationStartedAt")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? UninstallationStartedAt
+    {
+        get => _uninstallationStartedAt.GetValue(InlineErrors);
+        set => _uninstallationStartedAt.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _lastSentServerUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
         _connectionStatus.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _uninstallationStatus.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _uninstallationStartedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

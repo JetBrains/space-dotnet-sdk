@@ -1500,7 +1500,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<TDMemberProfile> CreateProfileAsync(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? externalId = null, string? location = null, bool? guest = null, ProjectIdentifier? project = null, ProjectTeamRole? projectRole = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<TDMemberProfile> CreateProfileAsync(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldInputValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, string? externalId = null, string? location = null, bool? guest = null, GuestType? guestType = null, ProjectIdentifier? project = null, ProjectTeamRole? projectRole = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
@@ -1528,6 +1528,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                     ExternalId = externalId,
                     Location = location,
                     IsGuest = guest,
+                    GuestType = guestType,
                     Project = project,
                     ProjectRole = projectRole,
                 }, requestHeaders: null, functionName: "CreateProfile", cancellationToken: cancellationToken);
@@ -1670,6 +1671,55 @@ public partial class TeamDirectoryClient : ISpaceClient
                     CustomFieldValues = customFieldValues,
                     ExternalId = externalId,
                 }, requestHeaders: null, functionName: "UpdateProfile", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Convert to guest profile
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Update member profiles</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<DryRunResult> ConvertOrganizationMemberIntoGuestUserAsync(ProfileIdentifier profile, bool dryrun, GuestType? guestType = null, Func<Partial<DryRunResult>, Partial<DryRunResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<DryRunResult>()) : Partial<DryRunResult>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileConvertToGuestPatchRequest, DryRunResult>("PATCH", $"api/http/team-directory/profiles/{profile}/convert-to-guest{queryParameters.ToQueryString()}", 
+                new TeamDirectoryProfilesForProfileConvertToGuestPatchRequest
+                { 
+                    IsDryrun = dryrun,
+                    GuestType = guestType,
+                }, requestHeaders: null, functionName: "ConvertOrganizationMemberIntoGuestUser", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Convert to organization member
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Update member profiles</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<DryRunResult> ConvertGuestUserIntoOrganizationMemberAsync(ProfileIdentifier profile, bool dryrun, Func<Partial<DryRunResult>, Partial<DryRunResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<DryRunResult>()) : Partial<DryRunResult>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileConvertToMemberPatchRequest, DryRunResult>("PATCH", $"api/http/team-directory/profiles/{profile}/convert-to-member{queryParameters.ToQueryString()}", 
+                new TeamDirectoryProfilesForProfileConvertToMemberPatchRequest
+                { 
+                    IsDryrun = dryrun,
+                }, requestHeaders: null, functionName: "ConvertGuestUserIntoOrganizationMember", cancellationToken: cancellationToken);
         }
         
     

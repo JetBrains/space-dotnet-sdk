@@ -45,6 +45,9 @@ public class GlobalRole
     public static GlobalRoleGuest Guest()
         => new GlobalRoleGuest();
     
+    public static GlobalRoleLightGuest LightGuest()
+        => new GlobalRoleLightGuest();
+    
     public GlobalRole() { }
     
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)

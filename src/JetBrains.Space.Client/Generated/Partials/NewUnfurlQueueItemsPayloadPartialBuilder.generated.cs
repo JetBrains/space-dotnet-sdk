@@ -34,6 +34,7 @@ public static class NewUnfurlQueueItemsPayloadPartialExtensions
     public static Partial<NewUnfurlQueueItemsPayload> WithClientId(this Partial<NewUnfurlQueueItemsPayload> it)
         => it.AddFieldName("clientId");
     
+    [Obsolete("Verification token is only sent for old applications that have the Verification Token authentication set up. New applications cannot use this authentication. (since 2022-11-16) (will be removed in a future version)")]
     public static Partial<NewUnfurlQueueItemsPayload> WithVerificationToken(this Partial<NewUnfurlQueueItemsPayload> it)
         => it.AddFieldName("verificationToken");
     

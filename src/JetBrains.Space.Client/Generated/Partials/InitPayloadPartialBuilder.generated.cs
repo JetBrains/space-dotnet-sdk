@@ -46,6 +46,7 @@ public static class InitPayloadPartialExtensions
     public static Partial<InitPayload> WithUserId(this Partial<InitPayload> it)
         => it.AddFieldName("userId");
     
+    [Obsolete("Verification token is only sent for old applications that have the Verification Token authentication set up. New applications cannot use this authentication. (since 2022-11-16) (will be removed in a future version)")]
     public static Partial<InitPayload> WithVerificationToken(this Partial<InitPayload> it)
         => it.AddFieldName("verificationToken");
     

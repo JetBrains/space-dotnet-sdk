@@ -32,14 +32,14 @@ namespace JetBrains.Space.Client;
 public interface ApplicationMetadata
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static AdHocConnectedAppMetadata AdHocConnectedAppMetadata(string? lastSentServerUrl = null, AppConnectionStatus? connectionStatus = null)
-        => new AdHocConnectedAppMetadata(lastSentServerUrl: lastSentServerUrl, connectionStatus: connectionStatus);
+    public static AdHocConnectedAppMetadata AdHocConnectedAppMetadata(string? lastSentServerUrl = null, AppConnectionStatus? connectionStatus = null, AppUninstallationStatus? uninstallationStatus = null, DateTime? uninstallationStartedAt = null)
+        => new AdHocConnectedAppMetadata(lastSentServerUrl: lastSentServerUrl, connectionStatus: connectionStatus, uninstallationStatus: uninstallationStatus, uninstallationStartedAt: uninstallationStartedAt);
     
     public static AutomationServiceMetadata AutomationServiceMetadata(PRProject project)
         => new AutomationServiceMetadata(project: project);
     
-    public static MarketplaceAppMetadata MarketplaceAppMetadata(string marketplaceAppId, string lastSentServerUrl, AppConnectionStatus connectionStatus)
-        => new MarketplaceAppMetadata(marketplaceAppId: marketplaceAppId, lastSentServerUrl: lastSentServerUrl, connectionStatus: connectionStatus);
+    public static MarketplaceAppMetadata MarketplaceAppMetadata(string marketplaceAppId, string lastSentServerUrl, AppConnectionStatus connectionStatus, AppUninstallationStatus? uninstallationStatus = null, DateTime? uninstallationStartedAt = null)
+        => new MarketplaceAppMetadata(marketplaceAppId: marketplaceAppId, lastSentServerUrl: lastSentServerUrl, connectionStatus: connectionStatus, uninstallationStatus: uninstallationStatus, uninstallationStartedAt: uninstallationStartedAt);
     
     public static SubscriptionMetadata SubscriptionMetadata(M2ChannelRecord channel, string subscription, string subscriptionName)
         => new SubscriptionMetadata(channel: channel, subscription: subscription, subscriptionName: subscriptionName);

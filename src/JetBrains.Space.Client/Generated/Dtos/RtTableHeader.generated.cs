@@ -37,10 +37,9 @@ public sealed class RtTableHeader
     
     public RtTableHeader() { }
     
-    public RtTableHeader(List<BlockNode> children, List<DocumentMark> marks, RtTableCellAttrs? attrs = null)
+    public RtTableHeader(List<BlockNode> children, RtTableCellAttrs? attrs = null)
     {
         Children = children;
-        Marks = marks;
         Attrs = attrs;
     }
     
@@ -52,16 +51,6 @@ public sealed class RtTableHeader
     {
         get => _children.GetValue(InlineErrors);
         set => _children.SetValue(value);
-    }
-
-    private PropertyValue<List<DocumentMark>> _marks = new PropertyValue<List<DocumentMark>>(nameof(RtTableHeader), nameof(Marks), "marks", new List<DocumentMark>());
-    
-    [Required]
-    [JsonPropertyName("marks")]
-    public List<DocumentMark> Marks
-    {
-        get => _marks.GetValue(InlineErrors);
-        set => _marks.SetValue(value);
     }
 
     private PropertyValue<RtTableCellAttrs?> _attrs = new PropertyValue<RtTableCellAttrs?>(nameof(RtTableHeader), nameof(Attrs), "attrs");
@@ -76,7 +65,6 @@ public sealed class RtTableHeader
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _children.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _marks.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attrs.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

@@ -37,11 +37,5 @@ public static class RtBlockquotePartialExtensions
     public static Partial<RtBlockquote> WithChildren(this Partial<RtBlockquote> it, Func<Partial<BlockNode>, Partial<BlockNode>> partialBuilder)
         => it.AddFieldName("children", partialBuilder(new Partial<BlockNode>(it)));
     
-    public static Partial<RtBlockquote> WithMarks(this Partial<RtBlockquote> it)
-        => it.AddFieldName("marks");
-    
-    public static Partial<RtBlockquote> WithMarks(this Partial<RtBlockquote> it, Func<Partial<DocumentMark>, Partial<DocumentMark>> partialBuilder)
-        => it.AddFieldName("marks", partialBuilder(new Partial<DocumentMark>(it)));
-    
 }
 

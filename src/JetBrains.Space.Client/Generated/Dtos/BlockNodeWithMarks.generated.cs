@@ -32,32 +32,32 @@ namespace JetBrains.Space.Client;
 public interface BlockNodeWithMarks
      : BlockNode, NodeWithChildren, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static RtBlockquote RtBlockquote(List<BlockNode> children, List<DocumentMark> marks)
-        => new RtBlockquote(children: children, marks: marks);
+    public static RtBlockquote RtBlockquote(List<BlockNode> children)
+        => new RtBlockquote(children: children);
     
-    public static RtBulletList RtBulletList(List<RtListItem> children, List<DocumentMark> marks)
-        => new RtBulletList(children: children, marks: marks);
+    public static RtBulletList RtBulletList(List<RtListItem> children)
+        => new RtBulletList(children: children);
     
-    public static RtDocument RtDocument(List<BlockNode> children, List<DocumentMark> marks)
-        => new RtDocument(children: children, marks: marks);
+    public static RtDocument RtDocument(List<BlockNode> children)
+        => new RtDocument(children: children);
     
-    public static RtHeading RtHeading(int level, List<InlineNode> children, List<DocumentMark> marks, PmNodeTextAlign textAlign)
-        => new RtHeading(level: level, children: children, marks: marks, textAlign: textAlign);
+    public static RtHeading RtHeading(int level, List<InlineNode> children, RtTextAlign textAlign)
+        => new RtHeading(level: level, children: children, textAlign: textAlign);
     
-    public static RtListItem RtListItem(List<BlockNode> children, List<DocumentMark> marks)
-        => new RtListItem(children: children, marks: marks);
+    public static RtListItem RtListItem(List<BlockNode> children)
+        => new RtListItem(children: children);
     
-    public static RtOrderedList RtOrderedList(int startNumber, List<RtListItem> children, List<DocumentMark> marks)
-        => new RtOrderedList(startNumber: startNumber, children: children, marks: marks);
+    public static RtOrderedList RtOrderedList(int startNumber, List<RtListItem> children)
+        => new RtOrderedList(startNumber: startNumber, children: children);
     
-    public static RtParagraph RtParagraph(List<InlineNode> children, List<DocumentMark> marks, PmNodeTextAlign textAlign)
-        => new RtParagraph(children: children, marks: marks, textAlign: textAlign);
+    public static RtParagraph RtParagraph(List<InlineNode> children, RtTextAlign textAlign)
+        => new RtParagraph(children: children, textAlign: textAlign);
     
-    public static RtTable RtTable(List<RtTableRow> children, List<DocumentMark> marks)
-        => new RtTable(children: children, marks: marks);
+    public static RtTable RtTable(List<RtTableRow> children)
+        => new RtTable(children: children);
     
-    public static RtTableRow RtTableRow(List<RtTableRowContent> children, List<DocumentMark> marks)
-        => new RtTableRow(children: children, marks: marks);
+    public static RtTableRow RtTableRow(List<RtTableRowContent> children)
+        => new RtTableRow(children: children);
     
 }
 

@@ -44,7 +44,11 @@ public abstract class SpaceWebHookHandler
     /// <inheritdoc/>
     public virtual Task<ApplicationExecutionResult> HandleInitAsync(InitPayload payload)
         => Task.FromResult(new ApplicationExecutionResult());
-        
+
+    /// <inheritdoc/>
+    public virtual Task<ApplicationExecutionResult> HandleUninstalledAsync(ApplicationUninstalledPayload payload)
+        => Task.FromResult(new ApplicationExecutionResult());
+
     /// <inheritdoc/>
     public virtual Task<ApplicationExecutionResult> HandleChangeClientSecretRequestAsync(ChangeClientSecretPayload payload)
         => Task.FromResult(new ApplicationExecutionResult());

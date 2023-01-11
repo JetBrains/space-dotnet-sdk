@@ -76,6 +76,9 @@ public static class TDMemberProfilePartialExtensions
     public static Partial<TDMemberProfile> WithIsExternal(this Partial<TDMemberProfile> it)
         => it.AddFieldName("external");
     
+    public static Partial<TDMemberProfile> WithIsExternalLight(this Partial<TDMemberProfile> it)
+        => it.AddFieldName("externalLight");
+    
     public static Partial<TDMemberProfile> WithAbout(this Partial<TDMemberProfile> it)
         => it.AddFieldName("about");
     

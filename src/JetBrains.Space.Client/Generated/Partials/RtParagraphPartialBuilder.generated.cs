@@ -37,17 +37,11 @@ public static class RtParagraphPartialExtensions
     public static Partial<RtParagraph> WithChildren(this Partial<RtParagraph> it, Func<Partial<InlineNode>, Partial<InlineNode>> partialBuilder)
         => it.AddFieldName("children", partialBuilder(new Partial<InlineNode>(it)));
     
-    public static Partial<RtParagraph> WithMarks(this Partial<RtParagraph> it)
-        => it.AddFieldName("marks");
-    
-    public static Partial<RtParagraph> WithMarks(this Partial<RtParagraph> it, Func<Partial<DocumentMark>, Partial<DocumentMark>> partialBuilder)
-        => it.AddFieldName("marks", partialBuilder(new Partial<DocumentMark>(it)));
-    
     public static Partial<RtParagraph> WithTextAlign(this Partial<RtParagraph> it)
         => it.AddFieldName("textAlign");
     
-    public static Partial<RtParagraph> WithTextAlign(this Partial<RtParagraph> it, Func<Partial<PmNodeTextAlign>, Partial<PmNodeTextAlign>> partialBuilder)
-        => it.AddFieldName("textAlign", partialBuilder(new Partial<PmNodeTextAlign>(it)));
+    public static Partial<RtParagraph> WithTextAlign(this Partial<RtParagraph> it, Func<Partial<RtTextAlign>, Partial<RtTextAlign>> partialBuilder)
+        => it.AddFieldName("textAlign", partialBuilder(new Partial<RtTextAlign>(it)));
     
 }
 

@@ -37,6 +37,7 @@ public static class ListCommandsPayloadPartialExtensions
     public static Partial<ListCommandsPayload> WithUserId(this Partial<ListCommandsPayload> it)
         => it.AddFieldName("userId");
     
+    [Obsolete("Verification token is only sent for old applications that have the Verification Token authentication set up. New applications cannot use this authentication. (since 2022-11-16) (will be removed in a future version)")]
     public static Partial<ListCommandsPayload> WithVerificationToken(this Partial<ListCommandsPayload> it)
         => it.AddFieldName("verificationToken");
     

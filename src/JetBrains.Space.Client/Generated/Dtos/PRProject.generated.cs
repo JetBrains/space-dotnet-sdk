@@ -34,7 +34,7 @@ public sealed class PRProject
 {
     public PRProject() { }
     
-    public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> collaboratorsProfiles, List<TDTeam> collaboratorsTeams, int daysInWeek, bool enable, DurationTextFormat format, List<TDMemberProfile> guestProfiles, int hoursInDay, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, ProjectTeamType type, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null, DateTime? createdAt = null, List<ProjectFeatureState>? features = null, List<ProjectFeatureUsage>? featuresUsage = null, List<ProjectTeamMemberRecord>? members = null, TDTeam? team = null, List<TDTeam>? teams = null)
+    public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> collaboratorsProfiles, List<TDTeam> collaboratorsTeams, int daysInWeek, bool enable, DurationTextFormat format, List<TDMemberProfile> guestProfiles, int hoursInDay, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, ProjectTeamType type, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null, DateTime? createdAt = null, List<ProjectFeaturePins>? featurePins = null, List<ProjectFeatureState>? features = null, List<ProjectFeatureUsage>? featuresUsage = null, List<ProjectTeamMemberRecord>? members = null, List<ToggleableProjectFeaturePins>? personalFeaturePins = null, TDTeam? team = null, List<TDTeam>? teams = null)
     {
         Id = id;
         Key = key;
@@ -52,6 +52,7 @@ public sealed class PRProject
         CollaboratorsTeams = collaboratorsTeams;
         DaysInWeek = daysInWeek;
         IsEnable = enable;
+        FeaturePins = featurePins;
         Features = features;
         FeaturesUsage = featuresUsage;
         Format = format;
@@ -61,6 +62,7 @@ public sealed class PRProject
         MemberTeams = memberTeams;
         Members = members;
         Packages = packages;
+        PersonalFeaturePins = personalFeaturePins;
         Repos = repos;
         Tags = tags;
         Team = team;
@@ -227,6 +229,15 @@ public sealed class PRProject
         set => _enable.SetValue(value);
     }
 
+    private PropertyValue<List<ProjectFeaturePins>?> _featurePins = new PropertyValue<List<ProjectFeaturePins>?>(nameof(PRProject), nameof(FeaturePins), "featurePins");
+    
+    [JsonPropertyName("featurePins")]
+    public List<ProjectFeaturePins>? FeaturePins
+    {
+        get => _featurePins.GetValue(InlineErrors);
+        set => _featurePins.SetValue(value);
+    }
+
     private PropertyValue<List<ProjectFeatureState>?> _features = new PropertyValue<List<ProjectFeatureState>?>(nameof(PRProject), nameof(Features), "features");
     
     [JsonPropertyName("features")]
@@ -314,6 +325,15 @@ public sealed class PRProject
         set => _packages.SetValue(value);
     }
 
+    private PropertyValue<List<ToggleableProjectFeaturePins>?> _personalFeaturePins = new PropertyValue<List<ToggleableProjectFeaturePins>?>(nameof(PRProject), nameof(PersonalFeaturePins), "personalFeaturePins");
+    
+    [JsonPropertyName("personalFeaturePins")]
+    public List<ToggleableProjectFeaturePins>? PersonalFeaturePins
+    {
+        get => _personalFeaturePins.GetValue(InlineErrors);
+        set => _personalFeaturePins.SetValue(value);
+    }
+
     private PropertyValue<List<PRRepositoryInfo>> _repos = new PropertyValue<List<PRRepositoryInfo>>(nameof(PRProject), nameof(Repos), "repos", new List<PRRepositoryInfo>());
     
     [Required]
@@ -390,6 +410,7 @@ public sealed class PRProject
         _collaboratorsTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _daysInWeek.SetAccessPath(parentChainPath, validateHasBeenSet);
         _enable.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _featurePins.SetAccessPath(parentChainPath, validateHasBeenSet);
         _features.SetAccessPath(parentChainPath, validateHasBeenSet);
         _featuresUsage.SetAccessPath(parentChainPath, validateHasBeenSet);
         _format.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -399,6 +420,7 @@ public sealed class PRProject
         _memberTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _members.SetAccessPath(parentChainPath, validateHasBeenSet);
         _packages.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _personalFeaturePins.SetAccessPath(parentChainPath, validateHasBeenSet);
         _repos.SetAccessPath(parentChainPath, validateHasBeenSet);
         _tags.SetAccessPath(parentChainPath, validateHasBeenSet);
         _team.SetAccessPath(parentChainPath, validateHasBeenSet);

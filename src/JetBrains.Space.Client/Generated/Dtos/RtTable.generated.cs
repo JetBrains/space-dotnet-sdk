@@ -37,10 +37,9 @@ public sealed class RtTable
     
     public RtTable() { }
     
-    public RtTable(List<RtTableRow> children, List<DocumentMark> marks)
+    public RtTable(List<RtTableRow> children)
     {
         Children = children;
-        Marks = marks;
     }
     
     private PropertyValue<List<RtTableRow>> _children = new PropertyValue<List<RtTableRow>>(nameof(RtTable), nameof(Children), "children", new List<RtTableRow>());
@@ -53,20 +52,9 @@ public sealed class RtTable
         set => _children.SetValue(value);
     }
 
-    private PropertyValue<List<DocumentMark>> _marks = new PropertyValue<List<DocumentMark>>(nameof(RtTable), nameof(Marks), "marks", new List<DocumentMark>());
-    
-    [Required]
-    [JsonPropertyName("marks")]
-    public List<DocumentMark> Marks
-    {
-        get => _marks.GetValue(InlineErrors);
-        set => _marks.SetValue(value);
-    }
-
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _children.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _marks.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -34,6 +34,9 @@ public static class CheckoutRevisionDTOPartialExtensions
     public static Partial<CheckoutRevisionDTO> WithRepoName(this Partial<CheckoutRevisionDTO> it)
         => it.AddFieldName("repoName");
     
+    public static Partial<CheckoutRevisionDTO> WithCloneDir(this Partial<CheckoutRevisionDTO> it)
+        => it.AddFieldName("cloneDir");
+    
     public static Partial<CheckoutRevisionDTO> WithBranch(this Partial<CheckoutRevisionDTO> it)
         => it.AddFieldName("branch");
     

@@ -67,11 +67,32 @@ public static class CallSessionPartialExtensions
     public static Partial<CallSession> WithIsResourcesPrepared(this Partial<CallSession> it)
         => it.AddFieldName("resourcesPrepared");
     
+    public static Partial<CallSession> WithIsActive(this Partial<CallSession> it)
+        => it.AddFieldName("active");
+    
+    public static Partial<CallSession> WithInitialSession(this Partial<CallSession> it)
+        => it.AddFieldName("initialSession");
+    
+    public static Partial<CallSession> WithInitialSessionRecursive(this Partial<CallSession> it)
+        => it.AddFieldName("initialSession!");
+    
+    public static Partial<CallSession> WithInitialSession(this Partial<CallSession> it, Func<Partial<CallSession>, Partial<CallSession>> partialBuilder)
+        => it.AddFieldName("initialSession", partialBuilder(new Partial<CallSession>(it)));
+    
     public static Partial<CallSession> WithParticipations(this Partial<CallSession> it)
         => it.AddFieldName("participations");
     
     public static Partial<CallSession> WithParticipations(this Partial<CallSession> it, Func<Partial<SessionParticipationRecord>, Partial<SessionParticipationRecord>> partialBuilder)
         => it.AddFieldName("participations", partialBuilder(new Partial<SessionParticipationRecord>(it)));
+    
+    public static Partial<CallSession> WithSubSessions(this Partial<CallSession> it)
+        => it.AddFieldName("subSessions");
+    
+    public static Partial<CallSession> WithSubSessionsRecursive(this Partial<CallSession> it)
+        => it.AddFieldName("subSessions!");
+    
+    public static Partial<CallSession> WithSubSessions(this Partial<CallSession> it, Func<Partial<CallSession>, Partial<CallSession>> partialBuilder)
+        => it.AddFieldName("subSessions", partialBuilder(new Partial<CallSession>(it)));
     
 }
 

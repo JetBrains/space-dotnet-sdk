@@ -37,11 +37,5 @@ public static class RtDocumentPartialExtensions
     public static Partial<RtDocument> WithChildren(this Partial<RtDocument> it, Func<Partial<BlockNode>, Partial<BlockNode>> partialBuilder)
         => it.AddFieldName("children", partialBuilder(new Partial<BlockNode>(it)));
     
-    public static Partial<RtDocument> WithMarks(this Partial<RtDocument> it)
-        => it.AddFieldName("marks");
-    
-    public static Partial<RtDocument> WithMarks(this Partial<RtDocument> it, Func<Partial<DocumentMark>, Partial<DocumentMark>> partialBuilder)
-        => it.AddFieldName("marks", partialBuilder(new Partial<DocumentMark>(it)));
-    
 }
 

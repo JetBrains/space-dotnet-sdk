@@ -37,11 +37,5 @@ public static class RtBulletListPartialExtensions
     public static Partial<RtBulletList> WithChildren(this Partial<RtBulletList> it, Func<Partial<RtListItem>, Partial<RtListItem>> partialBuilder)
         => it.AddFieldName("children", partialBuilder(new Partial<RtListItem>(it)));
     
-    public static Partial<RtBulletList> WithMarks(this Partial<RtBulletList> it)
-        => it.AddFieldName("marks");
-    
-    public static Partial<RtBulletList> WithMarks(this Partial<RtBulletList> it, Func<Partial<DocumentMark>, Partial<DocumentMark>> partialBuilder)
-        => it.AddFieldName("marks", partialBuilder(new Partial<DocumentMark>(it)));
-    
 }
 
