@@ -34,13 +34,14 @@ public sealed class ESApp
 {
     public ESApp() { }
     
-    public ESApp(string id, string clientId, string name, bool archived, List<AppUiExtContextData> contexts, List<ApplicationUnfurlDomain> domains, List<ApplicationUnfurlPattern> patterns, ESAppSettings settings, TDMemberProfile? owner = null, ESApp? ownerApp = null, string? picture = null, string? defaultExternalPicture = null, DateTime? createdAt = null, string? kind = null, string? presentableName = null, ApplicationType? applicationType = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, bool? hasBearerToken = null, string? sslKeystoreAuth = null, ApplicationMetadata? metadata = null)
+    public ESApp(string id, string clientId, string name, bool archived, List<AppUiExtContextData> contexts, List<ApplicationUnfurlDomain> domains, List<ApplicationUnfurlPattern> patterns, ESAppSettings settings, TDMemberProfile? owner = null, ESApp? ownerApp = null, string? email = null, string? picture = null, string? defaultExternalPicture = null, DateTime? createdAt = null, string? kind = null, string? presentableName = null, ApplicationType? applicationType = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, bool? hasBearerToken = null, string? sslKeystoreAuth = null, ApplicationMetadata? metadata = null)
     {
         Id = id;
         Owner = owner;
         OwnerApp = ownerApp;
         ClientId = clientId;
         Name = name;
+        Email = email;
         Picture = picture;
         DefaultExternalPicture = defaultExternalPicture;
         CreatedAt = createdAt;
@@ -121,6 +122,15 @@ public sealed class ESApp
     {
         get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string?> _email = new PropertyValue<string?>(nameof(ESApp), nameof(Email), "email");
+    
+    [JsonPropertyName("email")]
+    public string? Email
+    {
+        get => _email.GetValue(InlineErrors);
+        set => _email.SetValue(value);
     }
 
     private PropertyValue<string?> _picture = new PropertyValue<string?>(nameof(ESApp), nameof(Picture), "picture");
@@ -384,6 +394,7 @@ public sealed class ESApp
         _ownerApp.SetAccessPath(parentChainPath, validateHasBeenSet);
         _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _email.SetAccessPath(parentChainPath, validateHasBeenSet);
         _picture.SetAccessPath(parentChainPath, validateHasBeenSet);
         _defaultExternalPicture.SetAccessPath(parentChainPath, validateHasBeenSet);
         _createdAt.SetAccessPath(parentChainPath, validateHasBeenSet);

@@ -27,16 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.DocumentFolderMetaWebhookEventPartialBuilder;
 
-public static class SdkInfo
+public static class DocumentFolderMetaWebhookEventPartialExtensions
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2023.2.0-DEV.148461";
+    public static Partial<DocumentFolderMetaWebhookEvent> WithMeta(this Partial<DocumentFolderMetaWebhookEvent> it)
+        => it.AddFieldName("meta");
+    
+    public static Partial<DocumentFolderMetaWebhookEvent> WithMeta(this Partial<DocumentFolderMetaWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
+        => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
+    
+    public static Partial<DocumentFolderMetaWebhookEvent> WithFolder(this Partial<DocumentFolderMetaWebhookEvent> it)
+        => it.AddFieldName("folder");
+    
+    public static Partial<DocumentFolderMetaWebhookEvent> WithArchived(this Partial<DocumentFolderMetaWebhookEvent> it)
+        => it.AddFieldName("archived");
+    
 }
 

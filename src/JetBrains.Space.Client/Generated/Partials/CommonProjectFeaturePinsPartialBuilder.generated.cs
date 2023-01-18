@@ -27,21 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ProjectFeaturePinsPartialBuilder;
+namespace JetBrains.Space.Client.CommonProjectFeaturePinsPartialBuilder;
 
-public static class ProjectFeaturePinsPartialExtensions
+public static class CommonProjectFeaturePinsPartialExtensions
 {
-    public static Partial<ProjectFeaturePins> WithFeature(this Partial<ProjectFeaturePins> it)
+    public static Partial<CommonProjectFeaturePins> WithFeature(this Partial<CommonProjectFeaturePins> it)
         => it.AddFieldName("feature");
     
-    public static Partial<ProjectFeaturePins> WithFeature(this Partial<ProjectFeaturePins> it, Func<Partial<ProjectFeature>, Partial<ProjectFeature>> partialBuilder)
+    public static Partial<CommonProjectFeaturePins> WithFeature(this Partial<CommonProjectFeaturePins> it, Func<Partial<ProjectFeature>, Partial<ProjectFeature>> partialBuilder)
         => it.AddFieldName("feature", partialBuilder(new Partial<ProjectFeature>(it)));
     
-    public static Partial<ProjectFeaturePins> WithItems(this Partial<ProjectFeaturePins> it)
+    public static Partial<CommonProjectFeaturePins> WithItems(this Partial<CommonProjectFeaturePins> it)
         => it.AddFieldName("items");
     
-    public static Partial<ProjectFeaturePins> WithItems(this Partial<ProjectFeaturePins> it, Func<Partial<ProjectFeaturePinnedItem>, Partial<ProjectFeaturePinnedItem>> partialBuilder)
-        => it.AddFieldName("items", partialBuilder(new Partial<ProjectFeaturePinnedItem>(it)));
+    public static Partial<CommonProjectFeaturePins> WithItems(this Partial<CommonProjectFeaturePins> it, Func<Partial<CommonProjectFeaturePinnedItem>, Partial<CommonProjectFeaturePinnedItem>> partialBuilder)
+        => it.AddFieldName("items", partialBuilder(new Partial<CommonProjectFeaturePinnedItem>(it)));
     
 }
 

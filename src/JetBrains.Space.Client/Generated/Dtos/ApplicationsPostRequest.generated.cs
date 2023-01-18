@@ -34,11 +34,12 @@ public class ApplicationsPostRequest
 {
     public ApplicationsPostRequest() { }
     
-    public ApplicationsPostRequest(string name, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = true, bool? codeFlowEnabled = false, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = false, string? implicitFlowRedirectURIs = null, string? endpointUri = null, bool? endpointSslVerification = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? connectToSpace = false, string? state = null)
+    public ApplicationsPostRequest(string name, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? email = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = true, bool? codeFlowEnabled = false, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = false, string? implicitFlowRedirectURIs = null, string? endpointUri = null, bool? endpointSslVerification = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? connectToSpace = false, string? state = null)
     {
         Name = name;
         PictureAttachmentId = pictureAttachmentId;
         DefaultExternalPicture = defaultExternalPicture;
+        Email = email;
         ClientId = clientId;
         ClientSecret = clientSecret;
         IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled;
@@ -101,6 +102,21 @@ public class ApplicationsPostRequest
     {
         get => _defaultExternalPicture.GetValue(InlineErrors);
         set => _defaultExternalPicture.SetValue(value);
+    }
+
+    private PropertyValue<string?> _email = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(Email), "email");
+    
+    /// <summary>
+    /// Email used during Git commit verification. Can only be specified at application creation.
+    /// </summary>
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("email")]
+    public string? Email
+    {
+        get => _email.GetValue(InlineErrors);
+        set => _email.SetValue(value);
     }
 
     private PropertyValue<string?> _clientId = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(ClientId), "clientId");
@@ -383,6 +399,7 @@ public class ApplicationsPostRequest
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _pictureAttachmentId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _defaultExternalPicture.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _email.SetAccessPath(parentChainPath, validateHasBeenSet);
         _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _clientSecret.SetAccessPath(parentChainPath, validateHasBeenSet);
         _clientCredentialsFlowEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);

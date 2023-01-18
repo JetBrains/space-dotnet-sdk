@@ -34,7 +34,7 @@ public sealed class PRProject
 {
     public PRProject() { }
     
-    public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> collaboratorsProfiles, List<TDTeam> collaboratorsTeams, int daysInWeek, bool enable, DurationTextFormat format, List<TDMemberProfile> guestProfiles, int hoursInDay, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, ProjectTeamType type, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null, DateTime? createdAt = null, List<ProjectFeaturePins>? featurePins = null, List<ProjectFeatureState>? features = null, List<ProjectFeatureUsage>? featuresUsage = null, List<ProjectTeamMemberRecord>? members = null, List<ToggleableProjectFeaturePins>? personalFeaturePins = null, TDTeam? team = null, List<TDTeam>? teams = null)
+    public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> collaboratorsProfiles, List<TDTeam> collaboratorsTeams, int daysInWeek, bool enable, DurationTextFormat format, List<TDMemberProfile> guestProfiles, int hoursInDay, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, ProjectTeamType type, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null, DateTime? createdAt = null, List<CommonProjectFeaturePins>? featurePins = null, List<ProjectFeatureState>? features = null, List<ProjectFeatureUsage>? featuresUsage = null, List<ProjectTeamMemberRecord>? members = null, List<ToggleableProjectFeaturePins>? personalFeaturePins = null, TDTeam? team = null, List<TDTeam>? teams = null)
     {
         Id = id;
         Key = key;
@@ -229,10 +229,10 @@ public sealed class PRProject
         set => _enable.SetValue(value);
     }
 
-    private PropertyValue<List<ProjectFeaturePins>?> _featurePins = new PropertyValue<List<ProjectFeaturePins>?>(nameof(PRProject), nameof(FeaturePins), "featurePins");
+    private PropertyValue<List<CommonProjectFeaturePins>?> _featurePins = new PropertyValue<List<CommonProjectFeaturePins>?>(nameof(PRProject), nameof(FeaturePins), "featurePins");
     
     [JsonPropertyName("featurePins")]
-    public List<ProjectFeaturePins>? FeaturePins
+    public List<CommonProjectFeaturePins>? FeaturePins
     {
         get => _featurePins.GetValue(InlineErrors);
         set => _featurePins.SetValue(value);

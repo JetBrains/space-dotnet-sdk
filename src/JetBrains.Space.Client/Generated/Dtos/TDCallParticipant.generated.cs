@@ -39,6 +39,9 @@ public class TDCallParticipant
     public static TDCallParticipantApp App(ESApp app)
         => new TDCallParticipantApp(app: app);
     
+    public static TDCallParticipantTeam Team(TDTeam team)
+        => new TDCallParticipantTeam(team: team);
+    
     public static TDCallParticipantUser User(TDMemberProfile member)
         => new TDCallParticipantUser(member: member);
     

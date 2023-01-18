@@ -100,8 +100,8 @@ public static class PRProjectPartialExtensions
     public static Partial<PRProject> WithFeaturePins(this Partial<PRProject> it)
         => it.AddFieldName("featurePins");
     
-    public static Partial<PRProject> WithFeaturePins(this Partial<PRProject> it, Func<Partial<ProjectFeaturePins>, Partial<ProjectFeaturePins>> partialBuilder)
-        => it.AddFieldName("featurePins", partialBuilder(new Partial<ProjectFeaturePins>(it)));
+    public static Partial<PRProject> WithFeaturePins(this Partial<PRProject> it, Func<Partial<CommonProjectFeaturePins>, Partial<CommonProjectFeaturePins>> partialBuilder)
+        => it.AddFieldName("featurePins", partialBuilder(new Partial<CommonProjectFeaturePins>(it)));
     
     public static Partial<PRProject> WithFeatures(this Partial<PRProject> it)
         => it.AddFieldName("features");

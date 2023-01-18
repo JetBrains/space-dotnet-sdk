@@ -70,6 +70,9 @@ public static class ESAppPartialExtensions
     public static Partial<ESApp> WithName(this Partial<ESApp> it)
         => it.AddFieldName("name");
     
+    public static Partial<ESApp> WithEmail(this Partial<ESApp> it)
+        => it.AddFieldName("email");
+    
     public static Partial<ESApp> WithPicture(this Partial<ESApp> it)
         => it.AddFieldName("picture");
     

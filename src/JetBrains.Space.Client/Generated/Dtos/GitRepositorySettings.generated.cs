@@ -34,7 +34,7 @@ public sealed class GitRepositorySettings
 {
     public GitRepositorySettings() { }
     
-    public GitRepositorySettings(string version, GitRepositorySettingsMirrorSettings? mirror = null, string? encoding = null, GitRepositorySettingsPushRestrictions? pushRestrictions = null, List<GitRepositorySettingsProtectedBranch>? protectedBranches = null, GitRepositorySettingsPreReceiveHook? preReceiveHook = null)
+    public GitRepositorySettings(string version, GitRepositorySettingsMirrorSettings? mirror = null, string? encoding = null, GitRepositorySettingsPushRestrictions? pushRestrictions = null, List<GitRepositorySettingsProtectedBranch>? protectedBranches = null, GitRepositorySettingsPreReceiveHook? preReceiveHook = null, GitRepositorySettingsBundle? bundle = null)
     {
         Version = version;
         Mirror = mirror;
@@ -42,6 +42,7 @@ public sealed class GitRepositorySettings
         PushRestrictions = pushRestrictions;
         ProtectedBranches = protectedBranches;
         PreReceiveHook = preReceiveHook;
+        Bundle = bundle;
     }
     
     private PropertyValue<string> _version = new PropertyValue<string>(nameof(GitRepositorySettings), nameof(Version), "version");
@@ -99,6 +100,15 @@ public sealed class GitRepositorySettings
         set => _preReceiveHook.SetValue(value);
     }
 
+    private PropertyValue<GitRepositorySettingsBundle?> _bundle = new PropertyValue<GitRepositorySettingsBundle?>(nameof(GitRepositorySettings), nameof(Bundle), "bundle");
+    
+    [JsonPropertyName("bundle")]
+    public GitRepositorySettingsBundle? Bundle
+    {
+        get => _bundle.GetValue(InlineErrors);
+        set => _bundle.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _version.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -107,6 +117,7 @@ public sealed class GitRepositorySettings
         _pushRestrictions.SetAccessPath(parentChainPath, validateHasBeenSet);
         _protectedBranches.SetAccessPath(parentChainPath, validateHasBeenSet);
         _preReceiveHook.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _bundle.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

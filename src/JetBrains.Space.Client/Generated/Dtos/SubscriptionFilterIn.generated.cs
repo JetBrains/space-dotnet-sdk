@@ -53,6 +53,9 @@ public interface SubscriptionFilterIn
     public static DocumentCustomSubscriptionFilterIn DocumentCustom(List<string> documents, string? project = null, List<string>? folders = null)
         => new DocumentCustomSubscriptionFilterIn(documents: documents, project: project, folders: folders);
     
+    public static MeetingsCommonSubscriptionFilterIn MeetingsCommon(List<string>? organizers = null, List<string>? participants = null, List<string>? teams = null, List<string>? locations = null)
+        => new MeetingsCommonSubscriptionFilterIn(organizers: organizers, participants: participants, teams: teams, locations: locations);
+    
     public static MemberCommonSubscriptionFilterIn MemberCommon(List<string> teams, List<string> locations, List<ProfileIdentifier>? profiles = null)
         => new MemberCommonSubscriptionFilterIn(teams: teams, locations: locations, profiles: profiles);
     

@@ -101,6 +101,12 @@ public interface WebhookEvent
     public static DocumentEditorsChangedEvent DocumentEditorsChangedEvent(KMetaMod meta, string document)
         => new DocumentEditorsChangedEvent(meta: meta, document: document);
     
+    public static DocumentFolderMetaWebhookEvent DocumentFolderMeta(KMetaMod meta, string folder, Modification<bool>? archived = null)
+        => new DocumentFolderMetaWebhookEvent(meta: meta, folder: folder, archived: archived);
+    
+    public static DocumentFolderOwnAccessChangedEvent DocumentFolderOwnAccessChangedEvent(KMetaMod meta, string folder)
+        => new DocumentFolderOwnAccessChangedEvent(meta: meta, folder: folder);
+    
     public static DocumentMetaWebhookEvent DocumentMeta(KMetaMod meta, string document, Modification<bool>? deleted = null, Modification<bool>? published = null)
         => new DocumentMetaWebhookEvent(meta: meta, document: document, deleted: deleted, published: published);
     

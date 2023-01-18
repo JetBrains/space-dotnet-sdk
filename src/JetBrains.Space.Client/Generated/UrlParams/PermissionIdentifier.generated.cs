@@ -623,11 +623,11 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier UpdateWorkingHours
         => new PermissionIdentifierUpdateWorkingHours();
     
+    public static PermissionIdentifier UseCalls
+        => new PermissionIdentifierUseCalls();
+    
     public static PermissionIdentifier UseProjectSecrets
         => new PermissionIdentifierUseProjectSecrets();
-    
-    public static PermissionIdentifier UseVideoCalls
-        => new PermissionIdentifierUseVideoCalls();
     
     public static PermissionIdentifier ViewAbsenceApprovals
         => new PermissionIdentifierViewAbsenceApprovals();
@@ -2021,16 +2021,16 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Profile.WorkingDays.Edit";
     }
     
+    public class PermissionIdentifierUseCalls : PermissionIdentifier
+    {
+        public override string ToString()
+            => "Telekom.CallSession.Create";
+    }
+    
     public class PermissionIdentifierUseProjectSecrets : PermissionIdentifier
     {
         public override string ToString()
             => "Project.Secrets.Use";
-    }
-    
-    public class PermissionIdentifierUseVideoCalls : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Telekom.CallSession.Create";
     }
     
     public class PermissionIdentifierViewAbsenceApprovals : PermissionIdentifier

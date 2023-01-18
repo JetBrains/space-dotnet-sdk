@@ -61,5 +61,11 @@ public static class GitRepositorySettingsPartialExtensions
     public static Partial<GitRepositorySettings> WithPreReceiveHook(this Partial<GitRepositorySettings> it, Func<Partial<GitRepositorySettingsPreReceiveHook>, Partial<GitRepositorySettingsPreReceiveHook>> partialBuilder)
         => it.AddFieldName("preReceiveHook", partialBuilder(new Partial<GitRepositorySettingsPreReceiveHook>(it)));
     
+    public static Partial<GitRepositorySettings> WithBundle(this Partial<GitRepositorySettings> it)
+        => it.AddFieldName("bundle");
+    
+    public static Partial<GitRepositorySettings> WithBundle(this Partial<GitRepositorySettings> it, Func<Partial<GitRepositorySettingsBundle>, Partial<GitRepositorySettingsBundle>> partialBuilder)
+        => it.AddFieldName("bundle", partialBuilder(new Partial<GitRepositorySettingsBundle>(it)));
+    
 }
 

@@ -56,6 +56,9 @@ public interface SubscriptionFilter
     public static DocumentCustomSubscriptionFilter DocumentCustom(List<Document> documents, PRProject? project = null, List<DocumentFolder>? folders = null)
         => new DocumentCustomSubscriptionFilter(documents: documents, project: project, folders: folders);
     
+    public static MeetingsCommonSubscriptionFilter MeetingsCommon(List<TDMemberProfile>? organizers = null, List<TDMemberProfile>? participants = null, List<TDTeam>? teams = null, List<TDLocation>? locations = null)
+        => new MeetingsCommonSubscriptionFilter(organizers: organizers, participants: participants, teams: teams, locations: locations);
+    
     public static MemberCommonSubscriptionFilter MemberCommon(List<TDTeam> teams, List<TDLocation> locations, List<TDMemberProfile>? profiles = null)
         => new MemberCommonSubscriptionFilter(teams: teams, locations: locations, profiles: profiles);
     

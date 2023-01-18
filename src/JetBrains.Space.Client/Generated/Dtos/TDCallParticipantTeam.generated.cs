@@ -29,14 +29,37 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public static class SdkInfo
+public sealed class TDCallParticipantTeam
+     : TDCallParticipant, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2023.2.0-DEV.148461";
+    [JsonPropertyName("className")]
+    public override string? ClassName => "TD_CallParticipant.Team";
+    
+    public TDCallParticipantTeam() { }
+    
+    public TDCallParticipantTeam(TDTeam team)
+    {
+        Team = team;
+    }
+    
+    private PropertyValue<TDTeam> _team = new PropertyValue<TDTeam>(nameof(TDCallParticipantTeam), nameof(Team), "team");
+    
+    [Required]
+    [JsonPropertyName("team")]
+    public TDTeam Team
+    {
+        get => _team.GetValue(InlineErrors);
+        set => _team.SetValue(value);
+    }
+
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _team.SetAccessPath(parentChainPath, validateHasBeenSet);
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

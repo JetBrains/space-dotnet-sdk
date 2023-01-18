@@ -29,41 +29,29 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ProjectFeaturePins
+public sealed class GitRepositorySettingsBundle
      : IPropagatePropertyAccessPath
 {
-    public ProjectFeaturePins() { }
+    public GitRepositorySettingsBundle() { }
     
-    public ProjectFeaturePins(ProjectFeature feature, List<ProjectFeaturePinnedItem> items)
+    public GitRepositorySettingsBundle(bool enable)
     {
-        Feature = feature;
-        Items = items;
+        IsEnable = enable;
     }
     
-    private PropertyValue<ProjectFeature> _feature = new PropertyValue<ProjectFeature>(nameof(ProjectFeaturePins), nameof(Feature), "feature");
+    private PropertyValue<bool> _enable = new PropertyValue<bool>(nameof(GitRepositorySettingsBundle), nameof(IsEnable), "enable");
     
     [Required]
-    [JsonPropertyName("feature")]
-    public ProjectFeature Feature
+    [JsonPropertyName("enable")]
+    public bool IsEnable
     {
-        get => _feature.GetValue(InlineErrors);
-        set => _feature.SetValue(value);
-    }
-
-    private PropertyValue<List<ProjectFeaturePinnedItem>> _items = new PropertyValue<List<ProjectFeaturePinnedItem>>(nameof(ProjectFeaturePins), nameof(Items), "items", new List<ProjectFeaturePinnedItem>());
-    
-    [Required]
-    [JsonPropertyName("items")]
-    public List<ProjectFeaturePinnedItem> Items
-    {
-        get => _items.GetValue(InlineErrors);
-        set => _items.SetValue(value);
+        get => _enable.GetValue(InlineErrors);
+        set => _enable.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _feature.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _items.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _enable.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />
