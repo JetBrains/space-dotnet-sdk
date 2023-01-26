@@ -29,14 +29,37 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public static class SdkInfo
+public sealed class RemoteRepositoryAuthToken
+     : RemoteRepositoryAuth, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2023.2.0-DEV.149825";
+    [JsonPropertyName("className")]
+    public override string? ClassName => "RemoteRepositoryAuth.Token";
+    
+    public RemoteRepositoryAuthToken() { }
+    
+    public RemoteRepositoryAuthToken(string token)
+    {
+        Token = token;
+    }
+    
+    private PropertyValue<string> _token = new PropertyValue<string>(nameof(RemoteRepositoryAuthToken), nameof(Token), "token");
+    
+    [Required]
+    [JsonPropertyName("token")]
+    public string Token
+    {
+        get => _token.GetValue(InlineErrors);
+        set => _token.SetValue(value);
+    }
+
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _token.SetAccessPath(parentChainPath, validateHasBeenSet);
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

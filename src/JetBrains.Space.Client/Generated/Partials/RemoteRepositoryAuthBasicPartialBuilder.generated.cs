@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.RemoteRepositoryAuthBasicPartialBuilder;
 
-public static class SdkInfo
+public static class RemoteRepositoryAuthBasicPartialExtensions
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2023.2.0-DEV.149825";
+    public static Partial<RemoteRepositoryAuthBasic> WithUsername(this Partial<RemoteRepositoryAuthBasic> it)
+        => it.AddFieldName("username");
+    
+    public static Partial<RemoteRepositoryAuthBasic> WithPassword(this Partial<RemoteRepositoryAuthBasic> it)
+        => it.AddFieldName("password");
+    
 }
 

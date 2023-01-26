@@ -1748,6 +1748,50 @@ public partial class TeamDirectoryClient : ISpaceClient
         
     
         /// <summary>
+        /// Restore a suspended user profile
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Update member profiles</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<TDMemberProfile> RestoreSuspendedUserProfileAsync(ProfileIdentifier profile, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<TDMemberProfile>("PATCH", $"api/http/team-directory/profiles/{profile}/restore{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RestoreSuspendedUserProfile", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Suspend a user profile
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Update member profiles</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<TDMemberProfile> SuspendUserProfileAsync(ProfileIdentifier profile, DateTime? at = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileSuspendPatchRequest, TDMemberProfile>("PATCH", $"api/http/team-directory/profiles/{profile}/suspend{queryParameters.ToQueryString()}", 
+                new TeamDirectoryProfilesForProfileSuspendPatchRequest
+                { 
+                    At = at,
+                }, requestHeaders: null, functionName: "SuspendUserProfile", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <summary>
         /// Delete a profile
         /// </summary>
         /// <remarks>

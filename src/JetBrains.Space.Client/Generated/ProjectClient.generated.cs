@@ -3037,6 +3037,20 @@ public partial class ProjectClient : ISpaceClient
 
     public partial class RepositoryClient : ISpaceClient
     {
+        public async Task<TestConnectionResult> TestRemoteConnectionAsync(ProjectIdentifier project, RemoteRepository remote, string? repository = null, Func<Partial<TestConnectionResult>, Partial<TestConnectionResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<TestConnectionResult>()) : Partial<TestConnectionResult>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesTestConnectionPostRequest, TestConnectionResult>("POST", $"api/http/projects/{project}/repositories/test-connection{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectRepositoriesTestConnectionPostRequest
+                { 
+                    Repository = repository,
+                    Remote = remote,
+                }, requestHeaders: null, functionName: "TestRemoteConnection", cancellationToken: cancellationToken);
+        }
+        
+    
         public async Task<PRRepositoryInfo> CreateNewRepositoryAsync(ProjectIdentifier project, string repository, string description = "", bool initialize = true, bool defaultSetup = false, string? defaultBranch = null, Func<Partial<PRRepositoryInfo>, Partial<PRRepositoryInfo>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3189,6 +3203,34 @@ public partial class ProjectClient : ISpaceClient
             await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/repositories/{repository}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteRepository", cancellationToken: cancellationToken);
         }
         
+    
+        public MigrateClient Migrate => new MigrateClient(_connection);
+        
+        public partial class MigrateClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public MigrateClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<PRRepositoryInfo> MigrateRepositoryAsync(ProjectIdentifier project, string repository, string description, RemoteRepository remote, RepositoryMirrorOptions? mirror = null, Func<Partial<PRRepositoryInfo>, Partial<PRRepositoryInfo>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRRepositoryInfo>()) : Partial<PRRepositoryInfo>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryMigratePostRequest, PRRepositoryInfo>("POST", $"api/http/projects/{project}/repositories/{repository}/migrate{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectRepositoriesForRepositoryMigratePostRequest
+                    { 
+                        Description = description,
+                        Remote = remote,
+                        Mirror = mirror,
+                    }, requestHeaders: null, functionName: "MigrateRepository", cancellationToken: cancellationToken);
+            }
+            
+        
+        }
     
         public ReadonlyClient Readonly => new ReadonlyClient(_connection);
         

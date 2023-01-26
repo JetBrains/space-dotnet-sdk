@@ -34,7 +34,7 @@ public sealed class TDMemberProfile
 {
     public TDMemberProfile() { }
     
-    public TDMemberProfile(string id, string username, TDProfileName name, bool speaksEnglish, List<TDProfileLanguage> languages, bool archived, bool notAMember, List<AbsenceRecord> absences, Dictionary<string, CFValue> customFields, List<TDProfileEmail> emails, DocumentFolderWithChildren folderWithChildren, List<string> links, List<TDMemberLocation> locationHistory, List<TDMemberLocation> locations, List<ESProfileLogin> logins, List<TDMemberProfile> managers, List<TDMembership> membershipHistory, List<TDMembership> memberships, List<string> messengers, bool onboardingRequired, List<string> phones, TwoFactorAuthenticationStatus status, List<Topic> topics, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, DateTime? joined = null, DateTime? leftAt = null, bool? external = null, bool? externalLight = null, string? about = null, AvatarCropSquare? avatarCropSquare = null, DateTime? birthday = null, string? externalId = null, Gender? gender = null, DateTime? left = null, bool? showBannerOnLandingPage = null, bool? showBannerOnProjectPage = null, bool? showBannerOnTeamDirectoryHomePage = null, List<TDMembership>? unapprovedMemberships = null)
+    public TDMemberProfile(string id, string username, TDProfileName name, bool speaksEnglish, List<TDProfileLanguage> languages, bool archived, bool notAMember, List<AbsenceRecord> absences, Dictionary<string, CFValue> customFields, List<TDProfileEmail> emails, DocumentFolderWithChildren folderWithChildren, List<string> links, List<TDMemberLocation> locationHistory, List<TDMemberLocation> locations, List<ESProfileLogin> logins, List<TDMemberProfile> managers, List<TDMembership> membershipHistory, List<TDMembership> memberships, List<string> messengers, bool onboardingRequired, List<string> phones, TwoFactorAuthenticationStatus status, List<Topic> topics, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, bool? suspended = null, DateTime? suspendedAt = null, DateTime? joined = null, DateTime? leftAt = null, bool? external = null, bool? externalLight = null, string? about = null, AvatarCropSquare? avatarCropSquare = null, DateTime? birthday = null, string? externalId = null, Gender? gender = null, DateTime? left = null, bool? showBannerOnLandingPage = null, bool? showBannerOnProjectPage = null, bool? showBannerOnTeamDirectoryHomePage = null, List<TDMembership>? unapprovedMemberships = null)
     {
         Id = id;
         Username = username;
@@ -46,6 +46,8 @@ public sealed class TDMemberProfile
         Languages = languages;
         IsArchived = archived;
         IsNotAMember = notAMember;
+        IsSuspended = suspended;
+        SuspendedAt = suspendedAt;
         Joined = joined;
         LeftAt = leftAt;
         IsExternal = external;
@@ -173,6 +175,25 @@ public sealed class TDMemberProfile
     {
         get => _notAMember.GetValue(InlineErrors);
         set => _notAMember.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _suspended = new PropertyValue<bool?>(nameof(TDMemberProfile), nameof(IsSuspended), "suspended");
+    
+    [JsonPropertyName("suspended")]
+    public bool? IsSuspended
+    {
+        get => _suspended.GetValue(InlineErrors);
+        set => _suspended.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _suspendedAt = new PropertyValue<DateTime?>(nameof(TDMemberProfile), nameof(SuspendedAt), "suspendedAt");
+    
+    [JsonPropertyName("suspendedAt")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? SuspendedAt
+    {
+        get => _suspendedAt.GetValue(InlineErrors);
+        set => _suspendedAt.SetValue(value);
     }
 
     private PropertyValue<DateTime?> _joined = new PropertyValue<DateTime?>(nameof(TDMemberProfile), nameof(Joined), "joined");
@@ -477,6 +498,8 @@ public sealed class TDMemberProfile
         _languages.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
         _notAMember.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _suspended.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _suspendedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
         _joined.SetAccessPath(parentChainPath, validateHasBeenSet);
         _leftAt.SetAccessPath(parentChainPath, validateHasBeenSet);
         _external.SetAccessPath(parentChainPath, validateHasBeenSet);

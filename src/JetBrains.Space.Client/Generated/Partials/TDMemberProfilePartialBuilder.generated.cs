@@ -67,6 +67,12 @@ public static class TDMemberProfilePartialExtensions
     public static Partial<TDMemberProfile> WithIsNotAMember(this Partial<TDMemberProfile> it)
         => it.AddFieldName("notAMember");
     
+    public static Partial<TDMemberProfile> WithIsSuspended(this Partial<TDMemberProfile> it)
+        => it.AddFieldName("suspended");
+    
+    public static Partial<TDMemberProfile> WithSuspendedAt(this Partial<TDMemberProfile> it)
+        => it.AddFieldName("suspendedAt");
+    
     public static Partial<TDMemberProfile> WithJoined(this Partial<TDMemberProfile> it)
         => it.AddFieldName("joined");
     
