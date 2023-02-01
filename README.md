@@ -1,4 +1,6 @@
-# JetBrains.Space ![](https://jb.gg/badges/incubator-flat-square.svg)
+[![](https://jb.gg/badges/incubator-flat-square.svg)](https://github.com/JetBrains)
+
+# JetBrains.Space
 
 The .NET SDK for JetBrains Space is a .NET library to work with the [JetBrains Space](https://jetbrains.com/space/) API. 
 
