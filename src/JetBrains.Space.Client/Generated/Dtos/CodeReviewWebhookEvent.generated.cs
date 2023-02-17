@@ -37,8 +37,10 @@ public sealed class CodeReviewWebhookEvent
     
     public CodeReviewWebhookEvent() { }
     
-    public CodeReviewWebhookEvent(ProjectKey projectKey, string repository, string reviewId, string title, bool isMergeRequest)
+    public CodeReviewWebhookEvent(ProjectKey projectKey, string repository, string reviewId, string title, bool isMergeRequest, KMetaMod? meta = null, CodeReviewRecord? review = null)
     {
+        Meta = meta;
+        Review = review;
         ProjectKey = projectKey;
         Repository = repository;
         ReviewId = reviewId;
@@ -46,9 +48,28 @@ public sealed class CodeReviewWebhookEvent
         IsMergeRequest = isMergeRequest;
     }
     
+    private PropertyValue<KMetaMod?> _meta = new PropertyValue<KMetaMod?>(nameof(CodeReviewWebhookEvent), nameof(Meta), "meta");
+    
+    [JsonPropertyName("meta")]
+    public KMetaMod? Meta
+    {
+        get => _meta.GetValue(InlineErrors);
+        set => _meta.SetValue(value);
+    }
+
+    private PropertyValue<CodeReviewRecord?> _review = new PropertyValue<CodeReviewRecord?>(nameof(CodeReviewWebhookEvent), nameof(Review), "review");
+    
+    [JsonPropertyName("review")]
+    public CodeReviewRecord? Review
+    {
+        get => _review.GetValue(InlineErrors);
+        set => _review.SetValue(value);
+    }
+
     private PropertyValue<ProjectKey> _projectKey = new PropertyValue<ProjectKey>(nameof(CodeReviewWebhookEvent), nameof(ProjectKey), "projectKey");
     
     [Required]
+    [Obsolete("Use review.project instead (since 2023.01.11)")]
     [JsonPropertyName("projectKey")]
     public ProjectKey ProjectKey
     {
@@ -69,6 +90,7 @@ public sealed class CodeReviewWebhookEvent
     private PropertyValue<string> _reviewId = new PropertyValue<string>(nameof(CodeReviewWebhookEvent), nameof(ReviewId), "reviewId");
     
     [Required]
+    [Obsolete("Use review.id instead (since 2023.01.11)")]
     [JsonPropertyName("reviewId")]
     public string ReviewId
     {
@@ -79,6 +101,7 @@ public sealed class CodeReviewWebhookEvent
     private PropertyValue<string> _title = new PropertyValue<string>(nameof(CodeReviewWebhookEvent), nameof(Title), "title");
     
     [Required]
+    [Obsolete("Use review.title instead (since 2023.01.11)")]
     [JsonPropertyName("title")]
     public string Title
     {
@@ -89,6 +112,7 @@ public sealed class CodeReviewWebhookEvent
     private PropertyValue<bool> _isMergeRequest = new PropertyValue<bool>(nameof(CodeReviewWebhookEvent), nameof(IsMergeRequest), "isMergeRequest");
     
     [Required]
+    [Obsolete("Use `review is MergeRequestRecord` instead (since 2023.01.11)")]
     [JsonPropertyName("isMergeRequest")]
     public bool IsMergeRequest
     {
@@ -98,6 +122,8 @@ public sealed class CodeReviewWebhookEvent
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
+        _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _review.SetAccessPath(parentChainPath, validateHasBeenSet);
         _projectKey.SetAccessPath(parentChainPath, validateHasBeenSet);
         _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
         _reviewId.SetAccessPath(parentChainPath, validateHasBeenSet);

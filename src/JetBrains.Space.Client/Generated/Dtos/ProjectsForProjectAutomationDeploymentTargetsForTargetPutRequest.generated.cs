@@ -34,7 +34,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest
 {
     public ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest() { }
     
-    public ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest(string? name = null, string? description = null, List<DeployTargetRepositoryDTO>? repositories = null, bool? manualControl = null, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null)
+    public ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest(string? name = null, string? description = null, List<DeployTargetRepositoryDTO>? repositories = null, bool? manualControl = null, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null)
     {
         Name = name;
         Description = description;
@@ -42,6 +42,9 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest
         IsManualControl = manualControl;
         HangTimeoutMinutes = hangTimeoutMinutes;
         FailTimeoutMinutes = failTimeoutMinutes;
+        ResponsibleUsers = responsibleUsers;
+        ResponsibleTeams = responsibleTeams;
+        Links = links;
     }
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest), nameof(Name), "name");
@@ -116,6 +119,42 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest
         set => _failTimeoutMinutes.SetValue(value);
     }
 
+    private PropertyValue<List<string>?> _responsibleUsers = new PropertyValue<List<string>?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest), nameof(ResponsibleUsers), "responsibleUsers");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("responsibleUsers")]
+    public List<string>? ResponsibleUsers
+    {
+        get => _responsibleUsers.GetValue(InlineErrors);
+        set => _responsibleUsers.SetValue(value);
+    }
+
+    private PropertyValue<List<string>?> _responsibleTeams = new PropertyValue<List<string>?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest), nameof(ResponsibleTeams), "responsibleTeams");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("responsibleTeams")]
+    public List<string>? ResponsibleTeams
+    {
+        get => _responsibleTeams.GetValue(InlineErrors);
+        set => _responsibleTeams.SetValue(value);
+    }
+
+    private PropertyValue<List<DeployTargetLink>?> _links = new PropertyValue<List<DeployTargetLink>?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest), nameof(Links), "links");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("links")]
+    public List<DeployTargetLink>? Links
+    {
+        get => _links.GetValue(InlineErrors);
+        set => _links.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -124,6 +163,9 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest
         _manualControl.SetAccessPath(parentChainPath, validateHasBeenSet);
         _hangTimeoutMinutes.SetAccessPath(parentChainPath, validateHasBeenSet);
         _failTimeoutMinutes.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _responsibleUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _responsibleTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _links.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

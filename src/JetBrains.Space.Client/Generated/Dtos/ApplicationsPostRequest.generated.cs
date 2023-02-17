@@ -34,9 +34,10 @@ public class ApplicationsPostRequest
 {
     public ApplicationsPostRequest() { }
     
-    public ApplicationsPostRequest(string name, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? email = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = true, bool? codeFlowEnabled = false, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = false, string? implicitFlowRedirectURIs = null, string? endpointUri = null, bool? endpointSslVerification = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? connectToSpace = false, string? state = null)
+    public ApplicationsPostRequest(string name, string? description = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? email = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = true, bool? codeFlowEnabled = false, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = false, string? implicitFlowRedirectURIs = null, string? endpointUri = null, bool? endpointSslVerification = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? connectToSpace = false, string? state = null)
     {
         Name = name;
+        Description = description;
         PictureAttachmentId = pictureAttachmentId;
         DefaultExternalPicture = defaultExternalPicture;
         Email = email;
@@ -72,6 +73,21 @@ public class ApplicationsPostRequest
     {
         get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(Description), "description");
+    
+    /// <summary>
+    /// Description of the application's purpose
+    /// </summary>
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue(InlineErrors);
+        set => _description.SetValue(value);
     }
 
     private PropertyValue<string?> _pictureAttachmentId = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(PictureAttachmentId), "pictureAttachmentId");
@@ -397,6 +413,7 @@ public class ApplicationsPostRequest
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _pictureAttachmentId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _defaultExternalPicture.SetAccessPath(parentChainPath, validateHasBeenSet);
         _email.SetAccessPath(parentChainPath, validateHasBeenSet);

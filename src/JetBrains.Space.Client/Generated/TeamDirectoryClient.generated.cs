@@ -1496,7 +1496,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// <term>Add members</term>
         /// </item>
         /// <item>
-        /// <term>Add new guest</term>
+        /// <term>Add new external user</term>
         /// </item>
         /// </list>
         /// </remarks>
@@ -2327,7 +2327,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task UpdateTotpTwoFactorAuthenticationSettingsAsync(ProfileIdentifier profile, bool enabled, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                public async Task UpdateTotpTwoFactorAuthenticationSettingsAsync(ProfileIdentifier profile, bool enabled, int? code = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     
@@ -2335,6 +2335,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                         new TeamDirectoryProfilesForProfile2FaTotpPatchRequest
                         { 
                             IsEnabled = enabled,
+                            Code = code,
                         }, requestHeaders: null, functionName: "UpdateTotpTwoFactorAuthenticationSettings", cancellationToken: cancellationToken);
                 }
                 
@@ -2350,9 +2351,10 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task DeleteCurrentTotpTwoFactorAuthenticationSettingsAsync(ProfileIdentifier profile, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                public async Task DeleteCurrentTotpTwoFactorAuthenticationSettingsAsync(ProfileIdentifier profile, int? code = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
+                    if (code != null) queryParameters.Append("code", code?.ToString());
                     
                     await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/2-fa/totp{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteCurrentTotpTwoFactorAuthenticationSettings", cancellationToken: cancellationToken);
                 }

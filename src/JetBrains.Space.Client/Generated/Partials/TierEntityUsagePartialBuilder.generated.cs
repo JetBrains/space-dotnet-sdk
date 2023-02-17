@@ -27,9 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BlockNodeWithMarksPartialBuilder;
+namespace JetBrains.Space.Client.TierEntityUsagePartialBuilder;
 
-public static class BlockNodeWithMarksPartialExtensions
+public static class TierEntityUsagePartialExtensions
 {
+    public static Partial<TierEntityUsage> WithUsage(this Partial<TierEntityUsage> it)
+        => it.AddFieldName("usage");
+    
+    public static Partial<TierEntityUsage> WithLimit(this Partial<TierEntityUsage> it)
+        => it.AddFieldName("limit");
+    
 }
 

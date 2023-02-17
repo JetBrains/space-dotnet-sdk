@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class RtCode
-     : BlockNode, NodeWithChildren, IClassNameConvertible, IPropagatePropertyAccessPath
+     : BlockNodeWithChildren, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "RtCode";

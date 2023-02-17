@@ -94,6 +94,12 @@ public static class TDMemberProfilePartialExtensions
     public static Partial<TDMemberProfile> WithAbsences(this Partial<TDMemberProfile> it, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>> partialBuilder)
         => it.AddFieldName("absences", partialBuilder(new Partial<AbsenceRecord>(it)));
     
+    public static Partial<TDMemberProfile> WithIsAccessSuspended(this Partial<TDMemberProfile> it)
+        => it.AddFieldName("accessSuspended");
+    
+    public static Partial<TDMemberProfile> WithAccessSuspendedAt(this Partial<TDMemberProfile> it)
+        => it.AddFieldName("accessSuspendedAt");
+    
     public static Partial<TDMemberProfile> WithAvatarCropSquare(this Partial<TDMemberProfile> it)
         => it.AddFieldName("avatarCropSquare");
     

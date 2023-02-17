@@ -35,6 +35,9 @@ public interface AppUiExtensionIn
     public static ChatBotUiExtensionIn ChatBotUiExtensionIn()
         => new ChatBotUiExtensionIn();
     
+    public static TopLevelOverlayUiExtensionIn TopLevelOverlayUiExtensionIn(string iframeUrl)
+        => new TopLevelOverlayUiExtensionIn(iframeUrl: iframeUrl);
+    
     public static TopLevelPageUiExtensionIn TopLevelPageUiExtensionIn(string displayName, string uniqueCode, string? description = null, string? iframeUrl = null)
         => new TopLevelPageUiExtensionIn(displayName: displayName, uniqueCode: uniqueCode, description: description, iframeUrl: iframeUrl);
     

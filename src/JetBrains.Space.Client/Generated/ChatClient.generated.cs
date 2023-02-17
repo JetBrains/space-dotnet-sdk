@@ -933,6 +933,10 @@ public partial class ChatClient : ISpaceClient
         /// <item>
         /// <term>Import messages</term>
         /// </item>
+        /// <item>
+        /// <term>Import issues</term>
+        /// <description>Import issues</description>
+        /// </item>
         /// </list>
         /// </remarks>
         public async Task ImportMessagesAsync(ChannelIdentifier channel, List<ImportMessage> messages, bool suppressNotifications = false, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)

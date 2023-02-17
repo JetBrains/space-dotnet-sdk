@@ -31,21 +31,38 @@ namespace JetBrains.Space.Client.CodeReviewWebhookEventPartialBuilder;
 
 public static class CodeReviewWebhookEventPartialExtensions
 {
+    public static Partial<CodeReviewWebhookEvent> WithMeta(this Partial<CodeReviewWebhookEvent> it)
+        => it.AddFieldName("meta");
+    
+    public static Partial<CodeReviewWebhookEvent> WithMeta(this Partial<CodeReviewWebhookEvent> it, Func<Partial<KMetaMod>, Partial<KMetaMod>> partialBuilder)
+        => it.AddFieldName("meta", partialBuilder(new Partial<KMetaMod>(it)));
+    
+    public static Partial<CodeReviewWebhookEvent> WithReview(this Partial<CodeReviewWebhookEvent> it)
+        => it.AddFieldName("review");
+    
+    public static Partial<CodeReviewWebhookEvent> WithReview(this Partial<CodeReviewWebhookEvent> it, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>> partialBuilder)
+        => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecord>(it)));
+    
+    [Obsolete("Use review.project instead (since 2023.01.11)")]
     public static Partial<CodeReviewWebhookEvent> WithProjectKey(this Partial<CodeReviewWebhookEvent> it)
         => it.AddFieldName("projectKey");
     
+    [Obsolete("Use review.project instead (since 2023.01.11)")]
     public static Partial<CodeReviewWebhookEvent> WithProjectKey(this Partial<CodeReviewWebhookEvent> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
         => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKey>(it)));
     
     public static Partial<CodeReviewWebhookEvent> WithRepository(this Partial<CodeReviewWebhookEvent> it)
         => it.AddFieldName("repository");
     
+    [Obsolete("Use review.id instead (since 2023.01.11)")]
     public static Partial<CodeReviewWebhookEvent> WithReviewId(this Partial<CodeReviewWebhookEvent> it)
         => it.AddFieldName("reviewId");
     
+    [Obsolete("Use review.title instead (since 2023.01.11)")]
     public static Partial<CodeReviewWebhookEvent> WithTitle(this Partial<CodeReviewWebhookEvent> it)
         => it.AddFieldName("title");
     
+    [Obsolete("Use `review is MergeRequestRecord` instead (since 2023.01.11)")]
     public static Partial<CodeReviewWebhookEvent> WithIsMergeRequest(this Partial<CodeReviewWebhookEvent> it)
         => it.AddFieldName("isMergeRequest");
     

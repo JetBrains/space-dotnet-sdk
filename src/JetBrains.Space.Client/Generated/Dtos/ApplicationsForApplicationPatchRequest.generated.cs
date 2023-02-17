@@ -34,9 +34,10 @@ public class ApplicationsForApplicationPatchRequest
 {
     public ApplicationsForApplicationPatchRequest() { }
     
-    public ApplicationsForApplicationPatchRequest(string? name = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, bool? endpointSslVerification = null, bool? hasVerificationToken = null, bool? hasPublicKeySignature = null, bool? hasSigningKey = null, EndpointAppLevelAuthUpdateType? appLevelAuth = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? codeFlowRedirectURIs = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? sslKeystoreAuth = null)
+    public ApplicationsForApplicationPatchRequest(string? name = null, string? description = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, bool? endpointSslVerification = null, bool? hasVerificationToken = null, bool? hasPublicKeySignature = null, bool? hasSigningKey = null, EndpointAppLevelAuthUpdateType? appLevelAuth = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? codeFlowRedirectURIs = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? sslKeystoreAuth = null)
     {
         Name = name;
+        Description = description;
         PictureAttachmentId = pictureAttachmentId;
         DefaultExternalPicture = defaultExternalPicture;
         ClientSecret = clientSecret;
@@ -71,6 +72,21 @@ public class ApplicationsForApplicationPatchRequest
     {
         get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
+    }
+
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(Description), "description");
+    
+    /// <summary>
+    /// Description of the application's purpose
+    /// </summary>
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue(InlineErrors);
+        set => _description.SetValue(value);
     }
 
     private PropertyValue<string?> _pictureAttachmentId = new PropertyValue<string?>(nameof(ApplicationsForApplicationPatchRequest), nameof(PictureAttachmentId), "pictureAttachmentId");
@@ -349,6 +365,7 @@ public class ApplicationsForApplicationPatchRequest
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _pictureAttachmentId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _defaultExternalPicture.SetAccessPath(parentChainPath, validateHasBeenSet);
         _clientSecret.SetAccessPath(parentChainPath, validateHasBeenSet);

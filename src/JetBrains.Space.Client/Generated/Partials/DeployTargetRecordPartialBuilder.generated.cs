@@ -67,6 +67,9 @@ public static class DeployTargetRecordPartialExtensions
     public static Partial<DeployTargetRecord> WithChannelId(this Partial<DeployTargetRecord> it)
         => it.AddFieldName("channelId");
     
+    public static Partial<DeployTargetRecord> WithConnectedChannelId(this Partial<DeployTargetRecord> it)
+        => it.AddFieldName("connectedChannelId");
+    
     public static Partial<DeployTargetRecord> WithCreatedBy(this Partial<DeployTargetRecord> it)
         => it.AddFieldName("createdBy");
     
@@ -85,6 +88,12 @@ public static class DeployTargetRecordPartialExtensions
     public static Partial<DeployTargetRecord> WithHangTimeoutMinutes(this Partial<DeployTargetRecord> it)
         => it.AddFieldName("hangTimeoutMinutes");
     
+    public static Partial<DeployTargetRecord> WithLinks(this Partial<DeployTargetRecord> it)
+        => it.AddFieldName("links");
+    
+    public static Partial<DeployTargetRecord> WithLinks(this Partial<DeployTargetRecord> it, Func<Partial<DeployTargetLink>, Partial<DeployTargetLink>> partialBuilder)
+        => it.AddFieldName("links", partialBuilder(new Partial<DeployTargetLink>(it)));
+    
     public static Partial<DeployTargetRecord> WithIsManualControl(this Partial<DeployTargetRecord> it)
         => it.AddFieldName("manualControl");
     
@@ -99,6 +108,18 @@ public static class DeployTargetRecordPartialExtensions
     
     public static Partial<DeployTargetRecord> WithRepositories(this Partial<DeployTargetRecord> it, Func<Partial<DeployTargetRepositoryDTO>, Partial<DeployTargetRepositoryDTO>> partialBuilder)
         => it.AddFieldName("repositories", partialBuilder(new Partial<DeployTargetRepositoryDTO>(it)));
+    
+    public static Partial<DeployTargetRecord> WithTeams(this Partial<DeployTargetRecord> it)
+        => it.AddFieldName("teams");
+    
+    public static Partial<DeployTargetRecord> WithTeams(this Partial<DeployTargetRecord> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
+        => it.AddFieldName("teams", partialBuilder(new Partial<TDTeam>(it)));
+    
+    public static Partial<DeployTargetRecord> WithUsers(this Partial<DeployTargetRecord> it)
+        => it.AddFieldName("users");
+    
+    public static Partial<DeployTargetRecord> WithUsers(this Partial<DeployTargetRecord> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("users", partialBuilder(new Partial<TDMemberProfile>(it)));
     
 }
 

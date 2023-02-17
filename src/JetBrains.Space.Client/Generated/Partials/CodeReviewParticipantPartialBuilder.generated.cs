@@ -43,6 +43,12 @@ public static class CodeReviewParticipantPartialExtensions
     public static Partial<CodeReviewParticipant> WithRole(this Partial<CodeReviewParticipant> it, Func<Partial<CodeReviewParticipantRole>, Partial<CodeReviewParticipantRole>> partialBuilder)
         => it.AddFieldName("role", partialBuilder(new Partial<CodeReviewParticipantRole>(it)));
     
+    public static Partial<CodeReviewParticipant> WithIsHasOwnedFiles(this Partial<CodeReviewParticipant> it)
+        => it.AddFieldName("hasOwnedFiles");
+    
+    public static Partial<CodeReviewParticipant> WithIsReviewOnlyOwnedFiles(this Partial<CodeReviewParticipant> it)
+        => it.AddFieldName("reviewOnlyOwnedFiles");
+    
     public static Partial<CodeReviewParticipant> WithState(this Partial<CodeReviewParticipant> it)
         => it.AddFieldName("state");
     
@@ -55,15 +61,19 @@ public static class CodeReviewParticipantPartialExtensions
     public static Partial<CodeReviewParticipant> WithIsTheirTurn(this Partial<CodeReviewParticipant> it)
         => it.AddFieldName("theirTurn");
     
+    [Obsolete("To be removed (since 2023-02) (will be removed in a future version)")]
     public static Partial<CodeReviewParticipant> WithQualityGateSlots(this Partial<CodeReviewParticipant> it)
         => it.AddFieldName("qualityGateSlots");
     
+    [Obsolete("To be removed (since 2023-02) (will be removed in a future version)")]
     public static Partial<CodeReviewParticipant> WithQualityGateSlots(this Partial<CodeReviewParticipant> it, Func<Partial<CodeReviewParticipantQualityGateSlot>, Partial<CodeReviewParticipantQualityGateSlot>> partialBuilder)
         => it.AddFieldName("qualityGateSlots", partialBuilder(new Partial<CodeReviewParticipantQualityGateSlot>(it)));
     
+    [Obsolete("To be removed (since 2023-02) (will be removed in a future version)")]
     public static Partial<CodeReviewParticipant> WithCodeOwnerSlots(this Partial<CodeReviewParticipant> it)
         => it.AddFieldName("codeOwnerSlots");
     
+    [Obsolete("To be removed (since 2023-02) (will be removed in a future version)")]
     public static Partial<CodeReviewParticipant> WithCodeOwnerSlots(this Partial<CodeReviewParticipant> it, Func<Partial<CodeReviewParticipantCodeOwnerSlot>, Partial<CodeReviewParticipantCodeOwnerSlot>> partialBuilder)
         => it.AddFieldName("codeOwnerSlots", partialBuilder(new Partial<CodeReviewParticipantCodeOwnerSlot>(it)));
     

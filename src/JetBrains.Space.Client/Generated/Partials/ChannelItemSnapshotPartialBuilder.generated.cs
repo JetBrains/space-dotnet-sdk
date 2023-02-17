@@ -70,5 +70,14 @@ public static class ChannelItemSnapshotPartialExtensions
     public static Partial<ChannelItemSnapshot> WithMentions(this Partial<ChannelItemSnapshot> it, Func<Partial<EntityMention>, Partial<EntityMention>> partialBuilder)
         => it.AddFieldName("mentions", partialBuilder(new Partial<EntityMention>(it)));
     
+    public static Partial<ChannelItemSnapshot> WithProjectedItem(this Partial<ChannelItemSnapshot> it)
+        => it.AddFieldName("projectedItem");
+    
+    public static Partial<ChannelItemSnapshot> WithProjectedItemRecursive(this Partial<ChannelItemSnapshot> it)
+        => it.AddFieldName("projectedItem!");
+    
+    public static Partial<ChannelItemSnapshot> WithProjectedItem(this Partial<ChannelItemSnapshot> it, Func<Partial<ChannelItemSnapshot>, Partial<ChannelItemSnapshot>> partialBuilder)
+        => it.AddFieldName("projectedItem", partialBuilder(new Partial<ChannelItemSnapshot>(it)));
+    
 }
 

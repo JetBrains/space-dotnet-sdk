@@ -47,8 +47,8 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier AddNewChannels
         => new PermissionIdentifierAddNewChannels();
     
-    public static PermissionIdentifier AddNewGuest
-        => new PermissionIdentifierAddNewGuest();
+    public static PermissionIdentifier AddNewExternalUser
+        => new PermissionIdentifierAddNewExternalUser();
     
     public static PermissionIdentifier AddParticipantsToCodeReviewDiscussionsAndThreads
         => new PermissionIdentifierAddParticipantsToCodeReviewDiscussionsAndThreads();
@@ -179,9 +179,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier DeleteVaultConnections
         => new PermissionIdentifierDeleteVaultConnections();
     
-    public static PermissionIdentifier EditAccessControlData
-        => new PermissionIdentifierEditAccessControlData();
-    
     public static PermissionIdentifier EditBonusEvents
         => new PermissionIdentifierEditBonusEvents();
     
@@ -229,6 +226,12 @@ public abstract class PermissionIdentifier : IUrlParameter
     
     public static PermissionIdentifier ImportMessagesObsolete
         => new PermissionIdentifierImportMessagesObsolete();
+    
+    /// <summary>
+    /// Allows to join unattended dev environments and become their owner
+    /// </summary>
+    public static PermissionIdentifier JoinUnattendedDevEnvironments
+        => new PermissionIdentifierJoinUnattendedDevEnvironments();
     
     public static PermissionIdentifier ListApplicationCommands
         => new PermissionIdentifierListApplicationCommands();
@@ -413,9 +416,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ManageWarmUpAutomaticTriggers
         => new PermissionIdentifierManageWarmUpAutomaticTriggers();
     
-    public static PermissionIdentifier ManageWiFiCredentials
-        => new PermissionIdentifierManageWiFiCredentials();
-    
     public static PermissionIdentifier MangeFeedbackExamples
         => new PermissionIdentifierMangeFeedbackExamples();
     
@@ -578,9 +578,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier UpdateMemberBusinessEntities
         => new PermissionIdentifierUpdateMemberBusinessEntities();
     
-    public static PermissionIdentifier UpdateMemberCredentials
-        => new PermissionIdentifierUpdateMemberCredentials();
-    
     public static PermissionIdentifier UpdateMemberProfiles
         => new PermissionIdentifierUpdateMemberProfiles();
     
@@ -641,11 +638,8 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ViewAbsences
         => new PermissionIdentifierViewAbsences();
     
-    public static PermissionIdentifier ViewAccessControlData
-        => new PermissionIdentifierViewAccessControlData();
-    
-    public static PermissionIdentifier ViewAllGuests
-        => new PermissionIdentifierViewAllGuests();
+    public static PermissionIdentifier ViewAllExternalUsers
+        => new PermissionIdentifierViewAllExternalUsers();
     
     public static PermissionIdentifier ViewAndRemoveApplicationConsents
         => new PermissionIdentifierViewAndRemoveApplicationConsents();
@@ -800,9 +794,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ViewMemberBusinessEntities
         => new PermissionIdentifierViewMemberBusinessEntities();
     
-    public static PermissionIdentifier ViewMemberCredentials
-        => new PermissionIdentifierViewMemberCredentials();
-    
     public static PermissionIdentifier ViewMemberLocations
         => new PermissionIdentifierViewMemberLocations();
     
@@ -944,7 +935,7 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Chat.AddChannels";
     }
     
-    public class PermissionIdentifierAddNewGuest : PermissionIdentifier
+    public class PermissionIdentifierAddNewExternalUser : PermissionIdentifier
     {
         public override string ToString()
             => "Profile.CreateGuest";
@@ -1193,12 +1184,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Project.VaultConnection.Delete";
     }
     
-    public class PermissionIdentifierEditAccessControlData : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Pass.AccessControl.Manage";
-    }
-    
     public class PermissionIdentifierEditBonusEvents : PermissionIdentifier
     {
         public override string ToString()
@@ -1287,6 +1272,15 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Chat.ImportMessages";
+    }
+    
+    /// <summary>
+    /// Allows to join unattended dev environments and become their owner
+    /// </summary>
+    public class PermissionIdentifierJoinUnattendedDevEnvironments : PermissionIdentifier
+    {
+        public override string ToString()
+            => "Rd.Workspaces.Unattended.Join";
     }
     
     public class PermissionIdentifierListApplicationCommands : PermissionIdentifier
@@ -1622,12 +1616,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Rd.Warmup.Triggering.Manage";
     }
     
-    public class PermissionIdentifierManageWiFiCredentials : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Profile.WiFi.Credentials.Manage";
-    }
-    
     public class PermissionIdentifierMangeFeedbackExamples : PermissionIdentifier
     {
         public override string ToString()
@@ -1931,12 +1919,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Profile.HRM.BusinessEntities.Edit";
     }
     
-    public class PermissionIdentifierUpdateMemberCredentials : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Profile.Pass.UserCredentials.Edit";
-    }
-    
     public class PermissionIdentifierUpdateMemberProfiles : PermissionIdentifier
     {
         public override string ToString()
@@ -2057,13 +2039,7 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Profile.Absences.View";
     }
     
-    public class PermissionIdentifierViewAccessControlData : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Pass.AccessControl.View";
-    }
-    
-    public class PermissionIdentifierViewAllGuests : PermissionIdentifier
+    public class PermissionIdentifierViewAllExternalUsers : PermissionIdentifier
     {
         public override string ToString()
             => "Profile.ViewAllGuests";
@@ -2355,12 +2331,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Profile.HRM.BusinessEntities.View";
-    }
-    
-    public class PermissionIdentifierViewMemberCredentials : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Profile.Pass.UserCredentials.View";
     }
     
     public class PermissionIdentifierViewMemberLocations : PermissionIdentifier

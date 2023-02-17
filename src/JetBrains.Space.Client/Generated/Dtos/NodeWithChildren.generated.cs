@@ -32,8 +32,5 @@ namespace JetBrains.Space.Client;
 public interface NodeWithChildren
      : BlockNode, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static RtCode RtCode(string lang, List<RtText> children)
-        => new RtCode(lang: lang, children: children);
-    
 }
 

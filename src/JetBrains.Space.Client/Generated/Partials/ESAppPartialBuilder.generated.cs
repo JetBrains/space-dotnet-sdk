@@ -159,6 +159,9 @@ public static class ESAppPartialExtensions
     public static Partial<ESApp> WithContexts(this Partial<ESApp> it, Func<Partial<AppUiExtContextData>, Partial<AppUiExtContextData>> partialBuilder)
         => it.AddFieldName("contexts", partialBuilder(new Partial<AppUiExtContextData>(it)));
     
+    public static Partial<ESApp> WithDescription(this Partial<ESApp> it)
+        => it.AddFieldName("description");
+    
     public static Partial<ESApp> WithDomains(this Partial<ESApp> it)
         => it.AddFieldName("domains");
     

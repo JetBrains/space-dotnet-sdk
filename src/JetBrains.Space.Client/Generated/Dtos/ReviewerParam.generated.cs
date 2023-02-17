@@ -34,9 +34,10 @@ public sealed class ReviewerParam
 {
     public ReviewerParam() { }
     
-    public ReviewerParam(string profileId, CodeReviewParticipantSlotBase? qualityGateSlot = null)
+    public ReviewerParam(string profileId, bool? isCodeOwner = null, CodeReviewParticipantSlotBase? qualityGateSlot = null)
     {
         ProfileId = profileId;
+        IsCodeOwner = isCodeOwner;
         QualityGateSlot = qualityGateSlot;
     }
     
@@ -50,8 +51,18 @@ public sealed class ReviewerParam
         set => _profileId.SetValue(value);
     }
 
+    private PropertyValue<bool?> _isCodeOwner = new PropertyValue<bool?>(nameof(ReviewerParam), nameof(IsCodeOwner), "isCodeOwner");
+    
+    [JsonPropertyName("isCodeOwner")]
+    public bool? IsCodeOwner
+    {
+        get => _isCodeOwner.GetValue(InlineErrors);
+        set => _isCodeOwner.SetValue(value);
+    }
+
     private PropertyValue<CodeReviewParticipantSlotBase?> _qualityGateSlot = new PropertyValue<CodeReviewParticipantSlotBase?>(nameof(ReviewerParam), nameof(QualityGateSlot), "qualityGateSlot");
     
+    [Obsolete("Use isCodeOwner to specify that this reviewer reviews only their owned files (since 2022-02) (will be removed in a future version)")]
     [JsonPropertyName("qualityGateSlot")]
     public CodeReviewParticipantSlotBase? QualityGateSlot
     {
@@ -62,6 +73,7 @@ public sealed class ReviewerParam
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _profileId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _isCodeOwner.SetAccessPath(parentChainPath, validateHasBeenSet);
         _qualityGateSlot.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

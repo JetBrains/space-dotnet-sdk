@@ -34,9 +34,10 @@ public class ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequ
 {
     public ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest() { }
     
-    public ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest(CodeReviewParticipantRole role)
+    public ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest(CodeReviewParticipantRole role, bool? isCodeOwner = null)
     {
         Role = role;
+        IsCodeOwner = isCodeOwner;
     }
     
     private PropertyValue<CodeReviewParticipantRole> _role = new PropertyValue<CodeReviewParticipantRole>(nameof(ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest), nameof(Role), "role");
@@ -49,9 +50,22 @@ public class ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequ
         set => _role.SetValue(value);
     }
 
+    private PropertyValue<bool?> _isCodeOwner = new PropertyValue<bool?>(nameof(ProjectsForProjectCodeReviewsForReviewIdParticipantsForUserPostRequest), nameof(IsCodeOwner), "isCodeOwner");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("isCodeOwner")]
+    public bool? IsCodeOwner
+    {
+        get => _isCodeOwner.GetValue(InlineErrors);
+        set => _isCodeOwner.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _role.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _isCodeOwner.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

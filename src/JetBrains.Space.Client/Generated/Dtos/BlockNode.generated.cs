@@ -32,9 +32,6 @@ namespace JetBrains.Space.Client;
 public interface BlockNode
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static RtCode RtCode(string lang, List<RtText> children)
-        => new RtCode(lang: lang, children: children);
-    
     public static RtHorizontalRule RtHorizontalRule()
         => new RtHorizontalRule();
     

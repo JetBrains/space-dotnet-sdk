@@ -34,10 +34,12 @@ public sealed class CodeReviewParticipant
 {
     public CodeReviewParticipant() { }
     
-    public CodeReviewParticipant(TDMemberProfile user, CodeReviewParticipantRole role, ReviewerState? state = null, bool? isApproveSticky = null, bool? theirTurn = null, List<CodeReviewParticipantQualityGateSlot>? qualityGateSlots = null, List<CodeReviewParticipantCodeOwnerSlot>? codeOwnerSlots = null, DateTime? addedAt = null)
+    public CodeReviewParticipant(TDMemberProfile user, CodeReviewParticipantRole role, bool? hasOwnedFiles = null, bool? reviewOnlyOwnedFiles = null, ReviewerState? state = null, bool? isApproveSticky = null, bool? theirTurn = null, List<CodeReviewParticipantQualityGateSlot>? qualityGateSlots = null, List<CodeReviewParticipantCodeOwnerSlot>? codeOwnerSlots = null, DateTime? addedAt = null)
     {
         User = user;
         Role = role;
+        IsHasOwnedFiles = hasOwnedFiles;
+        IsReviewOnlyOwnedFiles = reviewOnlyOwnedFiles;
         State = state;
         IsApproveSticky = isApproveSticky;
         IsTheirTurn = theirTurn;
@@ -64,6 +66,24 @@ public sealed class CodeReviewParticipant
     {
         get => _role.GetValue(InlineErrors);
         set => _role.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _hasOwnedFiles = new PropertyValue<bool?>(nameof(CodeReviewParticipant), nameof(IsHasOwnedFiles), "hasOwnedFiles");
+    
+    [JsonPropertyName("hasOwnedFiles")]
+    public bool? IsHasOwnedFiles
+    {
+        get => _hasOwnedFiles.GetValue(InlineErrors);
+        set => _hasOwnedFiles.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _reviewOnlyOwnedFiles = new PropertyValue<bool?>(nameof(CodeReviewParticipant), nameof(IsReviewOnlyOwnedFiles), "reviewOnlyOwnedFiles");
+    
+    [JsonPropertyName("reviewOnlyOwnedFiles")]
+    public bool? IsReviewOnlyOwnedFiles
+    {
+        get => _reviewOnlyOwnedFiles.GetValue(InlineErrors);
+        set => _reviewOnlyOwnedFiles.SetValue(value);
     }
 
     private PropertyValue<ReviewerState?> _state = new PropertyValue<ReviewerState?>(nameof(CodeReviewParticipant), nameof(State), "state");
@@ -95,6 +115,7 @@ public sealed class CodeReviewParticipant
 
     private PropertyValue<List<CodeReviewParticipantQualityGateSlot>?> _qualityGateSlots = new PropertyValue<List<CodeReviewParticipantQualityGateSlot>?>(nameof(CodeReviewParticipant), nameof(QualityGateSlots), "qualityGateSlots");
     
+    [Obsolete("To be removed (since 2023-02) (will be removed in a future version)")]
     [JsonPropertyName("qualityGateSlots")]
     public List<CodeReviewParticipantQualityGateSlot>? QualityGateSlots
     {
@@ -104,6 +125,7 @@ public sealed class CodeReviewParticipant
 
     private PropertyValue<List<CodeReviewParticipantCodeOwnerSlot>?> _codeOwnerSlots = new PropertyValue<List<CodeReviewParticipantCodeOwnerSlot>?>(nameof(CodeReviewParticipant), nameof(CodeOwnerSlots), "codeOwnerSlots");
     
+    [Obsolete("To be removed (since 2023-02) (will be removed in a future version)")]
     [JsonPropertyName("codeOwnerSlots")]
     public List<CodeReviewParticipantCodeOwnerSlot>? CodeOwnerSlots
     {
@@ -125,6 +147,8 @@ public sealed class CodeReviewParticipant
     {
         _user.SetAccessPath(parentChainPath, validateHasBeenSet);
         _role.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hasOwnedFiles.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reviewOnlyOwnedFiles.SetAccessPath(parentChainPath, validateHasBeenSet);
         _state.SetAccessPath(parentChainPath, validateHasBeenSet);
         _isApproveSticky.SetAccessPath(parentChainPath, validateHasBeenSet);
         _theirTurn.SetAccessPath(parentChainPath, validateHasBeenSet);

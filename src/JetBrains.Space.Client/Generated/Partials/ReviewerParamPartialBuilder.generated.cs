@@ -34,9 +34,14 @@ public static class ReviewerParamPartialExtensions
     public static Partial<ReviewerParam> WithProfileId(this Partial<ReviewerParam> it)
         => it.AddFieldName("profileId");
     
+    public static Partial<ReviewerParam> WithIsCodeOwner(this Partial<ReviewerParam> it)
+        => it.AddFieldName("isCodeOwner");
+    
+    [Obsolete("Use isCodeOwner to specify that this reviewer reviews only their owned files (since 2022-02) (will be removed in a future version)")]
     public static Partial<ReviewerParam> WithQualityGateSlot(this Partial<ReviewerParam> it)
         => it.AddFieldName("qualityGateSlot");
     
+    [Obsolete("Use isCodeOwner to specify that this reviewer reviews only their owned files (since 2022-02) (will be removed in a future version)")]
     public static Partial<ReviewerParam> WithQualityGateSlot(this Partial<ReviewerParam> it, Func<Partial<CodeReviewParticipantSlotBase>, Partial<CodeReviewParticipantSlotBase>> partialBuilder)
         => it.AddFieldName("qualityGateSlot", partialBuilder(new Partial<CodeReviewParticipantSlotBase>(it)));
     

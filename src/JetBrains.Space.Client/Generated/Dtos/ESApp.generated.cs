@@ -34,7 +34,7 @@ public sealed class ESApp
 {
     public ESApp() { }
     
-    public ESApp(string id, string clientId, string name, bool archived, List<AppUiExtContextData> contexts, List<ApplicationUnfurlDomain> domains, List<ApplicationUnfurlPattern> patterns, ESAppSettings settings, TDMemberProfile? owner = null, ESApp? ownerApp = null, string? email = null, string? picture = null, string? defaultExternalPicture = null, DateTime? createdAt = null, string? kind = null, string? presentableName = null, ApplicationType? applicationType = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, bool? hasBearerToken = null, string? sslKeystoreAuth = null, ApplicationMetadata? metadata = null)
+    public ESApp(string id, string clientId, string name, bool archived, List<AppUiExtContextData> contexts, List<ApplicationUnfurlDomain> domains, List<ApplicationUnfurlPattern> patterns, ESAppSettings settings, TDMemberProfile? owner = null, ESApp? ownerApp = null, string? email = null, string? picture = null, string? defaultExternalPicture = null, DateTime? createdAt = null, string? kind = null, string? presentableName = null, ApplicationType? applicationType = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, string? endpointURI = null, bool? hasVerificationToken = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, bool? endpointSslVerification = null, string? basicAuthUsername = null, bool? hasBearerToken = null, string? sslKeystoreAuth = null, string? description = null, ApplicationMetadata? metadata = null)
     {
         Id = id;
         Owner = owner;
@@ -64,6 +64,7 @@ public sealed class ESApp
         SslKeystoreAuth = sslKeystoreAuth;
         IsArchived = archived;
         Contexts = contexts;
+        Description = description;
         Domains = domains;
         Metadata = metadata;
         Patterns = patterns;
@@ -348,6 +349,15 @@ public sealed class ESApp
         set => _contexts.SetValue(value);
     }
 
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ESApp), nameof(Description), "description");
+    
+    [JsonPropertyName("description")]
+    public string? Description
+    {
+        get => _description.GetValue(InlineErrors);
+        set => _description.SetValue(value);
+    }
+
     private PropertyValue<List<ApplicationUnfurlDomain>> _domains = new PropertyValue<List<ApplicationUnfurlDomain>>(nameof(ESApp), nameof(Domains), "domains", new List<ApplicationUnfurlDomain>());
     
     [Required]
@@ -417,6 +427,7 @@ public sealed class ESApp
         _sslKeystoreAuth.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
         _contexts.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _domains.SetAccessPath(parentChainPath, validateHasBeenSet);
         _metadata.SetAccessPath(parentChainPath, validateHasBeenSet);
         _patterns.SetAccessPath(parentChainPath, validateHasBeenSet);

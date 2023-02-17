@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class RtOrderedList
-     : BlockNodeWithMarks, IClassNameConvertible, IPropagatePropertyAccessPath
+     : BlockNodeWithChildren, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "RtOrderedList";

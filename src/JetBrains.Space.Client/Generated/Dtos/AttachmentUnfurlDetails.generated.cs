@@ -41,8 +41,8 @@ public interface AttachmentUnfurlDetails
     public static CallSessionUnfurlDetails CallSessionUnfurlDetails(CallSession session)
         => new CallSessionUnfurlDetails(session: session);
     
-    public static ChannelItemSnapshot ChannelItemSnapshot(string id, string text, CPrincipal author, DateTime created, long time, string? channelId = null, M2ItemContentDetails? details = null, List<AttachmentInfo>? attachments = null, List<EntityMention>? mentions = null)
-        => new ChannelItemSnapshot(id: id, text: text, author: author, created: created, time: time, channelId: channelId, details: details, attachments: attachments, mentions: mentions);
+    public static ChannelItemSnapshot ChannelItemSnapshot(string id, string text, CPrincipal author, DateTime created, long time, string? channelId = null, M2ItemContentDetails? details = null, List<AttachmentInfo>? attachments = null, List<EntityMention>? mentions = null, ChannelItemSnapshot? projectedItem = null)
+        => new ChannelItemSnapshot(id: id, text: text, author: author, created: created, time: time, channelId: channelId, details: details, attachments: attachments, mentions: mentions, projectedItem: projectedItem);
     
     public static UnfurlDeployTargetDetails UnfurlDeployTargetDetails(DeployTargetRecord targetRef, string? targetName = null, bool? showLinkIcon = null, bool? skipDetailsRender = null)
         => new UnfurlDeployTargetDetails(targetRef: targetRef, targetName: targetName, showLinkIcon: showLinkIcon, skipDetailsRender: skipDetailsRender);

@@ -34,7 +34,7 @@ public sealed class DeployTargetRecord
 {
     public DeployTargetRecord() { }
     
-    public DeployTargetRecord(string id, string projectId, string name, string key, string description, string createdAt, M2ChannelRecord channel, bool archived, string channelId, bool manualControl, List<DeployTargetRepositoryDTO> repositories, string? lastUpdated = null, string? lastDeployed = null, CPrincipal? createdBy = null, DeploymentInfo? current = null, int? failTimeoutMinutes = null, int? hangTimeoutMinutes = null, DeploymentInfo? next = null)
+    public DeployTargetRecord(string id, string projectId, string name, string key, string description, string createdAt, M2ChannelRecord channel, bool archived, string channelId, List<DeployTargetLink> links, bool manualControl, List<DeployTargetRepositoryDTO> repositories, List<TDTeam> teams, List<TDMemberProfile> users, string? lastUpdated = null, string? lastDeployed = null, string? connectedChannelId = null, CPrincipal? createdBy = null, DeploymentInfo? current = null, int? failTimeoutMinutes = null, int? hangTimeoutMinutes = null, DeploymentInfo? next = null)
     {
         Id = id;
         ProjectId = projectId;
@@ -47,13 +47,17 @@ public sealed class DeployTargetRecord
         Channel = channel;
         IsArchived = archived;
         ChannelId = channelId;
+        ConnectedChannelId = connectedChannelId;
         CreatedBy = createdBy;
         Current = current;
         FailTimeoutMinutes = failTimeoutMinutes;
         HangTimeoutMinutes = hangTimeoutMinutes;
+        Links = links;
         IsManualControl = manualControl;
         Next = next;
         Repositories = repositories;
+        Teams = teams;
+        Users = users;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(DeployTargetRecord), nameof(Id), "id");
@@ -164,6 +168,15 @@ public sealed class DeployTargetRecord
         set => _channelId.SetValue(value);
     }
 
+    private PropertyValue<string?> _connectedChannelId = new PropertyValue<string?>(nameof(DeployTargetRecord), nameof(ConnectedChannelId), "connectedChannelId");
+    
+    [JsonPropertyName("connectedChannelId")]
+    public string? ConnectedChannelId
+    {
+        get => _connectedChannelId.GetValue(InlineErrors);
+        set => _connectedChannelId.SetValue(value);
+    }
+
     private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(DeployTargetRecord), nameof(CreatedBy), "createdBy");
     
     [JsonPropertyName("createdBy")]
@@ -200,6 +213,16 @@ public sealed class DeployTargetRecord
         set => _hangTimeoutMinutes.SetValue(value);
     }
 
+    private PropertyValue<List<DeployTargetLink>> _links = new PropertyValue<List<DeployTargetLink>>(nameof(DeployTargetRecord), nameof(Links), "links", new List<DeployTargetLink>());
+    
+    [Required]
+    [JsonPropertyName("links")]
+    public List<DeployTargetLink> Links
+    {
+        get => _links.GetValue(InlineErrors);
+        set => _links.SetValue(value);
+    }
+
     private PropertyValue<bool> _manualControl = new PropertyValue<bool>(nameof(DeployTargetRecord), nameof(IsManualControl), "manualControl");
     
     [Required]
@@ -229,6 +252,26 @@ public sealed class DeployTargetRecord
         set => _repositories.SetValue(value);
     }
 
+    private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(DeployTargetRecord), nameof(Teams), "teams", new List<TDTeam>());
+    
+    [Required]
+    [JsonPropertyName("teams")]
+    public List<TDTeam> Teams
+    {
+        get => _teams.GetValue(InlineErrors);
+        set => _teams.SetValue(value);
+    }
+
+    private PropertyValue<List<TDMemberProfile>> _users = new PropertyValue<List<TDMemberProfile>>(nameof(DeployTargetRecord), nameof(Users), "users", new List<TDMemberProfile>());
+    
+    [Required]
+    [JsonPropertyName("users")]
+    public List<TDMemberProfile> Users
+    {
+        get => _users.GetValue(InlineErrors);
+        set => _users.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -242,13 +285,17 @@ public sealed class DeployTargetRecord
         _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
         _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _connectedChannelId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _createdBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _current.SetAccessPath(parentChainPath, validateHasBeenSet);
         _failTimeoutMinutes.SetAccessPath(parentChainPath, validateHasBeenSet);
         _hangTimeoutMinutes.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _links.SetAccessPath(parentChainPath, validateHasBeenSet);
         _manualControl.SetAccessPath(parentChainPath, validateHasBeenSet);
         _next.SetAccessPath(parentChainPath, validateHasBeenSet);
         _repositories.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _teams.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _users.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -83,8 +83,20 @@ public interface WebhookEvent
     public static ChatMessageUpdatedEvent ChatMessageUpdatedEvent(string channelId, ChannelItemRecord message, string? threadId = null, Modification<DateTime>? edited = null, Modification<bool>? pinned = null)
         => new ChatMessageUpdatedEvent(channelId: channelId, message: message, threadId: threadId, edited: edited, pinned: pinned);
     
-    public static CodeReviewWebhookEvent CodeReview(ProjectKey projectKey, string repository, string reviewId, string title, bool isMergeRequest)
-        => new CodeReviewWebhookEvent(projectKey: projectKey, repository: repository, reviewId: reviewId, title: title, isMergeRequest: isMergeRequest);
+    public static CodeReviewCommitsUpdatedWebhookEvent CodeReviewCommitsUpdated(CodeReviewRecord review, KMetaMod? meta = null)
+        => new CodeReviewCommitsUpdatedWebhookEvent(review: review, meta: meta);
+    
+    public static CodeReviewDiscussionWebhookEvent CodeReviewDiscussion(CodeReviewRecord review, CodeReviewDiscussion discussion, KMetaMod? meta = null, Modification<bool>? resolved = null)
+        => new CodeReviewDiscussionWebhookEvent(review: review, discussion: discussion, meta: meta, resolved: resolved);
+    
+    public static CodeReviewParticipantWebhookEvent CodeReviewParticipant(CodeReviewRecord review, bool isMergeRequest, TDMemberProfile participant, KMetaMod? meta = null, Modification<ReviewerState>? reviewerState = null, Modification<bool>? theirTurn = null)
+        => new CodeReviewParticipantWebhookEvent(review: review, isMergeRequest: isMergeRequest, participant: participant, meta: meta, reviewerState: reviewerState, theirTurn: theirTurn);
+    
+    public static CodeReviewUpdatedWebhookEvent CodeReviewUpdated(KMetaMod meta, CodeReviewRecord? review = null, Modification<string>? titleMod = null, Modification<string>? descriptionMod = null, Modification<string>? targetBranchMod = null)
+        => new CodeReviewUpdatedWebhookEvent(meta: meta, review: review, titleMod: titleMod, descriptionMod: descriptionMod, targetBranchMod: targetBranchMod);
+    
+    public static CodeReviewWebhookEvent CodeReview(ProjectKey projectKey, string repository, string reviewId, string title, bool isMergeRequest, KMetaMod? meta = null, CodeReviewRecord? review = null)
+        => new CodeReviewWebhookEvent(projectKey: projectKey, repository: repository, reviewId: reviewId, title: title, isMergeRequest: isMergeRequest, meta: meta, review: review);
     
     public static CustomEmojiAddedEvent CustomEmojiAddedEvent(string emoji, CPrincipal owner, string attachmentId, DateTime uploadedAt)
         => new CustomEmojiAddedEvent(emoji: emoji, owner: owner, attachmentId: attachmentId, uploadedAt: uploadedAt);

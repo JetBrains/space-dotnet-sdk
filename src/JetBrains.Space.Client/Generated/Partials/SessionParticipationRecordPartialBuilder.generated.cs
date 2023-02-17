@@ -61,6 +61,12 @@ public static class SessionParticipationRecordPartialExtensions
     public static Partial<SessionParticipationRecord> WithDescription(this Partial<SessionParticipationRecord> it)
         => it.AddFieldName("description");
     
+    public static Partial<SessionParticipationRecord> WithData(this Partial<SessionParticipationRecord> it)
+        => it.AddFieldName("data");
+    
+    public static Partial<SessionParticipationRecord> WithData(this Partial<SessionParticipationRecord> it, Func<Partial<ParticipantStateData>, Partial<ParticipantStateData>> partialBuilder)
+        => it.AddFieldName("data", partialBuilder(new Partial<ParticipantStateData>(it)));
+    
     public static Partial<SessionParticipationRecord> WithDataProducers(this Partial<SessionParticipationRecord> it)
         => it.AddFieldName("dataProducers");
     
@@ -72,6 +78,9 @@ public static class SessionParticipationRecordPartialExtensions
     
     public static Partial<SessionParticipationRecord> WithProducers(this Partial<SessionParticipationRecord> it, Func<Partial<ProducerOptions>, Partial<ProducerOptions>> partialBuilder)
         => it.AddFieldName("producers", partialBuilder(new Partial<ProducerOptions>(it)));
+    
+    public static Partial<SessionParticipationRecord> WithVersion(this Partial<SessionParticipationRecord> it)
+        => it.AddFieldName("version");
     
 }
 

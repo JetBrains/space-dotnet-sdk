@@ -29,7 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public interface BlockNodeWithMarks
+public interface BlockNodeWithChildren
      : BlockNode, NodeWithChildren, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     public static RtBlockquote RtBlockquote(List<BlockNode> children)
@@ -37,6 +37,9 @@ public interface BlockNodeWithMarks
     
     public static RtBulletList RtBulletList(List<RtListItem> children)
         => new RtBulletList(children: children);
+    
+    public static RtCode RtCode(string lang, List<RtText> children)
+        => new RtCode(lang: lang, children: children);
     
     public static RtDocument RtDocument(List<BlockNode> children)
         => new RtDocument(children: children);

@@ -41,10 +41,10 @@ public sealed class PackageVersionData
         Name = name;
         Version = version;
         Tags = tags;
+        IsPinned = pinned;
         Created = created;
         LastAccessed = lastAccessed;
         Downloads = downloads;
-        IsPinned = pinned;
         Comment = comment;
         DiskSize = diskSize;
         Path = path;
@@ -99,6 +99,16 @@ public sealed class PackageVersionData
         set => _tags.SetValue(value);
     }
 
+    private PropertyValue<bool> _pinned = new PropertyValue<bool>(nameof(PackageVersionData), nameof(IsPinned), "pinned");
+    
+    [Required]
+    [JsonPropertyName("pinned")]
+    public bool IsPinned
+    {
+        get => _pinned.GetValue(InlineErrors);
+        set => _pinned.SetValue(value);
+    }
+
     private PropertyValue<long?> _created = new PropertyValue<long?>(nameof(PackageVersionData), nameof(Created), "created");
     
     [JsonPropertyName("created")]
@@ -124,16 +134,6 @@ public sealed class PackageVersionData
     {
         get => _downloads.GetValue(InlineErrors);
         set => _downloads.SetValue(value);
-    }
-
-    private PropertyValue<bool> _pinned = new PropertyValue<bool>(nameof(PackageVersionData), nameof(IsPinned), "pinned");
-    
-    [Required]
-    [JsonPropertyName("pinned")]
-    public bool IsPinned
-    {
-        get => _pinned.GetValue(InlineErrors);
-        set => _pinned.SetValue(value);
     }
 
     private PropertyValue<string?> _comment = new PropertyValue<string?>(nameof(PackageVersionData), nameof(Comment), "comment");
@@ -170,10 +170,10 @@ public sealed class PackageVersionData
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _version.SetAccessPath(parentChainPath, validateHasBeenSet);
         _tags.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _pinned.SetAccessPath(parentChainPath, validateHasBeenSet);
         _created.SetAccessPath(parentChainPath, validateHasBeenSet);
         _lastAccessed.SetAccessPath(parentChainPath, validateHasBeenSet);
         _downloads.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _pinned.SetAccessPath(parentChainPath, validateHasBeenSet);
         _comment.SetAccessPath(parentChainPath, validateHasBeenSet);
         _diskSize.SetAccessPath(parentChainPath, validateHasBeenSet);
         _path.SetAccessPath(parentChainPath, validateHasBeenSet);

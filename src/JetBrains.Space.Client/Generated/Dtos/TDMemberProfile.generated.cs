@@ -34,7 +34,7 @@ public sealed class TDMemberProfile
 {
     public TDMemberProfile() { }
     
-    public TDMemberProfile(string id, string username, TDProfileName name, bool speaksEnglish, List<TDProfileLanguage> languages, bool archived, bool notAMember, List<AbsenceRecord> absences, Dictionary<string, CFValue> customFields, List<TDProfileEmail> emails, DocumentFolderWithChildren folderWithChildren, List<string> links, List<TDMemberLocation> locationHistory, List<TDMemberLocation> locations, List<ESProfileLogin> logins, List<TDMemberProfile> managers, List<TDMembership> membershipHistory, List<TDMembership> memberships, List<string> messengers, bool onboardingRequired, List<string> phones, TwoFactorAuthenticationStatus status, List<Topic> topics, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, bool? suspended = null, DateTime? suspendedAt = null, DateTime? joined = null, DateTime? leftAt = null, bool? external = null, bool? externalLight = null, string? about = null, AvatarCropSquare? avatarCropSquare = null, DateTime? birthday = null, string? externalId = null, Gender? gender = null, DateTime? left = null, bool? showBannerOnLandingPage = null, bool? showBannerOnProjectPage = null, bool? showBannerOnTeamDirectoryHomePage = null, List<TDMembership>? unapprovedMemberships = null)
+    public TDMemberProfile(string id, string username, TDProfileName name, bool speaksEnglish, List<TDProfileLanguage> languages, bool archived, bool notAMember, List<AbsenceRecord> absences, Dictionary<string, CFValue> customFields, List<TDProfileEmail> emails, DocumentFolderWithChildren folderWithChildren, List<string> links, List<TDMemberLocation> locationHistory, List<TDMemberLocation> locations, List<ESProfileLogin> logins, List<TDMemberProfile> managers, List<TDMembership> membershipHistory, List<TDMembership> memberships, List<string> messengers, bool onboardingRequired, List<string> phones, TwoFactorAuthenticationStatus status, List<Topic> topics, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, bool? suspended = null, DateTime? suspendedAt = null, DateTime? joined = null, DateTime? leftAt = null, bool? external = null, bool? externalLight = null, string? about = null, bool? accessSuspended = null, DateTime? accessSuspendedAt = null, AvatarCropSquare? avatarCropSquare = null, DateTime? birthday = null, string? externalId = null, Gender? gender = null, DateTime? left = null, bool? showBannerOnLandingPage = null, bool? showBannerOnProjectPage = null, bool? showBannerOnTeamDirectoryHomePage = null, List<TDMembership>? unapprovedMemberships = null)
     {
         Id = id;
         Username = username;
@@ -54,6 +54,8 @@ public sealed class TDMemberProfile
         IsExternalLight = externalLight;
         About = about;
         Absences = absences;
+        IsAccessSuspended = accessSuspended;
+        AccessSuspendedAt = accessSuspendedAt;
         AvatarCropSquare = avatarCropSquare;
         Birthday = birthday;
         CustomFields = customFields;
@@ -251,6 +253,25 @@ public sealed class TDMemberProfile
     {
         get => _absences.GetValue(InlineErrors);
         set => _absences.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _accessSuspended = new PropertyValue<bool?>(nameof(TDMemberProfile), nameof(IsAccessSuspended), "accessSuspended");
+    
+    [JsonPropertyName("accessSuspended")]
+    public bool? IsAccessSuspended
+    {
+        get => _accessSuspended.GetValue(InlineErrors);
+        set => _accessSuspended.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _accessSuspendedAt = new PropertyValue<DateTime?>(nameof(TDMemberProfile), nameof(AccessSuspendedAt), "accessSuspendedAt");
+    
+    [JsonPropertyName("accessSuspendedAt")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? AccessSuspendedAt
+    {
+        get => _accessSuspendedAt.GetValue(InlineErrors);
+        set => _accessSuspendedAt.SetValue(value);
     }
 
     private PropertyValue<AvatarCropSquare?> _avatarCropSquare = new PropertyValue<AvatarCropSquare?>(nameof(TDMemberProfile), nameof(AvatarCropSquare), "avatarCropSquare");
@@ -506,6 +527,8 @@ public sealed class TDMemberProfile
         _externalLight.SetAccessPath(parentChainPath, validateHasBeenSet);
         _about.SetAccessPath(parentChainPath, validateHasBeenSet);
         _absences.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _accessSuspended.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _accessSuspendedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
         _avatarCropSquare.SetAccessPath(parentChainPath, validateHasBeenSet);
         _birthday.SetAccessPath(parentChainPath, validateHasBeenSet);
         _customFields.SetAccessPath(parentChainPath, validateHasBeenSet);

@@ -38,6 +38,15 @@ public partial class BillingAdminClient : ISpaceClient
         _connection = connection;
     }
     
+    public async Task<TierFeatureLimits> GetFeaturesAsync(Func<Partial<TierFeatureLimits>, Partial<TierFeatureLimits>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<TierFeatureLimits>()) : Partial<TierFeatureLimits>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<TierFeatureLimits>("GET", $"api/http/billing-admin/features{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetFeatures", cancellationToken: cancellationToken);
+    }
+    
+
     /// <remarks>
     /// Required permissions:
     /// <list type="bullet">

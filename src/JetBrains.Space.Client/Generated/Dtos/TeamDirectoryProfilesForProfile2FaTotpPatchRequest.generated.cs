@@ -34,9 +34,10 @@ public class TeamDirectoryProfilesForProfile2FaTotpPatchRequest
 {
     public TeamDirectoryProfilesForProfile2FaTotpPatchRequest() { }
     
-    public TeamDirectoryProfilesForProfile2FaTotpPatchRequest(bool enabled)
+    public TeamDirectoryProfilesForProfile2FaTotpPatchRequest(bool enabled, int? code = null)
     {
         IsEnabled = enabled;
+        Code = code;
     }
     
     private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(TeamDirectoryProfilesForProfile2FaTotpPatchRequest), nameof(IsEnabled), "enabled");
@@ -49,9 +50,22 @@ public class TeamDirectoryProfilesForProfile2FaTotpPatchRequest
         set => _enabled.SetValue(value);
     }
 
+    private PropertyValue<int?> _code = new PropertyValue<int?>(nameof(TeamDirectoryProfilesForProfile2FaTotpPatchRequest), nameof(Code), "code");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("code")]
+    public int? Code
+    {
+        get => _code.GetValue(InlineErrors);
+        set => _code.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _enabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _code.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />
