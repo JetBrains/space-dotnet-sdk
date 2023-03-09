@@ -34,12 +34,13 @@ public sealed class DocumentFolder
 {
     public DocumentFolder() { }
     
-    public DocumentFolder(string id, bool archived, string name, DateTime created, DateTime updated, DocumentFolder? parent = null, CPrincipal? createdBy = null, CPrincipal? updatedBy = null, Document? cover = null)
+    public DocumentFolder(string id, bool archived, string name, DateTime created, DateTime updated, DocumentFolder? parent = null, bool? isRestricted = null, CPrincipal? createdBy = null, CPrincipal? updatedBy = null, Document? cover = null)
     {
         Id = id;
         IsArchived = archived;
         Parent = parent;
         Name = name;
+        IsRestricted = isRestricted;
         Created = created;
         CreatedBy = createdBy;
         Updated = updated;
@@ -84,6 +85,15 @@ public sealed class DocumentFolder
     {
         get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _isRestricted = new PropertyValue<bool?>(nameof(DocumentFolder), nameof(IsRestricted), "isRestricted");
+    
+    [JsonPropertyName("isRestricted")]
+    public bool? IsRestricted
+    {
+        get => _isRestricted.GetValue(InlineErrors);
+        set => _isRestricted.SetValue(value);
     }
 
     private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(DocumentFolder), nameof(Created), "created");
@@ -141,6 +151,7 @@ public sealed class DocumentFolder
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
         _parent.SetAccessPath(parentChainPath, validateHasBeenSet);
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _isRestricted.SetAccessPath(parentChainPath, validateHasBeenSet);
         _created.SetAccessPath(parentChainPath, validateHasBeenSet);
         _createdBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _updated.SetAccessPath(parentChainPath, validateHasBeenSet);

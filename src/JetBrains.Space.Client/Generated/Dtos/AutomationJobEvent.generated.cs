@@ -37,7 +37,7 @@ public sealed class AutomationJobEvent
     
     public AutomationJobEvent() { }
     
-    public AutomationJobEvent(KMetaMod meta, string executionId, PRProject project, string repositoryName, string jobName, long executionNumber, JobExecutionTrigger trigger, DateTime triggerTime, Modification<JobExecutionStatus>? status = null, Modification<List<FailureConditionType>>? failureReasons = null, Modification<CPrincipal>? stoppedBy = null, Modification<DateTime>? startTime = null, Modification<DateTime>? endTime = null)
+    public AutomationJobEvent(KMetaMod meta, string executionId, PRProject project, string repositoryName, string jobName, long executionNumber, JobExecutionTrigger trigger, DateTime triggerTime, Modification<JobExecutionStatus>? status = null, Modification<List<FailureConditionType>>? failureReasons = null, Modification<CPrincipal>? stoppedBy = null, Modification<DateTime>? startTime = null, Modification<DateTime>? endTime = null, List<GitCheckout>? repositories = null)
     {
         Meta = meta;
         ExecutionId = executionId;
@@ -52,6 +52,7 @@ public sealed class AutomationJobEvent
         StoppedBy = stoppedBy;
         StartTime = startTime;
         EndTime = endTime;
+        Repositories = repositories;
     }
     
     private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(AutomationJobEvent), nameof(Meta), "meta");
@@ -180,6 +181,15 @@ public sealed class AutomationJobEvent
         set => _endTime.SetValue(value);
     }
 
+    private PropertyValue<List<GitCheckout>?> _repositories = new PropertyValue<List<GitCheckout>?>(nameof(AutomationJobEvent), nameof(Repositories), "repositories");
+    
+    [JsonPropertyName("repositories")]
+    public List<GitCheckout>? Repositories
+    {
+        get => _repositories.GetValue(InlineErrors);
+        set => _repositories.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -195,6 +205,7 @@ public sealed class AutomationJobEvent
         _stoppedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _startTime.SetAccessPath(parentChainPath, validateHasBeenSet);
         _endTime.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _repositories.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

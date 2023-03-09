@@ -46,6 +46,12 @@ public static class FileDetailsPartialExtensions
     public static Partial<FileDetails> WithCreated(this Partial<FileDetails> it)
         => it.AddFieldName("created");
     
+    public static Partial<FileDetails> WithCreatedBy(this Partial<FileDetails> it)
+        => it.AddFieldName("createdBy");
+    
+    public static Partial<FileDetails> WithCreatedBy(this Partial<FileDetails> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("createdBy", partialBuilder(new Partial<CPrincipal>(it)));
+    
     public static Partial<FileDetails> WithLastModified(this Partial<FileDetails> it)
         => it.AddFieldName("lastModified");
     
@@ -60,6 +66,12 @@ public static class FileDetailsPartialExtensions
     
     public static Partial<FileDetails> WithAuthors(this Partial<FileDetails> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
         => it.AddFieldName("authors", partialBuilder(new Partial<CPrincipal>(it)));
+    
+    public static Partial<FileDetails> WithOrigin(this Partial<FileDetails> it)
+        => it.AddFieldName("origin");
+    
+    public static Partial<FileDetails> WithOrigin(this Partial<FileDetails> it, Func<Partial<PackageOrigin>, Partial<PackageOrigin>> partialBuilder)
+        => it.AddFieldName("origin", partialBuilder(new Partial<PackageOrigin>(it)));
     
     public static Partial<FileDetails> WithDescription(this Partial<FileDetails> it)
         => it.AddFieldName("description");

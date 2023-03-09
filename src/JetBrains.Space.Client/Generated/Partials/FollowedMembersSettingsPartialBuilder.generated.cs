@@ -27,12 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TopLevelOverlayUiExtensionInPartialBuilder;
+namespace JetBrains.Space.Client.FollowedMembersSettingsPartialBuilder;
 
-public static class TopLevelOverlayUiExtensionInPartialExtensions
+public static class FollowedMembersSettingsPartialExtensions
 {
-    public static Partial<TopLevelOverlayUiExtensionIn> WithIframeUrl(this Partial<TopLevelOverlayUiExtensionIn> it)
-        => it.AddFieldName("iframeUrl");
+    public static Partial<FollowedMembersSettings> WithIsEnabled(this Partial<FollowedMembersSettings> it)
+        => it.AddFieldName("enabled");
+    
+    public static Partial<FollowedMembersSettings> WithMembers(this Partial<FollowedMembersSettings> it)
+        => it.AddFieldName("members");
     
 }
 

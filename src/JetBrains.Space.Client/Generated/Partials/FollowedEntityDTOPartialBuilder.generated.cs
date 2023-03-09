@@ -27,12 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.TopLevelOverlayUiExtensionApiPartialBuilder;
+namespace JetBrains.Space.Client.FollowedEntityDTOPartialBuilder;
 
-public static class TopLevelOverlayUiExtensionApiPartialExtensions
+public static class FollowedEntityDTOPartialExtensions
 {
-    public static Partial<TopLevelOverlayUiExtensionApi> WithIframeUrl(this Partial<TopLevelOverlayUiExtensionApi> it)
-        => it.AddFieldName("iframeUrl");
-    
 }
 

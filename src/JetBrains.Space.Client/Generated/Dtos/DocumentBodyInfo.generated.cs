@@ -44,8 +44,8 @@ public interface DocumentBodyInfo
     public static InaccessibleDocumentBody InaccessibleDocumentBody(DocumentBodyType docBodyType, string docBodyId)
         => new InaccessibleDocumentBody(docBodyType: docBodyType, docBodyId: docBodyId);
     
-    public static TextDocument TextDocument(string id, long resetCounter, DraftDocumentType type, string text, long? version = null, string? model = null, List<AttachmentInfo>? attachments = null)
-        => new TextDocument(id: id, resetCounter: resetCounter, type: type, text: text, version: version, model: model, attachments: attachments);
+    public static TextDocument TextDocument(string id, long resetCounter, DraftDocumentType type, string text, long? version = null, string? model = null, List<AttachmentInfo>? attachments = null, List<ResolvedMentionLink>? mentions = null)
+        => new TextDocument(id: id, resetCounter: resetCounter, type: type, text: text, version: version, model: model, attachments: attachments, mentions: mentions);
     
     public static TextDocumentBodyInfo Text(TextDocumentRecord textDocument)
         => new TextDocumentBodyInfo(textDocument: textDocument);

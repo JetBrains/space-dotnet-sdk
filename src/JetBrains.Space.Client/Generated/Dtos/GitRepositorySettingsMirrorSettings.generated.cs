@@ -34,7 +34,7 @@ public sealed class GitRepositorySettingsMirrorSettings
 {
     public GitRepositorySettingsMirrorSettings() { }
     
-    public GitRepositorySettingsMirrorSettings(string url, bool detachHEAD, bool fetchPeriodically, bool fetchBeforeGitCall, List<string>? refsSpec = null, string? username = null, string? password = null, bool? useKeyAuth = null, string? key = null, string? keyPassphrase = null, string? keyError = null, string? publicKey = null, List<string>? keyFingerprints = null)
+    public GitRepositorySettingsMirrorSettings(string url, bool detachHEAD, bool fetchPeriodically, bool fetchBeforeGitCall, List<string>? refsSpec = null, string? username = null, string? password = null, bool? useKeyAuth = null, string? key = null, string? keyPassphrase = null, string? keyError = null, string? publicKey = null, List<string>? keyFingerprints = null, bool? allowAtomicPush = null)
     {
         Url = url;
         RefsSpec = refsSpec;
@@ -49,6 +49,7 @@ public sealed class GitRepositorySettingsMirrorSettings
         KeyFingerprints = keyFingerprints;
         IsFetchPeriodically = fetchPeriodically;
         IsFetchBeforeGitCall = fetchBeforeGitCall;
+        IsAllowAtomicPush = allowAtomicPush;
     }
     
     private PropertyValue<string> _url = new PropertyValue<string>(nameof(GitRepositorySettingsMirrorSettings), nameof(Url), "url");
@@ -172,6 +173,15 @@ public sealed class GitRepositorySettingsMirrorSettings
         set => _fetchBeforeGitCall.SetValue(value);
     }
 
+    private PropertyValue<bool?> _allowAtomicPush = new PropertyValue<bool?>(nameof(GitRepositorySettingsMirrorSettings), nameof(IsAllowAtomicPush), "allowAtomicPush");
+    
+    [JsonPropertyName("allowAtomicPush")]
+    public bool? IsAllowAtomicPush
+    {
+        get => _allowAtomicPush.GetValue(InlineErrors);
+        set => _allowAtomicPush.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _url.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -187,6 +197,7 @@ public sealed class GitRepositorySettingsMirrorSettings
         _keyFingerprints.SetAccessPath(parentChainPath, validateHasBeenSet);
         _fetchPeriodically.SetAccessPath(parentChainPath, validateHasBeenSet);
         _fetchBeforeGitCall.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _allowAtomicPush.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

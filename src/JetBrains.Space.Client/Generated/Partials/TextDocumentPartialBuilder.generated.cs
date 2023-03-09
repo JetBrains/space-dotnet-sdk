@@ -58,5 +58,11 @@ public static class TextDocumentPartialExtensions
     public static Partial<TextDocument> WithAttachments(this Partial<TextDocument> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
         => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentInfo>(it)));
     
+    public static Partial<TextDocument> WithMentions(this Partial<TextDocument> it)
+        => it.AddFieldName("mentions");
+    
+    public static Partial<TextDocument> WithMentions(this Partial<TextDocument> it, Func<Partial<ResolvedMentionLink>, Partial<ResolvedMentionLink>> partialBuilder)
+        => it.AddFieldName("mentions", partialBuilder(new Partial<ResolvedMentionLink>(it)));
+    
 }
 

@@ -29,12 +29,12 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class ProjectsForProjectAutomationDeploymentsPutRequest
+public class ProjectsForProjectAutomationDeploymentsPatchRequest
      : IPropagatePropertyAccessPath
 {
-    public ProjectsForProjectAutomationDeploymentsPutRequest() { }
+    public ProjectsForProjectAutomationDeploymentsPatchRequest() { }
     
-    public ProjectsForProjectAutomationDeploymentsPutRequest(TargetIdentifier targetIdentifier, DeploymentIdentifier deploymentIdentifier, string? version = null, DateTime? scheduledStart = null, string? description = null, List<DeploymentCommitReference>? commitRefs = null, ExternalLink? externalLink = null)
+    public ProjectsForProjectAutomationDeploymentsPatchRequest(TargetIdentifier targetIdentifier, DeploymentIdentifier deploymentIdentifier, string? version = null, DateTime? scheduledStart = null, string? description = null, List<DeploymentCommitReference>? commitRefs = null, ExternalLink? externalLink = null)
     {
         TargetIdentifier = targetIdentifier;
         DeploymentIdentifier = deploymentIdentifier;
@@ -45,7 +45,7 @@ public class ProjectsForProjectAutomationDeploymentsPutRequest
         ExternalLink = externalLink;
     }
     
-    private PropertyValue<TargetIdentifier> _targetIdentifier = new PropertyValue<TargetIdentifier>(nameof(ProjectsForProjectAutomationDeploymentsPutRequest), nameof(TargetIdentifier), "targetIdentifier");
+    private PropertyValue<TargetIdentifier> _targetIdentifier = new PropertyValue<TargetIdentifier>(nameof(ProjectsForProjectAutomationDeploymentsPatchRequest), nameof(TargetIdentifier), "targetIdentifier");
     
     [Required]
     [JsonPropertyName("targetIdentifier")]
@@ -55,7 +55,7 @@ public class ProjectsForProjectAutomationDeploymentsPutRequest
         set => _targetIdentifier.SetValue(value);
     }
 
-    private PropertyValue<DeploymentIdentifier> _deploymentIdentifier = new PropertyValue<DeploymentIdentifier>(nameof(ProjectsForProjectAutomationDeploymentsPutRequest), nameof(DeploymentIdentifier), "deploymentIdentifier");
+    private PropertyValue<DeploymentIdentifier> _deploymentIdentifier = new PropertyValue<DeploymentIdentifier>(nameof(ProjectsForProjectAutomationDeploymentsPatchRequest), nameof(DeploymentIdentifier), "deploymentIdentifier");
     
     [Required]
     [JsonPropertyName("deploymentIdentifier")]
@@ -65,7 +65,7 @@ public class ProjectsForProjectAutomationDeploymentsPutRequest
         set => _deploymentIdentifier.SetValue(value);
     }
 
-    private PropertyValue<string?> _version = new PropertyValue<string?>(nameof(ProjectsForProjectAutomationDeploymentsPutRequest), nameof(Version), "version");
+    private PropertyValue<string?> _version = new PropertyValue<string?>(nameof(ProjectsForProjectAutomationDeploymentsPatchRequest), nameof(Version), "version");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -77,7 +77,7 @@ public class ProjectsForProjectAutomationDeploymentsPutRequest
         set => _version.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _scheduledStart = new PropertyValue<DateTime?>(nameof(ProjectsForProjectAutomationDeploymentsPutRequest), nameof(ScheduledStart), "scheduledStart");
+    private PropertyValue<DateTime?> _scheduledStart = new PropertyValue<DateTime?>(nameof(ProjectsForProjectAutomationDeploymentsPatchRequest), nameof(ScheduledStart), "scheduledStart");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -90,7 +90,7 @@ public class ProjectsForProjectAutomationDeploymentsPutRequest
         set => _scheduledStart.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectAutomationDeploymentsPutRequest), nameof(Description), "description");
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectAutomationDeploymentsPatchRequest), nameof(Description), "description");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -102,7 +102,7 @@ public class ProjectsForProjectAutomationDeploymentsPutRequest
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<List<DeploymentCommitReference>?> _commitRefs = new PropertyValue<List<DeploymentCommitReference>?>(nameof(ProjectsForProjectAutomationDeploymentsPutRequest), nameof(CommitRefs), "commitRefs");
+    private PropertyValue<List<DeploymentCommitReference>?> _commitRefs = new PropertyValue<List<DeploymentCommitReference>?>(nameof(ProjectsForProjectAutomationDeploymentsPatchRequest), nameof(CommitRefs), "commitRefs");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -114,7 +114,7 @@ public class ProjectsForProjectAutomationDeploymentsPutRequest
         set => _commitRefs.SetValue(value);
     }
 
-    private PropertyValue<ExternalLink?> _externalLink = new PropertyValue<ExternalLink?>(nameof(ProjectsForProjectAutomationDeploymentsPutRequest), nameof(ExternalLink), "externalLink");
+    private PropertyValue<ExternalLink?> _externalLink = new PropertyValue<ExternalLink?>(nameof(ProjectsForProjectAutomationDeploymentsPatchRequest), nameof(ExternalLink), "externalLink");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]

@@ -29,32 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class TopLevelOverlayUiExtensionIn
-     : AppUiExtensionIn, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class IssueFieldVisibility
+     : IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public  string? ClassName => "TopLevelOverlayUiExtensionIn";
+    public IssueFieldVisibility() { }
     
-    public TopLevelOverlayUiExtensionIn() { }
-    
-    public TopLevelOverlayUiExtensionIn(string iframeUrl)
+    public IssueFieldVisibility(IssueSystemFieldEnum field, bool visible)
     {
-        IframeUrl = iframeUrl;
+        Field = field;
+        IsVisible = visible;
     }
     
-    private PropertyValue<string> _iframeUrl = new PropertyValue<string>(nameof(TopLevelOverlayUiExtensionIn), nameof(IframeUrl), "iframeUrl");
+    private PropertyValue<IssueSystemFieldEnum> _field = new PropertyValue<IssueSystemFieldEnum>(nameof(IssueFieldVisibility), nameof(Field), "field");
     
     [Required]
-    [JsonPropertyName("iframeUrl")]
-    public string IframeUrl
+    [JsonPropertyName("field")]
+    public IssueSystemFieldEnum Field
     {
-        get => _iframeUrl.GetValue(InlineErrors);
-        set => _iframeUrl.SetValue(value);
+        get => _field.GetValue(InlineErrors);
+        set => _field.SetValue(value);
+    }
+
+    private PropertyValue<bool> _visible = new PropertyValue<bool>(nameof(IssueFieldVisibility), nameof(IsVisible), "visible");
+    
+    [Required]
+    [JsonPropertyName("visible")]
+    public bool IsVisible
+    {
+        get => _visible.GetValue(InlineErrors);
+        set => _visible.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _iframeUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _field.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _visible.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

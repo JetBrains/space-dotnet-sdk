@@ -34,11 +34,12 @@ public sealed class RtLinkAttrs
 {
     public RtLinkAttrs() { }
     
-    public RtLinkAttrs(string href, string? title = null, RtLinkDetails? details = null)
+    public RtLinkAttrs(string href, string? title = null, RtLinkDetails? details = null, string? mention = null)
     {
         Href = href;
         Title = title;
         Details = details;
+        Mention = mention;
     }
     
     private PropertyValue<string> _href = new PropertyValue<string>(nameof(RtLinkAttrs), nameof(Href), "href");
@@ -69,11 +70,21 @@ public sealed class RtLinkAttrs
         set => _details.SetValue(value);
     }
 
+    private PropertyValue<string?> _mention = new PropertyValue<string?>(nameof(RtLinkAttrs), nameof(Mention), "mention");
+    
+    [JsonPropertyName("mention")]
+    public string? Mention
+    {
+        get => _mention.GetValue(InlineErrors);
+        set => _mention.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _href.SetAccessPath(parentChainPath, validateHasBeenSet);
         _title.SetAccessPath(parentChainPath, validateHasBeenSet);
         _details.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mention.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

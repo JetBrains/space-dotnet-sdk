@@ -50,14 +50,20 @@ public enum SyntaxMarkupType
     [EnumMember(Value = "PARAMETER_ASSIGNMENT")]
     PARAMETERASSIGNMENT,
     
-    [EnumMember(Value = "IDENTIFIER")]
-    IDENTIFIER,
-    
     [EnumMember(Value = "IDENTIFIER_TYPE")]
     IDENTIFIERTYPE,
     
     [EnumMember(Value = "IDENTIFIER_DECLARATION")]
     IDENTIFIERDECLARATION,
+    
+    [EnumMember(Value = "IDENTIFIER")]
+    IDENTIFIER,
+    
+    [EnumMember(Value = "INVOCATION")]
+    INVOCATION,
+    
+    [EnumMember(Value = "DSL")]
+    DSL,
     
     [EnumMember(Value = "KEY")]
     KEY,

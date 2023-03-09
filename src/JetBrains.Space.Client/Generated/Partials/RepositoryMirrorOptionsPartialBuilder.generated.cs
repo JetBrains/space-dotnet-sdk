@@ -37,5 +37,8 @@ public static class RepositoryMirrorOptionsPartialExtensions
     public static Partial<RepositoryMirrorOptions> WithIsSyncOnFetch(this Partial<RepositoryMirrorOptions> it)
         => it.AddFieldName("syncOnFetch");
     
+    public static Partial<RepositoryMirrorOptions> WithIsAllowAtomicPush(this Partial<RepositoryMirrorOptions> it)
+        => it.AddFieldName("allowAtomicPush");
+    
 }
 

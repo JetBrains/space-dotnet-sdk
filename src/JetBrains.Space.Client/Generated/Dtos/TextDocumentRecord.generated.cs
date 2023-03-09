@@ -34,11 +34,13 @@ public sealed class TextDocumentRecord
 {
     public TextDocumentRecord() { }
     
-    public TextDocumentRecord(string id, bool archived, DraftDocumentType type)
+    public TextDocumentRecord(string id, bool archived, DraftDocumentType type, List<AttachmentInfo>? attachments = null, List<ResolvedMentionLink>? mentions = null)
     {
         Id = id;
         IsArchived = archived;
         Type = type;
+        Attachments = attachments;
+        Mentions = mentions;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(TextDocumentRecord), nameof(Id), "id");
@@ -71,11 +73,31 @@ public sealed class TextDocumentRecord
         set => _type.SetValue(value);
     }
 
+    private PropertyValue<List<AttachmentInfo>?> _attachments = new PropertyValue<List<AttachmentInfo>?>(nameof(TextDocumentRecord), nameof(Attachments), "attachments");
+    
+    [JsonPropertyName("attachments")]
+    public List<AttachmentInfo>? Attachments
+    {
+        get => _attachments.GetValue(InlineErrors);
+        set => _attachments.SetValue(value);
+    }
+
+    private PropertyValue<List<ResolvedMentionLink>?> _mentions = new PropertyValue<List<ResolvedMentionLink>?>(nameof(TextDocumentRecord), nameof(Mentions), "mentions");
+    
+    [JsonPropertyName("mentions")]
+    public List<ResolvedMentionLink>? Mentions
+    {
+        get => _mentions.GetValue(InlineErrors);
+        set => _mentions.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
         _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mentions.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -2039,6 +2039,40 @@ public partial class TeamDirectoryClient : ISpaceClient
         
         }
     
+        public WidgetSettingClient WidgetSettings => new WidgetSettingClient(_connection);
+        
+        public partial class WidgetSettingClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public WidgetSettingClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<WidgetSettingsRecord> GetWidgetSettingAsync(WidgetSettingsIdentifier widget, Func<Partial<WidgetSettingsRecord>, Partial<WidgetSettingsRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<WidgetSettingsRecord>()) : Partial<WidgetSettingsRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<WidgetSettingsRecord>("GET", $"api/http/team-directory/profiles/widget-settings/{widget}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetWidgetSetting", cancellationToken: cancellationToken);
+            }
+            
+        
+            public async Task UpdateWidgetSettingAsync(WidgetSettingsIdentifier widget, WidgetSettingsDTO settings, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/widget-settings/{widget}{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryProfilesWidgetSettingsForWidgetPatchRequest
+                    { 
+                        Settings = settings,
+                    }, requestHeaders: null, functionName: "UpdateWidgetSetting", cancellationToken: cancellationToken);
+            }
+            
+        
+        }
+    
         public WorkingDayClient WorkingDays => new WorkingDayClient(_connection);
         
         public partial class WorkingDayClient : ISpaceClient
@@ -2699,6 +2733,41 @@ public partial class TeamDirectoryClient : ISpaceClient
                 }
                 
             
+                public AccesClient Access => new AccesClient(_connection);
+                
+                public partial class AccesClient : ISpaceClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public AccesClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<FolderAccess> FolderOwnAccessPermissionsAsync(ProfileIdentifier profile, FolderIdentifier folder, Func<Partial<FolderAccess>, Partial<FolderAccess>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<FolderAccess>()) : Partial<FolderAccess>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<FolderAccess>("GET", $"api/http/team-directory/profiles/{profile}/documents/folders/{folder}/access{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "FolderOwnAccessPermissions", cancellationToken: cancellationToken);
+                    }
+                    
+                
+                    public async Task UpdateFolderAccessPermissionsAsync(ProfileIdentifier profile, FolderIdentifier folder, UpdateFolderAccessIn accessChange, bool silent = false, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/documents/folders/{folder}/access{queryParameters.ToQueryString()}", 
+                            new TeamDirectoryProfilesForProfileDocumentsFoldersForFolderAccessPatchRequest
+                            { 
+                                AccessChange = accessChange,
+                                IsSilent = silent,
+                            }, requestHeaders: null, functionName: "UpdateFolderAccessPermissions", cancellationToken: cancellationToken);
+                    }
+                    
+                
+                }
+            
                 public DocumentClient Documents => new DocumentClient(_connection);
                 
                 public partial class DocumentClient : ISpaceClient
@@ -2811,6 +2880,41 @@ public partial class TeamDirectoryClient : ISpaceClient
                         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListSubfoldersAsync(profile: profile, folder: folder, withArchived: withArchived, sortBy: sortBy, order: order, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<DocumentFolder>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DocumentFolder>.Default())), skip, cancellationToken);
                 
                 }
+            
+            }
+        
+            public AccesClient Access => new AccesClient(_connection);
+            
+            public partial class AccesClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public AccesClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<DocumentAccess> DocumentOwnAccessPermissionsAsync(ProfileIdentifier profile, string documentId, Func<Partial<DocumentAccess>, Partial<DocumentAccess>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<DocumentAccess>()) : Partial<DocumentAccess>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<DocumentAccess>("GET", $"api/http/team-directory/profiles/{profile}/documents/{documentId}/access{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DocumentOwnAccessPermissions", cancellationToken: cancellationToken);
+                }
+                
+            
+                public async Task UpdateDocumentAccessPermissionsAsync(ProfileIdentifier profile, string documentId, UpdateDocumentAccessIn accessChange, bool silent = false, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/documents/{documentId}/access{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileDocumentsForDocumentIdAccessPatchRequest
+                        { 
+                            AccessChange = accessChange,
+                            IsSilent = silent,
+                        }, requestHeaders: null, functionName: "UpdateDocumentAccessPermissions", cancellationToken: cancellationToken);
+                }
+                
             
             }
         

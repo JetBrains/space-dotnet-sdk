@@ -43,5 +43,8 @@ public static class RtLinkAttrsPartialExtensions
     public static Partial<RtLinkAttrs> WithDetails(this Partial<RtLinkAttrs> it, Func<Partial<RtLinkDetails>, Partial<RtLinkDetails>> partialBuilder)
         => it.AddFieldName("details", partialBuilder(new Partial<RtLinkDetails>(it)));
     
+    public static Partial<RtLinkAttrs> WithMention(this Partial<RtLinkAttrs> it)
+        => it.AddFieldName("mention");
+    
 }
 

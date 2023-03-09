@@ -29,32 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class TopLevelOverlayUiExtensionApi
-     : AppUiExtensionApi, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class FollowedMembersSettings
+     : IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public  string? ClassName => "TopLevelOverlayUiExtensionApi";
+    public FollowedMembersSettings() { }
     
-    public TopLevelOverlayUiExtensionApi() { }
-    
-    public TopLevelOverlayUiExtensionApi(string iframeUrl)
+    public FollowedMembersSettings(bool enabled, List<string> members)
     {
-        IframeUrl = iframeUrl;
+        IsEnabled = enabled;
+        Members = members;
     }
     
-    private PropertyValue<string> _iframeUrl = new PropertyValue<string>(nameof(TopLevelOverlayUiExtensionApi), nameof(IframeUrl), "iframeUrl");
+    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(FollowedMembersSettings), nameof(IsEnabled), "enabled");
     
     [Required]
-    [JsonPropertyName("iframeUrl")]
-    public string IframeUrl
+    [JsonPropertyName("enabled")]
+    public bool IsEnabled
     {
-        get => _iframeUrl.GetValue(InlineErrors);
-        set => _iframeUrl.SetValue(value);
+        get => _enabled.GetValue(InlineErrors);
+        set => _enabled.SetValue(value);
+    }
+
+    private PropertyValue<List<string>> _members = new PropertyValue<List<string>>(nameof(FollowedMembersSettings), nameof(Members), "members", new List<string>());
+    
+    [Required]
+    [JsonPropertyName("members")]
+    public List<string> Members
+    {
+        get => _members.GetValue(InlineErrors);
+        set => _members.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _iframeUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _enabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _members.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

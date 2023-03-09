@@ -49,6 +49,9 @@ public static class DocumentFolderPartialExtensions
     public static Partial<DocumentFolder> WithName(this Partial<DocumentFolder> it)
         => it.AddFieldName("name");
     
+    public static Partial<DocumentFolder> WithIsRestricted(this Partial<DocumentFolder> it)
+        => it.AddFieldName("isRestricted");
+    
     public static Partial<DocumentFolder> WithCreated(this Partial<DocumentFolder> it)
         => it.AddFieldName("created");
     

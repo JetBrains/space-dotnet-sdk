@@ -34,7 +34,7 @@ public sealed class DeploymentCommitRefDetails
 {
     public DeploymentCommitRefDetails() { }
     
-    public DeploymentCommitRefDetails(string repositoryName, string branch, string commit, bool head, bool rollback, bool missing, long? timestamp = null, int? totalCommits = null, int? totalMerges = null, int? totalIssues = null)
+    public DeploymentCommitRefDetails(string repositoryName, string branch, string commit, bool head, bool rollback, bool missing, long? timestamp = null, int? totalCommits = null, int? totalMerges = null, int? totalIssues = null, bool? initial = null)
     {
         RepositoryName = repositoryName;
         Branch = branch;
@@ -46,6 +46,7 @@ public sealed class DeploymentCommitRefDetails
         TotalIssues = totalIssues;
         IsRollback = rollback;
         IsMissing = missing;
+        IsInitial = initial;
     }
     
     private PropertyValue<string> _repositoryName = new PropertyValue<string>(nameof(DeploymentCommitRefDetails), nameof(RepositoryName), "repositoryName");
@@ -144,6 +145,15 @@ public sealed class DeploymentCommitRefDetails
         set => _missing.SetValue(value);
     }
 
+    private PropertyValue<bool?> _initial = new PropertyValue<bool?>(nameof(DeploymentCommitRefDetails), nameof(IsInitial), "initial");
+    
+    [JsonPropertyName("initial")]
+    public bool? IsInitial
+    {
+        get => _initial.GetValue(InlineErrors);
+        set => _initial.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _repositoryName.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -156,6 +166,7 @@ public sealed class DeploymentCommitRefDetails
         _totalIssues.SetAccessPath(parentChainPath, validateHasBeenSet);
         _rollback.SetAccessPath(parentChainPath, validateHasBeenSet);
         _missing.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _initial.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

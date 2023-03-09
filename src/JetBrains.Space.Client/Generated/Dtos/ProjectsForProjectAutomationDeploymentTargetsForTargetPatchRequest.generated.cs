@@ -29,12 +29,12 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest
+public class ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest
      : IPropagatePropertyAccessPath
 {
-    public ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest() { }
+    public ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest() { }
     
-    public ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest(string? name = null, string? description = null, List<DeployTargetRepositoryDTO>? repositories = null, bool? manualControl = null, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null)
+    public ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest(string? name = null, string? description = null, List<DeployTargetRepositoryDTO>? repositories = null, bool? manualControl = null, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null)
     {
         Name = name;
         Description = description;
@@ -47,7 +47,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest
         Links = links;
     }
     
-    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest), nameof(Name), "name");
+    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest), nameof(Name), "name");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -59,7 +59,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest), nameof(Description), "description");
+    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest), nameof(Description), "description");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -71,7 +71,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<List<DeployTargetRepositoryDTO>?> _repositories = new PropertyValue<List<DeployTargetRepositoryDTO>?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest), nameof(Repositories), "repositories");
+    private PropertyValue<List<DeployTargetRepositoryDTO>?> _repositories = new PropertyValue<List<DeployTargetRepositoryDTO>?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest), nameof(Repositories), "repositories");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -83,7 +83,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest
         set => _repositories.SetValue(value);
     }
 
-    private PropertyValue<bool?> _manualControl = new PropertyValue<bool?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest), nameof(IsManualControl), "manualControl");
+    private PropertyValue<bool?> _manualControl = new PropertyValue<bool?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest), nameof(IsManualControl), "manualControl");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -95,7 +95,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest
         set => _manualControl.SetValue(value);
     }
 
-    private PropertyValue<int?> _hangTimeoutMinutes = new PropertyValue<int?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest), nameof(HangTimeoutMinutes), "hangTimeoutMinutes");
+    private PropertyValue<int?> _hangTimeoutMinutes = new PropertyValue<int?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest), nameof(HangTimeoutMinutes), "hangTimeoutMinutes");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -107,7 +107,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest
         set => _hangTimeoutMinutes.SetValue(value);
     }
 
-    private PropertyValue<int?> _failTimeoutMinutes = new PropertyValue<int?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest), nameof(FailTimeoutMinutes), "failTimeoutMinutes");
+    private PropertyValue<int?> _failTimeoutMinutes = new PropertyValue<int?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest), nameof(FailTimeoutMinutes), "failTimeoutMinutes");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -119,7 +119,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest
         set => _failTimeoutMinutes.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _responsibleUsers = new PropertyValue<List<string>?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest), nameof(ResponsibleUsers), "responsibleUsers");
+    private PropertyValue<List<string>?> _responsibleUsers = new PropertyValue<List<string>?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest), nameof(ResponsibleUsers), "responsibleUsers");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -131,7 +131,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest
         set => _responsibleUsers.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _responsibleTeams = new PropertyValue<List<string>?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest), nameof(ResponsibleTeams), "responsibleTeams");
+    private PropertyValue<List<string>?> _responsibleTeams = new PropertyValue<List<string>?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest), nameof(ResponsibleTeams), "responsibleTeams");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -143,7 +143,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest
         set => _responsibleTeams.SetValue(value);
     }
 
-    private PropertyValue<List<DeployTargetLink>?> _links = new PropertyValue<List<DeployTargetLink>?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPutRequest), nameof(Links), "links");
+    private PropertyValue<List<DeployTargetLink>?> _links = new PropertyValue<List<DeployTargetLink>?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest), nameof(Links), "links");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]

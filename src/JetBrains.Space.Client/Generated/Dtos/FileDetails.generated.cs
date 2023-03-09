@@ -34,16 +34,18 @@ public sealed class FileDetails
 {
     public FileDetails() { }
     
-    public FileDetails(PackageType type, string repository, string name, long created, long downloads, long diskSize, string path, long? lastModified = null, List<CPrincipal>? authors = null, string? description = null, string? contentType = null, Dictionary<string, string>? metadata = null)
+    public FileDetails(PackageType type, string repository, string name, long created, long downloads, long diskSize, string path, CPrincipal? createdBy = null, long? lastModified = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, string? description = null, string? contentType = null, Dictionary<string, string>? metadata = null)
     {
         Type = type;
         Repository = repository;
         Name = name;
         Created = created;
+        CreatedBy = createdBy;
         LastModified = lastModified;
         Downloads = downloads;
         DiskSize = diskSize;
         Authors = authors;
+        Origin = origin;
         Description = description;
         Path = path;
         ContentType = contentType;
@@ -90,6 +92,15 @@ public sealed class FileDetails
         set => _created.SetValue(value);
     }
 
+    private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(FileDetails), nameof(CreatedBy), "createdBy");
+    
+    [JsonPropertyName("createdBy")]
+    public CPrincipal? CreatedBy
+    {
+        get => _createdBy.GetValue(InlineErrors);
+        set => _createdBy.SetValue(value);
+    }
+
     private PropertyValue<long?> _lastModified = new PropertyValue<long?>(nameof(FileDetails), nameof(LastModified), "lastModified");
     
     [JsonPropertyName("lastModified")]
@@ -126,6 +137,15 @@ public sealed class FileDetails
     {
         get => _authors.GetValue(InlineErrors);
         set => _authors.SetValue(value);
+    }
+
+    private PropertyValue<PackageOrigin?> _origin = new PropertyValue<PackageOrigin?>(nameof(FileDetails), nameof(Origin), "origin");
+    
+    [JsonPropertyName("origin")]
+    public PackageOrigin? Origin
+    {
+        get => _origin.GetValue(InlineErrors);
+        set => _origin.SetValue(value);
     }
 
     private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(FileDetails), nameof(Description), "description");
@@ -171,10 +191,12 @@ public sealed class FileDetails
         _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _created.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _createdBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _lastModified.SetAccessPath(parentChainPath, validateHasBeenSet);
         _downloads.SetAccessPath(parentChainPath, validateHasBeenSet);
         _diskSize.SetAccessPath(parentChainPath, validateHasBeenSet);
         _authors.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _origin.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _path.SetAccessPath(parentChainPath, validateHasBeenSet);
         _contentType.SetAccessPath(parentChainPath, validateHasBeenSet);

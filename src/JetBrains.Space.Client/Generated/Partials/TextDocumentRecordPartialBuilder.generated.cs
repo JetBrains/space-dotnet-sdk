@@ -43,5 +43,17 @@ public static class TextDocumentRecordPartialExtensions
     public static Partial<TextDocumentRecord> WithType(this Partial<TextDocumentRecord> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
         => it.AddFieldName("type", partialBuilder(new Partial<DraftDocumentType>(it)));
     
+    public static Partial<TextDocumentRecord> WithAttachments(this Partial<TextDocumentRecord> it)
+        => it.AddFieldName("attachments");
+    
+    public static Partial<TextDocumentRecord> WithAttachments(this Partial<TextDocumentRecord> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
+        => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentInfo>(it)));
+    
+    public static Partial<TextDocumentRecord> WithMentions(this Partial<TextDocumentRecord> it)
+        => it.AddFieldName("mentions");
+    
+    public static Partial<TextDocumentRecord> WithMentions(this Partial<TextDocumentRecord> it, Func<Partial<ResolvedMentionLink>, Partial<ResolvedMentionLink>> partialBuilder)
+        => it.AddFieldName("mentions", partialBuilder(new Partial<ResolvedMentionLink>(it)));
+    
 }
 

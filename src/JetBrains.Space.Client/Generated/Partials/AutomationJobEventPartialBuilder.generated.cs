@@ -79,5 +79,11 @@ public static class AutomationJobEventPartialExtensions
     public static Partial<AutomationJobEvent> WithEndTime(this Partial<AutomationJobEvent> it)
         => it.AddFieldName("endTime");
     
+    public static Partial<AutomationJobEvent> WithRepositories(this Partial<AutomationJobEvent> it)
+        => it.AddFieldName("repositories");
+    
+    public static Partial<AutomationJobEvent> WithRepositories(this Partial<AutomationJobEvent> it, Func<Partial<GitCheckout>, Partial<GitCheckout>> partialBuilder)
+        => it.AddFieldName("repositories", partialBuilder(new Partial<GitCheckout>(it)));
+    
 }
 

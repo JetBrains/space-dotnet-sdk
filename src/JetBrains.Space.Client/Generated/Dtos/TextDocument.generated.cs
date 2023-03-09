@@ -37,7 +37,7 @@ public sealed class TextDocument
     
     public TextDocument() { }
     
-    public TextDocument(string id, long resetCounter, DraftDocumentType type, string text, long? version = null, string? model = null, List<AttachmentInfo>? attachments = null)
+    public TextDocument(string id, long resetCounter, DraftDocumentType type, string text, long? version = null, string? model = null, List<AttachmentInfo>? attachments = null, List<ResolvedMentionLink>? mentions = null)
     {
         Id = id;
         ResetCounter = resetCounter;
@@ -46,6 +46,7 @@ public sealed class TextDocument
         Text = text;
         Model = model;
         Attachments = attachments;
+        Mentions = mentions;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(TextDocument), nameof(Id), "id");
@@ -115,6 +116,15 @@ public sealed class TextDocument
         set => _attachments.SetValue(value);
     }
 
+    private PropertyValue<List<ResolvedMentionLink>?> _mentions = new PropertyValue<List<ResolvedMentionLink>?>(nameof(TextDocument), nameof(Mentions), "mentions");
+    
+    [JsonPropertyName("mentions")]
+    public List<ResolvedMentionLink>? Mentions
+    {
+        get => _mentions.GetValue(InlineErrors);
+        set => _mentions.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -124,6 +134,7 @@ public sealed class TextDocument
         _text.SetAccessPath(parentChainPath, validateHasBeenSet);
         _model.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mentions.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

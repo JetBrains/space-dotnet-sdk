@@ -61,5 +61,8 @@ public static class DeploymentCommitRefDetailsPartialExtensions
     public static Partial<DeploymentCommitRefDetails> WithIsMissing(this Partial<DeploymentCommitRefDetails> it)
         => it.AddFieldName("missing");
     
+    public static Partial<DeploymentCommitRefDetails> WithIsInitial(this Partial<DeploymentCommitRefDetails> it)
+        => it.AddFieldName("initial");
+    
 }
 
