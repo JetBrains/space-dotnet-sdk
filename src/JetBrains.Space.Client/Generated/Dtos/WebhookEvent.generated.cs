@@ -122,8 +122,8 @@ public interface WebhookEvent
     public static DocumentMetaWebhookEvent DocumentMeta(KMetaMod meta, string document, Modification<bool>? deleted = null, Modification<bool>? published = null)
         => new DocumentMetaWebhookEvent(meta: meta, document: document, deleted: deleted, published: published);
     
-    public static DocumentWebhookEvent Document(KMetaMod meta, string document, List<CPrincipal> changeAuthors, DateTime version, DateTime @base)
-        => new DocumentWebhookEvent(meta: meta, document: document, changeAuthors: changeAuthors, version: version, @base: @base);
+    public static DocumentWebhookEvent Document(KMetaMod meta, string document, List<CPrincipal> changeAuthors, DateTime version, DateTime @base, Document? documentRef = null)
+        => new DocumentWebhookEvent(meta: meta, document: document, changeAuthors: changeAuthors, version: version, @base: @base, documentRef: documentRef);
     
     public static EmailBouncedEvent EmailBouncedEvent(string email, string reason)
         => new EmailBouncedEvent(email: email, reason: reason);

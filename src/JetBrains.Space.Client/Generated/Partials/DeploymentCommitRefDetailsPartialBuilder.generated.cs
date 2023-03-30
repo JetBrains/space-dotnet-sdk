@@ -46,14 +46,23 @@ public static class DeploymentCommitRefDetailsPartialExtensions
     public static Partial<DeploymentCommitRefDetails> WithIsHead(this Partial<DeploymentCommitRefDetails> it)
         => it.AddFieldName("head");
     
-    public static Partial<DeploymentCommitRefDetails> WithTotalCommits(this Partial<DeploymentCommitRefDetails> it)
-        => it.AddFieldName("totalCommits");
+    public static Partial<DeploymentCommitRefDetails> WithCommitsAdded(this Partial<DeploymentCommitRefDetails> it)
+        => it.AddFieldName("commitsAdded");
     
-    public static Partial<DeploymentCommitRefDetails> WithTotalMerges(this Partial<DeploymentCommitRefDetails> it)
-        => it.AddFieldName("totalMerges");
+    public static Partial<DeploymentCommitRefDetails> WithMergesAdded(this Partial<DeploymentCommitRefDetails> it)
+        => it.AddFieldName("mergesAdded");
     
-    public static Partial<DeploymentCommitRefDetails> WithTotalIssues(this Partial<DeploymentCommitRefDetails> it)
-        => it.AddFieldName("totalIssues");
+    public static Partial<DeploymentCommitRefDetails> WithIssuesAdded(this Partial<DeploymentCommitRefDetails> it)
+        => it.AddFieldName("issuesAdded");
+    
+    public static Partial<DeploymentCommitRefDetails> WithCommitsReverted(this Partial<DeploymentCommitRefDetails> it)
+        => it.AddFieldName("commitsReverted");
+    
+    public static Partial<DeploymentCommitRefDetails> WithMergesReverted(this Partial<DeploymentCommitRefDetails> it)
+        => it.AddFieldName("mergesReverted");
+    
+    public static Partial<DeploymentCommitRefDetails> WithIssuesReverted(this Partial<DeploymentCommitRefDetails> it)
+        => it.AddFieldName("issuesReverted");
     
     public static Partial<DeploymentCommitRefDetails> WithIsRollback(this Partial<DeploymentCommitRefDetails> it)
         => it.AddFieldName("rollback");

@@ -76,6 +76,9 @@ public static class AbsenceRecordPartialExtensions
     public static Partial<AbsenceRecord> WithApproval(this Partial<AbsenceRecord> it, Func<Partial<AbsenceApproval>, Partial<AbsenceApproval>> partialBuilder)
         => it.AddFieldName("approval", partialBuilder(new Partial<AbsenceApproval>(it)));
     
+    public static Partial<AbsenceRecord> WithCategory(this Partial<AbsenceRecord> it)
+        => it.AddFieldName("category");
+    
     public static Partial<AbsenceRecord> WithCustomFields(this Partial<AbsenceRecord> it)
         => it.AddFieldName("customFields");
     

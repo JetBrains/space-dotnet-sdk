@@ -37,10 +37,11 @@ public sealed class DocumentWebhookEvent
     
     public DocumentWebhookEvent() { }
     
-    public DocumentWebhookEvent(KMetaMod meta, string document, List<CPrincipal> changeAuthors, DateTime version, DateTime @base)
+    public DocumentWebhookEvent(KMetaMod meta, string document, List<CPrincipal> changeAuthors, DateTime version, DateTime @base, Document? documentRef = null)
     {
         Meta = meta;
         Document = document;
+        DocumentRef = documentRef;
         ChangeAuthors = changeAuthors;
         Version = version;
         Base = @base;
@@ -64,6 +65,15 @@ public sealed class DocumentWebhookEvent
     {
         get => _document.GetValue(InlineErrors);
         set => _document.SetValue(value);
+    }
+
+    private PropertyValue<Document?> _documentRef = new PropertyValue<Document?>(nameof(DocumentWebhookEvent), nameof(DocumentRef), "documentRef");
+    
+    [JsonPropertyName("documentRef")]
+    public Document? DocumentRef
+    {
+        get => _documentRef.GetValue(InlineErrors);
+        set => _documentRef.SetValue(value);
     }
 
     private PropertyValue<List<CPrincipal>> _changeAuthors = new PropertyValue<List<CPrincipal>>(nameof(DocumentWebhookEvent), nameof(ChangeAuthors), "changeAuthors", new List<CPrincipal>());
@@ -102,6 +112,7 @@ public sealed class DocumentWebhookEvent
     {
         _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
         _document.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _documentRef.SetAccessPath(parentChainPath, validateHasBeenSet);
         _changeAuthors.SetAccessPath(parentChainPath, validateHasBeenSet);
         _version.SetAccessPath(parentChainPath, validateHasBeenSet);
         _base.SetAccessPath(parentChainPath, validateHasBeenSet);

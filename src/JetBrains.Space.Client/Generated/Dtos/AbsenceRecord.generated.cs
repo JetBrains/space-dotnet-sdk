@@ -34,7 +34,7 @@ public sealed class AbsenceRecord
 {
     public AbsenceRecord() { }
     
-    public AbsenceRecord(string id, bool archived, TDMemberProfile member, string icon, DateTime since, DateTime till, bool available, Dictionary<string, CFValue> customFields, AbsenceReasonRecord? reason = null, string? description = null, TDLocation? location = null, AbsenceApproval? approval = null)
+    public AbsenceRecord(string id, bool archived, TDMemberProfile member, string icon, DateTime since, DateTime till, bool available, Dictionary<string, CFValue> customFields, AbsenceReasonRecord? reason = null, string? description = null, TDLocation? location = null, AbsenceApproval? approval = null, string? category = null)
     {
         Id = id;
         IsArchived = archived;
@@ -47,6 +47,7 @@ public sealed class AbsenceRecord
         Location = location;
         IsAvailable = available;
         Approval = approval;
+        Category = category;
         CustomFields = customFields;
     }
     
@@ -158,6 +159,15 @@ public sealed class AbsenceRecord
         set => _approval.SetValue(value);
     }
 
+    private PropertyValue<string?> _category = new PropertyValue<string?>(nameof(AbsenceRecord), nameof(Category), "category");
+    
+    [JsonPropertyName("category")]
+    public string? Category
+    {
+        get => _category.GetValue(InlineErrors);
+        set => _category.SetValue(value);
+    }
+
     private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(AbsenceRecord), nameof(CustomFields), "customFields", new Dictionary<string, CFValue>());
     
     [Required]
@@ -181,6 +191,7 @@ public sealed class AbsenceRecord
         _location.SetAccessPath(parentChainPath, validateHasBeenSet);
         _available.SetAccessPath(parentChainPath, validateHasBeenSet);
         _approval.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _category.SetAccessPath(parentChainPath, validateHasBeenSet);
         _customFields.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

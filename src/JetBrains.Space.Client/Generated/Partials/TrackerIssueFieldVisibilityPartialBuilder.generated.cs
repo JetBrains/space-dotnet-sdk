@@ -27,24 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RtLinkAttrsPartialBuilder;
+namespace JetBrains.Space.Client.TrackerIssueFieldVisibilityPartialBuilder;
 
-public static class RtLinkAttrsPartialExtensions
+public static class TrackerIssueFieldVisibilityPartialExtensions
 {
-    public static Partial<RtLinkAttrs> WithHref(this Partial<RtLinkAttrs> it)
-        => it.AddFieldName("href");
+    public static Partial<TrackerIssueFieldVisibility> WithId(this Partial<TrackerIssueFieldVisibility> it)
+        => it.AddFieldName("id");
     
-    public static Partial<RtLinkAttrs> WithTitle(this Partial<RtLinkAttrs> it)
-        => it.AddFieldName("title");
+    public static Partial<TrackerIssueFieldVisibility> WithSystemIssueFieldVisibilities(this Partial<TrackerIssueFieldVisibility> it)
+        => it.AddFieldName("systemIssueFieldVisibilities");
     
-    public static Partial<RtLinkAttrs> WithMention(this Partial<RtLinkAttrs> it)
-        => it.AddFieldName("mention");
+    public static Partial<TrackerIssueFieldVisibility> WithSystemIssueFieldVisibilities(this Partial<TrackerIssueFieldVisibility> it, Func<Partial<IssueFieldVisibility>, Partial<IssueFieldVisibility>> partialBuilder)
+        => it.AddFieldName("systemIssueFieldVisibilities", partialBuilder(new Partial<IssueFieldVisibility>(it)));
     
-    public static Partial<RtLinkAttrs> WithDetails(this Partial<RtLinkAttrs> it)
-        => it.AddFieldName("details");
-    
-    public static Partial<RtLinkAttrs> WithDetails(this Partial<RtLinkAttrs> it, Func<Partial<RtLinkDetails>, Partial<RtLinkDetails>> partialBuilder)
-        => it.AddFieldName("details", partialBuilder(new Partial<RtLinkDetails>(it)));
+    public static Partial<TrackerIssueFieldVisibility> WithIsArchived(this Partial<TrackerIssueFieldVisibility> it)
+        => it.AddFieldName("archived");
     
 }
 

@@ -34,12 +34,12 @@ public sealed class RtLinkAttrs
 {
     public RtLinkAttrs() { }
     
-    public RtLinkAttrs(string href, string? title = null, RtLinkDetails? details = null, string? mention = null)
+    public RtLinkAttrs(string href, string? title = null, string? mention = null, RtLinkDetails? details = null)
     {
         Href = href;
         Title = title;
-        Details = details;
         Mention = mention;
+        Details = details;
     }
     
     private PropertyValue<string> _href = new PropertyValue<string>(nameof(RtLinkAttrs), nameof(Href), "href");
@@ -61,15 +61,6 @@ public sealed class RtLinkAttrs
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<RtLinkDetails?> _details = new PropertyValue<RtLinkDetails?>(nameof(RtLinkAttrs), nameof(Details), "details");
-    
-    [JsonPropertyName("details")]
-    public RtLinkDetails? Details
-    {
-        get => _details.GetValue(InlineErrors);
-        set => _details.SetValue(value);
-    }
-
     private PropertyValue<string?> _mention = new PropertyValue<string?>(nameof(RtLinkAttrs), nameof(Mention), "mention");
     
     [JsonPropertyName("mention")]
@@ -79,12 +70,21 @@ public sealed class RtLinkAttrs
         set => _mention.SetValue(value);
     }
 
+    private PropertyValue<RtLinkDetails?> _details = new PropertyValue<RtLinkDetails?>(nameof(RtLinkAttrs), nameof(Details), "details");
+    
+    [JsonPropertyName("details")]
+    public RtLinkDetails? Details
+    {
+        get => _details.GetValue(InlineErrors);
+        set => _details.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _href.SetAccessPath(parentChainPath, validateHasBeenSet);
         _title.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _details.SetAccessPath(parentChainPath, validateHasBeenSet);
         _mention.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _details.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

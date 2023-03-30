@@ -38,6 +38,14 @@ public partial class BillingAdminClient : ISpaceClient
         _connection = connection;
     }
     
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View organization info</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
     public async Task<TierFeatureLimits> GetFeaturesAsync(Func<Partial<TierFeatureLimits>, Partial<TierFeatureLimits>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();

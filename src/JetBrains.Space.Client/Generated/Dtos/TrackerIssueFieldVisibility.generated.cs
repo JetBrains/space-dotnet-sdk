@@ -29,20 +29,19 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class IssueTracker
+public sealed class TrackerIssueFieldVisibility
      : IPropagatePropertyAccessPath
 {
-    public IssueTracker() { }
+    public TrackerIssueFieldVisibility() { }
     
-    public IssueTracker(string id, bool archived, string name, List<IssueFieldVisibility> systemIssueFieldVisibilities)
+    public TrackerIssueFieldVisibility(string id, List<IssueFieldVisibility> systemIssueFieldVisibilities, bool archived)
     {
         Id = id;
-        IsArchived = archived;
-        Name = name;
         SystemIssueFieldVisibilities = systemIssueFieldVisibilities;
+        IsArchived = archived;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(IssueTracker), nameof(Id), "id");
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TrackerIssueFieldVisibility), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
@@ -52,27 +51,7 @@ public sealed class IssueTracker
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(IssueTracker), nameof(IsArchived), "archived");
-    
-    [Required]
-    [JsonPropertyName("archived")]
-    public bool IsArchived
-    {
-        get => _archived.GetValue(InlineErrors);
-        set => _archived.SetValue(value);
-    }
-
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(IssueTracker), nameof(Name), "name");
-    
-    [Required]
-    [JsonPropertyName("name")]
-    public string Name
-    {
-        get => _name.GetValue(InlineErrors);
-        set => _name.SetValue(value);
-    }
-
-    private PropertyValue<List<IssueFieldVisibility>> _systemIssueFieldVisibilities = new PropertyValue<List<IssueFieldVisibility>>(nameof(IssueTracker), nameof(SystemIssueFieldVisibilities), "systemIssueFieldVisibilities", new List<IssueFieldVisibility>());
+    private PropertyValue<List<IssueFieldVisibility>> _systemIssueFieldVisibilities = new PropertyValue<List<IssueFieldVisibility>>(nameof(TrackerIssueFieldVisibility), nameof(SystemIssueFieldVisibilities), "systemIssueFieldVisibilities", new List<IssueFieldVisibility>());
     
     [Required]
     [JsonPropertyName("systemIssueFieldVisibilities")]
@@ -82,12 +61,21 @@ public sealed class IssueTracker
         set => _systemIssueFieldVisibilities.SetValue(value);
     }
 
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TrackerIssueFieldVisibility), nameof(IsArchived), "archived");
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue(InlineErrors);
+        set => _archived.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _systemIssueFieldVisibilities.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

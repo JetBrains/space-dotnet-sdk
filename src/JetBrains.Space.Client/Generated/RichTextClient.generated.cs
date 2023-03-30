@@ -41,6 +41,15 @@ public partial class RichTextClient : ISpaceClient
     /// <summary>
     /// Parses [Space markdown syntax](https://www.jetbrains.com/help/space/markdown-syntax.html) into a tree presentation
     /// </summary>
+    /// <remarks>
+    /// We are currently refining the hierarchy of the RtDocument, and it is likely to undergo changes in the near future. This hierarchy will be utilized in various subsystems such as documents, chats, and issues.
+    /// </remarks>
+#if NET6_0_OR_GREATER
+    [Obsolete("We are currently refining the hierarchy of the RtDocument, and it is likely to undergo changes in the near future. This hierarchy will be utilized in various subsystems such as documents, chats, and issues.", DiagnosticId = "SPC001")]
+#else
+    [Obsolete("We are currently refining the hierarchy of the RtDocument, and it is likely to undergo changes in the near future. This hierarchy will be utilized in various subsystems such as documents, chats, and issues.")]
+#endif
+    
     public async Task<RtDocument> ParseMarkdownAsync(string text, Func<Partial<RtDocument>, Partial<RtDocument>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();

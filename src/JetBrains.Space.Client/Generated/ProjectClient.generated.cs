@@ -2538,12 +2538,12 @@ public partial class ProjectClient : ISpaceClient
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task<List<IssueFieldVisibility>> GetIssueFieldVisibilityAsync(ProjectIdentifier project, Func<Partial<IssueFieldVisibility>, Partial<IssueFieldVisibility>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                    public async Task<TrackerIssueFieldVisibility> GetIssueFieldVisibilityAsync(ProjectIdentifier project, Func<Partial<TrackerIssueFieldVisibility>, Partial<TrackerIssueFieldVisibility>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<IssueFieldVisibility>()) : Partial<IssueFieldVisibility>.Default()).ToString());
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<TrackerIssueFieldVisibility>()) : Partial<TrackerIssueFieldVisibility>.Default()).ToString());
                         
-                        return await _connection.RequestResourceAsync<List<IssueFieldVisibility>>("GET", $"api/http/projects/{project}/planning/issues/fields/visibility{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetIssueFieldVisibility", cancellationToken: cancellationToken);
+                        return await _connection.RequestResourceAsync<TrackerIssueFieldVisibility>("GET", $"api/http/projects/{project}/planning/issues/fields/visibility{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetIssueFieldVisibility", cancellationToken: cancellationToken);
                     }
                     
                 

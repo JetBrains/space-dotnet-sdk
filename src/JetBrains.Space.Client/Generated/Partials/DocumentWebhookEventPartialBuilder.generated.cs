@@ -40,6 +40,12 @@ public static class DocumentWebhookEventPartialExtensions
     public static Partial<DocumentWebhookEvent> WithDocument(this Partial<DocumentWebhookEvent> it)
         => it.AddFieldName("document");
     
+    public static Partial<DocumentWebhookEvent> WithDocumentRef(this Partial<DocumentWebhookEvent> it)
+        => it.AddFieldName("documentRef");
+    
+    public static Partial<DocumentWebhookEvent> WithDocumentRef(this Partial<DocumentWebhookEvent> it, Func<Partial<Document>, Partial<Document>> partialBuilder)
+        => it.AddFieldName("documentRef", partialBuilder(new Partial<Document>(it)));
+    
     public static Partial<DocumentWebhookEvent> WithChangeAuthors(this Partial<DocumentWebhookEvent> it)
         => it.AddFieldName("changeAuthors");
     

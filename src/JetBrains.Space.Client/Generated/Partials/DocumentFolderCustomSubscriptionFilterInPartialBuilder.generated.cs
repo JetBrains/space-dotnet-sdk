@@ -27,24 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RtLinkAttrsPartialBuilder;
+namespace JetBrains.Space.Client.DocumentFolderCustomSubscriptionFilterInPartialBuilder;
 
-public static class RtLinkAttrsPartialExtensions
+public static class DocumentFolderCustomSubscriptionFilterInPartialExtensions
 {
-    public static Partial<RtLinkAttrs> WithHref(this Partial<RtLinkAttrs> it)
-        => it.AddFieldName("href");
+    public static Partial<DocumentFolderCustomSubscriptionFilterIn> WithProject(this Partial<DocumentFolderCustomSubscriptionFilterIn> it)
+        => it.AddFieldName("project");
     
-    public static Partial<RtLinkAttrs> WithTitle(this Partial<RtLinkAttrs> it)
-        => it.AddFieldName("title");
-    
-    public static Partial<RtLinkAttrs> WithMention(this Partial<RtLinkAttrs> it)
-        => it.AddFieldName("mention");
-    
-    public static Partial<RtLinkAttrs> WithDetails(this Partial<RtLinkAttrs> it)
-        => it.AddFieldName("details");
-    
-    public static Partial<RtLinkAttrs> WithDetails(this Partial<RtLinkAttrs> it, Func<Partial<RtLinkDetails>, Partial<RtLinkDetails>> partialBuilder)
-        => it.AddFieldName("details", partialBuilder(new Partial<RtLinkDetails>(it)));
+    public static Partial<DocumentFolderCustomSubscriptionFilterIn> WithFolders(this Partial<DocumentFolderCustomSubscriptionFilterIn> it)
+        => it.AddFieldName("folders");
     
 }
 

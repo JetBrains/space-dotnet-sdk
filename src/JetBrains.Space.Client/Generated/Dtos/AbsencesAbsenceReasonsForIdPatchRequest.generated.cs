@@ -34,13 +34,14 @@ public class AbsencesAbsenceReasonsForIdPatchRequest
 {
     public AbsencesAbsenceReasonsForIdPatchRequest() { }
     
-    public AbsencesAbsenceReasonsForIdPatchRequest(string name, string description, bool defaultAvailability, bool approvalRequired, string? icon = null)
+    public AbsencesAbsenceReasonsForIdPatchRequest(string name, string description, bool defaultAvailability, bool approvalRequired, string? icon = null, string? category = null)
     {
         Name = name;
         Description = description;
         IsDefaultAvailability = defaultAvailability;
         IsApprovalRequired = approvalRequired;
         Icon = icon;
+        Category = category;
     }
     
     private PropertyValue<string> _name = new PropertyValue<string>(nameof(AbsencesAbsenceReasonsForIdPatchRequest), nameof(Name), "name");
@@ -95,6 +96,18 @@ public class AbsencesAbsenceReasonsForIdPatchRequest
         set => _icon.SetValue(value);
     }
 
+    private PropertyValue<string?> _category = new PropertyValue<string?>(nameof(AbsencesAbsenceReasonsForIdPatchRequest), nameof(Category), "category");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("category")]
+    public string? Category
+    {
+        get => _category.GetValue(InlineErrors);
+        set => _category.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -102,6 +115,7 @@ public class AbsencesAbsenceReasonsForIdPatchRequest
         _defaultAvailability.SetAccessPath(parentChainPath, validateHasBeenSet);
         _approvalRequired.SetAccessPath(parentChainPath, validateHasBeenSet);
         _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _category.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

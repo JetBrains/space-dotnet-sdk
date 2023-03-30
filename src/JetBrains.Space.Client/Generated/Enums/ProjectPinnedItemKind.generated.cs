@@ -59,5 +59,14 @@ public enum ProjectPinnedItemKind
     [EnumMember(Value = "DevEnvironment")]
     DevEnvironment,
     
+    [EnumMember(Value = "PlanningIssueFilter")]
+    PlanningIssueFilter,
+    
+    [EnumMember(Value = "PlanningIssueFilterForMeAndUnresolved")]
+    PlanningIssueFilterForMeAndUnresolved,
+    
+    [EnumMember(Value = "PlanningIssueFilterUnresolved")]
+    PlanningIssueFilterUnresolved,
+    
 }
 

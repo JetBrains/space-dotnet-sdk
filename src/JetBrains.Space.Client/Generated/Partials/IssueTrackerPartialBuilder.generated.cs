@@ -40,5 +40,11 @@ public static class IssueTrackerPartialExtensions
     public static Partial<IssueTracker> WithName(this Partial<IssueTracker> it)
         => it.AddFieldName("name");
     
+    public static Partial<IssueTracker> WithSystemIssueFieldVisibilities(this Partial<IssueTracker> it)
+        => it.AddFieldName("systemIssueFieldVisibilities");
+    
+    public static Partial<IssueTracker> WithSystemIssueFieldVisibilities(this Partial<IssueTracker> it, Func<Partial<IssueFieldVisibility>, Partial<IssueFieldVisibility>> partialBuilder)
+        => it.AddFieldName("systemIssueFieldVisibilities", partialBuilder(new Partial<IssueFieldVisibility>(it)));
+    
 }
 

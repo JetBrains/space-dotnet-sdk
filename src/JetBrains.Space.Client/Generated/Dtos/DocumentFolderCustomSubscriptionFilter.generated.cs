@@ -29,39 +29,42 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ProjectFeaturePinnedItem
-     : IPropagatePropertyAccessPath
+public sealed class DocumentFolderCustomSubscriptionFilter
+     : SubscriptionFilter, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public ProjectFeaturePinnedItem() { }
+    [JsonPropertyName("className")]
+    public  string? ClassName => "DocumentFolderCustomSubscriptionFilter";
     
-    public ProjectFeaturePinnedItem(ProjectPinnedItemKind? kind = null, string? id = null)
+    public DocumentFolderCustomSubscriptionFilter() { }
+    
+    public DocumentFolderCustomSubscriptionFilter(PRProject? project = null, List<DocumentFolder>? folders = null)
     {
-        Kind = kind;
-        Id = id;
+        Project = project;
+        Folders = folders;
     }
     
-    private PropertyValue<ProjectPinnedItemKind?> _kind = new PropertyValue<ProjectPinnedItemKind?>(nameof(ProjectFeaturePinnedItem), nameof(Kind), "kind");
+    private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(DocumentFolderCustomSubscriptionFilter), nameof(Project), "project");
     
-    [JsonPropertyName("kind")]
-    public ProjectPinnedItemKind? Kind
+    [JsonPropertyName("project")]
+    public PRProject? Project
     {
-        get => _kind.GetValue(InlineErrors);
-        set => _kind.SetValue(value);
+        get => _project.GetValue(InlineErrors);
+        set => _project.SetValue(value);
     }
 
-    private PropertyValue<string?> _id = new PropertyValue<string?>(nameof(ProjectFeaturePinnedItem), nameof(Id), "id");
+    private PropertyValue<List<DocumentFolder>?> _folders = new PropertyValue<List<DocumentFolder>?>(nameof(DocumentFolderCustomSubscriptionFilter), nameof(Folders), "folders");
     
-    [JsonPropertyName("id")]
-    public string? Id
+    [JsonPropertyName("folders")]
+    public List<DocumentFolder>? Folders
     {
-        get => _id.GetValue(InlineErrors);
-        set => _id.SetValue(value);
+        get => _folders.GetValue(InlineErrors);
+        set => _folders.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _kind.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _folders.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

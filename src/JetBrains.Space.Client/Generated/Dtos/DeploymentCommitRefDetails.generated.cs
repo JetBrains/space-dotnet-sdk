@@ -34,16 +34,19 @@ public sealed class DeploymentCommitRefDetails
 {
     public DeploymentCommitRefDetails() { }
     
-    public DeploymentCommitRefDetails(string repositoryName, string branch, string commit, bool head, bool rollback, bool missing, long? timestamp = null, int? totalCommits = null, int? totalMerges = null, int? totalIssues = null, bool? initial = null)
+    public DeploymentCommitRefDetails(string repositoryName, string branch, string commit, bool head, bool rollback, bool missing, long? timestamp = null, int? commitsAdded = null, int? mergesAdded = null, int? issuesAdded = null, int? commitsReverted = null, int? mergesReverted = null, int? issuesReverted = null, bool? initial = null)
     {
         RepositoryName = repositoryName;
         Branch = branch;
         Commit = commit;
         Timestamp = timestamp;
         IsHead = head;
-        TotalCommits = totalCommits;
-        TotalMerges = totalMerges;
-        TotalIssues = totalIssues;
+        CommitsAdded = commitsAdded;
+        MergesAdded = mergesAdded;
+        IssuesAdded = issuesAdded;
+        CommitsReverted = commitsReverted;
+        MergesReverted = mergesReverted;
+        IssuesReverted = issuesReverted;
         IsRollback = rollback;
         IsMissing = missing;
         IsInitial = initial;
@@ -98,31 +101,58 @@ public sealed class DeploymentCommitRefDetails
         set => _head.SetValue(value);
     }
 
-    private PropertyValue<int?> _totalCommits = new PropertyValue<int?>(nameof(DeploymentCommitRefDetails), nameof(TotalCommits), "totalCommits");
+    private PropertyValue<int?> _commitsAdded = new PropertyValue<int?>(nameof(DeploymentCommitRefDetails), nameof(CommitsAdded), "commitsAdded");
     
-    [JsonPropertyName("totalCommits")]
-    public int? TotalCommits
+    [JsonPropertyName("commitsAdded")]
+    public int? CommitsAdded
     {
-        get => _totalCommits.GetValue(InlineErrors);
-        set => _totalCommits.SetValue(value);
+        get => _commitsAdded.GetValue(InlineErrors);
+        set => _commitsAdded.SetValue(value);
     }
 
-    private PropertyValue<int?> _totalMerges = new PropertyValue<int?>(nameof(DeploymentCommitRefDetails), nameof(TotalMerges), "totalMerges");
+    private PropertyValue<int?> _mergesAdded = new PropertyValue<int?>(nameof(DeploymentCommitRefDetails), nameof(MergesAdded), "mergesAdded");
     
-    [JsonPropertyName("totalMerges")]
-    public int? TotalMerges
+    [JsonPropertyName("mergesAdded")]
+    public int? MergesAdded
     {
-        get => _totalMerges.GetValue(InlineErrors);
-        set => _totalMerges.SetValue(value);
+        get => _mergesAdded.GetValue(InlineErrors);
+        set => _mergesAdded.SetValue(value);
     }
 
-    private PropertyValue<int?> _totalIssues = new PropertyValue<int?>(nameof(DeploymentCommitRefDetails), nameof(TotalIssues), "totalIssues");
+    private PropertyValue<int?> _issuesAdded = new PropertyValue<int?>(nameof(DeploymentCommitRefDetails), nameof(IssuesAdded), "issuesAdded");
     
-    [JsonPropertyName("totalIssues")]
-    public int? TotalIssues
+    [JsonPropertyName("issuesAdded")]
+    public int? IssuesAdded
     {
-        get => _totalIssues.GetValue(InlineErrors);
-        set => _totalIssues.SetValue(value);
+        get => _issuesAdded.GetValue(InlineErrors);
+        set => _issuesAdded.SetValue(value);
+    }
+
+    private PropertyValue<int?> _commitsReverted = new PropertyValue<int?>(nameof(DeploymentCommitRefDetails), nameof(CommitsReverted), "commitsReverted");
+    
+    [JsonPropertyName("commitsReverted")]
+    public int? CommitsReverted
+    {
+        get => _commitsReverted.GetValue(InlineErrors);
+        set => _commitsReverted.SetValue(value);
+    }
+
+    private PropertyValue<int?> _mergesReverted = new PropertyValue<int?>(nameof(DeploymentCommitRefDetails), nameof(MergesReverted), "mergesReverted");
+    
+    [JsonPropertyName("mergesReverted")]
+    public int? MergesReverted
+    {
+        get => _mergesReverted.GetValue(InlineErrors);
+        set => _mergesReverted.SetValue(value);
+    }
+
+    private PropertyValue<int?> _issuesReverted = new PropertyValue<int?>(nameof(DeploymentCommitRefDetails), nameof(IssuesReverted), "issuesReverted");
+    
+    [JsonPropertyName("issuesReverted")]
+    public int? IssuesReverted
+    {
+        get => _issuesReverted.GetValue(InlineErrors);
+        set => _issuesReverted.SetValue(value);
     }
 
     private PropertyValue<bool> _rollback = new PropertyValue<bool>(nameof(DeploymentCommitRefDetails), nameof(IsRollback), "rollback");
@@ -161,9 +191,12 @@ public sealed class DeploymentCommitRefDetails
         _commit.SetAccessPath(parentChainPath, validateHasBeenSet);
         _timestamp.SetAccessPath(parentChainPath, validateHasBeenSet);
         _head.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _totalCommits.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _totalMerges.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _totalIssues.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commitsAdded.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mergesAdded.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issuesAdded.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commitsReverted.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mergesReverted.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issuesReverted.SetAccessPath(parentChainPath, validateHasBeenSet);
         _rollback.SetAccessPath(parentChainPath, validateHasBeenSet);
         _missing.SetAccessPath(parentChainPath, validateHasBeenSet);
         _initial.SetAccessPath(parentChainPath, validateHasBeenSet);

@@ -272,7 +272,7 @@ public partial class AbsenceClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<AbsenceReasonRecord> CreateAbsenceReasonAsync(string name, string description, bool defaultAvailability, bool approvalRequired, string? icon = null, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<AbsenceReasonRecord> CreateAbsenceReasonAsync(string name, string description, bool defaultAvailability, bool approvalRequired, string? icon = null, string? category = null, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default()).ToString());
@@ -285,6 +285,7 @@ public partial class AbsenceClient : ISpaceClient
                     IsDefaultAvailability = defaultAvailability,
                     IsApprovalRequired = approvalRequired,
                     Icon = icon,
+                    Category = category,
                 }, requestHeaders: null, functionName: "CreateAbsenceReason", cancellationToken: cancellationToken);
         }
         
@@ -341,7 +342,7 @@ public partial class AbsenceClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<AbsenceReasonRecord> UpdateAbsenceReasonAsync(string id, string name, string description, bool defaultAvailability, bool approvalRequired, string? icon = null, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<AbsenceReasonRecord> UpdateAbsenceReasonAsync(string id, string name, string description, bool defaultAvailability, bool approvalRequired, string? icon = null, string? category = null, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default()).ToString());
@@ -354,6 +355,7 @@ public partial class AbsenceClient : ISpaceClient
                     IsDefaultAvailability = defaultAvailability,
                     IsApprovalRequired = approvalRequired,
                     Icon = icon,
+                    Category = category,
                 }, requestHeaders: null, functionName: "UpdateAbsenceReason", cancellationToken: cancellationToken);
         }
         

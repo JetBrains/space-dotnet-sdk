@@ -97,14 +97,23 @@ public static class DeploymentRecordPartialExtensions
     public static Partial<DeploymentRecord> WithIsArchived(this Partial<DeploymentRecord> it)
         => it.AddFieldName("archived");
     
-    public static Partial<DeploymentRecord> WithTotalCommits(this Partial<DeploymentRecord> it)
-        => it.AddFieldName("totalCommits");
+    public static Partial<DeploymentRecord> WithCommitsAdded(this Partial<DeploymentRecord> it)
+        => it.AddFieldName("commitsAdded");
     
-    public static Partial<DeploymentRecord> WithTotalMerges(this Partial<DeploymentRecord> it)
-        => it.AddFieldName("totalMerges");
+    public static Partial<DeploymentRecord> WithMergesAdded(this Partial<DeploymentRecord> it)
+        => it.AddFieldName("mergesAdded");
     
-    public static Partial<DeploymentRecord> WithTotalIssues(this Partial<DeploymentRecord> it)
-        => it.AddFieldName("totalIssues");
+    public static Partial<DeploymentRecord> WithIssuesAdded(this Partial<DeploymentRecord> it)
+        => it.AddFieldName("issuesAdded");
+    
+    public static Partial<DeploymentRecord> WithCommitsReverted(this Partial<DeploymentRecord> it)
+        => it.AddFieldName("commitsReverted");
+    
+    public static Partial<DeploymentRecord> WithMergesReverted(this Partial<DeploymentRecord> it)
+        => it.AddFieldName("mergesReverted");
+    
+    public static Partial<DeploymentRecord> WithIssuesReverted(this Partial<DeploymentRecord> it)
+        => it.AddFieldName("issuesReverted");
     
 }
 

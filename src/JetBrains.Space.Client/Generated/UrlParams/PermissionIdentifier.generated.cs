@@ -827,6 +827,9 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ViewOrganizationDetails
         => new PermissionIdentifierViewOrganizationDetails();
     
+    public static PermissionIdentifier ViewOrganizationInfo
+        => new PermissionIdentifierViewOrganizationInfo();
+    
     public static PermissionIdentifier ViewParticipantsInArticleCommentsThreads
         => new PermissionIdentifierViewParticipantsInArticleCommentsThreads();
     
@@ -2397,6 +2400,12 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Permissions.OrgMember";
+    }
+    
+    public class PermissionIdentifierViewOrganizationInfo : PermissionIdentifier
+    {
+        public override string ToString()
+            => "Organization.ViewOrganizationInfo";
     }
     
     public class PermissionIdentifierViewParticipantsInArticleCommentsThreads : PermissionIdentifier
