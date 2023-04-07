@@ -1,6 +1,5 @@
 using JetBrains.Space.AspNetCore.Authentication;
 using JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement;
-using JetBrains.Space.Common;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace JetBrains.Space.Samples.Web;
