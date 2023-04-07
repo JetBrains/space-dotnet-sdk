@@ -15,7 +15,13 @@ val buildScript = """
 
 job("Continuous integration build") {
     startOn {
-        gitPush { enabled = true }
+        gitPush {
+            enabled = true
+
+            branchFilter {
+                -"refs/pull/*"
+            }
+        }
     }
     
     container(buildContainerImage) {
