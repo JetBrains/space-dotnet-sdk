@@ -13,7 +13,7 @@ JetBrains.Space consists of several NuGet packages that can be used to integrate
 Typically, `JetBrains.Space.Client` will be used to work with the Space API. It can be installed using any NuGet client, or the `dotnet` command line tool:
 
 ```
-dotnet add package JetBrains.Space.Client --version 1.0.0-beta.*
+dotnet add package JetBrains.Space.Client --version 2.0.0-beta.*
 ```
 
 Other (optional) packages are available. These can be installed to satisfy additional integration requirements.
