@@ -1,12 +1,16 @@
-val dotNetInstallScript = """
+val buildContainerImage = "ubuntu:22.04"
+val buildScript = """
     apt-get update && apt-get install -y apt-utils apt-transport-https
     apt-get install -y curl unzip wget software-properties-common git
 
-    wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-    dpkg -i packages-microsoft-prod.deb
-    rm packages-microsoft-prod.deb
+    wget https://dot.net/v1/dotnet-install.sh
+    chmod +x ./dotnet-install.sh
+    ./dotnet-install.sh --channel 6.0
+    ./dotnet-install.sh --channel 7.0
+    PATH=${'$'}PATH:${'$'}HOME/.dotnet:${'$'}HOME/.dotnet/tools
+    dotnet --list-sdks
 
-    apt-get update && apt-get install -y dotnet-sdk-6.0 #dotnet-sdk-7.0
+    ./build.sh
 """.trimIndent()
 
 job("Continuous integration build") {
@@ -14,22 +18,21 @@ job("Continuous integration build") {
         gitPush { enabled = true }
     }
     
-    container("ubuntu:22.04") {
+    container(buildContainerImage) {
         resources {
             cpu = 2.cpu
             memory = 4.gb
         }
         
-        env.set("DOTNET_SKIP_FIRST_TIME_EXPERIENCE", "1")
-        env.set("DOTNET_CLI_TELEMETRY_OPTOUT", "1")
+        env.set("DOTNET_NOLOGO", "true")
+        env.set("DOTNET_SKIP_FIRST_TIME_EXPERIENCE", "true")
+        env.set("DOTNET_CLI_TELEMETRY_OPTOUT", "true")
 
         env.set("JB_SPACE_PUBLIC_NUGET_URL", Params("spacedotnet_public_nuget_url"))
         env.set("JB_SPACE_PUBLIC_CLIENT_TOKEN", Secrets("spacedotnet_public_nuget_apikey"))
 
         shellScript {
-            content = dotNetInstallScript + """            
-            	./build.sh
-            """.trimIndent()
+            content = buildScript
         }
     }
 }
@@ -55,14 +58,15 @@ job("Build and publish to NuGet.org (manual)") {
         }
     }
     
-    container("ubuntu:22.04") {
+    container(buildContainerImage) {
         resources {
             cpu = 2.cpu
             memory = 4.gb
         }
-        
-        env.set("DOTNET_SKIP_FIRST_TIME_EXPERIENCE", "1")
-        env.set("DOTNET_CLI_TELEMETRY_OPTOUT", "1")
+
+        env.set("DOTNET_NOLOGO", "true")
+        env.set("DOTNET_SKIP_FIRST_TIME_EXPERIENCE", "true")
+        env.set("DOTNET_CLI_TELEMETRY_OPTOUT", "true")
 
         env.set("JB_SPACE_PUBLIC_NUGET_URL", Params("spacedotnet_public_nuget_url"))
         env.set("JB_SPACE_PUBLIC_CLIENT_TOKEN", Secrets("spacedotnet_public_nuget_apikey"))
@@ -71,9 +75,7 @@ job("Build and publish to NuGet.org (manual)") {
         env.set("JB_SPACE_NUGETORG_CLIENT_TOKEN", Secrets("spacedotnet_nugetorg_nuget_apikey"))
 
         shellScript {
-            content = dotNetInstallScript + """            
-            	./build.sh
-            """.trimIndent()
+            content = buildScript
         }
     }
 }
