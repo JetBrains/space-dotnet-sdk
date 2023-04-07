@@ -34,13 +34,14 @@ public class ProjectsSecretsDefaultBundlePostRequest
 {
     public ProjectsSecretsDefaultBundlePostRequest() { }
     
-    public ProjectsSecretsDefaultBundlePostRequest(ProjectIdentifier project, string key, string valueBase64, string? publicKeyId = null, string? description = null)
+    public ProjectsSecretsDefaultBundlePostRequest(ProjectIdentifier project, string key, string? valueBase64 = null, string? publicKeyId = null, string? description = null, string? secretReference = null)
     {
         Project = project;
         Key = key;
         ValueBase64 = valueBase64;
         PublicKeyId = publicKeyId;
         Description = description;
+        SecretReference = secretReference;
     }
     
     private PropertyValue<ProjectIdentifier> _project = new PropertyValue<ProjectIdentifier>(nameof(ProjectsSecretsDefaultBundlePostRequest), nameof(Project), "project");
@@ -63,11 +64,13 @@ public class ProjectsSecretsDefaultBundlePostRequest
         set => _key.SetValue(value);
     }
 
-    private PropertyValue<string> _valueBase64 = new PropertyValue<string>(nameof(ProjectsSecretsDefaultBundlePostRequest), nameof(ValueBase64), "valueBase64");
+    private PropertyValue<string?> _valueBase64 = new PropertyValue<string?>(nameof(ProjectsSecretsDefaultBundlePostRequest), nameof(ValueBase64), "valueBase64");
     
-    [Required]
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
     [JsonPropertyName("valueBase64")]
-    public string ValueBase64
+    public string? ValueBase64
     {
         get => _valueBase64.GetValue(InlineErrors);
         set => _valueBase64.SetValue(value);
@@ -75,6 +78,9 @@ public class ProjectsSecretsDefaultBundlePostRequest
 
     private PropertyValue<string?> _publicKeyId = new PropertyValue<string?>(nameof(ProjectsSecretsDefaultBundlePostRequest), nameof(PublicKeyId), "publicKeyId");
     
+    /// <summary>
+    /// Not supported at the moment
+    /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
@@ -97,6 +103,21 @@ public class ProjectsSecretsDefaultBundlePostRequest
         set => _description.SetValue(value);
     }
 
+    private PropertyValue<string?> _secretReference = new PropertyValue<string?>(nameof(ProjectsSecretsDefaultBundlePostRequest), nameof(SecretReference), "secretReference");
+    
+    /// <summary>
+    /// Can contain reference to a single project secret in a `{{ project:... }}` format, or a Vault secret reference in a `vault:..` format.
+    /// </summary>
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("secretReference")]
+    public string? SecretReference
+    {
+        get => _secretReference.GetValue(InlineErrors);
+        set => _secretReference.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -104,6 +125,7 @@ public class ProjectsSecretsDefaultBundlePostRequest
         _valueBase64.SetAccessPath(parentChainPath, validateHasBeenSet);
         _publicKeyId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _secretReference.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

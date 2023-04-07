@@ -29,14 +29,37 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public static class SdkInfo
+public sealed class SafeMergeCheckExternal
+     : SafeMergeCheck, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2023.2.0-DEV.157444";
+    [JsonPropertyName("className")]
+    public override string? ClassName => "SafeMergeCheck.External";
+    
+    public SafeMergeCheckExternal() { }
+    
+    public SafeMergeCheckExternal(string taskId)
+    {
+        TaskId = taskId;
+    }
+    
+    private PropertyValue<string> _taskId = new PropertyValue<string>(nameof(SafeMergeCheckExternal), nameof(TaskId), "taskId");
+    
+    [Required]
+    [JsonPropertyName("taskId")]
+    public string TaskId
+    {
+        get => _taskId.GetValue(InlineErrors);
+        set => _taskId.SetValue(value);
+    }
+
+    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _taskId.SetAccessPath(parentChainPath, validateHasBeenSet);
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

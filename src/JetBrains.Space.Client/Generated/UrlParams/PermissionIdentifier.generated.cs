@@ -80,8 +80,8 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ApproveAbsences
         => new PermissionIdentifierApproveAbsences();
     
-    public static PermissionIdentifier ArchiveDocuments
-        => new PermissionIdentifierArchiveDocuments();
+    public static PermissionIdentifier ArchiveAndRestoreDocuments
+        => new PermissionIdentifierArchiveAndRestoreDocuments();
     
     public static PermissionIdentifier AttachWorkersToAutomationComputePools
         => new PermissionIdentifierAttachWorkersToAutomationComputePools();
@@ -181,6 +181,9 @@ public abstract class PermissionIdentifier : IUrlParameter
     
     public static PermissionIdentifier EditBonusEvents
         => new PermissionIdentifierEditBonusEvents();
+    
+    public static PermissionIdentifier EditBonusQuestionnaires
+        => new PermissionIdentifierEditBonusQuestionnaires();
     
     public static PermissionIdentifier EditCodeReviews
         => new PermissionIdentifierEditCodeReviews();
@@ -295,6 +298,9 @@ public abstract class PermissionIdentifier : IUrlParameter
     
     public static PermissionIdentifier ManageCustomFields
         => new PermissionIdentifierManageCustomFields();
+    
+    public static PermissionIdentifier ManageCustomFieldsForTargets
+        => new PermissionIdentifierManageCustomFieldsForTargets();
     
     /// <summary>
     /// Allows to manage the lifecycle of dev environments that the user doesn't own (users can always manage their own environments)
@@ -536,6 +542,9 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier StopAutomationJobs
         => new PermissionIdentifierStopAutomationJobs();
     
+    public static PermissionIdentifier SubmitAnswerToBonusQuestionnaires
+        => new PermissionIdentifierSubmitAnswerToBonusQuestionnaires();
+    
     public static PermissionIdentifier TrackApplicationState
         => new PermissionIdentifierTrackApplicationState();
     
@@ -644,6 +653,9 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ViewAndRemoveApplicationConsents
         => new PermissionIdentifierViewAndRemoveApplicationConsents();
     
+    public static PermissionIdentifier ViewAnswersToBonusQuestionnaires
+        => new PermissionIdentifierViewAnswersToBonusQuestionnaires();
+    
     /// <summary>
     /// Allow to view application logs
     /// </summary>
@@ -685,6 +697,9 @@ public abstract class PermissionIdentifier : IUrlParameter
     
     public static PermissionIdentifier ViewBonusEvents
         => new PermissionIdentifierViewBonusEvents();
+    
+    public static PermissionIdentifier ViewBonusQuestionnaires
+        => new PermissionIdentifierViewBonusQuestionnaires();
     
     public static PermissionIdentifier ViewBouncedEmailAddresses
         => new PermissionIdentifierViewBouncedEmailAddresses();
@@ -1004,7 +1019,7 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Profile.Absences.Approve";
     }
     
-    public class PermissionIdentifierArchiveDocuments : PermissionIdentifier
+    public class PermissionIdentifierArchiveAndRestoreDocuments : PermissionIdentifier
     {
         public override string ToString()
             => "Documents.Archive";
@@ -1191,6 +1206,12 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "HRM.Bonus.Events.Edit";
+    }
+    
+    public class PermissionIdentifierEditBonusQuestionnaires : PermissionIdentifier
+    {
+        public override string ToString()
+            => "HRM.Bonus.Questionnaires.Edit";
     }
     
     public class PermissionIdentifierEditCodeReviews : PermissionIdentifier
@@ -1398,6 +1419,12 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "CustomFields.Edit";
+    }
+    
+    public class PermissionIdentifierManageCustomFieldsForTargets : PermissionIdentifier
+    {
+        public override string ToString()
+            => "DeployTargets.CustomFields.Edit";
     }
     
     /// <summary>
@@ -1841,6 +1868,12 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Automation.Execution.Stop";
     }
     
+    public class PermissionIdentifierSubmitAnswerToBonusQuestionnaires : PermissionIdentifier
+    {
+        public override string ToString()
+            => "HRM.Bonus.Questionnaires.Answers.Submit";
+    }
+    
     public class PermissionIdentifierTrackApplicationState : PermissionIdentifier
     {
         public override string ToString()
@@ -2054,6 +2087,12 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Profile.ApplicationConsents.Edit";
     }
     
+    public class PermissionIdentifierViewAnswersToBonusQuestionnaires : PermissionIdentifier
+    {
+        public override string ToString()
+            => "HRM.Bonus.Questionnaires.Answers.View";
+    }
+    
     /// <summary>
     /// Allow to view application logs
     /// </summary>
@@ -2130,6 +2169,12 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "HRM.Bonus.Events.View";
+    }
+    
+    public class PermissionIdentifierViewBonusQuestionnaires : PermissionIdentifier
+    {
+        public override string ToString()
+            => "HRM.Bonus.Questionnaires.View";
     }
     
     public class PermissionIdentifierViewBouncedEmailAddresses : PermissionIdentifier

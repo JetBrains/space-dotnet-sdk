@@ -34,7 +34,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsPostRequest
 {
     public ProjectsForProjectAutomationDeploymentTargetsPostRequest() { }
     
-    public ProjectsForProjectAutomationDeploymentTargetsPostRequest(string key, string name, string description, List<DeployTargetRepositoryDTO>? repositories = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null)
+    public ProjectsForProjectAutomationDeploymentTargetsPostRequest(string key, string name, string description, List<DeployTargetRepositoryDTO>? repositories = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null, List<CustomFieldInputValue>? customFields = null)
     {
         Key = key;
         Name = name;
@@ -43,6 +43,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsPostRequest
         ResponsibleUsers = responsibleUsers;
         ResponsibleTeams = responsibleTeams;
         Links = links;
+        CustomFields = customFields;
     }
     
     private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectsForProjectAutomationDeploymentTargetsPostRequest), nameof(Key), "key");
@@ -120,6 +121,18 @@ public class ProjectsForProjectAutomationDeploymentTargetsPostRequest
         set => _links.SetValue(value);
     }
 
+    private PropertyValue<List<CustomFieldInputValue>?> _customFields = new PropertyValue<List<CustomFieldInputValue>?>(nameof(ProjectsForProjectAutomationDeploymentTargetsPostRequest), nameof(CustomFields), "customFields");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("customFields")]
+    public List<CustomFieldInputValue>? CustomFields
+    {
+        get => _customFields.GetValue(InlineErrors);
+        set => _customFields.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _key.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -129,6 +142,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsPostRequest
         _responsibleUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
         _responsibleTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _links.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _customFields.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

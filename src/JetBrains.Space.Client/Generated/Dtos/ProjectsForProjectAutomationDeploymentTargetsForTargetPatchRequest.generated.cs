@@ -34,7 +34,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest
 {
     public ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest() { }
     
-    public ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest(string? name = null, string? description = null, List<DeployTargetRepositoryDTO>? repositories = null, bool? manualControl = null, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null)
+    public ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest(string? name = null, string? description = null, List<DeployTargetRepositoryDTO>? repositories = null, bool? manualControl = null, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null, List<CustomFieldInputValue>? customFields = null)
     {
         Name = name;
         Description = description;
@@ -45,6 +45,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest
         ResponsibleUsers = responsibleUsers;
         ResponsibleTeams = responsibleTeams;
         Links = links;
+        CustomFields = customFields;
     }
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest), nameof(Name), "name");
@@ -155,6 +156,18 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest
         set => _links.SetValue(value);
     }
 
+    private PropertyValue<List<CustomFieldInputValue>?> _customFields = new PropertyValue<List<CustomFieldInputValue>?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest), nameof(CustomFields), "customFields");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("customFields")]
+    public List<CustomFieldInputValue>? CustomFields
+    {
+        get => _customFields.GetValue(InlineErrors);
+        set => _customFields.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -166,6 +179,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest
         _responsibleUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
         _responsibleTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _links.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _customFields.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

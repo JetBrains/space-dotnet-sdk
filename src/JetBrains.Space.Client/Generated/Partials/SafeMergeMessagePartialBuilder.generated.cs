@@ -27,16 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.SafeMergeMessagePartialBuilder;
 
-public static class SdkInfo
+public static class SafeMergeMessagePartialExtensions
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2023.2.0-DEV.157444";
+    public static Partial<SafeMergeMessage> WithType(this Partial<SafeMergeMessage> it)
+        => it.AddFieldName("type");
+    
+    public static Partial<SafeMergeMessage> WithType(this Partial<SafeMergeMessage> it, Func<Partial<SafeMergeMessageType>, Partial<SafeMergeMessageType>> partialBuilder)
+        => it.AddFieldName("type", partialBuilder(new Partial<SafeMergeMessageType>(it)));
+    
+    public static Partial<SafeMergeMessage> WithMessage(this Partial<SafeMergeMessage> it)
+        => it.AddFieldName("message");
+    
 }
 

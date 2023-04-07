@@ -38,6 +38,9 @@ public abstract class FolderIdentifier : IUrlParameter
     public static FolderIdentifier Root
         => new FolderIdentifierRoot();
     
+    public static FolderIdentifier SharedWithMe
+        => new FolderIdentifierSharedWithMe();
+    
     public class FolderIdentifierId : FolderIdentifier
     {
         [Required]
@@ -67,6 +70,12 @@ public abstract class FolderIdentifier : IUrlParameter
     {
         public override string ToString()
             => "root";
+    }
+    
+    public class FolderIdentifierSharedWithMe : FolderIdentifier
+    {
+        public override string ToString()
+            => "sharedWithMe";
     }
     
 }

@@ -34,7 +34,7 @@ public class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
 {
     public ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest() { }
     
-    public ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest(string text, string repository, bool pending = false, List<AttachmentIn>? attachments = null, DiffContext? diffContext = null, string? revision = null, string? filename = null, int? line = null, int? oldLine = null, LocalCodeDiscussionAnchorIn? anchor = null, LocalCodeDiscussionAnchorIn? endAnchor = null, ReviewIdentifier? reviewId = null, CodeDiscussionSuggestedEditRequest? suggestedEdit = null)
+    public ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest(string text, string repository, ReviewIdentifier reviewId, bool pending = false, List<AttachmentIn>? attachments = null, DiffContext? diffContext = null, string? revision = null, string? filename = null, int? line = null, int? oldLine = null, LocalCodeDiscussionAnchorIn? anchor = null, LocalCodeDiscussionAnchorIn? endAnchor = null, CodeDiscussionSuggestedEditRequest? suggestedEdit = null)
     {
         Text = text;
         Attachments = attachments;
@@ -180,13 +180,11 @@ public class ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest
         set => _pending.SetValue(value);
     }
 
-    private PropertyValue<ReviewIdentifier?> _reviewId = new PropertyValue<ReviewIdentifier?>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(ReviewId), "reviewId");
+    private PropertyValue<ReviewIdentifier> _reviewId = new PropertyValue<ReviewIdentifier>(nameof(ProjectsForProjectCodeReviewsCodeDiscussionsPostRequest), nameof(ReviewId), "reviewId");
     
-#if NET6_0_OR_GREATER
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-#endif
+    [Required]
     [JsonPropertyName("reviewId")]
-    public ReviewIdentifier? ReviewId
+    public ReviewIdentifier ReviewId
     {
         get => _reviewId.GetValue(InlineErrors);
         set => _reviewId.SetValue(value);

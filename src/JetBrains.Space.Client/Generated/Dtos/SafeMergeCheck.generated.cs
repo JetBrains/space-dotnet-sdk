@@ -29,14 +29,28 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public static class SdkInfo
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
+public class SafeMergeCheck
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2023.2.0-DEV.157444";
+    [JsonPropertyName("className")]
+    public virtual string? ClassName => "SafeMergeCheck";
+    
+    public static SafeMergeCheckExternal External(string taskId)
+        => new SafeMergeCheckExternal(taskId: taskId);
+    
+    public static SafeMergeCheckJob Job(string executionId)
+        => new SafeMergeCheckJob(executionId: executionId);
+    
+    public SafeMergeCheck() { }
+    
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

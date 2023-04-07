@@ -374,11 +374,12 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Batch<DeployTargetRecord>> GetAllDeploymentTargetsAsync(ProjectIdentifier? project = null, string? search = null, string? sortBy = null, ColumnSortOrder? sortOrder = null, string? skip = null, int? top = 100, Func<Partial<Batch<DeployTargetRecord>>, Partial<Batch<DeployTargetRecord>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task<Batch<DeployTargetRecord>> GetAllDeploymentTargetsAsync(ProjectIdentifier? project = null, string? search = null, List<string>? customFilters = null, string? sortBy = null, ColumnSortOrder? sortOrder = null, string? skip = null, int? top = 100, Func<Partial<Batch<DeployTargetRecord>>, Partial<Batch<DeployTargetRecord>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 if (project != null) queryParameters.Append("project", project?.ToString());
                 if (search != null) queryParameters.Append("search", search);
+                if (customFilters != null) queryParameters.Append("customFilters", customFilters.Select(it => it));
                 if (sortBy != null) queryParameters.Append("sortBy", sortBy);
                 queryParameters.Append("sortOrder", sortOrder.ToEnumString());
                 if (skip != null) queryParameters.Append("$skip", skip);
@@ -397,8 +398,8 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public IAsyncEnumerable<DeployTargetRecord> GetAllDeploymentTargetsAsyncEnumerable(ProjectIdentifier? project = null, string? search = null, string? sortBy = null, ColumnSortOrder? sortOrder = null, string? skip = null, int? top = 100, Func<Partial<DeployTargetRecord>, Partial<DeployTargetRecord>>? partial = null, CancellationToken cancellationToken = default)
-                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllDeploymentTargetsAsync(project: project, search: search, sortBy: sortBy, sortOrder: sortOrder, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<DeployTargetRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DeployTargetRecord>.Default())), skip, cancellationToken);
+            public IAsyncEnumerable<DeployTargetRecord> GetAllDeploymentTargetsAsyncEnumerable(ProjectIdentifier? project = null, string? search = null, List<string>? customFilters = null, string? sortBy = null, ColumnSortOrder? sortOrder = null, string? skip = null, int? top = 100, Func<Partial<DeployTargetRecord>, Partial<DeployTargetRecord>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllDeploymentTargetsAsync(project: project, search: search, customFilters: customFilters, sortBy: sortBy, sortOrder: sortOrder, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<DeployTargetRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DeployTargetRecord>.Default())), skip, cancellationToken);
         
         }
     
@@ -747,7 +748,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<DeployTargetRecord> CreateAsync(ProjectIdentifier project, string key, string name, string description, List<DeployTargetRepositoryDTO>? repositories = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null, Func<Partial<DeployTargetRecord>, Partial<DeployTargetRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task<DeployTargetRecord> CreateAsync(ProjectIdentifier project, string key, string name, string description, List<DeployTargetRepositoryDTO>? repositories = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null, List<CustomFieldInputValue>? customFields = null, Func<Partial<DeployTargetRecord>, Partial<DeployTargetRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<DeployTargetRecord>()) : Partial<DeployTargetRecord>.Default()).ToString());
@@ -762,6 +763,7 @@ public partial class ProjectClient : ISpaceClient
                         ResponsibleUsers = responsibleUsers,
                         ResponsibleTeams = responsibleTeams,
                         Links = links,
+                        CustomFields = customFields,
                     }, requestHeaders: null, functionName: "Create", cancellationToken: cancellationToken);
             }
             
@@ -776,10 +778,11 @@ public partial class ProjectClient : ISpaceClient
             /// </list>
             /// </remarks>
             [Obsolete("Use GET projects/automation/deployment-targets` (since 2023-02-28)")]
-            public async Task<Batch<DeployTargetRecord>> ListAsync(ProjectIdentifier project, string? search = null, string? sortBy = null, ColumnSortOrder? sortOrder = null, string? skip = null, int? top = 100, Func<Partial<Batch<DeployTargetRecord>>, Partial<Batch<DeployTargetRecord>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task<Batch<DeployTargetRecord>> ListAsync(ProjectIdentifier project, string? search = null, List<string>? customFilters = null, string? sortBy = null, ColumnSortOrder? sortOrder = null, string? skip = null, int? top = 100, Func<Partial<Batch<DeployTargetRecord>>, Partial<Batch<DeployTargetRecord>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 if (search != null) queryParameters.Append("search", search);
+                if (customFilters != null) queryParameters.Append("customFilters", customFilters.Select(it => it));
                 if (sortBy != null) queryParameters.Append("sortBy", sortBy);
                 queryParameters.Append("sortOrder", sortOrder.ToEnumString());
                 if (skip != null) queryParameters.Append("$skip", skip);
@@ -799,8 +802,8 @@ public partial class ProjectClient : ISpaceClient
             /// </list>
             /// </remarks>
             [Obsolete("Use GET projects/automation/deployment-targets` (since 2023-02-28)")]
-            public IAsyncEnumerable<DeployTargetRecord> ListAsyncEnumerable(ProjectIdentifier project, string? search = null, string? sortBy = null, ColumnSortOrder? sortOrder = null, string? skip = null, int? top = 100, Func<Partial<DeployTargetRecord>, Partial<DeployTargetRecord>>? partial = null, CancellationToken cancellationToken = default)
-                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListAsync(project: project, search: search, sortBy: sortBy, sortOrder: sortOrder, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<DeployTargetRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DeployTargetRecord>.Default())), skip, cancellationToken);
+            public IAsyncEnumerable<DeployTargetRecord> ListAsyncEnumerable(ProjectIdentifier project, string? search = null, List<string>? customFilters = null, string? sortBy = null, ColumnSortOrder? sortOrder = null, string? skip = null, int? top = 100, Func<Partial<DeployTargetRecord>, Partial<DeployTargetRecord>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListAsync(project: project, search: search, customFilters: customFilters, sortBy: sortBy, sortOrder: sortOrder, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<DeployTargetRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DeployTargetRecord>.Default())), skip, cancellationToken);
         
             /// <remarks>
             /// Required permissions:
@@ -840,7 +843,7 @@ public partial class ProjectClient : ISpaceClient
             }
             
         
-            public async Task UpdateAsync(ProjectIdentifier project, TargetIdentifier target, string? name = null, string? description = null, List<DeployTargetRepositoryDTO>? repositories = null, bool? manualControl = null, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task UpdateAsync(ProjectIdentifier project, TargetIdentifier target, string? name = null, string? description = null, List<DeployTargetRepositoryDTO>? repositories = null, bool? manualControl = null, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null, List<CustomFieldInputValue>? customFields = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -856,6 +859,7 @@ public partial class ProjectClient : ISpaceClient
                         ResponsibleUsers = responsibleUsers,
                         ResponsibleTeams = responsibleTeams,
                         Links = links,
+                        CustomFields = customFields,
                     }, requestHeaders: null, functionName: "Update", cancellationToken: cancellationToken);
             }
             
@@ -3416,6 +3420,17 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
+        public async Task<List<GitFileChange>> ChangesAsync(ProjectIdentifier project, string repository, string commit, int limit, Func<Partial<GitFileChange>, Partial<GitFileChange>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("commit", commit);
+            queryParameters.Append("limit", limit.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitFileChange>()) : Partial<GitFileChange>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<GitFileChange>>("GET", $"api/http/projects/{project}/repositories/{repository}/changes{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "Changes", cancellationToken: cancellationToken);
+        }
+        
+    
         public async Task<List<BranchInfo>> CommitBranchesAsync(ProjectIdentifier project, string repository, string commit, string? prefix = null, int? limit = null, Func<Partial<BranchInfo>, Partial<BranchInfo>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3835,7 +3850,7 @@ public partial class ProjectClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task UpdateSecretAsync(string id, string valueBase64, string? publicKeyId = null, string? description = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task UpdateSecretAsync(string id, string? valueBase64 = null, string? publicKeyId = null, string? description = null, string? secretReference = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -3845,6 +3860,7 @@ public partial class ProjectClient : ISpaceClient
                     ValueBase64 = valueBase64,
                     PublicKeyId = publicKeyId,
                     Description = description,
+                    SecretReference = secretReference,
                 }, requestHeaders: null, functionName: "UpdateSecret", cancellationToken: cancellationToken);
         }
         
@@ -3880,7 +3896,7 @@ public partial class ProjectClient : ISpaceClient
             }
             
             /// <summary>
-            /// Create a new secret in the default parameter bundle. Value is base64 encoded bytes of the secret value, possibly after client side encryption. If the secret value bytes are encrypted then the id of the Space public key must be provided
+            /// Create a new project secret. The secret value should be provided either as a base64-encoded value in [valueBase64], or as a reference to another secret in [secretReference].
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -3890,7 +3906,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<string> CreateDefaultBundleAsync(ProjectIdentifier project, string key, string valueBase64, string? publicKeyId = null, string? description = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task<string> CreateDefaultBundleAsync(ProjectIdentifier project, string key, string? valueBase64 = null, string? publicKeyId = null, string? description = null, string? secretReference = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -3902,6 +3918,7 @@ public partial class ProjectClient : ISpaceClient
                         ValueBase64 = valueBase64,
                         PublicKeyId = publicKeyId,
                         Description = description,
+                        SecretReference = secretReference,
                     }, requestHeaders: null, functionName: "CreateDefaultBundle", cancellationToken: cancellationToken);
             }
             
@@ -5076,7 +5093,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<CodeDiscussionRecord> CreateCodeDiscussionAsync(ProjectIdentifier project, string text, string repository, bool pending = false, List<AttachmentIn>? attachments = null, DiffContext? diffContext = null, string? revision = null, string? filename = null, int? line = null, int? oldLine = null, LocalCodeDiscussionAnchorIn? anchor = null, LocalCodeDiscussionAnchorIn? endAnchor = null, ReviewIdentifier? reviewId = null, CodeDiscussionSuggestedEditRequest? suggestedEdit = null, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task<CodeDiscussionRecord> CreateCodeDiscussionAsync(ProjectIdentifier project, string text, string repository, ReviewIdentifier reviewId, bool pending = false, List<AttachmentIn>? attachments = null, DiffContext? diffContext = null, string? revision = null, string? filename = null, int? line = null, int? oldLine = null, LocalCodeDiscussionAnchorIn? anchor = null, LocalCodeDiscussionAnchorIn? endAnchor = null, CodeDiscussionSuggestedEditRequest? suggestedEdit = null, Func<Partial<CodeDiscussionRecord>, Partial<CodeDiscussionRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeDiscussionRecord>()) : Partial<CodeDiscussionRecord>.Default()).ToString());
@@ -5179,6 +5196,83 @@ public partial class ProjectClient : ISpaceClient
                 
             
             }
+        
+        }
+    
+        public SafeMergeClient SafeMerge => new SafeMergeClient(_connection);
+        
+        public partial class SafeMergeClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public SafeMergeClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View code reviews</term>
+            /// </item>
+            /// <item>
+            /// <term>Write Git repositories</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<List<SafeMergeMessage>> StartSafeMergeAsync(ProjectIdentifier project, ReviewIdentifier mergeRequestId, MergeSelectOptions mergeOptions, Func<Partial<SafeMergeMessage>, Partial<SafeMergeMessage>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<SafeMergeMessage>()) : Partial<SafeMergeMessage>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsSafeMergePostRequest, List<SafeMergeMessage>>("POST", $"api/http/projects/{project}/code-reviews/safe-merge{queryParameters.ToQueryString()}", 
+                    new ProjectsForProjectCodeReviewsSafeMergePostRequest
+                    { 
+                        MergeRequestId = mergeRequestId,
+                        MergeOptions = mergeOptions,
+                    }, requestHeaders: null, functionName: "StartSafeMerge", cancellationToken: cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View code reviews</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<SafeMerge> GetSafeMergeAsync(ProjectIdentifier project, ReviewIdentifier mergeRequestId, Func<Partial<SafeMerge>, Partial<SafeMerge>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("mergeRequestId", mergeRequestId.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<SafeMerge>()) : Partial<SafeMerge>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<SafeMerge>("GET", $"api/http/projects/{project}/code-reviews/safe-merge{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetSafeMerge", cancellationToken: cancellationToken);
+            }
+            
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View code reviews</term>
+            /// </item>
+            /// <item>
+            /// <term>Write Git repositories</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<List<SafeMergeMessage>> StopSafeMergeAsync(ProjectIdentifier project, ReviewIdentifier mergeRequestId, Func<Partial<SafeMergeMessage>, Partial<SafeMergeMessage>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("mergeRequestId", mergeRequestId.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<SafeMergeMessage>()) : Partial<SafeMergeMessage>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<SafeMergeMessage>>("DELETE", $"api/http/projects/{project}/code-reviews/safe-merge{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "StopSafeMerge", cancellationToken: cancellationToken);
+            }
+            
         
         }
     
