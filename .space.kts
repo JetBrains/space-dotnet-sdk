@@ -19,6 +19,7 @@ job("Continuous integration build") {
             enabled = true
 
             branchFilter {
+                -"refs/merge/*"
                 -"refs/pull/*"
             }
         }
@@ -93,6 +94,7 @@ job("Remote development images") {
 
             branchFilter {
                 +"refs/heads/main"
+                -"refs/merge/*"
                 -"refs/pull/*"
             }
 
