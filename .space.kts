@@ -85,3 +85,32 @@ job("Build and publish to NuGet.org (manual)") {
         }
     }
 }
+
+job("Remote development images") {
+    startOn {
+        gitPush {
+            enabled = true
+
+            branchFilter {
+                +"refs/heads/main"
+                -"refs/pull/*"
+            }
+
+            pathFilter {
+                +".space/*.devfile.yml"
+                +".space/Dockerfile"
+            }
+        }
+    }
+    
+    host {
+        dockerBuildPush {
+            context = "."
+            file = ".space/Dockerfile"
+            labels["vendor"] = "JetBrains"
+            tags {
+                +"registry.jetbrains.team/p/evan/dev-environments/spacedotnet:latest"
+            }
+        }
+    }
+}

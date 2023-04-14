@@ -16,8 +16,11 @@ attributes:
       script: |
         ./dev-env-warmup.sh
 components:
-  - name: image-build
-    image:
-      imageName: spacedotnet-rd:latest
-      dockerfile:
-        uri: .space/Dockerfile
+  - name: dev-container
+    container:
+      image: registry.jetbrains.team/p/evan/dev-environments/spacedotnet:latest
+#  - name: image-build
+#    image:
+#      imageName: spacedotnet-rd:latest
+#      dockerfile:
+#        uri: .space/Dockerfile

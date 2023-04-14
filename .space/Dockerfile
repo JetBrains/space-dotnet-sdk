@@ -1,19 +1,15 @@
-FROM mcr.microsoft.com/dotnet/sdk:7.0-jammy
+FROM ubuntu:22.04
 
 ENV LANG=C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 ENV DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
 ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
+ENV PATH="$PATH:/usr/share/dotnet:/usr/share/dotnet/tools"
+RUN echo "export PATH=${PATH}:/usr/share/dotnet:/usr/share/dotnet/tools" >> /root/.bashrc
 
-RUN apt-get update && apt-get install -y apt-utils apt-transport-https
-
-## .NET feed
 RUN set -ex && \
-    wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
-    dpkg -i packages-microsoft-prod.deb && \
-    rm packages-microsoft-prod.deb && \
-    apt-get update
+    apt-get update && apt-get install -y apt-utils apt-transport-https
 
 ## Tools
 RUN set -ex && \
@@ -23,9 +19,16 @@ RUN set -ex && \
     # VCS \
     git \
     # Docker
-    docker docker-compose \
-    # .NET
-    docker dotnet-sdk-6.0 dotnet-sdk-7.0
+    docker docker-compose
+
+## .NET
+RUN set -ex && \
+    wget https://dot.net/v1/dotnet-install.sh && \
+    chmod +x ./dotnet-install.sh && \
+    ./dotnet-install.sh --channel 6.0 && \
+    ./dotnet-install.sh --channel 7.0 && \
+	mv /root/.dotnet /usr/share/dotnet/ && \
+    dotnet --list-sdks
 
 ## Clean up packages list
 RUN rm -rf /var/lib/apt/lists/*
