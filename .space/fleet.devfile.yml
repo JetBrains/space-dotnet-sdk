@@ -13,7 +13,7 @@ attributes:
             include:
               - 'refs/heads/main'
       script: |
-        ./dev-env-warmup.sh
+        bash ./dev-env-warmup.sh
 components:
   - name: dev-container
     container:
