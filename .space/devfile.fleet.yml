@@ -1,0 +1,22 @@
+schemaVersion: 2.2.0
+attributes:
+  space:
+    instanceType: large
+    editor:
+      type: Fleet
+    warmup:
+      startOn:
+        #- type: schedule
+        #  cron: '0 20 * * *'
+        - type: gitPush
+          branchFilter:
+            include:
+              - 'refs/heads/main'
+      script: |
+        ./dev-env-warmup.sh
+components:
+  - name: image-build
+    image:
+      imageName: spacedotnet-rd:latest
+      dockerfile:
+        uri: .space/Dockerfile
