@@ -29,21 +29,14 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class RtBoldMark
-     : DocumentMark, IClassNameConvertible, IPropagatePropertyAccessPath
+[JsonConverter(typeof(EnumStringConverter))]
+public enum UnfurlViewType
 {
-    [JsonPropertyName("className")]
-    public  string? ClassName => "RtBoldMark";
+    [EnumMember(Value = "Inline")]
+    Inline,
     
-    public RtBoldMark() { }
+    [EnumMember(Value = "Attachment")]
+    Attachment,
     
-    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-    }
-    
-    /// <inheritdoc />
-    [JsonPropertyName("$errors")]
-    public List<ApiInlineError> InlineErrors { get; set; } = new();
-
 }
 

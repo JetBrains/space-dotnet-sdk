@@ -33,11 +33,11 @@ public sealed class RtStrikeThroughMark
      : DocumentMark, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "RtStrikeThroughMark";
+    public  string? ClassName => "RtStrikeThroughMark";
     
     public RtStrikeThroughMark() { }
     
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
     }
     

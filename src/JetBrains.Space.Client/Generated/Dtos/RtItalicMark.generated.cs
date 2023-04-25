@@ -33,11 +33,11 @@ public sealed class RtItalicMark
      : DocumentMark, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "RtItalicMark";
+    public  string? ClassName => "RtItalicMark";
     
     public RtItalicMark() { }
     
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
     }
     

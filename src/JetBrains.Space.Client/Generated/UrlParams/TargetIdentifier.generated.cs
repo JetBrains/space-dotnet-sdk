@@ -38,6 +38,9 @@ public abstract class TargetIdentifier : IUrlParameter
     public static TargetIdentifier Key(string key)
         => new TargetIdentifierKey(key);
     
+    public static TargetIdentifier Number(int number)
+        => new TargetIdentifierNumber(number);
+    
     public class TargetIdentifierId : TargetIdentifier
     {
         [Required]
@@ -86,6 +89,31 @@ public abstract class TargetIdentifier : IUrlParameter
         
         public override string ToString()
             => $"key:{Key}";
+    }
+    
+    public class TargetIdentifierNumber : TargetIdentifier
+    {
+        [Required]
+        [JsonPropertyName("number")]
+#if NET6_0_OR_GREATER
+        public int Number { get; init; }
+#else
+        public int Number { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
+        public TargetIdentifierNumber() { }
+#pragma warning restore CS8618
+#endif
+        
+        public TargetIdentifierNumber(int number)
+        {
+            Number = number;
+        }
+        
+        public override string ToString()
+            => $"number:{Number}";
     }
     
 }

@@ -61,6 +61,12 @@ public static class DeployTargetRecordPartialExtensions
     public static Partial<DeployTargetRecord> WithChannel(this Partial<DeployTargetRecord> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
         => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecord>(it)));
     
+    public static Partial<DeployTargetRecord> WithNumber(this Partial<DeployTargetRecord> it)
+        => it.AddFieldName("number");
+    
+    public static Partial<DeployTargetRecord> WithFullNumberId(this Partial<DeployTargetRecord> it)
+        => it.AddFieldName("fullNumberId");
+    
     public static Partial<DeployTargetRecord> WithIsArchived(this Partial<DeployTargetRecord> it)
         => it.AddFieldName("archived");
     

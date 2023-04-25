@@ -27,27 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ImageAttachmentPartialBuilder;
+namespace JetBrains.Space.Client.TrackerIssueFieldOrderPartialBuilder;
 
-public static class ImageAttachmentPartialExtensions
+public static class TrackerIssueFieldOrderPartialExtensions
 {
-    public static Partial<ImageAttachment> WithId(this Partial<ImageAttachment> it)
+    public static Partial<TrackerIssueFieldOrder> WithId(this Partial<TrackerIssueFieldOrder> it)
         => it.AddFieldName("id");
     
-    public static Partial<ImageAttachment> WithName(this Partial<ImageAttachment> it)
-        => it.AddFieldName("name");
+    public static Partial<TrackerIssueFieldOrder> WithFields(this Partial<TrackerIssueFieldOrder> it)
+        => it.AddFieldName("fields");
     
-    public static Partial<ImageAttachment> WithWidth(this Partial<ImageAttachment> it)
-        => it.AddFieldName("width");
+    public static Partial<TrackerIssueFieldOrder> WithFields(this Partial<TrackerIssueFieldOrder> it, Func<Partial<IssueFieldOrder>, Partial<IssueFieldOrder>> partialBuilder)
+        => it.AddFieldName("fields", partialBuilder(new Partial<IssueFieldOrder>(it)));
     
-    public static Partial<ImageAttachment> WithHeight(this Partial<ImageAttachment> it)
-        => it.AddFieldName("height");
-    
-    public static Partial<ImageAttachment> WithVariants(this Partial<ImageAttachment> it)
-        => it.AddFieldName("variants");
-    
-    public static Partial<ImageAttachment> WithVariants(this Partial<ImageAttachment> it, Func<Partial<ImageAttachmentVariant>, Partial<ImageAttachmentVariant>> partialBuilder)
-        => it.AddFieldName("variants", partialBuilder(new Partial<ImageAttachmentVariant>(it)));
+    public static Partial<TrackerIssueFieldOrder> WithIsArchived(this Partial<TrackerIssueFieldOrder> it)
+        => it.AddFieldName("archived");
     
 }
 

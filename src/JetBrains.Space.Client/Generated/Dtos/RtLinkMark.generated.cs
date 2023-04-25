@@ -33,7 +33,7 @@ public sealed class RtLinkMark
      : DocumentMark, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "RtLinkMark";
+    public  string? ClassName => "RtLinkMark";
     
     public RtLinkMark() { }
     
@@ -52,7 +52,7 @@ public sealed class RtLinkMark
         set => _attrs.SetValue(value);
     }
 
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _attrs.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

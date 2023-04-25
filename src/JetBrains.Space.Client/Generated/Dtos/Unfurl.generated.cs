@@ -34,7 +34,7 @@ public sealed class Unfurl
 {
     public Unfurl() { }
     
-    public Unfurl(string title, string link, string text, UnfurlDetails? details = null, string? sitename = null, string? image = null, string? imageMime = null, int? imageWidth = null, int? imageHeight = null, string? video = null, string? videoIFrame = null, string? videoMime = null, int? videoHeight = null, int? videoWidth = null, string? favicon = null, bool? alwaysInline = null)
+    public Unfurl(string title, string link, string text, UnfurlDetails? details = null, string? sitename = null, string? image = null, string? imageMime = null, int? imageWidth = null, int? imageHeight = null, string? video = null, string? videoIFrame = null, string? videoMime = null, int? videoHeight = null, int? videoWidth = null, string? favicon = null, bool? alwaysInline = null, List<UnfurlViewType>? viewTypes = null)
     {
         Title = title;
         Link = link;
@@ -52,6 +52,7 @@ public sealed class Unfurl
         VideoWidth = videoWidth;
         Favicon = favicon;
         IsAlwaysInline = alwaysInline;
+        ViewTypes = viewTypes;
     }
     
     private PropertyValue<string> _title = new PropertyValue<string>(nameof(Unfurl), nameof(Title), "title");
@@ -201,6 +202,15 @@ public sealed class Unfurl
         set => _alwaysInline.SetValue(value);
     }
 
+    private PropertyValue<List<UnfurlViewType>?> _viewTypes = new PropertyValue<List<UnfurlViewType>?>(nameof(Unfurl), nameof(ViewTypes), "viewTypes");
+    
+    [JsonPropertyName("viewTypes")]
+    public List<UnfurlViewType>? ViewTypes
+    {
+        get => _viewTypes.GetValue(InlineErrors);
+        set => _viewTypes.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _title.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -219,6 +229,7 @@ public sealed class Unfurl
         _videoWidth.SetAccessPath(parentChainPath, validateHasBeenSet);
         _favicon.SetAccessPath(parentChainPath, validateHasBeenSet);
         _alwaysInline.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _viewTypes.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

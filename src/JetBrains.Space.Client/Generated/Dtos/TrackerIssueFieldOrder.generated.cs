@@ -29,19 +29,19 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ArticleContentRecord
+public sealed class TrackerIssueFieldOrder
      : IPropagatePropertyAccessPath
 {
-    public ArticleContentRecord() { }
+    public TrackerIssueFieldOrder() { }
     
-    public ArticleContentRecord(string id, bool archived, string content)
+    public TrackerIssueFieldOrder(string id, List<IssueFieldOrder> fields, bool archived)
     {
         Id = id;
+        Fields = fields;
         IsArchived = archived;
-        Content = content;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ArticleContentRecord), nameof(Id), "id");
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TrackerIssueFieldOrder), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
@@ -51,7 +51,17 @@ public sealed class ArticleContentRecord
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ArticleContentRecord), nameof(IsArchived), "archived");
+    private PropertyValue<List<IssueFieldOrder>> _fields = new PropertyValue<List<IssueFieldOrder>>(nameof(TrackerIssueFieldOrder), nameof(Fields), "fields", new List<IssueFieldOrder>());
+    
+    [Required]
+    [JsonPropertyName("fields")]
+    public List<IssueFieldOrder> Fields
+    {
+        get => _fields.GetValue(InlineErrors);
+        set => _fields.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TrackerIssueFieldOrder), nameof(IsArchived), "archived");
     
     [Required]
     [JsonPropertyName("archived")]
@@ -61,21 +71,11 @@ public sealed class ArticleContentRecord
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<string> _content = new PropertyValue<string>(nameof(ArticleContentRecord), nameof(Content), "content");
-    
-    [Required]
-    [JsonPropertyName("content")]
-    public string Content
-    {
-        get => _content.GetValue(InlineErrors);
-        set => _content.SetValue(value);
-    }
-
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _fields.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _content.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -34,11 +34,12 @@ public sealed class IssueTracker
 {
     public IssueTracker() { }
     
-    public IssueTracker(string id, bool archived, string name, List<IssueFieldVisibility> systemIssueFieldVisibilities)
+    public IssueTracker(string id, bool archived, string name, List<IssueFieldOrder> fields, List<IssueFieldVisibility> systemIssueFieldVisibilities)
     {
         Id = id;
         IsArchived = archived;
         Name = name;
+        Fields = fields;
         SystemIssueFieldVisibilities = systemIssueFieldVisibilities;
     }
     
@@ -72,6 +73,16 @@ public sealed class IssueTracker
         set => _name.SetValue(value);
     }
 
+    private PropertyValue<List<IssueFieldOrder>> _fields = new PropertyValue<List<IssueFieldOrder>>(nameof(IssueTracker), nameof(Fields), "fields", new List<IssueFieldOrder>());
+    
+    [Required]
+    [JsonPropertyName("fields")]
+    public List<IssueFieldOrder> Fields
+    {
+        get => _fields.GetValue(InlineErrors);
+        set => _fields.SetValue(value);
+    }
+
     private PropertyValue<List<IssueFieldVisibility>> _systemIssueFieldVisibilities = new PropertyValue<List<IssueFieldVisibility>>(nameof(IssueTracker), nameof(SystemIssueFieldVisibilities), "systemIssueFieldVisibilities", new List<IssueFieldVisibility>());
     
     [Required]
@@ -87,6 +98,7 @@ public sealed class IssueTracker
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _fields.SetAccessPath(parentChainPath, validateHasBeenSet);
         _systemIssueFieldVisibilities.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

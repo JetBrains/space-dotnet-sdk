@@ -33,7 +33,7 @@ public sealed class RtTableCell
      : RtTableRowContent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "RtTableCell";
+    public  string? ClassName => "RtTableCell";
     
     public RtTableCell() { }
     
@@ -62,7 +62,7 @@ public sealed class RtTableCell
         set => _attrs.SetValue(value);
     }
 
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _children.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attrs.SetAccessPath(parentChainPath, validateHasBeenSet);

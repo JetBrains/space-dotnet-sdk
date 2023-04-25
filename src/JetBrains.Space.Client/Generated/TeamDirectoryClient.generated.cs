@@ -1538,6 +1538,9 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// <summary>
         /// Get/search all profiles. Parameters are applied as 'AND' filters.
         /// </summary>
+        /// <param name="profiles">
+        /// No more than 100 profiles can be returned in a single request.
+        /// </param>
         /// <remarks>
         /// Required permissions:
         /// <list type="bullet">
@@ -1546,7 +1549,7 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<Batch<TDMemberProfile>> GetAllProfilesAsync(string query = "", bool reportPastMembers = false, bool meOnTop = false, ProfileOrgRelation orgRelation = ProfileOrgRelation.MEMBER, string? skip = null, int? top = 100, bool? reportFutureMembers = false, bool? reportCurrentMembers = true, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<TDMemberProfile>> GetAllProfilesAsync(string query = "", bool reportPastMembers = false, bool meOnTop = false, ProfileOrgRelation orgRelation = ProfileOrgRelation.MEMBER, string? skip = null, int? top = 100, bool? reportFutureMembers = false, bool? reportCurrentMembers = true, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, List<ProfileIdentifier>? profiles = null, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             if (skip != null) queryParameters.Append("$skip", skip);
@@ -1561,6 +1564,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             queryParameters.Append("meOnTop", meOnTop.ToString("l"));
             queryParameters.Append("order", order.ToEnumString());
             queryParameters.Append("orgRelation", orgRelation.ToEnumString());
+            if (profiles != null) queryParameters.Append("profiles", profiles.Select(it => it.ToString()));
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default()).ToString());
             
             return await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/team-directory/profiles{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllProfiles", cancellationToken: cancellationToken);
@@ -1569,6 +1573,9 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// <summary>
         /// Get/search all profiles. Parameters are applied as 'AND' filters.
         /// </summary>
+        /// <param name="profiles">
+        /// No more than 100 profiles can be returned in a single request.
+        /// </param>
         /// <remarks>
         /// Required permissions:
         /// <list type="bullet">
@@ -1577,8 +1584,8 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public IAsyncEnumerable<TDMemberProfile> GetAllProfilesAsyncEnumerable(string query = "", bool reportPastMembers = false, bool meOnTop = false, ProfileOrgRelation orgRelation = ProfileOrgRelation.MEMBER, string? skip = null, int? top = 100, bool? reportFutureMembers = false, bool? reportCurrentMembers = true, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProfilesAsync(query: query, reportPastMembers: reportPastMembers, meOnTop: meOnTop, orgRelation: orgRelation, top: top, reportFutureMembers: reportFutureMembers, reportCurrentMembers: reportCurrentMembers, teamId: teamId, locationId: locationId, roleId: roleId, order: order, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
+        public IAsyncEnumerable<TDMemberProfile> GetAllProfilesAsyncEnumerable(string query = "", bool reportPastMembers = false, bool meOnTop = false, ProfileOrgRelation orgRelation = ProfileOrgRelation.MEMBER, string? skip = null, int? top = 100, bool? reportFutureMembers = false, bool? reportCurrentMembers = true, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, List<ProfileIdentifier>? profiles = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProfilesAsync(query: query, reportPastMembers: reportPastMembers, meOnTop: meOnTop, orgRelation: orgRelation, top: top, reportFutureMembers: reportFutureMembers, reportCurrentMembers: reportCurrentMembers, teamId: teamId, locationId: locationId, roleId: roleId, order: order, profiles: profiles, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
     
         /// <summary>
         /// Get profile information by email address

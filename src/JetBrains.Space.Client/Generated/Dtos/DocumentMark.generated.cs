@@ -29,13 +29,9 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-[JsonConverter(typeof(ClassNameDtoTypeConverter))]
-public abstract class DocumentMark
+public interface DocumentMark
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public virtual string? ClassName => "DocumentMark";
-    
     public static RtBoldMark RtBoldMark()
         => new RtBoldMark();
     
@@ -51,13 +47,5 @@ public abstract class DocumentMark
     public static RtStrikeThroughMark RtStrikeThroughMark()
         => new RtStrikeThroughMark();
     
-    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-    }
-    
-    /// <inheritdoc />
-    [JsonPropertyName("$errors")]
-    public List<ApiInlineError> InlineErrors { get; set; } = new();
-
 }
 

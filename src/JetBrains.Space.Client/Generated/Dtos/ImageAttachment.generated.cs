@@ -37,13 +37,12 @@ public sealed class ImageAttachment
     
     public ImageAttachment() { }
     
-    public ImageAttachment(string id, int width, int height, string? name = null, string? previewBytes = null, List<ImageAttachmentVariant>? variants = null)
+    public ImageAttachment(string id, int width, int height, string? name = null, List<ImageAttachmentVariant>? variants = null)
     {
         Id = id;
         Name = name;
         Width = width;
         Height = height;
-        PreviewBytes = previewBytes;
         Variants = variants;
     }
     
@@ -86,15 +85,6 @@ public sealed class ImageAttachment
         set => _height.SetValue(value);
     }
 
-    private PropertyValue<string?> _previewBytes = new PropertyValue<string?>(nameof(ImageAttachment), nameof(PreviewBytes), "previewBytes");
-    
-    [JsonPropertyName("previewBytes")]
-    public string? PreviewBytes
-    {
-        get => _previewBytes.GetValue(InlineErrors);
-        set => _previewBytes.SetValue(value);
-    }
-
     private PropertyValue<List<ImageAttachmentVariant>?> _variants = new PropertyValue<List<ImageAttachmentVariant>?>(nameof(ImageAttachment), nameof(Variants), "variants");
     
     [JsonPropertyName("variants")]
@@ -110,7 +100,6 @@ public sealed class ImageAttachment
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _width.SetAccessPath(parentChainPath, validateHasBeenSet);
         _height.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _previewBytes.SetAccessPath(parentChainPath, validateHasBeenSet);
         _variants.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

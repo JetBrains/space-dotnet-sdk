@@ -32,8 +32,8 @@ namespace JetBrains.Space.Client;
 public interface MediaAttachment
      : AttachmentIn, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static ImageAttachment ImageAttachment(string id, int width, int height, string? name = null, string? previewBytes = null, List<ImageAttachmentVariant>? variants = null)
-        => new ImageAttachment(id: id, width: width, height: height, name: name, previewBytes: previewBytes, variants: variants);
+    public static ImageAttachment ImageAttachment(string id, int width, int height, string? name = null, List<ImageAttachmentVariant>? variants = null)
+        => new ImageAttachment(id: id, width: width, height: height, name: name, variants: variants);
     
     public static VideoAttachment VideoAttachment(string id, long sizeBytes, string? name = null, int? width = null, int? height = null, string? previewBytes = null)
         => new VideoAttachment(id: id, sizeBytes: sizeBytes, name: name, width: width, height: height, previewBytes: previewBytes);

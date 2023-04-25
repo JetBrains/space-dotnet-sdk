@@ -401,6 +401,24 @@ public partial class ProjectClient : ISpaceClient
             public IAsyncEnumerable<DeployTargetRecord> GetAllDeploymentTargetsAsyncEnumerable(ProjectIdentifier? project = null, string? search = null, List<string>? customFilters = null, string? sortBy = null, ColumnSortOrder? sortOrder = null, string? skip = null, int? top = 100, Func<Partial<DeployTargetRecord>, Partial<DeployTargetRecord>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllDeploymentTargetsAsync(project: project, search: search, customFilters: customFilters, sortBy: sortBy, sortOrder: sortOrder, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<DeployTargetRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DeployTargetRecord>.Default())), skip, cancellationToken);
         
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View deployments</term>
+            /// <description>View deployments in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<DeployTargetRecord> GetAsync(string fullNumberId, Func<Partial<DeployTargetRecord>, Partial<DeployTargetRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<DeployTargetRecord>()) : Partial<DeployTargetRecord>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<DeployTargetRecord>("GET", $"api/http/projects/automation/deployment-targets/{fullNumberId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "Get", cancellationToken: cancellationToken);
+            }
+            
+        
         }
     
         public DSLEvaluationClient DSLEvaluations => new DSLEvaluationClient(_connection);
@@ -2483,13 +2501,13 @@ public partial class ProjectClient : ISpaceClient
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task<List<IssueFieldOrder>> GetIssueFieldOrderAsync(ProjectIdentifier project, bool onlyVisible = true, Func<Partial<IssueFieldOrder>, Partial<IssueFieldOrder>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                    public async Task<TrackerIssueFieldOrder> GetIssueFieldOrderAsync(ProjectIdentifier project, bool onlyVisible = true, Func<Partial<TrackerIssueFieldOrder>, Partial<TrackerIssueFieldOrder>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
                         queryParameters.Append("onlyVisible", onlyVisible.ToString("l"));
-                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<IssueFieldOrder>()) : Partial<IssueFieldOrder>.Default()).ToString());
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<TrackerIssueFieldOrder>()) : Partial<TrackerIssueFieldOrder>.Default()).ToString());
                         
-                        return await _connection.RequestResourceAsync<List<IssueFieldOrder>>("GET", $"api/http/projects/{project}/planning/issues/fields/order{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetIssueFieldOrder", cancellationToken: cancellationToken);
+                        return await _connection.RequestResourceAsync<TrackerIssueFieldOrder>("GET", $"api/http/projects/{project}/planning/issues/fields/order{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetIssueFieldOrder", cancellationToken: cancellationToken);
                     }
                     
                 

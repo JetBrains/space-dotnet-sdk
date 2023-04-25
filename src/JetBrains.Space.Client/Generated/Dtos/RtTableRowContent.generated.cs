@@ -29,26 +29,14 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-[JsonConverter(typeof(ClassNameDtoTypeConverter))]
-public abstract class RtTableRowContent
+public interface RtTableRowContent
      : BlockNodeWithChildren, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public virtual string? ClassName => "RtTableRowContent";
-    
     public static RtTableCell RtTableCell(List<BlockNode> children, RtTableCellAttrs? attrs = null)
         => new RtTableCell(children: children, attrs: attrs);
     
     public static RtTableHeader RtTableHeader(List<BlockNode> children, RtTableCellAttrs? attrs = null)
         => new RtTableHeader(children: children, attrs: attrs);
     
-    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-    }
-    
-    /// <inheritdoc />
-    [JsonPropertyName("$errors")]
-    public List<ApiInlineError> InlineErrors { get; set; } = new();
-
 }
 

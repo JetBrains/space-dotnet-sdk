@@ -34,7 +34,7 @@ public sealed class ArticleRecord
 {
     public ArticleRecord() { }
     
-    public ArticleRecord(string id, bool archived, string title, DateTime created, TDMemberProfile author, List<BGArticleAlias> aliases, M2ChannelRecord channel, string content, bool editable, string preview, List<ArticleMarkdownImage> previewImages, AllReactionsToItemRecord reactions, TDMemberProfile? archivedBy = null, DateTime? archivedAt = null, List<AttachmentInfo>? attachments = null, M2ChannelContentRecord? channelContent = null, bool? cut = null, MeetingRecord? @event = null, ExternalEntityInfoRecord? externalEntityInfo = null, List<TDLocation>? locations = null, List<AttachmentInfo>? previewAttachments = null, List<TDTeam>? teams = null, int? wordsNumber = null)
+    public ArticleRecord(string id, bool archived, string title, DateTime created, TDMemberProfile author, List<BGArticleAlias> aliases, M2ChannelRecord channel, string content, bool editable, string preview, List<ArticleMarkdownImage> previewImages, AllReactionsToItemRecord reactions, TDMemberProfile? archivedBy = null, DateTime? archivedAt = null, M2ChannelContentRecord? channelContent = null, bool? cut = null, MeetingRecord? @event = null, ExternalEntityInfoRecord? externalEntityInfo = null, List<TDLocation>? locations = null, List<AttachmentInfo>? previewAttachments = null, List<TDTeam>? teams = null, int? wordsNumber = null)
     {
         Id = id;
         IsArchived = archived;
@@ -44,7 +44,6 @@ public sealed class ArticleRecord
         Aliases = aliases;
         ArchivedBy = archivedBy;
         ArchivedAt = archivedAt;
-        Attachments = attachments;
         Channel = channel;
         ChannelContent = channelContent;
         Content = content;
@@ -139,15 +138,6 @@ public sealed class ArticleRecord
     {
         get => _archivedAt.GetValue(InlineErrors);
         set => _archivedAt.SetValue(value);
-    }
-
-    private PropertyValue<List<AttachmentInfo>?> _attachments = new PropertyValue<List<AttachmentInfo>?>(nameof(ArticleRecord), nameof(Attachments), "attachments");
-    
-    [JsonPropertyName("attachments")]
-    public List<AttachmentInfo>? Attachments
-    {
-        get => _attachments.GetValue(InlineErrors);
-        set => _attachments.SetValue(value);
     }
 
     private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(ArticleRecord), nameof(Channel), "channel");
@@ -292,7 +282,6 @@ public sealed class ArticleRecord
         _aliases.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archivedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archivedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
         _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
         _channelContent.SetAccessPath(parentChainPath, validateHasBeenSet);
         _content.SetAccessPath(parentChainPath, validateHasBeenSet);

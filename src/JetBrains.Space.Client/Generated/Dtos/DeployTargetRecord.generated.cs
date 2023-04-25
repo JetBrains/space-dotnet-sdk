@@ -34,7 +34,7 @@ public sealed class DeployTargetRecord
 {
     public DeployTargetRecord() { }
     
-    public DeployTargetRecord(string id, string projectId, string name, string key, string description, string createdAt, M2ChannelRecord channel, bool archived, string channelId, List<DeployTargetLink> links, bool manualControl, List<DeployTargetRepositoryDTO> repositories, List<TDTeam> teams, List<TDMemberProfile> users, string? lastUpdated = null, string? lastDeployed = null, string? connectedChannelId = null, CPrincipal? createdBy = null, DeploymentInfo? current = null, int? failTimeoutMinutes = null, int? hangTimeoutMinutes = null, DeploymentInfo? next = null)
+    public DeployTargetRecord(string id, string projectId, string name, string key, string description, string createdAt, M2ChannelRecord channel, bool archived, string channelId, List<DeployTargetLink> links, bool manualControl, List<DeployTargetRepositoryDTO> repositories, List<TDTeam> teams, List<TDMemberProfile> users, string? lastUpdated = null, string? lastDeployed = null, int? number = null, string? fullNumberId = null, string? connectedChannelId = null, CPrincipal? createdBy = null, DeploymentInfo? current = null, int? failTimeoutMinutes = null, int? hangTimeoutMinutes = null, DeploymentInfo? next = null)
     {
         Id = id;
         ProjectId = projectId;
@@ -45,6 +45,8 @@ public sealed class DeployTargetRecord
         LastUpdated = lastUpdated;
         LastDeployed = lastDeployed;
         Channel = channel;
+        Number = number;
+        FullNumberId = fullNumberId;
         IsArchived = archived;
         ChannelId = channelId;
         ConnectedChannelId = connectedChannelId;
@@ -146,6 +148,24 @@ public sealed class DeployTargetRecord
     {
         get => _channel.GetValue(InlineErrors);
         set => _channel.SetValue(value);
+    }
+
+    private PropertyValue<int?> _number = new PropertyValue<int?>(nameof(DeployTargetRecord), nameof(Number), "number");
+    
+    [JsonPropertyName("number")]
+    public int? Number
+    {
+        get => _number.GetValue(InlineErrors);
+        set => _number.SetValue(value);
+    }
+
+    private PropertyValue<string?> _fullNumberId = new PropertyValue<string?>(nameof(DeployTargetRecord), nameof(FullNumberId), "fullNumberId");
+    
+    [JsonPropertyName("fullNumberId")]
+    public string? FullNumberId
+    {
+        get => _fullNumberId.GetValue(InlineErrors);
+        set => _fullNumberId.SetValue(value);
     }
 
     private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(DeployTargetRecord), nameof(IsArchived), "archived");
@@ -283,6 +303,8 @@ public sealed class DeployTargetRecord
         _lastUpdated.SetAccessPath(parentChainPath, validateHasBeenSet);
         _lastDeployed.SetAccessPath(parentChainPath, validateHasBeenSet);
         _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _number.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _fullNumberId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
         _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _connectedChannelId.SetAccessPath(parentChainPath, validateHasBeenSet);

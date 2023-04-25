@@ -33,7 +33,7 @@ public sealed class RtTableHeader
      : RtTableRowContent, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "RtTableHeader";
+    public  string? ClassName => "RtTableHeader";
     
     public RtTableHeader() { }
     
@@ -62,7 +62,7 @@ public sealed class RtTableHeader
         set => _attrs.SetValue(value);
     }
 
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _children.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attrs.SetAccessPath(parentChainPath, validateHasBeenSet);
