@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using JetBrains.Space.Generator.Model.HttpApi;
 
 namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions;
@@ -33,9 +34,11 @@ public static class ApiDocumentationExtensions
         var line = reader.ReadLine();
         while (line != null)
         {
-            builder.AppendLine("/// " + line
+            builder.AppendLine("/// " + ReplaceMarkdownLinks(line
+                .Replace("&amp;", "&")
+                .Replace("&", "&amp;")
                 .Replace("<", "&lt;")
-                .Replace(">", "&gt;"));
+                .Replace(">", "&gt;")));
             
             line = reader.ReadLine();
         }
@@ -47,5 +50,14 @@ public static class ApiDocumentationExtensions
             
         builder.AppendLine($"/// {endElement}");
         return builder.ToString();
+    }
+
+    private static string ReplaceMarkdownLinks(string markdown)
+    {
+        var anchor = new Regex(@"\[([^]]*)\]\(([^\s^\)]*)[\s\)]", // Regex for Markdown hyperlinks
+            RegexOptions.Singleline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
+
+        markdown = anchor.Replace(markdown, @"<a href=""$2"">$1</a>");
+        return markdown;
     }
 }
