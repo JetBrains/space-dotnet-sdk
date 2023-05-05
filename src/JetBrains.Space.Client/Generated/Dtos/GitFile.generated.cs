@@ -34,12 +34,13 @@ public sealed class GitFile
 {
     public GitFile() { }
     
-    public GitFile(string commit, string path, string blob, GitEntryType type)
+    public GitFile(string commit, string path, string blob, GitEntryType type, GitFileProperties? properties = null)
     {
         Commit = commit;
         Path = path;
         Blob = blob;
         Type = type;
+        Properties = properties;
     }
     
     private PropertyValue<string> _commit = new PropertyValue<string>(nameof(GitFile), nameof(Commit), "commit");
@@ -82,12 +83,22 @@ public sealed class GitFile
         set => _type.SetValue(value);
     }
 
+    private PropertyValue<GitFileProperties?> _properties = new PropertyValue<GitFileProperties?>(nameof(GitFile), nameof(Properties), "properties");
+    
+    [JsonPropertyName("properties")]
+    public GitFileProperties? Properties
+    {
+        get => _properties.GetValue(InlineErrors);
+        set => _properties.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _commit.SetAccessPath(parentChainPath, validateHasBeenSet);
         _path.SetAccessPath(parentChainPath, validateHasBeenSet);
         _blob.SetAccessPath(parentChainPath, validateHasBeenSet);
         _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _properties.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

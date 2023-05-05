@@ -46,8 +46,5 @@ public static class VideoAttachmentPartialExtensions
     public static Partial<VideoAttachment> WithSizeBytes(this Partial<VideoAttachment> it)
         => it.AddFieldName("sizeBytes");
     
-    public static Partial<VideoAttachment> WithPreviewBytes(this Partial<VideoAttachment> it)
-        => it.AddFieldName("previewBytes");
-    
 }
 

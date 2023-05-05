@@ -374,6 +374,40 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
+            public async Task<Batch<DeployTargetRecord>> SearchAsync(DeployTargetsSearchExpression expression, BatchInfo? batchInfo = null, Func<Partial<Batch<DeployTargetRecord>>, Partial<Batch<DeployTargetRecord>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<DeployTargetRecord>>()) : Partial<Batch<DeployTargetRecord>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<ProjectsAutomationDeploymentTargetsSearchPostRequest, Batch<DeployTargetRecord>>("POST", $"api/http/projects/automation/deployment-targets/search{queryParameters.ToQueryString()}", 
+                    new ProjectsAutomationDeploymentTargetsSearchPostRequest
+                    { 
+                        Expression = expression,
+                        BatchInfo = batchInfo,
+                    }, requestHeaders: null, functionName: "Search", cancellationToken: cancellationToken);
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View deployments</term>
+            /// <description>View deployments in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public IAsyncEnumerable<DeployTargetRecord> SearchAsyncEnumerable(DeployTargetsSearchExpression expression, BatchInfo? batchInfo = null, Func<Partial<DeployTargetRecord>, Partial<DeployTargetRecord>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => SearchAsync(expression: expression, batchInfo: batchInfo, cancellationToken: cancellationToken, partial: builder => Partial<Batch<DeployTargetRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DeployTargetRecord>.Default())), skip, cancellationToken);
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View deployments</term>
+            /// <description>View deployments in a project</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<Batch<DeployTargetRecord>> GetAllDeploymentTargetsAsync(ProjectIdentifier? project = null, string? search = null, List<string>? customFilters = null, string? sortBy = null, ColumnSortOrder? sortOrder = null, string? skip = null, int? top = 100, Func<Partial<Batch<DeployTargetRecord>>, Partial<Batch<DeployTargetRecord>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -766,7 +800,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<DeployTargetRecord> CreateAsync(ProjectIdentifier project, string key, string name, string description, List<DeployTargetRepositoryDTO>? repositories = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null, List<CustomFieldInputValue>? customFields = null, Func<Partial<DeployTargetRecord>, Partial<DeployTargetRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task<DeployTargetRecord> CreateAsync(ProjectIdentifier project, string key, string name, string description, List<DeployTargetRepositoryDTO>? repositories = null, bool? manualControl = null, bool? singleScheduled = null, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null, List<CustomFieldInputValue>? customFields = null, Func<Partial<DeployTargetRecord>, Partial<DeployTargetRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<DeployTargetRecord>()) : Partial<DeployTargetRecord>.Default()).ToString());
@@ -778,6 +812,10 @@ public partial class ProjectClient : ISpaceClient
                         Name = name,
                         Description = description,
                         Repositories = (repositories ?? new List<DeployTargetRepositoryDTO>()),
+                        IsManualControl = manualControl,
+                        IsSingleScheduled = singleScheduled,
+                        HangTimeoutMinutes = hangTimeoutMinutes,
+                        FailTimeoutMinutes = failTimeoutMinutes,
                         ResponsibleUsers = responsibleUsers,
                         ResponsibleTeams = responsibleTeams,
                         Links = links,
@@ -861,7 +899,7 @@ public partial class ProjectClient : ISpaceClient
             }
             
         
-            public async Task UpdateAsync(ProjectIdentifier project, TargetIdentifier target, string? name = null, string? description = null, List<DeployTargetRepositoryDTO>? repositories = null, bool? manualControl = null, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null, List<CustomFieldInputValue>? customFields = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task UpdateAsync(ProjectIdentifier project, TargetIdentifier target, string? name = null, string? description = null, List<DeployTargetRepositoryDTO>? repositories = null, bool? manualControl = null, bool? singleScheduled = null, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null, List<CustomFieldInputValue>? customFields = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -872,6 +910,7 @@ public partial class ProjectClient : ISpaceClient
                         Description = description,
                         Repositories = repositories,
                         IsManualControl = manualControl,
+                        IsSingleScheduled = singleScheduled,
                         HangTimeoutMinutes = hangTimeoutMinutes,
                         FailTimeoutMinutes = failTimeoutMinutes,
                         ResponsibleUsers = responsibleUsers,

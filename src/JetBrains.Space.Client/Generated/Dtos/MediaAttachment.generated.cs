@@ -35,8 +35,8 @@ public interface MediaAttachment
     public static ImageAttachment ImageAttachment(string id, int width, int height, string? name = null, List<ImageAttachmentVariant>? variants = null)
         => new ImageAttachment(id: id, width: width, height: height, name: name, variants: variants);
     
-    public static VideoAttachment VideoAttachment(string id, long sizeBytes, string? name = null, int? width = null, int? height = null, string? previewBytes = null)
-        => new VideoAttachment(id: id, sizeBytes: sizeBytes, name: name, width: width, height: height, previewBytes: previewBytes);
+    public static VideoAttachment VideoAttachment(string id, long sizeBytes, string? name = null, int? width = null, int? height = null)
+        => new VideoAttachment(id: id, sizeBytes: sizeBytes, name: name, width: width, height: height);
     
 }
 

@@ -34,7 +34,7 @@ public sealed class DeployTargetRecord
 {
     public DeployTargetRecord() { }
     
-    public DeployTargetRecord(string id, string projectId, string name, string key, string description, string createdAt, M2ChannelRecord channel, bool archived, string channelId, List<DeployTargetLink> links, bool manualControl, List<DeployTargetRepositoryDTO> repositories, List<TDTeam> teams, List<TDMemberProfile> users, string? lastUpdated = null, string? lastDeployed = null, int? number = null, string? fullNumberId = null, string? connectedChannelId = null, CPrincipal? createdBy = null, DeploymentInfo? current = null, int? failTimeoutMinutes = null, int? hangTimeoutMinutes = null, DeploymentInfo? next = null)
+    public DeployTargetRecord(string id, string projectId, string name, string key, string description, string createdAt, M2ChannelRecord channel, bool archived, string channelId, List<DeployTargetLink> links, bool manualControl, List<DeployTargetRepositoryDTO> repositories, List<TDTeam> teams, List<TDMemberProfile> users, string? lastUpdated = null, string? lastDeployed = null, int? number = null, string? fullNumberId = null, string? connectedChannelId = null, CPrincipal? createdBy = null, DeploymentInfo? current = null, int? failTimeoutMinutes = null, int? hangTimeoutMinutes = null, DeploymentInfo? next = null, bool? singleScheduled = null)
     {
         Id = id;
         ProjectId = projectId;
@@ -58,6 +58,7 @@ public sealed class DeployTargetRecord
         IsManualControl = manualControl;
         Next = next;
         Repositories = repositories;
+        IsSingleScheduled = singleScheduled;
         Teams = teams;
         Users = users;
     }
@@ -272,6 +273,15 @@ public sealed class DeployTargetRecord
         set => _repositories.SetValue(value);
     }
 
+    private PropertyValue<bool?> _singleScheduled = new PropertyValue<bool?>(nameof(DeployTargetRecord), nameof(IsSingleScheduled), "singleScheduled");
+    
+    [JsonPropertyName("singleScheduled")]
+    public bool? IsSingleScheduled
+    {
+        get => _singleScheduled.GetValue(InlineErrors);
+        set => _singleScheduled.SetValue(value);
+    }
+
     private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(DeployTargetRecord), nameof(Teams), "teams", new List<TDTeam>());
     
     [Required]
@@ -316,6 +326,7 @@ public sealed class DeployTargetRecord
         _manualControl.SetAccessPath(parentChainPath, validateHasBeenSet);
         _next.SetAccessPath(parentChainPath, validateHasBeenSet);
         _repositories.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _singleScheduled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _teams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _users.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

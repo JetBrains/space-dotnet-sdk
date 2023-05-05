@@ -1334,7 +1334,7 @@ public partial class ApplicationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<WebhookRecord> CreateWebhookAsync(ApplicationIdentifier application, string name, List<int> acceptedHttpResponseCodes, bool enabled = true, bool doRetries = true, string? description = null, EndpointCreateDTO? endpoint = null, EndpointAuthCreateDTO? endpointAuth = null, string? payloadFields = null, Func<Partial<WebhookRecord>, Partial<WebhookRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<WebhookRecord> CreateWebhookAsync(ApplicationIdentifier application, string name, List<int> acceptedHttpResponseCodes, bool enabled = true, bool doRetries = true, string? description = null, EndpointCreateDTO? endpoint = null, EndpointAuthCreateDTO? endpointAuth = null, string? payloadFields = null, string? payloadTemplate = null, List<SubscriptionDefinition>? subscriptions = null, Func<Partial<WebhookRecord>, Partial<WebhookRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<WebhookRecord>()) : Partial<WebhookRecord>.Default()).ToString());
@@ -1350,6 +1350,8 @@ public partial class ApplicationClient : ISpaceClient
                     AcceptedHttpResponseCodes = acceptedHttpResponseCodes,
                     IsDoRetries = doRetries,
                     PayloadFields = payloadFields,
+                    PayloadTemplate = payloadTemplate,
+                    Subscriptions = subscriptions,
                 }, requestHeaders: null, functionName: "CreateWebhook", cancellationToken: cancellationToken);
         }
         
@@ -1437,7 +1439,7 @@ public partial class ApplicationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task UpdateWebhookAsync(ApplicationIdentifier application, string webhookId, List<int> acceptedHttpResponseCodes, string? name = null, bool? enabled = null, bool? doRetries = null, string? description = null, ExternalEndpointUpdateDTO? endpoint = null, EndpointAuthUpdateDTO? endpointAuth = null, string? payloadFields = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task UpdateWebhookAsync(ApplicationIdentifier application, string webhookId, List<int> acceptedHttpResponseCodes, string? name = null, bool? enabled = null, bool? doRetries = null, string? description = null, ExternalEndpointUpdateDTO? endpoint = null, EndpointAuthUpdateDTO? endpointAuth = null, string? payloadFields = null, string? payloadTemplate = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -1452,6 +1454,7 @@ public partial class ApplicationClient : ISpaceClient
                     AcceptedHttpResponseCodes = acceptedHttpResponseCodes,
                     IsDoRetries = doRetries,
                     PayloadFields = payloadFields,
+                    PayloadTemplate = payloadTemplate,
                 }, requestHeaders: null, functionName: "UpdateWebhook", cancellationToken: cancellationToken);
         }
         

@@ -34,10 +34,11 @@ public sealed class DeployTargetLink
 {
     public DeployTargetLink() { }
     
-    public DeployTargetLink(string url, string? label = null)
+    public DeployTargetLink(string url, string? label = null, bool? main = null)
     {
         Label = label;
         Url = url;
+        IsMain = main;
     }
     
     private PropertyValue<string?> _label = new PropertyValue<string?>(nameof(DeployTargetLink), nameof(Label), "label");
@@ -59,10 +60,20 @@ public sealed class DeployTargetLink
         set => _url.SetValue(value);
     }
 
+    private PropertyValue<bool?> _main = new PropertyValue<bool?>(nameof(DeployTargetLink), nameof(IsMain), "main");
+    
+    [JsonPropertyName("main")]
+    public bool? IsMain
+    {
+        get => _main.GetValue(InlineErrors);
+        set => _main.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _label.SetAccessPath(parentChainPath, validateHasBeenSet);
         _url.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _main.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

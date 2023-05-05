@@ -37,5 +37,8 @@ public static class DeployTargetLinkPartialExtensions
     public static Partial<DeployTargetLink> WithUrl(this Partial<DeployTargetLink> it)
         => it.AddFieldName("url");
     
+    public static Partial<DeployTargetLink> WithIsMain(this Partial<DeployTargetLink> it)
+        => it.AddFieldName("main");
+    
 }
 

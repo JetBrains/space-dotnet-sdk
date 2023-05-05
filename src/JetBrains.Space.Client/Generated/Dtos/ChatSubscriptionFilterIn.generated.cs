@@ -35,5 +35,8 @@ public interface ChatSubscriptionFilterIn
     public static ChatChannelSubscriptionFilterIn ChatChannelSubscriptionFilterIn(string? channel = null)
         => new ChatChannelSubscriptionFilterIn(channel: channel);
     
+    public static ChatMessageReactionSubscriptionFilterIn ChatMessageReactionSubscriptionFilterIn(List<string>? emojis = null)
+        => new ChatMessageReactionSubscriptionFilterIn(emojis: emojis);
+    
 }
 

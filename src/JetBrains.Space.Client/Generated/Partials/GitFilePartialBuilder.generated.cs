@@ -46,5 +46,11 @@ public static class GitFilePartialExtensions
     public static Partial<GitFile> WithType(this Partial<GitFile> it, Func<Partial<GitEntryType>, Partial<GitEntryType>> partialBuilder)
         => it.AddFieldName("type", partialBuilder(new Partial<GitEntryType>(it)));
     
+    public static Partial<GitFile> WithProperties(this Partial<GitFile> it)
+        => it.AddFieldName("properties");
+    
+    public static Partial<GitFile> WithProperties(this Partial<GitFile> it, Func<Partial<GitFileProperties>, Partial<GitFileProperties>> partialBuilder)
+        => it.AddFieldName("properties", partialBuilder(new Partial<GitFileProperties>(it)));
+    
 }
 

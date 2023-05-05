@@ -61,5 +61,11 @@ public static class GitMergedFilePartialExtensions
     public static Partial<GitMergedFile> WithIsConflicting(this Partial<GitMergedFile> it)
         => it.AddFieldName("conflicting");
     
+    public static Partial<GitMergedFile> WithProperties(this Partial<GitMergedFile> it)
+        => it.AddFieldName("properties");
+    
+    public static Partial<GitMergedFile> WithProperties(this Partial<GitMergedFile> it, Func<Partial<GitFileProperties>, Partial<GitFileProperties>> partialBuilder)
+        => it.AddFieldName("properties", partialBuilder(new Partial<GitFileProperties>(it)));
+    
 }
 

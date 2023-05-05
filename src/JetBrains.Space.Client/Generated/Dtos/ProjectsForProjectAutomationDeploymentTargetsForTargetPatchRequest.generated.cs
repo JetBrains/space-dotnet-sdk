@@ -34,12 +34,13 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest
 {
     public ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest() { }
     
-    public ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest(string? name = null, string? description = null, List<DeployTargetRepositoryDTO>? repositories = null, bool? manualControl = null, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null, List<CustomFieldInputValue>? customFields = null)
+    public ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest(string? name = null, string? description = null, List<DeployTargetRepositoryDTO>? repositories = null, bool? manualControl = null, bool? singleScheduled = null, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null, List<CustomFieldInputValue>? customFields = null)
     {
         Name = name;
         Description = description;
         Repositories = repositories;
         IsManualControl = manualControl;
+        IsSingleScheduled = singleScheduled;
         HangTimeoutMinutes = hangTimeoutMinutes;
         FailTimeoutMinutes = failTimeoutMinutes;
         ResponsibleUsers = responsibleUsers;
@@ -94,6 +95,18 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest
     {
         get => _manualControl.GetValue(InlineErrors);
         set => _manualControl.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _singleScheduled = new PropertyValue<bool?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest), nameof(IsSingleScheduled), "singleScheduled");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("singleScheduled")]
+    public bool? IsSingleScheduled
+    {
+        get => _singleScheduled.GetValue(InlineErrors);
+        set => _singleScheduled.SetValue(value);
     }
 
     private PropertyValue<int?> _hangTimeoutMinutes = new PropertyValue<int?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest), nameof(HangTimeoutMinutes), "hangTimeoutMinutes");
@@ -174,6 +187,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _repositories.SetAccessPath(parentChainPath, validateHasBeenSet);
         _manualControl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _singleScheduled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _hangTimeoutMinutes.SetAccessPath(parentChainPath, validateHasBeenSet);
         _failTimeoutMinutes.SetAccessPath(parentChainPath, validateHasBeenSet);
         _responsibleUsers.SetAccessPath(parentChainPath, validateHasBeenSet);

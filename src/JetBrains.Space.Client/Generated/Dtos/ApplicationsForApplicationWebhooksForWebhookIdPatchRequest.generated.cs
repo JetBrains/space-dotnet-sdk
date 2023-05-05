@@ -34,7 +34,7 @@ public class ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
 {
     public ApplicationsForApplicationWebhooksForWebhookIdPatchRequest() { }
     
-    public ApplicationsForApplicationWebhooksForWebhookIdPatchRequest(List<int> acceptedHttpResponseCodes, string? name = null, bool? enabled = null, bool? doRetries = null, string? description = null, ExternalEndpointUpdateDTO? endpoint = null, EndpointAuthUpdateDTO? endpointAuth = null, string? payloadFields = null)
+    public ApplicationsForApplicationWebhooksForWebhookIdPatchRequest(List<int> acceptedHttpResponseCodes, string? name = null, bool? enabled = null, bool? doRetries = null, string? description = null, ExternalEndpointUpdateDTO? endpoint = null, EndpointAuthUpdateDTO? endpointAuth = null, string? payloadFields = null, string? payloadTemplate = null)
     {
         Name = name;
         Description = description;
@@ -44,6 +44,7 @@ public class ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
         AcceptedHttpResponseCodes = acceptedHttpResponseCodes;
         IsDoRetries = doRetries;
         PayloadFields = payloadFields;
+        PayloadTemplate = payloadTemplate;
     }
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ApplicationsForApplicationWebhooksForWebhookIdPatchRequest), nameof(Name), "name");
@@ -139,6 +140,37 @@ public class ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
         set => _payloadFields.SetValue(value);
     }
 
+    private PropertyValue<string?> _payloadTemplate = new PropertyValue<string?>(nameof(ApplicationsForApplicationWebhooksForWebhookIdPatchRequest), nameof(PayloadTemplate), "payloadTemplate");
+    
+    /// <summary>
+    /// Alternatively to `payloadFields`, you can specify `payloadTemplate` parameter. This is the a free-form template for HTTP body.
+    ///             You can use variables in the template, which will be replaced with actual values when the webhook is triggered.
+    ///             To reference a variable, use the following syntax: `{{variableName}}`. For example, for `Chat Messages` subscription,
+    ///             `{{message.author.name}}` will be replaced with the name of the author of the message.
+    ///             To escape an opening curly brace, use `\{`. To escape a backslash, use `\\`.
+    ///             To explore the available variables, please set up a webhook for your application in UI with relevant subscriptions, and have a look at the `Customize Payload` section.
+    ///             The children of the `payload` node are available as variables.
+    ///         
+    /// </summary>
+    /// <remarks>
+    /// This parameter is experimental and its behavior may be changed or removed in future versions
+    /// </remarks>
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+#if NET6_0_OR_GREATER
+    [Obsolete("This parameter is experimental and its behavior may be changed or removed in future versions", DiagnosticId = "SPC001")]
+#else
+    [Obsolete("This parameter is experimental and its behavior may be changed or removed in future versions")]
+#endif
+    
+    [JsonPropertyName("payloadTemplate")]
+    public string? PayloadTemplate
+    {
+        get => _payloadTemplate.GetValue(InlineErrors);
+        set => _payloadTemplate.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -149,6 +181,7 @@ public class ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
         _acceptedHttpResponseCodes.SetAccessPath(parentChainPath, validateHasBeenSet);
         _doRetries.SetAccessPath(parentChainPath, validateHasBeenSet);
         _payloadFields.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _payloadTemplate.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

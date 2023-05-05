@@ -35,6 +35,9 @@ public interface M2ItemContentDetails
     public static CodeSuggestedEditHeadContentDetails CodeSuggestedEditHeadContentDetails(CodeDiscussionRecord codeDiscussion, bool? accepted = null)
         => new CodeSuggestedEditHeadContentDetails(codeDiscussion: codeDiscussion, accepted: accepted);
     
+    public static DeployTargetChangedMCExtension DeployTargetChangedMCExtension()
+        => new DeployTargetChangedMCExtension();
+    
     public static DeploymentM2DetailsNoThread DeploymentM2DetailsNoThread()
         => new DeploymentM2DetailsNoThread();
     

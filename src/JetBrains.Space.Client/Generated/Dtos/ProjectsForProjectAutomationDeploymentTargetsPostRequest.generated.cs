@@ -34,12 +34,16 @@ public class ProjectsForProjectAutomationDeploymentTargetsPostRequest
 {
     public ProjectsForProjectAutomationDeploymentTargetsPostRequest() { }
     
-    public ProjectsForProjectAutomationDeploymentTargetsPostRequest(string key, string name, string description, List<DeployTargetRepositoryDTO>? repositories = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null, List<CustomFieldInputValue>? customFields = null)
+    public ProjectsForProjectAutomationDeploymentTargetsPostRequest(string key, string name, string description, List<DeployTargetRepositoryDTO>? repositories = null, bool? manualControl = null, bool? singleScheduled = null, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null, List<CustomFieldInputValue>? customFields = null)
     {
         Key = key;
         Name = name;
         Description = description;
         Repositories = (repositories ?? new List<DeployTargetRepositoryDTO>());
+        IsManualControl = manualControl;
+        IsSingleScheduled = singleScheduled;
+        HangTimeoutMinutes = hangTimeoutMinutes;
+        FailTimeoutMinutes = failTimeoutMinutes;
         ResponsibleUsers = responsibleUsers;
         ResponsibleTeams = responsibleTeams;
         Links = links;
@@ -83,6 +87,54 @@ public class ProjectsForProjectAutomationDeploymentTargetsPostRequest
     {
         get => _repositories.GetValue(InlineErrors);
         set => _repositories.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _manualControl = new PropertyValue<bool?>(nameof(ProjectsForProjectAutomationDeploymentTargetsPostRequest), nameof(IsManualControl), "manualControl");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("manualControl")]
+    public bool? IsManualControl
+    {
+        get => _manualControl.GetValue(InlineErrors);
+        set => _manualControl.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _singleScheduled = new PropertyValue<bool?>(nameof(ProjectsForProjectAutomationDeploymentTargetsPostRequest), nameof(IsSingleScheduled), "singleScheduled");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("singleScheduled")]
+    public bool? IsSingleScheduled
+    {
+        get => _singleScheduled.GetValue(InlineErrors);
+        set => _singleScheduled.SetValue(value);
+    }
+
+    private PropertyValue<int?> _hangTimeoutMinutes = new PropertyValue<int?>(nameof(ProjectsForProjectAutomationDeploymentTargetsPostRequest), nameof(HangTimeoutMinutes), "hangTimeoutMinutes");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("hangTimeoutMinutes")]
+    public int? HangTimeoutMinutes
+    {
+        get => _hangTimeoutMinutes.GetValue(InlineErrors);
+        set => _hangTimeoutMinutes.SetValue(value);
+    }
+
+    private PropertyValue<int?> _failTimeoutMinutes = new PropertyValue<int?>(nameof(ProjectsForProjectAutomationDeploymentTargetsPostRequest), nameof(FailTimeoutMinutes), "failTimeoutMinutes");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("failTimeoutMinutes")]
+    public int? FailTimeoutMinutes
+    {
+        get => _failTimeoutMinutes.GetValue(InlineErrors);
+        set => _failTimeoutMinutes.SetValue(value);
     }
 
     private PropertyValue<List<string>?> _responsibleUsers = new PropertyValue<List<string>?>(nameof(ProjectsForProjectAutomationDeploymentTargetsPostRequest), nameof(ResponsibleUsers), "responsibleUsers");
@@ -139,6 +191,10 @@ public class ProjectsForProjectAutomationDeploymentTargetsPostRequest
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _repositories.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _manualControl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _singleScheduled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hangTimeoutMinutes.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _failTimeoutMinutes.SetAccessPath(parentChainPath, validateHasBeenSet);
         _responsibleUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
         _responsibleTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _links.SetAccessPath(parentChainPath, validateHasBeenSet);

@@ -47,6 +47,9 @@ public interface SubscriptionFilter
     public static ChatChannelSubscriptionFilter ChatChannel(string? channel = null, ChatContactRecord? contact = null)
         => new ChatChannelSubscriptionFilter(channel: channel, contact: contact);
     
+    public static ChatMessageReactionSubscriptionFilter ChatMessageReaction(List<string> emojis)
+        => new ChatMessageReactionSubscriptionFilter(emojis: emojis);
+    
     public static CodeReviewSubscriptionFilter CodeReview(List<TDMemberProfile> authors, List<TDMemberProfile> participants, List<string> branchSpec, List<string> pathSpec, string titleRegex, PRProject? project = null, string? repository = null)
         => new CodeReviewSubscriptionFilter(authors: authors, participants: participants, branchSpec: branchSpec, pathSpec: pathSpec, titleRegex: titleRegex, project: project, repository: repository);
     

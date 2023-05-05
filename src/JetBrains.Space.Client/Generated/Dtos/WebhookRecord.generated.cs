@@ -34,7 +34,7 @@ public sealed class WebhookRecord
 {
     public WebhookRecord() { }
     
-    public WebhookRecord(string id, bool archived, ESApp app, List<SubscriptionDTO> subscriptions, string name, bool useAppEndpoint, EndpointDTO endpoint, bool useAppEndpointAuth, EndpointAuthDTO endpointAuth, bool enabled, List<int> acceptedHttpResponseCodes, bool doRetries, string? description = null, string? payloadFields = null)
+    public WebhookRecord(string id, bool archived, ESApp app, List<SubscriptionDTO> subscriptions, string name, bool useAppEndpoint, EndpointDTO endpoint, bool useAppEndpointAuth, EndpointAuthDTO endpointAuth, bool enabled, List<int> acceptedHttpResponseCodes, bool doRetries, string? description = null, string? payloadFields = null, string? payloadTemplate = null)
     {
         Id = id;
         IsArchived = archived;
@@ -50,6 +50,7 @@ public sealed class WebhookRecord
         AcceptedHttpResponseCodes = acceptedHttpResponseCodes;
         IsDoRetries = doRetries;
         PayloadFields = payloadFields;
+        PayloadTemplate = payloadTemplate;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(WebhookRecord), nameof(Id), "id");
@@ -190,6 +191,15 @@ public sealed class WebhookRecord
         set => _payloadFields.SetValue(value);
     }
 
+    private PropertyValue<string?> _payloadTemplate = new PropertyValue<string?>(nameof(WebhookRecord), nameof(PayloadTemplate), "payloadTemplate");
+    
+    [JsonPropertyName("payloadTemplate")]
+    public string? PayloadTemplate
+    {
+        get => _payloadTemplate.GetValue(InlineErrors);
+        set => _payloadTemplate.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -206,6 +216,7 @@ public sealed class WebhookRecord
         _acceptedHttpResponseCodes.SetAccessPath(parentChainPath, validateHasBeenSet);
         _doRetries.SetAccessPath(parentChainPath, validateHasBeenSet);
         _payloadFields.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _payloadTemplate.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

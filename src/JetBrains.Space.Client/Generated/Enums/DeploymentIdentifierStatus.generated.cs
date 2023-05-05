@@ -38,5 +38,8 @@ public enum DeploymentIdentifierStatus
     [EnumMember(Value = "current")]
     Current,
     
+    [EnumMember(Value = "scheduled")]
+    Scheduled,
+    
 }
 

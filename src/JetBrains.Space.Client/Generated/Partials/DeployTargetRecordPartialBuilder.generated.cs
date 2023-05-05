@@ -115,6 +115,9 @@ public static class DeployTargetRecordPartialExtensions
     public static Partial<DeployTargetRecord> WithRepositories(this Partial<DeployTargetRecord> it, Func<Partial<DeployTargetRepositoryDTO>, Partial<DeployTargetRepositoryDTO>> partialBuilder)
         => it.AddFieldName("repositories", partialBuilder(new Partial<DeployTargetRepositoryDTO>(it)));
     
+    public static Partial<DeployTargetRecord> WithIsSingleScheduled(this Partial<DeployTargetRecord> it)
+        => it.AddFieldName("singleScheduled");
+    
     public static Partial<DeployTargetRecord> WithTeams(this Partial<DeployTargetRecord> it)
         => it.AddFieldName("teams");
     

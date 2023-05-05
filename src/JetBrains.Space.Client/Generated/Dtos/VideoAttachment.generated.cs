@@ -37,14 +37,13 @@ public sealed class VideoAttachment
     
     public VideoAttachment() { }
     
-    public VideoAttachment(string id, long sizeBytes, string? name = null, int? width = null, int? height = null, string? previewBytes = null)
+    public VideoAttachment(string id, long sizeBytes, string? name = null, int? width = null, int? height = null)
     {
         Id = id;
         Name = name;
         Width = width;
         Height = height;
         SizeBytes = sizeBytes;
-        PreviewBytes = previewBytes;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(VideoAttachment), nameof(Id), "id");
@@ -94,15 +93,6 @@ public sealed class VideoAttachment
         set => _sizeBytes.SetValue(value);
     }
 
-    private PropertyValue<string?> _previewBytes = new PropertyValue<string?>(nameof(VideoAttachment), nameof(PreviewBytes), "previewBytes");
-    
-    [JsonPropertyName("previewBytes")]
-    public string? PreviewBytes
-    {
-        get => _previewBytes.GetValue(InlineErrors);
-        set => _previewBytes.SetValue(value);
-    }
-
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -110,7 +100,6 @@ public sealed class VideoAttachment
         _width.SetAccessPath(parentChainPath, validateHasBeenSet);
         _height.SetAccessPath(parentChainPath, validateHasBeenSet);
         _sizeBytes.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _previewBytes.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />
