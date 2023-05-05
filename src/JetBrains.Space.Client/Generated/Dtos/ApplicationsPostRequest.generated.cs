@@ -93,7 +93,7 @@ public class ApplicationsPostRequest
     private PropertyValue<string?> _pictureAttachmentId = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(PictureAttachmentId), "pictureAttachmentId");
     
     /// <summary>
-    /// Identifier of an image attachment. You can get image attachment id by uploading an image, see [Create upload URL](/extensions/httpApiPlayground?resource=hosting_xxx_site&endpoint=http_post_xxx_upload-url).
+    /// Identifier of an image attachment. You can get image attachment id by uploading an image, see <a href="/extensions/httpApiPlayground?resource=hosting_xxx_site&amp;endpoint=http_post_xxx_upload-url">Create upload URL</a>.
     /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -153,7 +153,7 @@ public class ApplicationsPostRequest
     private PropertyValue<string?> _clientSecret = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(ClientSecret), "clientSecret");
     
     /// <summary>
-    /// `clientSecret` is generated automatically if this parameter is omitted. Application's `clientSecret` can be retrieved through [Get Client Secret](/extensions/httpApiPlayground?resource=applications_xxx_client-secret&endpoint=http_get) endpoint.
+    /// `clientSecret` is generated automatically if this parameter is omitted. Application's `clientSecret` can be retrieved through <a href="/extensions/httpApiPlayground?resource=applications_xxx_client-secret&amp;endpoint=http_get">Get Client Secret</a> endpoint.
     /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -183,7 +183,7 @@ public class ApplicationsPostRequest
     private PropertyValue<bool?> _codeFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsCodeFlowEnabled), "codeFlowEnabled");
     
     /// <summary>
-    /// Pass `true` to enable Authorization Code Flow for the application. Learn more in the [documentation](https://www.jetbrains.com/help/space/authorization-code.html).
+    /// Pass `true` to enable Authorization Code Flow for the application. Learn more in the <a href="https://www.jetbrains.com/help/space/authorization-code.html">documentation</a>.
     /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -198,7 +198,7 @@ public class ApplicationsPostRequest
     private PropertyValue<string?> _codeFlowRedirectURIs = new PropertyValue<string?>(nameof(ApplicationsPostRequest), nameof(CodeFlowRedirectURIs), "codeFlowRedirectURIs");
     
     /// <summary>
-    /// When Authorization Code Flow is enabled, specifies redirect URIs that can be used in the flow. Learn more in the [documentation](https://www.jetbrains.com/help/space/authorization-code.html).
+    /// When Authorization Code Flow is enabled, specifies redirect URIs that can be used in the flow. Learn more in the <a href="https://www.jetbrains.com/help/space/authorization-code.html">documentation</a>.
     /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -213,7 +213,7 @@ public class ApplicationsPostRequest
     private PropertyValue<bool?> _pkceRequired = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsPkceRequired), "pkceRequired");
     
     /// <summary>
-    /// When Authorization Code Flow is enabled, specifies whether PKCE extension must be used. Learn more in the [documentation](https://www.jetbrains.com/help/space/authorization-code.html).
+    /// When Authorization Code Flow is enabled, specifies whether PKCE extension must be used. Learn more in the <a href="https://www.jetbrains.com/help/space/authorization-code.html">documentation</a>.
     /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -383,7 +383,7 @@ public class ApplicationsPostRequest
     private PropertyValue<bool?> _connectToSpace = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsConnectToSpace), "connectToSpace");
     
     /// <summary>
-    /// Pass `true` to create a multi-org application and connect application server to the current Space instance. Learn more in the [documentation](https://www.jetbrains.com/help/space/distribute-your-application.html).
+    /// Pass `true` to create a multi-org application and connect application server to the current Space instance. Learn more in the <a href="https://www.jetbrains.com/help/space/distribute-your-application.html">documentation</a>.
     /// </summary>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]

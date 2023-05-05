@@ -41,7 +41,7 @@ public partial class ApplicationClient : ISpaceClient
     /// <summary>
     /// Creates a new application. Marketplace application cannot be installed using this endpoint.
     /// 
-    /// To create a multi-org application (and connect application server to the current Space instance), pass `connectToSpace = true`. Learn more about multi-org applications in the [documentation](https://www.jetbrains.com/help/space/distribute-your-application.html).
+    /// To create a multi-org application (and connect application server to the current Space instance), pass `connectToSpace = true`. Learn more about multi-org applications in the <a href="https://www.jetbrains.com/help/space/distribute-your-application.html">documentation</a>.
     /// </summary>
     /// <remarks>
     /// Required permissions:
@@ -245,7 +245,7 @@ public partial class ApplicationClient : ISpaceClient
     
 
     /// <summary>
-    /// Update existing application. Multi-org applications (created with the parameter `connectToSpace = true` or installed from JetBrains Marketplace) can only be updated by the application itself. Learn more about multi-org applications in the [documentation](https://www.jetbrains.com/help/space/distribute-your-application.html).
+    /// Update existing application. Multi-org applications (created with the parameter `connectToSpace = true` or installed from JetBrains Marketplace) can only be updated by the application itself. Learn more about multi-org applications in the <a href="https://www.jetbrains.com/help/space/distribute-your-application.html">documentation</a>.
     /// </summary>
     /// <param name="application">
     /// The application that needs to be updated

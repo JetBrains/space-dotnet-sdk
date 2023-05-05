@@ -40,7 +40,7 @@ public abstract class ApplicationIdentifier : IUrlParameter
         => new ApplicationIdentifierClientId(clientId);
     
     /// <summary>
-    /// Specifies application by the identifier that can be fetched via [Get all applications](https://www.jetbrains.com/help/space/applications-api.html#get_all_applications) method
+    /// Specifies application by the identifier that can be fetched via <a href="https://www.jetbrains.com/help/space/applications-api.html#get_all_applications">Get all applications</a> method
     /// </summary>
     public static ApplicationIdentifier Id(string id)
         => new ApplicationIdentifierId(id);
@@ -83,7 +83,7 @@ public abstract class ApplicationIdentifier : IUrlParameter
     }
     
     /// <summary>
-    /// Specifies application by the identifier that can be fetched via [Get all applications](https://www.jetbrains.com/help/space/applications-api.html#get_all_applications) method
+    /// Specifies application by the identifier that can be fetched via <a href="https://www.jetbrains.com/help/space/applications-api.html#get_all_applications">Get all applications</a> method
     /// </summary>
     public class ApplicationIdentifierId : ApplicationIdentifier
     {

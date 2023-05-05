@@ -397,7 +397,7 @@ public partial class ProjectClient : ISpaceClient
             /// </list>
             /// </remarks>
             public IAsyncEnumerable<DeployTargetRecord> SearchAsyncEnumerable(DeployTargetsSearchExpression expression, BatchInfo? batchInfo = null, Func<Partial<DeployTargetRecord>, Partial<DeployTargetRecord>>? partial = null, CancellationToken cancellationToken = default)
-                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => SearchAsync(expression: expression, batchInfo: batchInfo, cancellationToken: cancellationToken, partial: builder => Partial<Batch<DeployTargetRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DeployTargetRecord>.Default())), skip, cancellationToken);
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => SearchAsync(expression: expression, cancellationToken: cancellationToken, batchInfo: new BatchInfo(batchSize: batchInfo?.BatchSize ?? 100, offset: batchInfo?.Offset), partial: builder => Partial<Batch<DeployTargetRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DeployTargetRecord>.Default())), batchInfo?.Offset, cancellationToken);
         
             /// <remarks>
             /// Required permissions:
