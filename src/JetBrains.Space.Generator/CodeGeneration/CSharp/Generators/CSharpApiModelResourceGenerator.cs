@@ -389,8 +389,12 @@ public class CSharpApiModelResourceGenerator
         var methodNameForEndpoint = apiEndpoint.ToCSharpMethodName();
             
         var batchDataType = ((ApiFieldType.Object)apiEndpoint.ResponseBody!).GetBatchDataType()!;
-            
-        if (apiEndpoint.ResponseBody != null)
+
+        var hasSkipParameter = apiEndpoint.Parameters.Any(it => it.Field.Name == "$skip") ||
+                               apiEndpoint.RequestBody?.Fields.Any(it => it.Name == "skip") == true;
+        var hasBatchInfoParameter = apiEndpoint.RequestBody?.Fields.Any(it => it.Name == "batchInfo") == true;
+
+        if (apiEndpoint.ResponseBody != null && (hasSkipParameter || hasBatchInfoParameter))
         {
             var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
                 .WithParametersForApiParameters(apiEndpoint.Parameters);
@@ -434,21 +438,53 @@ public class CSharpApiModelResourceGenerator
             builder.AppendLine(")");
                 
             indent.Increment();
-            builder.Append($"{indent}=> BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ");
-                
-            builder.Append($"{methodNameForEndpoint}Async(");
 
-            var partialTypeForBatch = "Partial<Batch<" + batchDataType.GetBatchElementTypeOrType().ToCSharpType(_codeGenerationContext) + ">>";
-            builder.Append(
-                methodParametersBuilder
-                    .WithDefaultValueForAllParameters(null)
-                    .WithDefaultValueForParameter("skip", "batchSkip")
-                    .WithDefaultValueForParameter("partial", $"builder => {partialTypeForBatch}.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => {partialType}.Default())")
-                    .WithDefaultValueForParameter(CSharpType.CancellationToken.Value, "batchCancellationToken")
-                    .BuildMethodCallParameters());
-                
-            builder.Append("), skip, cancellationToken);");
+            if (hasSkipParameter)
+            {
+                // Batch enumerator v1 - Pass a "skip" parameter
+                builder.Append($"{indent}=> BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ");
+
+                builder.Append($"{methodNameForEndpoint}Async(");
+
+                var partialTypeForBatch = "Partial<Batch<" + batchDataType.GetBatchElementTypeOrType().ToCSharpType(_codeGenerationContext) + ">>";
+                builder.Append(
+                    methodParametersBuilder
+                        .WithDefaultValueForAllParameters(null)
+                        .WithDefaultValueForParameter("skip", "batchSkip")
+                        .WithDefaultValueForParameter("partial", $"builder => {partialTypeForBatch}.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => {partialType}.Default())")
+                        .WithDefaultValueForParameter(CSharpType.CancellationToken.Value, "batchCancellationToken")
+                        .BuildMethodCallParameters());
+
+                builder.Append("), skip, cancellationToken);");
+            }
+            else if (hasBatchInfoParameter)
+            {
+                // Batch enumerator v2 - Pass a "batchInfo" parameter
+                builder.Append($"{indent}=> BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ");
+
+                builder.Append($"{methodNameForEndpoint}Async(");
+
+                var partialTypeForBatch = "Partial<Batch<" + batchDataType.GetBatchElementTypeOrType().ToCSharpType(_codeGenerationContext) + ">>";
+                builder.Append(
+                    methodParametersBuilder
+                        .WithDefaultValueForAllParameters(null)
+                        .WithDefaultValueForParameter("batchInfo", "new BatchInfo(batchSize: batchInfo?.BatchSize ?? 100, offset: batchInfo?.Offset)")
+                        .WithDefaultValueForParameter("partial", $"builder => {partialTypeForBatch}.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => {partialType}.Default())")
+                        .WithDefaultValueForParameter(CSharpType.CancellationToken.Value, "batchCancellationToken")
+                        .BuildMethodCallParameters());
+
+                builder.Append("), batchInfo?.Offset, cancellationToken);");
+            }
+            else
+            {
+                builder.Append($"{indent}=> throw new Exception(\"No 'skip' or 'batchInfo' parameter exists for this method.\");");
+            }
+
             indent.Decrement();
+        }
+        else if (!hasSkipParameter && !hasBatchInfoParameter)
+        {
+            builder.AppendLine($"{indent}#warning UNSUPPORTED CASE - NO SKIP OR BATCHINFO PARAMETER - " + apiEndpoint.ToCSharpMethodName() + " - " + apiEndpoint.Method.ToHttpMethod() + " " + endpointPath);
         }
         else
         {
