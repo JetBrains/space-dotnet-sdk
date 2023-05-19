@@ -27,13 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.RtBlockNodePartialBuilder;
 
-public interface BlockNode
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+public static class RtBlockNodePartialExtensions
 {
-    public static RtHorizontalRule RtHorizontalRule()
-        => new RtHorizontalRule();
-    
 }
 

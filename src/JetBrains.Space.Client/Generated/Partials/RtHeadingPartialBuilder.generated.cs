@@ -37,8 +37,8 @@ public static class RtHeadingPartialExtensions
     public static Partial<RtHeading> WithChildren(this Partial<RtHeading> it)
         => it.AddFieldName("children");
     
-    public static Partial<RtHeading> WithChildren(this Partial<RtHeading> it, Func<Partial<InlineNode>, Partial<InlineNode>> partialBuilder)
-        => it.AddFieldName("children", partialBuilder(new Partial<InlineNode>(it)));
+    public static Partial<RtHeading> WithChildren(this Partial<RtHeading> it, Func<Partial<RtHeadingContentNode>, Partial<RtHeadingContentNode>> partialBuilder)
+        => it.AddFieldName("children", partialBuilder(new Partial<RtHeadingContentNode>(it)));
     
     public static Partial<RtHeading> WithTextAlign(this Partial<RtHeading> it)
         => it.AddFieldName("textAlign");

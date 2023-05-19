@@ -27,9 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.InlineNodePartialBuilder;
+namespace JetBrains.Space.Client.LinkedIssueIdsPartialBuilder;
 
-public static class InlineNodePartialExtensions
+public static class LinkedIssueIdsPartialExtensions
 {
+    public static Partial<LinkedIssueIds> WithSpaceIssueIds(this Partial<LinkedIssueIds> it)
+        => it.AddFieldName("spaceIssueIds");
+    
+    public static Partial<LinkedIssueIds> WithExternalIssueIds(this Partial<LinkedIssueIds> it)
+        => it.AddFieldName("externalIssueIds");
+    
+    public static Partial<LinkedIssueIds> WithExternalIssueIds(this Partial<LinkedIssueIds> it, Func<Partial<ExternalIssueId>, Partial<ExternalIssueId>> partialBuilder)
+        => it.AddFieldName("externalIssueIds", partialBuilder(new Partial<ExternalIssueId>(it)));
+    
 }
 

@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class RtHorizontalRule
-     : BlockNode, IClassNameConvertible, IPropagatePropertyAccessPath
+     : RtBlockNode, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "RtHorizontalRule";

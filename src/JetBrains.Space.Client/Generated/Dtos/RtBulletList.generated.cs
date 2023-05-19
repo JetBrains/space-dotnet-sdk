@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class RtBulletList
-     : BlockNodeWithChildren, IClassNameConvertible, IPropagatePropertyAccessPath
+     : RtBlockNodeWithChildren, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "RtBulletList";

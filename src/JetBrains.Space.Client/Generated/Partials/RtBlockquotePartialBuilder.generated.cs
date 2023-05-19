@@ -34,8 +34,8 @@ public static class RtBlockquotePartialExtensions
     public static Partial<RtBlockquote> WithChildren(this Partial<RtBlockquote> it)
         => it.AddFieldName("children");
     
-    public static Partial<RtBlockquote> WithChildren(this Partial<RtBlockquote> it, Func<Partial<BlockNode>, Partial<BlockNode>> partialBuilder)
-        => it.AddFieldName("children", partialBuilder(new Partial<BlockNode>(it)));
+    public static Partial<RtBlockquote> WithChildren(this Partial<RtBlockquote> it, Func<Partial<RtBlockNode>, Partial<RtBlockNode>> partialBuilder)
+        => it.AddFieldName("children", partialBuilder(new Partial<RtBlockNode>(it)));
     
 }
 

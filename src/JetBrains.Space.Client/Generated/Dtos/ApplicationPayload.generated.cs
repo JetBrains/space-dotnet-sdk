@@ -59,6 +59,9 @@ public interface ApplicationPayload
     public static MessagePayload MessagePayload(MessageContext message, string clientId, string userId, string? verificationToken = null)
         => new MessagePayload(message: message, clientId: clientId, userId: userId, verificationToken: verificationToken);
     
+    public static NewExternalIssueEventPayload NewExternalIssueEventPayload(string clientId, string? verificationToken = null)
+        => new NewExternalIssueEventPayload(clientId: clientId, verificationToken: verificationToken);
+    
     public static NewUnfurlQueueItemsPayload NewUnfurlQueueItemsPayload(string clientId, string? verificationToken = null)
         => new NewUnfurlQueueItemsPayload(clientId: clientId, verificationToken: verificationToken);
     

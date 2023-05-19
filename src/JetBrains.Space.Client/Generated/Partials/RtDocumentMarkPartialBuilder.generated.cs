@@ -27,9 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BlockNodePartialBuilder;
+namespace JetBrains.Space.Client.RtDocumentMarkPartialBuilder;
 
-public static class BlockNodePartialExtensions
+public static class RtDocumentMarkPartialExtensions
 {
 }
 

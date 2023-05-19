@@ -27,9 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocumentMarkPartialBuilder;
+namespace JetBrains.Space.Client.RtHeadingContentNodePartialBuilder;
 
-public static class DocumentMarkPartialExtensions
+public static class RtHeadingContentNodePartialExtensions
 {
 }
 

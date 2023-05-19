@@ -37,11 +37,21 @@ public sealed class InaccessibleContainerInfo
     
     public InaccessibleContainerInfo() { }
     
-    public InaccessibleContainerInfo(List<string>? grantedRights = null)
+    public InaccessibleContainerInfo(int? containerType = null, List<string>? grantedRights = null)
     {
+        ContainerType = containerType;
         GrantedRights = grantedRights;
     }
     
+    private PropertyValue<int?> _containerType = new PropertyValue<int?>(nameof(InaccessibleContainerInfo), nameof(ContainerType), "containerType");
+    
+    [JsonPropertyName("containerType")]
+    public int? ContainerType
+    {
+        get => _containerType.GetValue(InlineErrors);
+        set => _containerType.SetValue(value);
+    }
+
     private PropertyValue<List<string>?> _grantedRights = new PropertyValue<List<string>?>(nameof(InaccessibleContainerInfo), nameof(GrantedRights), "grantedRights");
     
     [JsonPropertyName("grantedRights")]
@@ -53,6 +63,7 @@ public sealed class InaccessibleContainerInfo
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
+        _containerType.SetAccessPath(parentChainPath, validateHasBeenSet);
         _grantedRights.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

@@ -29,31 +29,25 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public interface BlockNodeWithChildren
-     : BlockNode, NodeWithChildren, IClassNameConvertible, IPropagatePropertyAccessPath
+public interface RtBlockNodeWithChildren
+     : RtBlockNode, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static RtBlockquote RtBlockquote(List<BlockNode> children)
+    public static RtBlockquote RtBlockquote(List<RtBlockNode> children)
         => new RtBlockquote(children: children);
     
     public static RtBulletList RtBulletList(List<RtListItem> children)
         => new RtBulletList(children: children);
     
-    public static RtCode RtCode(string lang, List<RtText> children)
+    public static RtCode RtCode(string lang, List<RtCodeBlockContentNode> children)
         => new RtCode(lang: lang, children: children);
     
-    public static RtDocument RtDocument(List<BlockNode> children)
-        => new RtDocument(children: children);
-    
-    public static RtHeading RtHeading(int level, List<InlineNode> children, RtTextAlign textAlign)
+    public static RtHeading RtHeading(int level, List<RtHeadingContentNode> children, RtTextAlign textAlign)
         => new RtHeading(level: level, children: children, textAlign: textAlign);
-    
-    public static RtListItem RtListItem(List<BlockNode> children)
-        => new RtListItem(children: children);
     
     public static RtOrderedList RtOrderedList(int startNumber, List<RtListItem> children)
         => new RtOrderedList(startNumber: startNumber, children: children);
     
-    public static RtParagraph RtParagraph(List<InlineNode> children, RtTextAlign textAlign)
+    public static RtParagraph RtParagraph(List<RtInlineNode> children, RtTextAlign textAlign)
         => new RtParagraph(children: children, textAlign: textAlign);
     
     public static RtTable RtTable(List<RtTableRow> children)

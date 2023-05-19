@@ -29,26 +29,37 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public interface InlineNodeWithMarks
-     : InlineNode, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class ExternalIssueTrackerUiExtensionApi
+     : AppUiExtensionApi, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static RtBreak RtBreak(bool soft, List<DocumentMark> marks)
-        => new RtBreak(soft: soft, marks: marks);
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ExternalIssueTrackerUiExtensionApi";
     
-    public static RtEmoji RtEmoji(string emojiName, List<DocumentMark> marks)
-        => new RtEmoji(emojiName: emojiName, marks: marks);
+    public ExternalIssueTrackerUiExtensionApi() { }
     
-    public static RtImage RtImage(RtImageAttrs attrs, List<DocumentMark> marks)
-        => new RtImage(attrs: attrs, marks: marks);
+    public ExternalIssueTrackerUiExtensionApi(string domain)
+    {
+        Domain = domain;
+    }
     
-    public static RtMention RtMention(RtMentionAttrs attrs, List<DocumentMark> marks)
-        => new RtMention(attrs: attrs, marks: marks);
+    private PropertyValue<string> _domain = new PropertyValue<string>(nameof(ExternalIssueTrackerUiExtensionApi), nameof(Domain), "domain");
     
-    public static RtText RtText(string value, List<DocumentMark> marks)
-        => new RtText(value: value, marks: marks);
+    [Required]
+    [JsonPropertyName("domain")]
+    public string Domain
+    {
+        get => _domain.GetValue(InlineErrors);
+        set => _domain.SetValue(value);
+    }
+
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _domain.SetAccessPath(parentChainPath, validateHasBeenSet);
+    }
     
-    public static RtUnfurl RtUnfurl(RtUnfurlAttrs attrs, List<DocumentMark> marks)
-        => new RtUnfurl(attrs: attrs, marks: marks);
-    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

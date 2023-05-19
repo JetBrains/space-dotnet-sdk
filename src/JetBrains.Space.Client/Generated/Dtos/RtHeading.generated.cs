@@ -30,14 +30,14 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class RtHeading
-     : BlockNodeWithChildren, IClassNameConvertible, IPropagatePropertyAccessPath
+     : RtBlockNodeWithChildren, RtFirstListItemContentNode, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "RtHeading";
     
     public RtHeading() { }
     
-    public RtHeading(int level, List<InlineNode> children, RtTextAlign textAlign)
+    public RtHeading(int level, List<RtHeadingContentNode> children, RtTextAlign textAlign)
     {
         Level = level;
         Children = children;
@@ -54,11 +54,11 @@ public sealed class RtHeading
         set => _level.SetValue(value);
     }
 
-    private PropertyValue<List<InlineNode>> _children = new PropertyValue<List<InlineNode>>(nameof(RtHeading), nameof(Children), "children", new List<InlineNode>());
+    private PropertyValue<List<RtHeadingContentNode>> _children = new PropertyValue<List<RtHeadingContentNode>>(nameof(RtHeading), nameof(Children), "children", new List<RtHeadingContentNode>());
     
     [Required]
     [JsonPropertyName("children")]
-    public List<InlineNode> Children
+    public List<RtHeadingContentNode> Children
     {
         get => _children.GetValue(InlineErrors);
         set => _children.SetValue(value);

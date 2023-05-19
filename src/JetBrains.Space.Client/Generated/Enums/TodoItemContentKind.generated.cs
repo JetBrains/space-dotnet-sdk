@@ -56,5 +56,8 @@ public enum TodoItemContentKind
     [EnumMember(Value = "CODE_REVIEW")]
     CODEREVIEW,
     
+    [EnumMember(Value = "EXTERNAL_ISSUE")]
+    EXTERNALISSUE,
+    
 }
 

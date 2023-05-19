@@ -31,6 +31,9 @@ namespace JetBrains.Space.Client.InaccessibleContainerInfoPartialBuilder;
 
 public static class InaccessibleContainerInfoPartialExtensions
 {
+    public static Partial<InaccessibleContainerInfo> WithContainerType(this Partial<InaccessibleContainerInfo> it)
+        => it.AddFieldName("containerType");
+    
     public static Partial<InaccessibleContainerInfo> WithGrantedRights(this Partial<InaccessibleContainerInfo> it)
         => it.AddFieldName("grantedRights");
     

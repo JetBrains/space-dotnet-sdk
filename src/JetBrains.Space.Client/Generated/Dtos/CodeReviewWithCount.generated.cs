@@ -55,6 +55,7 @@ public sealed class CodeReviewWithCount
     private PropertyValue<int> _messagesCount = new PropertyValue<int>(nameof(CodeReviewWithCount), nameof(MessagesCount), "messagesCount");
     
     [Required]
+    [Obsolete("Use review.discussionCounter instead (since 2023-05-08) (will be removed in a future version)")]
     [JsonPropertyName("messagesCount")]
     public int MessagesCount
     {

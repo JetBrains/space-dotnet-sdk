@@ -34,8 +34,17 @@ public static class RtTableHeaderPartialExtensions
     public static Partial<RtTableHeader> WithChildren(this Partial<RtTableHeader> it)
         => it.AddFieldName("children");
     
-    public static Partial<RtTableHeader> WithChildren(this Partial<RtTableHeader> it, Func<Partial<BlockNode>, Partial<BlockNode>> partialBuilder)
-        => it.AddFieldName("children", partialBuilder(new Partial<BlockNode>(it)));
+    public static Partial<RtTableHeader> WithChildren(this Partial<RtTableHeader> it, Func<Partial<RtBlockNode>, Partial<RtBlockNode>> partialBuilder)
+        => it.AddFieldName("children", partialBuilder(new Partial<RtBlockNode>(it)));
+    
+    public static Partial<RtTableHeader> WithRowspan(this Partial<RtTableHeader> it)
+        => it.AddFieldName("rowspan");
+    
+    public static Partial<RtTableHeader> WithColspan(this Partial<RtTableHeader> it)
+        => it.AddFieldName("colspan");
+    
+    public static Partial<RtTableHeader> WithColwidth(this Partial<RtTableHeader> it)
+        => it.AddFieldName("colwidth");
     
     public static Partial<RtTableHeader> WithAttrs(this Partial<RtTableHeader> it)
         => it.AddFieldName("attrs");

@@ -37,8 +37,8 @@ public static class RtBreakPartialExtensions
     public static Partial<RtBreak> WithMarks(this Partial<RtBreak> it)
         => it.AddFieldName("marks");
     
-    public static Partial<RtBreak> WithMarks(this Partial<RtBreak> it, Func<Partial<DocumentMark>, Partial<DocumentMark>> partialBuilder)
-        => it.AddFieldName("marks", partialBuilder(new Partial<DocumentMark>(it)));
+    public static Partial<RtBreak> WithMarks(this Partial<RtBreak> it, Func<Partial<RtDocumentMark>, Partial<RtDocumentMark>> partialBuilder)
+        => it.AddFieldName("marks", partialBuilder(new Partial<RtDocumentMark>(it)));
     
 }
 

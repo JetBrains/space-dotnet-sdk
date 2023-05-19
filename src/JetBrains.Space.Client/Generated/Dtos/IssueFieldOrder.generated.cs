@@ -39,7 +39,7 @@ public class IssueFieldOrder
     public static IssueFieldOrderCustom Custom(CustomField field)
         => new IssueFieldOrderCustom(field: field);
     
-    public static IssueFieldOrderSystem System(IssueSystemFieldEnum field)
+    public static IssueFieldOrderSystem System(IssueSystemFieldEnum? field = null)
         => new IssueFieldOrderSystem(field: field);
     
     public IssueFieldOrder() { }

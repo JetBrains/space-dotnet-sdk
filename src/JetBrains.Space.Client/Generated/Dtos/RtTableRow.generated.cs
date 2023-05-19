@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class RtTableRow
-     : BlockNodeWithChildren, IClassNameConvertible, IPropagatePropertyAccessPath
+     : RtBlockNodeWithChildren, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "RtTableRow";

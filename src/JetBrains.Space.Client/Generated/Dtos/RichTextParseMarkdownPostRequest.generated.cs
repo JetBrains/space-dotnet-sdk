@@ -34,9 +34,10 @@ public class RichTextParseMarkdownPostRequest
 {
     public RichTextParseMarkdownPostRequest() { }
     
-    public RichTextParseMarkdownPostRequest(string text)
+    public RichTextParseMarkdownPostRequest(string text, string? schemaVersion = null)
     {
         Text = text;
+        SchemaVersion = schemaVersion;
     }
     
     private PropertyValue<string> _text = new PropertyValue<string>(nameof(RichTextParseMarkdownPostRequest), nameof(Text), "text");
@@ -49,9 +50,22 @@ public class RichTextParseMarkdownPostRequest
         set => _text.SetValue(value);
     }
 
+    private PropertyValue<string?> _schemaVersion = new PropertyValue<string?>(nameof(RichTextParseMarkdownPostRequest), nameof(SchemaVersion), "schemaVersion");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("schemaVersion")]
+    public string? SchemaVersion
+    {
+        get => _schemaVersion.GetValue(InlineErrors);
+        set => _schemaVersion.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _schemaVersion.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

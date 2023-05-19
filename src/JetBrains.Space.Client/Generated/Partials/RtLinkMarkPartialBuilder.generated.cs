@@ -31,6 +31,21 @@ namespace JetBrains.Space.Client.RtLinkMarkPartialBuilder;
 
 public static class RtLinkMarkPartialExtensions
 {
+    public static Partial<RtLinkMark> WithHref(this Partial<RtLinkMark> it)
+        => it.AddFieldName("href");
+    
+    public static Partial<RtLinkMark> WithTitle(this Partial<RtLinkMark> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<RtLinkMark> WithMention(this Partial<RtLinkMark> it)
+        => it.AddFieldName("mention");
+    
+    public static Partial<RtLinkMark> WithDetails(this Partial<RtLinkMark> it)
+        => it.AddFieldName("details");
+    
+    public static Partial<RtLinkMark> WithDetails(this Partial<RtLinkMark> it, Func<Partial<RtLinkDetails>, Partial<RtLinkDetails>> partialBuilder)
+        => it.AddFieldName("details", partialBuilder(new Partial<RtLinkDetails>(it)));
+    
     public static Partial<RtLinkMark> WithAttrs(this Partial<RtLinkMark> it)
         => it.AddFieldName("attrs");
     

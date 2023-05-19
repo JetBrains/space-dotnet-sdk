@@ -37,20 +37,52 @@ public sealed class RtTableHeader
     
     public RtTableHeader() { }
     
-    public RtTableHeader(List<BlockNode> children, RtTableCellAttrs? attrs = null)
+    public RtTableHeader(List<RtBlockNode> children, int rowspan, int colspan, List<int>? colwidth = null, RtTableCellAttrs? attrs = null)
     {
         Children = children;
+        Rowspan = rowspan;
+        Colspan = colspan;
+        Colwidth = colwidth;
         Attrs = attrs;
     }
     
-    private PropertyValue<List<BlockNode>> _children = new PropertyValue<List<BlockNode>>(nameof(RtTableHeader), nameof(Children), "children", new List<BlockNode>());
+    private PropertyValue<List<RtBlockNode>> _children = new PropertyValue<List<RtBlockNode>>(nameof(RtTableHeader), nameof(Children), "children", new List<RtBlockNode>());
     
     [Required]
     [JsonPropertyName("children")]
-    public List<BlockNode> Children
+    public List<RtBlockNode> Children
     {
         get => _children.GetValue(InlineErrors);
         set => _children.SetValue(value);
+    }
+
+    private PropertyValue<int> _rowspan = new PropertyValue<int>(nameof(RtTableHeader), nameof(Rowspan), "rowspan");
+    
+    [Required]
+    [JsonPropertyName("rowspan")]
+    public int Rowspan
+    {
+        get => _rowspan.GetValue(InlineErrors);
+        set => _rowspan.SetValue(value);
+    }
+
+    private PropertyValue<int> _colspan = new PropertyValue<int>(nameof(RtTableHeader), nameof(Colspan), "colspan");
+    
+    [Required]
+    [JsonPropertyName("colspan")]
+    public int Colspan
+    {
+        get => _colspan.GetValue(InlineErrors);
+        set => _colspan.SetValue(value);
+    }
+
+    private PropertyValue<List<int>?> _colwidth = new PropertyValue<List<int>?>(nameof(RtTableHeader), nameof(Colwidth), "colwidth");
+    
+    [JsonPropertyName("colwidth")]
+    public List<int>? Colwidth
+    {
+        get => _colwidth.GetValue(InlineErrors);
+        set => _colwidth.SetValue(value);
     }
 
     private PropertyValue<RtTableCellAttrs?> _attrs = new PropertyValue<RtTableCellAttrs?>(nameof(RtTableHeader), nameof(Attrs), "attrs");
@@ -65,6 +97,9 @@ public sealed class RtTableHeader
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _children.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _rowspan.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _colspan.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _colwidth.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attrs.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

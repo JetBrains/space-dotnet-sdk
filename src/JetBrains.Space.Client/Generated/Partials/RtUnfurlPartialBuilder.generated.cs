@@ -31,17 +31,23 @@ namespace JetBrains.Space.Client.RtUnfurlPartialBuilder;
 
 public static class RtUnfurlPartialExtensions
 {
+    public static Partial<RtUnfurl> WithHref(this Partial<RtUnfurl> it)
+        => it.AddFieldName("href");
+    
+    public static Partial<RtUnfurl> WithTitle(this Partial<RtUnfurl> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<RtUnfurl> WithMarks(this Partial<RtUnfurl> it)
+        => it.AddFieldName("marks");
+    
+    public static Partial<RtUnfurl> WithMarks(this Partial<RtUnfurl> it, Func<Partial<RtDocumentMark>, Partial<RtDocumentMark>> partialBuilder)
+        => it.AddFieldName("marks", partialBuilder(new Partial<RtDocumentMark>(it)));
+    
     public static Partial<RtUnfurl> WithAttrs(this Partial<RtUnfurl> it)
         => it.AddFieldName("attrs");
     
     public static Partial<RtUnfurl> WithAttrs(this Partial<RtUnfurl> it, Func<Partial<RtUnfurlAttrs>, Partial<RtUnfurlAttrs>> partialBuilder)
         => it.AddFieldName("attrs", partialBuilder(new Partial<RtUnfurlAttrs>(it)));
-    
-    public static Partial<RtUnfurl> WithMarks(this Partial<RtUnfurl> it)
-        => it.AddFieldName("marks");
-    
-    public static Partial<RtUnfurl> WithMarks(this Partial<RtUnfurl> it, Func<Partial<DocumentMark>, Partial<DocumentMark>> partialBuilder)
-        => it.AddFieldName("marks", partialBuilder(new Partial<DocumentMark>(it)));
     
 }
 

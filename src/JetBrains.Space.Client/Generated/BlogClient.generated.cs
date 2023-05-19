@@ -71,7 +71,7 @@ public partial class BlogClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<List<ArticleImportResult>> ImportBlogPostsAsync(ImportMetadata metadata, List<ExternalArticle> articles, Func<Partial<ArticleImportResult>, Partial<ArticleImportResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    public async Task<List<ArticleImportResult>> ImportBlogPostsAsync(ImportMetadata metadata, List<ImportArticle> articles, Func<Partial<ArticleImportResult>, Partial<ArticleImportResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleImportResult>()) : Partial<ArticleImportResult>.Default()).ToString());

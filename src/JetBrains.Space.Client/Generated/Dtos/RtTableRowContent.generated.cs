@@ -30,13 +30,13 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public interface RtTableRowContent
-     : BlockNodeWithChildren, IClassNameConvertible, IPropagatePropertyAccessPath
+     : RtBlockNodeWithChildren, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static RtTableCell RtTableCell(List<BlockNode> children, RtTableCellAttrs? attrs = null)
-        => new RtTableCell(children: children, attrs: attrs);
+    public static RtTableCell RtTableCell(List<RtBlockNode> children, int rowspan, int colspan, List<int>? colwidth = null, RtTableCellAttrs? attrs = null)
+        => new RtTableCell(children: children, rowspan: rowspan, colspan: colspan, colwidth: colwidth, attrs: attrs);
     
-    public static RtTableHeader RtTableHeader(List<BlockNode> children, RtTableCellAttrs? attrs = null)
-        => new RtTableHeader(children: children, attrs: attrs);
+    public static RtTableHeader RtTableHeader(List<RtBlockNode> children, int rowspan, int colspan, List<int>? colwidth = null, RtTableCellAttrs? attrs = null)
+        => new RtTableHeader(children: children, rowspan: rowspan, colspan: colspan, colwidth: colwidth, attrs: attrs);
     
 }
 

@@ -113,6 +113,9 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier CreateCodeReviews
         => new PermissionIdentifierCreateCodeReviews();
     
+    public static PermissionIdentifier CreateDevConfigurations
+        => new PermissionIdentifierCreateDevConfigurations();
+    
     /// <summary>
     /// Allows to create dev environments and manage their lifecycle
     /// </summary>
@@ -1080,6 +1083,12 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Project.CodeReview.Create";
+    }
+    
+    public class PermissionIdentifierCreateDevConfigurations : PermissionIdentifier
+    {
+        public override string ToString()
+            => "Rd.DevConf.Create";
     }
     
     /// <summary>

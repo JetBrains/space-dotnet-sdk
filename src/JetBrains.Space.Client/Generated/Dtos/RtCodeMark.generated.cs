@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class RtCodeMark
-     : DocumentMark, IClassNameConvertible, IPropagatePropertyAccessPath
+     : RtDocumentMark, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "RtCodeMark";

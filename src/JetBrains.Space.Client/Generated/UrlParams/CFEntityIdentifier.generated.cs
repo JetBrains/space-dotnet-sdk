@@ -35,6 +35,9 @@ public abstract class CFEntityIdentifier : IUrlParameter
     public static CFEntityIdentifier CFAbsence(AbsenceIdentifier absence)
         => new CFAbsenceIdentifier(absence);
     
+    public static CFEntityIdentifier CFDeployTarget(ProjectIdentifier project, TargetIdentifier target)
+        => new CFDeployTargetIdentifier(project, target);
+    
     public static CFEntityIdentifier CFIssue(IssueIdentifier issue)
         => new CFIssueIdentifier(issue);
     
@@ -70,6 +73,40 @@ public abstract class CFEntityIdentifier : IUrlParameter
         
         public override string ToString()
             => $"absence:{Absence}";
+    }
+    
+    public class CFDeployTargetIdentifier : CFEntityIdentifier
+    {
+        [Required]
+        [JsonPropertyName("project")]
+#if NET6_0_OR_GREATER
+        public ProjectIdentifier Project { get; init; }
+#else
+        public ProjectIdentifier Project { get; set; }
+#endif
+        
+        [Required]
+        [JsonPropertyName("target")]
+#if NET6_0_OR_GREATER
+        public TargetIdentifier Target { get; init; }
+#else
+        public TargetIdentifier Target { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
+        public CFDeployTargetIdentifier() { }
+#pragma warning restore CS8618
+#endif
+        
+        public CFDeployTargetIdentifier(ProjectIdentifier project, TargetIdentifier target)
+        {
+            Project = project;
+            Target = target;
+        }
+        
+        public override string ToString()
+            => $"{{project:{Project},target:{Target}}}";
     }
     
     public class CFIssueIdentifier : CFEntityIdentifier

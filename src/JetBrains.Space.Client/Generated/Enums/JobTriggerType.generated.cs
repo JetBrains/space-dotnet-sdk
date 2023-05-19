@@ -50,5 +50,8 @@ public enum JobTriggerType
     [EnumMember(Value = "CODE_REVIEW_CLOSED")]
     CODEREVIEWCLOSED,
     
+    [EnumMember(Value = "SAFE_MERGE")]
+    SAFEMERGE,
+    
 }
 

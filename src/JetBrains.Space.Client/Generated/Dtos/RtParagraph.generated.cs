@@ -30,24 +30,24 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class RtParagraph
-     : BlockNodeWithChildren, IClassNameConvertible, IPropagatePropertyAccessPath
+     : RtBlockNodeWithChildren, RtFirstListItemContentNode, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "RtParagraph";
     
     public RtParagraph() { }
     
-    public RtParagraph(List<InlineNode> children, RtTextAlign textAlign)
+    public RtParagraph(List<RtInlineNode> children, RtTextAlign textAlign)
     {
         Children = children;
         TextAlign = textAlign;
     }
     
-    private PropertyValue<List<InlineNode>> _children = new PropertyValue<List<InlineNode>>(nameof(RtParagraph), nameof(Children), "children", new List<InlineNode>());
+    private PropertyValue<List<RtInlineNode>> _children = new PropertyValue<List<RtInlineNode>>(nameof(RtParagraph), nameof(Children), "children", new List<RtInlineNode>());
     
     [Required]
     [JsonPropertyName("children")]
-    public List<InlineNode> Children
+    public List<RtInlineNode> Children
     {
         get => _children.GetValue(InlineErrors);
         set => _children.SetValue(value);

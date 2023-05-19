@@ -27,9 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.InlineNodeWithMarksPartialBuilder;
+namespace JetBrains.Space.Client.ExternalIssueFieldPartialBuilder;
 
-public static class InlineNodeWithMarksPartialExtensions
+public static class ExternalIssueFieldPartialExtensions
 {
+    public static Partial<ExternalIssueField> WithName(this Partial<ExternalIssueField> it)
+        => it.AddFieldName("name");
+    
+    public static Partial<ExternalIssueField> WithValue(this Partial<ExternalIssueField> it)
+        => it.AddFieldName("value");
+    
 }
 

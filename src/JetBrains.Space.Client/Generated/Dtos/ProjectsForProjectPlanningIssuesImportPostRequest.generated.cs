@@ -34,7 +34,7 @@ public class ProjectsForProjectPlanningIssuesImportPostRequest
 {
     public ProjectsForProjectPlanningIssuesImportPostRequest() { }
     
-    public ProjectsForProjectPlanningIssuesImportPostRequest(ImportMetadata metadata, List<ExternalIssue> issues, ImportMissingPolicy assigneeMissingPolicy, ImportMissingPolicy statusMissingPolicy, ImportExistsPolicy onExistsPolicy, bool dryRun, bool notifySubscribers = false)
+    public ProjectsForProjectPlanningIssuesImportPostRequest(ImportMetadata metadata, List<ImportIssue> issues, ImportMissingPolicy assigneeMissingPolicy, ImportMissingPolicy statusMissingPolicy, ImportExistsPolicy onExistsPolicy, bool dryRun, bool notifySubscribers = false)
     {
         Metadata = metadata;
         Issues = issues;
@@ -55,11 +55,11 @@ public class ProjectsForProjectPlanningIssuesImportPostRequest
         set => _metadata.SetValue(value);
     }
 
-    private PropertyValue<List<ExternalIssue>> _issues = new PropertyValue<List<ExternalIssue>>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(Issues), "issues", new List<ExternalIssue>());
+    private PropertyValue<List<ImportIssue>> _issues = new PropertyValue<List<ImportIssue>>(nameof(ProjectsForProjectPlanningIssuesImportPostRequest), nameof(Issues), "issues", new List<ImportIssue>());
     
     [Required]
     [JsonPropertyName("issues")]
-    public List<ExternalIssue> Issues
+    public List<ImportIssue> Issues
     {
         get => _issues.GetValue(InlineErrors);
         set => _issues.SetValue(value);

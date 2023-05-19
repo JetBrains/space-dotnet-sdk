@@ -129,13 +129,19 @@ public class SpaceWebHookRequestHandler<TWebHookHandler>
                 await WriteApplicationExecutionResultAsync(context.Response, webhookActionResult);
                 return;
                 
+            // New external issue requests are available?
+            case NewExternalIssueEventPayload externalIssuePayload:
+                var externalIssueResult = await handler.HandleNewExternalIssueEventAsync(externalIssuePayload);
+                await WriteApplicationExecutionResultAsync(context.Response, externalIssueResult);
+                return;
+
             // New unfurl requests are available?
             case NewUnfurlQueueItemsPayload unfurlRequestPayload:
                 var unfurlQueueResult = await handler.HandleNewUnfurlQueueItemsAsync(unfurlRequestPayload);
                 await WriteApplicationExecutionResultAsync(context.Response, unfurlQueueResult);
                 return;
                 
-            // New unfurl requests are available?
+            // New unfurl actions are available?
             case UnfurlActionPayload unfurlActionPayload:
                 var unfurlActionResult = await handler.HandleUnfurlActionPayloadAsync(unfurlActionPayload);
                 await WriteApplicationExecutionResultAsync(context.Response, unfurlActionResult);

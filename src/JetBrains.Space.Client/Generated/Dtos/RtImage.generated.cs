@@ -30,43 +30,76 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class RtImage
-     : InlineNodeWithMarks, IClassNameConvertible, IPropagatePropertyAccessPath
+     : RtHeadingContentNode, RtInlineNodeWithMarks, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "RtImage";
     
     public RtImage() { }
     
-    public RtImage(RtImageAttrs attrs, List<DocumentMark> marks)
+    public RtImage(string src, List<RtDocumentMark> marks, string? title = null, string? alt = null, RtImageAttrs? attrs = null)
     {
-        Attrs = attrs;
+        Src = src;
+        Title = title;
+        Alt = alt;
         Marks = marks;
+        Attrs = attrs;
     }
     
-    private PropertyValue<RtImageAttrs> _attrs = new PropertyValue<RtImageAttrs>(nameof(RtImage), nameof(Attrs), "attrs");
+    private PropertyValue<string> _src = new PropertyValue<string>(nameof(RtImage), nameof(Src), "src");
     
     [Required]
-    [JsonPropertyName("attrs")]
-    public RtImageAttrs Attrs
+    [JsonPropertyName("src")]
+    public string Src
     {
-        get => _attrs.GetValue(InlineErrors);
-        set => _attrs.SetValue(value);
+        get => _src.GetValue(InlineErrors);
+        set => _src.SetValue(value);
     }
 
-    private PropertyValue<List<DocumentMark>> _marks = new PropertyValue<List<DocumentMark>>(nameof(RtImage), nameof(Marks), "marks", new List<DocumentMark>());
+    private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(RtImage), nameof(Title), "title");
+    
+    [JsonPropertyName("title")]
+    public string? Title
+    {
+        get => _title.GetValue(InlineErrors);
+        set => _title.SetValue(value);
+    }
+
+    private PropertyValue<string?> _alt = new PropertyValue<string?>(nameof(RtImage), nameof(Alt), "alt");
+    
+    [JsonPropertyName("alt")]
+    public string? Alt
+    {
+        get => _alt.GetValue(InlineErrors);
+        set => _alt.SetValue(value);
+    }
+
+    private PropertyValue<List<RtDocumentMark>> _marks = new PropertyValue<List<RtDocumentMark>>(nameof(RtImage), nameof(Marks), "marks", new List<RtDocumentMark>());
     
     [Required]
     [JsonPropertyName("marks")]
-    public List<DocumentMark> Marks
+    public List<RtDocumentMark> Marks
     {
         get => _marks.GetValue(InlineErrors);
         set => _marks.SetValue(value);
     }
 
+    private PropertyValue<RtImageAttrs?> _attrs = new PropertyValue<RtImageAttrs?>(nameof(RtImage), nameof(Attrs), "attrs");
+    
+    [JsonPropertyName("attrs")]
+    public RtImageAttrs? Attrs
+    {
+        get => _attrs.GetValue(InlineErrors);
+        set => _attrs.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _attrs.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _src.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _alt.SetAccessPath(parentChainPath, validateHasBeenSet);
         _marks.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attrs.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -37,16 +37,15 @@ public sealed class IssueFieldOrderSystem
     
     public IssueFieldOrderSystem() { }
     
-    public IssueFieldOrderSystem(IssueSystemFieldEnum field)
+    public IssueFieldOrderSystem(IssueSystemFieldEnum? field = null)
     {
         Field = field;
     }
     
-    private PropertyValue<IssueSystemFieldEnum> _field = new PropertyValue<IssueSystemFieldEnum>(nameof(IssueFieldOrderSystem), nameof(Field), "field");
+    private PropertyValue<IssueSystemFieldEnum?> _field = new PropertyValue<IssueSystemFieldEnum?>(nameof(IssueFieldOrderSystem), nameof(Field), "field");
     
-    [Required]
     [JsonPropertyName("field")]
-    public IssueSystemFieldEnum Field
+    public IssueSystemFieldEnum? Field
     {
         get => _field.GetValue(InlineErrors);
         set => _field.SetValue(value);

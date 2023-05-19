@@ -34,7 +34,7 @@ public class BlogImportPostRequest
 {
     public BlogImportPostRequest() { }
     
-    public BlogImportPostRequest(ImportMetadata metadata, List<ExternalArticle> articles)
+    public BlogImportPostRequest(ImportMetadata metadata, List<ImportArticle> articles)
     {
         Metadata = metadata;
         Articles = articles;
@@ -50,11 +50,11 @@ public class BlogImportPostRequest
         set => _metadata.SetValue(value);
     }
 
-    private PropertyValue<List<ExternalArticle>> _articles = new PropertyValue<List<ExternalArticle>>(nameof(BlogImportPostRequest), nameof(Articles), "articles", new List<ExternalArticle>());
+    private PropertyValue<List<ImportArticle>> _articles = new PropertyValue<List<ImportArticle>>(nameof(BlogImportPostRequest), nameof(Articles), "articles", new List<ImportArticle>());
     
     [Required]
     [JsonPropertyName("articles")]
-    public List<ExternalArticle> Articles
+    public List<ImportArticle> Articles
     {
         get => _articles.GetValue(InlineErrors);
         set => _articles.SetValue(value);

@@ -57,6 +57,13 @@ public interface ISpaceWebHookHandler
     Task<ApplicationExecutionResult> HandleWebhookRequestAsync(WebhookRequestPayload payload);
     
     /// <summary>
+    /// Handle event when new external issues are available.
+    /// </summary>
+    /// <param name="payload">The <see cref="NewExternalIssueEventPayload"/>.</param>
+    /// <returns>The result of executing this action.</returns>
+    Task<ApplicationExecutionResult> HandleNewExternalIssueEventAsync(NewExternalIssueEventPayload payload);
+
+    /// <summary>
     /// Handle event when new unfurl requests are available.
     /// </summary>
     /// <param name="payload">The <see cref="NewUnfurlQueueItemsPayload"/>.</param>

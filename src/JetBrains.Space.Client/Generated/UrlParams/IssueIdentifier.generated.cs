@@ -32,6 +32,9 @@ namespace JetBrains.Space.Client;
 [JsonConverter(typeof(UrlParameterConverter))]
 public abstract class IssueIdentifier : IUrlParameter
 {
+    /// <summary>
+    /// Identifies issue in Space that was earlier imported from an external system by external id provided during the import.
+    /// </summary>
     public static IssueIdentifier ExternalId(ProjectIdentifier project, string externalId)
         => new IssueIdentifierExternalId(project, externalId);
     
@@ -41,6 +44,9 @@ public abstract class IssueIdentifier : IUrlParameter
     public static IssueIdentifier Key(string key)
         => new IssueIdentifierKey(key);
     
+    /// <summary>
+    /// Identifies issue in Space that was earlier imported from an external system by external id provided during the import.
+    /// </summary>
     public class IssueIdentifierExternalId : IssueIdentifier
     {
         [Required]

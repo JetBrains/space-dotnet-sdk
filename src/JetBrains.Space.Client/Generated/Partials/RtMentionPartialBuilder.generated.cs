@@ -40,8 +40,8 @@ public static class RtMentionPartialExtensions
     public static Partial<RtMention> WithMarks(this Partial<RtMention> it)
         => it.AddFieldName("marks");
     
-    public static Partial<RtMention> WithMarks(this Partial<RtMention> it, Func<Partial<DocumentMark>, Partial<DocumentMark>> partialBuilder)
-        => it.AddFieldName("marks", partialBuilder(new Partial<DocumentMark>(it)));
+    public static Partial<RtMention> WithMarks(this Partial<RtMention> it, Func<Partial<RtDocumentMark>, Partial<RtDocumentMark>> partialBuilder)
+        => it.AddFieldName("marks", partialBuilder(new Partial<RtDocumentMark>(it)));
     
 }
 

@@ -37,8 +37,8 @@ public static class RtCodePartialExtensions
     public static Partial<RtCode> WithChildren(this Partial<RtCode> it)
         => it.AddFieldName("children");
     
-    public static Partial<RtCode> WithChildren(this Partial<RtCode> it, Func<Partial<RtText>, Partial<RtText>> partialBuilder)
-        => it.AddFieldName("children", partialBuilder(new Partial<RtText>(it)));
+    public static Partial<RtCode> WithChildren(this Partial<RtCode> it, Func<Partial<RtCodeBlockContentNode>, Partial<RtCodeBlockContentNode>> partialBuilder)
+        => it.AddFieldName("children", partialBuilder(new Partial<RtCodeBlockContentNode>(it)));
     
 }
 

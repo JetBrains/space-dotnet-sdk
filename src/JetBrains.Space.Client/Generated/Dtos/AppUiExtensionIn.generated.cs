@@ -35,6 +35,9 @@ public interface AppUiExtensionIn
     public static ChatBotUiExtensionIn ChatBotUiExtensionIn()
         => new ChatBotUiExtensionIn();
     
+    public static ExternalIssueTrackerUiExtensionIn ExternalIssueTrackerUiExtensionIn(string domain)
+        => new ExternalIssueTrackerUiExtensionIn(domain: domain);
+    
     public static GettingStartedUiExtensionIn GettingStartedUiExtensionIn(string gettingStartedUrl, string gettingStartedTitle)
         => new GettingStartedUiExtensionIn(gettingStartedUrl: gettingStartedUrl, gettingStartedTitle: gettingStartedTitle);
     

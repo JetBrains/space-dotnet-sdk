@@ -37,20 +37,52 @@ public sealed class RtTableCell
     
     public RtTableCell() { }
     
-    public RtTableCell(List<BlockNode> children, RtTableCellAttrs? attrs = null)
+    public RtTableCell(List<RtBlockNode> children, int rowspan, int colspan, List<int>? colwidth = null, RtTableCellAttrs? attrs = null)
     {
         Children = children;
+        Rowspan = rowspan;
+        Colspan = colspan;
+        Colwidth = colwidth;
         Attrs = attrs;
     }
     
-    private PropertyValue<List<BlockNode>> _children = new PropertyValue<List<BlockNode>>(nameof(RtTableCell), nameof(Children), "children", new List<BlockNode>());
+    private PropertyValue<List<RtBlockNode>> _children = new PropertyValue<List<RtBlockNode>>(nameof(RtTableCell), nameof(Children), "children", new List<RtBlockNode>());
     
     [Required]
     [JsonPropertyName("children")]
-    public List<BlockNode> Children
+    public List<RtBlockNode> Children
     {
         get => _children.GetValue(InlineErrors);
         set => _children.SetValue(value);
+    }
+
+    private PropertyValue<int> _rowspan = new PropertyValue<int>(nameof(RtTableCell), nameof(Rowspan), "rowspan");
+    
+    [Required]
+    [JsonPropertyName("rowspan")]
+    public int Rowspan
+    {
+        get => _rowspan.GetValue(InlineErrors);
+        set => _rowspan.SetValue(value);
+    }
+
+    private PropertyValue<int> _colspan = new PropertyValue<int>(nameof(RtTableCell), nameof(Colspan), "colspan");
+    
+    [Required]
+    [JsonPropertyName("colspan")]
+    public int Colspan
+    {
+        get => _colspan.GetValue(InlineErrors);
+        set => _colspan.SetValue(value);
+    }
+
+    private PropertyValue<List<int>?> _colwidth = new PropertyValue<List<int>?>(nameof(RtTableCell), nameof(Colwidth), "colwidth");
+    
+    [JsonPropertyName("colwidth")]
+    public List<int>? Colwidth
+    {
+        get => _colwidth.GetValue(InlineErrors);
+        set => _colwidth.SetValue(value);
     }
 
     private PropertyValue<RtTableCellAttrs?> _attrs = new PropertyValue<RtTableCellAttrs?>(nameof(RtTableCell), nameof(Attrs), "attrs");
@@ -65,6 +97,9 @@ public sealed class RtTableCell
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _children.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _rowspan.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _colspan.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _colwidth.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attrs.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

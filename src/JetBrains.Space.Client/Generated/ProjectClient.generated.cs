@@ -2294,7 +2294,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<IssueImportResult> ImportIssuesAsync(ProjectIdentifier project, ImportMetadata metadata, List<ExternalIssue> issues, ImportMissingPolicy assigneeMissingPolicy, ImportMissingPolicy statusMissingPolicy, ImportExistsPolicy onExistsPolicy, bool dryRun, bool notifySubscribers = false, Func<Partial<IssueImportResult>, Partial<IssueImportResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task<IssueImportResult> ImportIssuesAsync(ProjectIdentifier project, ImportMetadata metadata, List<ImportIssue> issues, ImportMissingPolicy assigneeMissingPolicy, ImportMissingPolicy statusMissingPolicy, ImportExistsPolicy onExistsPolicy, bool dryRun, bool notifySubscribers = false, Func<Partial<IssueImportResult>, Partial<IssueImportResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<IssueImportResult>()) : Partial<IssueImportResult>.Default()).ToString());
@@ -3524,6 +3524,27 @@ public partial class ProjectClient : ISpaceClient
             return await _connection.RequestResourceAsync<List<GitFile>>("GET", $"api/http/projects/{project}/repositories/{repository}/files{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "Files", cancellationToken: cancellationToken);
         }
         
+    
+        /// <param name="pattern">
+        /// If specified, allows filtering heads matching provided patterns. If not specified, all heads are returned.
+        /// </param>
+        public async Task<Batch<BranchInfo>> GetHeadsAsync(ProjectIdentifier project, string repository, List<string>? pattern = null, bool isRegex = false, string? skip = null, int? top = 100, Func<Partial<Batch<BranchInfo>>, Partial<Batch<BranchInfo>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("pattern", (pattern ?? new List<string>()).Select(it => it));
+            queryParameters.Append("isRegex", isRegex.ToString("l"));
+            if (skip != null) queryParameters.Append("$skip", skip);
+            if (top != null) queryParameters.Append("$top", top?.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<BranchInfo>>()) : Partial<Batch<BranchInfo>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<Batch<BranchInfo>>("GET", $"api/http/projects/{project}/repositories/{repository}/heads{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetHeads", cancellationToken: cancellationToken);
+        }
+        
+        /// <param name="pattern">
+        /// If specified, allows filtering heads matching provided patterns. If not specified, all heads are returned.
+        /// </param>
+        public IAsyncEnumerable<BranchInfo> GetHeadsAsyncEnumerable(ProjectIdentifier project, string repository, List<string>? pattern = null, bool isRegex = false, string? skip = null, int? top = 100, Func<Partial<BranchInfo>, Partial<BranchInfo>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetHeadsAsync(project: project, repository: repository, pattern: pattern, isRegex: isRegex, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<BranchInfo>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<BranchInfo>.Default())), skip, cancellationToken);
     
         public async Task<RepositoryUrls> UrlAsync(ProjectIdentifier project, string repository, Func<Partial<RepositoryUrls>, Partial<RepositoryUrls>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {

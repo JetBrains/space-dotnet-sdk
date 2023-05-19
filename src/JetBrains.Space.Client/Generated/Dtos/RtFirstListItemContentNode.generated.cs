@@ -29,8 +29,20 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public interface InlineNode
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+public interface RtFirstListItemContentNode
+     : RtBlockNode, IClassNameConvertible, IPropagatePropertyAccessPath
 {
+    public static RtBlockquote RtBlockquote(List<RtBlockNode> children)
+        => new RtBlockquote(children: children);
+    
+    public static RtCode RtCode(string lang, List<RtCodeBlockContentNode> children)
+        => new RtCode(lang: lang, children: children);
+    
+    public static RtHeading RtHeading(int level, List<RtHeadingContentNode> children, RtTextAlign textAlign)
+        => new RtHeading(level: level, children: children, textAlign: textAlign);
+    
+    public static RtParagraph RtParagraph(List<RtInlineNode> children, RtTextAlign textAlign)
+        => new RtParagraph(children: children, textAlign: textAlign);
+    
 }
 

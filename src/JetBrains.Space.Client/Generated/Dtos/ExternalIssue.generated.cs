@@ -34,92 +34,117 @@ public sealed class ExternalIssue
 {
     public ExternalIssue() { }
     
-    public ExternalIssue(string summary, string status, string externalId, string? description = null, string? assignee = null, string? externalName = null, string? externalUrl = null)
+    public ExternalIssue(string id, bool archived, string issueId, string issuePrefix, string externalTrackerProject, string url, IssueStatus? status = null, string? summary = null, List<ExternalIssueField>? fields = null)
     {
-        Summary = summary;
-        Description = description;
+        Id = id;
+        IsArchived = archived;
+        IssueId = issueId;
+        IssuePrefix = issuePrefix;
+        ExternalTrackerProject = externalTrackerProject;
+        Url = url;
         Status = status;
-        Assignee = assignee;
-        ExternalId = externalId;
-        ExternalName = externalName;
-        ExternalUrl = externalUrl;
+        Summary = summary;
+        Fields = fields;
     }
     
-    private PropertyValue<string> _summary = new PropertyValue<string>(nameof(ExternalIssue), nameof(Summary), "summary");
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ExternalIssue), nameof(Id), "id");
     
     [Required]
-    [JsonPropertyName("summary")]
-    public string Summary
+    [JsonPropertyName("id")]
+    public string Id
     {
-        get => _summary.GetValue(InlineErrors);
-        set => _summary.SetValue(value);
+        get => _id.GetValue(InlineErrors);
+        set => _id.SetValue(value);
     }
 
-    private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ExternalIssue), nameof(Description), "description");
-    
-    [JsonPropertyName("description")]
-    public string? Description
-    {
-        get => _description.GetValue(InlineErrors);
-        set => _description.SetValue(value);
-    }
-
-    private PropertyValue<string> _status = new PropertyValue<string>(nameof(ExternalIssue), nameof(Status), "status");
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ExternalIssue), nameof(IsArchived), "archived");
     
     [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue(InlineErrors);
+        set => _archived.SetValue(value);
+    }
+
+    private PropertyValue<string> _issueId = new PropertyValue<string>(nameof(ExternalIssue), nameof(IssueId), "issueId");
+    
+    [Required]
+    [JsonPropertyName("issueId")]
+    public string IssueId
+    {
+        get => _issueId.GetValue(InlineErrors);
+        set => _issueId.SetValue(value);
+    }
+
+    private PropertyValue<string> _issuePrefix = new PropertyValue<string>(nameof(ExternalIssue), nameof(IssuePrefix), "issuePrefix");
+    
+    [Required]
+    [JsonPropertyName("issuePrefix")]
+    public string IssuePrefix
+    {
+        get => _issuePrefix.GetValue(InlineErrors);
+        set => _issuePrefix.SetValue(value);
+    }
+
+    private PropertyValue<string> _externalTrackerProject = new PropertyValue<string>(nameof(ExternalIssue), nameof(ExternalTrackerProject), "externalTrackerProject");
+    
+    [Required]
+    [JsonPropertyName("externalTrackerProject")]
+    public string ExternalTrackerProject
+    {
+        get => _externalTrackerProject.GetValue(InlineErrors);
+        set => _externalTrackerProject.SetValue(value);
+    }
+
+    private PropertyValue<string> _url = new PropertyValue<string>(nameof(ExternalIssue), nameof(Url), "url");
+    
+    [Required]
+    [JsonPropertyName("url")]
+    public string Url
+    {
+        get => _url.GetValue(InlineErrors);
+        set => _url.SetValue(value);
+    }
+
+    private PropertyValue<IssueStatus?> _status = new PropertyValue<IssueStatus?>(nameof(ExternalIssue), nameof(Status), "status");
+    
     [JsonPropertyName("status")]
-    public string Status
+    public IssueStatus? Status
     {
         get => _status.GetValue(InlineErrors);
         set => _status.SetValue(value);
     }
 
-    private PropertyValue<string?> _assignee = new PropertyValue<string?>(nameof(ExternalIssue), nameof(Assignee), "assignee");
+    private PropertyValue<string?> _summary = new PropertyValue<string?>(nameof(ExternalIssue), nameof(Summary), "summary");
     
-    [JsonPropertyName("assignee")]
-    public string? Assignee
+    [JsonPropertyName("summary")]
+    public string? Summary
     {
-        get => _assignee.GetValue(InlineErrors);
-        set => _assignee.SetValue(value);
+        get => _summary.GetValue(InlineErrors);
+        set => _summary.SetValue(value);
     }
 
-    private PropertyValue<string> _externalId = new PropertyValue<string>(nameof(ExternalIssue), nameof(ExternalId), "externalId");
+    private PropertyValue<List<ExternalIssueField>?> _fields = new PropertyValue<List<ExternalIssueField>?>(nameof(ExternalIssue), nameof(Fields), "fields");
     
-    [Required]
-    [JsonPropertyName("externalId")]
-    public string ExternalId
+    [JsonPropertyName("fields")]
+    public List<ExternalIssueField>? Fields
     {
-        get => _externalId.GetValue(InlineErrors);
-        set => _externalId.SetValue(value);
-    }
-
-    private PropertyValue<string?> _externalName = new PropertyValue<string?>(nameof(ExternalIssue), nameof(ExternalName), "externalName");
-    
-    [JsonPropertyName("externalName")]
-    public string? ExternalName
-    {
-        get => _externalName.GetValue(InlineErrors);
-        set => _externalName.SetValue(value);
-    }
-
-    private PropertyValue<string?> _externalUrl = new PropertyValue<string?>(nameof(ExternalIssue), nameof(ExternalUrl), "externalUrl");
-    
-    [JsonPropertyName("externalUrl")]
-    public string? ExternalUrl
-    {
-        get => _externalUrl.GetValue(InlineErrors);
-        set => _externalUrl.SetValue(value);
+        get => _fields.GetValue(InlineErrors);
+        set => _fields.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _summary.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _description.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issueId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issuePrefix.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalTrackerProject.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _url.SetAccessPath(parentChainPath, validateHasBeenSet);
         _status.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _assignee.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _externalId.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _externalName.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _externalUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _summary.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _fields.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

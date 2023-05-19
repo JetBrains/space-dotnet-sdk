@@ -59,6 +59,9 @@ public enum IssueSystemFieldEnum
     [EnumMember(Value = "DELETED")]
     DELETED,
     
+    [EnumMember(Value = "PARENT_ISSUES")]
+    PARENTISSUES,
+    
     [EnumMember(Value = "BOARD")]
     BOARD,
     

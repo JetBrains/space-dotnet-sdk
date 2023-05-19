@@ -30,14 +30,14 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class RtCode
-     : BlockNodeWithChildren, IClassNameConvertible, IPropagatePropertyAccessPath
+     : RtBlockNodeWithChildren, RtFirstListItemContentNode, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "RtCode";
     
     public RtCode() { }
     
-    public RtCode(string lang, List<RtText> children)
+    public RtCode(string lang, List<RtCodeBlockContentNode> children)
     {
         Lang = lang;
         Children = children;
@@ -53,11 +53,11 @@ public sealed class RtCode
         set => _lang.SetValue(value);
     }
 
-    private PropertyValue<List<RtText>> _children = new PropertyValue<List<RtText>>(nameof(RtCode), nameof(Children), "children", new List<RtText>());
+    private PropertyValue<List<RtCodeBlockContentNode>> _children = new PropertyValue<List<RtCodeBlockContentNode>>(nameof(RtCode), nameof(Children), "children", new List<RtCodeBlockContentNode>());
     
     [Required]
     [JsonPropertyName("children")]
-    public List<RtText> Children
+    public List<RtCodeBlockContentNode> Children
     {
         get => _children.GetValue(InlineErrors);
         set => _children.SetValue(value);

@@ -29,12 +29,12 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ExternalArticle
+public sealed class ImportArticle
      : IPropagatePropertyAccessPath
 {
-    public ExternalArticle() { }
+    public ImportArticle() { }
     
-    public ExternalArticle(string title, string content, string authorId, DateTime created, List<string>? teams = null, List<string>? locations = null, string? externalId = null, string? externalUrl = null)
+    public ImportArticle(string title, string content, string authorId, DateTime created, List<string>? teams = null, List<string>? locations = null, string? externalId = null, string? externalUrl = null)
     {
         Title = title;
         Content = content;
@@ -46,7 +46,7 @@ public sealed class ExternalArticle
         ExternalUrl = externalUrl;
     }
     
-    private PropertyValue<string> _title = new PropertyValue<string>(nameof(ExternalArticle), nameof(Title), "title");
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(ImportArticle), nameof(Title), "title");
     
     [Required]
     [JsonPropertyName("title")]
@@ -56,7 +56,7 @@ public sealed class ExternalArticle
         set => _title.SetValue(value);
     }
 
-    private PropertyValue<string> _content = new PropertyValue<string>(nameof(ExternalArticle), nameof(Content), "content");
+    private PropertyValue<string> _content = new PropertyValue<string>(nameof(ImportArticle), nameof(Content), "content");
     
     [Required]
     [JsonPropertyName("content")]
@@ -66,7 +66,7 @@ public sealed class ExternalArticle
         set => _content.SetValue(value);
     }
 
-    private PropertyValue<string> _authorId = new PropertyValue<string>(nameof(ExternalArticle), nameof(AuthorId), "authorId");
+    private PropertyValue<string> _authorId = new PropertyValue<string>(nameof(ImportArticle), nameof(AuthorId), "authorId");
     
     [Required]
     [JsonPropertyName("authorId")]
@@ -76,7 +76,7 @@ public sealed class ExternalArticle
         set => _authorId.SetValue(value);
     }
 
-    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ExternalArticle), nameof(Created), "created");
+    private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ImportArticle), nameof(Created), "created");
     
     [Required]
     [JsonPropertyName("created")]
@@ -87,7 +87,7 @@ public sealed class ExternalArticle
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _teams = new PropertyValue<List<string>?>(nameof(ExternalArticle), nameof(Teams), "teams");
+    private PropertyValue<List<string>?> _teams = new PropertyValue<List<string>?>(nameof(ImportArticle), nameof(Teams), "teams");
     
     [JsonPropertyName("teams")]
     public List<string>? Teams
@@ -96,7 +96,7 @@ public sealed class ExternalArticle
         set => _teams.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _locations = new PropertyValue<List<string>?>(nameof(ExternalArticle), nameof(Locations), "locations");
+    private PropertyValue<List<string>?> _locations = new PropertyValue<List<string>?>(nameof(ImportArticle), nameof(Locations), "locations");
     
     [JsonPropertyName("locations")]
     public List<string>? Locations
@@ -105,7 +105,7 @@ public sealed class ExternalArticle
         set => _locations.SetValue(value);
     }
 
-    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(ExternalArticle), nameof(ExternalId), "externalId");
+    private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(ImportArticle), nameof(ExternalId), "externalId");
     
     [JsonPropertyName("externalId")]
     public string? ExternalId
@@ -114,7 +114,7 @@ public sealed class ExternalArticle
         set => _externalId.SetValue(value);
     }
 
-    private PropertyValue<string?> _externalUrl = new PropertyValue<string?>(nameof(ExternalArticle), nameof(ExternalUrl), "externalUrl");
+    private PropertyValue<string?> _externalUrl = new PropertyValue<string?>(nameof(ImportArticle), nameof(ExternalUrl), "externalUrl");
     
     [JsonPropertyName("externalUrl")]
     public string? ExternalUrl

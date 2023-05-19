@@ -35,6 +35,9 @@ public interface AppUiExtensionApi
     public static ChatBotUiExtensionApi ChatBotUiExtensionApi()
         => new ChatBotUiExtensionApi();
     
+    public static ExternalIssueTrackerUiExtensionApi ExternalIssueTrackerUiExtensionApi(string domain)
+        => new ExternalIssueTrackerUiExtensionApi(domain: domain);
+    
     public static GettingStartedUiExtensionApi GettingStartedUiExtensionApi(string gettingStartedUrl, string gettingStartedTitle)
         => new GettingStartedUiExtensionApi(gettingStartedUrl: gettingStartedUrl, gettingStartedTitle: gettingStartedTitle);
     

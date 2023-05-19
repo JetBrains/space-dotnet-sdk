@@ -27,9 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.BlockNodeWithChildrenPartialBuilder;
+namespace JetBrains.Space.Client.RtFirstListItemContentNodePartialBuilder;
 
-public static class BlockNodeWithChildrenPartialExtensions
+public static class RtFirstListItemContentNodePartialExtensions
 {
 }
 

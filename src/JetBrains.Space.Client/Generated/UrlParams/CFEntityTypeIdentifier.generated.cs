@@ -35,6 +35,9 @@ public abstract class CFEntityTypeIdentifier : IUrlParameter
     public static CFEntityTypeIdentifier ForCFAbsenceEntityType
         => new CFAbsenceEntityType();
     
+    public static CFEntityTypeIdentifier ForCFDeployTargetEntityType
+        => new CFDeployTargetEntityType();
+    
     public static CFEntityTypeIdentifier ForCFIssueTrackerEntityType(IssueTrackerIdentifier issueTracker)
         => new CFIssueTrackerEntityType(issueTracker);
     
@@ -51,6 +54,12 @@ public abstract class CFEntityTypeIdentifier : IUrlParameter
     {
         public override string ToString()
             => "absence";
+    }
+    
+    public class CFDeployTargetEntityType : CFEntityTypeIdentifier
+    {
+        public override string ToString()
+            => "deployTarget";
     }
     
     public class CFIssueTrackerEntityType : CFEntityTypeIdentifier

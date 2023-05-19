@@ -37,6 +37,7 @@ public static class CodeReviewWithCountPartialExtensions
     public static Partial<CodeReviewWithCount> WithReview(this Partial<CodeReviewWithCount> it, Func<Partial<CodeReviewRecord>, Partial<CodeReviewRecord>> partialBuilder)
         => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecord>(it)));
     
+    [Obsolete("Use review.discussionCounter instead (since 2023-05-08) (will be removed in a future version)")]
     public static Partial<CodeReviewWithCount> WithMessagesCount(this Partial<CodeReviewWithCount> it)
         => it.AddFieldName("messagesCount");
     

@@ -30,34 +30,33 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class RtBreak
-     : InlineNodeWithMarks, IClassNameConvertible, IPropagatePropertyAccessPath
+     : RtCodeBlockContentNode, RtInlineNodeWithMarks, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "RtBreak";
     
     public RtBreak() { }
     
-    public RtBreak(bool soft, List<DocumentMark> marks)
+    public RtBreak(List<RtDocumentMark> marks, bool? soft = null)
     {
         IsSoft = soft;
         Marks = marks;
     }
     
-    private PropertyValue<bool> _soft = new PropertyValue<bool>(nameof(RtBreak), nameof(IsSoft), "soft");
+    private PropertyValue<bool?> _soft = new PropertyValue<bool?>(nameof(RtBreak), nameof(IsSoft), "soft");
     
-    [Required]
     [JsonPropertyName("soft")]
-    public bool IsSoft
+    public bool? IsSoft
     {
         get => _soft.GetValue(InlineErrors);
         set => _soft.SetValue(value);
     }
 
-    private PropertyValue<List<DocumentMark>> _marks = new PropertyValue<List<DocumentMark>>(nameof(RtBreak), nameof(Marks), "marks", new List<DocumentMark>());
+    private PropertyValue<List<RtDocumentMark>> _marks = new PropertyValue<List<RtDocumentMark>>(nameof(RtBreak), nameof(Marks), "marks", new List<RtDocumentMark>());
     
     [Required]
     [JsonPropertyName("marks")]
-    public List<DocumentMark> Marks
+    public List<RtDocumentMark> Marks
     {
         get => _marks.GetValue(InlineErrors);
         set => _marks.SetValue(value);

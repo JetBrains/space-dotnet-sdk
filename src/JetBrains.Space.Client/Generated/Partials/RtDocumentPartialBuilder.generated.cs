@@ -34,8 +34,11 @@ public static class RtDocumentPartialExtensions
     public static Partial<RtDocument> WithChildren(this Partial<RtDocument> it)
         => it.AddFieldName("children");
     
-    public static Partial<RtDocument> WithChildren(this Partial<RtDocument> it, Func<Partial<BlockNode>, Partial<BlockNode>> partialBuilder)
-        => it.AddFieldName("children", partialBuilder(new Partial<BlockNode>(it)));
+    public static Partial<RtDocument> WithChildren(this Partial<RtDocument> it, Func<Partial<RtBlockNode>, Partial<RtBlockNode>> partialBuilder)
+        => it.AddFieldName("children", partialBuilder(new Partial<RtBlockNode>(it)));
+    
+    public static Partial<RtDocument> WithVersion(this Partial<RtDocument> it)
+        => it.AddFieldName("version");
     
 }
 

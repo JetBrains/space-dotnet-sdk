@@ -30,14 +30,14 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class RtMention
-     : InlineNodeWithMarks, IClassNameConvertible, IPropagatePropertyAccessPath
+     : RtHeadingContentNode, RtInlineNodeWithMarks, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "RtMention";
     
     public RtMention() { }
     
-    public RtMention(RtMentionAttrs attrs, List<DocumentMark> marks)
+    public RtMention(RtMentionAttrs attrs, List<RtDocumentMark> marks)
     {
         Attrs = attrs;
         Marks = marks;
@@ -53,11 +53,11 @@ public sealed class RtMention
         set => _attrs.SetValue(value);
     }
 
-    private PropertyValue<List<DocumentMark>> _marks = new PropertyValue<List<DocumentMark>>(nameof(RtMention), nameof(Marks), "marks", new List<DocumentMark>());
+    private PropertyValue<List<RtDocumentMark>> _marks = new PropertyValue<List<RtDocumentMark>>(nameof(RtMention), nameof(Marks), "marks", new List<RtDocumentMark>());
     
     [Required]
     [JsonPropertyName("marks")]
-    public List<DocumentMark> Marks
+    public List<RtDocumentMark> Marks
     {
         get => _marks.GetValue(InlineErrors);
         set => _marks.SetValue(value);

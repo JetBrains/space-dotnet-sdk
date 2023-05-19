@@ -27,25 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.RtCodeBlockContentNodePartialBuilder;
 
-public interface DocumentMark
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+public static class RtCodeBlockContentNodePartialExtensions
 {
-    public static RtBoldMark RtBoldMark()
-        => new RtBoldMark();
-    
-    public static RtCodeMark RtCodeMark()
-        => new RtCodeMark();
-    
-    public static RtItalicMark RtItalicMark()
-        => new RtItalicMark();
-    
-    public static RtLinkMark RtLinkMark(RtLinkAttrs attrs)
-        => new RtLinkMark(attrs: attrs);
-    
-    public static RtStrikeThroughMark RtStrikeThroughMark()
-        => new RtStrikeThroughMark();
-    
 }
 

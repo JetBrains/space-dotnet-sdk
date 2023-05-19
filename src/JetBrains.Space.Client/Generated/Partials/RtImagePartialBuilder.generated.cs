@@ -31,17 +31,26 @@ namespace JetBrains.Space.Client.RtImagePartialBuilder;
 
 public static class RtImagePartialExtensions
 {
+    public static Partial<RtImage> WithSrc(this Partial<RtImage> it)
+        => it.AddFieldName("src");
+    
+    public static Partial<RtImage> WithTitle(this Partial<RtImage> it)
+        => it.AddFieldName("title");
+    
+    public static Partial<RtImage> WithAlt(this Partial<RtImage> it)
+        => it.AddFieldName("alt");
+    
+    public static Partial<RtImage> WithMarks(this Partial<RtImage> it)
+        => it.AddFieldName("marks");
+    
+    public static Partial<RtImage> WithMarks(this Partial<RtImage> it, Func<Partial<RtDocumentMark>, Partial<RtDocumentMark>> partialBuilder)
+        => it.AddFieldName("marks", partialBuilder(new Partial<RtDocumentMark>(it)));
+    
     public static Partial<RtImage> WithAttrs(this Partial<RtImage> it)
         => it.AddFieldName("attrs");
     
     public static Partial<RtImage> WithAttrs(this Partial<RtImage> it, Func<Partial<RtImageAttrs>, Partial<RtImageAttrs>> partialBuilder)
         => it.AddFieldName("attrs", partialBuilder(new Partial<RtImageAttrs>(it)));
-    
-    public static Partial<RtImage> WithMarks(this Partial<RtImage> it)
-        => it.AddFieldName("marks");
-    
-    public static Partial<RtImage> WithMarks(this Partial<RtImage> it, Func<Partial<DocumentMark>, Partial<DocumentMark>> partialBuilder)
-        => it.AddFieldName("marks", partialBuilder(new Partial<DocumentMark>(it)));
     
 }
 

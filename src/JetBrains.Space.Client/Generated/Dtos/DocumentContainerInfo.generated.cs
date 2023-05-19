@@ -35,8 +35,8 @@ public interface DocumentContainerInfo
     public static BookContainerInfo BookContainerInfo(KBBook book, List<string>? grantedRights = null)
         => new BookContainerInfo(book: book, grantedRights: grantedRights);
     
-    public static InaccessibleContainerInfo InaccessibleContainerInfo(List<string>? grantedRights = null)
-        => new InaccessibleContainerInfo(grantedRights: grantedRights);
+    public static InaccessibleContainerInfo InaccessibleContainerInfo(int? containerType = null, List<string>? grantedRights = null)
+        => new InaccessibleContainerInfo(containerType: containerType, grantedRights: grantedRights);
     
     public static PersonalDocumentContainerInfo Personal(TDMemberProfile owner, List<string>? grantedRights = null)
         => new PersonalDocumentContainerInfo(owner: owner, grantedRights: grantedRights);

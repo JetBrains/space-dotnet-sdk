@@ -29,8 +29,11 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public interface NodeWithChildren
-     : BlockNode, IClassNameConvertible, IPropagatePropertyAccessPath
+public interface RtBlockNode
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
+    public static RtHorizontalRule RtHorizontalRule()
+        => new RtHorizontalRule();
+    
 }
 

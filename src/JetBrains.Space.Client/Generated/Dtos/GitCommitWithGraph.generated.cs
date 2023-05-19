@@ -34,13 +34,14 @@ public sealed class GitCommitWithGraph
 {
     public GitCommitWithGraph() { }
     
-    public GitCommitWithGraph(string repositoryName, GitCommitInfo commit, List<Unfurl> commitMessageUnfurls, List<CodeReviewRecord> reviews, List<string> issueIds, List<Pair<string, string>> deployments, bool unreachable, GitGraphLayoutLine? layout = null)
+    public GitCommitWithGraph(string repositoryName, GitCommitInfo commit, List<Unfurl> commitMessageUnfurls, List<CodeReviewRecord> reviews, List<string> issueIds, List<Pair<string, string>> deployments, bool unreachable, LinkedIssueIds? linkedIssues = null, GitGraphLayoutLine? layout = null)
     {
         RepositoryName = repositoryName;
         Commit = commit;
         CommitMessageUnfurls = commitMessageUnfurls;
         Reviews = reviews;
         IssueIds = issueIds;
+        LinkedIssues = linkedIssues;
         Deployments = deployments;
         Layout = layout;
         IsUnreachable = unreachable;
@@ -96,6 +97,15 @@ public sealed class GitCommitWithGraph
         set => _issueIds.SetValue(value);
     }
 
+    private PropertyValue<LinkedIssueIds?> _linkedIssues = new PropertyValue<LinkedIssueIds?>(nameof(GitCommitWithGraph), nameof(LinkedIssues), "linkedIssues");
+    
+    [JsonPropertyName("linkedIssues")]
+    public LinkedIssueIds? LinkedIssues
+    {
+        get => _linkedIssues.GetValue(InlineErrors);
+        set => _linkedIssues.SetValue(value);
+    }
+
     private PropertyValue<List<Pair<string, string>>> _deployments = new PropertyValue<List<Pair<string, string>>>(nameof(GitCommitWithGraph), nameof(Deployments), "deployments", new List<Pair<string, string>>());
     
     [Required]
@@ -132,6 +142,7 @@ public sealed class GitCommitWithGraph
         _commitMessageUnfurls.SetAccessPath(parentChainPath, validateHasBeenSet);
         _reviews.SetAccessPath(parentChainPath, validateHasBeenSet);
         _issueIds.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _linkedIssues.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deployments.SetAccessPath(parentChainPath, validateHasBeenSet);
         _layout.SetAccessPath(parentChainPath, validateHasBeenSet);
         _unreachable.SetAccessPath(parentChainPath, validateHasBeenSet);

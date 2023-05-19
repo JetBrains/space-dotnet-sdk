@@ -30,31 +30,40 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class RtDocument
-     : BlockNodeWithChildren, IClassNameConvertible, IPropagatePropertyAccessPath
+     : IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public  string? ClassName => "RtDocument";
-    
     public RtDocument() { }
     
-    public RtDocument(List<BlockNode> children)
+    public RtDocument(List<RtBlockNode> children, string version)
     {
         Children = children;
+        Version = version;
     }
     
-    private PropertyValue<List<BlockNode>> _children = new PropertyValue<List<BlockNode>>(nameof(RtDocument), nameof(Children), "children", new List<BlockNode>());
+    private PropertyValue<List<RtBlockNode>> _children = new PropertyValue<List<RtBlockNode>>(nameof(RtDocument), nameof(Children), "children", new List<RtBlockNode>());
     
     [Required]
     [JsonPropertyName("children")]
-    public List<BlockNode> Children
+    public List<RtBlockNode> Children
     {
         get => _children.GetValue(InlineErrors);
         set => _children.SetValue(value);
     }
 
+    private PropertyValue<string> _version = new PropertyValue<string>(nameof(RtDocument), nameof(Version), "version");
+    
+    [Required]
+    [JsonPropertyName("version")]
+    public string Version
+    {
+        get => _version.GetValue(InlineErrors);
+        set => _version.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _children.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _version.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

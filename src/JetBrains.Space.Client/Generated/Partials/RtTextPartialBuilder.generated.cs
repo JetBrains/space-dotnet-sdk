@@ -37,8 +37,8 @@ public static class RtTextPartialExtensions
     public static Partial<RtText> WithMarks(this Partial<RtText> it)
         => it.AddFieldName("marks");
     
-    public static Partial<RtText> WithMarks(this Partial<RtText> it, Func<Partial<DocumentMark>, Partial<DocumentMark>> partialBuilder)
-        => it.AddFieldName("marks", partialBuilder(new Partial<DocumentMark>(it)));
+    public static Partial<RtText> WithMarks(this Partial<RtText> it, Func<Partial<RtDocumentMark>, Partial<RtDocumentMark>> partialBuilder)
+        => it.AddFieldName("marks", partialBuilder(new Partial<RtDocumentMark>(it)));
     
 }
 

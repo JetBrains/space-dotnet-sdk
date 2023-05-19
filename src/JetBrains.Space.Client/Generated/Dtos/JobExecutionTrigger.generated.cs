@@ -51,6 +51,9 @@ public class JobExecutionTrigger
     public static JobExecutionTriggerManual Manual(CPrincipal principal)
         => new JobExecutionTriggerManual(principal: principal);
     
+    public static JobExecutionTriggerSafeMerge SafeMerge(CPrincipal principal)
+        => new JobExecutionTriggerSafeMerge(principal: principal);
+    
     public static JobExecutionTriggerSchedule Schedule()
         => new JobExecutionTriggerSchedule();
     

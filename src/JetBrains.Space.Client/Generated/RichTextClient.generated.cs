@@ -50,7 +50,7 @@ public partial class RichTextClient : ISpaceClient
     [Obsolete("We are currently refining the hierarchy of the RtDocument, and it is likely to undergo changes in the near future. This hierarchy will be utilized in various subsystems such as documents, chats, and issues.")]
 #endif
     
-    public async Task<RtDocument> ParseMarkdownAsync(string text, Func<Partial<RtDocument>, Partial<RtDocument>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    public async Task<RtDocument> ParseMarkdownAsync(string text, string? schemaVersion = null, Func<Partial<RtDocument>, Partial<RtDocument>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<RtDocument>()) : Partial<RtDocument>.Default()).ToString());
@@ -59,6 +59,7 @@ public partial class RichTextClient : ISpaceClient
             new RichTextParseMarkdownPostRequest
             { 
                 Text = text,
+                SchemaVersion = schemaVersion,
             }, requestHeaders: null, functionName: "ParseMarkdown", cancellationToken: cancellationToken);
     }
     

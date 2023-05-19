@@ -27,32 +27,32 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ExternalArticlePartialBuilder;
+namespace JetBrains.Space.Client.ImportArticlePartialBuilder;
 
-public static class ExternalArticlePartialExtensions
+public static class ImportArticlePartialExtensions
 {
-    public static Partial<ExternalArticle> WithTitle(this Partial<ExternalArticle> it)
+    public static Partial<ImportArticle> WithTitle(this Partial<ImportArticle> it)
         => it.AddFieldName("title");
     
-    public static Partial<ExternalArticle> WithContent(this Partial<ExternalArticle> it)
+    public static Partial<ImportArticle> WithContent(this Partial<ImportArticle> it)
         => it.AddFieldName("content");
     
-    public static Partial<ExternalArticle> WithAuthorId(this Partial<ExternalArticle> it)
+    public static Partial<ImportArticle> WithAuthorId(this Partial<ImportArticle> it)
         => it.AddFieldName("authorId");
     
-    public static Partial<ExternalArticle> WithCreated(this Partial<ExternalArticle> it)
+    public static Partial<ImportArticle> WithCreated(this Partial<ImportArticle> it)
         => it.AddFieldName("created");
     
-    public static Partial<ExternalArticle> WithTeams(this Partial<ExternalArticle> it)
+    public static Partial<ImportArticle> WithTeams(this Partial<ImportArticle> it)
         => it.AddFieldName("teams");
     
-    public static Partial<ExternalArticle> WithLocations(this Partial<ExternalArticle> it)
+    public static Partial<ImportArticle> WithLocations(this Partial<ImportArticle> it)
         => it.AddFieldName("locations");
     
-    public static Partial<ExternalArticle> WithExternalId(this Partial<ExternalArticle> it)
+    public static Partial<ImportArticle> WithExternalId(this Partial<ImportArticle> it)
         => it.AddFieldName("externalId");
     
-    public static Partial<ExternalArticle> WithExternalUrl(this Partial<ExternalArticle> it)
+    public static Partial<ImportArticle> WithExternalUrl(this Partial<ImportArticle> it)
         => it.AddFieldName("externalUrl");
     
 }

@@ -31,26 +31,38 @@ namespace JetBrains.Space.Client.ExternalIssuePartialBuilder;
 
 public static class ExternalIssuePartialExtensions
 {
-    public static Partial<ExternalIssue> WithSummary(this Partial<ExternalIssue> it)
-        => it.AddFieldName("summary");
+    public static Partial<ExternalIssue> WithId(this Partial<ExternalIssue> it)
+        => it.AddFieldName("id");
     
-    public static Partial<ExternalIssue> WithDescription(this Partial<ExternalIssue> it)
-        => it.AddFieldName("description");
+    public static Partial<ExternalIssue> WithIsArchived(this Partial<ExternalIssue> it)
+        => it.AddFieldName("archived");
+    
+    public static Partial<ExternalIssue> WithIssueId(this Partial<ExternalIssue> it)
+        => it.AddFieldName("issueId");
+    
+    public static Partial<ExternalIssue> WithIssuePrefix(this Partial<ExternalIssue> it)
+        => it.AddFieldName("issuePrefix");
+    
+    public static Partial<ExternalIssue> WithExternalTrackerProject(this Partial<ExternalIssue> it)
+        => it.AddFieldName("externalTrackerProject");
+    
+    public static Partial<ExternalIssue> WithUrl(this Partial<ExternalIssue> it)
+        => it.AddFieldName("url");
     
     public static Partial<ExternalIssue> WithStatus(this Partial<ExternalIssue> it)
         => it.AddFieldName("status");
     
-    public static Partial<ExternalIssue> WithAssignee(this Partial<ExternalIssue> it)
-        => it.AddFieldName("assignee");
+    public static Partial<ExternalIssue> WithStatus(this Partial<ExternalIssue> it, Func<Partial<IssueStatus>, Partial<IssueStatus>> partialBuilder)
+        => it.AddFieldName("status", partialBuilder(new Partial<IssueStatus>(it)));
     
-    public static Partial<ExternalIssue> WithExternalId(this Partial<ExternalIssue> it)
-        => it.AddFieldName("externalId");
+    public static Partial<ExternalIssue> WithSummary(this Partial<ExternalIssue> it)
+        => it.AddFieldName("summary");
     
-    public static Partial<ExternalIssue> WithExternalName(this Partial<ExternalIssue> it)
-        => it.AddFieldName("externalName");
+    public static Partial<ExternalIssue> WithFields(this Partial<ExternalIssue> it)
+        => it.AddFieldName("fields");
     
-    public static Partial<ExternalIssue> WithExternalUrl(this Partial<ExternalIssue> it)
-        => it.AddFieldName("externalUrl");
+    public static Partial<ExternalIssue> WithFields(this Partial<ExternalIssue> it, Func<Partial<ExternalIssueField>, Partial<ExternalIssueField>> partialBuilder)
+        => it.AddFieldName("fields", partialBuilder(new Partial<ExternalIssueField>(it)));
     
 }
 

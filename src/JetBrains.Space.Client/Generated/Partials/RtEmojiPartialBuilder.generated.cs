@@ -37,8 +37,8 @@ public static class RtEmojiPartialExtensions
     public static Partial<RtEmoji> WithMarks(this Partial<RtEmoji> it)
         => it.AddFieldName("marks");
     
-    public static Partial<RtEmoji> WithMarks(this Partial<RtEmoji> it, Func<Partial<DocumentMark>, Partial<DocumentMark>> partialBuilder)
-        => it.AddFieldName("marks", partialBuilder(new Partial<DocumentMark>(it)));
+    public static Partial<RtEmoji> WithMarks(this Partial<RtEmoji> it, Func<Partial<RtDocumentMark>, Partial<RtDocumentMark>> partialBuilder)
+        => it.AddFieldName("marks", partialBuilder(new Partial<RtDocumentMark>(it)));
     
 }
 

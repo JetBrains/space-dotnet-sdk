@@ -34,8 +34,8 @@ public static class RtParagraphPartialExtensions
     public static Partial<RtParagraph> WithChildren(this Partial<RtParagraph> it)
         => it.AddFieldName("children");
     
-    public static Partial<RtParagraph> WithChildren(this Partial<RtParagraph> it, Func<Partial<InlineNode>, Partial<InlineNode>> partialBuilder)
-        => it.AddFieldName("children", partialBuilder(new Partial<InlineNode>(it)));
+    public static Partial<RtParagraph> WithChildren(this Partial<RtParagraph> it, Func<Partial<RtInlineNode>, Partial<RtInlineNode>> partialBuilder)
+        => it.AddFieldName("children", partialBuilder(new Partial<RtInlineNode>(it)));
     
     public static Partial<RtParagraph> WithTextAlign(this Partial<RtParagraph> it)
         => it.AddFieldName("textAlign");

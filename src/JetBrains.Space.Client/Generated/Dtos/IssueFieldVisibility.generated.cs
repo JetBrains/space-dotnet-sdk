@@ -34,17 +34,16 @@ public sealed class IssueFieldVisibility
 {
     public IssueFieldVisibility() { }
     
-    public IssueFieldVisibility(IssueSystemFieldEnum field, bool visible)
+    public IssueFieldVisibility(bool visible, IssueSystemFieldEnum? field = null)
     {
         Field = field;
         IsVisible = visible;
     }
     
-    private PropertyValue<IssueSystemFieldEnum> _field = new PropertyValue<IssueSystemFieldEnum>(nameof(IssueFieldVisibility), nameof(Field), "field");
+    private PropertyValue<IssueSystemFieldEnum?> _field = new PropertyValue<IssueSystemFieldEnum?>(nameof(IssueFieldVisibility), nameof(Field), "field");
     
-    [Required]
     [JsonPropertyName("field")]
-    public IssueSystemFieldEnum Field
+    public IssueSystemFieldEnum? Field
     {
         get => _field.GetValue(InlineErrors);
         set => _field.SetValue(value);
