@@ -61,5 +61,11 @@ public static class ESOIDCAuthModuleSettingsPartialExtensions
     public static Partial<ESOIDCAuthModuleSettings> WithDomains(this Partial<ESOIDCAuthModuleSettings> it)
         => it.AddFieldName("domains");
     
+    public static Partial<ESOIDCAuthModuleSettings> WithRegisterNewUserRules(this Partial<ESOIDCAuthModuleSettings> it)
+        => it.AddFieldName("registerNewUserRules");
+    
+    public static Partial<ESOIDCAuthModuleSettings> WithRegisterNewUserRules(this Partial<ESOIDCAuthModuleSettings> it, Func<Partial<OidcRegisterNewUserRule>, Partial<OidcRegisterNewUserRule>> partialBuilder)
+        => it.AddFieldName("registerNewUserRules", partialBuilder(new Partial<OidcRegisterNewUserRule>(it)));
+    
 }
 

@@ -49,5 +49,11 @@ public static class ESHubAuthModuleSettingsPartialExtensions
     public static Partial<ESHubAuthModuleSettings> WithGroups(this Partial<ESHubAuthModuleSettings> it)
         => it.AddFieldName("groups");
     
+    public static Partial<ESHubAuthModuleSettings> WithRegisterNewUserRules(this Partial<ESHubAuthModuleSettings> it)
+        => it.AddFieldName("registerNewUserRules");
+    
+    public static Partial<ESHubAuthModuleSettings> WithRegisterNewUserRules(this Partial<ESHubAuthModuleSettings> it, Func<Partial<HubRegisterNewUserRule>, Partial<HubRegisterNewUserRule>> partialBuilder)
+        => it.AddFieldName("registerNewUserRules", partialBuilder(new Partial<HubRegisterNewUserRule>(it)));
+    
 }
 

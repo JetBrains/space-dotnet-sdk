@@ -27,40 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.LdapRegisterNewUserRulePartialBuilder;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum JobExecutionDisplayStatus
+public static class LdapRegisterNewUserRulePartialExtensions
 {
-    [EnumMember(Value = "Awaiting")]
-    Awaiting,
+    public static Partial<LdapRegisterNewUserRule> WithUserType(this Partial<LdapRegisterNewUserRule> it)
+        => it.AddFieldName("userType");
     
-    [EnumMember(Value = "Running")]
-    Running,
+    public static Partial<LdapRegisterNewUserRule> WithUserType(this Partial<LdapRegisterNewUserRule> it, Func<Partial<RegisterNewUserType>, Partial<RegisterNewUserType>> partialBuilder)
+        => it.AddFieldName("userType", partialBuilder(new Partial<RegisterNewUserType>(it)));
     
-    [EnumMember(Value = "Restarting")]
-    Restarting,
-    
-    [EnumMember(Value = "Finishing")]
-    Finishing,
-    
-    [EnumMember(Value = "Stopped")]
-    Stopped,
-    
-    [EnumMember(Value = "Succeeded")]
-    Succeeded,
-    
-    [EnumMember(Value = "Failed")]
-    Failed,
-    
-    [EnumMember(Value = "NoSuitableWorkers")]
-    NoSuitableWorkers,
-    
-    [EnumMember(Value = "WaitingForWorkers")]
-    WaitingForWorkers,
-    
-    [EnumMember(Value = "Skipped")]
-    Skipped,
+    public static Partial<LdapRegisterNewUserRule> WithIsAllowed(this Partial<LdapRegisterNewUserRule> it)
+        => it.AddFieldName("allowed");
     
 }
 

@@ -34,7 +34,7 @@ public sealed class GitRepositorySettingsMirrorSettings
 {
     public GitRepositorySettingsMirrorSettings() { }
     
-    public GitRepositorySettingsMirrorSettings(string url, bool detachHEAD, bool fetchPeriodically, bool fetchBeforeGitCall, List<string>? refsSpec = null, string? username = null, string? password = null, bool? useKeyAuth = null, string? key = null, string? keyPassphrase = null, string? keyError = null, string? publicKey = null, List<string>? keyFingerprints = null, bool? allowAtomicPush = null)
+    public GitRepositorySettingsMirrorSettings(string url, bool detachHEAD, bool fetchPeriodically, bool fetchBeforeGitCall, List<string>? refsSpec = null, string? username = null, string? password = null, bool? useKeyAuth = null, string? key = null, string? keyPassphrase = null, string? keyError = null, string? publicKey = null, List<string>? keyFingerprints = null, bool? allowAtomicPush = null, bool? mirrorPullRequest = null)
     {
         Url = url;
         RefsSpec = refsSpec;
@@ -50,6 +50,7 @@ public sealed class GitRepositorySettingsMirrorSettings
         IsFetchPeriodically = fetchPeriodically;
         IsFetchBeforeGitCall = fetchBeforeGitCall;
         IsAllowAtomicPush = allowAtomicPush;
+        IsMirrorPullRequest = mirrorPullRequest;
     }
     
     private PropertyValue<string> _url = new PropertyValue<string>(nameof(GitRepositorySettingsMirrorSettings), nameof(Url), "url");
@@ -182,6 +183,15 @@ public sealed class GitRepositorySettingsMirrorSettings
         set => _allowAtomicPush.SetValue(value);
     }
 
+    private PropertyValue<bool?> _mirrorPullRequest = new PropertyValue<bool?>(nameof(GitRepositorySettingsMirrorSettings), nameof(IsMirrorPullRequest), "mirrorPullRequest");
+    
+    [JsonPropertyName("mirrorPullRequest")]
+    public bool? IsMirrorPullRequest
+    {
+        get => _mirrorPullRequest.GetValue(InlineErrors);
+        set => _mirrorPullRequest.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _url.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -198,6 +208,7 @@ public sealed class GitRepositorySettingsMirrorSettings
         _fetchPeriodically.SetAccessPath(parentChainPath, validateHasBeenSet);
         _fetchBeforeGitCall.SetAccessPath(parentChainPath, validateHasBeenSet);
         _allowAtomicPush.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mirrorPullRequest.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

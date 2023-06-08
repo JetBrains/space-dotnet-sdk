@@ -37,24 +37,45 @@ public sealed class TextDocumentBodyInfo
     
     public TextDocumentBodyInfo() { }
     
-    public TextDocumentBodyInfo(TextDocumentRecord textDocument)
+    public TextDocumentBodyInfo(TextDocumentRecord? textDocument = null, string? textDocumentId = null, DraftDocumentType? textType = null)
     {
         TextDocument = textDocument;
+        TextDocumentId = textDocumentId;
+        TextType = textType;
     }
     
-    private PropertyValue<TextDocumentRecord> _textDocument = new PropertyValue<TextDocumentRecord>(nameof(TextDocumentBodyInfo), nameof(TextDocument), "textDocument");
+    private PropertyValue<TextDocumentRecord?> _textDocument = new PropertyValue<TextDocumentRecord?>(nameof(TextDocumentBodyInfo), nameof(TextDocument), "textDocument");
     
-    [Required]
     [JsonPropertyName("textDocument")]
-    public TextDocumentRecord TextDocument
+    public TextDocumentRecord? TextDocument
     {
         get => _textDocument.GetValue(InlineErrors);
         set => _textDocument.SetValue(value);
     }
 
+    private PropertyValue<string?> _textDocumentId = new PropertyValue<string?>(nameof(TextDocumentBodyInfo), nameof(TextDocumentId), "textDocumentId");
+    
+    [JsonPropertyName("textDocumentId")]
+    public string? TextDocumentId
+    {
+        get => _textDocumentId.GetValue(InlineErrors);
+        set => _textDocumentId.SetValue(value);
+    }
+
+    private PropertyValue<DraftDocumentType?> _textType = new PropertyValue<DraftDocumentType?>(nameof(TextDocumentBodyInfo), nameof(TextType), "textType");
+    
+    [JsonPropertyName("textType")]
+    public DraftDocumentType? TextType
+    {
+        get => _textType.GetValue(InlineErrors);
+        set => _textType.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _textDocument.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _textDocumentId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _textType.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

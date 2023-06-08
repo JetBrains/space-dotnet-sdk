@@ -27,18 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.LinkedIssueIdsPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class LinkedIssueIdsPartialExtensions
+[JsonConverter(typeof(EnumStringConverter))]
+public enum RegisterNewUserType
 {
-    public static Partial<LinkedIssueIds> WithSpaceIssueIds(this Partial<LinkedIssueIds> it)
-        => it.AddFieldName("spaceIssueIds");
+    [EnumMember(Value = "Member")]
+    Member,
     
-    public static Partial<LinkedIssueIds> WithExternalIssueIds(this Partial<LinkedIssueIds> it)
-        => it.AddFieldName("externalIssueIds");
+    [EnumMember(Value = "ExternalCollaborator")]
+    ExternalCollaborator,
     
-    public static Partial<LinkedIssueIds> WithExternalIssueIds(this Partial<LinkedIssueIds> it, Func<Partial<ExternalIssueId>, Partial<ExternalIssueId>> partialBuilder)
-        => it.AddFieldName("externalIssueIds", partialBuilder(new Partial<ExternalIssueId>(it)));
+    [EnumMember(Value = "Guest")]
+    Guest,
     
 }
 

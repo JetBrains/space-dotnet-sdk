@@ -79,5 +79,11 @@ public static class ESLdapAuthModuleSettingsPartialExtensions
     public static Partial<ESLdapAuthModuleSettings> WithAttributeNames(this Partial<ESLdapAuthModuleSettings> it, Func<Partial<ESLdapAttributeNames>, Partial<ESLdapAttributeNames>> partialBuilder)
         => it.AddFieldName("attributeNames", partialBuilder(new Partial<ESLdapAttributeNames>(it)));
     
+    public static Partial<ESLdapAuthModuleSettings> WithRegisterNewUserRules(this Partial<ESLdapAuthModuleSettings> it)
+        => it.AddFieldName("registerNewUserRules");
+    
+    public static Partial<ESLdapAuthModuleSettings> WithRegisterNewUserRules(this Partial<ESLdapAuthModuleSettings> it, Func<Partial<LdapRegisterNewUserRule>, Partial<LdapRegisterNewUserRule>> partialBuilder)
+        => it.AddFieldName("registerNewUserRules", partialBuilder(new Partial<LdapRegisterNewUserRule>(it)));
+    
 }
 

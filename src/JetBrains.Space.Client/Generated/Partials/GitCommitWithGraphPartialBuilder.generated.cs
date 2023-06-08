@@ -58,8 +58,8 @@ public static class GitCommitWithGraphPartialExtensions
     public static Partial<GitCommitWithGraph> WithLinkedIssues(this Partial<GitCommitWithGraph> it)
         => it.AddFieldName("linkedIssues");
     
-    public static Partial<GitCommitWithGraph> WithLinkedIssues(this Partial<GitCommitWithGraph> it, Func<Partial<LinkedIssueIds>, Partial<LinkedIssueIds>> partialBuilder)
-        => it.AddFieldName("linkedIssues", partialBuilder(new Partial<LinkedIssueIds>(it)));
+    public static Partial<GitCommitWithGraph> WithLinkedIssues(this Partial<GitCommitWithGraph> it, Func<Partial<GenericIssueId>, Partial<GenericIssueId>> partialBuilder)
+        => it.AddFieldName("linkedIssues", partialBuilder(new Partial<GenericIssueId>(it)));
     
     public static Partial<GitCommitWithGraph> WithDeployments(this Partial<GitCommitWithGraph> it)
         => it.AddFieldName("deployments");

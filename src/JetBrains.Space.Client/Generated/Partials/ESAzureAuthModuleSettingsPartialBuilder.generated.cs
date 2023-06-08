@@ -46,5 +46,11 @@ public static class ESAzureAuthModuleSettingsPartialExtensions
     public static Partial<ESAzureAuthModuleSettings> WithIsEmailVerified(this Partial<ESAzureAuthModuleSettings> it)
         => it.AddFieldName("emailVerified");
     
+    public static Partial<ESAzureAuthModuleSettings> WithRegisterNewUserRules(this Partial<ESAzureAuthModuleSettings> it)
+        => it.AddFieldName("registerNewUserRules");
+    
+    public static Partial<ESAzureAuthModuleSettings> WithRegisterNewUserRules(this Partial<ESAzureAuthModuleSettings> it, Func<Partial<AzureRegisterNewUserRule>, Partial<AzureRegisterNewUserRule>> partialBuilder)
+        => it.AddFieldName("registerNewUserRules", partialBuilder(new Partial<AzureRegisterNewUserRule>(it)));
+    
 }
 

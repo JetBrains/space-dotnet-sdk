@@ -61,5 +61,11 @@ public static class ESSamlAuthModuleSettingsPartialExtensions
     public static Partial<ESSamlAuthModuleSettings> WithAttributeNames(this Partial<ESSamlAuthModuleSettings> it, Func<Partial<ESSamlAttributeNames>, Partial<ESSamlAttributeNames>> partialBuilder)
         => it.AddFieldName("attributeNames", partialBuilder(new Partial<ESSamlAttributeNames>(it)));
     
+    public static Partial<ESSamlAuthModuleSettings> WithRegisterNewUserRules(this Partial<ESSamlAuthModuleSettings> it)
+        => it.AddFieldName("registerNewUserRules");
+    
+    public static Partial<ESSamlAuthModuleSettings> WithRegisterNewUserRules(this Partial<ESSamlAuthModuleSettings> it, Func<Partial<SamlRegisterNewUserRule>, Partial<SamlRegisterNewUserRule>> partialBuilder)
+        => it.AddFieldName("registerNewUserRules", partialBuilder(new Partial<SamlRegisterNewUserRule>(it)));
+    
 }
 

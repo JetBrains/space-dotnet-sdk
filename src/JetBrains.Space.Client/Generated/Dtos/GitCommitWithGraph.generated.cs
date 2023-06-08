@@ -34,7 +34,7 @@ public sealed class GitCommitWithGraph
 {
     public GitCommitWithGraph() { }
     
-    public GitCommitWithGraph(string repositoryName, GitCommitInfo commit, List<Unfurl> commitMessageUnfurls, List<CodeReviewRecord> reviews, List<string> issueIds, List<Pair<string, string>> deployments, bool unreachable, LinkedIssueIds? linkedIssues = null, GitGraphLayoutLine? layout = null)
+    public GitCommitWithGraph(string repositoryName, GitCommitInfo commit, List<Unfurl> commitMessageUnfurls, List<CodeReviewRecord> reviews, List<string> issueIds, List<Pair<string, string>> deployments, bool unreachable, List<GenericIssueId>? linkedIssues = null, GitGraphLayoutLine? layout = null)
     {
         RepositoryName = repositoryName;
         Commit = commit;
@@ -97,10 +97,10 @@ public sealed class GitCommitWithGraph
         set => _issueIds.SetValue(value);
     }
 
-    private PropertyValue<LinkedIssueIds?> _linkedIssues = new PropertyValue<LinkedIssueIds?>(nameof(GitCommitWithGraph), nameof(LinkedIssues), "linkedIssues");
+    private PropertyValue<List<GenericIssueId>?> _linkedIssues = new PropertyValue<List<GenericIssueId>?>(nameof(GitCommitWithGraph), nameof(LinkedIssues), "linkedIssues");
     
     [JsonPropertyName("linkedIssues")]
-    public LinkedIssueIds? LinkedIssues
+    public List<GenericIssueId>? LinkedIssues
     {
         get => _linkedIssues.GetValue(InlineErrors);
         set => _linkedIssues.SetValue(value);

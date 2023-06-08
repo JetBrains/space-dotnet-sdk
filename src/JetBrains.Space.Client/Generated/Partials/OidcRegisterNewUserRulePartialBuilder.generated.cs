@@ -27,40 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.OidcRegisterNewUserRulePartialBuilder;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum JobExecutionDisplayStatus
+public static class OidcRegisterNewUserRulePartialExtensions
 {
-    [EnumMember(Value = "Awaiting")]
-    Awaiting,
+    public static Partial<OidcRegisterNewUserRule> WithUserType(this Partial<OidcRegisterNewUserRule> it)
+        => it.AddFieldName("userType");
     
-    [EnumMember(Value = "Running")]
-    Running,
+    public static Partial<OidcRegisterNewUserRule> WithUserType(this Partial<OidcRegisterNewUserRule> it, Func<Partial<RegisterNewUserType>, Partial<RegisterNewUserType>> partialBuilder)
+        => it.AddFieldName("userType", partialBuilder(new Partial<RegisterNewUserType>(it)));
     
-    [EnumMember(Value = "Restarting")]
-    Restarting,
+    public static Partial<OidcRegisterNewUserRule> WithIsAllowed(this Partial<OidcRegisterNewUserRule> it)
+        => it.AddFieldName("allowed");
     
-    [EnumMember(Value = "Finishing")]
-    Finishing,
-    
-    [EnumMember(Value = "Stopped")]
-    Stopped,
-    
-    [EnumMember(Value = "Succeeded")]
-    Succeeded,
-    
-    [EnumMember(Value = "Failed")]
-    Failed,
-    
-    [EnumMember(Value = "NoSuitableWorkers")]
-    NoSuitableWorkers,
-    
-    [EnumMember(Value = "WaitingForWorkers")]
-    WaitingForWorkers,
-    
-    [EnumMember(Value = "Skipped")]
-    Skipped,
+    public static Partial<OidcRegisterNewUserRule> WithRestrictedByDomains(this Partial<OidcRegisterNewUserRule> it)
+        => it.AddFieldName("restrictedByDomains");
     
 }
 

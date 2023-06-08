@@ -37,5 +37,14 @@ public static class TextDocumentBodyInfoPartialExtensions
     public static Partial<TextDocumentBodyInfo> WithTextDocument(this Partial<TextDocumentBodyInfo> it, Func<Partial<TextDocumentRecord>, Partial<TextDocumentRecord>> partialBuilder)
         => it.AddFieldName("textDocument", partialBuilder(new Partial<TextDocumentRecord>(it)));
     
+    public static Partial<TextDocumentBodyInfo> WithTextDocumentId(this Partial<TextDocumentBodyInfo> it)
+        => it.AddFieldName("textDocumentId");
+    
+    public static Partial<TextDocumentBodyInfo> WithTextType(this Partial<TextDocumentBodyInfo> it)
+        => it.AddFieldName("textType");
+    
+    public static Partial<TextDocumentBodyInfo> WithTextType(this Partial<TextDocumentBodyInfo> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
+        => it.AddFieldName("textType", partialBuilder(new Partial<DraftDocumentType>(it)));
+    
 }
 

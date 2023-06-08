@@ -37,24 +37,56 @@ public sealed class FileDocumentBodyInfo
     
     public FileDocumentBodyInfo() { }
     
-    public FileDocumentBodyInfo(FileDocumentRecord fileDocument)
+    public FileDocumentBodyInfo(FileDocumentRecord? fileDocument = null, string? fileDocumentId = null, string? contentType = null, long? fileSize = null)
     {
         FileDocument = fileDocument;
+        FileDocumentId = fileDocumentId;
+        ContentType = contentType;
+        FileSize = fileSize;
     }
     
-    private PropertyValue<FileDocumentRecord> _fileDocument = new PropertyValue<FileDocumentRecord>(nameof(FileDocumentBodyInfo), nameof(FileDocument), "fileDocument");
+    private PropertyValue<FileDocumentRecord?> _fileDocument = new PropertyValue<FileDocumentRecord?>(nameof(FileDocumentBodyInfo), nameof(FileDocument), "fileDocument");
     
-    [Required]
     [JsonPropertyName("fileDocument")]
-    public FileDocumentRecord FileDocument
+    public FileDocumentRecord? FileDocument
     {
         get => _fileDocument.GetValue(InlineErrors);
         set => _fileDocument.SetValue(value);
     }
 
+    private PropertyValue<string?> _fileDocumentId = new PropertyValue<string?>(nameof(FileDocumentBodyInfo), nameof(FileDocumentId), "fileDocumentId");
+    
+    [JsonPropertyName("fileDocumentId")]
+    public string? FileDocumentId
+    {
+        get => _fileDocumentId.GetValue(InlineErrors);
+        set => _fileDocumentId.SetValue(value);
+    }
+
+    private PropertyValue<string?> _contentType = new PropertyValue<string?>(nameof(FileDocumentBodyInfo), nameof(ContentType), "contentType");
+    
+    [JsonPropertyName("contentType")]
+    public string? ContentType
+    {
+        get => _contentType.GetValue(InlineErrors);
+        set => _contentType.SetValue(value);
+    }
+
+    private PropertyValue<long?> _fileSize = new PropertyValue<long?>(nameof(FileDocumentBodyInfo), nameof(FileSize), "fileSize");
+    
+    [JsonPropertyName("fileSize")]
+    public long? FileSize
+    {
+        get => _fileSize.GetValue(InlineErrors);
+        set => _fileSize.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _fileDocument.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _fileDocumentId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _contentType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _fileSize.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

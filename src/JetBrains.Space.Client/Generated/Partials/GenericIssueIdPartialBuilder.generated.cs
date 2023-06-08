@@ -27,40 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.GenericIssueIdPartialBuilder;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum JobExecutionDisplayStatus
+public static class GenericIssueIdPartialExtensions
 {
-    [EnumMember(Value = "Awaiting")]
-    Awaiting,
-    
-    [EnumMember(Value = "Running")]
-    Running,
-    
-    [EnumMember(Value = "Restarting")]
-    Restarting,
-    
-    [EnumMember(Value = "Finishing")]
-    Finishing,
-    
-    [EnumMember(Value = "Stopped")]
-    Stopped,
-    
-    [EnumMember(Value = "Succeeded")]
-    Succeeded,
-    
-    [EnumMember(Value = "Failed")]
-    Failed,
-    
-    [EnumMember(Value = "NoSuitableWorkers")]
-    NoSuitableWorkers,
-    
-    [EnumMember(Value = "WaitingForWorkers")]
-    WaitingForWorkers,
-    
-    [EnumMember(Value = "Skipped")]
-    Skipped,
-    
 }
 

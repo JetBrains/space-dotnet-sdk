@@ -37,17 +37,20 @@ public sealed class ChecklistDocumentBody
     
     public ChecklistDocumentBody() { }
     
-    public ChecklistDocumentBody(Checklist checklist, bool canConvertItemsToIssues)
+    public ChecklistDocumentBody(bool canConvertItemsToIssues, Checklist? checklist = null, string? checklistId = null, int? totalItemsCount = null, int? doneItemsCount = null, string? checklistArenaId = null)
     {
         Checklist = checklist;
         CanConvertItemsToIssues = canConvertItemsToIssues;
+        ChecklistId = checklistId;
+        TotalItemsCount = totalItemsCount;
+        DoneItemsCount = doneItemsCount;
+        ChecklistArenaId = checklistArenaId;
     }
     
-    private PropertyValue<Checklist> _checklist = new PropertyValue<Checklist>(nameof(ChecklistDocumentBody), nameof(Checklist), "checklist");
+    private PropertyValue<Checklist?> _checklist = new PropertyValue<Checklist?>(nameof(ChecklistDocumentBody), nameof(Checklist), "checklist");
     
-    [Required]
     [JsonPropertyName("checklist")]
-    public Checklist Checklist
+    public Checklist? Checklist
     {
         get => _checklist.GetValue(InlineErrors);
         set => _checklist.SetValue(value);
@@ -63,10 +66,50 @@ public sealed class ChecklistDocumentBody
         set => _canConvertItemsToIssues.SetValue(value);
     }
 
+    private PropertyValue<string?> _checklistId = new PropertyValue<string?>(nameof(ChecklistDocumentBody), nameof(ChecklistId), "checklistId");
+    
+    [JsonPropertyName("checklistId")]
+    public string? ChecklistId
+    {
+        get => _checklistId.GetValue(InlineErrors);
+        set => _checklistId.SetValue(value);
+    }
+
+    private PropertyValue<int?> _totalItemsCount = new PropertyValue<int?>(nameof(ChecklistDocumentBody), nameof(TotalItemsCount), "totalItemsCount");
+    
+    [JsonPropertyName("totalItemsCount")]
+    public int? TotalItemsCount
+    {
+        get => _totalItemsCount.GetValue(InlineErrors);
+        set => _totalItemsCount.SetValue(value);
+    }
+
+    private PropertyValue<int?> _doneItemsCount = new PropertyValue<int?>(nameof(ChecklistDocumentBody), nameof(DoneItemsCount), "doneItemsCount");
+    
+    [JsonPropertyName("doneItemsCount")]
+    public int? DoneItemsCount
+    {
+        get => _doneItemsCount.GetValue(InlineErrors);
+        set => _doneItemsCount.SetValue(value);
+    }
+
+    private PropertyValue<string?> _checklistArenaId = new PropertyValue<string?>(nameof(ChecklistDocumentBody), nameof(ChecklistArenaId), "checklistArenaId");
+    
+    [JsonPropertyName("checklistArenaId")]
+    public string? ChecklistArenaId
+    {
+        get => _checklistArenaId.GetValue(InlineErrors);
+        set => _checklistArenaId.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _checklist.SetAccessPath(parentChainPath, validateHasBeenSet);
         _canConvertItemsToIssues.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _checklistId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _totalItemsCount.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _doneItemsCount.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _checklistArenaId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

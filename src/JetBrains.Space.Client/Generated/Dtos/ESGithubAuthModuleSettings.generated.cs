@@ -37,13 +37,14 @@ public sealed class ESGithubAuthModuleSettings
     
     public ESGithubAuthModuleSettings() { }
     
-    public ESGithubAuthModuleSettings(string githubUrl, string clientId, string clientSecret, bool registerNewUsers, List<string> organizations)
+    public ESGithubAuthModuleSettings(string githubUrl, string clientId, string clientSecret, bool registerNewUsers, List<string> organizations, List<GithubRegisterNewUserRule>? registerNewUserRules = null)
     {
         GithubUrl = githubUrl;
         ClientId = clientId;
         ClientSecret = clientSecret;
         IsRegisterNewUsers = registerNewUsers;
         Organizations = organizations;
+        RegisterNewUserRules = registerNewUserRules;
     }
     
     private PropertyValue<string> _githubUrl = new PropertyValue<string>(nameof(ESGithubAuthModuleSettings), nameof(GithubUrl), "githubUrl");
@@ -96,6 +97,15 @@ public sealed class ESGithubAuthModuleSettings
         set => _organizations.SetValue(value);
     }
 
+    private PropertyValue<List<GithubRegisterNewUserRule>?> _registerNewUserRules = new PropertyValue<List<GithubRegisterNewUserRule>?>(nameof(ESGithubAuthModuleSettings), nameof(RegisterNewUserRules), "registerNewUserRules");
+    
+    [JsonPropertyName("registerNewUserRules")]
+    public List<GithubRegisterNewUserRule>? RegisterNewUserRules
+    {
+        get => _registerNewUserRules.GetValue(InlineErrors);
+        set => _registerNewUserRules.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _githubUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -103,6 +113,7 @@ public sealed class ESGithubAuthModuleSettings
         _clientSecret.SetAccessPath(parentChainPath, validateHasBeenSet);
         _registerNewUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
         _organizations.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _registerNewUserRules.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -27,40 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.UnfurlDetailsExternalIssueIdPartialBuilder;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum JobExecutionDisplayStatus
+public static class UnfurlDetailsExternalIssueIdPartialExtensions
 {
-    [EnumMember(Value = "Awaiting")]
-    Awaiting,
+    public static Partial<UnfurlDetailsExternalIssueId> WithId(this Partial<UnfurlDetailsExternalIssueId> it)
+        => it.AddFieldName("id");
     
-    [EnumMember(Value = "Running")]
-    Running,
-    
-    [EnumMember(Value = "Restarting")]
-    Restarting,
-    
-    [EnumMember(Value = "Finishing")]
-    Finishing,
-    
-    [EnumMember(Value = "Stopped")]
-    Stopped,
-    
-    [EnumMember(Value = "Succeeded")]
-    Succeeded,
-    
-    [EnumMember(Value = "Failed")]
-    Failed,
-    
-    [EnumMember(Value = "NoSuitableWorkers")]
-    NoSuitableWorkers,
-    
-    [EnumMember(Value = "WaitingForWorkers")]
-    WaitingForWorkers,
-    
-    [EnumMember(Value = "Skipped")]
-    Skipped,
+    public static Partial<UnfurlDetailsExternalIssueId> WithId(this Partial<UnfurlDetailsExternalIssueId> it, Func<Partial<ExternalIssueId>, Partial<ExternalIssueId>> partialBuilder)
+        => it.AddFieldName("id", partialBuilder(new Partial<ExternalIssueId>(it)));
     
 }
 

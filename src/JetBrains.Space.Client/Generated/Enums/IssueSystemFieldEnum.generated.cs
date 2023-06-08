@@ -62,11 +62,17 @@ public enum IssueSystemFieldEnum
     [EnumMember(Value = "PARENT_ISSUES")]
     PARENTISSUES,
     
+    [EnumMember(Value = "CHECKLISTS")]
+    CHECKLISTS,
+    
     [EnumMember(Value = "BOARD")]
     BOARD,
     
     [EnumMember(Value = "SUBSCRIBER")]
     SUBSCRIBER,
+    
+    [EnumMember(Value = "IMPORT_TRANSACTION")]
+    IMPORTTRANSACTION,
     
 }
 

@@ -37,20 +37,49 @@ public sealed class BookContainerInfo
     
     public BookContainerInfo() { }
     
-    public BookContainerInfo(KBBook book, List<string>? grantedRights = null)
+    public BookContainerInfo(KBBook? book = null, string? bookAlias = null, string? bookId = null, PRProject? project = null, List<string>? grantedRights = null)
     {
         Book = book;
+        BookAlias = bookAlias;
+        BookId = bookId;
+        Project = project;
         GrantedRights = grantedRights;
     }
     
-    private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(BookContainerInfo), nameof(Book), "book");
+    private PropertyValue<KBBook?> _book = new PropertyValue<KBBook?>(nameof(BookContainerInfo), nameof(Book), "book");
     
-    [Required]
     [JsonPropertyName("book")]
-    public KBBook Book
+    public KBBook? Book
     {
         get => _book.GetValue(InlineErrors);
         set => _book.SetValue(value);
+    }
+
+    private PropertyValue<string?> _bookAlias = new PropertyValue<string?>(nameof(BookContainerInfo), nameof(BookAlias), "bookAlias");
+    
+    [JsonPropertyName("bookAlias")]
+    public string? BookAlias
+    {
+        get => _bookAlias.GetValue(InlineErrors);
+        set => _bookAlias.SetValue(value);
+    }
+
+    private PropertyValue<string?> _bookId = new PropertyValue<string?>(nameof(BookContainerInfo), nameof(BookId), "bookId");
+    
+    [JsonPropertyName("bookId")]
+    public string? BookId
+    {
+        get => _bookId.GetValue(InlineErrors);
+        set => _bookId.SetValue(value);
+    }
+
+    private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(BookContainerInfo), nameof(Project), "project");
+    
+    [JsonPropertyName("project")]
+    public PRProject? Project
+    {
+        get => _project.GetValue(InlineErrors);
+        set => _project.SetValue(value);
     }
 
     private PropertyValue<List<string>?> _grantedRights = new PropertyValue<List<string>?>(nameof(BookContainerInfo), nameof(GrantedRights), "grantedRights");
@@ -65,6 +94,9 @@ public sealed class BookContainerInfo
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _book.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _bookAlias.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _bookId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
         _grantedRights.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

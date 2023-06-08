@@ -35,8 +35,8 @@ public abstract class ESExternalPasswordAuthModuleSettings
     [JsonPropertyName("className")]
     public override string? ClassName => "ES_ExternalPasswordAuthModuleSettings";
     
-    public static ESLdapAuthModuleSettings ESLdapAuthModuleSettings(LdapModuleType type, bool registerNewUsers, string serverUrl, int connectionTimeout, int readTimeout, List<ESTeamMapping> teamMappings, bool referralIgnored, string filter, string bindUserDN, string bindUserPassword, ESLdapAttributeNames attributeNames, SSLKeystore? sslKeystore = null)
-        => new ESLdapAuthModuleSettings(type: type, registerNewUsers: registerNewUsers, serverUrl: serverUrl, connectionTimeout: connectionTimeout, readTimeout: readTimeout, teamMappings: teamMappings, referralIgnored: referralIgnored, filter: filter, bindUserDN: bindUserDN, bindUserPassword: bindUserPassword, attributeNames: attributeNames, sslKeystore: sslKeystore);
+    public static ESLdapAuthModuleSettings ESLdapAuthModuleSettings(LdapModuleType type, bool registerNewUsers, string serverUrl, int connectionTimeout, int readTimeout, List<ESTeamMapping> teamMappings, bool referralIgnored, string filter, string bindUserDN, string bindUserPassword, ESLdapAttributeNames attributeNames, SSLKeystore? sslKeystore = null, List<LdapRegisterNewUserRule>? registerNewUserRules = null)
+        => new ESLdapAuthModuleSettings(type: type, registerNewUsers: registerNewUsers, serverUrl: serverUrl, connectionTimeout: connectionTimeout, readTimeout: readTimeout, teamMappings: teamMappings, referralIgnored: referralIgnored, filter: filter, bindUserDN: bindUserDN, bindUserPassword: bindUserPassword, attributeNames: attributeNames, sslKeystore: sslKeystore, registerNewUserRules: registerNewUserRules);
     
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {

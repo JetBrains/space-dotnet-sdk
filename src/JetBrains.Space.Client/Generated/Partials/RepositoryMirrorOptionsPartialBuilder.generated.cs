@@ -40,5 +40,8 @@ public static class RepositoryMirrorOptionsPartialExtensions
     public static Partial<RepositoryMirrorOptions> WithIsAllowAtomicPush(this Partial<RepositoryMirrorOptions> it)
         => it.AddFieldName("allowAtomicPush");
     
+    public static Partial<RepositoryMirrorOptions> WithIsMirrorPullRequest(this Partial<RepositoryMirrorOptions> it)
+        => it.AddFieldName("mirrorPullRequest");
+    
 }
 

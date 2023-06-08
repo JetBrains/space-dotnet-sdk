@@ -35,20 +35,20 @@ public abstract class ESOAuth2AuthModuleSettings
     [JsonPropertyName("className")]
     public override string? ClassName => "ES_OAuth2AuthModuleSettings";
     
-    public static ESAzureAuthModuleSettings ESAzureAuthModuleSettings(string tenantId, string clientId, string clientSecret, bool registerNewUsers, bool emailVerified)
-        => new ESAzureAuthModuleSettings(tenantId: tenantId, clientId: clientId, clientSecret: clientSecret, registerNewUsers: registerNewUsers, emailVerified: emailVerified);
+    public static ESAzureAuthModuleSettings ESAzureAuthModuleSettings(string tenantId, string clientId, string clientSecret, bool registerNewUsers, bool emailVerified, List<AzureRegisterNewUserRule>? registerNewUserRules = null)
+        => new ESAzureAuthModuleSettings(tenantId: tenantId, clientId: clientId, clientSecret: clientSecret, registerNewUsers: registerNewUsers, emailVerified: emailVerified, registerNewUserRules: registerNewUserRules);
     
-    public static ESGithubAuthModuleSettings ESGithubAuthModuleSettings(string githubUrl, string clientId, string clientSecret, bool registerNewUsers, List<string> organizations)
-        => new ESGithubAuthModuleSettings(githubUrl: githubUrl, clientId: clientId, clientSecret: clientSecret, registerNewUsers: registerNewUsers, organizations: organizations);
+    public static ESGithubAuthModuleSettings ESGithubAuthModuleSettings(string githubUrl, string clientId, string clientSecret, bool registerNewUsers, List<string> organizations, List<GithubRegisterNewUserRule>? registerNewUserRules = null)
+        => new ESGithubAuthModuleSettings(githubUrl: githubUrl, clientId: clientId, clientSecret: clientSecret, registerNewUsers: registerNewUsers, organizations: organizations, registerNewUserRules: registerNewUserRules);
     
-    public static ESGoogleAuthModuleSettings ESGoogleAuthModuleSettings(string clientId, string clientSecret, bool registerNewUsers, List<string> domains)
-        => new ESGoogleAuthModuleSettings(clientId: clientId, clientSecret: clientSecret, registerNewUsers: registerNewUsers, domains: domains);
+    public static ESGoogleAuthModuleSettings ESGoogleAuthModuleSettings(string clientId, string clientSecret, bool registerNewUsers, List<string> domains, List<GoogleRegisterNewUserRule>? registerNewUserRules = null)
+        => new ESGoogleAuthModuleSettings(clientId: clientId, clientSecret: clientSecret, registerNewUsers: registerNewUsers, domains: domains, registerNewUserRules: registerNewUserRules);
     
-    public static ESHubAuthModuleSettings ESHubAuthModuleSettings(string hubUrl, string clientId, string clientSecret, bool? registerNewUsers = null, string? orgAuthProviderName = null, List<string>? groups = null)
-        => new ESHubAuthModuleSettings(hubUrl: hubUrl, clientId: clientId, clientSecret: clientSecret, registerNewUsers: registerNewUsers, orgAuthProviderName: orgAuthProviderName, groups: groups);
+    public static ESHubAuthModuleSettings ESHubAuthModuleSettings(string hubUrl, string clientId, string clientSecret, bool? registerNewUsers = null, string? orgAuthProviderName = null, List<string>? groups = null, List<HubRegisterNewUserRule>? registerNewUserRules = null)
+        => new ESHubAuthModuleSettings(hubUrl: hubUrl, clientId: clientId, clientSecret: clientSecret, registerNewUsers: registerNewUsers, orgAuthProviderName: orgAuthProviderName, groups: groups, registerNewUserRules: registerNewUserRules);
     
-    public static ESOIDCAuthModuleSettings ESOIDCAuthModuleSettings(string clientId, string clientSecret, bool registerNewUsers, string issuer, string authorizationEndpoint, string tokenEndpoint, string tokenKeysEndpoint, string userInfoEndpoint, List<string> domains, string? discoveryUrl = null)
-        => new ESOIDCAuthModuleSettings(clientId: clientId, clientSecret: clientSecret, registerNewUsers: registerNewUsers, issuer: issuer, authorizationEndpoint: authorizationEndpoint, tokenEndpoint: tokenEndpoint, tokenKeysEndpoint: tokenKeysEndpoint, userInfoEndpoint: userInfoEndpoint, domains: domains, discoveryUrl: discoveryUrl);
+    public static ESOIDCAuthModuleSettings ESOIDCAuthModuleSettings(string clientId, string clientSecret, bool registerNewUsers, string issuer, string authorizationEndpoint, string tokenEndpoint, string tokenKeysEndpoint, string userInfoEndpoint, List<string> domains, string? discoveryUrl = null, List<OidcRegisterNewUserRule>? registerNewUserRules = null)
+        => new ESOIDCAuthModuleSettings(clientId: clientId, clientSecret: clientSecret, registerNewUsers: registerNewUsers, issuer: issuer, authorizationEndpoint: authorizationEndpoint, tokenEndpoint: tokenEndpoint, tokenKeysEndpoint: tokenKeysEndpoint, userInfoEndpoint: userInfoEndpoint, domains: domains, discoveryUrl: discoveryUrl, registerNewUserRules: registerNewUserRules);
     
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {

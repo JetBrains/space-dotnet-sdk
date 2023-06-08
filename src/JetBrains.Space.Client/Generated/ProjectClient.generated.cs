@@ -4887,7 +4887,7 @@ public partial class ProjectClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<Batch<CodeReviewWithCount>> GetAllCodeReviewsAsync(ProjectIdentifier project, ReviewSorting sort = ReviewSorting.CreatedAtAsc, string? skip = null, int? top = 100, CodeReviewStateFilter? state = CodeReviewStateFilter.Opened, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<Batch<CodeReviewWithCount>>, Partial<Batch<CodeReviewWithCount>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<CodeReviewWithCount>> GetAllCodeReviewsAsync(ProjectIdentifier project, ReviewSorting sort = ReviewSorting.CreatedAtAsc, string? skip = null, int? top = 100, CodeReviewStateFilter? state = CodeReviewStateFilter.Opened, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, string? repository = null, Func<Partial<Batch<CodeReviewWithCount>>, Partial<Batch<CodeReviewWithCount>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             if (skip != null) queryParameters.Append("$skip", skip);
@@ -4900,6 +4900,7 @@ public partial class ProjectClient : ISpaceClient
             queryParameters.Append("sort", sort.ToEnumString());
             if (reviewer != null) queryParameters.Append("reviewer", reviewer?.ToString());
             queryParameters.Append("type", type.ToEnumString());
+            if (repository != null) queryParameters.Append("repository", repository);
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<CodeReviewWithCount>>()) : Partial<Batch<CodeReviewWithCount>>.Default()).ToString());
             
             return await _connection.RequestResourceAsync<Batch<CodeReviewWithCount>>("GET", $"api/http/projects/{project}/code-reviews{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllCodeReviews", cancellationToken: cancellationToken);
@@ -4913,8 +4914,8 @@ public partial class ProjectClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public IAsyncEnumerable<CodeReviewWithCount> GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier project, ReviewSorting sort = ReviewSorting.CreatedAtAsc, string? skip = null, int? top = 100, CodeReviewStateFilter? state = CodeReviewStateFilter.Opened, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<CodeReviewWithCount>, Partial<CodeReviewWithCount>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllCodeReviewsAsync(project: project, sort: sort, top: top, state: state, text: text, author: author, from: from, to: to, reviewer: reviewer, type: type, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<CodeReviewWithCount>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CodeReviewWithCount>.Default())), skip, cancellationToken);
+        public IAsyncEnumerable<CodeReviewWithCount> GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier project, ReviewSorting sort = ReviewSorting.CreatedAtAsc, string? skip = null, int? top = 100, CodeReviewStateFilter? state = CodeReviewStateFilter.Opened, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, string? repository = null, Func<Partial<CodeReviewWithCount>, Partial<CodeReviewWithCount>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllCodeReviewsAsync(project: project, sort: sort, top: top, state: state, text: text, author: author, from: from, to: to, reviewer: reviewer, type: type, repository: repository, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<CodeReviewWithCount>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CodeReviewWithCount>.Default())), skip, cancellationToken);
     
         /// <remarks>
         /// Required permissions:

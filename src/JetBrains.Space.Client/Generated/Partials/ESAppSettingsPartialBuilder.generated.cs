@@ -61,5 +61,8 @@ public static class ESAppSettingsPartialExtensions
     public static Partial<ESAppSettings> WithEndpointAuth(this Partial<ESAppSettings> it, Func<Partial<EndpointAuthDTO>, Partial<EndpointAuthDTO>> partialBuilder)
         => it.AddFieldName("endpointAuth", partialBuilder(new Partial<EndpointAuthDTO>(it)));
     
+    public static Partial<ESAppSettings> WithExternalIssueTrackerDomain(this Partial<ESAppSettings> it)
+        => it.AddFieldName("externalIssueTrackerDomain");
+    
 }
 

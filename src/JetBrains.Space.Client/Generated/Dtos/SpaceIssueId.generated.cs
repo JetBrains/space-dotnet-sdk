@@ -29,21 +29,20 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ExternalIssueId
+public sealed class SpaceIssueId
      : GenericIssueId, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public  string? ClassName => "ExternalIssueId";
+    public  string? ClassName => "SpaceIssueId";
     
-    public ExternalIssueId() { }
+    public SpaceIssueId() { }
     
-    public ExternalIssueId(string id, string externalTrackerProjectId)
+    public SpaceIssueId(string id)
     {
         Id = id;
-        ExternalTrackerProjectId = externalTrackerProjectId;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ExternalIssueId), nameof(Id), "id");
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(SpaceIssueId), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
@@ -53,20 +52,9 @@ public sealed class ExternalIssueId
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _externalTrackerProjectId = new PropertyValue<string>(nameof(ExternalIssueId), nameof(ExternalTrackerProjectId), "externalTrackerProjectId");
-    
-    [Required]
-    [JsonPropertyName("externalTrackerProjectId")]
-    public string ExternalTrackerProjectId
-    {
-        get => _externalTrackerProjectId.GetValue(InlineErrors);
-        set => _externalTrackerProjectId.SetValue(value);
-    }
-
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _externalTrackerProjectId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

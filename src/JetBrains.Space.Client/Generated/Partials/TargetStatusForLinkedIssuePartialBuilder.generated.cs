@@ -37,5 +37,8 @@ public static class TargetStatusForLinkedIssuePartialExtensions
     public static Partial<TargetStatusForLinkedIssue> WithIssueStatusId(this Partial<TargetStatusForLinkedIssue> it)
         => it.AddFieldName("issueStatusId");
     
+    public static Partial<TargetStatusForLinkedIssue> WithIsExternalIssue(this Partial<TargetStatusForLinkedIssue> it)
+        => it.AddFieldName("isExternalIssue");
+    
 }
 

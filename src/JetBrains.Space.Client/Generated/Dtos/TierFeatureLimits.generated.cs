@@ -34,9 +34,10 @@ public sealed class TierFeatureLimits
 {
     public TierFeatureLimits() { }
     
-    public TierFeatureLimits(Tier tier, TierEntityUsage applications, int searchHistoryLimit, Tier? trueTier = null, bool? hasCardVerifiedAdmin = null, List<AvailableTrial>? availableTrials = null)
+    public TierFeatureLimits(Tier tier, TierEntityUsage applications, int searchHistoryLimit, long? storageLimit = null, Tier? trueTier = null, bool? hasCardVerifiedAdmin = null, List<AvailableTrial>? availableTrials = null)
     {
         Tier = tier;
+        StorageLimit = storageLimit;
         TrueTier = trueTier;
         IsHasCardVerifiedAdmin = hasCardVerifiedAdmin;
         Applications = applications;
@@ -52,6 +53,15 @@ public sealed class TierFeatureLimits
     {
         get => _tier.GetValue(InlineErrors);
         set => _tier.SetValue(value);
+    }
+
+    private PropertyValue<long?> _storageLimit = new PropertyValue<long?>(nameof(TierFeatureLimits), nameof(StorageLimit), "storageLimit");
+    
+    [JsonPropertyName("storageLimit")]
+    public long? StorageLimit
+    {
+        get => _storageLimit.GetValue(InlineErrors);
+        set => _storageLimit.SetValue(value);
     }
 
     private PropertyValue<Tier?> _trueTier = new PropertyValue<Tier?>(nameof(TierFeatureLimits), nameof(TrueTier), "trueTier");
@@ -104,6 +114,7 @@ public sealed class TierFeatureLimits
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _tier.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _storageLimit.SetAccessPath(parentChainPath, validateHasBeenSet);
         _trueTier.SetAccessPath(parentChainPath, validateHasBeenSet);
         _hasCardVerifiedAdmin.SetAccessPath(parentChainPath, validateHasBeenSet);
         _applications.SetAccessPath(parentChainPath, validateHasBeenSet);

@@ -37,7 +37,7 @@ public sealed class ESLdapAuthModuleSettings
     
     public ESLdapAuthModuleSettings() { }
     
-    public ESLdapAuthModuleSettings(LdapModuleType type, bool registerNewUsers, string serverUrl, int connectionTimeout, int readTimeout, List<ESTeamMapping> teamMappings, bool referralIgnored, string filter, string bindUserDN, string bindUserPassword, ESLdapAttributeNames attributeNames, SSLKeystore? sslKeystore = null)
+    public ESLdapAuthModuleSettings(LdapModuleType type, bool registerNewUsers, string serverUrl, int connectionTimeout, int readTimeout, List<ESTeamMapping> teamMappings, bool referralIgnored, string filter, string bindUserDN, string bindUserPassword, ESLdapAttributeNames attributeNames, SSLKeystore? sslKeystore = null, List<LdapRegisterNewUserRule>? registerNewUserRules = null)
     {
         Type = type;
         IsRegisterNewUsers = registerNewUsers;
@@ -51,6 +51,7 @@ public sealed class ESLdapAuthModuleSettings
         BindUserDN = bindUserDN;
         BindUserPassword = bindUserPassword;
         AttributeNames = attributeNames;
+        RegisterNewUserRules = registerNewUserRules;
     }
     
     private PropertyValue<LdapModuleType> _type = new PropertyValue<LdapModuleType>(nameof(ESLdapAuthModuleSettings), nameof(Type), "type");
@@ -172,6 +173,15 @@ public sealed class ESLdapAuthModuleSettings
         set => _attributeNames.SetValue(value);
     }
 
+    private PropertyValue<List<LdapRegisterNewUserRule>?> _registerNewUserRules = new PropertyValue<List<LdapRegisterNewUserRule>?>(nameof(ESLdapAuthModuleSettings), nameof(RegisterNewUserRules), "registerNewUserRules");
+    
+    [JsonPropertyName("registerNewUserRules")]
+    public List<LdapRegisterNewUserRule>? RegisterNewUserRules
+    {
+        get => _registerNewUserRules.GetValue(InlineErrors);
+        set => _registerNewUserRules.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _type.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -186,6 +196,7 @@ public sealed class ESLdapAuthModuleSettings
         _bindUserDN.SetAccessPath(parentChainPath, validateHasBeenSet);
         _bindUserPassword.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attributeNames.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _registerNewUserRules.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -29,44 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ExternalIssueId
-     : GenericIssueId, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class AzureRegisterNewUserRule
+     : IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public  string? ClassName => "ExternalIssueId";
+    public AzureRegisterNewUserRule() { }
     
-    public ExternalIssueId() { }
-    
-    public ExternalIssueId(string id, string externalTrackerProjectId)
+    public AzureRegisterNewUserRule(RegisterNewUserType userType, bool allowed)
     {
-        Id = id;
-        ExternalTrackerProjectId = externalTrackerProjectId;
+        UserType = userType;
+        IsAllowed = allowed;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ExternalIssueId), nameof(Id), "id");
+    private PropertyValue<RegisterNewUserType> _userType = new PropertyValue<RegisterNewUserType>(nameof(AzureRegisterNewUserRule), nameof(UserType), "userType");
     
     [Required]
-    [JsonPropertyName("id")]
-    public string Id
+    [JsonPropertyName("userType")]
+    public RegisterNewUserType UserType
     {
-        get => _id.GetValue(InlineErrors);
-        set => _id.SetValue(value);
+        get => _userType.GetValue(InlineErrors);
+        set => _userType.SetValue(value);
     }
 
-    private PropertyValue<string> _externalTrackerProjectId = new PropertyValue<string>(nameof(ExternalIssueId), nameof(ExternalTrackerProjectId), "externalTrackerProjectId");
+    private PropertyValue<bool> _allowed = new PropertyValue<bool>(nameof(AzureRegisterNewUserRule), nameof(IsAllowed), "allowed");
     
     [Required]
-    [JsonPropertyName("externalTrackerProjectId")]
-    public string ExternalTrackerProjectId
+    [JsonPropertyName("allowed")]
+    public bool IsAllowed
     {
-        get => _externalTrackerProjectId.GetValue(InlineErrors);
-        set => _externalTrackerProjectId.SetValue(value);
+        get => _allowed.GetValue(InlineErrors);
+        set => _allowed.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _externalTrackerProjectId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _userType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _allowed.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

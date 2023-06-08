@@ -32,14 +32,14 @@ namespace JetBrains.Space.Client;
 public interface DocumentBodyInfo
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static ChecklistDocumentBody ChecklistDocumentBody(Checklist checklist, bool canConvertItemsToIssues)
-        => new ChecklistDocumentBody(checklist: checklist, canConvertItemsToIssues: canConvertItemsToIssues);
+    public static ChecklistDocumentBody ChecklistDocumentBody(bool canConvertItemsToIssues, Checklist? checklist = null, string? checklistId = null, int? totalItemsCount = null, int? doneItemsCount = null, string? checklistArenaId = null)
+        => new ChecklistDocumentBody(canConvertItemsToIssues: canConvertItemsToIssues, checklist: checklist, checklistId: checklistId, totalItemsCount: totalItemsCount, doneItemsCount: doneItemsCount, checklistArenaId: checklistArenaId);
     
     public static FileDocumentBody FileDocumentBody(string versionId, string contentType, long fileSize)
         => new FileDocumentBody(versionId: versionId, contentType: contentType, fileSize: fileSize);
     
-    public static FileDocumentBodyInfo File(FileDocumentRecord fileDocument)
-        => new FileDocumentBodyInfo(fileDocument: fileDocument);
+    public static FileDocumentBodyInfo File(FileDocumentRecord? fileDocument = null, string? fileDocumentId = null, string? contentType = null, long? fileSize = null)
+        => new FileDocumentBodyInfo(fileDocument: fileDocument, fileDocumentId: fileDocumentId, contentType: contentType, fileSize: fileSize);
     
     public static InaccessibleDocumentBody InaccessibleDocumentBody(DocumentBodyType docBodyType, string docBodyId)
         => new InaccessibleDocumentBody(docBodyType: docBodyType, docBodyId: docBodyId);
@@ -47,8 +47,8 @@ public interface DocumentBodyInfo
     public static TextDocument TextDocument(string id, long resetCounter, DraftDocumentType type, string text, long? version = null, string? model = null, List<AttachmentInfo>? attachments = null, List<ResolvedMentionLink>? mentions = null)
         => new TextDocument(id: id, resetCounter: resetCounter, type: type, text: text, version: version, model: model, attachments: attachments, mentions: mentions);
     
-    public static TextDocumentBodyInfo Text(TextDocumentRecord textDocument)
-        => new TextDocumentBodyInfo(textDocument: textDocument);
+    public static TextDocumentBodyInfo Text(TextDocumentRecord? textDocument = null, string? textDocumentId = null, DraftDocumentType? textType = null)
+        => new TextDocumentBodyInfo(textDocument: textDocument, textDocumentId: textDocumentId, textType: textType);
     
 }
 

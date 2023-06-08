@@ -29,41 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class LinkedIssueIds
+public sealed class SamlRegisterNewUserRule
      : IPropagatePropertyAccessPath
 {
-    public LinkedIssueIds() { }
+    public SamlRegisterNewUserRule() { }
     
-    public LinkedIssueIds(List<string> spaceIssueIds, List<ExternalIssueId> externalIssueIds)
+    public SamlRegisterNewUserRule(RegisterNewUserType userType, bool allowed)
     {
-        SpaceIssueIds = spaceIssueIds;
-        ExternalIssueIds = externalIssueIds;
+        UserType = userType;
+        IsAllowed = allowed;
     }
     
-    private PropertyValue<List<string>> _spaceIssueIds = new PropertyValue<List<string>>(nameof(LinkedIssueIds), nameof(SpaceIssueIds), "spaceIssueIds", new List<string>());
+    private PropertyValue<RegisterNewUserType> _userType = new PropertyValue<RegisterNewUserType>(nameof(SamlRegisterNewUserRule), nameof(UserType), "userType");
     
     [Required]
-    [JsonPropertyName("spaceIssueIds")]
-    public List<string> SpaceIssueIds
+    [JsonPropertyName("userType")]
+    public RegisterNewUserType UserType
     {
-        get => _spaceIssueIds.GetValue(InlineErrors);
-        set => _spaceIssueIds.SetValue(value);
+        get => _userType.GetValue(InlineErrors);
+        set => _userType.SetValue(value);
     }
 
-    private PropertyValue<List<ExternalIssueId>> _externalIssueIds = new PropertyValue<List<ExternalIssueId>>(nameof(LinkedIssueIds), nameof(ExternalIssueIds), "externalIssueIds", new List<ExternalIssueId>());
+    private PropertyValue<bool> _allowed = new PropertyValue<bool>(nameof(SamlRegisterNewUserRule), nameof(IsAllowed), "allowed");
     
     [Required]
-    [JsonPropertyName("externalIssueIds")]
-    public List<ExternalIssueId> ExternalIssueIds
+    [JsonPropertyName("allowed")]
+    public bool IsAllowed
     {
-        get => _externalIssueIds.GetValue(InlineErrors);
-        set => _externalIssueIds.SetValue(value);
+        get => _allowed.GetValue(InlineErrors);
+        set => _allowed.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _spaceIssueIds.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _externalIssueIds.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _userType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _allowed.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

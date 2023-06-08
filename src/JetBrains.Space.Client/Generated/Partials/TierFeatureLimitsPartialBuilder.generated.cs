@@ -37,6 +37,9 @@ public static class TierFeatureLimitsPartialExtensions
     public static Partial<TierFeatureLimits> WithTier(this Partial<TierFeatureLimits> it, Func<Partial<Tier>, Partial<Tier>> partialBuilder)
         => it.AddFieldName("tier", partialBuilder(new Partial<Tier>(it)));
     
+    public static Partial<TierFeatureLimits> WithStorageLimit(this Partial<TierFeatureLimits> it)
+        => it.AddFieldName("storageLimit");
+    
     public static Partial<TierFeatureLimits> WithTrueTier(this Partial<TierFeatureLimits> it)
         => it.AddFieldName("trueTier");
     

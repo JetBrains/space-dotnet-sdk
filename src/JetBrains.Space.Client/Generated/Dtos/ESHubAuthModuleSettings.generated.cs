@@ -37,7 +37,7 @@ public sealed class ESHubAuthModuleSettings
     
     public ESHubAuthModuleSettings() { }
     
-    public ESHubAuthModuleSettings(string hubUrl, string clientId, string clientSecret, bool? registerNewUsers = null, string? orgAuthProviderName = null, List<string>? groups = null)
+    public ESHubAuthModuleSettings(string hubUrl, string clientId, string clientSecret, bool? registerNewUsers = null, string? orgAuthProviderName = null, List<string>? groups = null, List<HubRegisterNewUserRule>? registerNewUserRules = null)
     {
         HubUrl = hubUrl;
         ClientId = clientId;
@@ -45,6 +45,7 @@ public sealed class ESHubAuthModuleSettings
         IsRegisterNewUsers = registerNewUsers;
         OrgAuthProviderName = orgAuthProviderName;
         Groups = groups;
+        RegisterNewUserRules = registerNewUserRules;
     }
     
     private PropertyValue<string> _hubUrl = new PropertyValue<string>(nameof(ESHubAuthModuleSettings), nameof(HubUrl), "hubUrl");
@@ -104,6 +105,15 @@ public sealed class ESHubAuthModuleSettings
         set => _groups.SetValue(value);
     }
 
+    private PropertyValue<List<HubRegisterNewUserRule>?> _registerNewUserRules = new PropertyValue<List<HubRegisterNewUserRule>?>(nameof(ESHubAuthModuleSettings), nameof(RegisterNewUserRules), "registerNewUserRules");
+    
+    [JsonPropertyName("registerNewUserRules")]
+    public List<HubRegisterNewUserRule>? RegisterNewUserRules
+    {
+        get => _registerNewUserRules.GetValue(InlineErrors);
+        set => _registerNewUserRules.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _hubUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -112,6 +122,7 @@ public sealed class ESHubAuthModuleSettings
         _registerNewUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
         _orgAuthProviderName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _groups.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _registerNewUserRules.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

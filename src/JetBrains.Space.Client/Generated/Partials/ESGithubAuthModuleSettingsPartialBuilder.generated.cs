@@ -46,5 +46,11 @@ public static class ESGithubAuthModuleSettingsPartialExtensions
     public static Partial<ESGithubAuthModuleSettings> WithOrganizations(this Partial<ESGithubAuthModuleSettings> it)
         => it.AddFieldName("organizations");
     
+    public static Partial<ESGithubAuthModuleSettings> WithRegisterNewUserRules(this Partial<ESGithubAuthModuleSettings> it)
+        => it.AddFieldName("registerNewUserRules");
+    
+    public static Partial<ESGithubAuthModuleSettings> WithRegisterNewUserRules(this Partial<ESGithubAuthModuleSettings> it, Func<Partial<GithubRegisterNewUserRule>, Partial<GithubRegisterNewUserRule>> partialBuilder)
+        => it.AddFieldName("registerNewUserRules", partialBuilder(new Partial<GithubRegisterNewUserRule>(it)));
+    
 }
 

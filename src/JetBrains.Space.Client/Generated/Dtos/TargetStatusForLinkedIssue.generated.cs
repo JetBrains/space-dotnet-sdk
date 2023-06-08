@@ -34,10 +34,11 @@ public sealed class TargetStatusForLinkedIssue
 {
     public TargetStatusForLinkedIssue() { }
     
-    public TargetStatusForLinkedIssue(string issueId, string? issueStatusId = null)
+    public TargetStatusForLinkedIssue(string issueId, string? issueStatusId = null, bool? isExternalIssue = null)
     {
         IssueId = issueId;
         IssueStatusId = issueStatusId;
+        IsExternalIssue = isExternalIssue;
     }
     
     private PropertyValue<string> _issueId = new PropertyValue<string>(nameof(TargetStatusForLinkedIssue), nameof(IssueId), "issueId");
@@ -59,10 +60,20 @@ public sealed class TargetStatusForLinkedIssue
         set => _issueStatusId.SetValue(value);
     }
 
+    private PropertyValue<bool?> _isExternalIssue = new PropertyValue<bool?>(nameof(TargetStatusForLinkedIssue), nameof(IsExternalIssue), "isExternalIssue");
+    
+    [JsonPropertyName("isExternalIssue")]
+    public bool? IsExternalIssue
+    {
+        get => _isExternalIssue.GetValue(InlineErrors);
+        set => _isExternalIssue.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _issueId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _issueStatusId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _isExternalIssue.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -37,7 +37,7 @@ public sealed class ESSamlAuthModuleSettings
     
     public ESSamlAuthModuleSettings() { }
     
-    public ESSamlAuthModuleSettings(string idpUrl, string idpEntityId, string idpCertificateSHA256, string spEntityId, bool registerNewUsers, ESSamlAttributeNames attributeNames, SSLKeystore? sslKeystore = null, string? contactProfileId = null)
+    public ESSamlAuthModuleSettings(string idpUrl, string idpEntityId, string idpCertificateSHA256, string spEntityId, bool registerNewUsers, ESSamlAttributeNames attributeNames, SSLKeystore? sslKeystore = null, string? contactProfileId = null, List<SamlRegisterNewUserRule>? registerNewUserRules = null)
     {
         IdpUrl = idpUrl;
         IdpEntityId = idpEntityId;
@@ -47,6 +47,7 @@ public sealed class ESSamlAuthModuleSettings
         IsRegisterNewUsers = registerNewUsers;
         ContactProfileId = contactProfileId;
         AttributeNames = attributeNames;
+        RegisterNewUserRules = registerNewUserRules;
     }
     
     private PropertyValue<string> _idpUrl = new PropertyValue<string>(nameof(ESSamlAuthModuleSettings), nameof(IdpUrl), "idpUrl");
@@ -127,6 +128,15 @@ public sealed class ESSamlAuthModuleSettings
         set => _attributeNames.SetValue(value);
     }
 
+    private PropertyValue<List<SamlRegisterNewUserRule>?> _registerNewUserRules = new PropertyValue<List<SamlRegisterNewUserRule>?>(nameof(ESSamlAuthModuleSettings), nameof(RegisterNewUserRules), "registerNewUserRules");
+    
+    [JsonPropertyName("registerNewUserRules")]
+    public List<SamlRegisterNewUserRule>? RegisterNewUserRules
+    {
+        get => _registerNewUserRules.GetValue(InlineErrors);
+        set => _registerNewUserRules.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _idpUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -137,6 +147,7 @@ public sealed class ESSamlAuthModuleSettings
         _registerNewUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
         _contactProfileId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attributeNames.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _registerNewUserRules.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

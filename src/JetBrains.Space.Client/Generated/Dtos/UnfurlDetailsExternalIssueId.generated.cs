@@ -29,44 +29,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ExternalIssueId
-     : GenericIssueId, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class UnfurlDetailsExternalIssueId
+     : InlineUnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public  string? ClassName => "ExternalIssueId";
+    public  string? ClassName => "UnfurlDetailsExternalIssueId";
     
-    public ExternalIssueId() { }
+    public UnfurlDetailsExternalIssueId() { }
     
-    public ExternalIssueId(string id, string externalTrackerProjectId)
+    public UnfurlDetailsExternalIssueId(ExternalIssueId id)
     {
         Id = id;
-        ExternalTrackerProjectId = externalTrackerProjectId;
     }
     
-    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ExternalIssueId), nameof(Id), "id");
+    private PropertyValue<ExternalIssueId> _id = new PropertyValue<ExternalIssueId>(nameof(UnfurlDetailsExternalIssueId), nameof(Id), "id");
     
     [Required]
     [JsonPropertyName("id")]
-    public string Id
+    public ExternalIssueId Id
     {
         get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
     }
 
-    private PropertyValue<string> _externalTrackerProjectId = new PropertyValue<string>(nameof(ExternalIssueId), nameof(ExternalTrackerProjectId), "externalTrackerProjectId");
-    
-    [Required]
-    [JsonPropertyName("externalTrackerProjectId")]
-    public string ExternalTrackerProjectId
-    {
-        get => _externalTrackerProjectId.GetValue(InlineErrors);
-        set => _externalTrackerProjectId.SetValue(value);
-    }
-
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _externalTrackerProjectId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -34,17 +34,17 @@ public sealed class ExternalIssue
 {
     public ExternalIssue() { }
     
-    public ExternalIssue(string id, bool archived, string issueId, string issuePrefix, string externalTrackerProject, string url, IssueStatus? status = null, string? summary = null, List<ExternalIssueField>? fields = null)
+    public ExternalIssue(string id, bool archived, string issueId, string issuePrefix, string url, List<string> codeReviewIds, IssueStatus? status = null, string? summary = null, List<ExternalIssueField>? fields = null)
     {
         Id = id;
         IsArchived = archived;
         IssueId = issueId;
         IssuePrefix = issuePrefix;
-        ExternalTrackerProject = externalTrackerProject;
         Url = url;
         Status = status;
         Summary = summary;
         Fields = fields;
+        CodeReviewIds = codeReviewIds;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(ExternalIssue), nameof(Id), "id");
@@ -87,16 +87,6 @@ public sealed class ExternalIssue
         set => _issuePrefix.SetValue(value);
     }
 
-    private PropertyValue<string> _externalTrackerProject = new PropertyValue<string>(nameof(ExternalIssue), nameof(ExternalTrackerProject), "externalTrackerProject");
-    
-    [Required]
-    [JsonPropertyName("externalTrackerProject")]
-    public string ExternalTrackerProject
-    {
-        get => _externalTrackerProject.GetValue(InlineErrors);
-        set => _externalTrackerProject.SetValue(value);
-    }
-
     private PropertyValue<string> _url = new PropertyValue<string>(nameof(ExternalIssue), nameof(Url), "url");
     
     [Required]
@@ -134,17 +124,27 @@ public sealed class ExternalIssue
         set => _fields.SetValue(value);
     }
 
+    private PropertyValue<List<string>> _codeReviewIds = new PropertyValue<List<string>>(nameof(ExternalIssue), nameof(CodeReviewIds), "codeReviewIds", new List<string>());
+    
+    [Required]
+    [JsonPropertyName("codeReviewIds")]
+    public List<string> CodeReviewIds
+    {
+        get => _codeReviewIds.GetValue(InlineErrors);
+        set => _codeReviewIds.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
         _issueId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _issuePrefix.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _externalTrackerProject.SetAccessPath(parentChainPath, validateHasBeenSet);
         _url.SetAccessPath(parentChainPath, validateHasBeenSet);
         _status.SetAccessPath(parentChainPath, validateHasBeenSet);
         _summary.SetAccessPath(parentChainPath, validateHasBeenSet);
         _fields.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _codeReviewIds.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

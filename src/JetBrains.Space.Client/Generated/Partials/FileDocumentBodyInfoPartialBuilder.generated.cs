@@ -37,5 +37,14 @@ public static class FileDocumentBodyInfoPartialExtensions
     public static Partial<FileDocumentBodyInfo> WithFileDocument(this Partial<FileDocumentBodyInfo> it, Func<Partial<FileDocumentRecord>, Partial<FileDocumentRecord>> partialBuilder)
         => it.AddFieldName("fileDocument", partialBuilder(new Partial<FileDocumentRecord>(it)));
     
+    public static Partial<FileDocumentBodyInfo> WithFileDocumentId(this Partial<FileDocumentBodyInfo> it)
+        => it.AddFieldName("fileDocumentId");
+    
+    public static Partial<FileDocumentBodyInfo> WithContentType(this Partial<FileDocumentBodyInfo> it)
+        => it.AddFieldName("contentType");
+    
+    public static Partial<FileDocumentBodyInfo> WithFileSize(this Partial<FileDocumentBodyInfo> it)
+        => it.AddFieldName("fileSize");
+    
 }
 

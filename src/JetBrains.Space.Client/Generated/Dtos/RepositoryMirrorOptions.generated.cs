@@ -34,11 +34,12 @@ public sealed class RepositoryMirrorOptions
 {
     public RepositoryMirrorOptions() { }
     
-    public RepositoryMirrorOptions(bool syncPeriodically, bool syncOnFetch, bool? allowAtomicPush = null)
+    public RepositoryMirrorOptions(bool syncPeriodically, bool syncOnFetch, bool? allowAtomicPush = null, bool? mirrorPullRequest = null)
     {
         IsSyncPeriodically = syncPeriodically;
         IsSyncOnFetch = syncOnFetch;
         IsAllowAtomicPush = allowAtomicPush;
+        IsMirrorPullRequest = mirrorPullRequest;
     }
     
     private PropertyValue<bool> _syncPeriodically = new PropertyValue<bool>(nameof(RepositoryMirrorOptions), nameof(IsSyncPeriodically), "syncPeriodically");
@@ -70,11 +71,21 @@ public sealed class RepositoryMirrorOptions
         set => _allowAtomicPush.SetValue(value);
     }
 
+    private PropertyValue<bool?> _mirrorPullRequest = new PropertyValue<bool?>(nameof(RepositoryMirrorOptions), nameof(IsMirrorPullRequest), "mirrorPullRequest");
+    
+    [JsonPropertyName("mirrorPullRequest")]
+    public bool? IsMirrorPullRequest
+    {
+        get => _mirrorPullRequest.GetValue(InlineErrors);
+        set => _mirrorPullRequest.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _syncPeriodically.SetAccessPath(parentChainPath, validateHasBeenSet);
         _syncOnFetch.SetAccessPath(parentChainPath, validateHasBeenSet);
         _allowAtomicPush.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mirrorPullRequest.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -34,7 +34,7 @@ public sealed class ESAppSettings
 {
     public ESAppSettings() { }
     
-    public ESAppSettings(bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, EndpointDTO? endpoint = null, EndpointAuthDTO? endpointAuth = null)
+    public ESAppSettings(bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, EndpointDTO? endpoint = null, EndpointAuthDTO? endpointAuth = null, string? externalIssueTrackerDomain = null)
     {
         IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled;
         IsCodeFlowEnabled = codeFlowEnabled;
@@ -44,6 +44,7 @@ public sealed class ESAppSettings
         ImplicitFlowRedirectURIs = implicitFlowRedirectURIs;
         Endpoint = endpoint;
         EndpointAuth = endpointAuth;
+        ExternalIssueTrackerDomain = externalIssueTrackerDomain;
     }
     
     private PropertyValue<bool?> _clientCredentialsFlowEnabled = new PropertyValue<bool?>(nameof(ESAppSettings), nameof(IsClientCredentialsFlowEnabled), "clientCredentialsFlowEnabled");
@@ -118,6 +119,15 @@ public sealed class ESAppSettings
         set => _endpointAuth.SetValue(value);
     }
 
+    private PropertyValue<string?> _externalIssueTrackerDomain = new PropertyValue<string?>(nameof(ESAppSettings), nameof(ExternalIssueTrackerDomain), "externalIssueTrackerDomain");
+    
+    [JsonPropertyName("externalIssueTrackerDomain")]
+    public string? ExternalIssueTrackerDomain
+    {
+        get => _externalIssueTrackerDomain.GetValue(InlineErrors);
+        set => _externalIssueTrackerDomain.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _clientCredentialsFlowEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -128,6 +138,7 @@ public sealed class ESAppSettings
         _implicitFlowRedirectURIs.SetAccessPath(parentChainPath, validateHasBeenSet);
         _endpoint.SetAccessPath(parentChainPath, validateHasBeenSet);
         _endpointAuth.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalIssueTrackerDomain.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

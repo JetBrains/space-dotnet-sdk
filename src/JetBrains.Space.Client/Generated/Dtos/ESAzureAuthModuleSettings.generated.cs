@@ -37,13 +37,14 @@ public sealed class ESAzureAuthModuleSettings
     
     public ESAzureAuthModuleSettings() { }
     
-    public ESAzureAuthModuleSettings(string tenantId, string clientId, string clientSecret, bool registerNewUsers, bool emailVerified)
+    public ESAzureAuthModuleSettings(string tenantId, string clientId, string clientSecret, bool registerNewUsers, bool emailVerified, List<AzureRegisterNewUserRule>? registerNewUserRules = null)
     {
         TenantId = tenantId;
         ClientId = clientId;
         ClientSecret = clientSecret;
         IsRegisterNewUsers = registerNewUsers;
         IsEmailVerified = emailVerified;
+        RegisterNewUserRules = registerNewUserRules;
     }
     
     private PropertyValue<string> _tenantId = new PropertyValue<string>(nameof(ESAzureAuthModuleSettings), nameof(TenantId), "tenantId");
@@ -96,6 +97,15 @@ public sealed class ESAzureAuthModuleSettings
         set => _emailVerified.SetValue(value);
     }
 
+    private PropertyValue<List<AzureRegisterNewUserRule>?> _registerNewUserRules = new PropertyValue<List<AzureRegisterNewUserRule>?>(nameof(ESAzureAuthModuleSettings), nameof(RegisterNewUserRules), "registerNewUserRules");
+    
+    [JsonPropertyName("registerNewUserRules")]
+    public List<AzureRegisterNewUserRule>? RegisterNewUserRules
+    {
+        get => _registerNewUserRules.GetValue(InlineErrors);
+        set => _registerNewUserRules.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _tenantId.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -103,6 +113,7 @@ public sealed class ESAzureAuthModuleSettings
         _clientSecret.SetAccessPath(parentChainPath, validateHasBeenSet);
         _registerNewUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
         _emailVerified.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _registerNewUserRules.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

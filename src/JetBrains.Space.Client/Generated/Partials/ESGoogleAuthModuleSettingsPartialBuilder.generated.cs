@@ -43,5 +43,11 @@ public static class ESGoogleAuthModuleSettingsPartialExtensions
     public static Partial<ESGoogleAuthModuleSettings> WithDomains(this Partial<ESGoogleAuthModuleSettings> it)
         => it.AddFieldName("domains");
     
+    public static Partial<ESGoogleAuthModuleSettings> WithRegisterNewUserRules(this Partial<ESGoogleAuthModuleSettings> it)
+        => it.AddFieldName("registerNewUserRules");
+    
+    public static Partial<ESGoogleAuthModuleSettings> WithRegisterNewUserRules(this Partial<ESGoogleAuthModuleSettings> it, Func<Partial<GoogleRegisterNewUserRule>, Partial<GoogleRegisterNewUserRule>> partialBuilder)
+        => it.AddFieldName("registerNewUserRules", partialBuilder(new Partial<GoogleRegisterNewUserRule>(it)));
+    
 }
 

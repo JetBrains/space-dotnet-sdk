@@ -68,5 +68,8 @@ public enum ExecutionStatus
     [EnumMember(Value = "FAILED")]
     FAILED,
     
+    [EnumMember(Value = "SKIPPED")]
+    SKIPPED,
+    
 }
 

@@ -37,6 +37,18 @@ public static class BookContainerInfoPartialExtensions
     public static Partial<BookContainerInfo> WithBook(this Partial<BookContainerInfo> it, Func<Partial<KBBook>, Partial<KBBook>> partialBuilder)
         => it.AddFieldName("book", partialBuilder(new Partial<KBBook>(it)));
     
+    public static Partial<BookContainerInfo> WithBookAlias(this Partial<BookContainerInfo> it)
+        => it.AddFieldName("bookAlias");
+    
+    public static Partial<BookContainerInfo> WithBookId(this Partial<BookContainerInfo> it)
+        => it.AddFieldName("bookId");
+    
+    public static Partial<BookContainerInfo> WithProject(this Partial<BookContainerInfo> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<BookContainerInfo> WithProject(this Partial<BookContainerInfo> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
+    
     public static Partial<BookContainerInfo> WithGrantedRights(this Partial<BookContainerInfo> it)
         => it.AddFieldName("grantedRights");
     

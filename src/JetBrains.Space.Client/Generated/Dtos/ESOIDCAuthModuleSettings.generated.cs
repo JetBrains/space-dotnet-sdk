@@ -37,7 +37,7 @@ public sealed class ESOIDCAuthModuleSettings
     
     public ESOIDCAuthModuleSettings() { }
     
-    public ESOIDCAuthModuleSettings(string clientId, string clientSecret, bool registerNewUsers, string issuer, string authorizationEndpoint, string tokenEndpoint, string tokenKeysEndpoint, string userInfoEndpoint, List<string> domains, string? discoveryUrl = null)
+    public ESOIDCAuthModuleSettings(string clientId, string clientSecret, bool registerNewUsers, string issuer, string authorizationEndpoint, string tokenEndpoint, string tokenKeysEndpoint, string userInfoEndpoint, List<string> domains, string? discoveryUrl = null, List<OidcRegisterNewUserRule>? registerNewUserRules = null)
     {
         ClientId = clientId;
         ClientSecret = clientSecret;
@@ -49,6 +49,7 @@ public sealed class ESOIDCAuthModuleSettings
         TokenKeysEndpoint = tokenKeysEndpoint;
         UserInfoEndpoint = userInfoEndpoint;
         Domains = domains;
+        RegisterNewUserRules = registerNewUserRules;
     }
     
     private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(ClientId), "clientId");
@@ -150,6 +151,15 @@ public sealed class ESOIDCAuthModuleSettings
         set => _domains.SetValue(value);
     }
 
+    private PropertyValue<List<OidcRegisterNewUserRule>?> _registerNewUserRules = new PropertyValue<List<OidcRegisterNewUserRule>?>(nameof(ESOIDCAuthModuleSettings), nameof(RegisterNewUserRules), "registerNewUserRules");
+    
+    [JsonPropertyName("registerNewUserRules")]
+    public List<OidcRegisterNewUserRule>? RegisterNewUserRules
+    {
+        get => _registerNewUserRules.GetValue(InlineErrors);
+        set => _registerNewUserRules.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -162,6 +172,7 @@ public sealed class ESOIDCAuthModuleSettings
         _tokenKeysEndpoint.SetAccessPath(parentChainPath, validateHasBeenSet);
         _userInfoEndpoint.SetAccessPath(parentChainPath, validateHasBeenSet);
         _domains.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _registerNewUserRules.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

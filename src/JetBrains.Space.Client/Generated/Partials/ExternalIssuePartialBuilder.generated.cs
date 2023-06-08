@@ -43,9 +43,6 @@ public static class ExternalIssuePartialExtensions
     public static Partial<ExternalIssue> WithIssuePrefix(this Partial<ExternalIssue> it)
         => it.AddFieldName("issuePrefix");
     
-    public static Partial<ExternalIssue> WithExternalTrackerProject(this Partial<ExternalIssue> it)
-        => it.AddFieldName("externalTrackerProject");
-    
     public static Partial<ExternalIssue> WithUrl(this Partial<ExternalIssue> it)
         => it.AddFieldName("url");
     
@@ -63,6 +60,9 @@ public static class ExternalIssuePartialExtensions
     
     public static Partial<ExternalIssue> WithFields(this Partial<ExternalIssue> it, Func<Partial<ExternalIssueField>, Partial<ExternalIssueField>> partialBuilder)
         => it.AddFieldName("fields", partialBuilder(new Partial<ExternalIssueField>(it)));
+    
+    public static Partial<ExternalIssue> WithCodeReviewIds(this Partial<ExternalIssue> it)
+        => it.AddFieldName("codeReviewIds");
     
 }
 

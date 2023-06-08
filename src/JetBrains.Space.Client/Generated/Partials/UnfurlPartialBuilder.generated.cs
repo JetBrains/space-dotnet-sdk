@@ -82,6 +82,9 @@ public static class UnfurlPartialExtensions
     public static Partial<Unfurl> WithIsAlwaysInline(this Partial<Unfurl> it)
         => it.AddFieldName("alwaysInline");
     
+    public static Partial<Unfurl> WithIsOnlyForCustomLinks(this Partial<Unfurl> it)
+        => it.AddFieldName("onlyForCustomLinks");
+    
     public static Partial<Unfurl> WithViewTypes(this Partial<Unfurl> it)
         => it.AddFieldName("viewTypes");
     

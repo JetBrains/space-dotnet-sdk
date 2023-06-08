@@ -34,7 +34,7 @@ public sealed class Unfurl
 {
     public Unfurl() { }
     
-    public Unfurl(string title, string link, string text, UnfurlDetails? details = null, string? sitename = null, string? image = null, string? imageMime = null, int? imageWidth = null, int? imageHeight = null, string? video = null, string? videoIFrame = null, string? videoMime = null, int? videoHeight = null, int? videoWidth = null, string? favicon = null, bool? alwaysInline = null, List<UnfurlViewType>? viewTypes = null)
+    public Unfurl(string title, string link, string text, UnfurlDetails? details = null, string? sitename = null, string? image = null, string? imageMime = null, int? imageWidth = null, int? imageHeight = null, string? video = null, string? videoIFrame = null, string? videoMime = null, int? videoHeight = null, int? videoWidth = null, string? favicon = null, bool? alwaysInline = null, bool? onlyForCustomLinks = null, List<UnfurlViewType>? viewTypes = null)
     {
         Title = title;
         Link = link;
@@ -52,6 +52,7 @@ public sealed class Unfurl
         VideoWidth = videoWidth;
         Favicon = favicon;
         IsAlwaysInline = alwaysInline;
+        IsOnlyForCustomLinks = onlyForCustomLinks;
         ViewTypes = viewTypes;
     }
     
@@ -202,6 +203,15 @@ public sealed class Unfurl
         set => _alwaysInline.SetValue(value);
     }
 
+    private PropertyValue<bool?> _onlyForCustomLinks = new PropertyValue<bool?>(nameof(Unfurl), nameof(IsOnlyForCustomLinks), "onlyForCustomLinks");
+    
+    [JsonPropertyName("onlyForCustomLinks")]
+    public bool? IsOnlyForCustomLinks
+    {
+        get => _onlyForCustomLinks.GetValue(InlineErrors);
+        set => _onlyForCustomLinks.SetValue(value);
+    }
+
     private PropertyValue<List<UnfurlViewType>?> _viewTypes = new PropertyValue<List<UnfurlViewType>?>(nameof(Unfurl), nameof(ViewTypes), "viewTypes");
     
     [JsonPropertyName("viewTypes")]
@@ -229,6 +239,7 @@ public sealed class Unfurl
         _videoWidth.SetAccessPath(parentChainPath, validateHasBeenSet);
         _favicon.SetAccessPath(parentChainPath, validateHasBeenSet);
         _alwaysInline.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _onlyForCustomLinks.SetAccessPath(parentChainPath, validateHasBeenSet);
         _viewTypes.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

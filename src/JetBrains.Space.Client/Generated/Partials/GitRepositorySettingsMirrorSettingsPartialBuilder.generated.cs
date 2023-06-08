@@ -73,5 +73,8 @@ public static class GitRepositorySettingsMirrorSettingsPartialExtensions
     public static Partial<GitRepositorySettingsMirrorSettings> WithIsAllowAtomicPush(this Partial<GitRepositorySettingsMirrorSettings> it)
         => it.AddFieldName("allowAtomicPush");
     
+    public static Partial<GitRepositorySettingsMirrorSettings> WithIsMirrorPullRequest(this Partial<GitRepositorySettingsMirrorSettings> it)
+        => it.AddFieldName("mirrorPullRequest");
+    
 }
 

@@ -37,12 +37,13 @@ public sealed class ESGoogleAuthModuleSettings
     
     public ESGoogleAuthModuleSettings() { }
     
-    public ESGoogleAuthModuleSettings(string clientId, string clientSecret, bool registerNewUsers, List<string> domains)
+    public ESGoogleAuthModuleSettings(string clientId, string clientSecret, bool registerNewUsers, List<string> domains, List<GoogleRegisterNewUserRule>? registerNewUserRules = null)
     {
         ClientId = clientId;
         ClientSecret = clientSecret;
         IsRegisterNewUsers = registerNewUsers;
         Domains = domains;
+        RegisterNewUserRules = registerNewUserRules;
     }
     
     private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESGoogleAuthModuleSettings), nameof(ClientId), "clientId");
@@ -85,12 +86,22 @@ public sealed class ESGoogleAuthModuleSettings
         set => _domains.SetValue(value);
     }
 
+    private PropertyValue<List<GoogleRegisterNewUserRule>?> _registerNewUserRules = new PropertyValue<List<GoogleRegisterNewUserRule>?>(nameof(ESGoogleAuthModuleSettings), nameof(RegisterNewUserRules), "registerNewUserRules");
+    
+    [JsonPropertyName("registerNewUserRules")]
+    public List<GoogleRegisterNewUserRule>? RegisterNewUserRules
+    {
+        get => _registerNewUserRules.GetValue(InlineErrors);
+        set => _registerNewUserRules.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _clientSecret.SetAccessPath(parentChainPath, validateHasBeenSet);
         _registerNewUsers.SetAccessPath(parentChainPath, validateHasBeenSet);
         _domains.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _registerNewUserRules.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

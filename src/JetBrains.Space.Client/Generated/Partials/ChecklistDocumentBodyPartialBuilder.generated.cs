@@ -40,5 +40,17 @@ public static class ChecklistDocumentBodyPartialExtensions
     public static Partial<ChecklistDocumentBody> WithCanConvertItemsToIssues(this Partial<ChecklistDocumentBody> it)
         => it.AddFieldName("canConvertItemsToIssues");
     
+    public static Partial<ChecklistDocumentBody> WithChecklistId(this Partial<ChecklistDocumentBody> it)
+        => it.AddFieldName("checklistId");
+    
+    public static Partial<ChecklistDocumentBody> WithTotalItemsCount(this Partial<ChecklistDocumentBody> it)
+        => it.AddFieldName("totalItemsCount");
+    
+    public static Partial<ChecklistDocumentBody> WithDoneItemsCount(this Partial<ChecklistDocumentBody> it)
+        => it.AddFieldName("doneItemsCount");
+    
+    public static Partial<ChecklistDocumentBody> WithChecklistArenaId(this Partial<ChecklistDocumentBody> it)
+        => it.AddFieldName("checklistArenaId");
+    
 }
 

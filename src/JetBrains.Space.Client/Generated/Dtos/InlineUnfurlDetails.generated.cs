@@ -83,6 +83,9 @@ public interface InlineUnfurlDetails
     public static UnfurlDetailsExternalIssue UnfurlDetailsExternalIssue(ExternalIssue issue)
         => new UnfurlDetailsExternalIssue(issue: issue);
     
+    public static UnfurlDetailsExternalIssueId UnfurlDetailsExternalIssueId(ExternalIssueId id)
+        => new UnfurlDetailsExternalIssueId(id: id);
+    
     public static UnfurlDetailsFolder UnfurlDetailsFolder(string name, bool root, DocumentFolder? folder = null)
         => new UnfurlDetailsFolder(name: name, root: root, folder: folder);
     

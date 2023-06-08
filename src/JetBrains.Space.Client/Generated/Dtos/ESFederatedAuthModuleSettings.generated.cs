@@ -35,8 +35,8 @@ public abstract class ESFederatedAuthModuleSettings
     [JsonPropertyName("className")]
     public override string? ClassName => "ES_FederatedAuthModuleSettings";
     
-    public static ESSamlAuthModuleSettings ESSamlAuthModuleSettings(string idpUrl, string idpEntityId, string idpCertificateSHA256, string spEntityId, bool registerNewUsers, ESSamlAttributeNames attributeNames, SSLKeystore? sslKeystore = null, string? contactProfileId = null)
-        => new ESSamlAuthModuleSettings(idpUrl: idpUrl, idpEntityId: idpEntityId, idpCertificateSHA256: idpCertificateSHA256, spEntityId: spEntityId, registerNewUsers: registerNewUsers, attributeNames: attributeNames, sslKeystore: sslKeystore, contactProfileId: contactProfileId);
+    public static ESSamlAuthModuleSettings ESSamlAuthModuleSettings(string idpUrl, string idpEntityId, string idpCertificateSHA256, string spEntityId, bool registerNewUsers, ESSamlAttributeNames attributeNames, SSLKeystore? sslKeystore = null, string? contactProfileId = null, List<SamlRegisterNewUserRule>? registerNewUserRules = null)
+        => new ESSamlAuthModuleSettings(idpUrl: idpUrl, idpEntityId: idpEntityId, idpCertificateSHA256: idpCertificateSHA256, spEntityId: spEntityId, registerNewUsers: registerNewUsers, attributeNames: attributeNames, sslKeystore: sslKeystore, contactProfileId: contactProfileId, registerNewUserRules: registerNewUserRules);
     
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {

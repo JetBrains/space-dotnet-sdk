@@ -29,38 +29,14 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum JobExecutionDisplayStatus
+public interface GenericIssueId
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [EnumMember(Value = "Awaiting")]
-    Awaiting,
+    public static ExternalIssueId ExternalIssueId(string id, string externalTrackerProjectId)
+        => new ExternalIssueId(id: id, externalTrackerProjectId: externalTrackerProjectId);
     
-    [EnumMember(Value = "Running")]
-    Running,
-    
-    [EnumMember(Value = "Restarting")]
-    Restarting,
-    
-    [EnumMember(Value = "Finishing")]
-    Finishing,
-    
-    [EnumMember(Value = "Stopped")]
-    Stopped,
-    
-    [EnumMember(Value = "Succeeded")]
-    Succeeded,
-    
-    [EnumMember(Value = "Failed")]
-    Failed,
-    
-    [EnumMember(Value = "NoSuitableWorkers")]
-    NoSuitableWorkers,
-    
-    [EnumMember(Value = "WaitingForWorkers")]
-    WaitingForWorkers,
-    
-    [EnumMember(Value = "Skipped")]
-    Skipped,
+    public static SpaceIssueId SpaceIssueId(string id)
+        => new SpaceIssueId(id: id);
     
 }
 
