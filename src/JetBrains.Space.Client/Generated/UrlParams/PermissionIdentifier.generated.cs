@@ -170,6 +170,9 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier DeleteMemberProfile
         => new PermissionIdentifierDeleteMemberProfile();
     
+    public static PermissionIdentifier DeletePackageRepositoriesContent
+        => new PermissionIdentifierDeletePackageRepositoriesContent();
+    
     public static PermissionIdentifier DeleteProjectParameters
         => new PermissionIdentifierDeleteProjectParameters();
     
@@ -215,6 +218,9 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier GrantAccessRightsToOtherMembersForBonusApp
         => new PermissionIdentifierGrantAccessRightsToOtherMembersForBonusApp();
     
+    public static PermissionIdentifier GrantOwnGlobalPermissions
+        => new PermissionIdentifierGrantOwnGlobalPermissions();
+    
     public static PermissionIdentifier GrantPermissionsToOtherMembers
         => new PermissionIdentifierGrantPermissionsToOtherMembers();
     
@@ -234,10 +240,10 @@ public abstract class PermissionIdentifier : IUrlParameter
         => new PermissionIdentifierImportMessagesObsolete();
     
     /// <summary>
-    /// Allows to join unattended dev environments and become their owner
+    /// Allows to join dev environments from hot pool and become their owner
     /// </summary>
-    public static PermissionIdentifier JoinUnattendedDevEnvironments
-        => new PermissionIdentifierJoinUnattendedDevEnvironments();
+    public static PermissionIdentifier JoinDevEnvironmentsFromHotPool
+        => new PermissionIdentifierJoinDevEnvironmentsFromHotPool();
     
     public static PermissionIdentifier ListApplicationCommands
         => new PermissionIdentifierListApplicationCommands();
@@ -923,6 +929,9 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier WritePackageRepositories
         => new PermissionIdentifierWritePackageRepositories();
     
+    public static PermissionIdentifier WritePackageRepositoriesObsolete
+        => new PermissionIdentifierWritePackageRepositoriesObsolete();
+    
     public static PermissionIdentifier WriteVisionProject
         => new PermissionIdentifierWriteVisionProject();
     
@@ -1190,6 +1199,12 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Profile.Delete";
     }
     
+    public class PermissionIdentifierDeletePackageRepositoriesContent : PermissionIdentifier
+    {
+        public override string ToString()
+            => "PackageRepository.Delete";
+    }
+    
     public class PermissionIdentifierDeleteProjectParameters : PermissionIdentifier
     {
         public override string ToString()
@@ -1274,6 +1289,12 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "HRM.Bonus.Supervisor";
     }
     
+    public class PermissionIdentifierGrantOwnGlobalPermissions : PermissionIdentifier
+    {
+        public override string ToString()
+            => "Applications.GrantOwnPermissions";
+    }
+    
     public class PermissionIdentifierGrantPermissionsToOtherMembers : PermissionIdentifier
     {
         public override string ToString()
@@ -1308,9 +1329,9 @@ public abstract class PermissionIdentifier : IUrlParameter
     }
     
     /// <summary>
-    /// Allows to join unattended dev environments and become their owner
+    /// Allows to join dev environments from hot pool and become their owner
     /// </summary>
-    public class PermissionIdentifierJoinUnattendedDevEnvironments : PermissionIdentifier
+    public class PermissionIdentifierJoinDevEnvironmentsFromHotPool : PermissionIdentifier
     {
         public override string ToString()
             => "Rd.Workspaces.Unattended.Join";
@@ -2598,6 +2619,12 @@ public abstract class PermissionIdentifier : IUrlParameter
     }
     
     public class PermissionIdentifierWritePackageRepositories : PermissionIdentifier
+    {
+        public override string ToString()
+            => "PackageRepository.Write2";
+    }
+    
+    public class PermissionIdentifierWritePackageRepositoriesObsolete : PermissionIdentifier
     {
         public override string ToString()
             => "PackageRepository.Write";

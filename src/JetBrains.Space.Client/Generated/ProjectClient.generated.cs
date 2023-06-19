@@ -6282,7 +6282,7 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Write package repositories</term>
+                /// <term>Delete package repositories content</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -6301,7 +6301,7 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Write package repositories</term>
+                /// <term>Delete package repositories content</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -6370,7 +6370,7 @@ public partial class ProjectClient : ISpaceClient
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Write package repositories</term>
+                /// <term>Delete package repositories content</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -6516,7 +6516,7 @@ public partial class ProjectClient : ISpaceClient
                     /// Required permissions:
                     /// <list type="bullet">
                     /// <item>
-                    /// <term>Write package repositories</term>
+                    /// <term>Delete package repositories content</term>
                     /// </item>
                     /// </list>
                     /// </remarks>
@@ -6642,7 +6642,7 @@ public partial class ProjectClient : ISpaceClient
                     /// Required permissions:
                     /// <list type="bullet">
                     /// <item>
-                    /// <term>Write package repositories</term>
+                    /// <term>Delete package repositories content</term>
                     /// </item>
                     /// </list>
                     /// </remarks>
