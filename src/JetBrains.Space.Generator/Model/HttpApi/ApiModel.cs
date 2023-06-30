@@ -15,7 +15,4 @@ public class ApiModel
         
     [JsonPropertyName("resources")]
     public List<ApiResource> Resources { get; set; } = new();
-        
-    [JsonPropertyName("menuIds")]
-    public List<ApiMenuId> MenuIds { get; set; } = new();
 }

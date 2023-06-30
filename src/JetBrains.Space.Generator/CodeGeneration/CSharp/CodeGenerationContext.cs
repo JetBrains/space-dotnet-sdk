@@ -78,6 +78,4 @@ public class CodeGenerationContext
         
     public IEnumerable<ApiUrlParameter> GetUrlParameters() => _idToUrlParameterMap.Values;
     public bool TryGetUrlParameter(string id, out ApiUrlParameter? apiUrlParameter) => _idToUrlParameterMap.TryGetValue(id, out apiUrlParameter);
-        
-    public IEnumerable<ApiMenuId> GetMenuIds() => ApiModel.MenuIds;
 }
