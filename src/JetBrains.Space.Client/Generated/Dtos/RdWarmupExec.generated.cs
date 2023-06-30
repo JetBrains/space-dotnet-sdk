@@ -34,7 +34,7 @@ public sealed class RdWarmupExec
 {
     public RdWarmupExec() { }
     
-    public RdWarmupExec(string id, string projectId, string repositoryName, string branch, string revision, WarmupExecutionStatus status, IdeType ideType, string ideVersion, string computeTaskId, WarmupExecutionTrigger trigger, bool archived, string? devfile = null, DateTime? startedAt = null, DateTime? finishedAt = null, string? ideQuality = null)
+    public RdWarmupExec(string id, string projectId, string repositoryName, string branch, string revision, WarmupExecutionStatus status, IdeType ideType, string ideBuild, string ideVersion, string computeTaskId, WarmupExecutionTrigger trigger, bool archived, string? devfile = null, DateTime? startedAt = null, DateTime? finishedAt = null, string? ideQuality = null)
     {
         Id = id;
         ProjectId = projectId;
@@ -46,6 +46,7 @@ public sealed class RdWarmupExec
         StartedAt = startedAt;
         FinishedAt = finishedAt;
         IdeType = ideType;
+        IdeBuild = ideBuild;
         IdeVersion = ideVersion;
         IdeQuality = ideQuality;
         ComputeTaskId = computeTaskId;
@@ -152,6 +153,16 @@ public sealed class RdWarmupExec
         set => _ideType.SetValue(value);
     }
 
+    private PropertyValue<string> _ideBuild = new PropertyValue<string>(nameof(RdWarmupExec), nameof(IdeBuild), "ideBuild");
+    
+    [Required]
+    [JsonPropertyName("ideBuild")]
+    public string IdeBuild
+    {
+        get => _ideBuild.GetValue(InlineErrors);
+        set => _ideBuild.SetValue(value);
+    }
+
     private PropertyValue<string> _ideVersion = new PropertyValue<string>(nameof(RdWarmupExec), nameof(IdeVersion), "ideVersion");
     
     [Required]
@@ -213,6 +224,7 @@ public sealed class RdWarmupExec
         _startedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
         _finishedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
         _ideType.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _ideBuild.SetAccessPath(parentChainPath, validateHasBeenSet);
         _ideVersion.SetAccessPath(parentChainPath, validateHasBeenSet);
         _ideQuality.SetAccessPath(parentChainPath, validateHasBeenSet);
         _computeTaskId.SetAccessPath(parentChainPath, validateHasBeenSet);

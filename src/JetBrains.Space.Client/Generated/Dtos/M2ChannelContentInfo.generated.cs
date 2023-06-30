@@ -41,6 +41,9 @@ public interface M2ChannelContentInfo
     public static DeploymentTargetM2ChannelInfo DeploymentTargetM2ChannelInfo(ChannelSpecificDefaults notificationDefaults, DeployTargetRecord deployTarget, PRProject project)
         => new DeploymentTargetM2ChannelInfo(notificationDefaults: notificationDefaults, deployTarget: deployTarget, project: project);
     
+    public static M2ChannelAIAssistanceInfo M2ChannelAIAssistanceInfo(string sessionId, string sessionName, string llmProvider)
+        => new M2ChannelAIAssistanceInfo(sessionId: sessionId, sessionName: sessionName, llmProvider: llmProvider);
+    
     public static M2ChannelAutomationJobFeedInfo M2ChannelAutomationJobFeedInfo(JobSubscription jobSubscription, string jobName, ChannelSpecificDefaults notificationDefaults, string? repoName = null)
         => new M2ChannelAutomationJobFeedInfo(jobSubscription: jobSubscription, jobName: jobName, notificationDefaults: notificationDefaults, repoName: repoName);
     

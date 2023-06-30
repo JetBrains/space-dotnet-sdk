@@ -86,6 +86,9 @@ public interface M2ItemContentDetails
     public static M2ExternalStatusSucceedItemContent M2ExternalStatusSucceedItemContent(string repository, string branch, string url, string externalServiceName, string taskName, string? projectId = null, RevisionAuthorInfo? revisionInfo = null, LastChanges? changesInfo = null, long? timestamp = null, string? description = null)
         => new M2ExternalStatusSucceedItemContent(repository: repository, branch: branch, url: url, externalServiceName: externalServiceName, taskName: taskName, projectId: projectId, revisionInfo: revisionInfo, changesInfo: changesInfo, timestamp: timestamp, description: description);
     
+    public static M2LiveTypedContent M2LiveTypedContent(string session, string message, string? completedText = null, string? failed = null, string? trace = null)
+        => new M2LiveTypedContent(session: session, message: message, completedText: completedText, failed: failed, trace: trace);
+    
     public static M2MaintenanceActionContent M2MaintenanceActionContent(string action, bool success, string details)
         => new M2MaintenanceActionContent(action: action, success: success, details: details);
     

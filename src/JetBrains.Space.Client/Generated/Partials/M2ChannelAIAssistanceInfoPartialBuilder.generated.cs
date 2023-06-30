@@ -27,24 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocumentHistoryUnfurlDetailsPartialBuilder;
+namespace JetBrains.Space.Client.M2ChannelAIAssistanceInfoPartialBuilder;
 
-public static class DocumentHistoryUnfurlDetailsPartialExtensions
+public static class M2ChannelAIAssistanceInfoPartialExtensions
 {
-    public static Partial<DocumentHistoryUnfurlDetails> WithDocument(this Partial<DocumentHistoryUnfurlDetails> it)
-        => it.AddFieldName("document");
+    public static Partial<M2ChannelAIAssistanceInfo> WithSessionId(this Partial<M2ChannelAIAssistanceInfo> it)
+        => it.AddFieldName("sessionId");
     
-    public static Partial<DocumentHistoryUnfurlDetails> WithTitle(this Partial<DocumentHistoryUnfurlDetails> it)
-        => it.AddFieldName("title");
+    public static Partial<M2ChannelAIAssistanceInfo> WithSessionName(this Partial<M2ChannelAIAssistanceInfo> it)
+        => it.AddFieldName("sessionName");
     
-    public static Partial<DocumentHistoryUnfurlDetails> WithVersion2(this Partial<DocumentHistoryUnfurlDetails> it)
-        => it.AddFieldName("version2");
-    
-    public static Partial<DocumentHistoryUnfurlDetails> WithBase2(this Partial<DocumentHistoryUnfurlDetails> it)
-        => it.AddFieldName("base2");
-    
-    public static Partial<DocumentHistoryUnfurlDetails> WithPreview2(this Partial<DocumentHistoryUnfurlDetails> it)
-        => it.AddFieldName("preview2");
+    public static Partial<M2ChannelAIAssistanceInfo> WithLlmProvider(this Partial<M2ChannelAIAssistanceInfo> it)
+        => it.AddFieldName("llmProvider");
     
 }
 

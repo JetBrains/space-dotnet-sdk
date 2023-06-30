@@ -37,13 +37,10 @@ public sealed class DocumentHistoryUnfurlDetails
     
     public DocumentHistoryUnfurlDetails() { }
     
-    public DocumentHistoryUnfurlDetails(string document, string title, DateTime? version = null, DateTime? @base = null, DateTime? preview = null, DateTime? version2 = null, DateTime? base2 = null, DateTime? preview2 = null)
+    public DocumentHistoryUnfurlDetails(string document, string title, DateTime? version2 = null, DateTime? base2 = null, DateTime? preview2 = null)
     {
         Document = document;
         Title = title;
-        Version = version;
-        Base = @base;
-        Preview = preview;
         Version2 = version2;
         Base2 = base2;
         Preview2 = preview2;
@@ -67,36 +64,6 @@ public sealed class DocumentHistoryUnfurlDetails
     {
         get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
-    }
-
-    private PropertyValue<DateTime?> _version = new PropertyValue<DateTime?>(nameof(DocumentHistoryUnfurlDetails), nameof(Version), "version");
-    
-    [JsonPropertyName("version")]
-    [JsonConverter(typeof(SpaceDateTimeConverter))]
-    public DateTime? Version
-    {
-        get => _version.GetValue(InlineErrors);
-        set => _version.SetValue(value);
-    }
-
-    private PropertyValue<DateTime?> _base = new PropertyValue<DateTime?>(nameof(DocumentHistoryUnfurlDetails), nameof(Base), "base");
-    
-    [JsonPropertyName("base")]
-    [JsonConverter(typeof(SpaceDateTimeConverter))]
-    public DateTime? Base
-    {
-        get => _base.GetValue(InlineErrors);
-        set => _base.SetValue(value);
-    }
-
-    private PropertyValue<DateTime?> _preview = new PropertyValue<DateTime?>(nameof(DocumentHistoryUnfurlDetails), nameof(Preview), "preview");
-    
-    [JsonPropertyName("preview")]
-    [JsonConverter(typeof(SpaceDateTimeConverter))]
-    public DateTime? Preview
-    {
-        get => _preview.GetValue(InlineErrors);
-        set => _preview.SetValue(value);
     }
 
     private PropertyValue<DateTime?> _version2 = new PropertyValue<DateTime?>(nameof(DocumentHistoryUnfurlDetails), nameof(Version2), "version2");
@@ -133,9 +100,6 @@ public sealed class DocumentHistoryUnfurlDetails
     {
         _document.SetAccessPath(parentChainPath, validateHasBeenSet);
         _title.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _version.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _base.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _preview.SetAccessPath(parentChainPath, validateHasBeenSet);
         _version2.SetAccessPath(parentChainPath, validateHasBeenSet);
         _base2.SetAccessPath(parentChainPath, validateHasBeenSet);
         _preview2.SetAccessPath(parentChainPath, validateHasBeenSet);

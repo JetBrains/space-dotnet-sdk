@@ -32,17 +32,17 @@ namespace JetBrains.Space.Client;
 [JsonConverter(typeof(EnumStringConverter))]
 public enum ReviewSorting
 {
-    [EnumMember(Value = "CreatedAtAsc")]
-    CreatedAtAsc,
-    
     [EnumMember(Value = "CreatedAtDesc")]
     CreatedAtDesc,
     
-    [EnumMember(Value = "LastUpdatedAsc")]
-    LastUpdatedAsc,
+    [EnumMember(Value = "CreatedAtAsc")]
+    CreatedAtAsc,
     
     [EnumMember(Value = "LastUpdatedDesc")]
     LastUpdatedDesc,
+    
+    [EnumMember(Value = "LastUpdatedAsc")]
+    LastUpdatedAsc,
     
 }
 

@@ -27,24 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DocumentHistoryUnfurlDetailsPartialBuilder;
+namespace JetBrains.Space.Client.M2LiveTypedContentPartialBuilder;
 
-public static class DocumentHistoryUnfurlDetailsPartialExtensions
+public static class M2LiveTypedContentPartialExtensions
 {
-    public static Partial<DocumentHistoryUnfurlDetails> WithDocument(this Partial<DocumentHistoryUnfurlDetails> it)
-        => it.AddFieldName("document");
+    public static Partial<M2LiveTypedContent> WithSession(this Partial<M2LiveTypedContent> it)
+        => it.AddFieldName("session");
     
-    public static Partial<DocumentHistoryUnfurlDetails> WithTitle(this Partial<DocumentHistoryUnfurlDetails> it)
-        => it.AddFieldName("title");
+    public static Partial<M2LiveTypedContent> WithMessage(this Partial<M2LiveTypedContent> it)
+        => it.AddFieldName("message");
     
-    public static Partial<DocumentHistoryUnfurlDetails> WithVersion2(this Partial<DocumentHistoryUnfurlDetails> it)
-        => it.AddFieldName("version2");
+    public static Partial<M2LiveTypedContent> WithCompletedText(this Partial<M2LiveTypedContent> it)
+        => it.AddFieldName("completedText");
     
-    public static Partial<DocumentHistoryUnfurlDetails> WithBase2(this Partial<DocumentHistoryUnfurlDetails> it)
-        => it.AddFieldName("base2");
+    public static Partial<M2LiveTypedContent> WithFailed(this Partial<M2LiveTypedContent> it)
+        => it.AddFieldName("failed");
     
-    public static Partial<DocumentHistoryUnfurlDetails> WithPreview2(this Partial<DocumentHistoryUnfurlDetails> it)
-        => it.AddFieldName("preview2");
+    public static Partial<M2LiveTypedContent> WithTrace(this Partial<M2LiveTypedContent> it)
+        => it.AddFieldName("trace");
     
 }
 

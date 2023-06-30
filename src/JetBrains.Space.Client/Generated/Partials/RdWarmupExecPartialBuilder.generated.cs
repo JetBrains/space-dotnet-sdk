@@ -67,6 +67,9 @@ public static class RdWarmupExecPartialExtensions
     public static Partial<RdWarmupExec> WithIdeType(this Partial<RdWarmupExec> it, Func<Partial<IdeType>, Partial<IdeType>> partialBuilder)
         => it.AddFieldName("ideType", partialBuilder(new Partial<IdeType>(it)));
     
+    public static Partial<RdWarmupExec> WithIdeBuild(this Partial<RdWarmupExec> it)
+        => it.AddFieldName("ideBuild");
+    
     public static Partial<RdWarmupExec> WithIdeVersion(this Partial<RdWarmupExec> it)
         => it.AddFieldName("ideVersion");
     

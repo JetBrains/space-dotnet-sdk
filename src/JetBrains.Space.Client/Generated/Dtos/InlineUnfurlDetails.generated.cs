@@ -41,8 +41,8 @@ public interface InlineUnfurlDetails
     public static CallSessionUnfurlDetails CallSessionUnfurlDetails(CallSession session)
         => new CallSessionUnfurlDetails(session: session);
     
-    public static DocumentHistoryUnfurlDetails DocumentHistoryUnfurlDetails(string document, string title, DateTime? version = null, DateTime? @base = null, DateTime? preview = null, DateTime? version2 = null, DateTime? base2 = null, DateTime? preview2 = null)
-        => new DocumentHistoryUnfurlDetails(document: document, title: title, version: version, @base: @base, preview: preview, version2: version2, base2: base2, preview2: preview2);
+    public static DocumentHistoryUnfurlDetails DocumentHistoryUnfurlDetails(string document, string title, DateTime? version2 = null, DateTime? base2 = null, DateTime? preview2 = null)
+        => new DocumentHistoryUnfurlDetails(document: document, title: title, version2: version2, base2: base2, preview2: preview2);
     
     public static UnfurlDeployTargetDetails UnfurlDeployTargetDetails(DeployTargetRecord targetRef, string? targetName = null, bool? showLinkIcon = null, bool? skipDetailsRender = null)
         => new UnfurlDeployTargetDetails(targetRef: targetRef, targetName: targetName, showLinkIcon: showLinkIcon, skipDetailsRender: skipDetailsRender);
