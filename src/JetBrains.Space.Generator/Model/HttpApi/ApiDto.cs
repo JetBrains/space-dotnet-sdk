@@ -41,4 +41,7 @@ public class ApiDto
 
     [JsonPropertyName("record")]
     public bool Record { get; set; }
+
+    [JsonPropertyName("featureFlag")]
+    public string? FeatureFlag { get; set; }
 }

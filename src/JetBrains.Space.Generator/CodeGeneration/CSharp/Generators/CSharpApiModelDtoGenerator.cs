@@ -24,7 +24,11 @@ public class CSharpApiModelDtoGenerator
         {
             builder.AppendLine($"{indent}{apiDto.Deprecation.ToCSharpDeprecation()}");
         }
-        if (apiDto.Experimental != null)
+        else if (apiDto.FeatureFlag != null && _codeGenerationContext.TryGetFeatureFlag(apiDto.FeatureFlag, out var featureFlag))
+        {
+            builder.AppendLine($"{indent}{featureFlag.ToCSharpFeatureFlag()}");
+        }
+        else if (apiDto.Experimental != null)
         {
             builder.AppendLine($"{indent}{apiDto.Experimental.ToCSharpExperimental()}");
         }
@@ -276,7 +280,7 @@ public class CSharpApiModelDtoGenerator
         {
             builder.AppendLine($"{indent}{apiField.Deprecation.ToCSharpDeprecation()}");
         }
-        if (apiField.Experimental != null)
+        else if (apiField.Experimental != null)
         {
             builder.AppendLine($"{indent}{apiField.Experimental.ToCSharpExperimental()}");
         }

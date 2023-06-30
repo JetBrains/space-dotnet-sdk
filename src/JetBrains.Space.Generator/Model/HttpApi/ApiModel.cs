@@ -15,4 +15,7 @@ public class ApiModel
         
     [JsonPropertyName("resources")]
     public List<ApiResource> Resources { get; set; } = new();
+    
+    [JsonPropertyName("featureFlags")]
+    public List<ApiFeatureFlag> FeatureFlags { get; set; } = new();
 }

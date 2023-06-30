@@ -573,7 +573,7 @@ public class CSharpApiModelResourceGenerator
         return builder.ToString();
     }
 
-    private static string GenerateMethodDocumentationForEndpoint(ApiEndpoint apiEndpoint, MethodParametersBuilder methodParametersBuilder)
+    private string GenerateMethodDocumentationForEndpoint(ApiEndpoint apiEndpoint, MethodParametersBuilder methodParametersBuilder)
     {
         var indent = new Indent();
         var builder = new CSharpBuilder();
@@ -610,7 +610,11 @@ public class CSharpApiModelResourceGenerator
         {
             builder.AppendLine($"{indent}{apiEndpoint.Deprecation.ToCSharpDeprecation()}");
         }
-        if (apiEndpoint.Experimental != null)
+        else if (apiEndpoint.FeatureFlag != null && _codeGenerationContext.TryGetFeatureFlag(apiEndpoint.FeatureFlag, out var featureFlag))
+        {
+            builder.AppendLine($"{indent}{featureFlag.ToCSharpFeatureFlag()}");
+        }
+        else if (apiEndpoint.Experimental != null)
         {
             builder.AppendLine($"{indent}{apiEndpoint.Experimental.ToCSharpExperimental()}");
         }

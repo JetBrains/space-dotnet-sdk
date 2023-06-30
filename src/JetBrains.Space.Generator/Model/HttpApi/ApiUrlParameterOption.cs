@@ -20,6 +20,9 @@ public abstract class ApiUrlParameterOption
         
     [JsonPropertyName("experimental")]
     public ApiExperimental? Experimental { get; set; } = default;
+
+    [JsonPropertyName("featureFlag")]
+    public string? FeatureFlag { get; set; }
         
     public class Var : ApiUrlParameterOption
     {

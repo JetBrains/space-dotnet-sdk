@@ -23,7 +23,7 @@ public class CSharpApiModelUrlParameterGenerator
         {
             builder.AppendLine($"{indent}{apiUrlParameter.Deprecation.ToCSharpDeprecation()}");
         }
-        if (apiUrlParameter.Experimental != null)
+        else if (apiUrlParameter.Experimental != null)
         {
             builder.AppendLine($"{indent}{apiUrlParameter.Experimental.ToCSharpExperimental()}");
         }
@@ -75,7 +75,11 @@ public class CSharpApiModelUrlParameterGenerator
         {
             builder.AppendLine($"{indent}{apiUrlParameterOption.Deprecation.ToCSharpDeprecation()}");
         }
-        if (apiUrlParameterOption.Experimental != null)
+        else if (apiUrlParameterOption.FeatureFlag != null && _codeGenerationContext.TryGetFeatureFlag(apiUrlParameterOption.FeatureFlag, out var featureFlag))
+        {
+            builder.AppendLine($"{indent}{featureFlag.ToCSharpFeatureFlag()}");
+        }
+        else if (apiUrlParameterOption.Experimental != null)
         {
             builder.AppendLine($"{indent}{apiUrlParameterOption.Experimental.ToCSharpExperimental()}");
         }
@@ -127,7 +131,11 @@ public class CSharpApiModelUrlParameterGenerator
         {
             builder.AppendLine($"{indent}{apiUrlParameterOption.Deprecation.ToCSharpDeprecation()}");
         }
-        if (apiUrlParameterOption.Experimental != null)
+        else if (apiUrlParameterOption.FeatureFlag != null && _codeGenerationContext.TryGetFeatureFlag(apiUrlParameterOption.FeatureFlag, out var featureFlag))
+        {
+            builder.AppendLine($"{indent}{featureFlag.ToCSharpFeatureFlag()}");
+        }
+        else if (apiUrlParameterOption.Experimental != null)
         {
             builder.AppendLine($"{indent}{apiUrlParameterOption.Experimental.ToCSharpExperimental()}");
         }
