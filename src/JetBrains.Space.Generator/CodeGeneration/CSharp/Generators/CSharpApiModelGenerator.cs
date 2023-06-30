@@ -61,12 +61,6 @@ public class CSharpApiModelGenerator
                 partialExtensionsGenerator.GeneratePartialClassFor(apiDto),
                 apiDto.ToCSharpClassName() + "PartialBuilder");
         }
-            
-        // Menu ids
-        var menuIdsGenerator = new CSharpApiModelMenuIdGenerator(_codeGenerationContext);
-        WriteToDocument(clientDocumentWriter, 
-            "MenuIds.generated.cs",
-            menuIdsGenerator.GenerateMenuIds(_codeGenerationContext.GetMenuIds()));
         
         // Version info
         var deploymentInfoGenerator = new CSharpDeploymentInfoGenerator();
