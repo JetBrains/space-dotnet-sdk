@@ -46,7 +46,7 @@ public partial class BlogClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<ArticleRecord> PublishBlogPostAsync(string title, string content, List<string>? locations = null, List<string>? teams = null, BlogCalendarEvent? @event = null, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    public async Task<ArticleRecord> PublishBlogPostAsync(string title, string? content = null, TextDocumentContent? docContent = null, List<string>? locations = null, List<string>? teams = null, BlogCalendarEvent? @event = null, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
@@ -56,6 +56,7 @@ public partial class BlogClient : ISpaceClient
             { 
                 Title = title,
                 Content = content,
+                DocContent = docContent,
                 Locations = locations,
                 Teams = teams,
                 Event = @event,
@@ -202,7 +203,7 @@ public partial class BlogClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<ArticleRecord> UpdateBlogPostAsync(string id, string? title = null, string? content = null, List<string>? locations = null, List<string>? teams = null, BlogCalendarEvent? @event = null, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    public async Task<ArticleRecord> UpdateBlogPostAsync(string id, string? title = null, string? content = null, TextDocumentContent? docContent = null, List<string>? locations = null, List<string>? teams = null, BlogCalendarEvent? @event = null, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default()).ToString());
@@ -212,6 +213,7 @@ public partial class BlogClient : ISpaceClient
             { 
                 Title = title,
                 Content = content,
+                DocContent = docContent,
                 Locations = locations,
                 Teams = teams,
                 Event = @event,

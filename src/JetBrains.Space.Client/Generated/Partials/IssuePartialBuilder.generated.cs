@@ -121,6 +121,12 @@ public static class IssuePartialExtensions
     public static Partial<Issue> WithAttachments(this Partial<Issue> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
         => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentInfo>(it)));
     
+    public static Partial<Issue> WithBacklogs(this Partial<Issue> it)
+        => it.AddFieldName("backlogs");
+    
+    public static Partial<Issue> WithBacklogs(this Partial<Issue> it, Func<Partial<BoardBacklog>, Partial<BoardBacklog>> partialBuilder)
+        => it.AddFieldName("backlogs", partialBuilder(new Partial<BoardBacklog>(it)));
+    
     public static Partial<Issue> WithChannel(this Partial<Issue> it)
         => it.AddFieldName("channel");
     

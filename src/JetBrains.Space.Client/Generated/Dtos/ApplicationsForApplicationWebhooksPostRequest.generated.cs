@@ -138,13 +138,12 @@ public class ApplicationsForApplicationWebhooksPostRequest
     
     /// <summary>
     /// Alternatively to `payloadFields`, you can specify `payloadTemplate` parameter. This is a free-form template for HTTP body.
-    ///             You can use variables in the template, which will be replaced with actual values when the webhook is triggered.
-    ///             To reference a variable, use the following syntax: `{{variableName}}`. For example, for `Chat Messages` subscription,
-    ///             `{{message.author.name}}` will be replaced with the name of the author of the message.
-    ///             To escape an opening curly brace, use `\{`. To escape a backslash, use `\\`.
-    ///             To explore the available variables, please set up a webhook for your application in UI with relevant subscriptions, and have a look at the `Customize Payload` section.
-    ///             The children of the `payload` node are available as variables.
-    ///         
+    /// You can use variables in the template, which will be replaced with actual values when the webhook is triggered.
+    /// To reference a variable, use the following syntax: `{{variableName}}`. For example, for `Chat Messages` subscription,
+    /// `{{message.author.name}}` will be replaced with the name of the author of the message.
+    /// To escape an opening curly brace, use `\{`. To escape a backslash, use `\\`.
+    /// To explore the available variables, please set up a webhook for your application in UI with relevant subscriptions, and have a look at the `Customize Payload` section.
+    /// The children of the `payload` node are available as variables.
     /// </summary>
     /// <remarks>
     /// This parameter is experimental and its behavior may be changed or removed in future versions

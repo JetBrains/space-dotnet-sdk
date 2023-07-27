@@ -52,6 +52,9 @@ public static class ProjectPackageRepositoryPartialExtensions
     public static Partial<ProjectPackageRepository> WithRepository(this Partial<ProjectPackageRepository> it, Func<Partial<PackageRepository>, Partial<PackageRepository>> partialBuilder)
         => it.AddFieldName("repository", partialBuilder(new Partial<PackageRepository>(it)));
     
+    public static Partial<ProjectPackageRepository> WithPermissions(this Partial<ProjectPackageRepository> it)
+        => it.AddFieldName("permissions");
+    
     public static Partial<ProjectPackageRepository> WithIsArchived(this Partial<ProjectPackageRepository> it)
         => it.AddFieldName("archived");
     

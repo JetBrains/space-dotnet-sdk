@@ -37,7 +37,7 @@ public sealed class ContainerPackageVersionDetails
     
     public ContainerPackageVersionDetails() { }
     
-    public ContainerPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, bool pinned, long diskSize, int schemaVersion, string mediaType, string manifestType, List<string>? tags = null, long? accessed = null, string? comment = null, CPrincipal? author = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, Dictionary<string, string>? metadata = null, ContainerImage? image = null, ContainerHelmChart? chart = null)
+    public ContainerPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, bool pinned, long diskSize, int schemaVersion, string mediaType, string manifestType, List<string>? tags = null, long? accessed = null, string? comment = null, CPrincipal? author = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, Dictionary<string, string>? metadata = null, ContainerImage? image = null, ContainerHelmChart? chart = null, PackageVersionRef? subject = null)
     {
         Type = type;
         Repository = repository;
@@ -59,6 +59,7 @@ public sealed class ContainerPackageVersionDetails
         ManifestType = manifestType;
         Image = image;
         Chart = chart;
+        Subject = subject;
     }
     
     private PropertyValue<PackageType> _type = new PropertyValue<PackageType>(nameof(ContainerPackageVersionDetails), nameof(Type), "type");
@@ -252,6 +253,15 @@ public sealed class ContainerPackageVersionDetails
         set => _chart.SetValue(value);
     }
 
+    private PropertyValue<PackageVersionRef?> _subject = new PropertyValue<PackageVersionRef?>(nameof(ContainerPackageVersionDetails), nameof(Subject), "subject");
+    
+    [JsonPropertyName("subject")]
+    public PackageVersionRef? Subject
+    {
+        get => _subject.GetValue(InlineErrors);
+        set => _subject.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _type.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -274,6 +284,7 @@ public sealed class ContainerPackageVersionDetails
         _manifestType.SetAccessPath(parentChainPath, validateHasBeenSet);
         _image.SetAccessPath(parentChainPath, validateHasBeenSet);
         _chart.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _subject.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -34,5 +34,11 @@ public static class ExternalIssueTrackerUiExtensionApiPartialExtensions
     public static Partial<ExternalIssueTrackerUiExtensionApi> WithDomain(this Partial<ExternalIssueTrackerUiExtensionApi> it)
         => it.AddFieldName("domain");
     
+    public static Partial<ExternalIssueTrackerUiExtensionApi> WithTrackerName(this Partial<ExternalIssueTrackerUiExtensionApi> it)
+        => it.AddFieldName("trackerName");
+    
+    public static Partial<ExternalIssueTrackerUiExtensionApi> WithCanCreateIssues(this Partial<ExternalIssueTrackerUiExtensionApi> it)
+        => it.AddFieldName("canCreateIssues");
+    
 }
 

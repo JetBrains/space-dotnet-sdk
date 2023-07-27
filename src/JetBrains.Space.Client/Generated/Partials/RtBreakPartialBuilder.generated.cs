@@ -31,6 +31,7 @@ namespace JetBrains.Space.Client.RtBreakPartialBuilder;
 
 public static class RtBreakPartialExtensions
 {
+    [Obsolete("Obsolete: there is no difference between soft and hard break. Hard breaks are enforced by a new paragraph, so from the Rt point of view all breaks are soft. (since 2023-03-28) (will be removed in a future version)")]
     public static Partial<RtBreak> WithIsSoft(this Partial<RtBreak> it)
         => it.AddFieldName("soft");
     

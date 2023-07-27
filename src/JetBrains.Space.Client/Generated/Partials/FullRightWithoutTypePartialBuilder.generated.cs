@@ -46,8 +46,8 @@ public static class FullRightWithoutTypePartialExtensions
     public static Partial<FullRightWithoutType> WithFeatureFlag(this Partial<FullRightWithoutType> it)
         => it.AddFieldName("featureFlag");
     
-    public static Partial<FullRightWithoutType> WithFeatureFlag(this Partial<FullRightWithoutType> it, Func<Partial<FeatureFlag>, Partial<FeatureFlag>> partialBuilder)
-        => it.AddFieldName("featureFlag", partialBuilder(new Partial<FeatureFlag>(it)));
+    public static Partial<FullRightWithoutType> WithFeatureFlag(this Partial<FullRightWithoutType> it, Func<Partial<FeatureFlagInfo>, Partial<FeatureFlagInfo>> partialBuilder)
+        => it.AddFieldName("featureFlag", partialBuilder(new Partial<FeatureFlagInfo>(it)));
     
 }
 

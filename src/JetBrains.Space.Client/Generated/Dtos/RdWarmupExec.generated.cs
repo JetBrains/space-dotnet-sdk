@@ -34,14 +34,11 @@ public sealed class RdWarmupExec
 {
     public RdWarmupExec() { }
     
-    public RdWarmupExec(string id, string projectId, string repositoryName, string branch, string revision, WarmupExecutionStatus status, IdeType ideType, string ideBuild, string ideVersion, string computeTaskId, WarmupExecutionTrigger trigger, bool archived, string? devfile = null, DateTime? startedAt = null, DateTime? finishedAt = null, string? ideQuality = null)
+    public RdWarmupExec(string id, string projectId, RdWarmupVcsData vcsData, WarmupExecutionStatus status, IdeType ideType, string ideBuild, string ideVersion, string computeTaskId, WarmupExecutionTrigger trigger, RdConfigurationSource configurationSource, bool archived, DateTime? startedAt = null, DateTime? finishedAt = null, string? ideQuality = null)
     {
         Id = id;
         ProjectId = projectId;
-        RepositoryName = repositoryName;
-        Branch = branch;
-        Revision = revision;
-        Devfile = devfile;
+        VcsData = vcsData;
         Status = status;
         StartedAt = startedAt;
         FinishedAt = finishedAt;
@@ -51,6 +48,7 @@ public sealed class RdWarmupExec
         IdeQuality = ideQuality;
         ComputeTaskId = computeTaskId;
         Trigger = trigger;
+        ConfigurationSource = configurationSource;
         IsArchived = archived;
     }
     
@@ -74,43 +72,14 @@ public sealed class RdWarmupExec
         set => _projectId.SetValue(value);
     }
 
-    private PropertyValue<string> _repositoryName = new PropertyValue<string>(nameof(RdWarmupExec), nameof(RepositoryName), "repositoryName");
+    private PropertyValue<RdWarmupVcsData> _vcsData = new PropertyValue<RdWarmupVcsData>(nameof(RdWarmupExec), nameof(VcsData), "vcsData");
     
     [Required]
-    [JsonPropertyName("repositoryName")]
-    public string RepositoryName
+    [JsonPropertyName("vcsData")]
+    public RdWarmupVcsData VcsData
     {
-        get => _repositoryName.GetValue(InlineErrors);
-        set => _repositoryName.SetValue(value);
-    }
-
-    private PropertyValue<string> _branch = new PropertyValue<string>(nameof(RdWarmupExec), nameof(Branch), "branch");
-    
-    [Required]
-    [JsonPropertyName("branch")]
-    public string Branch
-    {
-        get => _branch.GetValue(InlineErrors);
-        set => _branch.SetValue(value);
-    }
-
-    private PropertyValue<string> _revision = new PropertyValue<string>(nameof(RdWarmupExec), nameof(Revision), "revision");
-    
-    [Required]
-    [JsonPropertyName("revision")]
-    public string Revision
-    {
-        get => _revision.GetValue(InlineErrors);
-        set => _revision.SetValue(value);
-    }
-
-    private PropertyValue<string?> _devfile = new PropertyValue<string?>(nameof(RdWarmupExec), nameof(Devfile), "devfile");
-    
-    [JsonPropertyName("devfile")]
-    public string? Devfile
-    {
-        get => _devfile.GetValue(InlineErrors);
-        set => _devfile.SetValue(value);
+        get => _vcsData.GetValue(InlineErrors);
+        set => _vcsData.SetValue(value);
     }
 
     private PropertyValue<WarmupExecutionStatus> _status = new PropertyValue<WarmupExecutionStatus>(nameof(RdWarmupExec), nameof(Status), "status");
@@ -202,6 +171,16 @@ public sealed class RdWarmupExec
         set => _trigger.SetValue(value);
     }
 
+    private PropertyValue<RdConfigurationSource> _configurationSource = new PropertyValue<RdConfigurationSource>(nameof(RdWarmupExec), nameof(ConfigurationSource), "configurationSource");
+    
+    [Required]
+    [JsonPropertyName("configurationSource")]
+    public RdConfigurationSource ConfigurationSource
+    {
+        get => _configurationSource.GetValue(InlineErrors);
+        set => _configurationSource.SetValue(value);
+    }
+
     private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(RdWarmupExec), nameof(IsArchived), "archived");
     
     [Required]
@@ -216,10 +195,7 @@ public sealed class RdWarmupExec
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
         _projectId.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _repositoryName.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _branch.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _revision.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _devfile.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _vcsData.SetAccessPath(parentChainPath, validateHasBeenSet);
         _status.SetAccessPath(parentChainPath, validateHasBeenSet);
         _startedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
         _finishedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -229,6 +205,7 @@ public sealed class RdWarmupExec
         _ideQuality.SetAccessPath(parentChainPath, validateHasBeenSet);
         _computeTaskId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _trigger.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _configurationSource.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

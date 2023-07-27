@@ -37,9 +37,11 @@ public sealed class ExternalIssueTrackerUiExtensionApi
     
     public ExternalIssueTrackerUiExtensionApi() { }
     
-    public ExternalIssueTrackerUiExtensionApi(string domain)
+    public ExternalIssueTrackerUiExtensionApi(string domain, string trackerName, bool canCreateIssues)
     {
         Domain = domain;
+        TrackerName = trackerName;
+        CanCreateIssues = canCreateIssues;
     }
     
     private PropertyValue<string> _domain = new PropertyValue<string>(nameof(ExternalIssueTrackerUiExtensionApi), nameof(Domain), "domain");
@@ -52,9 +54,31 @@ public sealed class ExternalIssueTrackerUiExtensionApi
         set => _domain.SetValue(value);
     }
 
+    private PropertyValue<string> _trackerName = new PropertyValue<string>(nameof(ExternalIssueTrackerUiExtensionApi), nameof(TrackerName), "trackerName");
+    
+    [Required]
+    [JsonPropertyName("trackerName")]
+    public string TrackerName
+    {
+        get => _trackerName.GetValue(InlineErrors);
+        set => _trackerName.SetValue(value);
+    }
+
+    private PropertyValue<bool> _canCreateIssues = new PropertyValue<bool>(nameof(ExternalIssueTrackerUiExtensionApi), nameof(CanCreateIssues), "canCreateIssues");
+    
+    [Required]
+    [JsonPropertyName("canCreateIssues")]
+    public bool CanCreateIssues
+    {
+        get => _canCreateIssues.GetValue(InlineErrors);
+        set => _canCreateIssues.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _domain.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _trackerName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _canCreateIssues.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

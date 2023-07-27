@@ -35,5 +35,8 @@ public interface AttachmentIn
     public static FileAttachment FileAttachment(string id, long sizeBytes, string filename)
         => new FileAttachment(id: id, sizeBytes: sizeBytes, filename: filename);
     
+    public static ReplyMessageAttachmentReply ReplyMessageAttachmentReply(string messageId)
+        => new ReplyMessageAttachmentReply(messageId: messageId);
+    
 }
 

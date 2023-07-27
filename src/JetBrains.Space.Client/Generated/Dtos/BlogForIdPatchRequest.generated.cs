@@ -34,10 +34,11 @@ public class BlogForIdPatchRequest
 {
     public BlogForIdPatchRequest() { }
     
-    public BlogForIdPatchRequest(string? title = null, string? content = null, List<string>? locations = null, List<string>? teams = null, BlogCalendarEvent? @event = null)
+    public BlogForIdPatchRequest(string? title = null, string? content = null, TextDocumentContent? docContent = null, List<string>? locations = null, List<string>? teams = null, BlogCalendarEvent? @event = null)
     {
         Title = title;
         Content = content;
+        DocContent = docContent;
         Locations = locations;
         Teams = teams;
         Event = @event;
@@ -60,11 +61,24 @@ public class BlogForIdPatchRequest
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
+    [Obsolete("Use docContent property instead (since 2023-05-30) (will be removed in a future version)")]
     [JsonPropertyName("content")]
     public string? Content
     {
         get => _content.GetValue(InlineErrors);
         set => _content.SetValue(value);
+    }
+
+    private PropertyValue<TextDocumentContent?> _docContent = new PropertyValue<TextDocumentContent?>(nameof(BlogForIdPatchRequest), nameof(DocContent), "docContent");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("docContent")]
+    public TextDocumentContent? DocContent
+    {
+        get => _docContent.GetValue(InlineErrors);
+        set => _docContent.SetValue(value);
     }
 
     private PropertyValue<List<string>?> _locations = new PropertyValue<List<string>?>(nameof(BlogForIdPatchRequest), nameof(Locations), "locations");
@@ -107,6 +121,7 @@ public class BlogForIdPatchRequest
     {
         _title.SetAccessPath(parentChainPath, validateHasBeenSet);
         _content.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _docContent.SetAccessPath(parentChainPath, validateHasBeenSet);
         _locations.SetAccessPath(parentChainPath, validateHasBeenSet);
         _teams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _event.SetAccessPath(parentChainPath, validateHasBeenSet);

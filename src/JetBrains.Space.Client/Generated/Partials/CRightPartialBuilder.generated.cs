@@ -46,8 +46,8 @@ public static class CRightPartialExtensions
     public static Partial<CRight> WithFeatureFlag(this Partial<CRight> it)
         => it.AddFieldName("featureFlag");
     
-    public static Partial<CRight> WithFeatureFlag(this Partial<CRight> it, Func<Partial<FeatureFlag>, Partial<FeatureFlag>> partialBuilder)
-        => it.AddFieldName("featureFlag", partialBuilder(new Partial<FeatureFlag>(it)));
+    public static Partial<CRight> WithFeatureFlag(this Partial<CRight> it, Func<Partial<FeatureFlagInfo>, Partial<FeatureFlagInfo>> partialBuilder)
+        => it.AddFieldName("featureFlag", partialBuilder(new Partial<FeatureFlagInfo>(it)));
     
 }
 

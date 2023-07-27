@@ -51,7 +51,7 @@ public partial class ApplicationClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<ESApp> CreateApplicationAsync(string name, string? description = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? email = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = true, bool? codeFlowEnabled = false, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = false, string? implicitFlowRedirectURIs = null, string? endpointUri = null, bool? endpointSslVerification = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? connectToSpace = false, string? state = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    public async Task<ESApp> CreateApplicationAsync(string name, string? description = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? email = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = true, bool? codeFlowEnabled = false, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? publicClientsAllowed = null, bool? implicitFlowEnabled = false, string? implicitFlowRedirectURIs = null, string? endpointUri = null, bool? endpointSslVerification = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? connectToSpace = false, string? state = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
@@ -70,6 +70,7 @@ public partial class ApplicationClient : ISpaceClient
                 IsCodeFlowEnabled = codeFlowEnabled,
                 CodeFlowRedirectURIs = codeFlowRedirectURIs,
                 IsPkceRequired = pkceRequired,
+                IsPublicClientsAllowed = publicClientsAllowed,
                 IsImplicitFlowEnabled = implicitFlowEnabled,
                 ImplicitFlowRedirectURIs = implicitFlowRedirectURIs,
                 EndpointUri = endpointUri,
@@ -258,7 +259,7 @@ public partial class ApplicationClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<ESApp> UpdateApplicationAsync(ApplicationIdentifier application, string? name = null, string? description = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, bool? endpointSslVerification = null, bool? hasVerificationToken = null, bool? hasPublicKeySignature = null, bool? hasSigningKey = null, EndpointAppLevelAuthUpdateType? appLevelAuth = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? codeFlowRedirectURIs = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    public async Task<ESApp> UpdateApplicationAsync(ApplicationIdentifier application, string? name = null, string? description = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, bool? pkceRequired = null, bool? publicClientsAllowed = null, bool? implicitFlowEnabled = null, bool? endpointSslVerification = null, bool? hasVerificationToken = null, bool? hasPublicKeySignature = null, bool? hasSigningKey = null, EndpointAppLevelAuthUpdateType? appLevelAuth = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? codeFlowRedirectURIs = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? sslKeystoreAuth = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
@@ -275,6 +276,7 @@ public partial class ApplicationClient : ISpaceClient
                 IsCodeFlowEnabled = codeFlowEnabled,
                 CodeFlowRedirectURIs = codeFlowRedirectURIs,
                 IsPkceRequired = pkceRequired,
+                IsPublicClientsAllowed = publicClientsAllowed,
                 IsImplicitFlowEnabled = implicitFlowEnabled,
                 ImplicitFlowRedirectURIs = implicitFlowRedirectURIs,
                 EndpointUri = endpointUri,

@@ -34,12 +34,13 @@ public sealed class ESAppSettings
 {
     public ESAppSettings() { }
     
-    public ESAppSettings(bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, EndpointDTO? endpoint = null, EndpointAuthDTO? endpointAuth = null, string? externalIssueTrackerDomain = null)
+    public ESAppSettings(bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? publicClientsAllowed = null, bool? implicitFlowEnabled = null, string? implicitFlowRedirectURIs = null, EndpointDTO? endpoint = null, EndpointAuthDTO? endpointAuth = null, string? externalIssueTrackerDomain = null)
     {
         IsClientCredentialsFlowEnabled = clientCredentialsFlowEnabled;
         IsCodeFlowEnabled = codeFlowEnabled;
         CodeFlowRedirectURIs = codeFlowRedirectURIs;
         IsPkceRequired = pkceRequired;
+        IsPublicClientsAllowed = publicClientsAllowed;
         IsImplicitFlowEnabled = implicitFlowEnabled;
         ImplicitFlowRedirectURIs = implicitFlowRedirectURIs;
         Endpoint = endpoint;
@@ -81,6 +82,15 @@ public sealed class ESAppSettings
     {
         get => _pkceRequired.GetValue(InlineErrors);
         set => _pkceRequired.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _publicClientsAllowed = new PropertyValue<bool?>(nameof(ESAppSettings), nameof(IsPublicClientsAllowed), "publicClientsAllowed");
+    
+    [JsonPropertyName("publicClientsAllowed")]
+    public bool? IsPublicClientsAllowed
+    {
+        get => _publicClientsAllowed.GetValue(InlineErrors);
+        set => _publicClientsAllowed.SetValue(value);
     }
 
     private PropertyValue<bool?> _implicitFlowEnabled = new PropertyValue<bool?>(nameof(ESAppSettings), nameof(IsImplicitFlowEnabled), "implicitFlowEnabled");
@@ -134,6 +144,7 @@ public sealed class ESAppSettings
         _codeFlowEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _codeFlowRedirectURIs.SetAccessPath(parentChainPath, validateHasBeenSet);
         _pkceRequired.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _publicClientsAllowed.SetAccessPath(parentChainPath, validateHasBeenSet);
         _implicitFlowEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _implicitFlowRedirectURIs.SetAccessPath(parentChainPath, validateHasBeenSet);
         _endpoint.SetAccessPath(parentChainPath, validateHasBeenSet);

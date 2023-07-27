@@ -34,7 +34,7 @@ public class ApplicationsForApplicationPatchRequest
 {
     public ApplicationsForApplicationPatchRequest() { }
     
-    public ApplicationsForApplicationPatchRequest(string? name = null, string? description = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, bool? pkceRequired = null, bool? implicitFlowEnabled = null, bool? endpointSslVerification = null, bool? hasVerificationToken = null, bool? hasPublicKeySignature = null, bool? hasSigningKey = null, EndpointAppLevelAuthUpdateType? appLevelAuth = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? codeFlowRedirectURIs = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? sslKeystoreAuth = null)
+    public ApplicationsForApplicationPatchRequest(string? name = null, string? description = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = null, bool? codeFlowEnabled = null, bool? pkceRequired = null, bool? publicClientsAllowed = null, bool? implicitFlowEnabled = null, bool? endpointSslVerification = null, bool? hasVerificationToken = null, bool? hasPublicKeySignature = null, bool? hasSigningKey = null, EndpointAppLevelAuthUpdateType? appLevelAuth = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? codeFlowRedirectURIs = null, string? implicitFlowRedirectURIs = null, string? endpointUri = null, string? sslKeystoreAuth = null)
     {
         Name = name;
         Description = description;
@@ -45,6 +45,7 @@ public class ApplicationsForApplicationPatchRequest
         IsCodeFlowEnabled = codeFlowEnabled;
         CodeFlowRedirectURIs = codeFlowRedirectURIs;
         IsPkceRequired = pkceRequired;
+        IsPublicClientsAllowed = publicClientsAllowed;
         IsImplicitFlowEnabled = implicitFlowEnabled;
         ImplicitFlowRedirectURIs = implicitFlowRedirectURIs;
         EndpointUri = endpointUri;
@@ -192,6 +193,21 @@ public class ApplicationsForApplicationPatchRequest
     {
         get => _pkceRequired.GetValue(InlineErrors);
         set => _pkceRequired.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _publicClientsAllowed = new PropertyValue<bool?>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsPublicClientsAllowed), "publicClientsAllowed");
+    
+    /// <summary>
+    /// When Authorization Code Flow is enabled, specifies whether clients can authenticate without client secret. Requires PKCE. Learn more in the <a href="https://www.jetbrains.com/help/space/authorization-code.html">documentation</a>.
+    /// </summary>
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("publicClientsAllowed")]
+    public bool? IsPublicClientsAllowed
+    {
+        get => _publicClientsAllowed.GetValue(InlineErrors);
+        set => _publicClientsAllowed.SetValue(value);
     }
 
     private PropertyValue<bool?> _implicitFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsForApplicationPatchRequest), nameof(IsImplicitFlowEnabled), "implicitFlowEnabled");
@@ -373,6 +389,7 @@ public class ApplicationsForApplicationPatchRequest
         _codeFlowEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _codeFlowRedirectURIs.SetAccessPath(parentChainPath, validateHasBeenSet);
         _pkceRequired.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _publicClientsAllowed.SetAccessPath(parentChainPath, validateHasBeenSet);
         _implicitFlowEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _implicitFlowRedirectURIs.SetAccessPath(parentChainPath, validateHasBeenSet);
         _endpointUri.SetAccessPath(parentChainPath, validateHasBeenSet);

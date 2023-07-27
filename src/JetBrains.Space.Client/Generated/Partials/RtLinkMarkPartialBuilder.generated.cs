@@ -46,9 +46,11 @@ public static class RtLinkMarkPartialExtensions
     public static Partial<RtLinkMark> WithDetails(this Partial<RtLinkMark> it, Func<Partial<RtLinkDetails>, Partial<RtLinkDetails>> partialBuilder)
         => it.AddFieldName("details", partialBuilder(new Partial<RtLinkDetails>(it)));
     
+    [Obsolete("Use RtLinkMark fields instead (since 2023-03-28) (will be removed in a future version)")]
     public static Partial<RtLinkMark> WithAttrs(this Partial<RtLinkMark> it)
         => it.AddFieldName("attrs");
     
+    [Obsolete("Use RtLinkMark fields instead (since 2023-03-28) (will be removed in a future version)")]
     public static Partial<RtLinkMark> WithAttrs(this Partial<RtLinkMark> it, Func<Partial<RtLinkAttrs>, Partial<RtLinkAttrs>> partialBuilder)
         => it.AddFieldName("attrs", partialBuilder(new Partial<RtLinkAttrs>(it)));
     

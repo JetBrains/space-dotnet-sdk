@@ -68,5 +68,8 @@ public enum ProjectPinnedItemKind
     [EnumMember(Value = "PlanningIssueFilterUnresolved")]
     PlanningIssueFilterUnresolved,
     
+    [EnumMember(Value = "ExternalIssueTrackerLink")]
+    ExternalIssueTrackerLink,
+    
 }
 

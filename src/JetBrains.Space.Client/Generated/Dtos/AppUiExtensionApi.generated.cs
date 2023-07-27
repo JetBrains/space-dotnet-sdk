@@ -35,11 +35,11 @@ public interface AppUiExtensionApi
     public static ChatBotUiExtensionApi ChatBotUiExtensionApi()
         => new ChatBotUiExtensionApi();
     
-    public static ExternalIssueTrackerUiExtensionApi ExternalIssueTrackerUiExtensionApi(string domain)
-        => new ExternalIssueTrackerUiExtensionApi(domain: domain);
+    public static ExternalIssueTrackerUiExtensionApi ExternalIssueTrackerUiExtensionApi(string domain, string trackerName, bool canCreateIssues)
+        => new ExternalIssueTrackerUiExtensionApi(domain: domain, trackerName: trackerName, canCreateIssues: canCreateIssues);
     
-    public static GettingStartedUiExtensionApi GettingStartedUiExtensionApi(string gettingStartedUrl, string gettingStartedTitle)
-        => new GettingStartedUiExtensionApi(gettingStartedUrl: gettingStartedUrl, gettingStartedTitle: gettingStartedTitle);
+    public static GettingStartedUiExtensionApi GettingStartedUiExtensionApi(string gettingStartedUrl, string gettingStartedTitle, bool? openInNewTab = null)
+        => new GettingStartedUiExtensionApi(gettingStartedUrl: gettingStartedUrl, gettingStartedTitle: gettingStartedTitle, openInNewTab: openInNewTab);
     
     public static TopLevelPageUiExtensionApi TopLevelPageUiExtensionApi(string displayName, string uniqueCode, string? description = null, string? iframeUrl = null)
         => new TopLevelPageUiExtensionApi(displayName: displayName, uniqueCode: uniqueCode, description: description, iframeUrl: iframeUrl);

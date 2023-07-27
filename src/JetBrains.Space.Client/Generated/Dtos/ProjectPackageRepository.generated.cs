@@ -34,13 +34,14 @@ public sealed class ProjectPackageRepository
 {
     public ProjectPackageRepository() { }
     
-    public ProjectPackageRepository(string id, PRProject project, string name, PackageRepository repository, bool archived, List<PackageRepositoryConnection> connections, string? description = null)
+    public ProjectPackageRepository(string id, PRProject project, string name, PackageRepository repository, bool archived, List<PackageRepositoryConnection> connections, string? description = null, List<string>? permissions = null)
     {
         Id = id;
         Project = project;
         Name = name;
         Description = description;
         Repository = repository;
+        Permissions = permissions;
         IsArchived = archived;
         Connections = connections;
     }
@@ -94,6 +95,15 @@ public sealed class ProjectPackageRepository
         set => _repository.SetValue(value);
     }
 
+    private PropertyValue<List<string>?> _permissions = new PropertyValue<List<string>?>(nameof(ProjectPackageRepository), nameof(Permissions), "permissions");
+    
+    [JsonPropertyName("permissions")]
+    public List<string>? Permissions
+    {
+        get => _permissions.GetValue(InlineErrors);
+        set => _permissions.SetValue(value);
+    }
+
     private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ProjectPackageRepository), nameof(IsArchived), "archived");
     
     [Required]
@@ -121,6 +131,7 @@ public sealed class ProjectPackageRepository
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _permissions.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
         _connections.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

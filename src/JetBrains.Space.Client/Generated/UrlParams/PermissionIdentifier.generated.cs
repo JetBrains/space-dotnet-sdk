@@ -155,6 +155,9 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier CreateSuggestedEdit
         => new PermissionIdentifierCreateSuggestedEdit();
     
+    public static PermissionIdentifier DelegateGlobalPermissions
+        => new PermissionIdentifierDelegateGlobalPermissions();
+    
     public static PermissionIdentifier DeleteApplications
         => new PermissionIdentifierDeleteApplications();
     
@@ -217,9 +220,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     
     public static PermissionIdentifier GrantAccessRightsToOtherMembersForBonusApp
         => new PermissionIdentifierGrantAccessRightsToOtherMembersForBonusApp();
-    
-    public static PermissionIdentifier GrantOwnGlobalPermissions
-        => new PermissionIdentifierGrantOwnGlobalPermissions();
     
     public static PermissionIdentifier GrantPermissionsToOtherMembers
         => new PermissionIdentifierGrantPermissionsToOtherMembers();
@@ -845,9 +845,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ViewNotificationSettings
         => new PermissionIdentifierViewNotificationSettings();
     
-    public static PermissionIdentifier ViewOrganizationAnalytics
-        => new PermissionIdentifierViewOrganizationAnalytics();
-    
     public static PermissionIdentifier ViewOrganizationDetails
         => new PermissionIdentifierViewOrganizationDetails();
     
@@ -1172,6 +1169,12 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Project.SuggestedEdit.Create";
     }
     
+    public class PermissionIdentifierDelegateGlobalPermissions : PermissionIdentifier
+    {
+        public override string ToString()
+            => "Applications.DelegateGlobalPermissions";
+    }
+    
     public class PermissionIdentifierDeleteApplications : PermissionIdentifier
     {
         public override string ToString()
@@ -1287,12 +1290,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "HRM.Bonus.Supervisor";
-    }
-    
-    public class PermissionIdentifierGrantOwnGlobalPermissions : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Applications.GrantOwnPermissions";
     }
     
     public class PermissionIdentifierGrantPermissionsToOtherMembers : PermissionIdentifier
@@ -2463,12 +2460,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Profile.NotificationSettings.View";
-    }
-    
-    public class PermissionIdentifierViewOrganizationAnalytics : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Organization.ViewAnalytics";
     }
     
     public class PermissionIdentifierViewOrganizationDetails : PermissionIdentifier

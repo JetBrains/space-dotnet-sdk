@@ -37,17 +37,11 @@ public static class RdWarmupExecPartialExtensions
     public static Partial<RdWarmupExec> WithProjectId(this Partial<RdWarmupExec> it)
         => it.AddFieldName("projectId");
     
-    public static Partial<RdWarmupExec> WithRepositoryName(this Partial<RdWarmupExec> it)
-        => it.AddFieldName("repositoryName");
+    public static Partial<RdWarmupExec> WithVcsData(this Partial<RdWarmupExec> it)
+        => it.AddFieldName("vcsData");
     
-    public static Partial<RdWarmupExec> WithBranch(this Partial<RdWarmupExec> it)
-        => it.AddFieldName("branch");
-    
-    public static Partial<RdWarmupExec> WithRevision(this Partial<RdWarmupExec> it)
-        => it.AddFieldName("revision");
-    
-    public static Partial<RdWarmupExec> WithDevfile(this Partial<RdWarmupExec> it)
-        => it.AddFieldName("devfile");
+    public static Partial<RdWarmupExec> WithVcsData(this Partial<RdWarmupExec> it, Func<Partial<RdWarmupVcsData>, Partial<RdWarmupVcsData>> partialBuilder)
+        => it.AddFieldName("vcsData", partialBuilder(new Partial<RdWarmupVcsData>(it)));
     
     public static Partial<RdWarmupExec> WithStatus(this Partial<RdWarmupExec> it)
         => it.AddFieldName("status");
@@ -84,6 +78,12 @@ public static class RdWarmupExecPartialExtensions
     
     public static Partial<RdWarmupExec> WithTrigger(this Partial<RdWarmupExec> it, Func<Partial<WarmupExecutionTrigger>, Partial<WarmupExecutionTrigger>> partialBuilder)
         => it.AddFieldName("trigger", partialBuilder(new Partial<WarmupExecutionTrigger>(it)));
+    
+    public static Partial<RdWarmupExec> WithConfigurationSource(this Partial<RdWarmupExec> it)
+        => it.AddFieldName("configurationSource");
+    
+    public static Partial<RdWarmupExec> WithConfigurationSource(this Partial<RdWarmupExec> it, Func<Partial<RdConfigurationSource>, Partial<RdConfigurationSource>> partialBuilder)
+        => it.AddFieldName("configurationSource", partialBuilder(new Partial<RdConfigurationSource>(it)));
     
     public static Partial<RdWarmupExec> WithIsArchived(this Partial<RdWarmupExec> it)
         => it.AddFieldName("archived");

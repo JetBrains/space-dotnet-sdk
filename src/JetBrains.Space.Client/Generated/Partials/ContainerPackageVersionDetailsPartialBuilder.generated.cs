@@ -112,5 +112,11 @@ public static class ContainerPackageVersionDetailsPartialExtensions
     public static Partial<ContainerPackageVersionDetails> WithChart(this Partial<ContainerPackageVersionDetails> it, Func<Partial<ContainerHelmChart>, Partial<ContainerHelmChart>> partialBuilder)
         => it.AddFieldName("chart", partialBuilder(new Partial<ContainerHelmChart>(it)));
     
+    public static Partial<ContainerPackageVersionDetails> WithSubject(this Partial<ContainerPackageVersionDetails> it)
+        => it.AddFieldName("subject");
+    
+    public static Partial<ContainerPackageVersionDetails> WithSubject(this Partial<ContainerPackageVersionDetails> it, Func<Partial<PackageVersionRef>, Partial<PackageVersionRef>> partialBuilder)
+        => it.AddFieldName("subject", partialBuilder(new Partial<PackageVersionRef>(it)));
+    
 }
 

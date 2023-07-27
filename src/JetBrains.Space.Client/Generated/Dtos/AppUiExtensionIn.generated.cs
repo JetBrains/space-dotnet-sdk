@@ -35,11 +35,11 @@ public interface AppUiExtensionIn
     public static ChatBotUiExtensionIn ChatBotUiExtensionIn()
         => new ChatBotUiExtensionIn();
     
-    public static ExternalIssueTrackerUiExtensionIn ExternalIssueTrackerUiExtensionIn(string domain)
-        => new ExternalIssueTrackerUiExtensionIn(domain: domain);
+    public static ExternalIssueTrackerUiExtensionIn ExternalIssueTrackerUiExtensionIn(string domain, string trackerName, bool canCreateIssues)
+        => new ExternalIssueTrackerUiExtensionIn(domain: domain, trackerName: trackerName, canCreateIssues: canCreateIssues);
     
-    public static GettingStartedUiExtensionIn GettingStartedUiExtensionIn(string gettingStartedUrl, string gettingStartedTitle)
-        => new GettingStartedUiExtensionIn(gettingStartedUrl: gettingStartedUrl, gettingStartedTitle: gettingStartedTitle);
+    public static GettingStartedUiExtensionIn GettingStartedUiExtensionIn(string gettingStartedUrl, string gettingStartedTitle, bool? openInNewTab = null)
+        => new GettingStartedUiExtensionIn(gettingStartedUrl: gettingStartedUrl, gettingStartedTitle: gettingStartedTitle, openInNewTab: openInNewTab);
     
     public static TopLevelPageUiExtensionIn TopLevelPageUiExtensionIn(string displayName, string uniqueCode, string? description = null, string? iframeUrl = null)
         => new TopLevelPageUiExtensionIn(displayName: displayName, uniqueCode: uniqueCode, description: description, iframeUrl: iframeUrl);

@@ -46,9 +46,11 @@ public static class RtImagePartialExtensions
     public static Partial<RtImage> WithMarks(this Partial<RtImage> it, Func<Partial<RtDocumentMark>, Partial<RtDocumentMark>> partialBuilder)
         => it.AddFieldName("marks", partialBuilder(new Partial<RtDocumentMark>(it)));
     
+    [Obsolete("Use RtImage fields instead (since 2023-03-28) (will be removed in a future version)")]
     public static Partial<RtImage> WithAttrs(this Partial<RtImage> it)
         => it.AddFieldName("attrs");
     
+    [Obsolete("Use RtImage fields instead (since 2023-03-28) (will be removed in a future version)")]
     public static Partial<RtImage> WithAttrs(this Partial<RtImage> it, Func<Partial<RtImageAttrs>, Partial<RtImageAttrs>> partialBuilder)
         => it.AddFieldName("attrs", partialBuilder(new Partial<RtImageAttrs>(it)));
     

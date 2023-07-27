@@ -128,5 +128,26 @@ public partial class EmojiClient : ISpaceClient
     public IAsyncEnumerable<EmojiSearchMatchData> SearchEmojiAsyncEnumerable(string query, string? skip = null, int? top = 100, string? version = null, Func<Partial<EmojiSearchMatchData>, Partial<EmojiSearchMatchData>>? partial = null, CancellationToken cancellationToken = default)
         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => SearchEmojiAsync(query: query, top: top, version: version, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<EmojiSearchMatchData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EmojiSearchMatchData>.Default())), skip, cancellationToken);
 
+    /// <summary>
+    /// Get custom emojis for synchronization with third-party system. Custom emojis with etag greater than specified value are returned. Read more in the <a href="https://www.jetbrains.com/help/space/sync-api.html">documentation</a>.
+    /// </summary>
+    /// <remarks>
+    /// Required permissions:
+    /// <list type="bullet">
+    /// <item>
+    /// <term>View custom emoji</term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    public async Task<SyncBatch<CustomEmojiInfo>> GetSyncBatchAsync(SyncBatchInfo batchInfo, Func<Partial<SyncBatch<CustomEmojiInfo>>, Partial<SyncBatch<CustomEmojiInfo>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        queryParameters.Append("batchInfo", batchInfo.ToString());
+        queryParameters.Append("$fields", (partial != null ? partial(new Partial<SyncBatch<CustomEmojiInfo>>()) : Partial<SyncBatch<CustomEmojiInfo>>.Default()).ToString());
+        
+        return await _connection.RequestResourceAsync<SyncBatch<CustomEmojiInfo>>("GET", $"api/http/emojis/sync-batch{queryParameters.ToQueryString()}", requestHeaders: EpochTrackerHeaders.GenerateFrom(_connection.ServerUrl, EpochTracker.Instance), functionName: "GetSyncBatch", cancellationToken: cancellationToken);
+    }
+    
+
 }
 

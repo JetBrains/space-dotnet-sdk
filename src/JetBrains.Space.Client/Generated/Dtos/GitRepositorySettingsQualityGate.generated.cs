@@ -34,7 +34,7 @@ public sealed class GitRepositorySettingsQualityGate
 {
     public GitRepositorySettingsQualityGate() { }
     
-    public GitRepositorySettingsQualityGate(List<string>? allowMergeFor = null, List<string>? allowBypassFor = null, List<string>? externalStatus = null, List<string>? automationJobs = null, List<GitRepositorySettingsQualityGateApproval>? approvals = null, bool? codeOwnersApproval = null)
+    public GitRepositorySettingsQualityGate(List<string>? allowMergeFor = null, List<string>? allowBypassFor = null, List<string>? externalStatus = null, List<string>? automationJobs = null, List<GitRepositorySettingsQualityGateApproval>? approvals = null, bool? codeOwnersApproval = null, bool? allowSelfApproval = null)
     {
         AllowMergeFor = allowMergeFor;
         AllowBypassFor = allowBypassFor;
@@ -42,6 +42,7 @@ public sealed class GitRepositorySettingsQualityGate
         AutomationJobs = automationJobs;
         Approvals = approvals;
         IsCodeOwnersApproval = codeOwnersApproval;
+        IsAllowSelfApproval = allowSelfApproval;
     }
     
     private PropertyValue<List<string>?> _allowMergeFor = new PropertyValue<List<string>?>(nameof(GitRepositorySettingsQualityGate), nameof(AllowMergeFor), "allowMergeFor");
@@ -98,6 +99,15 @@ public sealed class GitRepositorySettingsQualityGate
         set => _codeOwnersApproval.SetValue(value);
     }
 
+    private PropertyValue<bool?> _allowSelfApproval = new PropertyValue<bool?>(nameof(GitRepositorySettingsQualityGate), nameof(IsAllowSelfApproval), "allowSelfApproval");
+    
+    [JsonPropertyName("allowSelfApproval")]
+    public bool? IsAllowSelfApproval
+    {
+        get => _allowSelfApproval.GetValue(InlineErrors);
+        set => _allowSelfApproval.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _allowMergeFor.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -106,6 +116,7 @@ public sealed class GitRepositorySettingsQualityGate
         _automationJobs.SetAccessPath(parentChainPath, validateHasBeenSet);
         _approvals.SetAccessPath(parentChainPath, validateHasBeenSet);
         _codeOwnersApproval.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _allowSelfApproval.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

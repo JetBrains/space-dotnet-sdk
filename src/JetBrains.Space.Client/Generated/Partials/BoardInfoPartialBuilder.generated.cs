@@ -55,5 +55,11 @@ public static class BoardInfoPartialExtensions
     public static Partial<BoardInfo> WithIssueFields(this Partial<BoardInfo> it, Func<Partial<BoardIssueField>, Partial<BoardIssueField>> partialBuilder)
         => it.AddFieldName("issueFields", partialBuilder(new Partial<BoardIssueField>(it)));
     
+    public static Partial<BoardInfo> WithBacklog(this Partial<BoardInfo> it)
+        => it.AddFieldName("backlog");
+    
+    public static Partial<BoardInfo> WithBacklog(this Partial<BoardInfo> it, Func<Partial<BoardBacklog>, Partial<BoardBacklog>> partialBuilder)
+        => it.AddFieldName("backlog", partialBuilder(new Partial<BoardBacklog>(it)));
+    
 }
 

@@ -36,6 +36,9 @@ public class DeployTargetsSearchFilter
     [JsonPropertyName("className")]
     public virtual string? ClassName => "DeployTargetsSearchFilter";
     
+    public static DeployTargetsSearchFilterArchived Archived(bool exclusive)
+        => new DeployTargetsSearchFilterArchived(exclusive: exclusive);
+    
     public static DeployTargetsSearchFilterByCustomField ByCustomField(string cfId, CFFilter cff, bool negated)
         => new DeployTargetsSearchFilterByCustomField(cfId: cfId, cff: cff, negated: negated);
     

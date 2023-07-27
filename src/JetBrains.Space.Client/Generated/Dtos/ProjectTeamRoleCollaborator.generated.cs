@@ -29,6 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
+[Obsolete("Project collaborators are no longer supported (since 2023-07-01) (will be removed in a future version)")]
 public sealed class ProjectTeamRoleCollaborator
      : ProjectTeamRole, IClassNameConvertible, IPropagatePropertyAccessPath
 {

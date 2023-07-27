@@ -37,7 +37,7 @@ public sealed class CommitSetReviewRecord
     
     public CommitSetReviewRecord() { }
     
-    public CommitSetReviewRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, bool? canBeReopened = null, TDMemberProfile? createdBy = null, long? timestamp = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, string? feedChannelId = null)
+    public CommitSetReviewRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, bool? canBeReopened = null, TDMemberProfile? createdBy = null, long? timestamp = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, string? feedChannelId = null, bool? readOnly = null)
     {
         Project = project;
         ProjectId = projectId;
@@ -51,6 +51,7 @@ public sealed class CommitSetReviewRecord
         IsTurnBased = turnBased;
         FeedChannel = feedChannel;
         FeedChannelId = feedChannelId;
+        IsReadOnly = readOnly;
     }
     
     private PropertyValue<ProjectKey> _project = new PropertyValue<ProjectKey>(nameof(CommitSetReviewRecord), nameof(Project), "project");
@@ -167,6 +168,15 @@ public sealed class CommitSetReviewRecord
         set => _feedChannelId.SetValue(value);
     }
 
+    private PropertyValue<bool?> _readOnly = new PropertyValue<bool?>(nameof(CommitSetReviewRecord), nameof(IsReadOnly), "readOnly");
+    
+    [JsonPropertyName("readOnly")]
+    public bool? IsReadOnly
+    {
+        get => _readOnly.GetValue(InlineErrors);
+        set => _readOnly.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -181,6 +191,7 @@ public sealed class CommitSetReviewRecord
         _turnBased.SetAccessPath(parentChainPath, validateHasBeenSet);
         _feedChannel.SetAccessPath(parentChainPath, validateHasBeenSet);
         _feedChannelId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _readOnly.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -34,7 +34,7 @@ public sealed class DeployTargetRecord
 {
     public DeployTargetRecord() { }
     
-    public DeployTargetRecord(string id, string projectId, string name, string key, string description, string createdAt, M2ChannelRecord channel, bool archived, string channelId, List<DeployTargetLink> links, bool manualControl, List<DeployTargetRepositoryDTO> repositories, List<TDTeam> teams, List<TDMemberProfile> users, string? lastUpdated = null, string? lastDeployed = null, int? number = null, string? fullNumberId = null, string? connectedChannelId = null, CPrincipal? createdBy = null, DeploymentInfo? current = null, int? failTimeoutMinutes = null, int? hangTimeoutMinutes = null, DeploymentInfo? next = null, bool? singleScheduled = null)
+    public DeployTargetRecord(string id, string projectId, string name, string key, string description, string createdAt, M2ChannelRecord channel, bool archived, string channelId, Dictionary<string, CFValue> customFields, List<DeployTargetLink> links, bool manualControl, List<DeployTargetRepositoryDTO> repositories, List<TDTeam> teams, List<TDMemberProfile> users, string? lastUpdated = null, string? lastDeployed = null, int? number = null, string? fullNumberId = null, string? connectedChannelId = null, CPrincipal? createdBy = null, DeploymentInfo? current = null, int? failTimeoutMinutes = null, int? hangTimeoutMinutes = null, DeploymentInfo? next = null, bool? singleScheduled = null)
     {
         Id = id;
         ProjectId = projectId;
@@ -52,6 +52,7 @@ public sealed class DeployTargetRecord
         ConnectedChannelId = connectedChannelId;
         CreatedBy = createdBy;
         Current = current;
+        CustomFields = customFields;
         FailTimeoutMinutes = failTimeoutMinutes;
         HangTimeoutMinutes = hangTimeoutMinutes;
         Links = links;
@@ -216,6 +217,16 @@ public sealed class DeployTargetRecord
         set => _current.SetValue(value);
     }
 
+    private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(DeployTargetRecord), nameof(CustomFields), "customFields", new Dictionary<string, CFValue>());
+    
+    [Required]
+    [JsonPropertyName("customFields")]
+    public Dictionary<string, CFValue> CustomFields
+    {
+        get => _customFields.GetValue(InlineErrors);
+        set => _customFields.SetValue(value);
+    }
+
     private PropertyValue<int?> _failTimeoutMinutes = new PropertyValue<int?>(nameof(DeployTargetRecord), nameof(FailTimeoutMinutes), "failTimeoutMinutes");
     
     [JsonPropertyName("failTimeoutMinutes")]
@@ -320,6 +331,7 @@ public sealed class DeployTargetRecord
         _connectedChannelId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _createdBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _current.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _customFields.SetAccessPath(parentChainPath, validateHasBeenSet);
         _failTimeoutMinutes.SetAccessPath(parentChainPath, validateHasBeenSet);
         _hangTimeoutMinutes.SetAccessPath(parentChainPath, validateHasBeenSet);
         _links.SetAccessPath(parentChainPath, validateHasBeenSet);

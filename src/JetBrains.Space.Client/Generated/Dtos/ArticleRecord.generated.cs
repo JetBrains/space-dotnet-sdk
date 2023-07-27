@@ -34,7 +34,7 @@ public sealed class ArticleRecord
 {
     public ArticleRecord() { }
     
-    public ArticleRecord(string id, bool archived, string title, DateTime created, TDMemberProfile author, List<BGArticleAlias> aliases, M2ChannelRecord channel, string content, bool editable, string preview, List<ArticleMarkdownImage> previewImages, AllReactionsToItemRecord reactions, TDMemberProfile? archivedBy = null, DateTime? archivedAt = null, M2ChannelContentRecord? channelContent = null, bool? cut = null, MeetingRecord? @event = null, ExternalEntityInfoRecord? externalEntityInfo = null, List<TDLocation>? locations = null, List<AttachmentInfo>? previewAttachments = null, List<TDTeam>? teams = null, int? wordsNumber = null)
+    public ArticleRecord(string id, bool archived, string title, DateTime created, TDMemberProfile author, List<BGArticleAlias> aliases, List<AttachmentInfo> attachments, M2ChannelRecord channel, string content, TextDocumentContent docContent, bool editable, string preview, List<ArticleMarkdownImage> previewImages, AllReactionsToItemRecord reactions, TDMemberProfile? archivedBy = null, DateTime? archivedAt = null, M2ChannelContentRecord? channelContent = null, bool? cut = null, MeetingRecord? @event = null, ExternalEntityInfoRecord? externalEntityInfo = null, List<TDLocation>? locations = null, List<AttachmentInfo>? previewAttachments = null, List<TDTeam>? teams = null, int? wordsNumber = null)
     {
         Id = id;
         IsArchived = archived;
@@ -44,10 +44,12 @@ public sealed class ArticleRecord
         Aliases = aliases;
         ArchivedBy = archivedBy;
         ArchivedAt = archivedAt;
+        Attachments = attachments;
         Channel = channel;
         ChannelContent = channelContent;
         Content = content;
         IsCut = cut;
+        DocContent = docContent;
         IsEditable = editable;
         Event = @event;
         ExternalEntityInfo = externalEntityInfo;
@@ -140,6 +142,16 @@ public sealed class ArticleRecord
         set => _archivedAt.SetValue(value);
     }
 
+    private PropertyValue<List<AttachmentInfo>> _attachments = new PropertyValue<List<AttachmentInfo>>(nameof(ArticleRecord), nameof(Attachments), "attachments", new List<AttachmentInfo>());
+    
+    [Required]
+    [JsonPropertyName("attachments")]
+    public List<AttachmentInfo> Attachments
+    {
+        get => _attachments.GetValue(InlineErrors);
+        set => _attachments.SetValue(value);
+    }
+
     private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(ArticleRecord), nameof(Channel), "channel");
     
     [Required]
@@ -162,6 +174,7 @@ public sealed class ArticleRecord
     private PropertyValue<string> _content = new PropertyValue<string>(nameof(ArticleRecord), nameof(Content), "content");
     
     [Required]
+    [Obsolete("Use docContent property instead (since 2023-05-30) (will be removed in a future version)")]
     [JsonPropertyName("content")]
     public string Content
     {
@@ -176,6 +189,16 @@ public sealed class ArticleRecord
     {
         get => _cut.GetValue(InlineErrors);
         set => _cut.SetValue(value);
+    }
+
+    private PropertyValue<TextDocumentContent> _docContent = new PropertyValue<TextDocumentContent>(nameof(ArticleRecord), nameof(DocContent), "docContent");
+    
+    [Required]
+    [JsonPropertyName("docContent")]
+    public TextDocumentContent DocContent
+    {
+        get => _docContent.GetValue(InlineErrors);
+        set => _docContent.SetValue(value);
     }
 
     private PropertyValue<bool> _editable = new PropertyValue<bool>(nameof(ArticleRecord), nameof(IsEditable), "editable");
@@ -282,10 +305,12 @@ public sealed class ArticleRecord
         _aliases.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archivedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archivedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
         _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
         _channelContent.SetAccessPath(parentChainPath, validateHasBeenSet);
         _content.SetAccessPath(parentChainPath, validateHasBeenSet);
         _cut.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _docContent.SetAccessPath(parentChainPath, validateHasBeenSet);
         _editable.SetAccessPath(parentChainPath, validateHasBeenSet);
         _event.SetAccessPath(parentChainPath, validateHasBeenSet);
         _externalEntityInfo.SetAccessPath(parentChainPath, validateHasBeenSet);

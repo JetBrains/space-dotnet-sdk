@@ -55,5 +55,8 @@ public static class HAUrlParameterOptionConstPartialExtensions
     public static Partial<HAUrlParameterOptionConst> WithExperimental(this Partial<HAUrlParameterOptionConst> it, Func<Partial<HAExperimental>, Partial<HAExperimental>> partialBuilder)
         => it.AddFieldName("experimental", partialBuilder(new Partial<HAExperimental>(it)));
     
+    public static Partial<HAUrlParameterOptionConst> WithFeatureFlag(this Partial<HAUrlParameterOptionConst> it)
+        => it.AddFieldName("featureFlag");
+    
 }
 

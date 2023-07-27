@@ -34,7 +34,7 @@ public sealed class Issue
 {
     public Issue() { }
     
-    public Issue(string id, bool archived, PRProject projectRef, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<Issue> parents, List<SprintRecord> sprints, Checklist subItemsList, string? projectId = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, int? subItemsCount = null, int? doneSubItemsCount = null, int? commentsCount = null, CPrincipal? deletedBy = null, DateTime? deletedTime = null, string? description = null, string? messagePermalink = null, List<AttachmentInfo>? unfurls = null)
+    public Issue(string id, bool archived, PRProject projectRef, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, List<BoardBacklog> backlogs, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<Issue> parents, List<SprintRecord> sprints, Checklist subItemsList, string? projectId = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, int? subItemsCount = null, int? doneSubItemsCount = null, int? commentsCount = null, CPrincipal? deletedBy = null, DateTime? deletedTime = null, string? description = null, string? messagePermalink = null, List<AttachmentInfo>? unfurls = null)
     {
         Id = id;
         IsArchived = archived;
@@ -57,6 +57,7 @@ public sealed class Issue
         DeletedBy = deletedBy;
         DeletedTime = deletedTime;
         Attachments = attachments;
+        Backlogs = backlogs;
         Channel = channel;
         Checklists = checklists;
         CustomFields = customFields;
@@ -270,6 +271,16 @@ public sealed class Issue
         set => _attachments.SetValue(value);
     }
 
+    private PropertyValue<List<BoardBacklog>> _backlogs = new PropertyValue<List<BoardBacklog>>(nameof(Issue), nameof(Backlogs), "backlogs", new List<BoardBacklog>());
+    
+    [Required]
+    [JsonPropertyName("backlogs")]
+    public List<BoardBacklog> Backlogs
+    {
+        get => _backlogs.GetValue(InlineErrors);
+        set => _backlogs.SetValue(value);
+    }
+
     private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(Issue), nameof(Channel), "channel");
     
     [Required]
@@ -380,6 +391,7 @@ public sealed class Issue
         _deletedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deletedTime.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _backlogs.SetAccessPath(parentChainPath, validateHasBeenSet);
         _channel.SetAccessPath(parentChainPath, validateHasBeenSet);
         _checklists.SetAccessPath(parentChainPath, validateHasBeenSet);
         _customFields.SetAccessPath(parentChainPath, validateHasBeenSet);

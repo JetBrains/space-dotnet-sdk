@@ -36,11 +36,11 @@ public abstract class CodeReviewRecord
     [JsonPropertyName("className")]
     public virtual string? ClassName => "CodeReviewRecord";
     
-    public static CommitSetReviewRecord CommitSetReviewRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, bool? canBeReopened = null, TDMemberProfile? createdBy = null, long? timestamp = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, string? feedChannelId = null)
-        => new CommitSetReviewRecord(project: project, projectId: projectId, number: number, title: title, state: state, createdAt: createdAt, canBeReopened: canBeReopened, createdBy: createdBy, timestamp: timestamp, turnBased: turnBased, feedChannel: feedChannel, feedChannelId: feedChannelId);
+    public static CommitSetReviewRecord CommitSetReviewRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, bool? canBeReopened = null, TDMemberProfile? createdBy = null, long? timestamp = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, string? feedChannelId = null, bool? readOnly = null)
+        => new CommitSetReviewRecord(project: project, projectId: projectId, number: number, title: title, state: state, createdAt: createdAt, canBeReopened: canBeReopened, createdBy: createdBy, timestamp: timestamp, turnBased: turnBased, feedChannel: feedChannel, feedChannelId: feedChannelId, readOnly: readOnly);
     
-    public static MergeRequestRecord MergeRequestRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, long? timestamp = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, string? feedChannelId = null, ExternalCodeReviewLink? externalLink = null)
-        => new MergeRequestRecord(project: project, projectId: projectId, number: number, title: title, state: state, createdAt: createdAt, branchPairs: branchPairs, canBeReopened: canBeReopened, createdBy: createdBy, timestamp: timestamp, turnBased: turnBased, feedChannel: feedChannel, feedChannelId: feedChannelId, externalLink: externalLink);
+    public static MergeRequestRecord MergeRequestRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, long? timestamp = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, string? feedChannelId = null, bool? readOnly = null, ExternalCodeReviewLink? externalLink = null)
+        => new MergeRequestRecord(project: project, projectId: projectId, number: number, title: title, state: state, createdAt: createdAt, branchPairs: branchPairs, canBeReopened: canBeReopened, createdBy: createdBy, timestamp: timestamp, turnBased: turnBased, feedChannel: feedChannel, feedChannelId: feedChannelId, readOnly: readOnly, externalLink: externalLink);
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewRecord), nameof(Id), "id");
     
@@ -90,15 +90,6 @@ public abstract class CodeReviewRecord
     {
         get => _discussionCounter.GetValue(InlineErrors);
         set => _discussionCounter.SetValue(value);
-    }
-
-    private PropertyValue<List<ExternalIssueId>?> _externalIssueIds = new PropertyValue<List<ExternalIssueId>?>(nameof(CodeReviewRecord), nameof(ExternalIssueIds), "externalIssueIds");
-    
-    [JsonPropertyName("externalIssueIds")]
-    public List<ExternalIssueId>? ExternalIssueIds
-    {
-        get => _externalIssueIds.GetValue(InlineErrors);
-        set => _externalIssueIds.SetValue(value);
     }
 
     private PropertyValue<List<string>> _issueIds = new PropertyValue<List<string>>(nameof(CodeReviewRecord), nameof(IssueIds), "issueIds", new List<string>());
@@ -159,7 +150,6 @@ public abstract class CodeReviewRecord
         _commits.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _discussionCounter.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _externalIssueIds.SetAccessPath(parentChainPath, validateHasBeenSet);
         _issueIds.SetAccessPath(parentChainPath, validateHasBeenSet);
         _participants.SetAccessPath(parentChainPath, validateHasBeenSet);
         _reviewers.SetAccessPath(parentChainPath, validateHasBeenSet);

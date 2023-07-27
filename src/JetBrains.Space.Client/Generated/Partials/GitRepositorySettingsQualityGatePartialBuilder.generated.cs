@@ -52,5 +52,8 @@ public static class GitRepositorySettingsQualityGatePartialExtensions
     public static Partial<GitRepositorySettingsQualityGate> WithIsCodeOwnersApproval(this Partial<GitRepositorySettingsQualityGate> it)
         => it.AddFieldName("codeOwnersApproval");
     
+    public static Partial<GitRepositorySettingsQualityGate> WithIsAllowSelfApproval(this Partial<GitRepositorySettingsQualityGate> it)
+        => it.AddFieldName("allowSelfApproval");
+    
 }
 

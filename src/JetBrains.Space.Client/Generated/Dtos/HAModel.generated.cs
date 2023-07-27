@@ -34,7 +34,7 @@ public sealed class HAModel
 {
     public HAModel() { }
     
-    public HAModel(List<HADto> dto, List<HAEnum> enums, List<HAUrlParameter> urlParams, List<HAResource> resources, List<HAResource> allResources, List<HAMenuId> menuIds)
+    public HAModel(List<HADto> dto, List<HAEnum> enums, List<HAUrlParameter> urlParams, List<HAResource> resources, List<HAResource> allResources, List<HAMenuId> menuIds, List<HAFeatureFlag>? featureFlags = null)
     {
         Dto = dto;
         Enums = enums;
@@ -42,6 +42,7 @@ public sealed class HAModel
         Resources = resources;
         AllResources = allResources;
         MenuIds = menuIds;
+        FeatureFlags = featureFlags;
     }
     
     private PropertyValue<List<HADto>> _dto = new PropertyValue<List<HADto>>(nameof(HAModel), nameof(Dto), "dto", new List<HADto>());
@@ -104,6 +105,15 @@ public sealed class HAModel
         set => _menuIds.SetValue(value);
     }
 
+    private PropertyValue<List<HAFeatureFlag>?> _featureFlags = new PropertyValue<List<HAFeatureFlag>?>(nameof(HAModel), nameof(FeatureFlags), "featureFlags");
+    
+    [JsonPropertyName("featureFlags")]
+    public List<HAFeatureFlag>? FeatureFlags
+    {
+        get => _featureFlags.GetValue(InlineErrors);
+        set => _featureFlags.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _dto.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -112,6 +122,7 @@ public sealed class HAModel
         _resources.SetAccessPath(parentChainPath, validateHasBeenSet);
         _allResources.SetAccessPath(parentChainPath, validateHasBeenSet);
         _menuIds.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _featureFlags.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

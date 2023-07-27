@@ -38,6 +38,9 @@ public interface PermissionContextApi
     public static GlobalPermissionContext GlobalPermissionContext()
         => new GlobalPermissionContext();
     
+    public static PackageRepositoryPermissionContext PackageRepositoryPermissionContext(ProjectPackageRepository repository)
+        => new PackageRepositoryPermissionContext(repository: repository);
+    
     public static PrivateChannelPermissionContext PrivateChannelPermissionContext(string channelId)
         => new PrivateChannelPermissionContext(channelId: channelId);
     

@@ -49,5 +49,11 @@ public static class DeploymentM2ChannelInfoPartialExtensions
     public static Partial<DeploymentM2ChannelInfo> WithProject(this Partial<DeploymentM2ChannelInfo> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
         => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
     
+    public static Partial<DeploymentM2ChannelInfo> WithTarget(this Partial<DeploymentM2ChannelInfo> it)
+        => it.AddFieldName("target");
+    
+    public static Partial<DeploymentM2ChannelInfo> WithTarget(this Partial<DeploymentM2ChannelInfo> it, Func<Partial<DeployTargetRecord>, Partial<DeployTargetRecord>> partialBuilder)
+        => it.AddFieldName("target", partialBuilder(new Partial<DeployTargetRecord>(it)));
+    
 }
 

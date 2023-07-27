@@ -167,6 +167,9 @@ public interface WebhookEvent
     public static RdWarmupEvent RdWarmupEvent(KMetaMod meta, RdWarmupExec warmupExecution)
         => new RdWarmupEvent(meta: meta, warmupExecution: warmupExecution);
     
+    public static SPackageRepositoryAccessWebhookEvent SPackageRepositoryAccess(ProjectKey projectKey, string repository, PackageType repositoryType)
+        => new SPackageRepositoryAccessWebhookEvent(projectKey: projectKey, repository: repository, repositoryType: repositoryType);
+    
     public static SPackageRepositoryWebhookEvent SPackageRepository(ProjectKey projectKey, string repository, PackageType repositoryType, PackageRepositoryEventAction action, PackageVersionRef packageInfo)
         => new SPackageRepositoryWebhookEvent(projectKey: projectKey, repository: repository, repositoryType: repositoryType, action: action, packageInfo: packageInfo);
     

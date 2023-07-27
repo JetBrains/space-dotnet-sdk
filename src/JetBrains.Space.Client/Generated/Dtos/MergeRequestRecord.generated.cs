@@ -37,7 +37,7 @@ public sealed class MergeRequestRecord
     
     public MergeRequestRecord() { }
     
-    public MergeRequestRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, long? timestamp = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, string? feedChannelId = null, ExternalCodeReviewLink? externalLink = null)
+    public MergeRequestRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, long? timestamp = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, string? feedChannelId = null, bool? readOnly = null, ExternalCodeReviewLink? externalLink = null)
     {
         Project = project;
         ProjectId = projectId;
@@ -52,6 +52,7 @@ public sealed class MergeRequestRecord
         FeedChannel = feedChannel;
         FeedChannelId = feedChannelId;
         BranchPairs = branchPairs;
+        IsReadOnly = readOnly;
         ExternalLink = externalLink;
     }
     
@@ -179,6 +180,15 @@ public sealed class MergeRequestRecord
         set => _branchPairs.SetValue(value);
     }
 
+    private PropertyValue<bool?> _readOnly = new PropertyValue<bool?>(nameof(MergeRequestRecord), nameof(IsReadOnly), "readOnly");
+    
+    [JsonPropertyName("readOnly")]
+    public bool? IsReadOnly
+    {
+        get => _readOnly.GetValue(InlineErrors);
+        set => _readOnly.SetValue(value);
+    }
+
     private PropertyValue<ExternalCodeReviewLink?> _externalLink = new PropertyValue<ExternalCodeReviewLink?>(nameof(MergeRequestRecord), nameof(ExternalLink), "externalLink");
     
     [JsonPropertyName("externalLink")]
@@ -203,6 +213,7 @@ public sealed class MergeRequestRecord
         _feedChannel.SetAccessPath(parentChainPath, validateHasBeenSet);
         _feedChannelId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _branchPairs.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _readOnly.SetAccessPath(parentChainPath, validateHasBeenSet);
         _externalLink.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

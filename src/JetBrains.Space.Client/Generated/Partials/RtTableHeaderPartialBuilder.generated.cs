@@ -46,9 +46,11 @@ public static class RtTableHeaderPartialExtensions
     public static Partial<RtTableHeader> WithColwidth(this Partial<RtTableHeader> it)
         => it.AddFieldName("colwidth");
     
+    [Obsolete("Use RtTableRowContent fields instead (since 2023-03-28) (will be removed in a future version)")]
     public static Partial<RtTableHeader> WithAttrs(this Partial<RtTableHeader> it)
         => it.AddFieldName("attrs");
     
+    [Obsolete("Use RtTableRowContent fields instead (since 2023-03-28) (will be removed in a future version)")]
     public static Partial<RtTableHeader> WithAttrs(this Partial<RtTableHeader> it, Func<Partial<RtTableCellAttrs>, Partial<RtTableCellAttrs>> partialBuilder)
         => it.AddFieldName("attrs", partialBuilder(new Partial<RtTableCellAttrs>(it)));
     

@@ -37,7 +37,7 @@ public sealed class HAUrlParameterOptionVar
     
     public HAUrlParameterOptionVar() { }
     
-    public HAUrlParameterOptionVar(HAField parameter, List<HAField> parameters, bool prefixRequired, string optionName, HADescription? description = null, HADeprecation? deprecation = null, HAExperimental? experimental = null)
+    public HAUrlParameterOptionVar(HAField parameter, List<HAField> parameters, bool prefixRequired, string optionName, HADescription? description = null, HADeprecation? deprecation = null, HAExperimental? experimental = null, string? featureFlag = null)
     {
         Parameter = parameter;
         Parameters = parameters;
@@ -46,6 +46,7 @@ public sealed class HAUrlParameterOptionVar
         Description = description;
         Deprecation = deprecation;
         Experimental = experimental;
+        FeatureFlag = featureFlag;
     }
     
     private PropertyValue<HAField> _parameter = new PropertyValue<HAField>(nameof(HAUrlParameterOptionVar), nameof(Parameter), "parameter");
@@ -116,6 +117,15 @@ public sealed class HAUrlParameterOptionVar
         set => _experimental.SetValue(value);
     }
 
+    private PropertyValue<string?> _featureFlag = new PropertyValue<string?>(nameof(HAUrlParameterOptionVar), nameof(FeatureFlag), "featureFlag");
+    
+    [JsonPropertyName("featureFlag")]
+    public string? FeatureFlag
+    {
+        get => _featureFlag.GetValue(InlineErrors);
+        set => _featureFlag.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _parameter.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -125,6 +135,7 @@ public sealed class HAUrlParameterOptionVar
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
         _experimental.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _featureFlag.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

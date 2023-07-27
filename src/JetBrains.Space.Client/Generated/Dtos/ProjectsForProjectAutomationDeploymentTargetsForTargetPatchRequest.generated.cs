@@ -34,7 +34,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest
 {
     public ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest() { }
     
-    public ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest(string? name = null, string? description = null, List<DeployTargetRepositoryDTO>? repositories = null, bool? manualControl = null, bool? singleScheduled = null, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null, List<CustomFieldInputValue>? customFields = null)
+    public ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest(string? name = null, string? description = null, List<DeployTargetRepositoryDTO>? repositories = null, bool? manualControl = null, bool? singleScheduled = null, int? hangTimeoutMinutes = null, int? failTimeoutMinutes = null, List<string>? responsibleUsers = null, List<string>? responsibleTeams = null, List<DeployTargetLink>? links = null, List<CustomFieldInputValue>? customFields = null, string? key = null)
     {
         Name = name;
         Description = description;
@@ -47,6 +47,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest
         ResponsibleTeams = responsibleTeams;
         Links = links;
         CustomFields = customFields;
+        Key = key;
     }
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest), nameof(Name), "name");
@@ -181,6 +182,18 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest
         set => _customFields.SetValue(value);
     }
 
+    private PropertyValue<string?> _key = new PropertyValue<string?>(nameof(ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest), nameof(Key), "key");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("key")]
+    public string? Key
+    {
+        get => _key.GetValue(InlineErrors);
+        set => _key.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -194,6 +207,7 @@ public class ProjectsForProjectAutomationDeploymentTargetsForTargetPatchRequest
         _responsibleTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _links.SetAccessPath(parentChainPath, validateHasBeenSet);
         _customFields.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _key.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

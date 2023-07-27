@@ -34,12 +34,14 @@ public sealed class PersonalSubscriptionEvent
 {
     public PersonalSubscriptionEvent() { }
     
-    public PersonalSubscriptionEvent(string eventCode, string name, bool? memberOnly = null, string? featureFlag = null)
+    public PersonalSubscriptionEvent(string eventCode, string name, bool? memberOnly = null, string? featureFlag = null, bool? forCollaborators = null, bool? forGuests = null)
     {
         EventCode = eventCode;
         Name = name;
         IsMemberOnly = memberOnly;
         FeatureFlag = featureFlag;
+        IsForCollaborators = forCollaborators;
+        IsForGuests = forGuests;
     }
     
     private PropertyValue<string> _eventCode = new PropertyValue<string>(nameof(PersonalSubscriptionEvent), nameof(EventCode), "eventCode");
@@ -80,12 +82,32 @@ public sealed class PersonalSubscriptionEvent
         set => _featureFlag.SetValue(value);
     }
 
+    private PropertyValue<bool?> _forCollaborators = new PropertyValue<bool?>(nameof(PersonalSubscriptionEvent), nameof(IsForCollaborators), "forCollaborators");
+    
+    [JsonPropertyName("forCollaborators")]
+    public bool? IsForCollaborators
+    {
+        get => _forCollaborators.GetValue(InlineErrors);
+        set => _forCollaborators.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _forGuests = new PropertyValue<bool?>(nameof(PersonalSubscriptionEvent), nameof(IsForGuests), "forGuests");
+    
+    [JsonPropertyName("forGuests")]
+    public bool? IsForGuests
+    {
+        get => _forGuests.GetValue(InlineErrors);
+        set => _forGuests.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _eventCode.SetAccessPath(parentChainPath, validateHasBeenSet);
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _memberOnly.SetAccessPath(parentChainPath, validateHasBeenSet);
         _featureFlag.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _forCollaborators.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _forGuests.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

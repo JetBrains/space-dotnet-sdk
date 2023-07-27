@@ -34,8 +34,9 @@ public sealed class MergeRequestBranchPair
 {
     public MergeRequestBranchPair() { }
     
-    public MergeRequestBranchPair(string repository, string sourceBranch, string targetBranch, string sourceBranchRef, MergeRequestBranch? sourceBranchInfo = null, MergeRequestBranch? targetBranchInfo = null, bool? isMerged = null, bool? isStale = null)
+    public MergeRequestBranchPair(string repository, string sourceBranch, string targetBranch, string sourceBranchRef, string? repositoryId = null, MergeRequestBranch? sourceBranchInfo = null, MergeRequestBranch? targetBranchInfo = null, bool? isMerged = null, bool? isStale = null)
     {
+        RepositoryId = repositoryId;
         Repository = repository;
         SourceBranch = sourceBranch;
         TargetBranch = targetBranch;
@@ -46,6 +47,15 @@ public sealed class MergeRequestBranchPair
         IsStale = isStale;
     }
     
+    private PropertyValue<string?> _repositoryId = new PropertyValue<string?>(nameof(MergeRequestBranchPair), nameof(RepositoryId), "repositoryId");
+    
+    [JsonPropertyName("repositoryId")]
+    public string? RepositoryId
+    {
+        get => _repositoryId.GetValue(InlineErrors);
+        set => _repositoryId.SetValue(value);
+    }
+
     private PropertyValue<string> _repository = new PropertyValue<string>(nameof(MergeRequestBranchPair), nameof(Repository), "repository");
     
     [Required]
@@ -124,6 +134,7 @@ public sealed class MergeRequestBranchPair
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
+        _repositoryId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
         _sourceBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
         _targetBranch.SetAccessPath(parentChainPath, validateHasBeenSet);

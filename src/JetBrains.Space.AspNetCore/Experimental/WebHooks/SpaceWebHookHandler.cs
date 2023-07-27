@@ -58,6 +58,10 @@ public abstract class SpaceWebHookHandler
     /// <inheritdoc/>
     public virtual Task<ApplicationExecutionResult> HandleChangeServerUrlAsync(ChangeServerUrlPayload payload)
         => Task.FromResult(new ApplicationExecutionResult());
+    
+    /// <inheritdoc/>
+    public virtual Task<ApplicationExecutionResult> HandleCreateExternalIssueRequestAsync(CreateExternalIssueRequestPayload payload)
+        => Task.FromResult(new ApplicationExecutionResult());
 
     /// <inheritdoc/>
     public virtual Task<ApplicationExecutionResult> HandleAppPublicationCheckAsync(AppPublicationCheckPayload payload)

@@ -29,6 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
+[Obsolete("Use RtLinkMark.mention instead (since 2023-03-28) (will be removed in a future version)")]
 public sealed class RtPredefinedMentionAttrs
      : RtMentionAttrs, IClassNameConvertible, IPropagatePropertyAccessPath
 {

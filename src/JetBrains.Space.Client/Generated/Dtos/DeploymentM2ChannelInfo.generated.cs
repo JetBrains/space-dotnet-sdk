@@ -37,11 +37,12 @@ public sealed class DeploymentM2ChannelInfo
     
     public DeploymentM2ChannelInfo() { }
     
-    public DeploymentM2ChannelInfo(ChannelSpecificDefaults notificationDefaults, DeploymentRecord deployment, PRProject? project = null)
+    public DeploymentM2ChannelInfo(ChannelSpecificDefaults notificationDefaults, DeploymentRecord deployment, PRProject? project = null, DeployTargetRecord? target = null)
     {
         NotificationDefaults = notificationDefaults;
         Deployment = deployment;
         Project = project;
+        Target = target;
     }
     
     private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(DeploymentM2ChannelInfo), nameof(NotificationDefaults), "notificationDefaults");
@@ -73,11 +74,21 @@ public sealed class DeploymentM2ChannelInfo
         set => _project.SetValue(value);
     }
 
+    private PropertyValue<DeployTargetRecord?> _target = new PropertyValue<DeployTargetRecord?>(nameof(DeploymentM2ChannelInfo), nameof(Target), "target");
+    
+    [JsonPropertyName("target")]
+    public DeployTargetRecord? Target
+    {
+        get => _target.GetValue(InlineErrors);
+        set => _target.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _notificationDefaults.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deployment.SetAccessPath(parentChainPath, validateHasBeenSet);
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _target.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

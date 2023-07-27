@@ -37,6 +37,9 @@ public static class PurchasedBillingPlanPartialExtensions
     public static Partial<PurchasedBillingPlan> WithJetSalesId(this Partial<PurchasedBillingPlan> it)
         => it.AddFieldName("jetSalesId");
     
+    public static Partial<PurchasedBillingPlan> WithLicenseIssuer(this Partial<PurchasedBillingPlan> it)
+        => it.AddFieldName("licenseIssuer");
+    
     public static Partial<PurchasedBillingPlan> WithInstallationPublicKey(this Partial<PurchasedBillingPlan> it)
         => it.AddFieldName("installationPublicKey");
     

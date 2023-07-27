@@ -56,6 +56,9 @@ public interface AttachmentUnfurlDetails
     public static UnfurlDetailsCodeSnippet UnfurlDetailsCodeSnippet(CodeSnippetAnchor anchor, List<CodeLine> lines)
         => new UnfurlDetailsCodeSnippet(anchor: anchor, lines: lines);
     
+    public static UnfurlDetailsCommitsInCodeReview UnfurlDetailsCommitsInCodeReview(CodeReviewRecord review, List<UnfurlDetailsCommit> commits, int totalCommitsCount)
+        => new UnfurlDetailsCommitsInCodeReview(review: review, commits: commits, totalCommitsCount: totalCommitsCount);
+    
     public static UnfurlDetailsImage UnfurlDetailsImage(string title, ImageAttachment image, string? icon = null)
         => new UnfurlDetailsImage(title: title, image: image, icon: icon);
     

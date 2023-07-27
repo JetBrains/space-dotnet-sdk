@@ -34,7 +34,7 @@ public sealed class ChannelItemRecord
 {
     public ChannelItemRecord() { }
     
-    public ChannelItemRecord(string text, CPrincipal author, DateTime created, long time, string id, bool archived, List<Issue> issues, M2ItemContentDetails? details = null, AllReactionsToItemRecord? reactions = null, M2ChannelRecord? thread = null, ChannelItemRecord? projectedItem = null, List<AttachmentInfo>? attachments = null, string? externalId = null, bool? pending = null, DateTime? edited = null, bool? pinned = null, List<CPrincipal>? suggestedParticipants = null, List<EntityMention>? mentions = null, string? channelId = null, string? importerAppId = null)
+    public ChannelItemRecord(string text, CPrincipal author, DateTime created, long time, string id, bool archived, List<Issue> issues, M2ItemContentDetails? details = null, AllReactionsToItemRecord? reactions = null, M2ChannelRecord? thread = null, ChannelItemRecord? projectedItem = null, List<AttachmentInfo>? attachments = null, string? externalId = null, bool? pending = null, DateTime? edited = null, bool? pinned = null, List<CPrincipal>? suggestedParticipants = null, List<EntityMention>? mentions = null, string? channelId = null, string? importerAppId = null, List<ExternalIssue>? externalIssues = null)
     {
         Text = text;
         Details = details;
@@ -55,6 +55,7 @@ public sealed class ChannelItemRecord
         Mentions = mentions;
         ChannelId = channelId;
         ImporterAppId = importerAppId;
+        ExternalIssues = externalIssues;
         Issues = issues;
     }
     
@@ -237,6 +238,15 @@ public sealed class ChannelItemRecord
         set => _importerAppId.SetValue(value);
     }
 
+    private PropertyValue<List<ExternalIssue>?> _externalIssues = new PropertyValue<List<ExternalIssue>?>(nameof(ChannelItemRecord), nameof(ExternalIssues), "externalIssues");
+    
+    [JsonPropertyName("externalIssues")]
+    public List<ExternalIssue>? ExternalIssues
+    {
+        get => _externalIssues.GetValue(InlineErrors);
+        set => _externalIssues.SetValue(value);
+    }
+
     private PropertyValue<List<Issue>> _issues = new PropertyValue<List<Issue>>(nameof(ChannelItemRecord), nameof(Issues), "issues", new List<Issue>());
     
     [Required]
@@ -268,6 +278,7 @@ public sealed class ChannelItemRecord
         _mentions.SetAccessPath(parentChainPath, validateHasBeenSet);
         _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _importerAppId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalIssues.SetAccessPath(parentChainPath, validateHasBeenSet);
         _issues.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

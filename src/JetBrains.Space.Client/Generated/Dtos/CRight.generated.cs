@@ -34,7 +34,7 @@ public sealed class CRight
 {
     public CRight() { }
     
-    public CRight(string typeCode, string code, string title, string? description = null, FeatureFlag? featureFlag = null)
+    public CRight(string typeCode, string code, string title, string? description = null, FeatureFlagInfo? featureFlag = null)
     {
         TypeCode = typeCode;
         Code = code;
@@ -82,10 +82,10 @@ public sealed class CRight
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<FeatureFlag?> _featureFlag = new PropertyValue<FeatureFlag?>(nameof(CRight), nameof(FeatureFlag), "featureFlag");
+    private PropertyValue<FeatureFlagInfo?> _featureFlag = new PropertyValue<FeatureFlagInfo?>(nameof(CRight), nameof(FeatureFlag), "featureFlag");
     
     [JsonPropertyName("featureFlag")]
-    public FeatureFlag? FeatureFlag
+    public FeatureFlagInfo? FeatureFlag
     {
         get => _featureFlag.GetValue(InlineErrors);
         set => _featureFlag.SetValue(value);

@@ -85,6 +85,7 @@ public sealed class RtLinkMark
 
     private PropertyValue<RtLinkAttrs?> _attrs = new PropertyValue<RtLinkAttrs?>(nameof(RtLinkMark), nameof(Attrs), "attrs");
     
+    [Obsolete("Use RtLinkMark fields instead (since 2023-03-28) (will be removed in a future version)")]
     [JsonPropertyName("attrs")]
     public RtLinkAttrs? Attrs
     {

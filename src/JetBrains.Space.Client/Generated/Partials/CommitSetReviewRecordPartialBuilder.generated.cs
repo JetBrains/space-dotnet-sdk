@@ -82,6 +82,9 @@ public static class CommitSetReviewRecordPartialExtensions
     public static Partial<CommitSetReviewRecord> WithFeedChannelId(this Partial<CommitSetReviewRecord> it)
         => it.AddFieldName("feedChannelId");
     
+    public static Partial<CommitSetReviewRecord> WithIsReadOnly(this Partial<CommitSetReviewRecord> it)
+        => it.AddFieldName("readOnly");
+    
     [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<CommitSetReviewRecord> WithAuthors(this Partial<CommitSetReviewRecord> it)
         => it.AddFieldName("authors");
@@ -104,12 +107,6 @@ public static class CommitSetReviewRecordPartialExtensions
     
     public static Partial<CommitSetReviewRecord> WithDiscussionCounter(this Partial<CommitSetReviewRecord> it, Func<Partial<DiscussionCounter>, Partial<DiscussionCounter>> partialBuilder)
         => it.AddFieldName("discussionCounter", partialBuilder(new Partial<DiscussionCounter>(it)));
-    
-    public static Partial<CommitSetReviewRecord> WithExternalIssueIds(this Partial<CommitSetReviewRecord> it)
-        => it.AddFieldName("externalIssueIds");
-    
-    public static Partial<CommitSetReviewRecord> WithExternalIssueIds(this Partial<CommitSetReviewRecord> it, Func<Partial<ExternalIssueId>, Partial<ExternalIssueId>> partialBuilder)
-        => it.AddFieldName("externalIssueIds", partialBuilder(new Partial<ExternalIssueId>(it)));
     
     public static Partial<CommitSetReviewRecord> WithIssueIds(this Partial<CommitSetReviewRecord> it)
         => it.AddFieldName("issueIds");

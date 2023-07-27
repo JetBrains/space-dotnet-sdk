@@ -1142,6 +1142,74 @@ public partial class ChatClient : ISpaceClient
         
         }
     
+        public SyncBatchClient SyncBatch => new SyncBatchClient(_connection);
+        
+        public partial class SyncBatchClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public SyncBatchClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Get messages in specified channel for synchronization with third-party system. Messages with etag greater than specified value are returned, in the order of creation and updates. Use etag value "0" to start retrieving all messages in the channel. To get the current etag value, use "Get current sync batch etag" method. Read more in the <a href="https://www.jetbrains.com/help/space/sync-api.html">documentation</a>.
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View messages</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<SyncBatch<ChannelItemSyncRecord>> GetSyncBatchAsync(SyncBatchInfo batchInfo, ChannelIdentifier channel, Func<Partial<SyncBatch<ChannelItemSyncRecord>>, Partial<SyncBatch<ChannelItemSyncRecord>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("batchInfo", batchInfo.ToString());
+                queryParameters.Append("channel", channel.ToString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<SyncBatch<ChannelItemSyncRecord>>()) : Partial<SyncBatch<ChannelItemSyncRecord>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<SyncBatch<ChannelItemSyncRecord>>("GET", $"api/http/chats/messages/sync-batch{queryParameters.ToQueryString()}", requestHeaders: EpochTrackerHeaders.GenerateFrom(_connection.ServerUrl, EpochTracker.Instance), functionName: "GetSyncBatch", cancellationToken: cancellationToken);
+            }
+            
+        
+            public CurrentEtagClient CurrentEtag => new CurrentEtagClient(_connection);
+            
+            public partial class CurrentEtagClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public CurrentEtagClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Get current sync etag for given channel. You can use the returned etag to retrieve updates starting from this point through "Get sync batch" method. To retrieve all records instead, use "0" as the starting etag value. Read more in the <a href="https://www.jetbrains.com/help/space/sync-api.html">documentation</a>.
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View channel info</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<string> GetCurrentSyncEtagAsync(ChannelIdentifier channel, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("channel", channel.ToString());
+                    
+                    return await _connection.RequestResourceAsync<string>("GET", $"api/http/chats/messages/sync-batch/current-etag{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetCurrentSyncEtag", cancellationToken: cancellationToken);
+                }
+                
+            
+            }
+        
+        }
+    
     }
 
 }

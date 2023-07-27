@@ -43,5 +43,11 @@ public static class PersonalSubscriptionEventPartialExtensions
     public static Partial<PersonalSubscriptionEvent> WithFeatureFlag(this Partial<PersonalSubscriptionEvent> it)
         => it.AddFieldName("featureFlag");
     
+    public static Partial<PersonalSubscriptionEvent> WithIsForCollaborators(this Partial<PersonalSubscriptionEvent> it)
+        => it.AddFieldName("forCollaborators");
+    
+    public static Partial<PersonalSubscriptionEvent> WithIsForGuests(this Partial<PersonalSubscriptionEvent> it)
+        => it.AddFieldName("forGuests");
+    
 }
 

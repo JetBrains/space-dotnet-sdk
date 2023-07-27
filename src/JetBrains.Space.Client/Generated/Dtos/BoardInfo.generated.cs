@@ -34,13 +34,14 @@ public sealed class BoardInfo
 {
     public BoardInfo() { }
     
-    public BoardInfo(BoardOwners owners, BoardColumns columns, List<BoardIssueField> issueFields, string? description = null, string? swimlaneKey = null)
+    public BoardInfo(BoardOwners owners, BoardColumns columns, List<BoardIssueField> issueFields, string? description = null, string? swimlaneKey = null, BoardBacklog? backlog = null)
     {
         Owners = owners;
         Columns = columns;
         Description = description;
         SwimlaneKey = swimlaneKey;
         IssueFields = issueFields;
+        Backlog = backlog;
     }
     
     private PropertyValue<BoardOwners> _owners = new PropertyValue<BoardOwners>(nameof(BoardInfo), nameof(Owners), "owners");
@@ -91,6 +92,15 @@ public sealed class BoardInfo
         set => _issueFields.SetValue(value);
     }
 
+    private PropertyValue<BoardBacklog?> _backlog = new PropertyValue<BoardBacklog?>(nameof(BoardInfo), nameof(Backlog), "backlog");
+    
+    [JsonPropertyName("backlog")]
+    public BoardBacklog? Backlog
+    {
+        get => _backlog.GetValue(InlineErrors);
+        set => _backlog.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _owners.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -98,6 +108,7 @@ public sealed class BoardInfo
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _swimlaneKey.SetAccessPath(parentChainPath, validateHasBeenSet);
         _issueFields.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _backlog.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

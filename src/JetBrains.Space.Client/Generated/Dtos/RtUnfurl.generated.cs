@@ -77,6 +77,7 @@ public sealed class RtUnfurl
 
     private PropertyValue<RtUnfurlAttrs?> _attrs = new PropertyValue<RtUnfurlAttrs?>(nameof(RtUnfurl), nameof(Attrs), "attrs");
     
+    [Obsolete("Use RtUnfurl fields instead (since 2023-03-28) (will be removed in a future version)")]
     [JsonPropertyName("attrs")]
     public RtUnfurlAttrs? Attrs
     {

@@ -104,6 +104,13 @@ public interface ISpaceWebHookHandler
     /// <param name="payload">The <see cref="ChangeServerUrlPayload"/>.</param>
     /// <returns>The result of executing this action.</returns>
     Task<ApplicationExecutionResult> HandleChangeServerUrlAsync(ChangeServerUrlPayload payload);
+    
+    /// <summary>
+    /// Handle event when external issue is created.
+    /// </summary>
+    /// <param name="payload">The <see cref="CreateExternalIssueRequestPayload"/>.</param>
+    /// <returns>The result of executing this action.</returns>
+    Task<ApplicationExecutionResult> HandleCreateExternalIssueRequestAsync(CreateExternalIssueRequestPayload payload);
 
     /// <summary>
     /// Handle event that checks the application.

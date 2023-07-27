@@ -37,5 +37,8 @@ public static class GettingStartedUiExtensionInPartialExtensions
     public static Partial<GettingStartedUiExtensionIn> WithGettingStartedTitle(this Partial<GettingStartedUiExtensionIn> it)
         => it.AddFieldName("gettingStartedTitle");
     
+    public static Partial<GettingStartedUiExtensionIn> WithIsOpenInNewTab(this Partial<GettingStartedUiExtensionIn> it)
+        => it.AddFieldName("openInNewTab");
+    
 }
 

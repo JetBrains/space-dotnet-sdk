@@ -88,6 +88,12 @@ public static class DeployTargetRecordPartialExtensions
     public static Partial<DeployTargetRecord> WithCurrent(this Partial<DeployTargetRecord> it, Func<Partial<DeploymentInfo>, Partial<DeploymentInfo>> partialBuilder)
         => it.AddFieldName("current", partialBuilder(new Partial<DeploymentInfo>(it)));
     
+    public static Partial<DeployTargetRecord> WithCustomFields(this Partial<DeployTargetRecord> it)
+        => it.AddFieldName("customFields");
+    
+    public static Partial<DeployTargetRecord> WithCustomFields(this Partial<DeployTargetRecord> it, Func<Partial<CFValue>, Partial<CFValue>> partialBuilder)
+        => it.AddFieldName("customFields", partialBuilder(new Partial<CFValue>(it)));
+    
     public static Partial<DeployTargetRecord> WithFailTimeoutMinutes(this Partial<DeployTargetRecord> it)
         => it.AddFieldName("failTimeoutMinutes");
     

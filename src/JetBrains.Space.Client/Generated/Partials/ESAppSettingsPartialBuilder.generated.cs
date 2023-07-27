@@ -43,6 +43,9 @@ public static class ESAppSettingsPartialExtensions
     public static Partial<ESAppSettings> WithIsPkceRequired(this Partial<ESAppSettings> it)
         => it.AddFieldName("pkceRequired");
     
+    public static Partial<ESAppSettings> WithIsPublicClientsAllowed(this Partial<ESAppSettings> it)
+        => it.AddFieldName("publicClientsAllowed");
+    
     public static Partial<ESAppSettings> WithIsImplicitFlowEnabled(this Partial<ESAppSettings> it)
         => it.AddFieldName("implicitFlowEnabled");
     

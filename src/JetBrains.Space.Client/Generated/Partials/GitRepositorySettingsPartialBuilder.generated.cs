@@ -67,5 +67,11 @@ public static class GitRepositorySettingsPartialExtensions
     public static Partial<GitRepositorySettings> WithBundle(this Partial<GitRepositorySettings> it, Func<Partial<GitRepositorySettingsBundle>, Partial<GitRepositorySettingsBundle>> partialBuilder)
         => it.AddFieldName("bundle", partialBuilder(new Partial<GitRepositorySettingsBundle>(it)));
     
+    public static Partial<GitRepositorySettings> WithSubtree(this Partial<GitRepositorySettings> it)
+        => it.AddFieldName("subtree");
+    
+    public static Partial<GitRepositorySettings> WithSubtree(this Partial<GitRepositorySettings> it, Func<Partial<GitRepositorySettingsSubtreeSetting>, Partial<GitRepositorySettingsSubtreeSetting>> partialBuilder)
+        => it.AddFieldName("subtree", partialBuilder(new Partial<GitRepositorySettingsSubtreeSetting>(it)));
+    
 }
 

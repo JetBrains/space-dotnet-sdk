@@ -64,6 +64,12 @@ public static class ArticleRecordPartialExtensions
     public static Partial<ArticleRecord> WithArchivedAt(this Partial<ArticleRecord> it)
         => it.AddFieldName("archivedAt");
     
+    public static Partial<ArticleRecord> WithAttachments(this Partial<ArticleRecord> it)
+        => it.AddFieldName("attachments");
+    
+    public static Partial<ArticleRecord> WithAttachments(this Partial<ArticleRecord> it, Func<Partial<AttachmentInfo>, Partial<AttachmentInfo>> partialBuilder)
+        => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentInfo>(it)));
+    
     public static Partial<ArticleRecord> WithChannel(this Partial<ArticleRecord> it)
         => it.AddFieldName("channel");
     
@@ -76,11 +82,18 @@ public static class ArticleRecordPartialExtensions
     public static Partial<ArticleRecord> WithChannelContent(this Partial<ArticleRecord> it, Func<Partial<M2ChannelContentRecord>, Partial<M2ChannelContentRecord>> partialBuilder)
         => it.AddFieldName("channelContent", partialBuilder(new Partial<M2ChannelContentRecord>(it)));
     
+    [Obsolete("Use docContent property instead (since 2023-05-30) (will be removed in a future version)")]
     public static Partial<ArticleRecord> WithContent(this Partial<ArticleRecord> it)
         => it.AddFieldName("content");
     
     public static Partial<ArticleRecord> WithIsCut(this Partial<ArticleRecord> it)
         => it.AddFieldName("cut");
+    
+    public static Partial<ArticleRecord> WithDocContent(this Partial<ArticleRecord> it)
+        => it.AddFieldName("docContent");
+    
+    public static Partial<ArticleRecord> WithDocContent(this Partial<ArticleRecord> it, Func<Partial<TextDocumentContent>, Partial<TextDocumentContent>> partialBuilder)
+        => it.AddFieldName("docContent", partialBuilder(new Partial<TextDocumentContent>(it)));
     
     public static Partial<ArticleRecord> WithIsEditable(this Partial<ArticleRecord> it)
         => it.AddFieldName("editable");

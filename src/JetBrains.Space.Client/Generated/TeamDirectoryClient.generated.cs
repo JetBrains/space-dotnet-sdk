@@ -1219,6 +1219,27 @@ public partial class TeamDirectoryClient : ISpaceClient
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMembershipsAsync(directTeams: directTeams, directRoles: directRoles, withArchived: withArchived, top: top, identifiers: identifiers, profiles: profiles, teams: teams, roles: roles, since: since, till: till, requiresApproval: requiresApproval, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMembership>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMembership>.Default())), skip, cancellationToken);
     
         /// <summary>
+        /// Get memberships for synchronization with third-party system. Memberships with etag greater than specified value are returned. Read more in the <a href="https://www.jetbrains.com/help/space/sync-api.html">documentation</a>.
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View memberships</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<SyncBatch<TDMembership>> GetSyncBatchAsync(SyncBatchInfo batchInfo, Func<Partial<SyncBatch<TDMembership>>, Partial<SyncBatch<TDMembership>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("batchInfo", batchInfo.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<SyncBatch<TDMembership>>()) : Partial<SyncBatch<TDMembership>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<SyncBatch<TDMembership>>("GET", $"api/http/team-directory/memberships/sync-batch{queryParameters.ToQueryString()}", requestHeaders: EpochTrackerHeaders.GenerateFrom(_connection.ServerUrl, EpochTracker.Instance), functionName: "GetSyncBatch", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <summary>
         /// Get a single membership by its identifier
         /// </summary>
         /// <remarks>
@@ -2859,6 +2880,40 @@ public partial class TeamDirectoryClient : ISpaceClient
                 
                 }
             
+                public SearchClient Search => new SearchClient(_connection);
+                
+                public partial class SearchClient : ISpaceClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public SearchClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    /// <summary>
+                    /// Executes search for personal documents and folders in specified folder
+                    /// </summary>
+                    public async Task<Batch<DocumentFolderItem>> SearchDocumentsAndFoldersAsync(ProfileIdentifier profile, FolderIdentifier folder, string query, bool? includeBody = null, string? skip = null, int? top = 100, Func<Partial<Batch<DocumentFolderItem>>, Partial<Batch<DocumentFolderItem>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        queryParameters.Append("query", query);
+                        if (includeBody != null) queryParameters.Append("includeBody", includeBody?.ToString("l"));
+                        if (skip != null) queryParameters.Append("$skip", skip);
+                        if (top != null) queryParameters.Append("$top", top?.ToString());
+                        queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<DocumentFolderItem>>()) : Partial<Batch<DocumentFolderItem>>.Default()).ToString());
+                        
+                        return await _connection.RequestResourceAsync<Batch<DocumentFolderItem>>("GET", $"api/http/team-directory/profiles/{profile}/documents/folders/{folder}/search{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "SearchDocumentsAndFolders", cancellationToken: cancellationToken);
+                    }
+                    
+                    /// <summary>
+                    /// Executes search for personal documents and folders in specified folder
+                    /// </summary>
+                    public IAsyncEnumerable<DocumentFolderItem> SearchDocumentsAndFoldersAsyncEnumerable(ProfileIdentifier profile, FolderIdentifier folder, string query, bool? includeBody = null, string? skip = null, int? top = 100, Func<Partial<DocumentFolderItem>, Partial<DocumentFolderItem>>? partial = null, CancellationToken cancellationToken = default)
+                        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => SearchDocumentsAndFoldersAsync(profile: profile, folder: folder, query: query, includeBody: includeBody, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<DocumentFolderItem>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DocumentFolderItem>.Default())), skip, cancellationToken);
+                
+                }
+            
                 public SubfolderClient Subfolders => new SubfolderClient(_connection);
                 
                 public partial class SubfolderClient : ISpaceClient
@@ -2947,27 +3002,6 @@ public partial class TeamDirectoryClient : ISpaceClient
                             Name = name,
                             Folder = folder,
                         }, requestHeaders: null, functionName: "CopyDocument", cancellationToken: cancellationToken);
-                }
-                
-            
-            }
-        
-            public DeleteForeverClient DeleteForever => new DeleteForeverClient(_connection);
-            
-            public partial class DeleteForeverClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public DeleteForeverClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                public async Task DeleteDocumentForeverAsync(ProfileIdentifier profile, string documentId, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/documents/{documentId}/delete-forever{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteDocumentForever", cancellationToken: cancellationToken);
                 }
                 
             
@@ -3930,6 +3964,27 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// </remarks>
         public IAsyncEnumerable<TDTeam> GetAllTeamsAsyncEnumerable(string query = "", bool withArchived = false, string? skip = null, int? top = 100, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllTeamsAsync(query: query, withArchived: withArchived, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDTeam>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDTeam>.Default())), skip, cancellationToken);
+    
+        /// <summary>
+        /// Get teams for synchronization with third-party system. Teams with etag greater than specified value are returned. Read more in the <a href="https://www.jetbrains.com/help/space/sync-api.html">documentation</a>.
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View teams</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<SyncBatch<TDTeam>> GetSyncBatchAsync(SyncBatchInfo batchInfo, Func<Partial<SyncBatch<TDTeam>>, Partial<SyncBatch<TDTeam>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("batchInfo", batchInfo.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<SyncBatch<TDTeam>>()) : Partial<SyncBatch<TDTeam>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<SyncBatch<TDTeam>>("GET", $"api/http/team-directory/teams/sync-batch{queryParameters.ToQueryString()}", requestHeaders: EpochTrackerHeaders.GenerateFrom(_connection.ServerUrl, EpochTracker.Instance), functionName: "GetSyncBatch", cancellationToken: cancellationToken);
+        }
+        
     
         /// <summary>
         /// Get a team by ID

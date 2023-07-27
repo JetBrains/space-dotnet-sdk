@@ -86,6 +86,7 @@ public sealed class RtImage
 
     private PropertyValue<RtImageAttrs?> _attrs = new PropertyValue<RtImageAttrs?>(nameof(RtImage), nameof(Attrs), "attrs");
     
+    [Obsolete("Use RtImage fields instead (since 2023-03-28) (will be removed in a future version)")]
     [JsonPropertyName("attrs")]
     public RtImageAttrs? Attrs
     {

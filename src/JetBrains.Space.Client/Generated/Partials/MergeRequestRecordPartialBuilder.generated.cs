@@ -88,6 +88,9 @@ public static class MergeRequestRecordPartialExtensions
     public static Partial<MergeRequestRecord> WithBranchPairs(this Partial<MergeRequestRecord> it, Func<Partial<MergeRequestBranchPair>, Partial<MergeRequestBranchPair>> partialBuilder)
         => it.AddFieldName("branchPairs", partialBuilder(new Partial<MergeRequestBranchPair>(it)));
     
+    public static Partial<MergeRequestRecord> WithIsReadOnly(this Partial<MergeRequestRecord> it)
+        => it.AddFieldName("readOnly");
+    
     public static Partial<MergeRequestRecord> WithExternalLink(this Partial<MergeRequestRecord> it)
         => it.AddFieldName("externalLink");
     
@@ -116,12 +119,6 @@ public static class MergeRequestRecordPartialExtensions
     
     public static Partial<MergeRequestRecord> WithDiscussionCounter(this Partial<MergeRequestRecord> it, Func<Partial<DiscussionCounter>, Partial<DiscussionCounter>> partialBuilder)
         => it.AddFieldName("discussionCounter", partialBuilder(new Partial<DiscussionCounter>(it)));
-    
-    public static Partial<MergeRequestRecord> WithExternalIssueIds(this Partial<MergeRequestRecord> it)
-        => it.AddFieldName("externalIssueIds");
-    
-    public static Partial<MergeRequestRecord> WithExternalIssueIds(this Partial<MergeRequestRecord> it, Func<Partial<ExternalIssueId>, Partial<ExternalIssueId>> partialBuilder)
-        => it.AddFieldName("externalIssueIds", partialBuilder(new Partial<ExternalIssueId>(it)));
     
     public static Partial<MergeRequestRecord> WithIssueIds(this Partial<MergeRequestRecord> it)
         => it.AddFieldName("issueIds");

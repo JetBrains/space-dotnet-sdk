@@ -37,10 +37,11 @@ public sealed class GettingStartedUiExtensionIn
     
     public GettingStartedUiExtensionIn() { }
     
-    public GettingStartedUiExtensionIn(string gettingStartedUrl, string gettingStartedTitle)
+    public GettingStartedUiExtensionIn(string gettingStartedUrl, string gettingStartedTitle, bool? openInNewTab = null)
     {
         GettingStartedUrl = gettingStartedUrl;
         GettingStartedTitle = gettingStartedTitle;
+        IsOpenInNewTab = openInNewTab;
     }
     
     private PropertyValue<string> _gettingStartedUrl = new PropertyValue<string>(nameof(GettingStartedUiExtensionIn), nameof(GettingStartedUrl), "gettingStartedUrl");
@@ -63,10 +64,20 @@ public sealed class GettingStartedUiExtensionIn
         set => _gettingStartedTitle.SetValue(value);
     }
 
+    private PropertyValue<bool?> _openInNewTab = new PropertyValue<bool?>(nameof(GettingStartedUiExtensionIn), nameof(IsOpenInNewTab), "openInNewTab");
+    
+    [JsonPropertyName("openInNewTab")]
+    public bool? IsOpenInNewTab
+    {
+        get => _openInNewTab.GetValue(InlineErrors);
+        set => _openInNewTab.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _gettingStartedUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
         _gettingStartedTitle.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _openInNewTab.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

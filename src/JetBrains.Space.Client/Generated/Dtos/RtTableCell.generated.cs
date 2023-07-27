@@ -87,6 +87,7 @@ public sealed class RtTableCell
 
     private PropertyValue<RtTableCellAttrs?> _attrs = new PropertyValue<RtTableCellAttrs?>(nameof(RtTableCell), nameof(Attrs), "attrs");
     
+    [Obsolete("Use RtTableRowContent fields instead (since 2023-03-28) (will be removed in a future version)")]
     [JsonPropertyName("attrs")]
     public RtTableCellAttrs? Attrs
     {

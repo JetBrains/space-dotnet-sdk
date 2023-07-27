@@ -34,7 +34,7 @@ public sealed class GitRepositorySettings
 {
     public GitRepositorySettings() { }
     
-    public GitRepositorySettings(string version, GitRepositorySettingsMirrorSettings? mirror = null, string? encoding = null, GitRepositorySettingsPushRestrictions? pushRestrictions = null, List<GitRepositorySettingsProtectedBranch>? protectedBranches = null, GitRepositorySettingsPreReceiveHook? preReceiveHook = null, GitRepositorySettingsBundle? bundle = null)
+    public GitRepositorySettings(string version, GitRepositorySettingsMirrorSettings? mirror = null, string? encoding = null, GitRepositorySettingsPushRestrictions? pushRestrictions = null, List<GitRepositorySettingsProtectedBranch>? protectedBranches = null, GitRepositorySettingsPreReceiveHook? preReceiveHook = null, GitRepositorySettingsBundle? bundle = null, List<GitRepositorySettingsSubtreeSetting>? subtree = null)
     {
         Version = version;
         Mirror = mirror;
@@ -43,6 +43,7 @@ public sealed class GitRepositorySettings
         ProtectedBranches = protectedBranches;
         PreReceiveHook = preReceiveHook;
         Bundle = bundle;
+        Subtree = subtree;
     }
     
     private PropertyValue<string> _version = new PropertyValue<string>(nameof(GitRepositorySettings), nameof(Version), "version");
@@ -109,6 +110,15 @@ public sealed class GitRepositorySettings
         set => _bundle.SetValue(value);
     }
 
+    private PropertyValue<List<GitRepositorySettingsSubtreeSetting>?> _subtree = new PropertyValue<List<GitRepositorySettingsSubtreeSetting>?>(nameof(GitRepositorySettings), nameof(Subtree), "subtree");
+    
+    [JsonPropertyName("subtree")]
+    public List<GitRepositorySettingsSubtreeSetting>? Subtree
+    {
+        get => _subtree.GetValue(InlineErrors);
+        set => _subtree.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _version.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -118,6 +128,7 @@ public sealed class GitRepositorySettings
         _protectedBranches.SetAccessPath(parentChainPath, validateHasBeenSet);
         _preReceiveHook.SetAccessPath(parentChainPath, validateHasBeenSet);
         _bundle.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _subtree.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

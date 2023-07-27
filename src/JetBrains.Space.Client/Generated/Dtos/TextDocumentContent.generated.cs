@@ -35,5 +35,8 @@ public interface TextDocumentContent
     public static MdTextDocumentContent Md(string markdown)
         => new MdTextDocumentContent(markdown: markdown);
     
+    public static RtTextDocumentContent Rt(RtDocument document)
+        => new RtTextDocumentContent(document: document);
+    
 }
 

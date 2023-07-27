@@ -64,6 +64,7 @@ public sealed class ArticleContentRecord
     private PropertyValue<string> _content = new PropertyValue<string>(nameof(ArticleContentRecord), nameof(Content), "content");
     
     [Required]
+    [Obsolete("Use docContent property instead (since 2023-05-30) (will be removed in a future version)")]
     [JsonPropertyName("content")]
     public string Content
     {

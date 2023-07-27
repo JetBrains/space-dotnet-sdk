@@ -37,6 +37,7 @@ public static class ArticleContentRecordPartialExtensions
     public static Partial<ArticleContentRecord> WithIsArchived(this Partial<ArticleContentRecord> it)
         => it.AddFieldName("archived");
     
+    [Obsolete("Use docContent property instead (since 2023-05-30) (will be removed in a future version)")]
     public static Partial<ArticleContentRecord> WithContent(this Partial<ArticleContentRecord> it)
         => it.AddFieldName("content");
     

@@ -67,5 +67,11 @@ public static class HAModelPartialExtensions
     public static Partial<HAModel> WithMenuIds(this Partial<HAModel> it, Func<Partial<HAMenuId>, Partial<HAMenuId>> partialBuilder)
         => it.AddFieldName("menuIds", partialBuilder(new Partial<HAMenuId>(it)));
     
+    public static Partial<HAModel> WithFeatureFlags(this Partial<HAModel> it)
+        => it.AddFieldName("featureFlags");
+    
+    public static Partial<HAModel> WithFeatureFlags(this Partial<HAModel> it, Func<Partial<HAFeatureFlag>, Partial<HAFeatureFlag>> partialBuilder)
+        => it.AddFieldName("featureFlags", partialBuilder(new Partial<HAFeatureFlag>(it)));
+    
 }
 

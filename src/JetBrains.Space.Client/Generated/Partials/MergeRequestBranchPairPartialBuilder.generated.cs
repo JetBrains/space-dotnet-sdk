@@ -31,6 +31,9 @@ namespace JetBrains.Space.Client.MergeRequestBranchPairPartialBuilder;
 
 public static class MergeRequestBranchPairPartialExtensions
 {
+    public static Partial<MergeRequestBranchPair> WithRepositoryId(this Partial<MergeRequestBranchPair> it)
+        => it.AddFieldName("repositoryId");
+    
     public static Partial<MergeRequestBranchPair> WithRepository(this Partial<MergeRequestBranchPair> it)
         => it.AddFieldName("repository");
     

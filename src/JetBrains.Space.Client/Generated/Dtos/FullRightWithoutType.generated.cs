@@ -34,7 +34,7 @@ public sealed class FullRightWithoutType
 {
     public FullRightWithoutType() { }
     
-    public FullRightWithoutType(string code, string title, bool grantedForUsers, string? description = null, FeatureFlag? featureFlag = null)
+    public FullRightWithoutType(string code, string title, bool grantedForUsers, string? description = null, FeatureFlagInfo? featureFlag = null)
     {
         Code = code;
         Title = title;
@@ -82,10 +82,10 @@ public sealed class FullRightWithoutType
         set => _grantedForUsers.SetValue(value);
     }
 
-    private PropertyValue<FeatureFlag?> _featureFlag = new PropertyValue<FeatureFlag?>(nameof(FullRightWithoutType), nameof(FeatureFlag), "featureFlag");
+    private PropertyValue<FeatureFlagInfo?> _featureFlag = new PropertyValue<FeatureFlagInfo?>(nameof(FullRightWithoutType), nameof(FeatureFlag), "featureFlag");
     
     [JsonPropertyName("featureFlag")]
-    public FeatureFlag? FeatureFlag
+    public FeatureFlagInfo? FeatureFlag
     {
         get => _featureFlag.GetValue(InlineErrors);
         set => _featureFlag.SetValue(value);

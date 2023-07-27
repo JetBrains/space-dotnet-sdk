@@ -34,7 +34,7 @@ public class ApplicationsPostRequest
 {
     public ApplicationsPostRequest() { }
     
-    public ApplicationsPostRequest(string name, string? description = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? email = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = true, bool? codeFlowEnabled = false, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? implicitFlowEnabled = false, string? implicitFlowRedirectURIs = null, string? endpointUri = null, bool? endpointSslVerification = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? connectToSpace = false, string? state = null)
+    public ApplicationsPostRequest(string name, string? description = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? email = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = true, bool? codeFlowEnabled = false, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? publicClientsAllowed = null, bool? implicitFlowEnabled = false, string? implicitFlowRedirectURIs = null, string? endpointUri = null, bool? endpointSslVerification = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? connectToSpace = false, string? state = null)
     {
         Name = name;
         Description = description;
@@ -47,6 +47,7 @@ public class ApplicationsPostRequest
         IsCodeFlowEnabled = codeFlowEnabled;
         CodeFlowRedirectURIs = codeFlowRedirectURIs;
         IsPkceRequired = pkceRequired;
+        IsPublicClientsAllowed = publicClientsAllowed;
         IsImplicitFlowEnabled = implicitFlowEnabled;
         ImplicitFlowRedirectURIs = implicitFlowRedirectURIs;
         EndpointUri = endpointUri;
@@ -223,6 +224,21 @@ public class ApplicationsPostRequest
     {
         get => _pkceRequired.GetValue(InlineErrors);
         set => _pkceRequired.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _publicClientsAllowed = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsPublicClientsAllowed), "publicClientsAllowed");
+    
+    /// <summary>
+    /// When Authorization Code Flow is enabled, specifies whether clients can authenticate without client secret. Requires PKCE. Learn more in the <a href="https://www.jetbrains.com/help/space/authorization-code.html">documentation</a>.
+    /// </summary>
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("publicClientsAllowed")]
+    public bool? IsPublicClientsAllowed
+    {
+        get => _publicClientsAllowed.GetValue(InlineErrors);
+        set => _publicClientsAllowed.SetValue(value);
     }
 
     private PropertyValue<bool?> _implicitFlowEnabled = new PropertyValue<bool?>(nameof(ApplicationsPostRequest), nameof(IsImplicitFlowEnabled), "implicitFlowEnabled");
@@ -423,6 +439,7 @@ public class ApplicationsPostRequest
         _codeFlowEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _codeFlowRedirectURIs.SetAccessPath(parentChainPath, validateHasBeenSet);
         _pkceRequired.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _publicClientsAllowed.SetAccessPath(parentChainPath, validateHasBeenSet);
         _implicitFlowEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _implicitFlowRedirectURIs.SetAccessPath(parentChainPath, validateHasBeenSet);
         _endpointUri.SetAccessPath(parentChainPath, validateHasBeenSet);

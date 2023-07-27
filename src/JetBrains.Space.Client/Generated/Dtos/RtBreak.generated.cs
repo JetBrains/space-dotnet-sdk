@@ -45,6 +45,7 @@ public sealed class RtBreak
     
     private PropertyValue<bool?> _soft = new PropertyValue<bool?>(nameof(RtBreak), nameof(IsSoft), "soft");
     
+    [Obsolete("Obsolete: there is no difference between soft and hard break. Hard breaks are enforced by a new paragraph, so from the Rt point of view all breaks are soft. (since 2023-03-28) (will be removed in a future version)")]
     [JsonPropertyName("soft")]
     public bool? IsSoft
     {

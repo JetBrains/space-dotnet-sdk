@@ -34,10 +34,11 @@ public sealed class PurchasedBillingPlan
 {
     public PurchasedBillingPlan() { }
     
-    public PurchasedBillingPlan(string id, string plan, string billingPeriod, DateTime since, DateTime till, Currency currency, double addUserPrice, double addStoragePrice, double addBandwidthPrice, double addCiCreditPrice, int minActiveUsers, int prepaidUsers, int storagePerUser, int storageOverall, int bandwidthPerUser, int bandwidthOverall, int ciCredits, int ciCreditsReserve, int integrations, int searchHistory, double balance, double hardLimitAmount, string? jetSalesId = null, string? installationPublicKey = null, DateTime? mayUseTill = null, double? ciCreditsRateForExternalWorker = null, bool? hasCardVerifiedAdmin = null, bool? isTrial = null, List<string>? spentTrials = null, string? trialBasePlan = null)
+    public PurchasedBillingPlan(string id, string plan, string billingPeriod, DateTime since, DateTime till, Currency currency, double addUserPrice, double addStoragePrice, double addBandwidthPrice, double addCiCreditPrice, int minActiveUsers, int prepaidUsers, int storagePerUser, int storageOverall, int bandwidthPerUser, int bandwidthOverall, int ciCredits, int ciCreditsReserve, int integrations, int searchHistory, double balance, double hardLimitAmount, string? jetSalesId = null, string? licenseIssuer = null, string? installationPublicKey = null, DateTime? mayUseTill = null, double? ciCreditsRateForExternalWorker = null, bool? hasCardVerifiedAdmin = null, bool? isTrial = null, List<string>? spentTrials = null, string? trialBasePlan = null)
     {
         Id = id;
         JetSalesId = jetSalesId;
+        LicenseIssuer = licenseIssuer;
         InstallationPublicKey = installationPublicKey;
         Plan = plan;
         BillingPeriod = billingPeriod;
@@ -85,6 +86,15 @@ public sealed class PurchasedBillingPlan
     {
         get => _jetSalesId.GetValue(InlineErrors);
         set => _jetSalesId.SetValue(value);
+    }
+
+    private PropertyValue<string?> _licenseIssuer = new PropertyValue<string?>(nameof(PurchasedBillingPlan), nameof(LicenseIssuer), "licenseIssuer");
+    
+    [JsonPropertyName("licenseIssuer")]
+    public string? LicenseIssuer
+    {
+        get => _licenseIssuer.GetValue(InlineErrors);
+        set => _licenseIssuer.SetValue(value);
     }
 
     private PropertyValue<string?> _installationPublicKey = new PropertyValue<string?>(nameof(PurchasedBillingPlan), nameof(InstallationPublicKey), "installationPublicKey");
@@ -367,6 +377,7 @@ public sealed class PurchasedBillingPlan
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
         _jetSalesId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _licenseIssuer.SetAccessPath(parentChainPath, validateHasBeenSet);
         _installationPublicKey.SetAccessPath(parentChainPath, validateHasBeenSet);
         _plan.SetAccessPath(parentChainPath, validateHasBeenSet);
         _billingPeriod.SetAccessPath(parentChainPath, validateHasBeenSet);

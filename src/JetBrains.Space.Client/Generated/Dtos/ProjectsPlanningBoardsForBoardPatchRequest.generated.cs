@@ -34,7 +34,7 @@ public class ProjectsPlanningBoardsForBoardPatchRequest
 {
     public ProjectsPlanningBoardsForBoardPatchRequest() { }
     
-    public ProjectsPlanningBoardsForBoardPatchRequest(string? name = null, string? description = null, string? swimlaneKey = null, BoardColumns? columns = null, List<BoardIssueInputField>? issueFields = null, List<string>? memberOwners = null, List<string>? teamOwners = null)
+    public ProjectsPlanningBoardsForBoardPatchRequest(string? name = null, string? description = null, string? swimlaneKey = null, BoardColumns? columns = null, List<BoardIssueInputField>? issueFields = null, List<string>? memberOwners = null, List<string>? teamOwners = null, BacklogTypeIn? backlogType = null)
     {
         Name = name;
         Description = description;
@@ -43,6 +43,7 @@ public class ProjectsPlanningBoardsForBoardPatchRequest
         IssueFields = issueFields;
         MemberOwners = memberOwners;
         TeamOwners = teamOwners;
+        BacklogType = backlogType;
     }
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(Name), "name");
@@ -129,6 +130,18 @@ public class ProjectsPlanningBoardsForBoardPatchRequest
         set => _teamOwners.SetValue(value);
     }
 
+    private PropertyValue<BacklogTypeIn?> _backlogType = new PropertyValue<BacklogTypeIn?>(nameof(ProjectsPlanningBoardsForBoardPatchRequest), nameof(BacklogType), "backlogType");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("backlogType")]
+    public BacklogTypeIn? BacklogType
+    {
+        get => _backlogType.GetValue(InlineErrors);
+        set => _backlogType.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -138,6 +151,7 @@ public class ProjectsPlanningBoardsForBoardPatchRequest
         _issueFields.SetAccessPath(parentChainPath, validateHasBeenSet);
         _memberOwners.SetAccessPath(parentChainPath, validateHasBeenSet);
         _teamOwners.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _backlogType.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

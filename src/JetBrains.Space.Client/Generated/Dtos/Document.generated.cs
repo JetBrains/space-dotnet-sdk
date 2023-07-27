@@ -34,7 +34,7 @@ public sealed class Document
 {
     public Document() { }
     
-    public Document(string id, string title, string alias, bool archived, DateTime modified, DocumentBodyInfo documentBody, PublicationDetails? publicationDetails = null, DocumentFolder? folderRef = null, DocumentBodyType? bodyType = null, DocumentBodyInfo? bodyInfo = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null)
+    public Document(string id, string title, string alias, bool archived, DateTime modified, DocumentBodyInfo documentBody, PublicationDetails? publicationDetails = null, DocumentFolder? folderRef = null, DocumentBodyType? bodyType = null, DocumentBodyInfo? bodyInfo = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null, DocumentHttpBody? body = null)
     {
         Id = id;
         Title = title;
@@ -50,6 +50,7 @@ public sealed class Document
         Created = created;
         ModifiedBy = modifiedBy;
         Modified = modified;
+        Body = body;
         DocumentBody = documentBody;
     }
     
@@ -187,9 +188,19 @@ public sealed class Document
         set => _modified.SetValue(value);
     }
 
+    private PropertyValue<DocumentHttpBody?> _body = new PropertyValue<DocumentHttpBody?>(nameof(Document), nameof(Body), "body");
+    
+    [JsonPropertyName("body")]
+    public DocumentHttpBody? Body
+    {
+        get => _body.GetValue(InlineErrors);
+        set => _body.SetValue(value);
+    }
+
     private PropertyValue<DocumentBodyInfo> _documentBody = new PropertyValue<DocumentBodyInfo>(nameof(Document), nameof(DocumentBody), "documentBody");
     
     [Required]
+    [Obsolete("Use body property instead (since 2023-05-30) (will be removed in a future version)")]
     [JsonPropertyName("documentBody")]
     public DocumentBodyInfo DocumentBody
     {
@@ -213,6 +224,7 @@ public sealed class Document
         _created.SetAccessPath(parentChainPath, validateHasBeenSet);
         _modifiedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _modified.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _body.SetAccessPath(parentChainPath, validateHasBeenSet);
         _documentBody.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

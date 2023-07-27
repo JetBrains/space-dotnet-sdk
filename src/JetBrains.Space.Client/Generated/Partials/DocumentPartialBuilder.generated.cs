@@ -94,9 +94,17 @@ public static class DocumentPartialExtensions
     public static Partial<Document> WithModified(this Partial<Document> it)
         => it.AddFieldName("modified");
     
+    public static Partial<Document> WithBody(this Partial<Document> it)
+        => it.AddFieldName("body");
+    
+    public static Partial<Document> WithBody(this Partial<Document> it, Func<Partial<DocumentHttpBody>, Partial<DocumentHttpBody>> partialBuilder)
+        => it.AddFieldName("body", partialBuilder(new Partial<DocumentHttpBody>(it)));
+    
+    [Obsolete("Use body property instead (since 2023-05-30) (will be removed in a future version)")]
     public static Partial<Document> WithDocumentBody(this Partial<Document> it)
         => it.AddFieldName("documentBody");
     
+    [Obsolete("Use body property instead (since 2023-05-30) (will be removed in a future version)")]
     public static Partial<Document> WithDocumentBody(this Partial<Document> it, Func<Partial<DocumentBodyInfo>, Partial<DocumentBodyInfo>> partialBuilder)
         => it.AddFieldName("documentBody", partialBuilder(new Partial<DocumentBodyInfo>(it)));
     

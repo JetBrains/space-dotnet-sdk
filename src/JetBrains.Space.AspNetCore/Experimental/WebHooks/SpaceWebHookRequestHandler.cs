@@ -170,6 +170,12 @@ public class SpaceWebHookRequestHandler<TWebHookHandler>
                 var changeServerUrlActionResult = await handler.HandleChangeServerUrlAsync(changeServerUrlPayload);
                 await WriteApplicationExecutionResultAsync(context.Response, changeServerUrlActionResult);
                 return;
+            
+            // Create external issue?
+            case CreateExternalIssueRequestPayload createExternalIssueRequestPayload:
+                var createExternalIssueRequestResult = await handler.HandleCreateExternalIssueRequestAsync(createExternalIssueRequestPayload);
+                await WriteApplicationExecutionResultAsync(context.Response, createExternalIssueRequestResult);
+                return;
                 
             // Publication check?
             case AppPublicationCheckPayload publicationCheckPayload:

@@ -43,9 +43,11 @@ public static class RtUnfurlPartialExtensions
     public static Partial<RtUnfurl> WithMarks(this Partial<RtUnfurl> it, Func<Partial<RtDocumentMark>, Partial<RtDocumentMark>> partialBuilder)
         => it.AddFieldName("marks", partialBuilder(new Partial<RtDocumentMark>(it)));
     
+    [Obsolete("Use RtUnfurl fields instead (since 2023-03-28) (will be removed in a future version)")]
     public static Partial<RtUnfurl> WithAttrs(this Partial<RtUnfurl> it)
         => it.AddFieldName("attrs");
     
+    [Obsolete("Use RtUnfurl fields instead (since 2023-03-28) (will be removed in a future version)")]
     public static Partial<RtUnfurl> WithAttrs(this Partial<RtUnfurl> it, Func<Partial<RtUnfurlAttrs>, Partial<RtUnfurlAttrs>> partialBuilder)
         => it.AddFieldName("attrs", partialBuilder(new Partial<RtUnfurlAttrs>(it)));
     
