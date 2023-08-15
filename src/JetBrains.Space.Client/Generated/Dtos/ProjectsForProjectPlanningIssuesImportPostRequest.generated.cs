@@ -29,7 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class ProjectsForProjectPlanningIssuesImportPostRequest
+internal class ProjectsForProjectPlanningIssuesImportPostRequest
      : IPropagatePropertyAccessPath
 {
     public ProjectsForProjectPlanningIssuesImportPostRequest() { }

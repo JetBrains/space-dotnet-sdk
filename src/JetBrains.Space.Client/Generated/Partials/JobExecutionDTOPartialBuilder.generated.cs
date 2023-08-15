@@ -67,12 +67,6 @@ public static class JobExecutionDTOPartialExtensions
     public static Partial<JobExecutionDTO> WithChangesCount(this Partial<JobExecutionDTO> it)
         => it.AddFieldName("changesCount");
     
-    public static Partial<JobExecutionDTO> WithPredictedEndTime(this Partial<JobExecutionDTO> it)
-        => it.AddFieldName("predictedEndTime");
-    
-    public static Partial<JobExecutionDTO> WithPredictedEndTime(this Partial<JobExecutionDTO> it, Func<Partial<EstimationDTO>, Partial<EstimationDTO>> partialBuilder)
-        => it.AddFieldName("predictedEndTime", partialBuilder(new Partial<EstimationDTO>(it)));
-    
     public static Partial<JobExecutionDTO> WithFailureConditions(this Partial<JobExecutionDTO> it)
         => it.AddFieldName("failureConditions");
     

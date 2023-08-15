@@ -68,7 +68,13 @@ public class CSharpApiModelDtoGenerator
             
         dtoHierarchy.Add(nameof(IPropagatePropertyAccessPath));
 
-        builder.AppendLine($"{indent}public {modifierForDto} {typeNameForDto}");
+        var visibilityModifier = "public";
+        if (FeatureFlags.DoNotExposeRequestObjects && _codeGenerationContext.IsRequestBodyDto(apiDto.Id))
+        {
+            visibilityModifier = "internal";
+        }
+            
+        builder.AppendLine($"{indent}{visibilityModifier} {modifierForDto} {typeNameForDto}");
         indent.Increment();
         builder.AppendLine($"{indent} : " + string.Join(", ", dtoHierarchy));
         indent.Decrement();

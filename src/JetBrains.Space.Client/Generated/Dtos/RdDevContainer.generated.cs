@@ -34,9 +34,10 @@ public sealed class RdDevContainer
 {
     public RdDevContainer() { }
     
-    public RdDevContainer(RdDevContainerImage image)
+    public RdDevContainer(RdDevContainerImage image, List<EnvVar>? envVars = null)
     {
         Image = image;
+        EnvVars = envVars;
     }
     
     private PropertyValue<RdDevContainerImage> _image = new PropertyValue<RdDevContainerImage>(nameof(RdDevContainer), nameof(Image), "image");
@@ -49,9 +50,19 @@ public sealed class RdDevContainer
         set => _image.SetValue(value);
     }
 
+    private PropertyValue<List<EnvVar>?> _envVars = new PropertyValue<List<EnvVar>?>(nameof(RdDevContainer), nameof(EnvVars), "envVars");
+    
+    [JsonPropertyName("envVars")]
+    public List<EnvVar>? EnvVars
+    {
+        get => _envVars.GetValue(InlineErrors);
+        set => _envVars.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _image.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _envVars.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -34,7 +34,7 @@ public sealed class JobExecutionDTO
 {
     public JobExecutionDTO() { }
     
-    public JobExecutionDTO(string executionId, long executionNumber, string jobId, string jobName, string projectId, string branch, ExecutionStatus status, long triggeredTime, int changesCount, List<FailureConditionDTO> failureConditions, long? startedTime = null, long? finishedTime = null, EstimationDTO? predictedEndTime = null)
+    public JobExecutionDTO(string executionId, long executionNumber, string jobId, string jobName, string projectId, string branch, ExecutionStatus status, long triggeredTime, int changesCount, List<FailureConditionDTO> failureConditions, long? startedTime = null, long? finishedTime = null)
     {
         ExecutionId = executionId;
         ExecutionNumber = executionNumber;
@@ -47,7 +47,6 @@ public sealed class JobExecutionDTO
         StartedTime = startedTime;
         FinishedTime = finishedTime;
         ChangesCount = changesCount;
-        PredictedEndTime = predictedEndTime;
         FailureConditions = failureConditions;
     }
     
@@ -159,15 +158,6 @@ public sealed class JobExecutionDTO
         set => _changesCount.SetValue(value);
     }
 
-    private PropertyValue<EstimationDTO?> _predictedEndTime = new PropertyValue<EstimationDTO?>(nameof(JobExecutionDTO), nameof(PredictedEndTime), "predictedEndTime");
-    
-    [JsonPropertyName("predictedEndTime")]
-    public EstimationDTO? PredictedEndTime
-    {
-        get => _predictedEndTime.GetValue(InlineErrors);
-        set => _predictedEndTime.SetValue(value);
-    }
-
     private PropertyValue<List<FailureConditionDTO>> _failureConditions = new PropertyValue<List<FailureConditionDTO>>(nameof(JobExecutionDTO), nameof(FailureConditions), "failureConditions", new List<FailureConditionDTO>());
     
     [Required]
@@ -191,7 +181,6 @@ public sealed class JobExecutionDTO
         _startedTime.SetAccessPath(parentChainPath, validateHasBeenSet);
         _finishedTime.SetAccessPath(parentChainPath, validateHasBeenSet);
         _changesCount.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _predictedEndTime.SetAccessPath(parentChainPath, validateHasBeenSet);
         _failureConditions.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

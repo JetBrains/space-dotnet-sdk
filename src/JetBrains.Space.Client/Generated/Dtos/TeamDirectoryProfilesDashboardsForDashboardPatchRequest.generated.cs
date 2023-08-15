@@ -29,7 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class TeamDirectoryProfilesDashboardsForDashboardPatchRequest
+internal class TeamDirectoryProfilesDashboardsForDashboardPatchRequest
      : IPropagatePropertyAccessPath
 {
     public TeamDirectoryProfilesDashboardsForDashboardPatchRequest() { }

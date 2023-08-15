@@ -27,15 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.EstimationDTOPartialBuilder;
+namespace JetBrains.Space.Client.BOMDiffPartialBuilder;
 
-public static class EstimationDTOPartialExtensions
+public static class BOMDiffPartialExtensions
 {
-    public static Partial<EstimationDTO> WithStart(this Partial<EstimationDTO> it)
-        => it.AddFieldName("start");
+    public static Partial<BOMDiff> WithOld(this Partial<BOMDiff> it)
+        => it.AddFieldName("old");
     
-    public static Partial<EstimationDTO> WithPredictedDuration(this Partial<EstimationDTO> it)
-        => it.AddFieldName("predictedDuration");
+    public static Partial<BOMDiff> WithOld(this Partial<BOMDiff> it, Func<Partial<FileBOM>, Partial<FileBOM>> partialBuilder)
+        => it.AddFieldName("old", partialBuilder(new Partial<FileBOM>(it)));
+    
+    public static Partial<BOMDiff> WithNew(this Partial<BOMDiff> it)
+        => it.AddFieldName("new");
+    
+    public static Partial<BOMDiff> WithNew(this Partial<BOMDiff> it, Func<Partial<FileBOM>, Partial<FileBOM>> partialBuilder)
+        => it.AddFieldName("new", partialBuilder(new Partial<FileBOM>(it)));
     
 }
 

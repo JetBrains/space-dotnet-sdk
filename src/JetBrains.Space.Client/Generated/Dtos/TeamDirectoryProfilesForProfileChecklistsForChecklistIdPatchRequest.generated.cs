@@ -29,7 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest
+internal class TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest
      : IPropagatePropertyAccessPath
 {
     public TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest() { }

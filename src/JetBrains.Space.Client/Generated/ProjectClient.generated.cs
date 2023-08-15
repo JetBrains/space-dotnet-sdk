@@ -455,6 +455,51 @@ public partial class ProjectClient : ISpaceClient
             }
             
         
+            public AuditLogClient AuditLog => new AuditLogClient(_connection);
+            
+            public partial class AuditLogClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public AuditLogClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View deployments</term>
+                /// <description>View deployments in a project</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<Batch<DeployTargetAuditLogEntry>> AuditLogAsync(GlobalTargetIdentifier targetIdentifier, string? skip = null, int? top = 100, Func<Partial<Batch<DeployTargetAuditLogEntry>>, Partial<Batch<DeployTargetAuditLogEntry>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("targetIdentifier", targetIdentifier.ToString());
+                    if (skip != null) queryParameters.Append("$skip", skip);
+                    if (top != null) queryParameters.Append("$top", top?.ToString());
+                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<DeployTargetAuditLogEntry>>()) : Partial<Batch<DeployTargetAuditLogEntry>>.Default()).ToString());
+                    
+                    return await _connection.RequestResourceAsync<Batch<DeployTargetAuditLogEntry>>("GET", $"api/http/projects/automation/deployment-targets/audit-log{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "AuditLog", cancellationToken: cancellationToken);
+                }
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View deployments</term>
+                /// <description>View deployments in a project</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public IAsyncEnumerable<DeployTargetAuditLogEntry> AuditLogAsyncEnumerable(GlobalTargetIdentifier targetIdentifier, string? skip = null, int? top = 100, Func<Partial<DeployTargetAuditLogEntry>, Partial<DeployTargetAuditLogEntry>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => AuditLogAsync(targetIdentifier: targetIdentifier, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<DeployTargetAuditLogEntry>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DeployTargetAuditLogEntry>.Default())), skip, cancellationToken);
+            
+            }
+        
         }
     
         public DSLEvaluationClient DSLEvaluations => new DSLEvaluationClient(_connection);
@@ -3585,6 +3630,40 @@ public partial class ProjectClient : ISpaceClient
         
         }
     
+        public MergeDiffClient MergeDiff => new MergeDiffClient(_connection);
+        
+        public partial class MergeDiffClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public MergeDiffClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// This API is experimental
+            /// </remarks>
+#if NET6_0_OR_GREATER
+            [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
+#else
+            [Obsolete("This API is experimental")]
+#endif
+            
+            public async Task<InlineDiff> GetInlineDiffAsync(ProjectIdentifier project, string repository, string baseBlobId, string sourceBlobId, string targetBlobId, GitEntryType entryType, bool ignoreWhitespaces = false, bool squashSimpleChanges = true, Func<Partial<InlineDiff>, Partial<InlineDiff>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("entryType", entryType.ToEnumString());
+                queryParameters.Append("ignoreWhitespaces", ignoreWhitespaces.ToString("l"));
+                queryParameters.Append("squashSimpleChanges", squashSimpleChanges.ToString("l"));
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<InlineDiff>()) : Partial<InlineDiff>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<InlineDiff>("GET", $"api/http/projects/{project}/repositories/{repository}/merge-diff/base:{baseBlobId}/source:{sourceBlobId}/target:{targetBlobId}/inline{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetInlineDiff", cancellationToken: cancellationToken);
+            }
+            
+        
+        }
+    
         public ReadonlyClient Readonly => new ReadonlyClient(_connection);
         
         public partial class ReadonlyClient : ISpaceClient
@@ -5744,11 +5823,12 @@ public partial class ProjectClient : ISpaceClient
                 /// <summary>
                 /// Executes search for project documents and folders in specified folder
                 /// </summary>
-                public async Task<Batch<DocumentFolderItem>> SearchDocumentsAndFoldersAsync(ProjectIdentifier project, FolderIdentifier folder, string query, bool? includeBody = null, string? skip = null, int? top = 100, Func<Partial<Batch<DocumentFolderItem>>, Partial<Batch<DocumentFolderItem>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                public async Task<Batch<DocumentFolderItem>> SearchDocumentsAndFoldersAsync(ProjectIdentifier project, FolderIdentifier folder, string query, bool? includeBody = null, bool? foldersOnly = false, string? skip = null, int? top = 100, Func<Partial<Batch<DocumentFolderItem>>, Partial<Batch<DocumentFolderItem>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("query", query);
                     if (includeBody != null) queryParameters.Append("includeBody", includeBody?.ToString("l"));
+                    if (foldersOnly != null) queryParameters.Append("foldersOnly", foldersOnly?.ToString("l"));
                     if (skip != null) queryParameters.Append("$skip", skip);
                     if (top != null) queryParameters.Append("$top", top?.ToString());
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<DocumentFolderItem>>()) : Partial<Batch<DocumentFolderItem>>.Default()).ToString());
@@ -5759,8 +5839,8 @@ public partial class ProjectClient : ISpaceClient
                 /// <summary>
                 /// Executes search for project documents and folders in specified folder
                 /// </summary>
-                public IAsyncEnumerable<DocumentFolderItem> SearchDocumentsAndFoldersAsyncEnumerable(ProjectIdentifier project, FolderIdentifier folder, string query, bool? includeBody = null, string? skip = null, int? top = 100, Func<Partial<DocumentFolderItem>, Partial<DocumentFolderItem>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => SearchDocumentsAndFoldersAsync(project: project, folder: folder, query: query, includeBody: includeBody, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<DocumentFolderItem>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DocumentFolderItem>.Default())), skip, cancellationToken);
+                public IAsyncEnumerable<DocumentFolderItem> SearchDocumentsAndFoldersAsyncEnumerable(ProjectIdentifier project, FolderIdentifier folder, string query, bool? includeBody = null, bool? foldersOnly = false, string? skip = null, int? top = 100, Func<Partial<DocumentFolderItem>, Partial<DocumentFolderItem>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => SearchDocumentsAndFoldersAsync(project: project, folder: folder, query: query, includeBody: includeBody, foldersOnly: foldersOnly, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<DocumentFolderItem>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DocumentFolderItem>.Default())), skip, cancellationToken);
             
             }
         

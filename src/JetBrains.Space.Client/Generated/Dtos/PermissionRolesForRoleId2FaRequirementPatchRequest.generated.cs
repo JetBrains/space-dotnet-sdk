@@ -29,7 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class PermissionRolesForRoleId2FaRequirementPatchRequest
+internal class PermissionRolesForRoleId2FaRequirementPatchRequest
      : IPropagatePropertyAccessPath
 {
     public PermissionRolesForRoleId2FaRequirementPatchRequest() { }

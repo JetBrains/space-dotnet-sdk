@@ -29,7 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class CustomFieldsForTypeKeyFieldsForIdPatchRequest
+internal class CustomFieldsForTypeKeyFieldsForIdPatchRequest
      : IPropagatePropertyAccessPath
 {
     public CustomFieldsForTypeKeyFieldsForIdPatchRequest() { }

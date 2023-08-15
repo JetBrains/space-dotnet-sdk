@@ -29,7 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class ProjectsForProjectDocumentsFoldersForFolderAccessPatchRequest
+internal class ProjectsForProjectDocumentsFoldersForFolderAccessPatchRequest
      : IPropagatePropertyAccessPath
 {
     public ProjectsForProjectDocumentsFoldersForFolderAccessPatchRequest() { }

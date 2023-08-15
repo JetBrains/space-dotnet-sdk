@@ -29,7 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class ApplicationsUnfurlsQueueContentPostRequest
+internal class ApplicationsUnfurlsQueueContentPostRequest
      : IPropagatePropertyAccessPath
 {
     public ApplicationsUnfurlsQueueContentPostRequest() { }

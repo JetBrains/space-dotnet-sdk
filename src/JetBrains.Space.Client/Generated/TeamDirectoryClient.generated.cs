@@ -2894,11 +2894,12 @@ public partial class TeamDirectoryClient : ISpaceClient
                     /// <summary>
                     /// Executes search for personal documents and folders in specified folder
                     /// </summary>
-                    public async Task<Batch<DocumentFolderItem>> SearchDocumentsAndFoldersAsync(ProfileIdentifier profile, FolderIdentifier folder, string query, bool? includeBody = null, string? skip = null, int? top = 100, Func<Partial<Batch<DocumentFolderItem>>, Partial<Batch<DocumentFolderItem>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                    public async Task<Batch<DocumentFolderItem>> SearchDocumentsAndFoldersAsync(ProfileIdentifier profile, FolderIdentifier folder, string query, bool? includeBody = null, bool? foldersOnly = false, string? skip = null, int? top = 100, Func<Partial<Batch<DocumentFolderItem>>, Partial<Batch<DocumentFolderItem>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                     {
                         var queryParameters = new NameValueCollection();
                         queryParameters.Append("query", query);
                         if (includeBody != null) queryParameters.Append("includeBody", includeBody?.ToString("l"));
+                        if (foldersOnly != null) queryParameters.Append("foldersOnly", foldersOnly?.ToString("l"));
                         if (skip != null) queryParameters.Append("$skip", skip);
                         if (top != null) queryParameters.Append("$top", top?.ToString());
                         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<DocumentFolderItem>>()) : Partial<Batch<DocumentFolderItem>>.Default()).ToString());
@@ -2909,8 +2910,8 @@ public partial class TeamDirectoryClient : ISpaceClient
                     /// <summary>
                     /// Executes search for personal documents and folders in specified folder
                     /// </summary>
-                    public IAsyncEnumerable<DocumentFolderItem> SearchDocumentsAndFoldersAsyncEnumerable(ProfileIdentifier profile, FolderIdentifier folder, string query, bool? includeBody = null, string? skip = null, int? top = 100, Func<Partial<DocumentFolderItem>, Partial<DocumentFolderItem>>? partial = null, CancellationToken cancellationToken = default)
-                        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => SearchDocumentsAndFoldersAsync(profile: profile, folder: folder, query: query, includeBody: includeBody, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<DocumentFolderItem>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DocumentFolderItem>.Default())), skip, cancellationToken);
+                    public IAsyncEnumerable<DocumentFolderItem> SearchDocumentsAndFoldersAsyncEnumerable(ProfileIdentifier profile, FolderIdentifier folder, string query, bool? includeBody = null, bool? foldersOnly = false, string? skip = null, int? top = 100, Func<Partial<DocumentFolderItem>, Partial<DocumentFolderItem>>? partial = null, CancellationToken cancellationToken = default)
+                        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => SearchDocumentsAndFoldersAsync(profile: profile, folder: folder, query: query, includeBody: includeBody, foldersOnly: foldersOnly, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<DocumentFolderItem>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<DocumentFolderItem>.Default())), skip, cancellationToken);
                 
                 }
             

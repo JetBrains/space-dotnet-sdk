@@ -37,5 +37,8 @@ public static class UnfurlDetailsExternalIssueIdPartialExtensions
     public static Partial<UnfurlDetailsExternalIssueId> WithId(this Partial<UnfurlDetailsExternalIssueId> it, Func<Partial<ExternalIssueId>, Partial<ExternalIssueId>> partialBuilder)
         => it.AddFieldName("id", partialBuilder(new Partial<ExternalIssueId>(it)));
     
+    public static Partial<UnfurlDetailsExternalIssueId> WithMarketplaceAppId(this Partial<UnfurlDetailsExternalIssueId> it)
+        => it.AddFieldName("marketplaceAppId");
+    
 }
 

@@ -29,7 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class AuthModulesTestLdapPostRequest
+internal class AuthModulesTestLdapPostRequest
      : IPropagatePropertyAccessPath
 {
     public AuthModulesTestLdapPostRequest() { }

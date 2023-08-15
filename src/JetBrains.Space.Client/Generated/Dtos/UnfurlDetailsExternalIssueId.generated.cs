@@ -37,9 +37,10 @@ public sealed class UnfurlDetailsExternalIssueId
     
     public UnfurlDetailsExternalIssueId() { }
     
-    public UnfurlDetailsExternalIssueId(ExternalIssueId id)
+    public UnfurlDetailsExternalIssueId(ExternalIssueId id, string? marketplaceAppId = null)
     {
         Id = id;
+        MarketplaceAppId = marketplaceAppId;
     }
     
     private PropertyValue<ExternalIssueId> _id = new PropertyValue<ExternalIssueId>(nameof(UnfurlDetailsExternalIssueId), nameof(Id), "id");
@@ -52,9 +53,19 @@ public sealed class UnfurlDetailsExternalIssueId
         set => _id.SetValue(value);
     }
 
+    private PropertyValue<string?> _marketplaceAppId = new PropertyValue<string?>(nameof(UnfurlDetailsExternalIssueId), nameof(MarketplaceAppId), "marketplaceAppId");
+    
+    [JsonPropertyName("marketplaceAppId")]
+    public string? MarketplaceAppId
+    {
+        get => _marketplaceAppId.GetValue(InlineErrors);
+        set => _marketplaceAppId.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _marketplaceAppId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

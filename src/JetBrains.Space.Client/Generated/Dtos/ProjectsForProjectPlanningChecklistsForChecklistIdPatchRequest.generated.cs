@@ -29,7 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest
+internal class ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest
      : IPropagatePropertyAccessPath
 {
     public ProjectsForProjectPlanningChecklistsForChecklistIdPatchRequest() { }

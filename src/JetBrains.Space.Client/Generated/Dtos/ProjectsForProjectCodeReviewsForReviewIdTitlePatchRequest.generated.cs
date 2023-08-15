@@ -29,7 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest
+internal class ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest
      : IPropagatePropertyAccessPath
 {
     public ProjectsForProjectCodeReviewsForReviewIdTitlePatchRequest() { }

@@ -29,7 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class TeamDirectoryProfilesForProfile2FaTotpPatchRequest
+internal class TeamDirectoryProfilesForProfile2FaTotpPatchRequest
      : IPropagatePropertyAccessPath
 {
     public TeamDirectoryProfilesForProfile2FaTotpPatchRequest() { }

@@ -61,5 +61,11 @@ public static class GitCommitChangePartialExtensions
     public static Partial<GitCommitChange> WithPath(this Partial<GitCommitChange> it)
         => it.AddFieldName("path");
     
+    public static Partial<GitCommitChange> WithIsDetached(this Partial<GitCommitChange> it)
+        => it.AddFieldName("detached");
+    
+    public static Partial<GitCommitChange> WithConstituentCommits(this Partial<GitCommitChange> it)
+        => it.AddFieldName("constituentCommits");
+    
 }
 

@@ -29,7 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class CustomFieldsV2ForEntityTypeFieldsReorderPostRequest
+internal class CustomFieldsV2ForEntityTypeFieldsReorderPostRequest
      : IPropagatePropertyAccessPath
 {
     public CustomFieldsV2ForEntityTypeFieldsReorderPostRequest() { }

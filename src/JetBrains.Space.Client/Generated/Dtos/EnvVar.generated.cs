@@ -29,42 +29,53 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class EstimationDTO
+public sealed class EnvVar
      : IPropagatePropertyAccessPath
 {
-    public EstimationDTO() { }
+    public EnvVar() { }
     
-    public EstimationDTO(DateTime start, long predictedDuration)
+    public EnvVar(EnvVarType type, string key, string value)
     {
-        Start = start;
-        PredictedDuration = predictedDuration;
+        Type = type;
+        Key = key;
+        Value = value;
     }
     
-    private PropertyValue<DateTime> _start = new PropertyValue<DateTime>(nameof(EstimationDTO), nameof(Start), "start");
+    private PropertyValue<EnvVarType> _type = new PropertyValue<EnvVarType>(nameof(EnvVar), nameof(Type), "type");
     
     [Required]
-    [JsonPropertyName("start")]
-    [JsonConverter(typeof(SpaceDateTimeConverter))]
-    public DateTime Start
+    [JsonPropertyName("type")]
+    public EnvVarType Type
     {
-        get => _start.GetValue(InlineErrors);
-        set => _start.SetValue(value);
+        get => _type.GetValue(InlineErrors);
+        set => _type.SetValue(value);
     }
 
-    private PropertyValue<long> _predictedDuration = new PropertyValue<long>(nameof(EstimationDTO), nameof(PredictedDuration), "predictedDuration");
+    private PropertyValue<string> _key = new PropertyValue<string>(nameof(EnvVar), nameof(Key), "key");
     
     [Required]
-    [JsonPropertyName("predictedDuration")]
-    public long PredictedDuration
+    [JsonPropertyName("key")]
+    public string Key
     {
-        get => _predictedDuration.GetValue(InlineErrors);
-        set => _predictedDuration.SetValue(value);
+        get => _key.GetValue(InlineErrors);
+        set => _key.SetValue(value);
+    }
+
+    private PropertyValue<string> _value = new PropertyValue<string>(nameof(EnvVar), nameof(Value), "value");
+    
+    [Required]
+    [JsonPropertyName("value")]
+    public string Value
+    {
+        get => _value.GetValue(InlineErrors);
+        set => _value.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _start.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _predictedDuration.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _key.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _value.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

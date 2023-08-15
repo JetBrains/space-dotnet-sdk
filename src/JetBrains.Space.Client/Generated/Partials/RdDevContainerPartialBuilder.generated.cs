@@ -37,5 +37,11 @@ public static class RdDevContainerPartialExtensions
     public static Partial<RdDevContainer> WithImage(this Partial<RdDevContainer> it, Func<Partial<RdDevContainerImage>, Partial<RdDevContainerImage>> partialBuilder)
         => it.AddFieldName("image", partialBuilder(new Partial<RdDevContainerImage>(it)));
     
+    public static Partial<RdDevContainer> WithEnvVars(this Partial<RdDevContainer> it)
+        => it.AddFieldName("envVars");
+    
+    public static Partial<RdDevContainer> WithEnvVars(this Partial<RdDevContainer> it, Func<Partial<EnvVar>, Partial<EnvVar>> partialBuilder)
+        => it.AddFieldName("envVars", partialBuilder(new Partial<EnvVar>(it)));
+    
 }
 

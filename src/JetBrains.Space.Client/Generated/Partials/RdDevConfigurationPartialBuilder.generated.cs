@@ -70,6 +70,18 @@ public static class RdDevConfigurationPartialExtensions
     public static Partial<RdDevConfiguration> WithHotPool(this Partial<RdDevConfiguration> it, Func<Partial<DevConfigurationHotPool>, Partial<DevConfigurationHotPool>> partialBuilder)
         => it.AddFieldName("hotPool", partialBuilder(new Partial<DevConfigurationHotPool>(it)));
     
+    public static Partial<RdDevConfiguration> WithWarmup(this Partial<RdDevConfiguration> it)
+        => it.AddFieldName("warmup");
+    
+    public static Partial<RdDevConfiguration> WithWarmup(this Partial<RdDevConfiguration> it, Func<Partial<DevConfigurationWarmup>, Partial<DevConfigurationWarmup>> partialBuilder)
+        => it.AddFieldName("warmup", partialBuilder(new Partial<DevConfigurationWarmup>(it)));
+    
+    public static Partial<RdDevConfiguration> WithProjectRoot(this Partial<RdDevConfiguration> it)
+        => it.AddFieldName("projectRoot");
+    
+    public static Partial<RdDevConfiguration> WithIsSshEnabled(this Partial<RdDevConfiguration> it)
+        => it.AddFieldName("sshEnabled");
+    
     public static Partial<RdDevConfiguration> WithIsArchived(this Partial<RdDevConfiguration> it)
         => it.AddFieldName("archived");
     

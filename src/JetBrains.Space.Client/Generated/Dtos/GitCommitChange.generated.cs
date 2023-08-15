@@ -34,7 +34,7 @@ public sealed class GitCommitChange
 {
     public GitCommitChange() { }
     
-    public GitCommitChange(GitCommitChangeType changeType, string revision, GitFile? old = null, GitFile? @new = null, GitDiffSize? diffSize = null, string? path = null)
+    public GitCommitChange(GitCommitChangeType changeType, string revision, GitFile? old = null, GitFile? @new = null, GitDiffSize? diffSize = null, string? path = null, bool? detached = null, List<string>? constituentCommits = null)
     {
         ChangeType = changeType;
         Old = old;
@@ -42,6 +42,8 @@ public sealed class GitCommitChange
         Revision = revision;
         DiffSize = diffSize;
         Path = path;
+        IsDetached = detached;
+        ConstituentCommits = constituentCommits;
     }
     
     private PropertyValue<GitCommitChangeType> _changeType = new PropertyValue<GitCommitChangeType>(nameof(GitCommitChange), nameof(ChangeType), "changeType");
@@ -100,6 +102,24 @@ public sealed class GitCommitChange
         set => _path.SetValue(value);
     }
 
+    private PropertyValue<bool?> _detached = new PropertyValue<bool?>(nameof(GitCommitChange), nameof(IsDetached), "detached");
+    
+    [JsonPropertyName("detached")]
+    public bool? IsDetached
+    {
+        get => _detached.GetValue(InlineErrors);
+        set => _detached.SetValue(value);
+    }
+
+    private PropertyValue<List<string>?> _constituentCommits = new PropertyValue<List<string>?>(nameof(GitCommitChange), nameof(ConstituentCommits), "constituentCommits");
+    
+    [JsonPropertyName("constituentCommits")]
+    public List<string>? ConstituentCommits
+    {
+        get => _constituentCommits.GetValue(InlineErrors);
+        set => _constituentCommits.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _changeType.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -108,6 +128,8 @@ public sealed class GitCommitChange
         _revision.SetAccessPath(parentChainPath, validateHasBeenSet);
         _diffSize.SetAccessPath(parentChainPath, validateHasBeenSet);
         _path.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _detached.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _constituentCommits.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

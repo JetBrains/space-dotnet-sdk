@@ -29,7 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest
+internal class CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest
      : IPropagatePropertyAccessPath
 {
     public CustomFieldsV2ForEntityTypeFieldsForCustomFieldEnumValuesBulkUpdatePostRequest() { }

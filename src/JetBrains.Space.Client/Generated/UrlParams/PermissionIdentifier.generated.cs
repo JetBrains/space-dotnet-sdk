@@ -747,6 +747,12 @@ public abstract class PermissionIdentifier : IUrlParameter
         => new PermissionIdentifierViewDevEnvironmentDiagnosticData();
     
     /// <summary>
+    /// Allows to view debug data
+    /// </summary>
+    public static PermissionIdentifier ViewDevEnvironmentsDebugData
+        => new PermissionIdentifierViewDevEnvironmentsDebugData();
+    
+    /// <summary>
     /// Allows to view dev environments that the user doesn't own (users can always view their own environments)
     /// </summary>
     public static PermissionIdentifier ViewDevEnvironmentsOfAllProjectMembers
@@ -2271,6 +2277,15 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Rd.Workspaces.ViewInternals";
+    }
+    
+    /// <summary>
+    /// Allows to view debug data
+    /// </summary>
+    public class PermissionIdentifierViewDevEnvironmentsDebugData : PermissionIdentifier
+    {
+        public override string ToString()
+            => "Rd.DebugData.View";
     }
     
     /// <summary>

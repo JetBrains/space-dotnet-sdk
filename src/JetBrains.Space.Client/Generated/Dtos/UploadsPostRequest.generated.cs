@@ -29,7 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class UploadsPostRequest
+internal class UploadsPostRequest
      : IPropagatePropertyAccessPath
 {
     public UploadsPostRequest() { }

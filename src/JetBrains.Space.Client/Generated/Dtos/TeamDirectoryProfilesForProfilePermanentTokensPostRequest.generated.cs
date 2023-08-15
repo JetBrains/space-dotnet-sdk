@@ -29,7 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class TeamDirectoryProfilesForProfilePermanentTokensPostRequest
+internal class TeamDirectoryProfilesForProfilePermanentTokensPostRequest
      : IPropagatePropertyAccessPath
 {
     public TeamDirectoryProfilesForProfilePermanentTokensPostRequest() { }

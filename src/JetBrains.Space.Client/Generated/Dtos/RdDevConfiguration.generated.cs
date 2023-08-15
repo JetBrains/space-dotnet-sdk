@@ -34,7 +34,7 @@ public sealed class RdDevConfiguration
 {
     public RdDevConfiguration() { }
     
-    public RdDevConfiguration(string id, string name, List<RepoConnectionWithBranch> repoConnections, RdDevContainer devContainer, RdDevConfigurationIde ide, string instanceTypeName, PRProject project, bool archived, DevConfigurationHotPool? hotPool = null)
+    public RdDevConfiguration(string id, string name, List<RepoConnectionWithBranch> repoConnections, RdDevContainer devContainer, RdDevConfigurationIde ide, string instanceTypeName, PRProject project, DevConfigurationWarmup warmup, bool archived, DevConfigurationHotPool? hotPool = null, string? projectRoot = null, bool? sshEnabled = null)
     {
         Id = id;
         Name = name;
@@ -44,6 +44,9 @@ public sealed class RdDevConfiguration
         InstanceTypeName = instanceTypeName;
         Project = project;
         HotPool = hotPool;
+        Warmup = warmup;
+        ProjectRoot = projectRoot;
+        IsSshEnabled = sshEnabled;
         IsArchived = archived;
     }
     
@@ -126,6 +129,34 @@ public sealed class RdDevConfiguration
         set => _hotPool.SetValue(value);
     }
 
+    private PropertyValue<DevConfigurationWarmup> _warmup = new PropertyValue<DevConfigurationWarmup>(nameof(RdDevConfiguration), nameof(Warmup), "warmup");
+    
+    [Required]
+    [JsonPropertyName("warmup")]
+    public DevConfigurationWarmup Warmup
+    {
+        get => _warmup.GetValue(InlineErrors);
+        set => _warmup.SetValue(value);
+    }
+
+    private PropertyValue<string?> _projectRoot = new PropertyValue<string?>(nameof(RdDevConfiguration), nameof(ProjectRoot), "projectRoot");
+    
+    [JsonPropertyName("projectRoot")]
+    public string? ProjectRoot
+    {
+        get => _projectRoot.GetValue(InlineErrors);
+        set => _projectRoot.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _sshEnabled = new PropertyValue<bool?>(nameof(RdDevConfiguration), nameof(IsSshEnabled), "sshEnabled");
+    
+    [JsonPropertyName("sshEnabled")]
+    public bool? IsSshEnabled
+    {
+        get => _sshEnabled.GetValue(InlineErrors);
+        set => _sshEnabled.SetValue(value);
+    }
+
     private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(RdDevConfiguration), nameof(IsArchived), "archived");
     
     [Required]
@@ -146,6 +177,9 @@ public sealed class RdDevConfiguration
         _instanceTypeName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
         _hotPool.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _warmup.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _projectRoot.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sshEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

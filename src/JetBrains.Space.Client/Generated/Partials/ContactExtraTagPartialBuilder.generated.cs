@@ -40,5 +40,35 @@ public static class ContactExtraTagPartialExtensions
     public static Partial<ContactExtraTag> WithIssueStatus(this Partial<ContactExtraTag> it)
         => it.AddFieldName("issueStatus");
     
+    public static Partial<ContactExtraTag> WithIssueStatusColor(this Partial<ContactExtraTag> it)
+        => it.AddFieldName("issueStatusColor");
+    
+    public static Partial<ContactExtraTag> WithIssueStatusId(this Partial<ContactExtraTag> it)
+        => it.AddFieldName("issueStatusId");
+    
+    public static Partial<ContactExtraTag> WithIssueNumber(this Partial<ContactExtraTag> it)
+        => it.AddFieldName("issueNumber");
+    
+    public static Partial<ContactExtraTag> WithIssueTitle(this Partial<ContactExtraTag> it)
+        => it.AddFieldName("issueTitle");
+    
+    public static Partial<ContactExtraTag> WithProjectKey(this Partial<ContactExtraTag> it)
+        => it.AddFieldName("projectKey");
+    
+    public static Partial<ContactExtraTag> WithProjectKey(this Partial<ContactExtraTag> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
+        => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKey>(it)));
+    
+    public static Partial<ContactExtraTag> WithProjectName(this Partial<ContactExtraTag> it)
+        => it.AddFieldName("projectName");
+    
+    public static Partial<ContactExtraTag> WithProjectId(this Partial<ContactExtraTag> it)
+        => it.AddFieldName("projectId");
+    
+    public static Partial<ContactExtraTag> WithAssignee(this Partial<ContactExtraTag> it)
+        => it.AddFieldName("assignee");
+    
+    public static Partial<ContactExtraTag> WithAssignee(this Partial<ContactExtraTag> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+        => it.AddFieldName("assignee", partialBuilder(new Partial<CPrincipal>(it)));
+    
 }
 

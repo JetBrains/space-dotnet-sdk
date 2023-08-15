@@ -29,7 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public class ApplicationsForApplicationUiExtensionsEnableForEverybodyPatchRequest
+internal class ApplicationsForApplicationUiExtensionsEnableForEverybodyPatchRequest
      : IPropagatePropertyAccessPath
 {
     public ApplicationsForApplicationUiExtensionsEnableForEverybodyPatchRequest() { }
