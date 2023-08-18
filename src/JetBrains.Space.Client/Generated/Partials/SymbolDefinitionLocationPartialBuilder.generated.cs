@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.SymbolDefinitionLocationPartialBuilder;
 
-public interface WidgetSettingsDTO
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+public static class SymbolDefinitionLocationPartialExtensions
 {
-    public static FollowedColleagueSettingsDTO FollowedColleagueSettingsDTO(FollowedMembersSettings followedMembers, List<FollowedEntityDTO> projectAndTeams)
-        => new FollowedColleagueSettingsDTO(followedMembers: followedMembers, projectAndTeams: projectAndTeams);
+    public static Partial<SymbolDefinitionLocation> WithPath(this Partial<SymbolDefinitionLocation> it)
+        => it.AddFieldName("path");
     
-    public static IssuesWidgetSettingsDTO Issues(string selectedFilterId)
-        => new IssuesWidgetSettingsDTO(selectedFilterId: selectedFilterId);
+    public static Partial<SymbolDefinitionLocation> WithRange(this Partial<SymbolDefinitionLocation> it)
+        => it.AddFieldName("range");
     
-    public static ReviewsWidgetSettingsDTO Reviews(string selectedFilterId)
-        => new ReviewsWidgetSettingsDTO(selectedFilterId: selectedFilterId);
+    public static Partial<SymbolDefinitionLocation> WithRange(this Partial<SymbolDefinitionLocation> it, Func<Partial<TextRange>, Partial<TextRange>> partialBuilder)
+        => it.AddFieldName("range", partialBuilder(new Partial<TextRange>(it)));
     
 }
 

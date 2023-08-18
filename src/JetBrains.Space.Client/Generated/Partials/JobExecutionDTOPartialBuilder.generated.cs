@@ -73,5 +73,8 @@ public static class JobExecutionDTOPartialExtensions
     public static Partial<JobExecutionDTO> WithFailureConditions(this Partial<JobExecutionDTO> it, Func<Partial<FailureConditionDTO>, Partial<FailureConditionDTO>> partialBuilder)
         => it.AddFieldName("failureConditions", partialBuilder(new Partial<FailureConditionDTO>(it)));
     
+    public static Partial<JobExecutionDTO> WithCommitId(this Partial<JobExecutionDTO> it)
+        => it.AddFieldName("commitId");
+    
 }
 

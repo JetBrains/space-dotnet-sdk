@@ -108,6 +108,12 @@ public static class CommitSetReviewRecordPartialExtensions
     public static Partial<CommitSetReviewRecord> WithDiscussionCounter(this Partial<CommitSetReviewRecord> it, Func<Partial<DiscussionCounter>, Partial<DiscussionCounter>> partialBuilder)
         => it.AddFieldName("discussionCounter", partialBuilder(new Partial<DiscussionCounter>(it)));
     
+    public static Partial<CommitSetReviewRecord> WithExternalIssues(this Partial<CommitSetReviewRecord> it)
+        => it.AddFieldName("externalIssues");
+    
+    public static Partial<CommitSetReviewRecord> WithExternalIssues(this Partial<CommitSetReviewRecord> it, Func<Partial<ExternalIssueIdOut>, Partial<ExternalIssueIdOut>> partialBuilder)
+        => it.AddFieldName("externalIssues", partialBuilder(new Partial<ExternalIssueIdOut>(it)));
+    
     public static Partial<CommitSetReviewRecord> WithIssueIds(this Partial<CommitSetReviewRecord> it)
         => it.AddFieldName("issueIds");
     

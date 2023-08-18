@@ -89,6 +89,32 @@ public partial class ApplicationClient : ISpaceClient
     
 
     /// <summary>
+    /// Provide error message to display on application page in Space UI. Provide `null` message to remove it.
+    /// </summary>
+    public async Task SetErrorMessageAsync(string? message = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        
+        await _connection.RequestResourceAsync("POST", $"api/http/applications/error-message{queryParameters.ToQueryString()}", 
+            new ApplicationsErrorMessagePostRequest
+            { 
+                Message = message,
+            }, requestHeaders: null, functionName: "SetErrorMessage", cancellationToken: cancellationToken);
+    }
+    
+
+    /// <summary>
+    /// Application may periodically call this api method to notify Space that it is functioning properly. This is mandatory for applications that connect external issue trackers.
+    /// </summary>
+    public async Task ReportApplicationAsHealthyAsync(Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    {
+        var queryParameters = new NameValueCollection();
+        
+        await _connection.RequestResourceAsync("POST", $"api/http/applications/report-application-as-healthy{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ReportApplicationAsHealthy", cancellationToken: cancellationToken);
+    }
+    
+
+    /// <summary>
     /// Removes the application that has previously failed to respond with code 200 to `ApplicationUninstalledPayload` request, without sending additional `ApplicationUninstalledPayload` requests. The application is archived and its access terminated.
     /// </summary>
     /// <param name="application">
@@ -757,6 +783,94 @@ public partial class ApplicationClient : ISpaceClient
     
     }
 
+    public GpgKeyClient GpgKeys => new GpgKeyClient(_connection);
+    
+    public partial class GpgKeyClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public GpgKeyClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Update applications</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<GpgKeyData> AddGpgKeyAsync(ApplicationIdentifier application, string publicKey, string comment = "", Func<Partial<GpgKeyData>, Partial<GpgKeyData>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<GpgKeyData>()) : Partial<GpgKeyData>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ApplicationsForApplicationGpgKeysPostRequest, GpgKeyData>("POST", $"api/http/applications/{application}/gpg-keys{queryParameters.ToQueryString()}", 
+                new ApplicationsForApplicationGpgKeysPostRequest
+                { 
+                    PublicKey = publicKey,
+                    Comment = comment,
+                }, requestHeaders: null, functionName: "AddGpgKey", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View applications</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<List<GpgKeyData>> GetGpgKeysAsync(ApplicationIdentifier application, Func<Partial<GpgKeyData>, Partial<GpgKeyData>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<GpgKeyData>()) : Partial<GpgKeyData>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<GpgKeyData>>("GET", $"api/http/applications/{application}/gpg-keys{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetGpgKeys", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Update applications</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task RevokeGpgKeyAsync(ApplicationIdentifier application, string fingerprint, string comment = "", Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PATCH", $"api/http/applications/{application}/gpg-keys/{fingerprint}{queryParameters.ToQueryString()}", 
+                new ApplicationsForApplicationGpgKeysForFingerprintPatchRequest
+                { 
+                    Comment = comment,
+                }, requestHeaders: null, functionName: "RevokeGpgKey", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Update applications</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task DeleteGpgKeyAsync(ApplicationIdentifier application, string fingerprint, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("DELETE", $"api/http/applications/{application}/gpg-keys/{fingerprint}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteGpgKey", cancellationToken: cancellationToken);
+        }
+        
+    
+    }
+
     public PermanentTokenClient PermanentTokens => new PermanentTokenClient(_connection);
     
     public partial class PermanentTokenClient : ISpaceClient
@@ -1336,7 +1450,7 @@ public partial class ApplicationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<WebhookRecord> CreateWebhookAsync(ApplicationIdentifier application, string name, List<int> acceptedHttpResponseCodes, bool enabled = true, bool doRetries = true, string? description = null, EndpointCreateDTO? endpoint = null, EndpointAuthCreateDTO? endpointAuth = null, string? payloadFields = null, string? payloadTemplate = null, List<SubscriptionDefinition>? subscriptions = null, Func<Partial<WebhookRecord>, Partial<WebhookRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<WebhookRecord> CreateWebhookAsync(ApplicationIdentifier application, string name, bool enabled = true, List<int>? acceptedHttpResponseCodes = null, bool doRetries = true, string? description = null, EndpointCreateDTO? endpoint = null, EndpointAuthCreateDTO? endpointAuth = null, string? payloadFields = null, string? payloadTemplate = null, List<SubscriptionDefinition>? subscriptions = null, Func<Partial<WebhookRecord>, Partial<WebhookRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<WebhookRecord>()) : Partial<WebhookRecord>.Default()).ToString());
@@ -1349,7 +1463,7 @@ public partial class ApplicationClient : ISpaceClient
                     Endpoint = endpoint,
                     EndpointAuth = endpointAuth,
                     IsEnabled = enabled,
-                    AcceptedHttpResponseCodes = acceptedHttpResponseCodes,
+                    AcceptedHttpResponseCodes = (acceptedHttpResponseCodes ?? new List<int>()),
                     IsDoRetries = doRetries,
                     PayloadFields = payloadFields,
                     PayloadTemplate = payloadTemplate,

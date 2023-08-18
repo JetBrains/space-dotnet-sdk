@@ -34,7 +34,7 @@ public sealed class JobExecutionDTO
 {
     public JobExecutionDTO() { }
     
-    public JobExecutionDTO(string executionId, long executionNumber, string jobId, string jobName, string projectId, string branch, ExecutionStatus status, long triggeredTime, int changesCount, List<FailureConditionDTO> failureConditions, long? startedTime = null, long? finishedTime = null)
+    public JobExecutionDTO(string executionId, long executionNumber, string jobId, string jobName, string projectId, string branch, ExecutionStatus status, long triggeredTime, int changesCount, List<FailureConditionDTO> failureConditions, long? startedTime = null, long? finishedTime = null, string? commitId = null)
     {
         ExecutionId = executionId;
         ExecutionNumber = executionNumber;
@@ -48,6 +48,7 @@ public sealed class JobExecutionDTO
         FinishedTime = finishedTime;
         ChangesCount = changesCount;
         FailureConditions = failureConditions;
+        CommitId = commitId;
     }
     
     private PropertyValue<string> _executionId = new PropertyValue<string>(nameof(JobExecutionDTO), nameof(ExecutionId), "executionId");
@@ -168,6 +169,15 @@ public sealed class JobExecutionDTO
         set => _failureConditions.SetValue(value);
     }
 
+    private PropertyValue<string?> _commitId = new PropertyValue<string?>(nameof(JobExecutionDTO), nameof(CommitId), "commitId");
+    
+    [JsonPropertyName("commitId")]
+    public string? CommitId
+    {
+        get => _commitId.GetValue(InlineErrors);
+        set => _commitId.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _executionId.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -182,6 +192,7 @@ public sealed class JobExecutionDTO
         _finishedTime.SetAccessPath(parentChainPath, validateHasBeenSet);
         _changesCount.SetAccessPath(parentChainPath, validateHasBeenSet);
         _failureConditions.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commitId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

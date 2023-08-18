@@ -34,14 +34,14 @@ internal class ApplicationsForApplicationWebhooksPostRequest
 {
     public ApplicationsForApplicationWebhooksPostRequest() { }
     
-    public ApplicationsForApplicationWebhooksPostRequest(string name, List<int> acceptedHttpResponseCodes, bool enabled = true, bool doRetries = true, string? description = null, EndpointCreateDTO? endpoint = null, EndpointAuthCreateDTO? endpointAuth = null, string? payloadFields = null, string? payloadTemplate = null, List<SubscriptionDefinition>? subscriptions = null)
+    public ApplicationsForApplicationWebhooksPostRequest(string name, bool enabled = true, List<int>? acceptedHttpResponseCodes = null, bool doRetries = true, string? description = null, EndpointCreateDTO? endpoint = null, EndpointAuthCreateDTO? endpointAuth = null, string? payloadFields = null, string? payloadTemplate = null, List<SubscriptionDefinition>? subscriptions = null)
     {
         Name = name;
         Description = description;
         Endpoint = endpoint;
         EndpointAuth = endpointAuth;
         IsEnabled = enabled;
-        AcceptedHttpResponseCodes = acceptedHttpResponseCodes;
+        AcceptedHttpResponseCodes = (acceptedHttpResponseCodes ?? new List<int>());
         IsDoRetries = doRetries;
         PayloadFields = payloadFields;
         PayloadTemplate = payloadTemplate;
@@ -105,7 +105,9 @@ internal class ApplicationsForApplicationWebhooksPostRequest
 
     private PropertyValue<List<int>> _acceptedHttpResponseCodes = new PropertyValue<List<int>>(nameof(ApplicationsForApplicationWebhooksPostRequest), nameof(AcceptedHttpResponseCodes), "acceptedHttpResponseCodes", new List<int>());
     
-    [Required]
+    /// <summary>
+    /// List of HTTP status codes outside 2xx range to be treated as successful ones by Space, when returned by the application server
+    /// </summary>
     [JsonPropertyName("acceptedHttpResponseCodes")]
     public List<int> AcceptedHttpResponseCodes
     {

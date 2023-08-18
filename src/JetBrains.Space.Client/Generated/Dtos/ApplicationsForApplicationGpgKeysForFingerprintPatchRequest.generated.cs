@@ -29,17 +29,33 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public interface WidgetSettingsDTO
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+internal class ApplicationsForApplicationGpgKeysForFingerprintPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    public static FollowedColleagueSettingsDTO FollowedColleagueSettingsDTO(FollowedMembersSettings followedMembers, List<FollowedEntityDTO> projectAndTeams)
-        => new FollowedColleagueSettingsDTO(followedMembers: followedMembers, projectAndTeams: projectAndTeams);
+    public ApplicationsForApplicationGpgKeysForFingerprintPatchRequest() { }
     
-    public static IssuesWidgetSettingsDTO Issues(string selectedFilterId)
-        => new IssuesWidgetSettingsDTO(selectedFilterId: selectedFilterId);
+    public ApplicationsForApplicationGpgKeysForFingerprintPatchRequest(string comment = "")
+    {
+        Comment = comment;
+    }
     
-    public static ReviewsWidgetSettingsDTO Reviews(string selectedFilterId)
-        => new ReviewsWidgetSettingsDTO(selectedFilterId: selectedFilterId);
+    private PropertyValue<string> _comment = new PropertyValue<string>(nameof(ApplicationsForApplicationGpgKeysForFingerprintPatchRequest), nameof(Comment), "comment");
     
+    [JsonPropertyName("comment")]
+    public string Comment
+    {
+        get => _comment.GetValue(InlineErrors);
+        set => _comment.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _comment.SetAccessPath(parentChainPath, validateHasBeenSet);
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

@@ -584,6 +584,9 @@ public partial class ProjectClient : ISpaceClient
                 _connection = connection;
             }
             
+            /// <summary>
+            /// Returns the job execution associated to the currently authenticated principal. This endpoint can only be used with the credentials provided to an Automation job.
+            /// </summary>
             /// <remarks>
             /// Required permissions:
             /// <list type="bullet">
@@ -592,6 +595,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
+            [Obsolete("Use projects/automation/graph-executions/{id} instead, and provide the graph execution ID (since 2023-08-08)")]
             public async Task<JobExecutionDTO> GetCurrentAsync(Func<Partial<JobExecutionDTO>, Partial<JobExecutionDTO>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -3579,6 +3583,35 @@ public partial class ProjectClient : ISpaceClient
         /// </param>
         public IAsyncEnumerable<BranchInfo> GetHeadsAsyncEnumerable(ProjectIdentifier project, string repository, List<string>? pattern = null, bool isRegex = false, string? skip = null, int? top = 100, Func<Partial<BranchInfo>, Partial<BranchInfo>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetHeadsAsync(project: project, repository: repository, pattern: pattern, isRegex: isRegex, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<BranchInfo>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<BranchInfo>.Default())), skip, cancellationToken);
+    
+        public async Task<Batch<GitMergedFile>> MergePreviewAsync(ProjectIdentifier project, string repository, string sourceBranch, string targetBranch, string? skip = null, int? top = 100, Func<Partial<Batch<GitMergedFile>>, Partial<Batch<GitMergedFile>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("sourceBranch", sourceBranch);
+            queryParameters.Append("targetBranch", targetBranch);
+            if (skip != null) queryParameters.Append("$skip", skip);
+            if (top != null) queryParameters.Append("$top", top?.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<GitMergedFile>>()) : Partial<Batch<GitMergedFile>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<Batch<GitMergedFile>>("GET", $"api/http/projects/{project}/repositories/{repository}/merge-preview{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "MergePreview", cancellationToken: cancellationToken);
+        }
+        
+        public IAsyncEnumerable<GitMergedFile> MergePreviewAsyncEnumerable(ProjectIdentifier project, string repository, string sourceBranch, string targetBranch, string? skip = null, int? top = 100, Func<Partial<GitMergedFile>, Partial<GitMergedFile>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => MergePreviewAsync(project: project, repository: repository, sourceBranch: sourceBranch, targetBranch: targetBranch, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<GitMergedFile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<GitMergedFile>.Default())), skip, cancellationToken);
+    
+        /// <summary>
+        /// Dry run merge source branch into target without modifying the repository. Please note that conflicting status is based on per-file analysis, so it may not be accurate on too diverged branches.
+        /// </summary>
+        public async Task<GitMergeBranchResult> MergePreviewStatusAsync(ProjectIdentifier project, string repository, string sourceBranch, string targetBranch, Func<Partial<GitMergeBranchResult>, Partial<GitMergeBranchResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("sourceBranch", sourceBranch);
+            queryParameters.Append("targetBranch", targetBranch);
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitMergeBranchResult>()) : Partial<GitMergeBranchResult>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<GitMergeBranchResult>("GET", $"api/http/projects/{project}/repositories/{repository}/merge-preview-status{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "MergePreviewStatus", cancellationToken: cancellationToken);
+        }
+        
     
         public async Task<RepositoryUrls> UrlAsync(ProjectIdentifier project, string repository, Func<Partial<RepositoryUrls>, Partial<RepositoryUrls>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {

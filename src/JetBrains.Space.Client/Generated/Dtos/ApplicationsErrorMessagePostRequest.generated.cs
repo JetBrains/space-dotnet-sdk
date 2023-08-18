@@ -29,17 +29,36 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public interface WidgetSettingsDTO
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+internal class ApplicationsErrorMessagePostRequest
+     : IPropagatePropertyAccessPath
 {
-    public static FollowedColleagueSettingsDTO FollowedColleagueSettingsDTO(FollowedMembersSettings followedMembers, List<FollowedEntityDTO> projectAndTeams)
-        => new FollowedColleagueSettingsDTO(followedMembers: followedMembers, projectAndTeams: projectAndTeams);
+    public ApplicationsErrorMessagePostRequest() { }
     
-    public static IssuesWidgetSettingsDTO Issues(string selectedFilterId)
-        => new IssuesWidgetSettingsDTO(selectedFilterId: selectedFilterId);
+    public ApplicationsErrorMessagePostRequest(string? message = null)
+    {
+        Message = message;
+    }
     
-    public static ReviewsWidgetSettingsDTO Reviews(string selectedFilterId)
-        => new ReviewsWidgetSettingsDTO(selectedFilterId: selectedFilterId);
+    private PropertyValue<string?> _message = new PropertyValue<string?>(nameof(ApplicationsErrorMessagePostRequest), nameof(Message), "message");
     
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("message")]
+    public string? Message
+    {
+        get => _message.GetValue(InlineErrors);
+        set => _message.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _message.SetAccessPath(parentChainPath, validateHasBeenSet);
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

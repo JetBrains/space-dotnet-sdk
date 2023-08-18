@@ -92,6 +92,15 @@ public abstract class CodeReviewRecord
         set => _discussionCounter.SetValue(value);
     }
 
+    private PropertyValue<List<ExternalIssueIdOut>?> _externalIssues = new PropertyValue<List<ExternalIssueIdOut>?>(nameof(CodeReviewRecord), nameof(ExternalIssues), "externalIssues");
+    
+    [JsonPropertyName("externalIssues")]
+    public List<ExternalIssueIdOut>? ExternalIssues
+    {
+        get => _externalIssues.GetValue(InlineErrors);
+        set => _externalIssues.SetValue(value);
+    }
+
     private PropertyValue<List<string>> _issueIds = new PropertyValue<List<string>>(nameof(CodeReviewRecord), nameof(IssueIds), "issueIds", new List<string>());
     
     [Required]
@@ -150,6 +159,7 @@ public abstract class CodeReviewRecord
         _commits.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _discussionCounter.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalIssues.SetAccessPath(parentChainPath, validateHasBeenSet);
         _issueIds.SetAccessPath(parentChainPath, validateHasBeenSet);
         _participants.SetAccessPath(parentChainPath, validateHasBeenSet);
         _reviewers.SetAccessPath(parentChainPath, validateHasBeenSet);

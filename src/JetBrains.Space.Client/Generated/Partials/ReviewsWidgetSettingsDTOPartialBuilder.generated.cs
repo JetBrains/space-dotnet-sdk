@@ -27,19 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.ReviewsWidgetSettingsDTOPartialBuilder;
 
-public interface WidgetSettingsDTO
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+public static class ReviewsWidgetSettingsDTOPartialExtensions
 {
-    public static FollowedColleagueSettingsDTO FollowedColleagueSettingsDTO(FollowedMembersSettings followedMembers, List<FollowedEntityDTO> projectAndTeams)
-        => new FollowedColleagueSettingsDTO(followedMembers: followedMembers, projectAndTeams: projectAndTeams);
-    
-    public static IssuesWidgetSettingsDTO Issues(string selectedFilterId)
-        => new IssuesWidgetSettingsDTO(selectedFilterId: selectedFilterId);
-    
-    public static ReviewsWidgetSettingsDTO Reviews(string selectedFilterId)
-        => new ReviewsWidgetSettingsDTO(selectedFilterId: selectedFilterId);
+    public static Partial<ReviewsWidgetSettingsDTO> WithSelectedFilterId(this Partial<ReviewsWidgetSettingsDTO> it)
+        => it.AddFieldName("selectedFilterId");
     
 }
 

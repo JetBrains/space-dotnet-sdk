@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.UnfurlDetailsNewIssueActionPartialBuilder;
 
-public interface WidgetSettingsDTO
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+public static class UnfurlDetailsNewIssueActionPartialExtensions
 {
-    public static FollowedColleagueSettingsDTO FollowedColleagueSettingsDTO(FollowedMembersSettings followedMembers, List<FollowedEntityDTO> projectAndTeams)
-        => new FollowedColleagueSettingsDTO(followedMembers: followedMembers, projectAndTeams: projectAndTeams);
+    public static Partial<UnfurlDetailsNewIssueAction> WithTitle(this Partial<UnfurlDetailsNewIssueAction> it)
+        => it.AddFieldName("title");
     
-    public static IssuesWidgetSettingsDTO Issues(string selectedFilterId)
-        => new IssuesWidgetSettingsDTO(selectedFilterId: selectedFilterId);
+    public static Partial<UnfurlDetailsNewIssueAction> WithProject(this Partial<UnfurlDetailsNewIssueAction> it)
+        => it.AddFieldName("project");
     
-    public static ReviewsWidgetSettingsDTO Reviews(string selectedFilterId)
-        => new ReviewsWidgetSettingsDTO(selectedFilterId: selectedFilterId);
+    public static Partial<UnfurlDetailsNewIssueAction> WithProject(this Partial<UnfurlDetailsNewIssueAction> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
     
 }
 

@@ -29,28 +29,28 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class SyntaxMarkup
+public sealed class SymbolDefinitionLocation
      : IPropagatePropertyAccessPath
 {
-    public SyntaxMarkup() { }
+    public SymbolDefinitionLocation() { }
     
-    public SyntaxMarkup(TextRange range, SyntaxMarkupType? type = null, SymbolDefinitionLocation? location = null)
+    public SymbolDefinitionLocation(string path, TextRange range)
     {
-        Type = type;
+        Path = path;
         Range = range;
-        Location = location;
     }
     
-    private PropertyValue<SyntaxMarkupType?> _type = new PropertyValue<SyntaxMarkupType?>(nameof(SyntaxMarkup), nameof(Type), "type");
+    private PropertyValue<string> _path = new PropertyValue<string>(nameof(SymbolDefinitionLocation), nameof(Path), "path");
     
-    [JsonPropertyName("type")]
-    public SyntaxMarkupType? Type
+    [Required]
+    [JsonPropertyName("path")]
+    public string Path
     {
-        get => _type.GetValue(InlineErrors);
-        set => _type.SetValue(value);
+        get => _path.GetValue(InlineErrors);
+        set => _path.SetValue(value);
     }
 
-    private PropertyValue<TextRange> _range = new PropertyValue<TextRange>(nameof(SyntaxMarkup), nameof(Range), "range");
+    private PropertyValue<TextRange> _range = new PropertyValue<TextRange>(nameof(SymbolDefinitionLocation), nameof(Range), "range");
     
     [Required]
     [JsonPropertyName("range")]
@@ -60,20 +60,10 @@ public sealed class SyntaxMarkup
         set => _range.SetValue(value);
     }
 
-    private PropertyValue<SymbolDefinitionLocation?> _location = new PropertyValue<SymbolDefinitionLocation?>(nameof(SyntaxMarkup), nameof(Location), "location");
-    
-    [JsonPropertyName("location")]
-    public SymbolDefinitionLocation? Location
-    {
-        get => _location.GetValue(InlineErrors);
-        set => _location.SetValue(value);
-    }
-
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _path.SetAccessPath(parentChainPath, validateHasBeenSet);
         _range.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _location.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

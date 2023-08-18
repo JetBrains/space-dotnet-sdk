@@ -168,6 +168,9 @@ public static class ESAppPartialExtensions
     public static Partial<ESApp> WithDomains(this Partial<ESApp> it, Func<Partial<ApplicationUnfurlDomain>, Partial<ApplicationUnfurlDomain>> partialBuilder)
         => it.AddFieldName("domains", partialBuilder(new Partial<ApplicationUnfurlDomain>(it)));
     
+    public static Partial<ESApp> WithErrorMessage(this Partial<ESApp> it)
+        => it.AddFieldName("errorMessage");
+    
     public static Partial<ESApp> WithMetadata(this Partial<ESApp> it)
         => it.AddFieldName("metadata");
     

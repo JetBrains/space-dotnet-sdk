@@ -29,32 +29,40 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ReplyMessageAttachmentReply
-     : ReplyMessageAttachment, IClassNameConvertible, IPropagatePropertyAccessPath
+internal class ApplicationsForApplicationGpgKeysPostRequest
+     : IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public override string? ClassName => "ReplyMessageAttachment.Reply";
+    public ApplicationsForApplicationGpgKeysPostRequest() { }
     
-    public ReplyMessageAttachmentReply() { }
-    
-    public ReplyMessageAttachmentReply(string messageId)
+    public ApplicationsForApplicationGpgKeysPostRequest(string publicKey, string comment = "")
     {
-        MessageId = messageId;
+        PublicKey = publicKey;
+        Comment = comment;
     }
     
-    private PropertyValue<string> _messageId = new PropertyValue<string>(nameof(ReplyMessageAttachmentReply), nameof(MessageId), "messageId");
+    private PropertyValue<string> _publicKey = new PropertyValue<string>(nameof(ApplicationsForApplicationGpgKeysPostRequest), nameof(PublicKey), "publicKey");
     
     [Required]
-    [JsonPropertyName("messageId")]
-    public string MessageId
+    [JsonPropertyName("publicKey")]
+    public string PublicKey
     {
-        get => _messageId.GetValue(InlineErrors);
-        set => _messageId.SetValue(value);
+        get => _publicKey.GetValue(InlineErrors);
+        set => _publicKey.SetValue(value);
     }
 
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    private PropertyValue<string> _comment = new PropertyValue<string>(nameof(ApplicationsForApplicationGpgKeysPostRequest), nameof(Comment), "comment");
+    
+    [JsonPropertyName("comment")]
+    public string Comment
     {
-        _messageId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        get => _comment.GetValue(InlineErrors);
+        set => _comment.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _publicKey.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _comment.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

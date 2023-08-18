@@ -29,17 +29,34 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum CreateExternalIssueProjectResult
+public sealed class RtContent
+     : IPropagatePropertyAccessPath
 {
-    [EnumMember(Value = "SUCCESS")]
-    SUCCESS,
+    public RtContent() { }
     
-    [EnumMember(Value = "DUPLICATE_NAME")]
-    DUPLICATENAME,
+    public RtContent(RtDocument document)
+    {
+        Document = document;
+    }
     
-    [EnumMember(Value = "DUPLICATE_ISSUE_PREFIX")]
-    DUPLICATEISSUEPREFIX,
+    private PropertyValue<RtDocument> _document = new PropertyValue<RtDocument>(nameof(RtContent), nameof(Document), "document");
     
+    [Required]
+    [JsonPropertyName("document")]
+    public RtDocument Document
+    {
+        get => _document.GetValue(InlineErrors);
+        set => _document.SetValue(value);
+    }
+
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _document.SetAccessPath(parentChainPath, validateHasBeenSet);
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

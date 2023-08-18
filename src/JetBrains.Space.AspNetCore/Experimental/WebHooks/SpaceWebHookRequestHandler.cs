@@ -147,6 +147,12 @@ public class SpaceWebHookRequestHandler<TWebHookHandler>
                 await WriteApplicationExecutionResultAsync(context.Response, unfurlActionResult);
                 return;
             
+            // Custom action?
+            case CustomActionPayload customActionPayload:
+                var customActionResult = await handler.HandleCustomActionAsync(customActionPayload);
+                await WriteApplicationExecutionResultAsync(context.Response, customActionResult);
+                return;
+            
             // Application initialized in Space organization?
             case InitPayload initPayload:
                 var initActionResult = await handler.HandleInitAsync(initPayload);

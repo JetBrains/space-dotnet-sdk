@@ -438,7 +438,8 @@ An application webhook handler can be created by extending the `SpaceWebHookHand
 * `HandleChangeServerUrlAsync` is called when the application server URL is updated.
 * `HandleAppPublicationCheckAsync` is called when a Space organization verifies the application publication.
 * `HandleRefreshTokenAsync` is called when refresh token is updated in Space organization.  
-* `ConfigureRequestValidationOptionsAsync` can be used to configure signature validation etc. before dispatching to any of the other handler methods.
+* `HandleConfigureRequestValidationOptionsAsync` can be used to configure signature validation etc. before dispatching to any of the other handler methods.
+* `HandleCustomActionAsync` is called when a custom action is executed.
 
 The `CateringWebHookHandler` class is an example application that implements most of the above, and provides an interactive means of ordering (virtual) food and beverages.
 

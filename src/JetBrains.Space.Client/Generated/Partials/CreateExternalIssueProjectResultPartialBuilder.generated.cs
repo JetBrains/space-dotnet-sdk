@@ -27,24 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DevConfigurationHotPoolPartialBuilder;
+namespace JetBrains.Space.Client.CreateExternalIssueProjectResultPartialBuilder;
 
-public static class DevConfigurationHotPoolPartialExtensions
+public static class CreateExternalIssueProjectResultPartialExtensions
 {
-    public static Partial<DevConfigurationHotPool> WithIsEnabled(this Partial<DevConfigurationHotPool> it)
-        => it.AddFieldName("enabled");
+    public static Partial<CreateExternalIssueProjectResult> WithIssuePrefix(this Partial<CreateExternalIssueProjectResult> it)
+        => it.AddFieldName("issuePrefix");
     
-    public static Partial<DevConfigurationHotPool> WithIsHibernateInstances(this Partial<DevConfigurationHotPool> it)
-        => it.AddFieldName("hibernateInstances");
+    public static Partial<CreateExternalIssueProjectResult> WithIsSuccess(this Partial<CreateExternalIssueProjectResult> it)
+        => it.AddFieldName("success");
     
-    public static Partial<DevConfigurationHotPool> WithSize(this Partial<DevConfigurationHotPool> it)
-        => it.AddFieldName("size");
+    public static Partial<CreateExternalIssueProjectResult> WithError(this Partial<CreateExternalIssueProjectResult> it)
+        => it.AddFieldName("error");
     
-    public static Partial<DevConfigurationHotPool> WithCronSchedule(this Partial<DevConfigurationHotPool> it)
-        => it.AddFieldName("cronSchedule");
-    
-    public static Partial<DevConfigurationHotPool> WithTimezone(this Partial<DevConfigurationHotPool> it)
-        => it.AddFieldName("timezone");
+    public static Partial<CreateExternalIssueProjectResult> WithError(this Partial<CreateExternalIssueProjectResult> it, Func<Partial<CreateExternalIssueProjectError>, Partial<CreateExternalIssueProjectError>> partialBuilder)
+        => it.AddFieldName("error", partialBuilder(new Partial<CreateExternalIssueProjectError>(it)));
     
 }
 

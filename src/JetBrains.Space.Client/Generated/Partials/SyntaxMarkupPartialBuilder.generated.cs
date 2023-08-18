@@ -43,5 +43,11 @@ public static class SyntaxMarkupPartialExtensions
     public static Partial<SyntaxMarkup> WithRange(this Partial<SyntaxMarkup> it, Func<Partial<TextRange>, Partial<TextRange>> partialBuilder)
         => it.AddFieldName("range", partialBuilder(new Partial<TextRange>(it)));
     
+    public static Partial<SyntaxMarkup> WithLocation(this Partial<SyntaxMarkup> it)
+        => it.AddFieldName("location");
+    
+    public static Partial<SyntaxMarkup> WithLocation(this Partial<SyntaxMarkup> it, Func<Partial<SymbolDefinitionLocation>, Partial<SymbolDefinitionLocation>> partialBuilder)
+        => it.AddFieldName("location", partialBuilder(new Partial<SymbolDefinitionLocation>(it)));
+    
 }
 

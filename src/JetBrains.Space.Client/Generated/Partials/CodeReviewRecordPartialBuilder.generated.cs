@@ -57,6 +57,12 @@ public static class CodeReviewRecordPartialExtensions
     public static Partial<CodeReviewRecord> WithDiscussionCounter(this Partial<CodeReviewRecord> it, Func<Partial<DiscussionCounter>, Partial<DiscussionCounter>> partialBuilder)
         => it.AddFieldName("discussionCounter", partialBuilder(new Partial<DiscussionCounter>(it)));
     
+    public static Partial<CodeReviewRecord> WithExternalIssues(this Partial<CodeReviewRecord> it)
+        => it.AddFieldName("externalIssues");
+    
+    public static Partial<CodeReviewRecord> WithExternalIssues(this Partial<CodeReviewRecord> it, Func<Partial<ExternalIssueIdOut>, Partial<ExternalIssueIdOut>> partialBuilder)
+        => it.AddFieldName("externalIssues", partialBuilder(new Partial<ExternalIssueIdOut>(it)));
+    
     public static Partial<CodeReviewRecord> WithIssueIds(this Partial<CodeReviewRecord> it)
         => it.AddFieldName("issueIds");
     

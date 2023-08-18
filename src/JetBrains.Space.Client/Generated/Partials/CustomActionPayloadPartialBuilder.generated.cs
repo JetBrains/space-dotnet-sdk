@@ -27,19 +27,22 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.CustomActionPayloadPartialBuilder;
 
-public interface WidgetSettingsDTO
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+public static class CustomActionPayloadPartialExtensions
 {
-    public static FollowedColleagueSettingsDTO FollowedColleagueSettingsDTO(FollowedMembersSettings followedMembers, List<FollowedEntityDTO> projectAndTeams)
-        => new FollowedColleagueSettingsDTO(followedMembers: followedMembers, projectAndTeams: projectAndTeams);
+    public static Partial<CustomActionPayload> WithActionId(this Partial<CustomActionPayload> it)
+        => it.AddFieldName("actionId");
     
-    public static IssuesWidgetSettingsDTO Issues(string selectedFilterId)
-        => new IssuesWidgetSettingsDTO(selectedFilterId: selectedFilterId);
+    public static Partial<CustomActionPayload> WithClientId(this Partial<CustomActionPayload> it)
+        => it.AddFieldName("clientId");
     
-    public static ReviewsWidgetSettingsDTO Reviews(string selectedFilterId)
-        => new ReviewsWidgetSettingsDTO(selectedFilterId: selectedFilterId);
+    public static Partial<CustomActionPayload> WithUserId(this Partial<CustomActionPayload> it)
+        => it.AddFieldName("userId");
+    
+    [Obsolete("Verification token is only sent for old applications that have the Verification Token authentication set up. New applications cannot use this authentication. (since 2022-11-16) (will be removed in a future version)")]
+    public static Partial<CustomActionPayload> WithVerificationToken(this Partial<CustomActionPayload> it)
+        => it.AddFieldName("verificationToken");
     
 }
 

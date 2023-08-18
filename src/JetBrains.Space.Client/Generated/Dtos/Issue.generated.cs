@@ -34,7 +34,7 @@ public sealed class Issue
 {
     public Issue() { }
     
-    public Issue(string id, bool archived, PRProject projectRef, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, List<BoardBacklog> backlogs, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<Issue> parents, List<SprintRecord> sprints, Checklist subItemsList, string? projectId = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, int? subItemsCount = null, int? doneSubItemsCount = null, int? commentsCount = null, CPrincipal? deletedBy = null, DateTime? deletedTime = null, string? description = null, string? messagePermalink = null, List<AttachmentInfo>? unfurls = null)
+    public Issue(string id, bool archived, PRProject projectRef, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, List<BoardBacklog> backlogs, M2ChannelRecord channel, List<Checklist> checklists, Dictionary<string, CFValue> customFields, List<Issue> parents, List<SprintRecord> sprints, Checklist subItemsList, string? projectId = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ExternalEntityInfoRecord? externalEntityInfo = null, int? attachmentsCount = null, int? subItemsCount = null, int? doneSubItemsCount = null, int? commentsCount = null, CPrincipal? deletedBy = null, DateTime? deletedTime = null, string? description = null, string? messagePermalink = null, RtContent? rtDescription = null, List<AttachmentInfo>? unfurls = null)
     {
         Id = id;
         IsArchived = archived;
@@ -64,6 +64,7 @@ public sealed class Issue
         Description = description;
         MessagePermalink = messagePermalink;
         Parents = parents;
+        RtDescription = rtDescription;
         Sprints = sprints;
         SubItemsList = subItemsList;
         Unfurls = unfurls;
@@ -339,6 +340,15 @@ public sealed class Issue
         set => _parents.SetValue(value);
     }
 
+    private PropertyValue<RtContent?> _rtDescription = new PropertyValue<RtContent?>(nameof(Issue), nameof(RtDescription), "rtDescription");
+    
+    [JsonPropertyName("rtDescription")]
+    public RtContent? RtDescription
+    {
+        get => _rtDescription.GetValue(InlineErrors);
+        set => _rtDescription.SetValue(value);
+    }
+
     private PropertyValue<List<SprintRecord>> _sprints = new PropertyValue<List<SprintRecord>>(nameof(Issue), nameof(Sprints), "sprints", new List<SprintRecord>());
     
     [Required]
@@ -398,6 +408,7 @@ public sealed class Issue
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _messagePermalink.SetAccessPath(parentChainPath, validateHasBeenSet);
         _parents.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _rtDescription.SetAccessPath(parentChainPath, validateHasBeenSet);
         _sprints.SetAccessPath(parentChainPath, validateHasBeenSet);
         _subItemsList.SetAccessPath(parentChainPath, validateHasBeenSet);
         _unfurls.SetAccessPath(parentChainPath, validateHasBeenSet);

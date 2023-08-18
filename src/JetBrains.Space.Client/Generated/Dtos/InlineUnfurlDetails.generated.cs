@@ -113,6 +113,9 @@ public interface InlineUnfurlDetails
     public static UnfurlDetailsMeeting UnfurlDetailsMeeting(Meeting meeting, bool? compact = null)
         => new UnfurlDetailsMeeting(meeting: meeting, compact: compact);
     
+    public static UnfurlDetailsNewIssueAction UnfurlDetailsNewIssueAction(string title, PRProject project)
+        => new UnfurlDetailsNewIssueAction(title: title, project: project);
+    
     public static UnfurlDetailsPackageDetails UnfurlDetailsPackageDetails(ProjectPackageRepository repoRef, string? packageName = null, string? version = null)
         => new UnfurlDetailsPackageDetails(repoRef: repoRef, packageName: packageName, version: version);
     

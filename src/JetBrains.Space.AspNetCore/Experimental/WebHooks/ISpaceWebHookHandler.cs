@@ -76,6 +76,13 @@ public interface ISpaceWebHookHandler
     /// <param name="payload">The <see cref="UnfurlActionPayload"/>.</param>
     /// <returns>The result of executing this action.</returns>
     Task<ApplicationExecutionResult> HandleUnfurlActionPayloadAsync(UnfurlActionPayload payload);
+    
+    /// <summary>
+    /// Handle event when an custom action is executed.
+    /// </summary>
+    /// <param name="payload">The <see cref="CustomActionPayload"/>.</param>
+    /// <returns>The result of executing this action.</returns>
+    Task<ApplicationExecutionResult> HandleCustomActionAsync(CustomActionPayload payload);
 
     /// <summary>
     /// Handle application initialization event.

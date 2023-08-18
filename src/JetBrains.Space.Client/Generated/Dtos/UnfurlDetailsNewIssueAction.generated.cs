@@ -29,32 +29,44 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ReplyMessageAttachmentReply
-     : ReplyMessageAttachment, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class UnfurlDetailsNewIssueAction
+     : InlineUnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "ReplyMessageAttachment.Reply";
+    public  string? ClassName => "UnfurlDetailsNewIssueAction";
     
-    public ReplyMessageAttachmentReply() { }
+    public UnfurlDetailsNewIssueAction() { }
     
-    public ReplyMessageAttachmentReply(string messageId)
+    public UnfurlDetailsNewIssueAction(string title, PRProject project)
     {
-        MessageId = messageId;
+        Title = title;
+        Project = project;
     }
     
-    private PropertyValue<string> _messageId = new PropertyValue<string>(nameof(ReplyMessageAttachmentReply), nameof(MessageId), "messageId");
+    private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDetailsNewIssueAction), nameof(Title), "title");
     
     [Required]
-    [JsonPropertyName("messageId")]
-    public string MessageId
+    [JsonPropertyName("title")]
+    public string Title
     {
-        get => _messageId.GetValue(InlineErrors);
-        set => _messageId.SetValue(value);
+        get => _title.GetValue(InlineErrors);
+        set => _title.SetValue(value);
     }
 
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsNewIssueAction), nameof(Project), "project");
+    
+    [Required]
+    [JsonPropertyName("project")]
+    public PRProject Project
     {
-        _messageId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        get => _project.GetValue(InlineErrors);
+        set => _project.SetValue(value);
+    }
+
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _title.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -34,9 +34,10 @@ public sealed class DevConfigurationHotPool
 {
     public DevConfigurationHotPool() { }
     
-    public DevConfigurationHotPool(bool enabled, int size, string cronSchedule, string timezone)
+    public DevConfigurationHotPool(bool enabled, bool hibernateInstances, int size, string cronSchedule, string timezone)
     {
         IsEnabled = enabled;
+        IsHibernateInstances = hibernateInstances;
         Size = size;
         CronSchedule = cronSchedule;
         Timezone = timezone;
@@ -50,6 +51,16 @@ public sealed class DevConfigurationHotPool
     {
         get => _enabled.GetValue(InlineErrors);
         set => _enabled.SetValue(value);
+    }
+
+    private PropertyValue<bool> _hibernateInstances = new PropertyValue<bool>(nameof(DevConfigurationHotPool), nameof(IsHibernateInstances), "hibernateInstances");
+    
+    [Required]
+    [JsonPropertyName("hibernateInstances")]
+    public bool IsHibernateInstances
+    {
+        get => _hibernateInstances.GetValue(InlineErrors);
+        set => _hibernateInstances.SetValue(value);
     }
 
     private PropertyValue<int> _size = new PropertyValue<int>(nameof(DevConfigurationHotPool), nameof(Size), "size");
@@ -85,6 +96,7 @@ public sealed class DevConfigurationHotPool
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _enabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hibernateInstances.SetAccessPath(parentChainPath, validateHasBeenSet);
         _size.SetAccessPath(parentChainPath, validateHasBeenSet);
         _cronSchedule.SetAccessPath(parentChainPath, validateHasBeenSet);
         _timezone.SetAccessPath(parentChainPath, validateHasBeenSet);

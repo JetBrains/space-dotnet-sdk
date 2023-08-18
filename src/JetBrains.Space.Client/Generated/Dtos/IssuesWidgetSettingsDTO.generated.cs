@@ -29,32 +29,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ReplyMessageAttachmentReply
-     : ReplyMessageAttachment, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class IssuesWidgetSettingsDTO
+     : WidgetSettingsDTO, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "ReplyMessageAttachment.Reply";
+    public  string? ClassName => "IssuesWidgetSettingsDTO";
     
-    public ReplyMessageAttachmentReply() { }
+    public IssuesWidgetSettingsDTO() { }
     
-    public ReplyMessageAttachmentReply(string messageId)
+    public IssuesWidgetSettingsDTO(string selectedFilterId)
     {
-        MessageId = messageId;
+        SelectedFilterId = selectedFilterId;
     }
     
-    private PropertyValue<string> _messageId = new PropertyValue<string>(nameof(ReplyMessageAttachmentReply), nameof(MessageId), "messageId");
+    private PropertyValue<string> _selectedFilterId = new PropertyValue<string>(nameof(IssuesWidgetSettingsDTO), nameof(SelectedFilterId), "selectedFilterId");
     
     [Required]
-    [JsonPropertyName("messageId")]
-    public string MessageId
+    [JsonPropertyName("selectedFilterId")]
+    public string SelectedFilterId
     {
-        get => _messageId.GetValue(InlineErrors);
-        set => _messageId.SetValue(value);
+        get => _selectedFilterId.GetValue(InlineErrors);
+        set => _selectedFilterId.SetValue(value);
     }
 
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _messageId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _selectedFilterId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

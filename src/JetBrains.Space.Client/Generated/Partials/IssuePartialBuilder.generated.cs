@@ -160,6 +160,12 @@ public static class IssuePartialExtensions
     public static Partial<Issue> WithParents(this Partial<Issue> it, Func<Partial<Issue>, Partial<Issue>> partialBuilder)
         => it.AddFieldName("parents", partialBuilder(new Partial<Issue>(it)));
     
+    public static Partial<Issue> WithRtDescription(this Partial<Issue> it)
+        => it.AddFieldName("rtDescription");
+    
+    public static Partial<Issue> WithRtDescription(this Partial<Issue> it, Func<Partial<RtContent>, Partial<RtContent>> partialBuilder)
+        => it.AddFieldName("rtDescription", partialBuilder(new Partial<RtContent>(it)));
+    
     public static Partial<Issue> WithSprints(this Partial<Issue> it)
         => it.AddFieldName("sprints");
     

@@ -120,6 +120,12 @@ public static class MergeRequestRecordPartialExtensions
     public static Partial<MergeRequestRecord> WithDiscussionCounter(this Partial<MergeRequestRecord> it, Func<Partial<DiscussionCounter>, Partial<DiscussionCounter>> partialBuilder)
         => it.AddFieldName("discussionCounter", partialBuilder(new Partial<DiscussionCounter>(it)));
     
+    public static Partial<MergeRequestRecord> WithExternalIssues(this Partial<MergeRequestRecord> it)
+        => it.AddFieldName("externalIssues");
+    
+    public static Partial<MergeRequestRecord> WithExternalIssues(this Partial<MergeRequestRecord> it, Func<Partial<ExternalIssueIdOut>, Partial<ExternalIssueIdOut>> partialBuilder)
+        => it.AddFieldName("externalIssues", partialBuilder(new Partial<ExternalIssueIdOut>(it)));
+    
     public static Partial<MergeRequestRecord> WithIssueIds(this Partial<MergeRequestRecord> it)
         => it.AddFieldName("issueIds");
     

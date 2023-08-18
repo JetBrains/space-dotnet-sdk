@@ -215,6 +215,9 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier EditMemberVacationPeriods
         => new PermissionIdentifierEditMemberVacationPeriods();
     
+    public static PermissionIdentifier EditTeamMembershipHistory
+        => new PermissionIdentifierEditTeamMembershipHistory();
+    
     public static PermissionIdentifier GiveFeedbackToThoseWhoAskedIt
         => new PermissionIdentifierGiveFeedbackToThoseWhoAskedIt();
     
@@ -1284,6 +1287,12 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Profile.HRM.VacationPeriods.Edit";
+    }
+    
+    public class PermissionIdentifierEditTeamMembershipHistory : PermissionIdentifier
+    {
+        public override string ToString()
+            => "Team.History.Edit";
     }
     
     public class PermissionIdentifierGiveFeedbackToThoseWhoAskedIt : PermissionIdentifier
