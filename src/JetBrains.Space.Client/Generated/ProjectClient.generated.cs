@@ -3584,6 +3584,30 @@ public partial class ProjectClient : ISpaceClient
         public IAsyncEnumerable<BranchInfo> GetHeadsAsyncEnumerable(ProjectIdentifier project, string repository, List<string>? pattern = null, bool isRegex = false, string? skip = null, int? top = 100, Func<Partial<BranchInfo>, Partial<BranchInfo>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetHeadsAsync(project: project, repository: repository, pattern: pattern, isRegex: isRegex, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<BranchInfo>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<BranchInfo>.Default())), skip, cancellationToken);
     
+        /// <remarks>
+        /// This API is experimental
+        /// </remarks>
+#if NET6_0_OR_GREATER
+        [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
+#else
+        [Obsolete("This API is experimental")]
+#endif
+        
+        public async Task<InlineDiff> GetInlineMergeDiffAsync(ProjectIdentifier project, string repository, GitEntryType entryType, bool ignoreWhitespaces = false, bool squashSimpleChanges = true, string? baseBlobId = null, string? sourceBlobId = null, string? targetBlobId = null, Func<Partial<InlineDiff>, Partial<InlineDiff>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            if (baseBlobId != null) queryParameters.Append("baseBlobId", baseBlobId);
+            if (sourceBlobId != null) queryParameters.Append("sourceBlobId", sourceBlobId);
+            if (targetBlobId != null) queryParameters.Append("targetBlobId", targetBlobId);
+            queryParameters.Append("entryType", entryType.ToEnumString());
+            queryParameters.Append("ignoreWhitespaces", ignoreWhitespaces.ToString("l"));
+            queryParameters.Append("squashSimpleChanges", squashSimpleChanges.ToString("l"));
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<InlineDiff>()) : Partial<InlineDiff>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<InlineDiff>("GET", $"api/http/projects/{project}/repositories/{repository}/inline-merge-diff{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetInlineMergeDiff", cancellationToken: cancellationToken);
+        }
+        
+    
         public async Task<Batch<GitMergedFile>> MergePreviewAsync(ProjectIdentifier project, string repository, string sourceBranch, string targetBranch, string? skip = null, int? top = 100, Func<Partial<Batch<GitMergedFile>>, Partial<Batch<GitMergedFile>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3658,40 +3682,6 @@ public partial class ProjectClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 
                 return await _connection.RequestResourceAsync<string>("GET", $"api/http/projects/{project}/repositories/{repository}/default-branch{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetRepositoryDefaultBranch", cancellationToken: cancellationToken);
-            }
-            
-        
-        }
-    
-        public MergeDiffClient MergeDiff => new MergeDiffClient(_connection);
-        
-        public partial class MergeDiffClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public MergeDiffClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            /// <remarks>
-            /// This API is experimental
-            /// </remarks>
-#if NET6_0_OR_GREATER
-            [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
-#else
-            [Obsolete("This API is experimental")]
-#endif
-            
-            public async Task<InlineDiff> GetInlineDiffAsync(ProjectIdentifier project, string repository, string baseBlobId, string sourceBlobId, string targetBlobId, GitEntryType entryType, bool ignoreWhitespaces = false, bool squashSimpleChanges = true, Func<Partial<InlineDiff>, Partial<InlineDiff>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("entryType", entryType.ToEnumString());
-                queryParameters.Append("ignoreWhitespaces", ignoreWhitespaces.ToString("l"));
-                queryParameters.Append("squashSimpleChanges", squashSimpleChanges.ToString("l"));
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<InlineDiff>()) : Partial<InlineDiff>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<InlineDiff>("GET", $"api/http/projects/{project}/repositories/{repository}/merge-diff/base:{baseBlobId}/source:{sourceBlobId}/target:{targetBlobId}/inline{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetInlineDiff", cancellationToken: cancellationToken);
             }
             
         

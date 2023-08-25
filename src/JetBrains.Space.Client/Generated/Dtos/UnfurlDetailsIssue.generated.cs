@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class UnfurlDetailsIssue
-     : InlineUnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+     : BlockUnfurlDetails, InlineUnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "UnfurlDetailsIssue";

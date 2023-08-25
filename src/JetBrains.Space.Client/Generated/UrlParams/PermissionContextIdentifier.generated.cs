@@ -38,6 +38,9 @@ public abstract class PermissionContextIdentifier : IUrlParameter
     public static PermissionContextIdentifier Global
         => new GlobalPermissionContextIdentifier();
     
+    public static PermissionContextIdentifier PackageRepository(string packageRepository)
+        => new PackageRepositoryPermissionContextIdentifier(packageRepository);
+    
     public static PermissionContextIdentifier Project(ProjectIdentifier project)
         => new ProjectPermissionContextIdentifier(project);
     
@@ -70,6 +73,31 @@ public abstract class PermissionContextIdentifier : IUrlParameter
     {
         public override string ToString()
             => "global";
+    }
+    
+    public class PackageRepositoryPermissionContextIdentifier : PermissionContextIdentifier
+    {
+        [Required]
+        [JsonPropertyName("packageRepository")]
+#if NET6_0_OR_GREATER
+        public string PackageRepository { get; init; }
+#else
+        public string PackageRepository { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
+        public PackageRepositoryPermissionContextIdentifier() { }
+#pragma warning restore CS8618
+#endif
+        
+        public PackageRepositoryPermissionContextIdentifier(string packageRepository)
+        {
+            PackageRepository = packageRepository;
+        }
+        
+        public override string ToString()
+            => $"packageRepository:{PackageRepository}";
     }
     
     public class ProjectPermissionContextIdentifier : PermissionContextIdentifier

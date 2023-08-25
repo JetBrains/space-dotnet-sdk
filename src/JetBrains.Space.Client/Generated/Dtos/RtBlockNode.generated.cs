@@ -32,6 +32,9 @@ namespace JetBrains.Space.Client;
 public interface RtBlockNode
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
+    public static RtBlockUnfurl RtBlockUnfurl(string href, string title)
+        => new RtBlockUnfurl(href: href, title: title);
+    
     public static RtHorizontalRule RtHorizontalRule()
         => new RtHorizontalRule();
     
