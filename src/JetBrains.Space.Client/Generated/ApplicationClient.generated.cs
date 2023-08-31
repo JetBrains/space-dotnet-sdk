@@ -547,6 +547,130 @@ public partial class ApplicationClient : ISpaceClient
     
     }
 
+    public ParameterClient Parameters => new ParameterClient(_connection);
+    
+    public partial class ParameterClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public ParameterClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <summary>
+        /// Return all application parameters. Only accessible with an app token, not a user token.
+        /// </summary>
+        public async Task<List<AppParameter>> GetAllParametersAsync(Func<Partial<AppParameter>, Partial<AppParameter>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<AppParameter>()) : Partial<AppParameter>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<AppParameter>>("GET", $"api/http/applications/parameters{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllParameters", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Get application parameter by key. Only accessible with an app token, not a user token.
+        /// </summary>
+        public async Task<string> GetParameterAsync(string key, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/parameters/{key}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetParameter", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Set application parameter by key. Only accessible with an app token, not a user token. There is a limit of 100 app parameters per app. The key cannot be longer than 64 characters. The value cannot be longer than 1000 characters.
+        /// </summary>
+        public async Task SetParameterAsync(string key, string value, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PATCH", $"api/http/applications/parameters/{key}{queryParameters.ToQueryString()}", 
+                new ApplicationsParametersForKeyPatchRequest
+                { 
+                    Value = value,
+                }, requestHeaders: null, functionName: "SetParameter", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Remove application parameter by key. Only accessible with an app token, not a user token.
+        /// </summary>
+        public async Task RemoveParameterAsync(string key, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("DELETE", $"api/http/applications/parameters/{key}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveParameter", cancellationToken: cancellationToken);
+        }
+        
+    
+        public ProfileClient Profile => new ProfileClient(_connection);
+        
+        public partial class ProfileClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public ProfileClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Return all profile parameters, profile and application are derived from the access token. Only accessible with a user token, issued to an application.
+            /// </summary>
+            public async Task<List<AppParameter>> GetAllProfileParametersAsync(Func<Partial<AppParameter>, Partial<AppParameter>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<AppParameter>()) : Partial<AppParameter>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<AppParameter>>("GET", $"api/http/applications/parameters/profile{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllProfileParameters", cancellationToken: cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Get profile parameter by key, profile and application are derived from the access token. Only accessible with a user token, issued to an application.
+            /// </summary>
+            public async Task<string> GetProfileParameterAsync(string key, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                return await _connection.RequestResourceAsync<string>("GET", $"api/http/applications/parameters/profile/{key}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetProfileParameter", cancellationToken: cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Set profile parameter by key, profile and application are derived from the access token. Only accessible with a user token, issued to an application. There is a limit of 100 app parameters per app per profile. The key cannot be longer than 64 characters. The value cannot be longer than 1000 characters.
+            /// </summary>
+            public async Task SetProfileParameterAsync(string key, string value, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("PATCH", $"api/http/applications/parameters/profile/{key}{queryParameters.ToQueryString()}", 
+                    new ApplicationsParametersProfileForKeyPatchRequest
+                    { 
+                        Value = value,
+                    }, requestHeaders: null, functionName: "SetProfileParameter", cancellationToken: cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Remove profile parameter by key, profile and application are derived from the access token. Only accessible with a user token, issued to an application.
+            /// </summary>
+            public async Task RemoveProfileParameterAsync(string key, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/applications/parameters/profile/{key}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveProfileParameter", cancellationToken: cancellationToken);
+            }
+            
+        
+        }
+    
+    }
+
     public UnfurlClient Unfurls => new UnfurlClient(_connection);
     
     public partial class UnfurlClient : ISpaceClient

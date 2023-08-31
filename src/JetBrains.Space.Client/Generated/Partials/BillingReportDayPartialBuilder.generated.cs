@@ -61,6 +61,15 @@ public static class BillingReportDayPartialExtensions
     public static Partial<BillingReportDay> WithGuestLimit(this Partial<BillingReportDay> it)
         => it.AddFieldName("guestLimit");
     
+    public static Partial<BillingReportDay> WithActiveMembers(this Partial<BillingReportDay> it)
+        => it.AddFieldName("activeMembers");
+    
+    public static Partial<BillingReportDay> WithActiveLegacyExternalCollaborators(this Partial<BillingReportDay> it)
+        => it.AddFieldName("activeLegacyExternalCollaborators");
+    
+    public static Partial<BillingReportDay> WithActiveExternalCollaborators(this Partial<BillingReportDay> it)
+        => it.AddFieldName("activeExternalCollaborators");
+    
     public static Partial<BillingReportDay> WithStorageAllocationB(this Partial<BillingReportDay> it)
         => it.AddFieldName("storageAllocationB");
     

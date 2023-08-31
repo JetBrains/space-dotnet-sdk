@@ -29,16 +29,29 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class FeedbackRepliedWebhookEvent
-     : WebhookEvent, IClassNameConvertible, IPropagatePropertyAccessPath
+internal class ApplicationsParametersForKeyPatchRequest
+     : IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public  string? ClassName => "FeedbackRepliedWebhookEvent";
+    public ApplicationsParametersForKeyPatchRequest() { }
     
-    public FeedbackRepliedWebhookEvent() { }
-    
-    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public ApplicationsParametersForKeyPatchRequest(string value)
     {
+        Value = value;
+    }
+    
+    private PropertyValue<string> _value = new PropertyValue<string>(nameof(ApplicationsParametersForKeyPatchRequest), nameof(Value), "value");
+    
+    [Required]
+    [JsonPropertyName("value")]
+    public string Value
+    {
+        get => _value.GetValue(InlineErrors);
+        set => _value.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _value.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -27,9 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FeedbackRepliedWebhookEventPartialBuilder;
+namespace JetBrains.Space.Client.AppParameterPartialBuilder;
 
-public static class FeedbackRepliedWebhookEventPartialExtensions
+public static class AppParameterPartialExtensions
 {
+    public static Partial<AppParameter> WithKey(this Partial<AppParameter> it)
+        => it.AddFieldName("key");
+    
+    public static Partial<AppParameter> WithValue(this Partial<AppParameter> it)
+        => it.AddFieldName("value");
+    
 }
 

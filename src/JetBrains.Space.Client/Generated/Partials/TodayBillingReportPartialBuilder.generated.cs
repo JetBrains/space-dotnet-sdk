@@ -58,6 +58,15 @@ public static class TodayBillingReportPartialExtensions
     public static Partial<TodayBillingReport> WithGuestCost(this Partial<TodayBillingReport> it)
         => it.AddFieldName("guestCost");
     
+    public static Partial<TodayBillingReport> WithActiveMembers(this Partial<TodayBillingReport> it)
+        => it.AddFieldName("activeMembers");
+    
+    public static Partial<TodayBillingReport> WithActiveLegacyExternalCollaborators(this Partial<TodayBillingReport> it)
+        => it.AddFieldName("activeLegacyExternalCollaborators");
+    
+    public static Partial<TodayBillingReport> WithActiveExternalCollaborators(this Partial<TodayBillingReport> it)
+        => it.AddFieldName("activeExternalCollaborators");
+    
     public static Partial<TodayBillingReport> WithStorageAllocationB(this Partial<TodayBillingReport> it)
         => it.AddFieldName("storageAllocationB");
     

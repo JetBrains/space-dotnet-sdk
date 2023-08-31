@@ -27,9 +27,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FeedbackRequestedWebhookEventPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class FeedbackRequestedWebhookEventPartialExtensions
+internal class ApplicationsParametersProfileForKeyPatchRequest
+     : IPropagatePropertyAccessPath
 {
+    public ApplicationsParametersProfileForKeyPatchRequest() { }
+    
+    public ApplicationsParametersProfileForKeyPatchRequest(string value)
+    {
+        Value = value;
+    }
+    
+    private PropertyValue<string> _value = new PropertyValue<string>(nameof(ApplicationsParametersProfileForKeyPatchRequest), nameof(Value), "value");
+    
+    [Required]
+    [JsonPropertyName("value")]
+    public string Value
+    {
+        get => _value.GetValue(InlineErrors);
+        set => _value.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _value.SetAccessPath(parentChainPath, validateHasBeenSet);
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

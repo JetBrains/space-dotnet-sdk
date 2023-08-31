@@ -131,12 +131,6 @@ public interface WebhookEvent
     public static FeatureFlagWebhookEvent FeatureFlag(KMetaMod meta, string name, int? issueNumber = null, Modification<bool>? enabledForAll = null, Modification<bool>? selfManageable = null, List<TDTeam>? addedTeams = null, List<TDTeam>? addedProfiles = null, List<TDMemberProfile>? removedTeams = null, List<TDMemberProfile>? removedProfiles = null)
         => new FeatureFlagWebhookEvent(meta: meta, name: name, issueNumber: issueNumber, enabledForAll: enabledForAll, selfManageable: selfManageable, addedTeams: addedTeams, addedProfiles: addedProfiles, removedTeams: removedTeams, removedProfiles: removedProfiles);
     
-    public static FeedbackRepliedWebhookEvent FeedbackReplied()
-        => new FeedbackRepliedWebhookEvent();
-    
-    public static FeedbackRequestedWebhookEvent FeedbackRequested()
-        => new FeedbackRequestedWebhookEvent();
-    
     public static GoogleIntegrationDisconnectedEvent GoogleIntegrationDisconnectedEvent(TDMemberProfile member)
         => new GoogleIntegrationDisconnectedEvent(member: member);
     

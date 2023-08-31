@@ -34,7 +34,7 @@ public sealed class BillingReportDay
 {
     public BillingReportDay() { }
     
-    public BillingReportDay(DateTime date, int activeUsers, int userUsage, double userCost, long storageTotalUsage, long storageFilesUsage, long storageGitUsage, long storagePackagesUsage, double storageCost, long bandwidthTotalUsageDelta, long bandwidthTotalUsage, long bandwidthFilesUsageDelta, long bandwidthFilesUsage, long bandwidthGitUsageDelta, long bandwidthGitUsage, long bandwidthPackagesUsageDelta, long bandwidthPackagesUsage, long bandwidthAutomationExternalTrafficUsageDelta, long bandwidthAutomationExternalTrafficUsage, long bandwidthAutomationInternalUsageDelta, long bandwidthAutomationInternalUsage, double bandwidthCost, long ciUsageDelta, long ciUsage, double ciCost, long appUsage, long chatUsage, double totalCost, int? userLimit = null, int? activeGuests = null, int? paidActiveGuests = null, int? freeActiveGuests = null, double? guestCost = null, int? guestLimit = null, long? storageAllocationB = null)
+    public BillingReportDay(DateTime date, int activeUsers, int userUsage, double userCost, long storageTotalUsage, long storageFilesUsage, long storageGitUsage, long storagePackagesUsage, double storageCost, long bandwidthTotalUsageDelta, long bandwidthTotalUsage, long bandwidthFilesUsageDelta, long bandwidthFilesUsage, long bandwidthGitUsageDelta, long bandwidthGitUsage, long bandwidthPackagesUsageDelta, long bandwidthPackagesUsage, long bandwidthAutomationExternalTrafficUsageDelta, long bandwidthAutomationExternalTrafficUsage, long bandwidthAutomationInternalUsageDelta, long bandwidthAutomationInternalUsage, double bandwidthCost, long ciUsageDelta, long ciUsage, double ciCost, long appUsage, long chatUsage, double totalCost, int? userLimit = null, int? activeGuests = null, int? paidActiveGuests = null, int? freeActiveGuests = null, double? guestCost = null, int? guestLimit = null, int? activeMembers = null, int? activeLegacyExternalCollaborators = null, int? activeExternalCollaborators = null, long? storageAllocationB = null)
     {
         Date = date;
         ActiveUsers = activeUsers;
@@ -46,6 +46,9 @@ public sealed class BillingReportDay
         FreeActiveGuests = freeActiveGuests;
         GuestCost = guestCost;
         GuestLimit = guestLimit;
+        ActiveMembers = activeMembers;
+        ActiveLegacyExternalCollaborators = activeLegacyExternalCollaborators;
+        ActiveExternalCollaborators = activeExternalCollaborators;
         StorageAllocationB = storageAllocationB;
         StorageTotalUsage = storageTotalUsage;
         StorageFilesUsage = storageFilesUsage;
@@ -166,6 +169,33 @@ public sealed class BillingReportDay
     {
         get => _guestLimit.GetValue(InlineErrors);
         set => _guestLimit.SetValue(value);
+    }
+
+    private PropertyValue<int?> _activeMembers = new PropertyValue<int?>(nameof(BillingReportDay), nameof(ActiveMembers), "activeMembers");
+    
+    [JsonPropertyName("activeMembers")]
+    public int? ActiveMembers
+    {
+        get => _activeMembers.GetValue(InlineErrors);
+        set => _activeMembers.SetValue(value);
+    }
+
+    private PropertyValue<int?> _activeLegacyExternalCollaborators = new PropertyValue<int?>(nameof(BillingReportDay), nameof(ActiveLegacyExternalCollaborators), "activeLegacyExternalCollaborators");
+    
+    [JsonPropertyName("activeLegacyExternalCollaborators")]
+    public int? ActiveLegacyExternalCollaborators
+    {
+        get => _activeLegacyExternalCollaborators.GetValue(InlineErrors);
+        set => _activeLegacyExternalCollaborators.SetValue(value);
+    }
+
+    private PropertyValue<int?> _activeExternalCollaborators = new PropertyValue<int?>(nameof(BillingReportDay), nameof(ActiveExternalCollaborators), "activeExternalCollaborators");
+    
+    [JsonPropertyName("activeExternalCollaborators")]
+    public int? ActiveExternalCollaborators
+    {
+        get => _activeExternalCollaborators.GetValue(InlineErrors);
+        set => _activeExternalCollaborators.SetValue(value);
     }
 
     private PropertyValue<long?> _storageAllocationB = new PropertyValue<long?>(nameof(BillingReportDay), nameof(StorageAllocationB), "storageAllocationB");
@@ -429,6 +459,9 @@ public sealed class BillingReportDay
         _freeActiveGuests.SetAccessPath(parentChainPath, validateHasBeenSet);
         _guestCost.SetAccessPath(parentChainPath, validateHasBeenSet);
         _guestLimit.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _activeMembers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _activeLegacyExternalCollaborators.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _activeExternalCollaborators.SetAccessPath(parentChainPath, validateHasBeenSet);
         _storageAllocationB.SetAccessPath(parentChainPath, validateHasBeenSet);
         _storageTotalUsage.SetAccessPath(parentChainPath, validateHasBeenSet);
         _storageFilesUsage.SetAccessPath(parentChainPath, validateHasBeenSet);

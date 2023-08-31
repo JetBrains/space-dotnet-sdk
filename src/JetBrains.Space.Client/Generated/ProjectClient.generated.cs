@@ -2825,7 +2825,7 @@ public partial class ProjectClient : ISpaceClient
             
             }
         
-            public AttachmentClient Attachments => new AttachmentClient(_connection);
+            public AttachmentClient Attachment => new AttachmentClient(_connection);
             
             public partial class AttachmentClient : ISpaceClient
             {
@@ -2836,6 +2836,54 @@ public partial class ProjectClient : ISpaceClient
                     _connection = connection;
                 }
                 
+                /// <summary>
+                /// Add attachment to an existing issue in a project
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Update issues</term>
+                /// <description>Update issues that were created by other users</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task AddAttachmentAsync(ProjectIdentifier project, IssueIdentifier issueId, AttachmentIn attachment, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/attachment{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPlanningIssuesForIssueIdAttachmentPostRequest
+                        { 
+                            Attachment = attachment,
+                        }, requestHeaders: null, functionName: "AddAttachment", cancellationToken: cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// Remove attachment from an existing issue in a project
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Update issues</term>
+                /// <description>Update issues that were created by other users</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task RemoveAttachmentAsync(ProjectIdentifier project, IssueIdentifier issueId, string attachmentId, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/attachment/{attachmentId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveAttachment", cancellationToken: cancellationToken);
+                }
+                
+            
+            }
+        
+            public partial class AttachmentClient : ISpaceClient
+            {
                 /// <summary>
                 /// Add attachments to an existing issue in a project
                 /// </summary>

@@ -218,9 +218,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier EditTeamMembershipHistory
         => new PermissionIdentifierEditTeamMembershipHistory();
     
-    public static PermissionIdentifier GiveFeedbackToThoseWhoAskedIt
-        => new PermissionIdentifierGiveFeedbackToThoseWhoAskedIt();
-    
     public static PermissionIdentifier GrantAccessRightsToOtherMembersForBonusApp
         => new PermissionIdentifierGrantAccessRightsToOtherMembersForBonusApp();
     
@@ -434,9 +431,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ManageWarmUpAutomaticTriggers
         => new PermissionIdentifierManageWarmUpAutomaticTriggers();
     
-    public static PermissionIdentifier MangeFeedbackExamples
-        => new PermissionIdentifierMangeFeedbackExamples();
-    
     public static PermissionIdentifier ModerateSuggestions
         => new PermissionIdentifierModerateSuggestions();
     
@@ -529,9 +523,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     
     public static PermissionIdentifier ReportExternalStatusChecks
         => new PermissionIdentifierReportExternalStatusChecks();
-    
-    public static PermissionIdentifier RequestFeedbackForYourself
-        => new PermissionIdentifierRequestFeedbackForYourself();
     
     /// <summary>
     /// Restore issues that were created by other users
@@ -778,9 +769,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     
     public static PermissionIdentifier ViewExternalEntityLinkPatterns
         => new PermissionIdentifierViewExternalEntityLinkPatterns();
-    
-    public static PermissionIdentifier ViewFeedbackExamples
-        => new PermissionIdentifierViewFeedbackExamples();
     
     public static PermissionIdentifier ViewFolderContent
         => new PermissionIdentifierViewFolderContent();
@@ -1295,12 +1283,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Team.History.Edit";
     }
     
-    public class PermissionIdentifierGiveFeedbackToThoseWhoAskedIt : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.FeedbackMe.Give";
-    }
-    
     public class PermissionIdentifierGrantAccessRightsToOtherMembersForBonusApp : PermissionIdentifier
     {
         public override string ToString()
@@ -1688,12 +1670,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Rd.Warmup.Triggering.Manage";
     }
     
-    public class PermissionIdentifierMangeFeedbackExamples : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.FeedbackMe.Manage";
-    }
-    
     public class PermissionIdentifierModerateSuggestions : PermissionIdentifier
     {
         public override string ToString()
@@ -1863,12 +1839,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "VcsRepository.CommitStatus.Push";
-    }
-    
-    public class PermissionIdentifierRequestFeedbackForYourself : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.FeedbackMe.Ask";
     }
     
     /// <summary>
@@ -2337,12 +2307,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Unfurl.ExternalLinkPatterns.View";
-    }
-    
-    public class PermissionIdentifierViewFeedbackExamples : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.FeedbackMe.Examples.View";
     }
     
     public class PermissionIdentifierViewFolderContent : PermissionIdentifier

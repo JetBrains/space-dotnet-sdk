@@ -34,7 +34,7 @@ public sealed class TodayBillingReport
 {
     public TodayBillingReport() { }
     
-    public TodayBillingReport(PurchasedBillingPlan plan, int activeUsers, int userUsage, double userCost, long storageTotalUsage, double storageCost, long bandwidthTotalUsage, double bandwidthCost, long ciUsage, double ciCost, long appUsage, long chatUsage, double totalCost, int? activeGuests = null, int? paidActiveGuests = null, int? freeActiveGuests = null, double? guestCost = null, long? storageAllocationB = null)
+    public TodayBillingReport(PurchasedBillingPlan plan, int activeUsers, int userUsage, double userCost, long storageTotalUsage, double storageCost, long bandwidthTotalUsage, double bandwidthCost, long ciUsage, double ciCost, long appUsage, long chatUsage, double totalCost, int? activeGuests = null, int? paidActiveGuests = null, int? freeActiveGuests = null, double? guestCost = null, int? activeMembers = null, int? activeLegacyExternalCollaborators = null, int? activeExternalCollaborators = null, long? storageAllocationB = null)
     {
         Plan = plan;
         ActiveUsers = activeUsers;
@@ -44,6 +44,9 @@ public sealed class TodayBillingReport
         PaidActiveGuests = paidActiveGuests;
         FreeActiveGuests = freeActiveGuests;
         GuestCost = guestCost;
+        ActiveMembers = activeMembers;
+        ActiveLegacyExternalCollaborators = activeLegacyExternalCollaborators;
+        ActiveExternalCollaborators = activeExternalCollaborators;
         StorageAllocationB = storageAllocationB;
         StorageTotalUsage = storageTotalUsage;
         StorageCost = storageCost;
@@ -130,6 +133,33 @@ public sealed class TodayBillingReport
     {
         get => _guestCost.GetValue(InlineErrors);
         set => _guestCost.SetValue(value);
+    }
+
+    private PropertyValue<int?> _activeMembers = new PropertyValue<int?>(nameof(TodayBillingReport), nameof(ActiveMembers), "activeMembers");
+    
+    [JsonPropertyName("activeMembers")]
+    public int? ActiveMembers
+    {
+        get => _activeMembers.GetValue(InlineErrors);
+        set => _activeMembers.SetValue(value);
+    }
+
+    private PropertyValue<int?> _activeLegacyExternalCollaborators = new PropertyValue<int?>(nameof(TodayBillingReport), nameof(ActiveLegacyExternalCollaborators), "activeLegacyExternalCollaborators");
+    
+    [JsonPropertyName("activeLegacyExternalCollaborators")]
+    public int? ActiveLegacyExternalCollaborators
+    {
+        get => _activeLegacyExternalCollaborators.GetValue(InlineErrors);
+        set => _activeLegacyExternalCollaborators.SetValue(value);
+    }
+
+    private PropertyValue<int?> _activeExternalCollaborators = new PropertyValue<int?>(nameof(TodayBillingReport), nameof(ActiveExternalCollaborators), "activeExternalCollaborators");
+    
+    [JsonPropertyName("activeExternalCollaborators")]
+    public int? ActiveExternalCollaborators
+    {
+        get => _activeExternalCollaborators.GetValue(InlineErrors);
+        set => _activeExternalCollaborators.SetValue(value);
     }
 
     private PropertyValue<long?> _storageAllocationB = new PropertyValue<long?>(nameof(TodayBillingReport), nameof(StorageAllocationB), "storageAllocationB");
@@ -241,6 +271,9 @@ public sealed class TodayBillingReport
         _paidActiveGuests.SetAccessPath(parentChainPath, validateHasBeenSet);
         _freeActiveGuests.SetAccessPath(parentChainPath, validateHasBeenSet);
         _guestCost.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _activeMembers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _activeLegacyExternalCollaborators.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _activeExternalCollaborators.SetAccessPath(parentChainPath, validateHasBeenSet);
         _storageAllocationB.SetAccessPath(parentChainPath, validateHasBeenSet);
         _storageTotalUsage.SetAccessPath(parentChainPath, validateHasBeenSet);
         _storageCost.SetAccessPath(parentChainPath, validateHasBeenSet);
