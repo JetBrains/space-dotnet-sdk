@@ -34,7 +34,7 @@ public sealed class RdDevConfiguration
 {
     public RdDevConfiguration() { }
     
-    public RdDevConfiguration(string id, string name, List<RepoConnectionWithBranch> repoConnections, RdDevContainer devContainer, RdDevConfigurationIde ide, string instanceTypeName, PRProject project, DevConfigurationWarmup warmup, bool archived, DevConfigurationHotPool? hotPool = null, string? projectRoot = null, bool? sshEnabled = null)
+    public RdDevConfiguration(string id, string name, List<RepoConnectionWithBranch> repoConnections, RdDevContainer devContainer, RdDevConfigurationIde ide, string instanceTypeName, PRProject project, DevConfigurationWarmup warmup, bool archived, DevConfigurationHotPool? hotPool = null, string? projectRoot = null, bool? sshEnabled = null, DevConfigurationAccessSettingsDTO? access = null)
     {
         Id = id;
         Name = name;
@@ -47,6 +47,7 @@ public sealed class RdDevConfiguration
         Warmup = warmup;
         ProjectRoot = projectRoot;
         IsSshEnabled = sshEnabled;
+        Access = access;
         IsArchived = archived;
     }
     
@@ -157,6 +158,15 @@ public sealed class RdDevConfiguration
         set => _sshEnabled.SetValue(value);
     }
 
+    private PropertyValue<DevConfigurationAccessSettingsDTO?> _access = new PropertyValue<DevConfigurationAccessSettingsDTO?>(nameof(RdDevConfiguration), nameof(Access), "access");
+    
+    [JsonPropertyName("access")]
+    public DevConfigurationAccessSettingsDTO? Access
+    {
+        get => _access.GetValue(InlineErrors);
+        set => _access.SetValue(value);
+    }
+
     private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(RdDevConfiguration), nameof(IsArchived), "archived");
     
     [Required]
@@ -180,6 +190,7 @@ public sealed class RdDevConfiguration
         _warmup.SetAccessPath(parentChainPath, validateHasBeenSet);
         _projectRoot.SetAccessPath(parentChainPath, validateHasBeenSet);
         _sshEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _access.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

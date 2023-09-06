@@ -61,21 +61,31 @@ public static class TDMemberProfilePartialExtensions
     public static Partial<TDMemberProfile> WithLanguages(this Partial<TDMemberProfile> it, Func<Partial<TDProfileLanguage>, Partial<TDProfileLanguage>> partialBuilder)
         => it.AddFieldName("languages", partialBuilder(new Partial<TDProfileLanguage>(it)));
     
+    /// <summary>
+    /// Whether the user account has been deactivated. See also `leftAt`.
+    /// <a href="https://www.jetbrains.com/help/space/deactivate-user-accounts.html">Read more...</a>
+    /// </summary>
     public static Partial<TDMemberProfile> WithIsArchived(this Partial<TDMemberProfile> it)
         => it.AddFieldName("archived");
     
     public static Partial<TDMemberProfile> WithIsNotAMember(this Partial<TDMemberProfile> it)
         => it.AddFieldName("notAMember");
     
+    [Obsolete("Use `accessSuspended` instead (since 2023-08-30) (will be removed in a future version)")]
     public static Partial<TDMemberProfile> WithIsSuspended(this Partial<TDMemberProfile> it)
         => it.AddFieldName("suspended");
     
+    [Obsolete("Use `accessSuspendedAt` instead (since 2023-08-30) (will be removed in a future version)")]
     public static Partial<TDMemberProfile> WithSuspendedAt(this Partial<TDMemberProfile> it)
         => it.AddFieldName("suspendedAt");
     
     public static Partial<TDMemberProfile> WithJoined(this Partial<TDMemberProfile> it)
         => it.AddFieldName("joined");
     
+    /// <summary>
+    /// Date at which the user account has been deactivated
+    /// <a href="https://www.jetbrains.com/help/space/deactivate-user-accounts.html">Read more...</a>
+    /// </summary>
     public static Partial<TDMemberProfile> WithLeftAt(this Partial<TDMemberProfile> it)
         => it.AddFieldName("leftAt");
     
@@ -94,9 +104,17 @@ public static class TDMemberProfilePartialExtensions
     public static Partial<TDMemberProfile> WithAbsences(this Partial<TDMemberProfile> it, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>> partialBuilder)
         => it.AddFieldName("absences", partialBuilder(new Partial<AbsenceRecord>(it)));
     
+    /// <summary>
+    /// Whether user account has been suspended
+    /// <a href="https://www.jetbrains.com/help/space/suspend-user-accounts.html">Read more...</a>
+    /// </summary>
     public static Partial<TDMemberProfile> WithIsAccessSuspended(this Partial<TDMemberProfile> it)
         => it.AddFieldName("accessSuspended");
     
+    /// <summary>
+    /// Date at which the user account has been suspended
+    /// <a href="https://www.jetbrains.com/help/space/suspend-user-accounts.html">Read more...</a>
+    /// </summary>
     public static Partial<TDMemberProfile> WithAccessSuspendedAt(this Partial<TDMemberProfile> it)
         => it.AddFieldName("accessSuspendedAt");
     
@@ -136,6 +154,11 @@ public static class TDMemberProfilePartialExtensions
     public static Partial<TDMemberProfile> WithGender(this Partial<TDMemberProfile> it, Func<Partial<Gender>, Partial<Gender>> partialBuilder)
         => it.AddFieldName("gender", partialBuilder(new Partial<Gender>(it)));
     
+    /// <summary>
+    /// Date at which the user account has been deactivated
+    /// <a href="https://www.jetbrains.com/help/space/deactivate-user-accounts.html">Read more...</a>
+    /// </summary>
+    [Obsolete("Use `leftAt` instead (since 2023-08-30)")]
     public static Partial<TDMemberProfile> WithLeft(this Partial<TDMemberProfile> it)
         => it.AddFieldName("left");
     

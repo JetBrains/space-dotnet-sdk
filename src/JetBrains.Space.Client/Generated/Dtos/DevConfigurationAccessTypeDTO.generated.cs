@@ -29,14 +29,14 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public static class SdkInfo
+public interface DevConfigurationAccessTypeDTO
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2023.3.0-DEV.169105";
+    public static DevConfigurationAccessTypeDTOPrivate Private(List<DevConfigurationParticipantDTO> participants)
+        => new DevConfigurationAccessTypeDTOPrivate(participants: participants);
+    
+    public static DevConfigurationAccessTypeDTOProject Project()
+        => new DevConfigurationAccessTypeDTOProject();
+    
 }
 

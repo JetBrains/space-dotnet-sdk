@@ -436,7 +436,7 @@ public partial class ApplicationClient : ISpaceClient
             /// <summary>
             /// Generic method for editing authorized right status in given context.
             /// </summary>
-            public async Task UpdateAuthorizedRightAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, List<RightUpdateDTO> updates, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task UpdateAuthorizedRightAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, List<RightUpdateDTO> updates, PrincipalIn? actor = null, string? comment = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -445,6 +445,8 @@ public partial class ApplicationClient : ISpaceClient
                     { 
                         ContextIdentifier = contextIdentifier,
                         Updates = updates,
+                        Actor = actor,
+                        Comment = comment,
                     }, requestHeaders: null, functionName: "UpdateAuthorizedRight", cancellationToken: cancellationToken);
             }
             
@@ -460,7 +462,7 @@ public partial class ApplicationClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task RequestRightsAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, List<PermissionIdentifier> rightCodes, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task RequestRightsAsync(ApplicationIdentifier application, PermissionContextIdentifier contextIdentifier, List<PermissionIdentifier> rightCodes, PrincipalIn? actor = null, string? comment = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -469,6 +471,8 @@ public partial class ApplicationClient : ISpaceClient
                     { 
                         ContextIdentifier = contextIdentifier,
                         RightCodes = rightCodes,
+                        Actor = actor,
+                        Comment = comment,
                     }, requestHeaders: null, functionName: "RequestRights", cancellationToken: cancellationToken);
             }
             

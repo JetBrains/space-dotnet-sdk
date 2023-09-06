@@ -161,6 +161,10 @@ public sealed class TDMemberProfile
 
     private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TDMemberProfile), nameof(IsArchived), "archived");
     
+    /// <summary>
+    /// Whether the user account has been deactivated. See also `leftAt`.
+    /// <a href="https://www.jetbrains.com/help/space/deactivate-user-accounts.html">Read more...</a>
+    /// </summary>
     [Required]
     [JsonPropertyName("archived")]
     public bool IsArchived
@@ -181,6 +185,7 @@ public sealed class TDMemberProfile
 
     private PropertyValue<bool?> _suspended = new PropertyValue<bool?>(nameof(TDMemberProfile), nameof(IsSuspended), "suspended");
     
+    [Obsolete("Use `accessSuspended` instead (since 2023-08-30) (will be removed in a future version)")]
     [JsonPropertyName("suspended")]
     public bool? IsSuspended
     {
@@ -190,6 +195,7 @@ public sealed class TDMemberProfile
 
     private PropertyValue<DateTime?> _suspendedAt = new PropertyValue<DateTime?>(nameof(TDMemberProfile), nameof(SuspendedAt), "suspendedAt");
     
+    [Obsolete("Use `accessSuspendedAt` instead (since 2023-08-30) (will be removed in a future version)")]
     [JsonPropertyName("suspendedAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? SuspendedAt
@@ -210,6 +216,10 @@ public sealed class TDMemberProfile
 
     private PropertyValue<DateTime?> _leftAt = new PropertyValue<DateTime?>(nameof(TDMemberProfile), nameof(LeftAt), "leftAt");
     
+    /// <summary>
+    /// Date at which the user account has been deactivated
+    /// <a href="https://www.jetbrains.com/help/space/deactivate-user-accounts.html">Read more...</a>
+    /// </summary>
     [JsonPropertyName("leftAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? LeftAt
@@ -257,6 +267,10 @@ public sealed class TDMemberProfile
 
     private PropertyValue<bool?> _accessSuspended = new PropertyValue<bool?>(nameof(TDMemberProfile), nameof(IsAccessSuspended), "accessSuspended");
     
+    /// <summary>
+    /// Whether user account has been suspended
+    /// <a href="https://www.jetbrains.com/help/space/suspend-user-accounts.html">Read more...</a>
+    /// </summary>
     [JsonPropertyName("accessSuspended")]
     public bool? IsAccessSuspended
     {
@@ -266,6 +280,10 @@ public sealed class TDMemberProfile
 
     private PropertyValue<DateTime?> _accessSuspendedAt = new PropertyValue<DateTime?>(nameof(TDMemberProfile), nameof(AccessSuspendedAt), "accessSuspendedAt");
     
+    /// <summary>
+    /// Date at which the user account has been suspended
+    /// <a href="https://www.jetbrains.com/help/space/suspend-user-accounts.html">Read more...</a>
+    /// </summary>
     [JsonPropertyName("accessSuspendedAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
     public DateTime? AccessSuspendedAt
@@ -343,6 +361,11 @@ public sealed class TDMemberProfile
 
     private PropertyValue<DateTime?> _left = new PropertyValue<DateTime?>(nameof(TDMemberProfile), nameof(Left), "left");
     
+    /// <summary>
+    /// Date at which the user account has been deactivated
+    /// <a href="https://www.jetbrains.com/help/space/deactivate-user-accounts.html">Read more...</a>
+    /// </summary>
+    [Obsolete("Use `leftAt` instead (since 2023-08-30)")]
     [JsonPropertyName("left")]
     [JsonConverter(typeof(SpaceDateConverter))]
     public DateTime? Left

@@ -29,14 +29,34 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public static class SdkInfo
+public sealed class DevConfigurationAccessSettingsDTO
+     : IPropagatePropertyAccessPath
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2023.3.0-DEV.169105";
+    public DevConfigurationAccessSettingsDTO() { }
+    
+    public DevConfigurationAccessSettingsDTO(DevConfigurationAccessTypeDTO view)
+    {
+        View = view;
+    }
+    
+    private PropertyValue<DevConfigurationAccessTypeDTO> _view = new PropertyValue<DevConfigurationAccessTypeDTO>(nameof(DevConfigurationAccessSettingsDTO), nameof(View), "view");
+    
+    [Required]
+    [JsonPropertyName("view")]
+    public DevConfigurationAccessTypeDTO View
+    {
+        get => _view.GetValue(InlineErrors);
+        set => _view.SetValue(value);
+    }
+
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _view.SetAccessPath(parentChainPath, validateHasBeenSet);
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

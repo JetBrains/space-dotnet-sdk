@@ -82,6 +82,12 @@ public static class RdDevConfigurationPartialExtensions
     public static Partial<RdDevConfiguration> WithIsSshEnabled(this Partial<RdDevConfiguration> it)
         => it.AddFieldName("sshEnabled");
     
+    public static Partial<RdDevConfiguration> WithAccess(this Partial<RdDevConfiguration> it)
+        => it.AddFieldName("access");
+    
+    public static Partial<RdDevConfiguration> WithAccess(this Partial<RdDevConfiguration> it, Func<Partial<DevConfigurationAccessSettingsDTO>, Partial<DevConfigurationAccessSettingsDTO>> partialBuilder)
+        => it.AddFieldName("access", partialBuilder(new Partial<DevConfigurationAccessSettingsDTO>(it)));
+    
     public static Partial<RdDevConfiguration> WithIsArchived(this Partial<RdDevConfiguration> it)
         => it.AddFieldName("archived");
     

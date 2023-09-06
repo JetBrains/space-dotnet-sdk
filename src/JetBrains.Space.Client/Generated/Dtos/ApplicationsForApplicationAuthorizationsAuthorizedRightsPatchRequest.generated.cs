@@ -34,10 +34,12 @@ internal class ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequ
 {
     public ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest() { }
     
-    public ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest(PermissionContextIdentifier contextIdentifier, List<RightUpdateDTO> updates)
+    public ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest(PermissionContextIdentifier contextIdentifier, List<RightUpdateDTO> updates, PrincipalIn? actor = null, string? comment = null)
     {
         ContextIdentifier = contextIdentifier;
         Updates = updates;
+        Actor = actor;
+        Comment = comment;
     }
     
     private PropertyValue<PermissionContextIdentifier> _contextIdentifier = new PropertyValue<PermissionContextIdentifier>(nameof(ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest), nameof(ContextIdentifier), "contextIdentifier");
@@ -60,10 +62,36 @@ internal class ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequ
         set => _updates.SetValue(value);
     }
 
+    private PropertyValue<PrincipalIn?> _actor = new PropertyValue<PrincipalIn?>(nameof(ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest), nameof(Actor), "actor");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("actor")]
+    public PrincipalIn? Actor
+    {
+        get => _actor.GetValue(InlineErrors);
+        set => _actor.SetValue(value);
+    }
+
+    private PropertyValue<string?> _comment = new PropertyValue<string?>(nameof(ApplicationsForApplicationAuthorizationsAuthorizedRightsPatchRequest), nameof(Comment), "comment");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("comment")]
+    public string? Comment
+    {
+        get => _comment.GetValue(InlineErrors);
+        set => _comment.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _contextIdentifier.SetAccessPath(parentChainPath, validateHasBeenSet);
         _updates.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _actor.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _comment.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />
