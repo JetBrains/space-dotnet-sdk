@@ -29,45 +29,43 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-internal class ProjectsForProjectTopicsForIdPatchRequest
+internal class IssuesGetByIdsPostRequest
      : IPropagatePropertyAccessPath
 {
-    public ProjectsForProjectTopicsForIdPatchRequest() { }
+    public IssuesGetByIdsPostRequest() { }
     
-    public ProjectsForProjectTopicsForIdPatchRequest(string? name = null, string? parentTopicId = null)
+    public IssuesGetByIdsPostRequest(List<IssueIdentifier> issueIdentifiers, bool? withDeleted = null)
     {
-        Name = name;
-        ParentTopicId = parentTopicId;
+        IssueIdentifiers = issueIdentifiers;
+        IsWithDeleted = withDeleted;
     }
     
-    private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectTopicsForIdPatchRequest), nameof(Name), "name");
+    private PropertyValue<List<IssueIdentifier>> _issueIdentifiers = new PropertyValue<List<IssueIdentifier>>(nameof(IssuesGetByIdsPostRequest), nameof(IssueIdentifiers), "issueIdentifiers", new List<IssueIdentifier>());
     
-#if NET6_0_OR_GREATER
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-#endif
-    [JsonPropertyName("name")]
-    public string? Name
+    [Required]
+    [JsonPropertyName("issueIdentifiers")]
+    public List<IssueIdentifier> IssueIdentifiers
     {
-        get => _name.GetValue(InlineErrors);
-        set => _name.SetValue(value);
+        get => _issueIdentifiers.GetValue(InlineErrors);
+        set => _issueIdentifiers.SetValue(value);
     }
 
-    private PropertyValue<string?> _parentTopicId = new PropertyValue<string?>(nameof(ProjectsForProjectTopicsForIdPatchRequest), nameof(ParentTopicId), "parentTopicId");
+    private PropertyValue<bool?> _withDeleted = new PropertyValue<bool?>(nameof(IssuesGetByIdsPostRequest), nameof(IsWithDeleted), "withDeleted");
     
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
-    [JsonPropertyName("parentTopicId")]
-    public string? ParentTopicId
+    [JsonPropertyName("withDeleted")]
+    public bool? IsWithDeleted
     {
-        get => _parentTopicId.GetValue(InlineErrors);
-        set => _parentTopicId.SetValue(value);
+        get => _withDeleted.GetValue(InlineErrors);
+        set => _withDeleted.SetValue(value);
     }
 
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _parentTopicId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _issueIdentifiers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _withDeleted.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

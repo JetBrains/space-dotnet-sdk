@@ -104,9 +104,6 @@ public interface InlineUnfurlDetails
     public static UnfurlDetailsIssueTag UnfurlDetailsIssueTag(PlanningTag tag, bool strikeThrough, MessageTextSize? textSize = null)
         => new UnfurlDetailsIssueTag(tag: tag, strikeThrough: strikeThrough, textSize: textSize);
     
-    public static UnfurlDetailsIssueTopic UnfurlDetailsIssueTopic(Topic topic, bool strikeThrough)
-        => new UnfurlDetailsIssueTopic(topic: topic, strikeThrough: strikeThrough);
-    
     public static UnfurlDetailsLocation UnfurlDetailsLocation(TDLocation location, bool? strikeThrough = null)
         => new UnfurlDetailsLocation(location: location, strikeThrough: strikeThrough);
     

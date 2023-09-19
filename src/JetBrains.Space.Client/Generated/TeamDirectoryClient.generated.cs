@@ -1946,6 +1946,139 @@ public partial class TeamDirectoryClient : ISpaceClient
         
         }
     
+        public FavoriteClient Favorites => new FavoriteClient(_connection);
+        
+        public partial class FavoriteClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public FavoriteClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Add an entity with the given `id` and of the given `kind` to favorites. For profiles this operation is called “follow” in the user interface.
+            /// </summary>
+            public async Task AddFavoriteAsync(string id, StarredItemKind kind, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("POST", $"api/http/team-directory/profiles/favorites{queryParameters.ToQueryString()}", 
+                    new TeamDirectoryProfilesFavoritesPostRequest
+                    { 
+                        Id = id,
+                        Kind = kind,
+                    }, requestHeaders: null, functionName: "AddFavorite", cancellationToken: cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// IDs of favorite deployment targets
+            /// </summary>
+            public async Task<List<string>> GetFavoriteDeploymentTargetsAsync(Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                return await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/team-directory/profiles/favorites/deployment-targets{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetFavoriteDeploymentTargets", cancellationToken: cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// IDs of favorite documents
+            /// </summary>
+            public async Task<List<string>> GetFavoriteDocumentsAsync(Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                return await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/team-directory/profiles/favorites/documents{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetFavoriteDocuments", cancellationToken: cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// IDs of favorite jobs
+            /// </summary>
+            public async Task<List<string>> GetFavoriteJobsAsync(Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                return await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/team-directory/profiles/favorites/jobs{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetFavoriteJobs", cancellationToken: cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Favorite locations
+            /// </summary>
+            public async Task<List<TDLocation>> GetFavoriteLocationsAsync(Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<TDLocation>>("GET", $"api/http/team-directory/profiles/favorites/locations{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetFavoriteLocations", cancellationToken: cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Followed profiles
+            /// </summary>
+            public async Task<List<TDMemberProfile>> GetFollowedProfilesAsync(Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/team-directory/profiles/favorites/profiles{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetFollowedProfiles", cancellationToken: cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Favorite projects
+            /// </summary>
+            public async Task<List<PRProject>> GetFavoriteProjectsAsync(Func<Partial<PRProject>, Partial<PRProject>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<PRProject>()) : Partial<PRProject>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<PRProject>>("GET", $"api/http/team-directory/profiles/favorites/projects{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetFavoriteProjects", cancellationToken: cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// IDs of favorite code repositories
+            /// </summary>
+            public async Task<List<string>> GetFavoriteRepositoriesAsync(Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                return await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/team-directory/profiles/favorites/repositories{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetFavoriteRepositories", cancellationToken: cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Favorite teams
+            /// </summary>
+            public async Task<List<TDTeam>> GetFavoriteTeamsAsync(Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<TDTeam>>("GET", $"api/http/team-directory/profiles/favorites/teams{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetFavoriteTeams", cancellationToken: cancellationToken);
+            }
+            
+        
+            /// <summary>
+            /// Remove an entity with the given `id` and of the given `kind` from favorites. For profiles this operation is called “unfollow” in the user interface.
+            /// </summary>
+            public async Task RemoveFavoriteAsync(string id, StarredItemKind kind, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("kind", kind.ToEnumString());
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/favorites/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveFavorite", cancellationToken: cancellationToken);
+            }
+            
+        
+        }
+    
         public OAuthConsentClient OAuthConsents => new OAuthConsentClient(_connection);
         
         public partial class OAuthConsentClient : ISpaceClient

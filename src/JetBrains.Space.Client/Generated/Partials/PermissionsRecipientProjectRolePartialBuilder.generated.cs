@@ -27,16 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.PermissionsRecipientProjectRolePartialBuilder;
 
-public static class SdkInfo
+public static class PermissionsRecipientProjectRolePartialExtensions
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2023.3.0-DEV.170165";
+    public static Partial<PermissionsRecipientProjectRole> WithProject(this Partial<PermissionsRecipientProjectRole> it)
+        => it.AddFieldName("project");
+    
+    public static Partial<PermissionsRecipientProjectRole> WithProject(this Partial<PermissionsRecipientProjectRole> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
+    
+    public static Partial<PermissionsRecipientProjectRole> WithRoleId(this Partial<PermissionsRecipientProjectRole> it)
+        => it.AddFieldName("roleId");
+    
+    public static Partial<PermissionsRecipientProjectRole> WithName(this Partial<PermissionsRecipientProjectRole> it)
+        => it.AddFieldName("name");
+    
 }
 

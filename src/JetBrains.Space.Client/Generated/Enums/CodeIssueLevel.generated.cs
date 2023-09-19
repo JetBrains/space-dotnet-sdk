@@ -29,34 +29,20 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-internal class ProjectsForProjectTopicsRemoveTopicsPostRequest
-     : IPropagatePropertyAccessPath
+[JsonConverter(typeof(EnumStringConverter))]
+public enum CodeIssueLevel
 {
-    public ProjectsForProjectTopicsRemoveTopicsPostRequest() { }
+    [EnumMember(Value = "NONE")]
+    NONE,
     
-    public ProjectsForProjectTopicsRemoveTopicsPostRequest(List<string> ids)
-    {
-        Ids = ids;
-    }
+    [EnumMember(Value = "NOTE")]
+    NOTE,
     
-    private PropertyValue<List<string>> _ids = new PropertyValue<List<string>>(nameof(ProjectsForProjectTopicsRemoveTopicsPostRequest), nameof(Ids), "ids", new List<string>());
+    [EnumMember(Value = "WARNING")]
+    WARNING,
     
-    [Required]
-    [JsonPropertyName("ids")]
-    public List<string> Ids
-    {
-        get => _ids.GetValue(InlineErrors);
-        set => _ids.SetValue(value);
-    }
-
-    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-        _ids.SetAccessPath(parentChainPath, validateHasBeenSet);
-    }
+    [EnumMember(Value = "ERROR")]
+    ERROR,
     
-    /// <inheritdoc />
-    [JsonPropertyName("$errors")]
-    public List<ApiInlineError> InlineErrors { get; set; } = new();
-
 }
 

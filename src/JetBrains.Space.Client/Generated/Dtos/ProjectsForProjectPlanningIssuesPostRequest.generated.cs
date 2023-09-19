@@ -34,7 +34,7 @@ internal class ProjectsForProjectPlanningIssuesPostRequest
 {
     public ProjectsForProjectPlanningIssuesPostRequest() { }
     
-    public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<SprintIdentifier>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, List<string>? topics = null, List<IssueIdentifier>? parents = null)
+    public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<SprintIdentifier>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, List<IssueIdentifier>? parents = null)
     {
         Title = title;
         Description = description;
@@ -47,7 +47,6 @@ internal class ProjectsForProjectPlanningIssuesPostRequest
         Attachments = (attachments ?? new List<AttachmentIn>());
         FromMessage = fromMessage;
         CustomFields = customFields;
-        Topics = topics;
         Parents = parents;
     }
     
@@ -171,18 +170,6 @@ internal class ProjectsForProjectPlanningIssuesPostRequest
         set => _customFields.SetValue(value);
     }
 
-    private PropertyValue<List<string>?> _topics = new PropertyValue<List<string>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Topics), "topics");
-    
-#if NET6_0_OR_GREATER
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-#endif
-    [JsonPropertyName("topics")]
-    public List<string>? Topics
-    {
-        get => _topics.GetValue(InlineErrors);
-        set => _topics.SetValue(value);
-    }
-
     private PropertyValue<List<IssueIdentifier>?> _parents = new PropertyValue<List<IssueIdentifier>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Parents), "parents");
     
 #if NET6_0_OR_GREATER
@@ -208,7 +195,6 @@ internal class ProjectsForProjectPlanningIssuesPostRequest
         _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
         _fromMessage.SetAccessPath(parentChainPath, validateHasBeenSet);
         _customFields.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _topics.SetAccessPath(parentChainPath, validateHasBeenSet);
         _parents.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

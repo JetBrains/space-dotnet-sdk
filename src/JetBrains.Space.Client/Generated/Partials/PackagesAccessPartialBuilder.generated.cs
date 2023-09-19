@@ -37,6 +37,12 @@ public static class PackagesAccessPartialExtensions
     public static Partial<PackagesAccess> WithPermissions(this Partial<PackagesAccess> it, Func<Partial<PackagesAccessRecipient>, Partial<PackagesAccessRecipient>> partialBuilder)
         => it.AddFieldName("permissions", partialBuilder(new Partial<PackagesAccessRecipient>(it)));
     
+    public static Partial<PackagesAccess> WithInherited(this Partial<PackagesAccess> it)
+        => it.AddFieldName("inherited");
+    
+    public static Partial<PackagesAccess> WithInherited(this Partial<PackagesAccess> it, Func<Partial<PackagesAccessRecipient>, Partial<PackagesAccessRecipient>> partialBuilder)
+        => it.AddFieldName("inherited", partialBuilder(new Partial<PackagesAccessRecipient>(it)));
+    
     public static Partial<PackagesAccess> WithIsRestricted(this Partial<PackagesAccess> it)
         => it.AddFieldName("restricted");
     

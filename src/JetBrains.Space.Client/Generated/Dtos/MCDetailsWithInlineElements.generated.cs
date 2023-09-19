@@ -29,14 +29,11 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public static class SdkInfo
+public interface MCDetailsWithInlineElements
+     : MCInlineElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2023.3.0-DEV.170165";
+    public static MCOutlineV2 MCOutlineV2(List<MCInlineElement> elements)
+        => new MCOutlineV2(elements: elements);
+    
 }
 

@@ -37,7 +37,7 @@ public sealed class IssueWebhookEvent
     
     public IssueWebhookEvent() { }
     
-    public IssueWebhookEvent(KMetaMod meta, Issue issue, Modification<string>? title = null, Modification<string>? description = null, Modification<TDMemberProfile>? assignee = null, Modification<IssueStatus>? status = null, Modification<DateTime>? dueDate = null, Modification<List<PlanningTag>>? tagDelta = null, Modification<List<Topic>>? topicDelta = null, Modification<List<Checklist>>? checklistDelta = null, Modification<List<SprintRecord>>? sprintDelta = null, IssueWebhookCustomFieldUpdate? customFieldUpdate = null, Modification<bool>? deleted = null)
+    public IssueWebhookEvent(KMetaMod meta, Issue issue, Modification<string>? title = null, Modification<string>? description = null, Modification<TDMemberProfile>? assignee = null, Modification<IssueStatus>? status = null, Modification<DateTime>? dueDate = null, Modification<List<PlanningTag>>? tagDelta = null, Modification<List<Checklist>>? checklistDelta = null, Modification<List<SprintRecord>>? sprintDelta = null, IssueWebhookCustomFieldUpdate? customFieldUpdate = null, Modification<bool>? deleted = null)
     {
         Meta = meta;
         Issue = issue;
@@ -47,7 +47,6 @@ public sealed class IssueWebhookEvent
         Status = status;
         DueDate = dueDate;
         TagDelta = tagDelta;
-        TopicDelta = topicDelta;
         ChecklistDelta = checklistDelta;
         SprintDelta = sprintDelta;
         CustomFieldUpdate = customFieldUpdate;
@@ -128,15 +127,6 @@ public sealed class IssueWebhookEvent
         set => _tagDelta.SetValue(value);
     }
 
-    private PropertyValue<Modification<List<Topic>>?> _topicDelta = new PropertyValue<Modification<List<Topic>>?>(nameof(IssueWebhookEvent), nameof(TopicDelta), "topicDelta");
-    
-    [JsonPropertyName("topicDelta")]
-    public Modification<List<Topic>>? TopicDelta
-    {
-        get => _topicDelta.GetValue(InlineErrors);
-        set => _topicDelta.SetValue(value);
-    }
-
     private PropertyValue<Modification<List<Checklist>>?> _checklistDelta = new PropertyValue<Modification<List<Checklist>>?>(nameof(IssueWebhookEvent), nameof(ChecklistDelta), "checklistDelta");
     
     [JsonPropertyName("checklistDelta")]
@@ -183,7 +173,6 @@ public sealed class IssueWebhookEvent
         _status.SetAccessPath(parentChainPath, validateHasBeenSet);
         _dueDate.SetAccessPath(parentChainPath, validateHasBeenSet);
         _tagDelta.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _topicDelta.SetAccessPath(parentChainPath, validateHasBeenSet);
         _checklistDelta.SetAccessPath(parentChainPath, validateHasBeenSet);
         _sprintDelta.SetAccessPath(parentChainPath, validateHasBeenSet);
         _customFieldUpdate.SetAccessPath(parentChainPath, validateHasBeenSet);

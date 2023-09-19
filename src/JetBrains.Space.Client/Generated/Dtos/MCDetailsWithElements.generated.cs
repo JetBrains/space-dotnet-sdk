@@ -29,14 +29,17 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public static class SdkInfo
+public interface MCDetailsWithElements
+     : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2023.3.0-DEV.170165";
+    public static MCGroup MCGroup(List<MCElement> elements)
+        => new MCGroup(elements: elements);
+    
+    public static MCParagraph MCParagraph(List<MCElement> elements, MCElement? accessory = null)
+        => new MCParagraph(elements: elements, accessory: accessory);
+    
+    public static MCSection MCSection(List<MCElement> elements, MessageStyle? style = null, MCText? header = null, MCText? footer = null)
+        => new MCSection(elements: elements, style: style, header: header, footer: footer);
+    
 }
 

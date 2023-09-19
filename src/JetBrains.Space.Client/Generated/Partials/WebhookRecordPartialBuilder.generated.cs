@@ -88,5 +88,11 @@ public static class WebhookRecordPartialExtensions
     public static Partial<WebhookRecord> WithPayloadTemplate(this Partial<WebhookRecord> it)
         => it.AddFieldName("payloadTemplate");
     
+    public static Partial<WebhookRecord> WithPayloadType(this Partial<WebhookRecord> it)
+        => it.AddFieldName("payloadType");
+    
+    public static Partial<WebhookRecord> WithPayloadType(this Partial<WebhookRecord> it, Func<Partial<PayloadType>, Partial<PayloadType>> partialBuilder)
+        => it.AddFieldName("payloadType", partialBuilder(new Partial<PayloadType>(it)));
+    
 }
 

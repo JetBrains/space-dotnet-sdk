@@ -34,9 +34,10 @@ public sealed class FolderAccess
 {
     public FolderAccess() { }
     
-    public FolderAccess(bool restricted, List<FolderAccessRecipient>? permissions = null)
+    public FolderAccess(bool restricted, List<FolderAccessRecipient>? permissions = null, List<FolderAccessRecipient>? inherited = null)
     {
         Permissions = permissions;
+        Inherited = inherited;
         IsRestricted = restricted;
     }
     
@@ -47,6 +48,15 @@ public sealed class FolderAccess
     {
         get => _permissions.GetValue(InlineErrors);
         set => _permissions.SetValue(value);
+    }
+
+    private PropertyValue<List<FolderAccessRecipient>?> _inherited = new PropertyValue<List<FolderAccessRecipient>?>(nameof(FolderAccess), nameof(Inherited), "inherited");
+    
+    [JsonPropertyName("inherited")]
+    public List<FolderAccessRecipient>? Inherited
+    {
+        get => _inherited.GetValue(InlineErrors);
+        set => _inherited.SetValue(value);
     }
 
     private PropertyValue<bool> _restricted = new PropertyValue<bool>(nameof(FolderAccess), nameof(IsRestricted), "restricted");
@@ -62,6 +72,7 @@ public sealed class FolderAccess
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _permissions.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _inherited.SetAccessPath(parentChainPath, validateHasBeenSet);
         _restricted.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

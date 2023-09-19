@@ -29,23 +29,23 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class MCButton
+public sealed class MCDropDownButton
      : MCBaseButton, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public  string? ClassName => "MCButton";
+    public  string? ClassName => "MCDropDownButton";
     
-    public MCButton() { }
+    public MCDropDownButton() { }
     
-    public MCButton(string text, MCAction action, MessageButtonStyle? style = null, bool? disabled = null)
+    public MCDropDownButton(string text, List<MCButtonDropDownItem> dropdownItems, MessageButtonStyle? style = null, bool? disabled = null)
     {
         Text = text;
         Style = style;
-        Action = action;
+        DropdownItems = dropdownItems;
         IsDisabled = disabled;
     }
     
-    private PropertyValue<string> _text = new PropertyValue<string>(nameof(MCButton), nameof(Text), "text");
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(MCDropDownButton), nameof(Text), "text");
     
     [Required]
     [JsonPropertyName("text")]
@@ -55,7 +55,7 @@ public sealed class MCButton
         set => _text.SetValue(value);
     }
 
-    private PropertyValue<MessageButtonStyle?> _style = new PropertyValue<MessageButtonStyle?>(nameof(MCButton), nameof(Style), "style");
+    private PropertyValue<MessageButtonStyle?> _style = new PropertyValue<MessageButtonStyle?>(nameof(MCDropDownButton), nameof(Style), "style");
     
     [JsonPropertyName("style")]
     public MessageButtonStyle? Style
@@ -64,17 +64,17 @@ public sealed class MCButton
         set => _style.SetValue(value);
     }
 
-    private PropertyValue<MCAction> _action = new PropertyValue<MCAction>(nameof(MCButton), nameof(Action), "action");
+    private PropertyValue<List<MCButtonDropDownItem>> _dropdownItems = new PropertyValue<List<MCButtonDropDownItem>>(nameof(MCDropDownButton), nameof(DropdownItems), "dropdownItems", new List<MCButtonDropDownItem>());
     
     [Required]
-    [JsonPropertyName("action")]
-    public MCAction Action
+    [JsonPropertyName("dropdownItems")]
+    public List<MCButtonDropDownItem> DropdownItems
     {
-        get => _action.GetValue(InlineErrors);
-        set => _action.SetValue(value);
+        get => _dropdownItems.GetValue(InlineErrors);
+        set => _dropdownItems.SetValue(value);
     }
 
-    private PropertyValue<bool?> _disabled = new PropertyValue<bool?>(nameof(MCButton), nameof(IsDisabled), "disabled");
+    private PropertyValue<bool?> _disabled = new PropertyValue<bool?>(nameof(MCDropDownButton), nameof(IsDisabled), "disabled");
     
     [JsonPropertyName("disabled")]
     public bool? IsDisabled
@@ -87,7 +87,7 @@ public sealed class MCButton
     {
         _text.SetAccessPath(parentChainPath, validateHasBeenSet);
         _style.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _action.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _dropdownItems.SetAccessPath(parentChainPath, validateHasBeenSet);
         _disabled.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

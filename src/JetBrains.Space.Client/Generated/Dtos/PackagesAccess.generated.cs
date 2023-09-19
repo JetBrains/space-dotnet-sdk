@@ -34,9 +34,10 @@ public sealed class PackagesAccess
 {
     public PackagesAccess() { }
     
-    public PackagesAccess(bool restricted, List<PackagesAccessRecipient>? permissions = null)
+    public PackagesAccess(bool restricted, List<PackagesAccessRecipient>? permissions = null, List<PackagesAccessRecipient>? inherited = null)
     {
         Permissions = permissions;
+        Inherited = inherited;
         IsRestricted = restricted;
     }
     
@@ -47,6 +48,15 @@ public sealed class PackagesAccess
     {
         get => _permissions.GetValue(InlineErrors);
         set => _permissions.SetValue(value);
+    }
+
+    private PropertyValue<List<PackagesAccessRecipient>?> _inherited = new PropertyValue<List<PackagesAccessRecipient>?>(nameof(PackagesAccess), nameof(Inherited), "inherited");
+    
+    [JsonPropertyName("inherited")]
+    public List<PackagesAccessRecipient>? Inherited
+    {
+        get => _inherited.GetValue(InlineErrors);
+        set => _inherited.SetValue(value);
     }
 
     private PropertyValue<bool> _restricted = new PropertyValue<bool>(nameof(PackagesAccess), nameof(IsRestricted), "restricted");
@@ -62,6 +72,7 @@ public sealed class PackagesAccess
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _permissions.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _inherited.SetAccessPath(parentChainPath, validateHasBeenSet);
         _restricted.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

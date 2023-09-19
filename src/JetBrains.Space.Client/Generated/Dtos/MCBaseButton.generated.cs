@@ -29,14 +29,14 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public static class SdkInfo
+public interface MCBaseButton
+     : MCElementDetails, MCInlineElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2023.3.0-DEV.170165";
+    public static MCButton MCButton(string text, MCAction action, MessageButtonStyle? style = null, bool? disabled = null)
+        => new MCButton(text: text, action: action, style: style, disabled: disabled);
+    
+    public static MCDropDownButton MCDropDownButton(string text, List<MCButtonDropDownItem> dropdownItems, MessageButtonStyle? style = null, bool? disabled = null)
+        => new MCDropDownButton(text: text, dropdownItems: dropdownItems, style: style, disabled: disabled);
+    
 }
 

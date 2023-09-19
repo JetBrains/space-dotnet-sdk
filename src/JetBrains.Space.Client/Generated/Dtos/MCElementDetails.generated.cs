@@ -32,17 +32,11 @@ namespace JetBrains.Space.Client;
 public interface MCElementDetails
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static MCButton MCButton(string text, MCAction action, MessageButtonStyle? style = null, bool? disabled = null)
-        => new MCButton(text: text, action: action, style: style, disabled: disabled);
-    
     public static MCDivider MCDivider()
         => new MCDivider();
     
     public static MCFields MCFields(List<Pair<MCElement, MCElement>> fields)
         => new MCFields(fields: fields);
-    
-    public static MCGroup MCGroup(List<MCElement> elements)
-        => new MCGroup(elements: elements);
     
     public static MCIcon MCIcon(string name, MessageStyle? style = null)
         => new MCIcon(name: name, style: style);
@@ -52,12 +46,6 @@ public interface MCElementDetails
     
     public static MCInlineGroup MCInlineGroup(List<MCInlineElement> elements, MCElement? accessory = null, MessageTextSize? textSize = null)
         => new MCInlineGroup(elements: elements, accessory: accessory, textSize: textSize);
-    
-    public static MCParagraph MCParagraph(List<MCElement> elements, MCElement? accessory = null)
-        => new MCParagraph(elements: elements, accessory: accessory);
-    
-    public static MCSection MCSection(List<MCElement> elements, MessageStyle? style = null, MCText? header = null, MCText? footer = null)
-        => new MCSection(elements: elements, style: style, header: header, footer: footer);
     
     public static MCTag MCTag(string text, MessageStyle? style = null)
         => new MCTag(text: text, style: style);

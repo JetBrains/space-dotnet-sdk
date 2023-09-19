@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class MCGroup
-     : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+     : MCDetailsWithElements, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "MCGroup";

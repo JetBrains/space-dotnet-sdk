@@ -29,39 +29,52 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class DocumentAccess
+public sealed class MCButtonDropDownItem
      : IPropagatePropertyAccessPath
 {
-    public DocumentAccess() { }
+    public MCButtonDropDownItem() { }
     
-    public DocumentAccess(List<DocumentAccessRecipient>? permissions = null, List<DocumentAccessRecipient>? inherited = null)
+    public MCButtonDropDownItem(MCAction action, string text, ApiIcon? icon = null)
     {
-        Permissions = permissions;
-        Inherited = inherited;
+        Action = action;
+        Text = text;
+        Icon = icon;
     }
     
-    private PropertyValue<List<DocumentAccessRecipient>?> _permissions = new PropertyValue<List<DocumentAccessRecipient>?>(nameof(DocumentAccess), nameof(Permissions), "permissions");
+    private PropertyValue<MCAction> _action = new PropertyValue<MCAction>(nameof(MCButtonDropDownItem), nameof(Action), "action");
     
-    [JsonPropertyName("permissions")]
-    public List<DocumentAccessRecipient>? Permissions
+    [Required]
+    [JsonPropertyName("action")]
+    public MCAction Action
     {
-        get => _permissions.GetValue(InlineErrors);
-        set => _permissions.SetValue(value);
+        get => _action.GetValue(InlineErrors);
+        set => _action.SetValue(value);
     }
 
-    private PropertyValue<List<DocumentAccessRecipient>?> _inherited = new PropertyValue<List<DocumentAccessRecipient>?>(nameof(DocumentAccess), nameof(Inherited), "inherited");
+    private PropertyValue<string> _text = new PropertyValue<string>(nameof(MCButtonDropDownItem), nameof(Text), "text");
     
-    [JsonPropertyName("inherited")]
-    public List<DocumentAccessRecipient>? Inherited
+    [Required]
+    [JsonPropertyName("text")]
+    public string Text
     {
-        get => _inherited.GetValue(InlineErrors);
-        set => _inherited.SetValue(value);
+        get => _text.GetValue(InlineErrors);
+        set => _text.SetValue(value);
+    }
+
+    private PropertyValue<ApiIcon?> _icon = new PropertyValue<ApiIcon?>(nameof(MCButtonDropDownItem), nameof(Icon), "icon");
+    
+    [JsonPropertyName("icon")]
+    public ApiIcon? Icon
+    {
+        get => _icon.GetValue(InlineErrors);
+        set => _icon.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _permissions.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _inherited.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _action.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _text.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

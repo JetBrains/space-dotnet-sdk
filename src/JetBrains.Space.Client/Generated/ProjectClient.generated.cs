@@ -737,14 +737,6 @@ public partial class ProjectClient : ISpaceClient
                 }
                 
             
-                public async Task DeleteParameterAsync(string stepExecId, string key, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    
-                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/automation/step-executions/{stepExecId}/parameters/{key}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteParameter", cancellationToken: cancellationToken);
-                }
-                
-            
             }
         
         }
@@ -2273,7 +2265,7 @@ public partial class ProjectClient : ISpaceClient
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<SprintIdentifier>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, List<string>? topics = null, List<IssueIdentifier>? parents = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<SprintIdentifier>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<AttachmentIn>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldInputValue>? customFields = null, List<IssueIdentifier>? parents = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 queryParameters.Append("$fields", (partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default()).ToString());
@@ -2292,7 +2284,6 @@ public partial class ProjectClient : ISpaceClient
                         Attachments = (attachments ?? new List<AttachmentIn>()),
                         FromMessage = fromMessage,
                         CustomFields = customFields,
-                        Topics = topics,
                         Parents = parents,
                     }, requestHeaders: null, functionName: "CreateIssue", cancellationToken: cancellationToken);
             }
@@ -2475,6 +2466,9 @@ public partial class ProjectClient : ISpaceClient
             }
             
         
+            /// <summary>
+            /// Retrieve issue by identifier. To retrieve multiple issues at once, use <a href="/extensions/httpApiPlayground?resource=issues&amp;parent-resource=issues&amp;endpoint=http_post_get-by-ids">Get issues by identifiers</a> (`/issues/get-by-ids`)
+            /// </summary>
             /// <remarks>
             /// Required permissions:
             /// <list type="bullet">
@@ -7291,81 +7285,6 @@ public partial class ProjectClient : ISpaceClient
                 { 
                     FeaturePins = featurePins,
                 }, requestHeaders: null, functionName: "UpdatePersonalFeaturePin", cancellationToken: cancellationToken);
-        }
-        
-    
-    }
-
-    public TopicClient Topics => new TopicClient(_connection);
-    
-    public partial class TopicClient : ISpaceClient
-    {
-        private readonly Connection _connection;
-        
-        public TopicClient(Connection connection)
-        {
-            _connection = connection;
-        }
-        
-        public async Task<Topic> CreateTopicAsync(ProjectIdentifier project, string name, string? parentTopicId = null, Func<Partial<Topic>, Partial<Topic>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Topic>()) : Partial<Topic>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<ProjectsForProjectTopicsPostRequest, Topic>("POST", $"api/http/projects/{project}/topics{queryParameters.ToQueryString()}", 
-                new ProjectsForProjectTopicsPostRequest
-                { 
-                    Name = name,
-                    ParentTopicId = parentTopicId,
-                }, requestHeaders: null, functionName: "CreateTopic", cancellationToken: cancellationToken);
-        }
-        
-    
-        public async Task RemoveTopicsAsync(ProjectIdentifier project, List<string> ids, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            
-            await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/topics/remove-topics{queryParameters.ToQueryString()}", 
-                new ProjectsForProjectTopicsRemoveTopicsPostRequest
-                { 
-                    Ids = ids,
-                }, requestHeaders: null, functionName: "RemoveTopics", cancellationToken: cancellationToken);
-        }
-        
-    
-        public async Task SetResponsibleAsync(ProjectIdentifier project, string topicId, List<ProfileIdentifier> responsible, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            
-            await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/topics/set-responsible{queryParameters.ToQueryString()}", 
-                new ProjectsForProjectTopicsSetResponsiblePostRequest
-                { 
-                    TopicId = topicId,
-                    Responsible = responsible,
-                }, requestHeaders: null, functionName: "SetResponsible", cancellationToken: cancellationToken);
-        }
-        
-    
-        public async Task<List<Topic>> GetTopicAsync(ProjectIdentifier project, Func<Partial<Topic>, Partial<Topic>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Topic>()) : Partial<Topic>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<List<Topic>>("GET", $"api/http/projects/{project}/topics{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetTopic", cancellationToken: cancellationToken);
-        }
-        
-    
-        public async Task<Topic> UpdateTopicAsync(ProjectIdentifier project, string id, string? name = null, string? parentTopicId = null, Func<Partial<Topic>, Partial<Topic>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Topic>()) : Partial<Topic>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<ProjectsForProjectTopicsForIdPatchRequest, Topic>("PATCH", $"api/http/projects/{project}/topics/{id}{queryParameters.ToQueryString()}", 
-                new ProjectsForProjectTopicsForIdPatchRequest
-                { 
-                    Name = name,
-                    ParentTopicId = parentTopicId,
-                }, requestHeaders: null, functionName: "UpdateTopic", cancellationToken: cancellationToken);
         }
         
     

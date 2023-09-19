@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class MCParagraph
-     : MCElementDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+     : MCDetailsWithElements, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "MCParagraph";

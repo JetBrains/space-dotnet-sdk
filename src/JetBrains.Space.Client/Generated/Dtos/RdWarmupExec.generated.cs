@@ -34,7 +34,7 @@ public sealed class RdWarmupExec
 {
     public RdWarmupExec() { }
     
-    public RdWarmupExec(string id, string projectId, RdWarmupVcsData vcsData, WarmupExecutionStatus status, IdeType ideType, string ideBuild, string ideVersion, string computeTaskId, WarmupExecutionTrigger trigger, RdConfigurationSource configurationSource, bool archived, DateTime? startedAt = null, DateTime? finishedAt = null, string? ideQuality = null)
+    public RdWarmupExec(string id, string projectId, RdWarmupVcsData vcsData, WarmupExecutionStatus status, DateTime startedAt, IdeType ideType, string ideBuild, string ideVersion, string computeTaskId, WarmupExecutionTrigger trigger, RdConfigurationSource configurationSource, bool archived, DateTime? finishedAt = null, string? ideQuality = null)
     {
         Id = id;
         ProjectId = projectId;
@@ -92,11 +92,12 @@ public sealed class RdWarmupExec
         set => _status.SetValue(value);
     }
 
-    private PropertyValue<DateTime?> _startedAt = new PropertyValue<DateTime?>(nameof(RdWarmupExec), nameof(StartedAt), "startedAt");
+    private PropertyValue<DateTime> _startedAt = new PropertyValue<DateTime>(nameof(RdWarmupExec), nameof(StartedAt), "startedAt");
     
+    [Required]
     [JsonPropertyName("startedAt")]
     [JsonConverter(typeof(SpaceDateTimeConverter))]
-    public DateTime? StartedAt
+    public DateTime StartedAt
     {
         get => _startedAt.GetValue(InlineErrors);
         set => _startedAt.SetValue(value);

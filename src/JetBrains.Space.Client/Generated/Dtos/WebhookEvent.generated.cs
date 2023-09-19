@@ -137,8 +137,8 @@ public interface WebhookEvent
     public static IssueImportTransactionWebhookEvent IssueImportTransaction(KMetaMod meta, ImportTransactionRecord importTransaction)
         => new IssueImportTransactionWebhookEvent(meta: meta, importTransaction: importTransaction);
     
-    public static IssueWebhookEvent Issue(KMetaMod meta, Issue issue, Modification<string>? title = null, Modification<string>? description = null, Modification<TDMemberProfile>? assignee = null, Modification<IssueStatus>? status = null, Modification<DateTime>? dueDate = null, Modification<List<PlanningTag>>? tagDelta = null, Modification<List<Topic>>? topicDelta = null, Modification<List<Checklist>>? checklistDelta = null, Modification<List<SprintRecord>>? sprintDelta = null, IssueWebhookCustomFieldUpdate? customFieldUpdate = null, Modification<bool>? deleted = null)
-        => new IssueWebhookEvent(meta: meta, issue: issue, title: title, description: description, assignee: assignee, status: status, dueDate: dueDate, tagDelta: tagDelta, topicDelta: topicDelta, checklistDelta: checklistDelta, sprintDelta: sprintDelta, customFieldUpdate: customFieldUpdate, deleted: deleted);
+    public static IssueWebhookEvent Issue(KMetaMod meta, Issue issue, Modification<string>? title = null, Modification<string>? description = null, Modification<TDMemberProfile>? assignee = null, Modification<IssueStatus>? status = null, Modification<DateTime>? dueDate = null, Modification<List<PlanningTag>>? tagDelta = null, Modification<List<Checklist>>? checklistDelta = null, Modification<List<SprintRecord>>? sprintDelta = null, IssueWebhookCustomFieldUpdate? customFieldUpdate = null, Modification<bool>? deleted = null)
+        => new IssueWebhookEvent(meta: meta, issue: issue, title: title, description: description, assignee: assignee, status: status, dueDate: dueDate, tagDelta: tagDelta, checklistDelta: checklistDelta, sprintDelta: sprintDelta, customFieldUpdate: customFieldUpdate, deleted: deleted);
     
     public static LocationEvent LocationEvent(KMetaMod meta, TDLocation location)
         => new LocationEvent(meta: meta, location: location);

@@ -39,6 +39,9 @@ public class PermissionsRecipient
     public static PermissionsRecipientProfile Profile(TDMemberProfile profile)
         => new PermissionsRecipientProfile(profile: profile);
     
+    public static PermissionsRecipientProjectRole ProjectRole(PRProject project, string roleId, string name)
+        => new PermissionsRecipientProjectRole(project: project, roleId: roleId, name: name);
+    
     public static PermissionsRecipientTeam Team(TDTeam team)
         => new PermissionsRecipientTeam(team: team);
     

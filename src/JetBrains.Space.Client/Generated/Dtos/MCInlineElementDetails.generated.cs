@@ -32,9 +32,6 @@ namespace JetBrains.Space.Client;
 public interface MCInlineElementDetails
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static MCButton MCButton(string text, MCAction action, MessageButtonStyle? style = null, bool? disabled = null)
-        => new MCButton(text: text, action: action, style: style, disabled: disabled);
-    
     public static MCIcon MCIcon(string name, MessageStyle? style = null)
         => new MCIcon(name: name, style: style);
     

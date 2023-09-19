@@ -37,5 +37,11 @@ public static class DocumentAccessPartialExtensions
     public static Partial<DocumentAccess> WithPermissions(this Partial<DocumentAccess> it, Func<Partial<DocumentAccessRecipient>, Partial<DocumentAccessRecipient>> partialBuilder)
         => it.AddFieldName("permissions", partialBuilder(new Partial<DocumentAccessRecipient>(it)));
     
+    public static Partial<DocumentAccess> WithInherited(this Partial<DocumentAccess> it)
+        => it.AddFieldName("inherited");
+    
+    public static Partial<DocumentAccess> WithInherited(this Partial<DocumentAccess> it, Func<Partial<DocumentAccessRecipient>, Partial<DocumentAccessRecipient>> partialBuilder)
+        => it.AddFieldName("inherited", partialBuilder(new Partial<DocumentAccessRecipient>(it)));
+    
 }
 

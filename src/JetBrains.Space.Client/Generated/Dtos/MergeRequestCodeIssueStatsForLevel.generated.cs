@@ -29,43 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-internal class ProjectsForProjectTopicsPostRequest
+public sealed class MergeRequestCodeIssueStatsForLevel
      : IPropagatePropertyAccessPath
 {
-    public ProjectsForProjectTopicsPostRequest() { }
+    public MergeRequestCodeIssueStatsForLevel() { }
     
-    public ProjectsForProjectTopicsPostRequest(string name, string? parentTopicId = null)
+    public MergeRequestCodeIssueStatsForLevel(CodeIssueLevel level, int count)
     {
-        Name = name;
-        ParentTopicId = parentTopicId;
+        Level = level;
+        Count = count;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectTopicsPostRequest), nameof(Name), "name");
+    private PropertyValue<CodeIssueLevel> _level = new PropertyValue<CodeIssueLevel>(nameof(MergeRequestCodeIssueStatsForLevel), nameof(Level), "level");
     
     [Required]
-    [JsonPropertyName("name")]
-    public string Name
+    [JsonPropertyName("level")]
+    public CodeIssueLevel Level
     {
-        get => _name.GetValue(InlineErrors);
-        set => _name.SetValue(value);
+        get => _level.GetValue(InlineErrors);
+        set => _level.SetValue(value);
     }
 
-    private PropertyValue<string?> _parentTopicId = new PropertyValue<string?>(nameof(ProjectsForProjectTopicsPostRequest), nameof(ParentTopicId), "parentTopicId");
+    private PropertyValue<int> _count = new PropertyValue<int>(nameof(MergeRequestCodeIssueStatsForLevel), nameof(Count), "count");
     
-#if NET6_0_OR_GREATER
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-#endif
-    [JsonPropertyName("parentTopicId")]
-    public string? ParentTopicId
+    [Required]
+    [JsonPropertyName("count")]
+    public int Count
     {
-        get => _parentTopicId.GetValue(InlineErrors);
-        set => _parentTopicId.SetValue(value);
+        get => _count.GetValue(InlineErrors);
+        set => _count.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _parentTopicId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _level.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _count.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

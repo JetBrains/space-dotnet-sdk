@@ -35,6 +35,9 @@ public abstract class PermissionsRecipientIdentifier : IUrlParameter
     public static PermissionsRecipientIdentifier Profile(string profileId)
         => new PermissionsRecipientIdentifierProfile(profileId);
     
+    public static PermissionsRecipientIdentifier ProjectRole(string projectId, string roleId, string name)
+        => new PermissionsRecipientIdentifierProjectRole(projectId, roleId, name);
+    
     public static PermissionsRecipientIdentifier Team(string teamId)
         => new PermissionsRecipientIdentifierTeam(teamId);
     
@@ -61,6 +64,49 @@ public abstract class PermissionsRecipientIdentifier : IUrlParameter
         
         public override string ToString()
             => $"profileId:{ProfileId}";
+    }
+    
+    public class PermissionsRecipientIdentifierProjectRole : PermissionsRecipientIdentifier
+    {
+        [Required]
+        [JsonPropertyName("projectId")]
+#if NET6_0_OR_GREATER
+        public string ProjectId { get; init; }
+#else
+        public string ProjectId { get; set; }
+#endif
+        
+        [Required]
+        [JsonPropertyName("roleId")]
+#if NET6_0_OR_GREATER
+        public string RoleId { get; init; }
+#else
+        public string RoleId { get; set; }
+#endif
+        
+        [Required]
+        [JsonPropertyName("name")]
+#if NET6_0_OR_GREATER
+        public string Name { get; init; }
+#else
+        public string Name { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
+        public PermissionsRecipientIdentifierProjectRole() { }
+#pragma warning restore CS8618
+#endif
+        
+        public PermissionsRecipientIdentifierProjectRole(string projectId, string roleId, string name)
+        {
+            ProjectId = projectId;
+            RoleId = roleId;
+            Name = name;
+        }
+        
+        public override string ToString()
+            => $"{{projectId:{ProjectId},roleId:{RoleId},name:{Name}}}";
     }
     
     public class PermissionsRecipientIdentifierTeam : PermissionsRecipientIdentifier

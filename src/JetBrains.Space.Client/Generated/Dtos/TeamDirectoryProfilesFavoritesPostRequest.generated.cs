@@ -29,44 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class UnfurlDetailsIssueTopic
-     : InlineUnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+internal class TeamDirectoryProfilesFavoritesPostRequest
+     : IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public  string? ClassName => "UnfurlDetailsIssueTopic";
+    public TeamDirectoryProfilesFavoritesPostRequest() { }
     
-    public UnfurlDetailsIssueTopic() { }
-    
-    public UnfurlDetailsIssueTopic(Topic topic, bool strikeThrough)
+    public TeamDirectoryProfilesFavoritesPostRequest(string id, StarredItemKind kind)
     {
-        Topic = topic;
-        IsStrikeThrough = strikeThrough;
+        Id = id;
+        Kind = kind;
     }
     
-    private PropertyValue<Topic> _topic = new PropertyValue<Topic>(nameof(UnfurlDetailsIssueTopic), nameof(Topic), "topic");
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(TeamDirectoryProfilesFavoritesPostRequest), nameof(Id), "id");
     
     [Required]
-    [JsonPropertyName("topic")]
-    public Topic Topic
+    [JsonPropertyName("id")]
+    public string Id
     {
-        get => _topic.GetValue(InlineErrors);
-        set => _topic.SetValue(value);
+        get => _id.GetValue(InlineErrors);
+        set => _id.SetValue(value);
     }
 
-    private PropertyValue<bool> _strikeThrough = new PropertyValue<bool>(nameof(UnfurlDetailsIssueTopic), nameof(IsStrikeThrough), "strikeThrough");
+    private PropertyValue<StarredItemKind> _kind = new PropertyValue<StarredItemKind>(nameof(TeamDirectoryProfilesFavoritesPostRequest), nameof(Kind), "kind");
     
     [Required]
-    [JsonPropertyName("strikeThrough")]
-    public bool IsStrikeThrough
+    [JsonPropertyName("kind")]
+    public StarredItemKind Kind
     {
-        get => _strikeThrough.GetValue(InlineErrors);
-        set => _strikeThrough.SetValue(value);
+        get => _kind.GetValue(InlineErrors);
+        set => _kind.SetValue(value);
     }
 
-    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _topic.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _strikeThrough.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _kind.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

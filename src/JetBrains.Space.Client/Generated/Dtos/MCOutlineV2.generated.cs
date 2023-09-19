@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class MCOutlineV2
-     : MCOutline, IClassNameConvertible, IPropagatePropertyAccessPath
+     : MCDetailsWithInlineElements, MCOutline, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public  string? ClassName => "MCOutlineV2";

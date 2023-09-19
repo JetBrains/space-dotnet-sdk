@@ -37,6 +37,12 @@ public static class FolderAccessPartialExtensions
     public static Partial<FolderAccess> WithPermissions(this Partial<FolderAccess> it, Func<Partial<FolderAccessRecipient>, Partial<FolderAccessRecipient>> partialBuilder)
         => it.AddFieldName("permissions", partialBuilder(new Partial<FolderAccessRecipient>(it)));
     
+    public static Partial<FolderAccess> WithInherited(this Partial<FolderAccess> it)
+        => it.AddFieldName("inherited");
+    
+    public static Partial<FolderAccess> WithInherited(this Partial<FolderAccess> it, Func<Partial<FolderAccessRecipient>, Partial<FolderAccessRecipient>> partialBuilder)
+        => it.AddFieldName("inherited", partialBuilder(new Partial<FolderAccessRecipient>(it)));
+    
     public static Partial<FolderAccess> WithIsRestricted(this Partial<FolderAccess> it)
         => it.AddFieldName("restricted");
     

@@ -419,9 +419,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ManageThrottledLogins
         => new PermissionIdentifierManageThrottledLogins();
     
-    public static PermissionIdentifier ManageTopics
-        => new PermissionIdentifierManageTopics();
-    
     public static PermissionIdentifier ManageTwoFactorAuthenticationAndApplicationPasswords
         => new PermissionIdentifierManageTwoFactorAuthenticationAndApplicationPasswords();
     
@@ -460,6 +457,9 @@ public abstract class PermissionIdentifier : IUrlParameter
     /// </summary>
     public static PermissionIdentifier MoveIssues
         => new PermissionIdentifierMoveIssues();
+    
+    public static PermissionIdentifier ObsoleteUseProjectSecrets
+        => new PermissionIdentifierObsoleteUseProjectSecrets();
     
     public static PermissionIdentifier PinOrUnpinDirectMessages
         => new PermissionIdentifierPinOrUnpinDirectMessages();
@@ -634,9 +634,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     
     public static PermissionIdentifier UseCalls
         => new PermissionIdentifierUseCalls();
-    
-    public static PermissionIdentifier UseProjectSecrets
-        => new PermissionIdentifierUseProjectSecrets();
     
     public static PermissionIdentifier ViewAbsenceApprovals
         => new PermissionIdentifierViewAbsenceApprovals();
@@ -1646,12 +1643,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "ThrottledLogins.Manage";
     }
     
-    public class PermissionIdentifierManageTopics : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Project.Topics.Manage";
-    }
-    
     public class PermissionIdentifierManageTwoFactorAuthenticationAndApplicationPasswords : PermissionIdentifier
     {
         public override string ToString()
@@ -1716,6 +1707,12 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Project.Issue.Move";
+    }
+    
+    public class PermissionIdentifierObsoleteUseProjectSecrets : PermissionIdentifier
+    {
+        public override string ToString()
+            => "Project.Secrets.Use";
     }
     
     public class PermissionIdentifierPinOrUnpinDirectMessages : PermissionIdentifier
@@ -2055,12 +2052,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Telekom.CallSession.Create";
-    }
-    
-    public class PermissionIdentifierUseProjectSecrets : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Project.Secrets.Use";
     }
     
     public class PermissionIdentifierViewAbsenceApprovals : PermissionIdentifier
