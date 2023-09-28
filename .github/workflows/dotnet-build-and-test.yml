@@ -17,6 +17,12 @@ jobs:
       - name: 📝 Fetch Sources 📝
         uses: actions/checkout@v2
 
+      - name: ⚙ Setup .NET 8.0 SDK ⚙
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0.1xx'
+          dotnet-quality: 'preview'
+
       - name: ⚙ Setup .NET 7.0 SDK ⚙
         uses: actions/setup-dotnet@v1
         with:
