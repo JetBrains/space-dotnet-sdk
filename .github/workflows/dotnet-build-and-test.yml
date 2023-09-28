@@ -20,7 +20,7 @@ jobs:
       - name: ⚙ Setup .NET 8.0 SDK ⚙
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '8.0.1xx'
+          dotnet-version: '8.0.x'
           dotnet-quality: 'preview'
 
       - name: ⚙ Setup .NET 7.0 SDK ⚙
