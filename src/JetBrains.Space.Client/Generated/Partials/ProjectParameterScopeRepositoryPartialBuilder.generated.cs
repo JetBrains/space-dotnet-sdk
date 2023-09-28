@@ -27,28 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.ProjectParameterScopeRepositoryPartialBuilder;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum SafeMergeState
+public static class ProjectParameterScopeRepositoryPartialExtensions
 {
-    [EnumMember(Value = "STARTING")]
-    STARTING,
-    
-    [EnumMember(Value = "RUNNING")]
-    RUNNING,
-    
-    [EnumMember(Value = "FAILING")]
-    FAILING,
-    
-    [EnumMember(Value = "FAILED")]
-    FAILED,
-    
-    [EnumMember(Value = "SUCCEEDED")]
-    SUCCEEDED,
-    
-    [EnumMember(Value = "CANCELLED")]
-    CANCELLED,
+    public static Partial<ProjectParameterScopeRepository> WithName(this Partial<ProjectParameterScopeRepository> it)
+        => it.AddFieldName("name");
     
 }
 

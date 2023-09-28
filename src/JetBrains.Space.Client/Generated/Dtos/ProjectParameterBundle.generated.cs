@@ -29,41 +29,53 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class SymbolDefinitionLocation
+public sealed class ProjectParameterBundle
      : IPropagatePropertyAccessPath
 {
-    public SymbolDefinitionLocation() { }
+    public ProjectParameterBundle() { }
     
-    public SymbolDefinitionLocation(string path, TextRange range)
+    public ProjectParameterBundle(string id, string key, ProjectParameterScope scope)
     {
-        Path = path;
-        Range = range;
+        Id = id;
+        Key = key;
+        Scope = scope;
     }
     
-    private PropertyValue<string> _path = new PropertyValue<string>(nameof(SymbolDefinitionLocation), nameof(Path), "path");
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProjectParameterBundle), nameof(Id), "id");
     
     [Required]
-    [JsonPropertyName("path")]
-    public string Path
+    [JsonPropertyName("id")]
+    public string Id
     {
-        get => _path.GetValue(InlineErrors);
-        set => _path.SetValue(value);
+        get => _id.GetValue(InlineErrors);
+        set => _id.SetValue(value);
     }
 
-    private PropertyValue<TextRange> _range = new PropertyValue<TextRange>(nameof(SymbolDefinitionLocation), nameof(Range), "range");
+    private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectParameterBundle), nameof(Key), "key");
     
     [Required]
-    [JsonPropertyName("range")]
-    public TextRange Range
+    [JsonPropertyName("key")]
+    public string Key
     {
-        get => _range.GetValue(InlineErrors);
-        set => _range.SetValue(value);
+        get => _key.GetValue(InlineErrors);
+        set => _key.SetValue(value);
+    }
+
+    private PropertyValue<ProjectParameterScope> _scope = new PropertyValue<ProjectParameterScope>(nameof(ProjectParameterBundle), nameof(Scope), "scope");
+    
+    [Required]
+    [JsonPropertyName("scope")]
+    public ProjectParameterScope Scope
+    {
+        get => _scope.GetValue(InlineErrors);
+        set => _scope.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _path.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _range.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _key.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _scope.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

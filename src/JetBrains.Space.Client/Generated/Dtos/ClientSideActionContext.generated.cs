@@ -50,6 +50,9 @@ public interface ClientSideActionContext
     public static NewMergeRequestFromIssueActionContext NewMergeRequestFromIssueActionContext(ProjectKey projectKey, string repository, string commitId, int issueNumber, ProjectReposRecord projectRepos, CommitLinksContainer issueCommitsRef)
         => new NewMergeRequestFromIssueActionContext(projectKey: projectKey, repository: repository, commitId: commitId, issueNumber: issueNumber, projectRepos: projectRepos, issueCommitsRef: issueCommitsRef);
     
+    public static NewMergeRequestFromIssueBranchActionContext NewMergeRequestFromIssueBranchActionContext(ProjectKey projectKey, string repository, string branchHead, int issueNumber, ProjectReposRecord projectRepos, BranchLinksContainer issueBranchesRef)
+        => new NewMergeRequestFromIssueBranchActionContext(projectKey: projectKey, repository: repository, branchHead: branchHead, issueNumber: issueNumber, projectRepos: projectRepos, issueBranchesRef: issueBranchesRef);
+    
     public static OpenPersonalFeedSettingsAction OpenPersonalFeedSettingsAction(string tab, string feed, string? feedId = null)
         => new OpenPersonalFeedSettingsAction(tab: tab, feed: feed, feedId: feedId);
     

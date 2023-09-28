@@ -1285,7 +1285,7 @@ public partial class ProjectClient : ISpaceClient
         }
         
         /// <summary>
-        /// Update an existing project parameter
+        /// Update a project parameter
         /// </summary>
         /// <remarks>
         /// Required permissions:
@@ -1309,7 +1309,7 @@ public partial class ProjectClient : ISpaceClient
         
     
         /// <summary>
-        /// Delete an existing project parameter
+        /// Delete a project parameter
         /// </summary>
         /// <remarks>
         /// Required permissions:
@@ -3557,6 +3557,24 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
+        /// <remarks>
+        /// This API is experimental
+        /// </remarks>
+#if NET6_0_OR_GREATER
+        [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
+#else
+        [Obsolete("This API is experimental")]
+#endif
+        
+        public async Task<AdditionalRepositoryInfo> GetAdditionalRepositoryInfoAsync(ProjectIdentifier project, string repository, Func<Partial<AdditionalRepositoryInfo>, Partial<AdditionalRepositoryInfo>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<AdditionalRepositoryInfo>()) : Partial<AdditionalRepositoryInfo>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<AdditionalRepositoryInfo>("GET", $"api/http/projects/{project}/repositories/{repository}/additional-info{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAdditionalRepositoryInfo", cancellationToken: cancellationToken);
+        }
+        
+    
         public async Task<List<GitFileChange>> ChangesAsync(ProjectIdentifier project, string repository, string commit, int limit, Func<Partial<GitFileChange>, Partial<GitFileChange>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -4061,7 +4079,7 @@ public partial class ProjectClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task UpdateSecretAsync(string id, string? valueBase64 = null, string? publicKeyId = null, string? description = null, string? secretReference = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task UpdateSecretAsync(string id, string? valueBase64 = null, string? publicKeyId = null, string? description = null, string? secretReference = null, bool? @protected = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
@@ -4072,6 +4090,7 @@ public partial class ProjectClient : ISpaceClient
                     PublicKeyId = publicKeyId,
                     Description = description,
                     SecretReference = secretReference,
+                    IsProtected = @protected,
                 }, requestHeaders: null, functionName: "UpdateSecret", cancellationToken: cancellationToken);
         }
         

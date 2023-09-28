@@ -27,28 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.IssueBranchesPartialBuilder;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum SafeMergeState
+public static class IssueBranchesPartialExtensions
 {
-    [EnumMember(Value = "STARTING")]
-    STARTING,
+    public static Partial<IssueBranches> WithId(this Partial<IssueBranches> it)
+        => it.AddFieldName("id");
     
-    [EnumMember(Value = "RUNNING")]
-    RUNNING,
-    
-    [EnumMember(Value = "FAILING")]
-    FAILING,
-    
-    [EnumMember(Value = "FAILED")]
-    FAILED,
-    
-    [EnumMember(Value = "SUCCEEDED")]
-    SUCCEEDED,
-    
-    [EnumMember(Value = "CANCELLED")]
-    CANCELLED,
+    public static Partial<IssueBranches> WithIsArchived(this Partial<IssueBranches> it)
+        => it.AddFieldName("archived");
     
 }
 

@@ -30,25 +30,13 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 [JsonConverter(typeof(EnumStringConverter))]
-public enum SafeMergeState
+public enum UnfurlDetailsRepositoryBranchBranchTagSize
 {
-    [EnumMember(Value = "STARTING")]
-    STARTING,
+    [EnumMember(Value = "SMALL")]
+    SMALL,
     
-    [EnumMember(Value = "RUNNING")]
-    RUNNING,
-    
-    [EnumMember(Value = "FAILING")]
-    FAILING,
-    
-    [EnumMember(Value = "FAILED")]
-    FAILED,
-    
-    [EnumMember(Value = "SUCCEEDED")]
-    SUCCEEDED,
-    
-    [EnumMember(Value = "CANCELLED")]
-    CANCELLED,
+    [EnumMember(Value = "NORMAL")]
+    NORMAL,
     
 }
 

@@ -34,7 +34,7 @@ public sealed class ContactExtraTag
 {
     public ContactExtraTag() { }
     
-    public ContactExtraTag(string primary, string secondary, string? issueStatus = null, string? issueStatusColor = null, string? issueStatusId = null, int? issueNumber = null, string? issueTitle = null, ProjectKey? projectKey = null, string? projectName = null, string? projectId = null, CPrincipal? assignee = null)
+    public ContactExtraTag(string primary, string secondary, string? issueStatus = null, string? issueStatusColor = null, string? issueStatusId = null, int? issueNumber = null, string? issueTitle = null, ProjectKey? projectKey = null, string? projectName = null, string? projectId = null, CPrincipal? assignee = null, ThreadContactsRecord? contactThreads = null, List<BasicThreadContactsRecord>? basicContactThreads = null, string? reviewState = null, bool? mergeRequestBranchMerged = null, bool? isMergeRequest = null, int? reviewNumber = null, string? reviewParticipantRole = null, string? reviewerState = null, bool? reviewTheirTurn = null, string? targetMergeRequestBranchHead = null)
     {
         Primary = primary;
         Secondary = secondary;
@@ -47,6 +47,16 @@ public sealed class ContactExtraTag
         ProjectName = projectName;
         ProjectId = projectId;
         Assignee = assignee;
+        ContactThreads = contactThreads;
+        BasicContactThreads = basicContactThreads;
+        ReviewState = reviewState;
+        IsMergeRequestBranchMerged = mergeRequestBranchMerged;
+        IsMergeRequest = isMergeRequest;
+        ReviewNumber = reviewNumber;
+        ReviewParticipantRole = reviewParticipantRole;
+        ReviewerState = reviewerState;
+        IsReviewTheirTurn = reviewTheirTurn;
+        TargetMergeRequestBranchHead = targetMergeRequestBranchHead;
     }
     
     private PropertyValue<string> _primary = new PropertyValue<string>(nameof(ContactExtraTag), nameof(Primary), "primary");
@@ -150,6 +160,96 @@ public sealed class ContactExtraTag
         set => _assignee.SetValue(value);
     }
 
+    private PropertyValue<ThreadContactsRecord?> _contactThreads = new PropertyValue<ThreadContactsRecord?>(nameof(ContactExtraTag), nameof(ContactThreads), "contactThreads");
+    
+    [JsonPropertyName("contactThreads")]
+    public ThreadContactsRecord? ContactThreads
+    {
+        get => _contactThreads.GetValue(InlineErrors);
+        set => _contactThreads.SetValue(value);
+    }
+
+    private PropertyValue<List<BasicThreadContactsRecord>?> _basicContactThreads = new PropertyValue<List<BasicThreadContactsRecord>?>(nameof(ContactExtraTag), nameof(BasicContactThreads), "basicContactThreads");
+    
+    [JsonPropertyName("basicContactThreads")]
+    public List<BasicThreadContactsRecord>? BasicContactThreads
+    {
+        get => _basicContactThreads.GetValue(InlineErrors);
+        set => _basicContactThreads.SetValue(value);
+    }
+
+    private PropertyValue<string?> _reviewState = new PropertyValue<string?>(nameof(ContactExtraTag), nameof(ReviewState), "reviewState");
+    
+    [JsonPropertyName("reviewState")]
+    public string? ReviewState
+    {
+        get => _reviewState.GetValue(InlineErrors);
+        set => _reviewState.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _mergeRequestBranchMerged = new PropertyValue<bool?>(nameof(ContactExtraTag), nameof(IsMergeRequestBranchMerged), "mergeRequestBranchMerged");
+    
+    [JsonPropertyName("mergeRequestBranchMerged")]
+    public bool? IsMergeRequestBranchMerged
+    {
+        get => _mergeRequestBranchMerged.GetValue(InlineErrors);
+        set => _mergeRequestBranchMerged.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _isMergeRequest = new PropertyValue<bool?>(nameof(ContactExtraTag), nameof(IsMergeRequest), "isMergeRequest");
+    
+    [JsonPropertyName("isMergeRequest")]
+    public bool? IsMergeRequest
+    {
+        get => _isMergeRequest.GetValue(InlineErrors);
+        set => _isMergeRequest.SetValue(value);
+    }
+
+    private PropertyValue<int?> _reviewNumber = new PropertyValue<int?>(nameof(ContactExtraTag), nameof(ReviewNumber), "reviewNumber");
+    
+    [JsonPropertyName("reviewNumber")]
+    public int? ReviewNumber
+    {
+        get => _reviewNumber.GetValue(InlineErrors);
+        set => _reviewNumber.SetValue(value);
+    }
+
+    private PropertyValue<string?> _reviewParticipantRole = new PropertyValue<string?>(nameof(ContactExtraTag), nameof(ReviewParticipantRole), "reviewParticipantRole");
+    
+    [JsonPropertyName("reviewParticipantRole")]
+    public string? ReviewParticipantRole
+    {
+        get => _reviewParticipantRole.GetValue(InlineErrors);
+        set => _reviewParticipantRole.SetValue(value);
+    }
+
+    private PropertyValue<string?> _reviewerState = new PropertyValue<string?>(nameof(ContactExtraTag), nameof(ReviewerState), "reviewerState");
+    
+    [JsonPropertyName("reviewerState")]
+    public string? ReviewerState
+    {
+        get => _reviewerState.GetValue(InlineErrors);
+        set => _reviewerState.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _reviewTheirTurn = new PropertyValue<bool?>(nameof(ContactExtraTag), nameof(IsReviewTheirTurn), "reviewTheirTurn");
+    
+    [JsonPropertyName("reviewTheirTurn")]
+    public bool? IsReviewTheirTurn
+    {
+        get => _reviewTheirTurn.GetValue(InlineErrors);
+        set => _reviewTheirTurn.SetValue(value);
+    }
+
+    private PropertyValue<string?> _targetMergeRequestBranchHead = new PropertyValue<string?>(nameof(ContactExtraTag), nameof(TargetMergeRequestBranchHead), "targetMergeRequestBranchHead");
+    
+    [JsonPropertyName("targetMergeRequestBranchHead")]
+    public string? TargetMergeRequestBranchHead
+    {
+        get => _targetMergeRequestBranchHead.GetValue(InlineErrors);
+        set => _targetMergeRequestBranchHead.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _primary.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -163,6 +263,16 @@ public sealed class ContactExtraTag
         _projectName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _projectId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _assignee.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _contactThreads.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _basicContactThreads.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reviewState.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mergeRequestBranchMerged.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _isMergeRequest.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reviewNumber.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reviewParticipantRole.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reviewerState.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reviewTheirTurn.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _targetMergeRequestBranchHead.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

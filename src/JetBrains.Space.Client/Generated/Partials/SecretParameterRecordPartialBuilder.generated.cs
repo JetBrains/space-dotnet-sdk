@@ -64,5 +64,8 @@ public static class SecretParameterRecordPartialExtensions
     public static Partial<SecretParameterRecord> WithUpdatedBy(this Partial<SecretParameterRecord> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
         => it.AddFieldName("updatedBy", partialBuilder(new Partial<CPrincipal>(it)));
     
+    public static Partial<SecretParameterRecord> WithIsProtected(this Partial<SecretParameterRecord> it)
+        => it.AddFieldName("protected");
+    
 }
 

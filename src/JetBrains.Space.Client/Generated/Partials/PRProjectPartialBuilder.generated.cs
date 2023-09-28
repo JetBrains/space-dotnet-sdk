@@ -79,6 +79,12 @@ public static class PRProjectPartialExtensions
     public static Partial<PRProject> WithBoards(this Partial<PRProject> it, Func<Partial<BoardRecord>, Partial<BoardRecord>> partialBuilder)
         => it.AddFieldName("boards", partialBuilder(new Partial<BoardRecord>(it)));
     
+    public static Partial<PRProject> WithBundles(this Partial<PRProject> it)
+        => it.AddFieldName("bundles");
+    
+    public static Partial<PRProject> WithBundles(this Partial<PRProject> it, Func<Partial<ProjectParameterBundle>, Partial<ProjectParameterBundle>> partialBuilder)
+        => it.AddFieldName("bundles", partialBuilder(new Partial<ProjectParameterBundle>(it)));
+    
     public static Partial<PRProject> WithCollaboratorsProfiles(this Partial<PRProject> it)
         => it.AddFieldName("collaboratorsProfiles");
     

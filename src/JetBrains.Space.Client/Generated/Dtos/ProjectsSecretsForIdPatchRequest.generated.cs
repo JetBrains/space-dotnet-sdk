@@ -34,12 +34,13 @@ internal class ProjectsSecretsForIdPatchRequest
 {
     public ProjectsSecretsForIdPatchRequest() { }
     
-    public ProjectsSecretsForIdPatchRequest(string? valueBase64 = null, string? publicKeyId = null, string? description = null, string? secretReference = null)
+    public ProjectsSecretsForIdPatchRequest(string? valueBase64 = null, string? publicKeyId = null, string? description = null, string? secretReference = null, bool? @protected = null)
     {
         ValueBase64 = valueBase64;
         PublicKeyId = publicKeyId;
         Description = description;
         SecretReference = secretReference;
+        IsProtected = @protected;
     }
     
     private PropertyValue<string?> _valueBase64 = new PropertyValue<string?>(nameof(ProjectsSecretsForIdPatchRequest), nameof(ValueBase64), "valueBase64");
@@ -93,12 +94,25 @@ internal class ProjectsSecretsForIdPatchRequest
         set => _secretReference.SetValue(value);
     }
 
+    private PropertyValue<bool?> _protected = new PropertyValue<bool?>(nameof(ProjectsSecretsForIdPatchRequest), nameof(IsProtected), "protected");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("protected")]
+    public bool? IsProtected
+    {
+        get => _protected.GetValue(InlineErrors);
+        set => _protected.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _valueBase64.SetAccessPath(parentChainPath, validateHasBeenSet);
         _publicKeyId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _secretReference.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _protected.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

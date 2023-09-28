@@ -49,5 +49,11 @@ public static class UnfurlDetailsRepositoryBranchPartialExtensions
     public static Partial<UnfurlDetailsRepositoryBranch> WithIsDefault(this Partial<UnfurlDetailsRepositoryBranch> it)
         => it.AddFieldName("isDefault");
     
+    public static Partial<UnfurlDetailsRepositoryBranch> WithTagSize(this Partial<UnfurlDetailsRepositoryBranch> it)
+        => it.AddFieldName("tagSize");
+    
+    public static Partial<UnfurlDetailsRepositoryBranch> WithTagSize(this Partial<UnfurlDetailsRepositoryBranch> it, Func<Partial<UnfurlDetailsRepositoryBranchBranchTagSize>, Partial<UnfurlDetailsRepositoryBranchBranchTagSize>> partialBuilder)
+        => it.AddFieldName("tagSize", partialBuilder(new Partial<UnfurlDetailsRepositoryBranchBranchTagSize>(it)));
+    
 }
 

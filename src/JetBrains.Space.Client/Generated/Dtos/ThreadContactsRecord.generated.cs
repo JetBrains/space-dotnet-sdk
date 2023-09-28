@@ -29,26 +29,11 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum SafeMergeState
+public interface ThreadContactsRecord
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [EnumMember(Value = "STARTING")]
-    STARTING,
-    
-    [EnumMember(Value = "RUNNING")]
-    RUNNING,
-    
-    [EnumMember(Value = "FAILING")]
-    FAILING,
-    
-    [EnumMember(Value = "FAILED")]
-    FAILED,
-    
-    [EnumMember(Value = "SUCCEEDED")]
-    SUCCEEDED,
-    
-    [EnumMember(Value = "CANCELLED")]
-    CANCELLED,
+    public static CRThreadContactsRecord CR(List<ChatContactRecord> crThreads, bool archived, string id)
+        => new CRThreadContactsRecord(crThreads: crThreads, archived: archived, id: id);
     
 }
 

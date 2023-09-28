@@ -30,25 +30,19 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 [JsonConverter(typeof(EnumStringConverter))]
-public enum SafeMergeState
+public enum FetchCredentials
 {
-    [EnumMember(Value = "STARTING")]
-    STARTING,
+    [EnumMember(Value = "NONE")]
+    NONE,
     
-    [EnumMember(Value = "RUNNING")]
-    RUNNING,
+    [EnumMember(Value = "PASSWORD")]
+    PASSWORD,
     
-    [EnumMember(Value = "FAILING")]
-    FAILING,
+    [EnumMember(Value = "SSH")]
+    SSH,
     
-    [EnumMember(Value = "FAILED")]
-    FAILED,
-    
-    [EnumMember(Value = "SUCCEEDED")]
-    SUCCEEDED,
-    
-    [EnumMember(Value = "CANCELLED")]
-    CANCELLED,
+    [EnumMember(Value = "TOKEN")]
+    TOKEN,
     
 }
 

@@ -27,18 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.SymbolDefinitionLocationPartialBuilder;
+namespace JetBrains.Space.Client.BasicThreadContactsRecordPartialBuilder;
 
-public static class SymbolDefinitionLocationPartialExtensions
+public static class BasicThreadContactsRecordPartialExtensions
 {
-    public static Partial<SymbolDefinitionLocation> WithPath(this Partial<SymbolDefinitionLocation> it)
-        => it.AddFieldName("path");
-    
-    public static Partial<SymbolDefinitionLocation> WithRange(this Partial<SymbolDefinitionLocation> it)
-        => it.AddFieldName("range");
-    
-    public static Partial<SymbolDefinitionLocation> WithRange(this Partial<SymbolDefinitionLocation> it, Func<Partial<TextRange>, Partial<TextRange>> partialBuilder)
-        => it.AddFieldName("range", partialBuilder(new Partial<TextRange>(it)));
-    
 }
 

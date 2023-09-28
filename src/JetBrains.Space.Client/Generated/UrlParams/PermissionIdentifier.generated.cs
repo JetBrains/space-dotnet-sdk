@@ -920,6 +920,7 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier WritePackageRepositories
         => new PermissionIdentifierWritePackageRepositories();
     
+    [Obsolete("Use WritePackages (PackageRepository.Write2) instead (since 2023-07-13) (will be removed in a future version)")]
     public static PermissionIdentifier WritePackageRepositoriesObsolete
         => new PermissionIdentifierWritePackageRepositoriesObsolete();
     
@@ -2594,6 +2595,7 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "PackageRepository.Write2";
     }
     
+    [Obsolete("Use WritePackages (PackageRepository.Write2) instead (since 2023-07-13) (will be removed in a future version)")]
     public class PermissionIdentifierWritePackageRepositoriesObsolete : PermissionIdentifier
     {
         public override string ToString()

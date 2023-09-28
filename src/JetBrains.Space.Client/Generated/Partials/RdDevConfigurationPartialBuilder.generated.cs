@@ -76,6 +76,12 @@ public static class RdDevConfigurationPartialExtensions
     public static Partial<RdDevConfiguration> WithWarmup(this Partial<RdDevConfiguration> it, Func<Partial<DevConfigurationWarmup>, Partial<DevConfigurationWarmup>> partialBuilder)
         => it.AddFieldName("warmup", partialBuilder(new Partial<DevConfigurationWarmup>(it)));
     
+    public static Partial<RdDevConfiguration> WithHibernation(this Partial<RdDevConfiguration> it)
+        => it.AddFieldName("hibernation");
+    
+    public static Partial<RdDevConfiguration> WithHibernation(this Partial<RdDevConfiguration> it, Func<Partial<DevConfigurationHibernation>, Partial<DevConfigurationHibernation>> partialBuilder)
+        => it.AddFieldName("hibernation", partialBuilder(new Partial<DevConfigurationHibernation>(it)));
+    
     public static Partial<RdDevConfiguration> WithProjectRoot(this Partial<RdDevConfiguration> it)
         => it.AddFieldName("projectRoot");
     

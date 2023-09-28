@@ -34,13 +34,14 @@ public sealed class RdRepoConnection
 {
     public RdRepoConnection() { }
     
-    public RdRepoConnection(string id, string projectId, string name, string sshUrl, bool archived, string? accessUrl = null)
+    public RdRepoConnection(string id, string projectId, string name, string sshUrl, FetchCredentials currentCredentials, bool archived, string? accessUrl = null)
     {
         Id = id;
         ProjectId = projectId;
         Name = name;
         SshUrl = sshUrl;
         AccessUrl = accessUrl;
+        CurrentCredentials = currentCredentials;
         IsArchived = archived;
     }
     
@@ -93,6 +94,16 @@ public sealed class RdRepoConnection
         set => _accessUrl.SetValue(value);
     }
 
+    private PropertyValue<FetchCredentials> _currentCredentials = new PropertyValue<FetchCredentials>(nameof(RdRepoConnection), nameof(CurrentCredentials), "currentCredentials");
+    
+    [Required]
+    [JsonPropertyName("currentCredentials")]
+    public FetchCredentials CurrentCredentials
+    {
+        get => _currentCredentials.GetValue(InlineErrors);
+        set => _currentCredentials.SetValue(value);
+    }
+
     private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(RdRepoConnection), nameof(IsArchived), "archived");
     
     [Required]
@@ -110,6 +121,7 @@ public sealed class RdRepoConnection
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _sshUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
         _accessUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _currentCredentials.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

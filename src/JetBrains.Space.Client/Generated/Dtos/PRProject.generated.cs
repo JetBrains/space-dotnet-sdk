@@ -34,7 +34,7 @@ public sealed class PRProject
 {
     public PRProject() { }
     
-    public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> collaboratorsProfiles, List<TDTeam> collaboratorsTeams, int daysInWeek, bool enable, DurationTextFormat format, List<TDMemberProfile> guestProfiles, int hoursInDay, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, ProjectTeamType type, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null, DateTime? createdAt = null, List<CommonProjectFeaturePins>? featurePins = null, List<ProjectFeatureState>? features = null, List<ProjectFeatureUsage>? featuresUsage = null, List<ProjectTeamMemberRecord>? members = null, List<ToggleableProjectFeaturePins>? personalFeaturePins = null, TDTeam? team = null, List<TDTeam>? teams = null)
+    public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<ProjectParameterBundle> bundles, List<TDMemberProfile> collaboratorsProfiles, List<TDTeam> collaboratorsTeams, int daysInWeek, bool enable, DurationTextFormat format, List<TDMemberProfile> guestProfiles, int hoursInDay, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, ProjectTeamType type, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null, DateTime? createdAt = null, List<CommonProjectFeaturePins>? featurePins = null, List<ProjectFeatureState>? features = null, List<ProjectFeatureUsage>? featuresUsage = null, List<ProjectTeamMemberRecord>? members = null, List<ToggleableProjectFeaturePins>? personalFeaturePins = null, TDTeam? team = null, List<TDTeam>? teams = null)
     {
         Id = id;
         Key = key;
@@ -48,6 +48,7 @@ public sealed class PRProject
         AdminProfiles = adminProfiles;
         AdminTeams = adminTeams;
         Boards = boards;
+        Bundles = bundles;
         CollaboratorsProfiles = collaboratorsProfiles;
         CollaboratorsTeams = collaboratorsTeams;
         DaysInWeek = daysInWeek;
@@ -187,6 +188,16 @@ public sealed class PRProject
     {
         get => _boards.GetValue(InlineErrors);
         set => _boards.SetValue(value);
+    }
+
+    private PropertyValue<List<ProjectParameterBundle>> _bundles = new PropertyValue<List<ProjectParameterBundle>>(nameof(PRProject), nameof(Bundles), "bundles", new List<ProjectParameterBundle>());
+    
+    [Required]
+    [JsonPropertyName("bundles")]
+    public List<ProjectParameterBundle> Bundles
+    {
+        get => _bundles.GetValue(InlineErrors);
+        set => _bundles.SetValue(value);
     }
 
     private PropertyValue<List<TDMemberProfile>> _collaboratorsProfiles = new PropertyValue<List<TDMemberProfile>>(nameof(PRProject), nameof(CollaboratorsProfiles), "collaboratorsProfiles", new List<TDMemberProfile>());
@@ -406,6 +417,7 @@ public sealed class PRProject
         _adminProfiles.SetAccessPath(parentChainPath, validateHasBeenSet);
         _adminTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _boards.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _bundles.SetAccessPath(parentChainPath, validateHasBeenSet);
         _collaboratorsProfiles.SetAccessPath(parentChainPath, validateHasBeenSet);
         _collaboratorsTeams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _daysInWeek.SetAccessPath(parentChainPath, validateHasBeenSet);

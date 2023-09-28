@@ -29,40 +29,30 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class SyntaxMarkup
+public sealed class DevConfigurationHibernation
      : IPropagatePropertyAccessPath
 {
-    public SyntaxMarkup() { }
+    public DevConfigurationHibernation() { }
     
-    public SyntaxMarkup(TextRange range, SyntaxMarkupType? type = null)
+    public DevConfigurationHibernation(TimeSpan hibernateAfter)
     {
-        Type = type;
-        Range = range;
+        HibernateAfter = hibernateAfter;
     }
     
-    private PropertyValue<SyntaxMarkupType?> _type = new PropertyValue<SyntaxMarkupType?>(nameof(SyntaxMarkup), nameof(Type), "type");
-    
-    [JsonPropertyName("type")]
-    public SyntaxMarkupType? Type
-    {
-        get => _type.GetValue(InlineErrors);
-        set => _type.SetValue(value);
-    }
-
-    private PropertyValue<TextRange> _range = new PropertyValue<TextRange>(nameof(SyntaxMarkup), nameof(Range), "range");
+    private PropertyValue<TimeSpan> _hibernateAfter = new PropertyValue<TimeSpan>(nameof(DevConfigurationHibernation), nameof(HibernateAfter), "hibernateAfter");
     
     [Required]
-    [JsonPropertyName("range")]
-    public TextRange Range
+    [JsonPropertyName("hibernateAfter")]
+    [JsonConverter(typeof(SpaceDurationConverter))]
+    public TimeSpan HibernateAfter
     {
-        get => _range.GetValue(InlineErrors);
-        set => _range.SetValue(value);
+        get => _hibernateAfter.GetValue(InlineErrors);
+        set => _hibernateAfter.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _range.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hibernateAfter.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

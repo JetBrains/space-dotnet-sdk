@@ -122,8 +122,8 @@ public interface InlineUnfurlDetails
     public static UnfurlDetailsProject UnfurlDetailsProject(PRProject project, bool? strikeThrough = null)
         => new UnfurlDetailsProject(project: project, strikeThrough: strikeThrough);
     
-    public static UnfurlDetailsRepositoryBranch UnfurlDetailsRepositoryBranch(PRProject project, string repository, string branchHead, bool deleted, bool? isDefault = null)
-        => new UnfurlDetailsRepositoryBranch(project: project, repository: repository, branchHead: branchHead, deleted: deleted, isDefault: isDefault);
+    public static UnfurlDetailsRepositoryBranch UnfurlDetailsRepositoryBranch(PRProject project, string repository, string branchHead, bool deleted, bool? isDefault = null, UnfurlDetailsRepositoryBranchBranchTagSize? tagSize = null)
+        => new UnfurlDetailsRepositoryBranch(project: project, repository: repository, branchHead: branchHead, deleted: deleted, isDefault: isDefault, tagSize: tagSize);
     
     public static UnfurlDetailsReviewDescriptionDiff UnfurlDetailsReviewDescriptionDiff(string snapshotId, string baseSnapshotId)
         => new UnfurlDetailsReviewDescriptionDiff(snapshotId: snapshotId, baseSnapshotId: baseSnapshotId);

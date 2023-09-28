@@ -34,19 +34,22 @@ public sealed class SafeMerge
 {
     public SafeMerge() { }
     
-    public SafeMerge(SafeMergeState state, string mergeCommitId, List<SafeMergeCheck> checks, MergeSelectOptions mergeOptions)
+    public SafeMerge(string mergeCommitId, List<SafeMergeCheck> checks, MergeSelectOptions mergeOptions, SafeMergeState? state = null, TDMemberProfile? startedBy = null, DateTime? startedAt = null, long? duration = null, int? attempts = null)
     {
         State = state;
         MergeCommitId = mergeCommitId;
         Checks = checks;
         MergeOptions = mergeOptions;
+        StartedBy = startedBy;
+        StartedAt = startedAt;
+        Duration = duration;
+        Attempts = attempts;
     }
     
-    private PropertyValue<SafeMergeState> _state = new PropertyValue<SafeMergeState>(nameof(SafeMerge), nameof(State), "state");
+    private PropertyValue<SafeMergeState?> _state = new PropertyValue<SafeMergeState?>(nameof(SafeMerge), nameof(State), "state");
     
-    [Required]
     [JsonPropertyName("state")]
-    public SafeMergeState State
+    public SafeMergeState? State
     {
         get => _state.GetValue(InlineErrors);
         set => _state.SetValue(value);
@@ -82,12 +85,53 @@ public sealed class SafeMerge
         set => _mergeOptions.SetValue(value);
     }
 
+    private PropertyValue<TDMemberProfile?> _startedBy = new PropertyValue<TDMemberProfile?>(nameof(SafeMerge), nameof(StartedBy), "startedBy");
+    
+    [JsonPropertyName("startedBy")]
+    public TDMemberProfile? StartedBy
+    {
+        get => _startedBy.GetValue(InlineErrors);
+        set => _startedBy.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _startedAt = new PropertyValue<DateTime?>(nameof(SafeMerge), nameof(StartedAt), "startedAt");
+    
+    [JsonPropertyName("startedAt")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? StartedAt
+    {
+        get => _startedAt.GetValue(InlineErrors);
+        set => _startedAt.SetValue(value);
+    }
+
+    private PropertyValue<long?> _duration = new PropertyValue<long?>(nameof(SafeMerge), nameof(Duration), "duration");
+    
+    [JsonPropertyName("duration")]
+    public long? Duration
+    {
+        get => _duration.GetValue(InlineErrors);
+        set => _duration.SetValue(value);
+    }
+
+    private PropertyValue<int?> _attempts = new PropertyValue<int?>(nameof(SafeMerge), nameof(Attempts), "attempts");
+    
+    [JsonPropertyName("attempts")]
+    public int? Attempts
+    {
+        get => _attempts.GetValue(InlineErrors);
+        set => _attempts.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _state.SetAccessPath(parentChainPath, validateHasBeenSet);
         _mergeCommitId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _checks.SetAccessPath(parentChainPath, validateHasBeenSet);
         _mergeOptions.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _startedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _startedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _duration.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attempts.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

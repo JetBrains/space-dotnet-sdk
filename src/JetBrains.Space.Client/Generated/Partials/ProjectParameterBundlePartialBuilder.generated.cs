@@ -27,28 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.ProjectParameterBundlePartialBuilder;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum SafeMergeState
+public static class ProjectParameterBundlePartialExtensions
 {
-    [EnumMember(Value = "STARTING")]
-    STARTING,
+    public static Partial<ProjectParameterBundle> WithId(this Partial<ProjectParameterBundle> it)
+        => it.AddFieldName("id");
     
-    [EnumMember(Value = "RUNNING")]
-    RUNNING,
+    public static Partial<ProjectParameterBundle> WithKey(this Partial<ProjectParameterBundle> it)
+        => it.AddFieldName("key");
     
-    [EnumMember(Value = "FAILING")]
-    FAILING,
+    public static Partial<ProjectParameterBundle> WithScope(this Partial<ProjectParameterBundle> it)
+        => it.AddFieldName("scope");
     
-    [EnumMember(Value = "FAILED")]
-    FAILED,
-    
-    [EnumMember(Value = "SUCCEEDED")]
-    SUCCEEDED,
-    
-    [EnumMember(Value = "CANCELLED")]
-    CANCELLED,
+    public static Partial<ProjectParameterBundle> WithScope(this Partial<ProjectParameterBundle> it, Func<Partial<ProjectParameterScope>, Partial<ProjectParameterScope>> partialBuilder)
+        => it.AddFieldName("scope", partialBuilder(new Partial<ProjectParameterScope>(it)));
     
 }
 

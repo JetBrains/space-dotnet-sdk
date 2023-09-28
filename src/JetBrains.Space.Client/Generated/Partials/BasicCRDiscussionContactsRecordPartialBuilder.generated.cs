@@ -27,28 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.BasicCRDiscussionContactsRecordPartialBuilder;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum SafeMergeState
+public static class BasicCRDiscussionContactsRecordPartialExtensions
 {
-    [EnumMember(Value = "STARTING")]
-    STARTING,
+    public static Partial<BasicCRDiscussionContactsRecord> WithDiscussions(this Partial<BasicCRDiscussionContactsRecord> it)
+        => it.AddFieldName("discussions");
     
-    [EnumMember(Value = "RUNNING")]
-    RUNNING,
+    public static Partial<BasicCRDiscussionContactsRecord> WithDiscussions(this Partial<BasicCRDiscussionContactsRecord> it, Func<Partial<BasicCRDiscussionContactRecord>, Partial<BasicCRDiscussionContactRecord>> partialBuilder)
+        => it.AddFieldName("discussions", partialBuilder(new Partial<BasicCRDiscussionContactRecord>(it)));
     
-    [EnumMember(Value = "FAILING")]
-    FAILING,
+    public static Partial<BasicCRDiscussionContactsRecord> WithIsArchived(this Partial<BasicCRDiscussionContactsRecord> it)
+        => it.AddFieldName("archived");
     
-    [EnumMember(Value = "FAILED")]
-    FAILED,
-    
-    [EnumMember(Value = "SUCCEEDED")]
-    SUCCEEDED,
-    
-    [EnumMember(Value = "CANCELLED")]
-    CANCELLED,
+    public static Partial<BasicCRDiscussionContactsRecord> WithId(this Partial<BasicCRDiscussionContactsRecord> it)
+        => it.AddFieldName("id");
     
 }
 

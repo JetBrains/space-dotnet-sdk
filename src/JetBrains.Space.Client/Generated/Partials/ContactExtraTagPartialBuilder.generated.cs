@@ -70,5 +70,41 @@ public static class ContactExtraTagPartialExtensions
     public static Partial<ContactExtraTag> WithAssignee(this Partial<ContactExtraTag> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
         => it.AddFieldName("assignee", partialBuilder(new Partial<CPrincipal>(it)));
     
+    public static Partial<ContactExtraTag> WithContactThreads(this Partial<ContactExtraTag> it)
+        => it.AddFieldName("contactThreads");
+    
+    public static Partial<ContactExtraTag> WithContactThreads(this Partial<ContactExtraTag> it, Func<Partial<ThreadContactsRecord>, Partial<ThreadContactsRecord>> partialBuilder)
+        => it.AddFieldName("contactThreads", partialBuilder(new Partial<ThreadContactsRecord>(it)));
+    
+    public static Partial<ContactExtraTag> WithBasicContactThreads(this Partial<ContactExtraTag> it)
+        => it.AddFieldName("basicContactThreads");
+    
+    public static Partial<ContactExtraTag> WithBasicContactThreads(this Partial<ContactExtraTag> it, Func<Partial<BasicThreadContactsRecord>, Partial<BasicThreadContactsRecord>> partialBuilder)
+        => it.AddFieldName("basicContactThreads", partialBuilder(new Partial<BasicThreadContactsRecord>(it)));
+    
+    public static Partial<ContactExtraTag> WithReviewState(this Partial<ContactExtraTag> it)
+        => it.AddFieldName("reviewState");
+    
+    public static Partial<ContactExtraTag> WithIsMergeRequestBranchMerged(this Partial<ContactExtraTag> it)
+        => it.AddFieldName("mergeRequestBranchMerged");
+    
+    public static Partial<ContactExtraTag> WithIsMergeRequest(this Partial<ContactExtraTag> it)
+        => it.AddFieldName("isMergeRequest");
+    
+    public static Partial<ContactExtraTag> WithReviewNumber(this Partial<ContactExtraTag> it)
+        => it.AddFieldName("reviewNumber");
+    
+    public static Partial<ContactExtraTag> WithReviewParticipantRole(this Partial<ContactExtraTag> it)
+        => it.AddFieldName("reviewParticipantRole");
+    
+    public static Partial<ContactExtraTag> WithReviewerState(this Partial<ContactExtraTag> it)
+        => it.AddFieldName("reviewerState");
+    
+    public static Partial<ContactExtraTag> WithIsReviewTheirTurn(this Partial<ContactExtraTag> it)
+        => it.AddFieldName("reviewTheirTurn");
+    
+    public static Partial<ContactExtraTag> WithTargetMergeRequestBranchHead(this Partial<ContactExtraTag> it)
+        => it.AddFieldName("targetMergeRequestBranchHead");
+    
 }
 

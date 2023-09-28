@@ -29,40 +29,44 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class SyntaxMarkup
-     : IPropagatePropertyAccessPath
+public sealed class IssueBranches
+     : BranchLinksContainer, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public SyntaxMarkup() { }
+    [JsonPropertyName("className")]
+    public  string? ClassName => "IssueBranches";
     
-    public SyntaxMarkup(TextRange range, SyntaxMarkupType? type = null)
+    public IssueBranches() { }
+    
+    public IssueBranches(string id, bool archived)
     {
-        Type = type;
-        Range = range;
+        Id = id;
+        IsArchived = archived;
     }
     
-    private PropertyValue<SyntaxMarkupType?> _type = new PropertyValue<SyntaxMarkupType?>(nameof(SyntaxMarkup), nameof(Type), "type");
-    
-    [JsonPropertyName("type")]
-    public SyntaxMarkupType? Type
-    {
-        get => _type.GetValue(InlineErrors);
-        set => _type.SetValue(value);
-    }
-
-    private PropertyValue<TextRange> _range = new PropertyValue<TextRange>(nameof(SyntaxMarkup), nameof(Range), "range");
+    private PropertyValue<string> _id = new PropertyValue<string>(nameof(IssueBranches), nameof(Id), "id");
     
     [Required]
-    [JsonPropertyName("range")]
-    public TextRange Range
+    [JsonPropertyName("id")]
+    public string Id
     {
-        get => _range.GetValue(InlineErrors);
-        set => _range.SetValue(value);
+        get => _id.GetValue(InlineErrors);
+        set => _id.SetValue(value);
+    }
+
+    private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(IssueBranches), nameof(IsArchived), "archived");
+    
+    [Required]
+    [JsonPropertyName("archived")]
+    public bool IsArchived
+    {
+        get => _archived.GetValue(InlineErrors);
+        set => _archived.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _range.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

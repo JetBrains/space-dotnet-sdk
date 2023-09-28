@@ -29,26 +29,14 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum SafeMergeState
+public interface ProjectParameterScope
+     : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [EnumMember(Value = "STARTING")]
-    STARTING,
+    public static ProjectParameterScopeDefault Default()
+        => new ProjectParameterScopeDefault();
     
-    [EnumMember(Value = "RUNNING")]
-    RUNNING,
-    
-    [EnumMember(Value = "FAILING")]
-    FAILING,
-    
-    [EnumMember(Value = "FAILED")]
-    FAILED,
-    
-    [EnumMember(Value = "SUCCEEDED")]
-    SUCCEEDED,
-    
-    [EnumMember(Value = "CANCELLED")]
-    CANCELLED,
+    public static ProjectParameterScopeRepository Repository(string name)
+        => new ProjectParameterScopeRepository(name: name);
     
 }
 

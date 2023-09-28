@@ -89,8 +89,5 @@ public enum SyntaxMarkupType
     [EnumMember(Value = "SKIP")]
     SKIP,
     
-    [EnumMember(Value = "NAVIGATION_SYMBOL")]
-    NAVIGATIONSYMBOL,
-    
 }
 

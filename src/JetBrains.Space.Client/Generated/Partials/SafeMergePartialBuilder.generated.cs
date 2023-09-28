@@ -52,5 +52,20 @@ public static class SafeMergePartialExtensions
     public static Partial<SafeMerge> WithMergeOptions(this Partial<SafeMerge> it, Func<Partial<MergeSelectOptions>, Partial<MergeSelectOptions>> partialBuilder)
         => it.AddFieldName("mergeOptions", partialBuilder(new Partial<MergeSelectOptions>(it)));
     
+    public static Partial<SafeMerge> WithStartedBy(this Partial<SafeMerge> it)
+        => it.AddFieldName("startedBy");
+    
+    public static Partial<SafeMerge> WithStartedBy(this Partial<SafeMerge> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("startedBy", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
+    public static Partial<SafeMerge> WithStartedAt(this Partial<SafeMerge> it)
+        => it.AddFieldName("startedAt");
+    
+    public static Partial<SafeMerge> WithDuration(this Partial<SafeMerge> it)
+        => it.AddFieldName("duration");
+    
+    public static Partial<SafeMerge> WithAttempts(this Partial<SafeMerge> it)
+        => it.AddFieldName("attempts");
+    
 }
 

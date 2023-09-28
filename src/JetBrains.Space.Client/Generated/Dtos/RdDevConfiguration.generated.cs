@@ -34,7 +34,7 @@ public sealed class RdDevConfiguration
 {
     public RdDevConfiguration() { }
     
-    public RdDevConfiguration(string id, string name, List<RepoConnectionWithBranch> repoConnections, RdDevContainer devContainer, RdDevConfigurationIde ide, string instanceTypeName, PRProject project, DevConfigurationWarmup warmup, bool archived, DevConfigurationHotPool? hotPool = null, string? projectRoot = null, bool? sshEnabled = null, DevConfigurationAccessSettingsDTO? access = null)
+    public RdDevConfiguration(string id, string name, List<RepoConnectionWithBranch> repoConnections, RdDevContainer devContainer, RdDevConfigurationIde ide, string instanceTypeName, PRProject project, DevConfigurationWarmup warmup, bool archived, DevConfigurationHotPool? hotPool = null, DevConfigurationHibernation? hibernation = null, string? projectRoot = null, bool? sshEnabled = null, DevConfigurationAccessSettingsDTO? access = null)
     {
         Id = id;
         Name = name;
@@ -45,6 +45,7 @@ public sealed class RdDevConfiguration
         Project = project;
         HotPool = hotPool;
         Warmup = warmup;
+        Hibernation = hibernation;
         ProjectRoot = projectRoot;
         IsSshEnabled = sshEnabled;
         Access = access;
@@ -140,6 +141,15 @@ public sealed class RdDevConfiguration
         set => _warmup.SetValue(value);
     }
 
+    private PropertyValue<DevConfigurationHibernation?> _hibernation = new PropertyValue<DevConfigurationHibernation?>(nameof(RdDevConfiguration), nameof(Hibernation), "hibernation");
+    
+    [JsonPropertyName("hibernation")]
+    public DevConfigurationHibernation? Hibernation
+    {
+        get => _hibernation.GetValue(InlineErrors);
+        set => _hibernation.SetValue(value);
+    }
+
     private PropertyValue<string?> _projectRoot = new PropertyValue<string?>(nameof(RdDevConfiguration), nameof(ProjectRoot), "projectRoot");
     
     [JsonPropertyName("projectRoot")]
@@ -188,6 +198,7 @@ public sealed class RdDevConfiguration
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
         _hotPool.SetAccessPath(parentChainPath, validateHasBeenSet);
         _warmup.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hibernation.SetAccessPath(parentChainPath, validateHasBeenSet);
         _projectRoot.SetAccessPath(parentChainPath, validateHasBeenSet);
         _sshEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _access.SetAccessPath(parentChainPath, validateHasBeenSet);

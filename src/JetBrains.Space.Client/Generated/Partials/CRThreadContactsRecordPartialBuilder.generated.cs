@@ -27,28 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.CRThreadContactsRecordPartialBuilder;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum SafeMergeState
+public static class CRThreadContactsRecordPartialExtensions
 {
-    [EnumMember(Value = "STARTING")]
-    STARTING,
+    public static Partial<CRThreadContactsRecord> WithCrThreads(this Partial<CRThreadContactsRecord> it)
+        => it.AddFieldName("crThreads");
     
-    [EnumMember(Value = "RUNNING")]
-    RUNNING,
+    public static Partial<CRThreadContactsRecord> WithCrThreads(this Partial<CRThreadContactsRecord> it, Func<Partial<ChatContactRecord>, Partial<ChatContactRecord>> partialBuilder)
+        => it.AddFieldName("crThreads", partialBuilder(new Partial<ChatContactRecord>(it)));
     
-    [EnumMember(Value = "FAILING")]
-    FAILING,
+    public static Partial<CRThreadContactsRecord> WithIsArchived(this Partial<CRThreadContactsRecord> it)
+        => it.AddFieldName("archived");
     
-    [EnumMember(Value = "FAILED")]
-    FAILED,
-    
-    [EnumMember(Value = "SUCCEEDED")]
-    SUCCEEDED,
-    
-    [EnumMember(Value = "CANCELLED")]
-    CANCELLED,
+    public static Partial<CRThreadContactsRecord> WithId(this Partial<CRThreadContactsRecord> it)
+        => it.AddFieldName("id");
     
 }
 

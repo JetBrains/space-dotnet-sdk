@@ -46,6 +46,12 @@ public static class RdRepoConnectionPartialExtensions
     public static Partial<RdRepoConnection> WithAccessUrl(this Partial<RdRepoConnection> it)
         => it.AddFieldName("accessUrl");
     
+    public static Partial<RdRepoConnection> WithCurrentCredentials(this Partial<RdRepoConnection> it)
+        => it.AddFieldName("currentCredentials");
+    
+    public static Partial<RdRepoConnection> WithCurrentCredentials(this Partial<RdRepoConnection> it, Func<Partial<FetchCredentials>, Partial<FetchCredentials>> partialBuilder)
+        => it.AddFieldName("currentCredentials", partialBuilder(new Partial<FetchCredentials>(it)));
+    
     public static Partial<RdRepoConnection> WithIsArchived(this Partial<RdRepoConnection> it)
         => it.AddFieldName("archived");
     

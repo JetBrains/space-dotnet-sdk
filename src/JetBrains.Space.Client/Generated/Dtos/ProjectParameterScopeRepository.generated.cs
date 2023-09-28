@@ -29,40 +29,32 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class SyntaxMarkup
-     : IPropagatePropertyAccessPath
+public sealed class ProjectParameterScopeRepository
+     : ProjectParameterScope, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public SyntaxMarkup() { }
+    [JsonPropertyName("className")]
+    public  string? ClassName => "ProjectParameterScope.Repository";
     
-    public SyntaxMarkup(TextRange range, SyntaxMarkupType? type = null)
+    public ProjectParameterScopeRepository() { }
+    
+    public ProjectParameterScopeRepository(string name)
     {
-        Type = type;
-        Range = range;
+        Name = name;
     }
     
-    private PropertyValue<SyntaxMarkupType?> _type = new PropertyValue<SyntaxMarkupType?>(nameof(SyntaxMarkup), nameof(Type), "type");
-    
-    [JsonPropertyName("type")]
-    public SyntaxMarkupType? Type
-    {
-        get => _type.GetValue(InlineErrors);
-        set => _type.SetValue(value);
-    }
-
-    private PropertyValue<TextRange> _range = new PropertyValue<TextRange>(nameof(SyntaxMarkup), nameof(Range), "range");
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectParameterScopeRepository), nameof(Name), "name");
     
     [Required]
-    [JsonPropertyName("range")]
-    public TextRange Range
+    [JsonPropertyName("name")]
+    public string Name
     {
-        get => _range.GetValue(InlineErrors);
-        set => _range.SetValue(value);
+        get => _name.GetValue(InlineErrors);
+        set => _name.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _type.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _range.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

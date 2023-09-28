@@ -37,13 +37,14 @@ public sealed class UnfurlDetailsRepositoryBranch
     
     public UnfurlDetailsRepositoryBranch() { }
     
-    public UnfurlDetailsRepositoryBranch(PRProject project, string repository, string branchHead, bool deleted, bool? isDefault = null)
+    public UnfurlDetailsRepositoryBranch(PRProject project, string repository, string branchHead, bool deleted, bool? isDefault = null, UnfurlDetailsRepositoryBranchBranchTagSize? tagSize = null)
     {
         Project = project;
         Repository = repository;
         BranchHead = branchHead;
         IsDeleted = deleted;
         IsDefault = isDefault;
+        TagSize = tagSize;
     }
     
     private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(UnfurlDetailsRepositoryBranch), nameof(Project), "project");
@@ -95,6 +96,15 @@ public sealed class UnfurlDetailsRepositoryBranch
         set => _isDefault.SetValue(value);
     }
 
+    private PropertyValue<UnfurlDetailsRepositoryBranchBranchTagSize?> _tagSize = new PropertyValue<UnfurlDetailsRepositoryBranchBranchTagSize?>(nameof(UnfurlDetailsRepositoryBranch), nameof(TagSize), "tagSize");
+    
+    [JsonPropertyName("tagSize")]
+    public UnfurlDetailsRepositoryBranchBranchTagSize? TagSize
+    {
+        get => _tagSize.GetValue(InlineErrors);
+        set => _tagSize.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -102,6 +112,7 @@ public sealed class UnfurlDetailsRepositoryBranch
         _branchHead.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deleted.SetAccessPath(parentChainPath, validateHasBeenSet);
         _isDefault.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _tagSize.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -47,5 +47,8 @@ public enum WarmupExecutionStatus
     [EnumMember(Value = "SnapshotDeleted")]
     SnapshotDeleted,
     
+    [EnumMember(Value = "CreatingSnapshot")]
+    CreatingSnapshot,
+    
 }
 
