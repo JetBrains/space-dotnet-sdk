@@ -169,13 +169,13 @@ public class IndexModel : PageModel
             try
             {
                 // Check # of reviews created and participated in
-                Partial<CodeReviewWithCount> codeReviewPartial(Partial<CodeReviewWithCount> _) => _
+                Partial<CodeReviewWithCount> CodeReviewPartial(Partial<CodeReviewWithCount> _) => _
                     .WithAllFieldsWildcard()
                     .WithReview()
                     .WithAuthors()
                     .WithParticipants();
 
-                var reviews = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(project.Id), ReviewSorting.LastUpdatedDesc, state: null, from: weekStart, partial: codeReviewPartial).ToListAsync();
+                var reviews = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(project.Id), ReviewSorting.LastUpdatedDesc, state: null, from: weekStart, partial: CodeReviewPartial).ToListAsync();
                     
                 foreach (var review in reviews)
                 {

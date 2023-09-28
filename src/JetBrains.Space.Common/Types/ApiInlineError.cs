@@ -31,6 +31,7 @@ public abstract class ApiInlineError
 /// </summary>
 [PublicAPI]
 public sealed class ApiInlineErrorInaccessibleFields
+    // ReSharper disable once RedundantExtendsListEntry
     : ApiInlineError, IClassNameConvertible
 {
     /// <inheritdoc />

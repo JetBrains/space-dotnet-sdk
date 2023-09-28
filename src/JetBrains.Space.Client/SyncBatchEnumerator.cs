@@ -59,7 +59,7 @@ public static class SyncBatchEnumerator
         var batch = await batchResponse(initialEtag, cancellationToken);
         yield return batch;
 
-        while (batch.HasMore && batch.Etag != null)
+        while (batch is { HasMore: true, Etag: not null })
         {
             if (cancellationToken.IsCancellationRequested) yield break;
             batch = await batchResponse(batch.Etag, cancellationToken);

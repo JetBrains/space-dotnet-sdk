@@ -168,7 +168,7 @@ public class CSharpApiModelUrlParameterGenerator
                     var urlParameterFieldName = field.Name;
                     
                     // Property
-                    if (!field.Optional && !field.Type.Nullable)
+                    if (field is { Optional: false, Type.Nullable: false })
                     {
                         builder.AppendLine($"{indent}[Required]");
                     }

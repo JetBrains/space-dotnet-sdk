@@ -1,10 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
+using JetBrains.Annotations;
 
 namespace JetBrains.Space.Common.Utilities;
 
 /// <summary>
 /// Extensions for <see cref="String"/>.
 /// </summary>
+[PublicAPI]
 public static class StringExtensions
 {
     /// <summary>

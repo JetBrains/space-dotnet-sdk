@@ -27,6 +27,7 @@ RUN set -ex && \
     chmod +x ./dotnet-install.sh && \
     ./dotnet-install.sh --channel 6.0 && \
     ./dotnet-install.sh --channel 7.0 && \
+    ./dotnet-install.sh --channel 8.0.1xx --quality preview && \
 	mv /root/.dotnet /usr/share/dotnet/ && \
     dotnet --list-sdks
 

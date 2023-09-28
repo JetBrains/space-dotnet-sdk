@@ -57,7 +57,7 @@ public static class ApiDocumentationExtensions
         var anchor = new Regex(@"\[([^]]*)\]\(([^\s^\)]*)[\s\)]", // Regex for Markdown hyperlinks
             RegexOptions.Singleline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
-        markdown = anchor.Replace(markdown, @"<a href=""$2"">$1</a>");
+        markdown = anchor.Replace(markdown, """<a href="$2">$1</a>""");
         return markdown;
     }
 }

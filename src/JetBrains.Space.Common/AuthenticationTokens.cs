@@ -14,8 +14,7 @@ public class AuthenticationTokens
     /// <param name="refreshToken">The refresh token value.</param>
     /// <returns>An <see cref="AuthenticationTokens"/> instance.</returns>
     public static AuthenticationTokens FromRefreshToken(string refreshToken) =>
-        new AuthenticationTokens(
-            accessToken: null,
+        new(accessToken: null,
             refreshToken: refreshToken,
             expires: null);
     
@@ -25,8 +24,7 @@ public class AuthenticationTokens
     /// <param name="accessToken">The access token value.</param>
     /// <returns>An <see cref="AuthenticationTokens"/> instance.</returns>
     public static AuthenticationTokens FromAccessToken(string accessToken) =>
-        new AuthenticationTokens(
-            accessToken: accessToken,
+        new(accessToken: accessToken,
             refreshToken: null,
             expires: null);
 

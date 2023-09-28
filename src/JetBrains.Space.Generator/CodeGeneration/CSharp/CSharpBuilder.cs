@@ -1,10 +1,12 @@
 using System.Text;
+using JetBrains.Annotations;
 
 namespace JetBrains.Space.Generator.CodeGeneration.CSharp;
 
+[PublicAPI]
 public class CSharpBuilder
 {
-    private readonly StringBuilder _stringBuilder = new StringBuilder();
+    private readonly StringBuilder _stringBuilder = new();
 
     public CSharpBuilder AppendLine()
     {

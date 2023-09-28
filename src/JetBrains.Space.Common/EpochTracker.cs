@@ -56,7 +56,7 @@ public class EpochTracker
         targetDictionary.AddOrUpdate(
             serverUrl,
             _ => epochValue,
-            (uri, previousValue) =>
+            (_, previousValue) =>
             {
                 if (epochValue > previousValue) return previousValue;
                 return epochValue;
