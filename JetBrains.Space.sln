@@ -52,8 +52,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JetBrains.Space.Common.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".space", ".space", "{EEC03935-4377-4CC8-BB7D-2E50A74DDE8A}"
 	ProjectSection(SolutionItems) = preProject
-		.space\devfile.yml = .space\devfile.yml
 		.space\Dockerfile = .space\Dockerfile
+		.space\fleet.devfile.yml = .space\fleet.devfile.yml
+		.space\rider.devfile.yml = .space\rider.devfile.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{73EB3DBD-C43F-4E06-A651-F3843BFEEC69}"
