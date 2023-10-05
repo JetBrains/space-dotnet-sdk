@@ -5016,6 +5016,31 @@ public partial class ProjectClient : ISpaceClient
         
     
         /// <remarks>
+        /// This API is experimental
+        /// </remarks>
+#if NET6_0_OR_GREATER
+        [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
+#else
+        [Obsolete("This API is experimental")]
+#endif
+        
+        public async Task<Batch<CodeIssuesFeedbackForFile>> GetDismissedCodeIssuesAsync(ProjectIdentifier project, ReviewIdentifier reviewId, string tool, BatchInfo? filesBatchInfo = null, Func<Partial<Batch<CodeIssuesFeedbackForFile>>, Partial<Batch<CodeIssuesFeedbackForFile>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<CodeIssuesFeedbackForFile>>()) : Partial<Batch<CodeIssuesFeedbackForFile>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsForReviewIdDismissedIssuesPostRequest, Batch<CodeIssuesFeedbackForFile>>("POST", $"api/http/projects/{project}/code-reviews/{reviewId}/dismissed-issues{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectCodeReviewsForReviewIdDismissedIssuesPostRequest
+                { 
+                    Tool = tool,
+                    FilesBatchInfo = filesBatchInfo,
+                }, requestHeaders: null, functionName: "GetDismissedCodeIssues", cancellationToken: cancellationToken);
+        }
+        
+#warning UNSUPPORTED CASE - NO SKIP OR BATCHINFO PARAMETER - GetDismissedCodeIssues - POST projects/{project}/code-reviews/{reviewId}/dismissed-issues
+        
+    
+        /// <remarks>
         /// Required permissions:
         /// <list type="bullet">
         /// <item>

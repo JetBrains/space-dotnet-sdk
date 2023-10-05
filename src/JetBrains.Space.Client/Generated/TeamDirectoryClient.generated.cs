@@ -2102,6 +2102,56 @@ public partial class TeamDirectoryClient : ISpaceClient
             }
             
         
+            public MeClient Me => new MeClient(_connection);
+            
+            public partial class MeClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public MeClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public RefreshTokenClient RefreshTokens => new RefreshTokenClient(_connection);
+                
+                public partial class RefreshTokenClient : ISpaceClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public RefreshTokenClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public SelfClient Self => new SelfClient(_connection);
+                    
+                    public partial class SelfClient : ISpaceClient
+                    {
+                        private readonly Connection _connection;
+                        
+                        public SelfClient(Connection connection)
+                        {
+                            _connection = connection;
+                        }
+                        
+                        /// <summary>
+                        /// Remove caller's own refresh token. This will require the client to re-authenticate.
+                        /// </summary>
+                        public async Task DeleteSelfAsync(Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                        {
+                            var queryParameters = new NameValueCollection();
+                            
+                            await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/oauth-consents/me/refresh-tokens/self{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteSelf", cancellationToken: cancellationToken);
+                        }
+                        
+                    
+                    }
+                
+                }
+            
+            }
+        
             public ApplicationClient Applications => new ApplicationClient(_connection);
             
             public partial class ApplicationClient : ISpaceClient
@@ -2687,19 +2737,6 @@ public partial class TeamDirectoryClient : ISpaceClient
             
         
             /// <summary>
-            /// Get all existing checklists associated with the profile
-            /// </summary>
-            [Obsolete("Use GET team-directory/profiles/{profile}/documents/folders/{folder}/documents (since 2022-04-08) (will be removed in a future version)")]
-            public async Task<List<Checklist>> GetAllChecklistsAsync(ProfileIdentifier profile, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<List<Checklist>>("GET", $"api/http/team-directory/profiles/{profile}/checklists{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllChecklists", cancellationToken: cancellationToken);
-            }
-            
-        
-            /// <summary>
             /// Update an existing checklist associated with the profile
             /// </summary>
             [Obsolete("Use PATCH on team-directory/profiles/{profile}/documents/{documentId} (since 2022-04-08) (will be removed in a future version)")]
@@ -2727,32 +2764,6 @@ public partial class TeamDirectoryClient : ISpaceClient
                 await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/checklists/{checklistId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteChecklist", cancellationToken: cancellationToken);
             }
             
-        
-            public StarredClient Starred => new StarredClient(_connection);
-            
-            public partial class StarredClient : ISpaceClient
-            {
-                private readonly Connection _connection;
-                
-                public StarredClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <summary>
-                /// Get all starred checklists associated with the profile
-                /// </summary>
-                [Obsolete("[SPACE-13768]: Not implemented yet (since 2022-04-08) (will be removed in a future version)")]
-                public async Task<List<Checklist>> GetAllStarredChecklistsAsync(ProfileIdentifier profile, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-                {
-                    var queryParameters = new NameValueCollection();
-                    queryParameters.Append("$fields", (partial != null ? partial(new Partial<Checklist>()) : Partial<Checklist>.Default()).ToString());
-                    
-                    return await _connection.RequestResourceAsync<List<Checklist>>("GET", $"api/http/team-directory/profiles/{profile}/checklists/starred{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllStarredChecklists", cancellationToken: cancellationToken);
-                }
-                
-            
-            }
         
             public FullChecklistTreeClient FullChecklistTree => new FullChecklistTreeClient(_connection);
             

@@ -67,5 +67,8 @@ public static class SecretParameterRecordPartialExtensions
     public static Partial<SecretParameterRecord> WithIsProtected(this Partial<SecretParameterRecord> it)
         => it.AddFieldName("protected");
     
+    public static Partial<SecretParameterRecord> WithSecretReference(this Partial<SecretParameterRecord> it)
+        => it.AddFieldName("secretReference");
+    
 }
 

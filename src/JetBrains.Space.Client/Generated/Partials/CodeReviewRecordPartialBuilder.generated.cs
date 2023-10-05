@@ -72,6 +72,12 @@ public static class CodeReviewRecordPartialExtensions
     public static Partial<CodeReviewRecord> WithParticipants(this Partial<CodeReviewRecord> it, Func<Partial<CodeReviewParticipant>, Partial<CodeReviewParticipant>> partialBuilder)
         => it.AddFieldName("participants", partialBuilder(new Partial<CodeReviewParticipant>(it)));
     
+    public static Partial<CodeReviewRecord> WithReports(this Partial<CodeReviewRecord> it)
+        => it.AddFieldName("reports");
+    
+    public static Partial<CodeReviewRecord> WithReports(this Partial<CodeReviewRecord> it, Func<Partial<MergeRequestCodeIssuesReport>, Partial<MergeRequestCodeIssuesReport>> partialBuilder)
+        => it.AddFieldName("reports", partialBuilder(new Partial<MergeRequestCodeIssuesReport>(it)));
+    
     [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<CodeReviewRecord> WithReviewers(this Partial<CodeReviewRecord> it)
         => it.AddFieldName("reviewers");

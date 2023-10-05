@@ -120,6 +120,16 @@ public abstract class CodeReviewRecord
         set => _participants.SetValue(value);
     }
 
+    private PropertyValue<List<MergeRequestCodeIssuesReport>> _reports = new PropertyValue<List<MergeRequestCodeIssuesReport>>(nameof(CodeReviewRecord), nameof(Reports), "reports", new List<MergeRequestCodeIssuesReport>());
+    
+    [Required]
+    [JsonPropertyName("reports")]
+    public List<MergeRequestCodeIssuesReport> Reports
+    {
+        get => _reports.GetValue(InlineErrors);
+        set => _reports.SetValue(value);
+    }
+
     private PropertyValue<List<CodeReviewParticipantRecord>> _reviewers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Reviewers), "reviewers", new List<CodeReviewParticipantRecord>());
     
     [Required]
@@ -162,6 +172,7 @@ public abstract class CodeReviewRecord
         _externalIssues.SetAccessPath(parentChainPath, validateHasBeenSet);
         _issueIds.SetAccessPath(parentChainPath, validateHasBeenSet);
         _participants.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reports.SetAccessPath(parentChainPath, validateHasBeenSet);
         _reviewers.SetAccessPath(parentChainPath, validateHasBeenSet);
         _unfurls.SetAccessPath(parentChainPath, validateHasBeenSet);
         _watchers.SetAccessPath(parentChainPath, validateHasBeenSet);

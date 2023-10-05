@@ -27,19 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.UnfurlDetailsExternalPartialBuilder;
 
-public interface BlockUnfurlDetails
-     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+public static class UnfurlDetailsExternalPartialExtensions
 {
-    public static UnfurlDetailsExternal UnfurlDetailsExternal()
-        => new UnfurlDetailsExternal();
-    
-    public static UnfurlDetailsImage UnfurlDetailsImage(string title, ImageAttachment image, string? icon = null)
-        => new UnfurlDetailsImage(title: title, image: image, icon: icon);
-    
-    public static UnfurlDetailsIssue UnfurlDetailsIssue(Issue issue, bool? strikeThrough = null, bool? compact = null)
-        => new UnfurlDetailsIssue(issue: issue, strikeThrough: strikeThrough, compact: compact);
-    
 }
 

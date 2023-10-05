@@ -734,9 +734,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ViewDeployments
         => new PermissionIdentifierViewDeployments();
     
-    public static PermissionIdentifier ViewDevEnvironmentDiagnosticData
-        => new PermissionIdentifierViewDevEnvironmentDiagnosticData();
-    
     /// <summary>
     /// Allows to view debug data
     /// </summary>
@@ -2242,12 +2239,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Project.Deployments.View";
-    }
-    
-    public class PermissionIdentifierViewDevEnvironmentDiagnosticData : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Rd.Workspaces.ViewInternals";
     }
     
     /// <summary>

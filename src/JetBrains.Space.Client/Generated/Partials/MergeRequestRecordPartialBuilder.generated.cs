@@ -135,6 +135,12 @@ public static class MergeRequestRecordPartialExtensions
     public static Partial<MergeRequestRecord> WithParticipants(this Partial<MergeRequestRecord> it, Func<Partial<CodeReviewParticipant>, Partial<CodeReviewParticipant>> partialBuilder)
         => it.AddFieldName("participants", partialBuilder(new Partial<CodeReviewParticipant>(it)));
     
+    public static Partial<MergeRequestRecord> WithReports(this Partial<MergeRequestRecord> it)
+        => it.AddFieldName("reports");
+    
+    public static Partial<MergeRequestRecord> WithReports(this Partial<MergeRequestRecord> it, Func<Partial<MergeRequestCodeIssuesReport>, Partial<MergeRequestCodeIssuesReport>> partialBuilder)
+        => it.AddFieldName("reports", partialBuilder(new Partial<MergeRequestCodeIssuesReport>(it)));
+    
     [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<MergeRequestRecord> WithReviewers(this Partial<MergeRequestRecord> it)
         => it.AddFieldName("reviewers");

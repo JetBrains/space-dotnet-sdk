@@ -27,19 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.CodeIssuesFeedbackForFilePartialBuilder;
 
-public interface BlockUnfurlDetails
-     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+public static class CodeIssuesFeedbackForFilePartialExtensions
 {
-    public static UnfurlDetailsExternal UnfurlDetailsExternal()
-        => new UnfurlDetailsExternal();
+    public static Partial<CodeIssuesFeedbackForFile> WithFilePath(this Partial<CodeIssuesFeedbackForFile> it)
+        => it.AddFieldName("filePath");
     
-    public static UnfurlDetailsImage UnfurlDetailsImage(string title, ImageAttachment image, string? icon = null)
-        => new UnfurlDetailsImage(title: title, image: image, icon: icon);
+    public static Partial<CodeIssuesFeedbackForFile> WithIssues(this Partial<CodeIssuesFeedbackForFile> it)
+        => it.AddFieldName("issues");
     
-    public static UnfurlDetailsIssue UnfurlDetailsIssue(Issue issue, bool? strikeThrough = null, bool? compact = null)
-        => new UnfurlDetailsIssue(issue: issue, strikeThrough: strikeThrough, compact: compact);
+    public static Partial<CodeIssuesFeedbackForFile> WithIssues(this Partial<CodeIssuesFeedbackForFile> it, Func<Partial<CodeIssueFeedback>, Partial<CodeIssueFeedback>> partialBuilder)
+        => it.AddFieldName("issues", partialBuilder(new Partial<CodeIssueFeedback>(it)));
     
 }
 

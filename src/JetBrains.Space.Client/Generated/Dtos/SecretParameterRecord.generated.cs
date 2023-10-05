@@ -34,7 +34,7 @@ public sealed class SecretParameterRecord
 {
     public SecretParameterRecord() { }
     
-    public SecretParameterRecord(string id, bool archived, string bundleId, string key, string? description = null, DateTime? createdAt = null, CPrincipal? createdBy = null, DateTime? updatedAt = null, CPrincipal? updatedBy = null, bool? @protected = null)
+    public SecretParameterRecord(string id, bool archived, string bundleId, string key, string? description = null, DateTime? createdAt = null, CPrincipal? createdBy = null, DateTime? updatedAt = null, CPrincipal? updatedBy = null, bool? @protected = null, string? secretReference = null)
     {
         Id = id;
         IsArchived = archived;
@@ -46,6 +46,7 @@ public sealed class SecretParameterRecord
         UpdatedAt = updatedAt;
         UpdatedBy = updatedBy;
         IsProtected = @protected;
+        SecretReference = secretReference;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(SecretParameterRecord), nameof(Id), "id");
@@ -144,6 +145,15 @@ public sealed class SecretParameterRecord
         set => _protected.SetValue(value);
     }
 
+    private PropertyValue<string?> _secretReference = new PropertyValue<string?>(nameof(SecretParameterRecord), nameof(SecretReference), "secretReference");
+    
+    [JsonPropertyName("secretReference")]
+    public string? SecretReference
+    {
+        get => _secretReference.GetValue(InlineErrors);
+        set => _secretReference.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -156,6 +166,7 @@ public sealed class SecretParameterRecord
         _updatedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
         _updatedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _protected.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _secretReference.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

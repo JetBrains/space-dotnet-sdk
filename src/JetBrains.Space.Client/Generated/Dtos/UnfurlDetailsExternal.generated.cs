@@ -29,17 +29,21 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public interface BlockUnfurlDetails
-     : UnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class UnfurlDetailsExternal
+     : BlockUnfurlDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static UnfurlDetailsExternal UnfurlDetailsExternal()
-        => new UnfurlDetailsExternal();
+    [JsonPropertyName("className")]
+    public  string? ClassName => "UnfurlDetailsExternal";
     
-    public static UnfurlDetailsImage UnfurlDetailsImage(string title, ImageAttachment image, string? icon = null)
-        => new UnfurlDetailsImage(title: title, image: image, icon: icon);
+    public UnfurlDetailsExternal() { }
     
-    public static UnfurlDetailsIssue UnfurlDetailsIssue(Issue issue, bool? strikeThrough = null, bool? compact = null)
-        => new UnfurlDetailsIssue(issue: issue, strikeThrough: strikeThrough, compact: compact);
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+    }
     
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 
