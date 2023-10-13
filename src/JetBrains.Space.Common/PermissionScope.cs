@@ -1,4 +1,7 @@
+using System.Text.Json.Serialization;
 using JetBrains.Annotations;
+using JetBrains.Space.Common.Json.Serialization;
+using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Common;
 
@@ -6,7 +9,8 @@ namespace JetBrains.Space.Common;
 /// Represents a permission scope.
 /// </summary>
 [PublicAPI]
-public class PermissionScope
+[JsonConverter(typeof(UrlParameterConverter))]
+public class PermissionScope : IUrlParameter
 {
     /// <summary>
     /// All permissions scope ("**")

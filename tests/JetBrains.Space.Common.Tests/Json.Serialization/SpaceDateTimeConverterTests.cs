@@ -8,12 +8,7 @@ public class SpaceDateTimeConverterTests
 {
     private static JsonSerializerOptions CreateSerializerOptions()
     {
-        var options = new JsonSerializerOptions
-        {
-            MaxDepth = 32,
-            PropertyNameCaseInsensitive = true,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-        };
+        var options = Defaults.CreateSerializerOptions();
 
         options.Converters.Add(new SpaceDateTimeConverter());
             
