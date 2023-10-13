@@ -34,7 +34,7 @@ public sealed class SafeMerge
 {
     public SafeMerge() { }
     
-    public SafeMerge(string mergeCommitId, List<SafeMergeCheck> checks, MergeSelectOptions mergeOptions, SafeMergeState? state = null, TDMemberProfile? startedBy = null, DateTime? startedAt = null, long? duration = null, int? attempts = null)
+    public SafeMerge(string mergeCommitId, List<SafeMergeCheck> checks, MergeSelectOptions mergeOptions, SafeMergeState? state = null, TDMemberProfile? startedBy = null, DateTime? startedAt = null, TDMemberProfile? stoppedBy = null, long? duration = null, int? attempts = null)
     {
         State = state;
         MergeCommitId = mergeCommitId;
@@ -42,6 +42,7 @@ public sealed class SafeMerge
         MergeOptions = mergeOptions;
         StartedBy = startedBy;
         StartedAt = startedAt;
+        StoppedBy = stoppedBy;
         Duration = duration;
         Attempts = attempts;
     }
@@ -104,6 +105,15 @@ public sealed class SafeMerge
         set => _startedAt.SetValue(value);
     }
 
+    private PropertyValue<TDMemberProfile?> _stoppedBy = new PropertyValue<TDMemberProfile?>(nameof(SafeMerge), nameof(StoppedBy), "stoppedBy");
+    
+    [JsonPropertyName("stoppedBy")]
+    public TDMemberProfile? StoppedBy
+    {
+        get => _stoppedBy.GetValue(InlineErrors);
+        set => _stoppedBy.SetValue(value);
+    }
+
     private PropertyValue<long?> _duration = new PropertyValue<long?>(nameof(SafeMerge), nameof(Duration), "duration");
     
     [JsonPropertyName("duration")]
@@ -130,6 +140,7 @@ public sealed class SafeMerge
         _mergeOptions.SetAccessPath(parentChainPath, validateHasBeenSet);
         _startedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _startedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _stoppedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _duration.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attempts.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

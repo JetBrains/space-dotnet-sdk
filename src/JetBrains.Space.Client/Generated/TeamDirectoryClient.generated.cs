@@ -1706,6 +1706,9 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Convert to guest profile
         /// </summary>
         /// <remarks>
+        /// Light guests
+        /// </remarks>
+        /// <remarks>
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
@@ -1713,6 +1716,12 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
+#if NET6_0_OR_GREATER
+        [Obsolete("Light guests", DiagnosticId = "SPC001")]
+#else
+        [Obsolete("Light guests")]
+#endif
+        
         public async Task<DryRunResult> ConvertOrganizationMemberIntoGuestUserAsync(ProfileIdentifier profile, bool dryrun, GuestType? guestType = null, Func<Partial<DryRunResult>, Partial<DryRunResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -1731,6 +1740,9 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Convert to organization member
         /// </summary>
         /// <remarks>
+        /// Light guests
+        /// </remarks>
+        /// <remarks>
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
@@ -1738,6 +1750,12 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
+#if NET6_0_OR_GREATER
+        [Obsolete("Light guests", DiagnosticId = "SPC001")]
+#else
+        [Obsolete("Light guests")]
+#endif
+        
         public async Task<DryRunResult> ConvertGuestUserIntoOrganizationMemberAsync(ProfileIdentifier profile, bool dryrun, Func<Partial<DryRunResult>, Partial<DryRunResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();

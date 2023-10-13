@@ -151,18 +151,9 @@ internal class ApplicationsForApplicationWebhooksForWebhookIdPatchRequest
     /// To explore the available variables, please set up a webhook for your application in UI with relevant subscriptions, and have a look at the `Customize Payload` section.
     /// The children of the `payload` node are available as variables.
     /// </summary>
-    /// <remarks>
-    /// This parameter is experimental and its behavior may be changed or removed in future versions
-    /// </remarks>
 #if NET6_0_OR_GREATER
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 #endif
-#if NET6_0_OR_GREATER
-    [Obsolete("This parameter is experimental and its behavior may be changed or removed in future versions", DiagnosticId = "SPC001")]
-#else
-    [Obsolete("This parameter is experimental and its behavior may be changed or removed in future versions")]
-#endif
-    
     [JsonPropertyName("payloadTemplate")]
     public string? PayloadTemplate
     {

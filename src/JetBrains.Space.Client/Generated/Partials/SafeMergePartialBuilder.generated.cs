@@ -61,6 +61,12 @@ public static class SafeMergePartialExtensions
     public static Partial<SafeMerge> WithStartedAt(this Partial<SafeMerge> it)
         => it.AddFieldName("startedAt");
     
+    public static Partial<SafeMerge> WithStoppedBy(this Partial<SafeMerge> it)
+        => it.AddFieldName("stoppedBy");
+    
+    public static Partial<SafeMerge> WithStoppedBy(this Partial<SafeMerge> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+        => it.AddFieldName("stoppedBy", partialBuilder(new Partial<TDMemberProfile>(it)));
+    
     public static Partial<SafeMerge> WithDuration(this Partial<SafeMerge> it)
         => it.AddFieldName("duration");
     

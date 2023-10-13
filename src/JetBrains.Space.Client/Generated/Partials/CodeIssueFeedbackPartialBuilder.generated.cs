@@ -31,6 +31,9 @@ namespace JetBrains.Space.Client.CodeIssueFeedbackPartialBuilder;
 
 public static class CodeIssueFeedbackPartialExtensions
 {
+    public static Partial<CodeIssueFeedback> WithReviewId(this Partial<CodeIssueFeedback> it)
+        => it.AddFieldName("reviewId");
+    
     public static Partial<CodeIssueFeedback> WithAnchor(this Partial<CodeIssueFeedback> it)
         => it.AddFieldName("anchor");
     

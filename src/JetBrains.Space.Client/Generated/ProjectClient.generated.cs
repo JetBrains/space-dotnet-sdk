@@ -4965,6 +4965,41 @@ public partial class ProjectClient : ISpaceClient
         }
         
         /// <remarks>
+        /// This API is experimental
+        /// </remarks>
+#if NET6_0_OR_GREATER
+        [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
+#else
+        [Obsolete("This API is experimental")]
+#endif
+        
+        public async Task<Batch<CodeIssueFeedback>> GetUserFeedbackOnCodeIssuesAsync(ProjectIdentifier project, string tool, ReviewIdentifier? reviewId = null, BatchInfo? batchInfo = null, Func<Partial<Batch<CodeIssueFeedback>>, Partial<Batch<CodeIssueFeedback>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<CodeIssueFeedback>>()) : Partial<Batch<CodeIssueFeedback>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsCodeIssuesFeedbackPostRequest, Batch<CodeIssueFeedback>>("POST", $"api/http/projects/{project}/code-reviews/code-issues-feedback{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectCodeReviewsCodeIssuesFeedbackPostRequest
+                { 
+                    ReviewId = reviewId,
+                    Tool = tool,
+                    BatchInfo = batchInfo,
+                }, requestHeaders: null, functionName: "GetUserFeedbackOnCodeIssues", cancellationToken: cancellationToken);
+        }
+        
+        /// <remarks>
+        /// This API is experimental
+        /// </remarks>
+#if NET6_0_OR_GREATER
+        [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
+#else
+        [Obsolete("This API is experimental")]
+#endif
+        
+        public IAsyncEnumerable<CodeIssueFeedback> GetUserFeedbackOnCodeIssuesAsyncEnumerable(ProjectIdentifier project, string tool, ReviewIdentifier? reviewId = null, BatchInfo? batchInfo = null, Func<Partial<CodeIssueFeedback>, Partial<CodeIssueFeedback>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetUserFeedbackOnCodeIssuesAsync(project: project, tool: tool, reviewId: reviewId, cancellationToken: cancellationToken, batchInfo: new BatchInfo(batchSize: batchInfo?.BatchSize ?? 100, offset: batchInfo?.Offset), partial: builder => Partial<Batch<CodeIssueFeedback>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CodeIssueFeedback>.Default())), batchInfo?.Offset, cancellationToken);
+    
+        /// <remarks>
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
@@ -5013,31 +5048,6 @@ public partial class ProjectClient : ISpaceClient
                     Reviewers = reviewers,
                 }, requestHeaders: null, functionName: "CreateMergeRequest", cancellationToken: cancellationToken);
         }
-        
-    
-        /// <remarks>
-        /// This API is experimental
-        /// </remarks>
-#if NET6_0_OR_GREATER
-        [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
-#else
-        [Obsolete("This API is experimental")]
-#endif
-        
-        public async Task<Batch<CodeIssuesFeedbackForFile>> GetDismissedCodeIssuesAsync(ProjectIdentifier project, ReviewIdentifier reviewId, string tool, BatchInfo? filesBatchInfo = null, Func<Partial<Batch<CodeIssuesFeedbackForFile>>, Partial<Batch<CodeIssuesFeedbackForFile>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<CodeIssuesFeedbackForFile>>()) : Partial<Batch<CodeIssuesFeedbackForFile>>.Default()).ToString());
-            
-            return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsForReviewIdDismissedIssuesPostRequest, Batch<CodeIssuesFeedbackForFile>>("POST", $"api/http/projects/{project}/code-reviews/{reviewId}/dismissed-issues{queryParameters.ToQueryString()}", 
-                new ProjectsForProjectCodeReviewsForReviewIdDismissedIssuesPostRequest
-                { 
-                    Tool = tool,
-                    FilesBatchInfo = filesBatchInfo,
-                }, requestHeaders: null, functionName: "GetDismissedCodeIssues", cancellationToken: cancellationToken);
-        }
-        
-#warning UNSUPPORTED CASE - NO SKIP OR BATCHINFO PARAMETER - GetDismissedCodeIssues - POST projects/{project}/code-reviews/{reviewId}/dismissed-issues
         
     
         /// <remarks>

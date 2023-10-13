@@ -29,18 +29,31 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-internal class ProjectsForProjectCodeReviewsForReviewIdDismissedIssuesPostRequest
+internal class ProjectsForProjectCodeReviewsCodeIssuesFeedbackPostRequest
      : IPropagatePropertyAccessPath
 {
-    public ProjectsForProjectCodeReviewsForReviewIdDismissedIssuesPostRequest() { }
+    public ProjectsForProjectCodeReviewsCodeIssuesFeedbackPostRequest() { }
     
-    public ProjectsForProjectCodeReviewsForReviewIdDismissedIssuesPostRequest(string tool, BatchInfo? filesBatchInfo = null)
+    public ProjectsForProjectCodeReviewsCodeIssuesFeedbackPostRequest(string tool, ReviewIdentifier? reviewId = null, BatchInfo? batchInfo = null)
     {
+        ReviewId = reviewId;
         Tool = tool;
-        FilesBatchInfo = filesBatchInfo;
+        BatchInfo = batchInfo;
     }
     
-    private PropertyValue<string> _tool = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsForReviewIdDismissedIssuesPostRequest), nameof(Tool), "tool");
+    private PropertyValue<ReviewIdentifier?> _reviewId = new PropertyValue<ReviewIdentifier?>(nameof(ProjectsForProjectCodeReviewsCodeIssuesFeedbackPostRequest), nameof(ReviewId), "reviewId");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("reviewId")]
+    public ReviewIdentifier? ReviewId
+    {
+        get => _reviewId.GetValue(InlineErrors);
+        set => _reviewId.SetValue(value);
+    }
+
+    private PropertyValue<string> _tool = new PropertyValue<string>(nameof(ProjectsForProjectCodeReviewsCodeIssuesFeedbackPostRequest), nameof(Tool), "tool");
     
     [Required]
     [JsonPropertyName("tool")]
@@ -50,19 +63,20 @@ internal class ProjectsForProjectCodeReviewsForReviewIdDismissedIssuesPostReques
         set => _tool.SetValue(value);
     }
 
-    private PropertyValue<BatchInfo?> _filesBatchInfo = new PropertyValue<BatchInfo?>(nameof(ProjectsForProjectCodeReviewsForReviewIdDismissedIssuesPostRequest), nameof(FilesBatchInfo), "filesBatchInfo");
+    private PropertyValue<BatchInfo?> _batchInfo = new PropertyValue<BatchInfo?>(nameof(ProjectsForProjectCodeReviewsCodeIssuesFeedbackPostRequest), nameof(BatchInfo), "batchInfo");
     
-    [JsonPropertyName("filesBatchInfo")]
-    public BatchInfo? FilesBatchInfo
+    [JsonPropertyName("batchInfo")]
+    public BatchInfo? BatchInfo
     {
-        get => _filesBatchInfo.GetValue(InlineErrors);
-        set => _filesBatchInfo.SetValue(value);
+        get => _batchInfo.GetValue(InlineErrors);
+        set => _batchInfo.SetValue(value);
     }
 
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
+        _reviewId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _tool.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _filesBatchInfo.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _batchInfo.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

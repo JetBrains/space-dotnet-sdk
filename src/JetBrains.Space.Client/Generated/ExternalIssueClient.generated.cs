@@ -42,12 +42,12 @@ public partial class ExternalIssueClient : ISpaceClient
     /// Set default status to move external issues to when linked merge request is merged in Space
     /// </summary>
     /// <remarks>
-    /// This API is experimental
+    /// External issue trackers
     /// </remarks>
 #if NET6_0_OR_GREATER
-    [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
+    [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
-    [Obsolete("This API is experimental")]
+    [Obsolete("External issue trackers")]
 #endif
     
     public async Task SetDefaultTargetIssueStatusForMergeRequestMergeAsync(ApplicationIdentifier application, ProjectIdentifier project, string issuePrefix, string? targetStatusForMergeRequestMerge = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
@@ -69,12 +69,12 @@ public partial class ExternalIssueClient : ISpaceClient
     /// Provide information about an issue from external issue tracker
     /// </summary>
     /// <remarks>
-    /// This API is experimental
+    /// External issue trackers
     /// </remarks>
 #if NET6_0_OR_GREATER
-    [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
+    [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
-    [Obsolete("This API is experimental")]
+    [Obsolete("External issue trackers")]
 #endif
     
     public async Task PostExternalIssueDataAsync(string issuePrefix, List<ExternalIssueDataIn> issues, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
@@ -94,12 +94,12 @@ public partial class ExternalIssueClient : ISpaceClient
     /// Provide Space with all possible statuses for external issues for a given project
     /// </summary>
     /// <remarks>
-    /// This API is experimental
+    /// External issue trackers
     /// </remarks>
 #if NET6_0_OR_GREATER
-    [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
+    [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
-    [Obsolete("This API is experimental")]
+    [Obsolete("External issue trackers")]
 #endif
     
     public async Task ProvideAllPossibleStatusesForExternalIssuesAsync(string issuePrefix, List<ExternalIssueStatusIn> statuses, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
@@ -119,12 +119,12 @@ public partial class ExternalIssueClient : ISpaceClient
     /// Notify Space about issues that were deleted in external issue tracker
     /// </summary>
     /// <remarks>
-    /// This API is experimental
+    /// External issue trackers
     /// </remarks>
 #if NET6_0_OR_GREATER
-    [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
+    [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
-    [Obsolete("This API is experimental")]
+    [Obsolete("External issue trackers")]
 #endif
     
     public async Task MarkExternalIssuesAsDeletedAsync(string issuePrefix, List<string> issueIds, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
@@ -144,7 +144,7 @@ public partial class ExternalIssueClient : ISpaceClient
     /// Fetch events about external issues from Space
     /// </summary>
     /// <remarks>
-    /// This API is experimental
+    /// External issue trackers
     /// </remarks>
     /// <param name="issueCodeLinkingEventsShape">
     /// The shape of the events published as a result of linking external issues to commits and code reviews in Space.
@@ -154,9 +154,9 @@ public partial class ExternalIssueClient : ISpaceClient
     /// * Update in a set of external issues linked to a given commit or code review in Space.
     /// </param>
 #if NET6_0_OR_GREATER
-    [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
+    [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
-    [Obsolete("This API is experimental")]
+    [Obsolete("External issue trackers")]
 #endif
     
     public async Task<ExternalIssueEventQueueItemsBatch> GetExternalIssueEventQueueItemsAsync(int batchSize, ExternalIssueCodeLinkingEventsShape issueCodeLinkingEventsShape = ExternalIssueCodeLinkingEventsShape.Transactions, bool includeCommitChanges = false, long? fromEtag = null, Func<Partial<ExternalIssueEventQueueItemsBatch>, Partial<ExternalIssueEventQueueItemsBatch>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
@@ -184,12 +184,12 @@ public partial class ExternalIssueClient : ISpaceClient
         }
         
         /// <remarks>
-        /// This API is experimental
+        /// External issue trackers
         /// </remarks>
 #if NET6_0_OR_GREATER
-        [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
+        [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
-        [Obsolete("This API is experimental")]
+        [Obsolete("External issue trackers")]
 #endif
         
         public async Task<List<CreateExternalIssueProjectResult>> ConnectExternalIssueTrackerProjectsAsync(List<ExternalIssueTrackerProjectIn> projects, Func<Partial<CreateExternalIssueProjectResult>, Partial<CreateExternalIssueProjectResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
@@ -206,12 +206,12 @@ public partial class ExternalIssueClient : ISpaceClient
         
     
         /// <remarks>
-        /// This API is experimental
+        /// External issue trackers
         /// </remarks>
 #if NET6_0_OR_GREATER
-        [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
+        [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
-        [Obsolete("This API is experimental")]
+        [Obsolete("External issue trackers")]
 #endif
         
         public async Task<List<ExternalIssueTrackerProjectApi>> GetAllConnectedExternalIssueTrackerProjectsAsync(ApplicationIdentifier application, Func<Partial<ExternalIssueTrackerProjectApi>, Partial<ExternalIssueTrackerProjectApi>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
@@ -225,12 +225,12 @@ public partial class ExternalIssueClient : ISpaceClient
         
     
         /// <remarks>
-        /// This API is experimental
+        /// External issue trackers
         /// </remarks>
 #if NET6_0_OR_GREATER
-        [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
+        [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
-        [Obsolete("This API is experimental")]
+        [Obsolete("External issue trackers")]
 #endif
         
         public async Task DisconnectExternalIssueTrackerProjectAsync(string issuePrefix, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
@@ -270,12 +270,12 @@ public partial class ExternalIssueClient : ISpaceClient
             /// Add code review links to an existing issue in a project
             /// </summary>
             /// <remarks>
-            /// This API is experimental
+            /// External issue trackers
             /// </remarks>
 #if NET6_0_OR_GREATER
-            [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
+            [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
-            [Obsolete("This API is experimental")]
+            [Obsolete("External issue trackers")]
 #endif
             
             public async Task LinkCodeReviewsToExternalIssueAsync(string issuePrefix, string issueId, ProjectIdentifier project, List<ReviewIdentifier> codeReviewIds, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
@@ -295,12 +295,12 @@ public partial class ExternalIssueClient : ISpaceClient
             /// Remove code review links from an existing issue in a project
             /// </summary>
             /// <remarks>
-            /// This API is experimental
+            /// External issue trackers
             /// </remarks>
 #if NET6_0_OR_GREATER
-            [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
+            [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
-            [Obsolete("This API is experimental")]
+            [Obsolete("External issue trackers")]
 #endif
             
             public async Task UnlinkCodeReviewsFromExternalIssueAsync(string issuePrefix, string issueId, ProjectIdentifier project, List<ReviewIdentifier> codeReviewIds, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
@@ -330,12 +330,12 @@ public partial class ExternalIssueClient : ISpaceClient
             /// Add commit links to an existing issue in a project
             /// </summary>
             /// <remarks>
-            /// This API is experimental
+            /// External issue trackers
             /// </remarks>
 #if NET6_0_OR_GREATER
-            [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
+            [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
-            [Obsolete("This API is experimental")]
+            [Obsolete("External issue trackers")]
 #endif
             
             public async Task LinkCommitsToExternalIssueAsync(string issuePrefix, string issueId, ProjectIdentifier project, string repository, List<string> commitIds, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
@@ -356,12 +356,12 @@ public partial class ExternalIssueClient : ISpaceClient
             /// Remove commit links from an existing issue in a project
             /// </summary>
             /// <remarks>
-            /// This API is experimental
+            /// External issue trackers
             /// </remarks>
 #if NET6_0_OR_GREATER
-            [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
+            [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
-            [Obsolete("This API is experimental")]
+            [Obsolete("External issue trackers")]
 #endif
             
             public async Task UnlinkCommitsFromExternalIssueAsync(string issuePrefix, string issueId, ProjectIdentifier project, string repository, List<string> commitIds, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)

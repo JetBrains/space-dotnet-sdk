@@ -34,8 +34,9 @@ public sealed class CodeIssueFeedback
 {
     public CodeIssueFeedback() { }
     
-    public CodeIssueFeedback(MergeRequestCodeIssueAnchor anchor, string message, string ruleId, List<string> codeSnippet, bool dismissed, int upvotesCount)
+    public CodeIssueFeedback(string reviewId, MergeRequestCodeIssueAnchor anchor, string message, string ruleId, List<string> codeSnippet, bool dismissed, int upvotesCount)
     {
+        ReviewId = reviewId;
         Anchor = anchor;
         Message = message;
         RuleId = ruleId;
@@ -44,6 +45,16 @@ public sealed class CodeIssueFeedback
         UpvotesCount = upvotesCount;
     }
     
+    private PropertyValue<string> _reviewId = new PropertyValue<string>(nameof(CodeIssueFeedback), nameof(ReviewId), "reviewId");
+    
+    [Required]
+    [JsonPropertyName("reviewId")]
+    public string ReviewId
+    {
+        get => _reviewId.GetValue(InlineErrors);
+        set => _reviewId.SetValue(value);
+    }
+
     private PropertyValue<MergeRequestCodeIssueAnchor> _anchor = new PropertyValue<MergeRequestCodeIssueAnchor>(nameof(CodeIssueFeedback), nameof(Anchor), "anchor");
     
     [Required]
@@ -106,6 +117,7 @@ public sealed class CodeIssueFeedback
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
+        _reviewId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _anchor.SetAccessPath(parentChainPath, validateHasBeenSet);
         _message.SetAccessPath(parentChainPath, validateHasBeenSet);
         _ruleId.SetAccessPath(parentChainPath, validateHasBeenSet);
