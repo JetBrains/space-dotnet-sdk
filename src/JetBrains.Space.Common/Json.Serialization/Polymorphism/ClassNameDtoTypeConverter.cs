@@ -13,7 +13,7 @@ namespace JetBrains.Space.Common.Json.Serialization.Polymorphism;
 /// </summary>
 public class ClassNameDtoTypeConverter : JsonConverterFactory
 {
-    private readonly Type _genericConverterType = typeof(ClassNameDtoTypeConverter<>);
+    private static readonly Type GenericConverterType = typeof(ClassNameDtoTypeConverter<>);
         
     /// <inheritdoc />
     public override bool CanConvert(Type objectType) 
@@ -22,7 +22,7 @@ public class ClassNameDtoTypeConverter : JsonConverterFactory
     /// <inheritdoc />
     public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
     {
-        var constructedType = _genericConverterType.MakeGenericType(typeToConvert);
+        var constructedType = GenericConverterType.MakeGenericType(typeToConvert);
         return Activator.CreateInstance(constructedType) as JsonConverter;
     }
 }

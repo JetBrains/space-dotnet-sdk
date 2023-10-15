@@ -14,7 +14,7 @@ namespace JetBrains.Space.Common.Json.Serialization;
 /// </summary>
 public class UrlParameterConverter : JsonConverterFactory
 {
-    private readonly Type _genericConverterType = typeof(UrlParameterConverter<>);
+    private static readonly Type GenericConverterType = typeof(UrlParameterConverter<>);
     
     /// <inheritdoc />
     public override bool CanConvert(Type objectType)
@@ -23,7 +23,7 @@ public class UrlParameterConverter : JsonConverterFactory
     /// <inheritdoc />
     public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
     {
-        var constructedType = _genericConverterType.MakeGenericType(typeToConvert);
+        var constructedType = GenericConverterType.MakeGenericType(typeToConvert);
         return (Activator.CreateInstance(constructedType) as JsonConverter)!;
     }
 }
@@ -35,6 +35,8 @@ public class UrlParameterConverter : JsonConverterFactory
 public class UrlParameterConverter<T> : JsonConverter<T>
     where T : class, IUrlParameter
 {
+    private static readonly Type PermissionScopeType = typeof(PermissionScope);
+
     /// <inheritdoc />
     public override bool CanConvert(Type objectType)
         => typeof(IUrlParameter).IsAssignableFrom(objectType);
@@ -44,7 +46,15 @@ public class UrlParameterConverter<T> : JsonConverter<T>
     public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         if (reader.TokenType == JsonTokenType.Null) return null;
-    
+
+        // Read permission scope
+        if (typeToConvert == PermissionScopeType && reader.TokenType == JsonTokenType.String)
+        {
+            var permissionScopeString = reader.GetString();
+            return new PermissionScope(permissionScopeString) as T;
+        }
+
+        // Read based on className
         var readerAtStart = reader;
             
         using var jsonDocument = JsonDocument.ParseValue(ref reader);
@@ -61,7 +71,8 @@ public class UrlParameterConverter<T> : JsonConverter<T>
                 return JsonSerializer.Deserialize(ref readerAtStart, targetType, options) as T;
             }
         }
-        
+
+        // Read, but return null for other cases
         JsonDocument.ParseValue(ref readerAtStart).Dispose();
         return null;
     }
