@@ -3697,6 +3697,26 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
+        /// <remarks>
+        /// This API is experimental
+        /// </remarks>
+#if NET6_0_OR_GREATER
+        [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
+#else
+        [Obsolete("This API is experimental")]
+#endif
+        
+        public async Task<List<DeclarationScope>> GetDeclarationScopesForFileAsync(ProjectIdentifier project, string repository, string filename, string blobId, Func<Partial<DeclarationScope>, Partial<DeclarationScope>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("filename", filename);
+            queryParameters.Append("blobId", blobId);
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<DeclarationScope>()) : Partial<DeclarationScope>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<DeclarationScope>>("GET", $"api/http/projects/{project}/repositories/{repository}/scopes{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetDeclarationScopesForFile", cancellationToken: cancellationToken);
+        }
+        
+    
         public async Task<RepositoryUrls> UrlAsync(ProjectIdentifier project, string repository, Func<Partial<RepositoryUrls>, Partial<RepositoryUrls>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
