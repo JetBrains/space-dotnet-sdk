@@ -27,16 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.GrammarDictionaryEntryDTOPartialBuilder;
 
-public static class SdkInfo
+public static class GrammarDictionaryEntryDTOPartialExtensions
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2023.3.0-DEV.172331";
+    public static Partial<GrammarDictionaryEntryDTO> WithEntry(this Partial<GrammarDictionaryEntryDTO> it)
+        => it.AddFieldName("entry");
+    
+    public static Partial<GrammarDictionaryEntryDTO> WithAddedAt(this Partial<GrammarDictionaryEntryDTO> it)
+        => it.AddFieldName("addedAt");
+    
 }
 

@@ -2097,6 +2097,117 @@ public partial class TeamDirectoryClient : ISpaceClient
         
         }
     
+        public GrammarDictionaryClient GrammarDictionary => new GrammarDictionaryClient(_connection);
+        
+        public partial class GrammarDictionaryClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public GrammarDictionaryClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// This endpoint will return user's personal grammar dictionary entries
+            /// </summary>
+            /// <remarks>
+            /// Grammar error corrections and text completion with Grazie
+            /// </remarks>
+#if NET6_0_OR_GREATER
+            [Obsolete("Grammar error corrections and text completion with Grazie", DiagnosticId = "SPC001")]
+#else
+            [Obsolete("Grammar error corrections and text completion with Grazie")]
+#endif
+            
+            public async Task<List<GrammarDictionaryEntryDTO>> GetThePersonalDictionaryEntriesAsync(ProfileIdentifier profileId, GrammarDictionaryType dictionaryType, Func<Partial<GrammarDictionaryEntryDTO>, Partial<GrammarDictionaryEntryDTO>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("profileId", profileId.ToString());
+                queryParameters.Append("dictionaryType", dictionaryType.ToEnumString());
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<GrammarDictionaryEntryDTO>()) : Partial<GrammarDictionaryEntryDTO>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<List<GrammarDictionaryEntryDTO>>("GET", $"api/http/team-directory/profiles/grammar-dictionary{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetThePersonalDictionaryEntries", cancellationToken: cancellationToken);
+            }
+            
+        
+            public AddClient Add => new AddClient(_connection);
+            
+            public partial class AddClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public AddClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// This endpoint will try to add an entry to the user's personal grammar dictionary and return true if the value is valid for dictionary, were not present before and then added and false otherwise.
+                /// </summary>
+                /// <remarks>
+                /// Grammar error corrections and text completion with Grazie
+                /// </remarks>
+#if NET6_0_OR_GREATER
+                [Obsolete("Grammar error corrections and text completion with Grazie", DiagnosticId = "SPC001")]
+#else
+                [Obsolete("Grammar error corrections and text completion with Grazie")]
+#endif
+                
+                public async Task<bool> AddTheEntryToThePersonalDictionaryAsync(ProfileIdentifier profileId, GrammarDictionaryType dictionaryType, GrammarDictionaryEntryDTO entry, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    return await _connection.RequestResourceAsync<TeamDirectoryProfilesGrammarDictionaryAddPostRequest, bool>("POST", $"api/http/team-directory/profiles/grammar-dictionary/add{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesGrammarDictionaryAddPostRequest
+                        { 
+                            ProfileId = profileId,
+                            DictionaryType = dictionaryType,
+                            Entry = entry,
+                        }, requestHeaders: null, functionName: "AddTheEntryToThePersonalDictionary", cancellationToken: cancellationToken);
+                }
+                
+            
+            }
+        
+            public RemoveClient Remove => new RemoveClient(_connection);
+            
+            public partial class RemoveClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public RemoveClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// This endpoint will try to remove an entry from the user's personal grammar dictionary and return true if the value was present and removed and false otherwise.
+                /// </summary>
+                /// <remarks>
+                /// Grammar error corrections and text completion with Grazie
+                /// </remarks>
+#if NET6_0_OR_GREATER
+                [Obsolete("Grammar error corrections and text completion with Grazie", DiagnosticId = "SPC001")]
+#else
+                [Obsolete("Grammar error corrections and text completion with Grazie")]
+#endif
+                
+                public async Task<bool> RemoveTheEntryFromThePersonalDictionaryAsync(ProfileIdentifier profileId, GrammarDictionaryType dictionaryType, string entryValue, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("profileId", profileId.ToString());
+                    queryParameters.Append("dictionaryType", dictionaryType.ToEnumString());
+                    queryParameters.Append("entryValue", entryValue);
+                    
+                    return await _connection.RequestResourceAsync<bool>("DELETE", $"api/http/team-directory/profiles/grammar-dictionary/remove{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveTheEntryFromThePersonalDictionary", cancellationToken: cancellationToken);
+                }
+                
+            
+            }
+        
+        }
+    
         public OAuthConsentClient OAuthConsents => new OAuthConsentClient(_connection);
         
         public partial class OAuthConsentClient : ISpaceClient
@@ -3165,6 +3276,27 @@ public partial class TeamDirectoryClient : ISpaceClient
                             Name = name,
                             Folder = folder,
                         }, requestHeaders: null, functionName: "CopyDocument", cancellationToken: cancellationToken);
+                }
+                
+            
+            }
+        
+            public DeleteForeverClient DeleteForever => new DeleteForeverClient(_connection);
+            
+            public partial class DeleteForeverClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public DeleteForeverClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task DeleteDocumentForeverAsync(ProfileIdentifier profile, string documentId, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/documents/{documentId}/delete-forever{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteDocumentForever", cancellationToken: cancellationToken);
                 }
                 
             

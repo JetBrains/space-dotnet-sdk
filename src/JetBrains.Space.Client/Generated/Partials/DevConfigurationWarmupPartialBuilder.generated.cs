@@ -43,5 +43,8 @@ public static class DevConfigurationWarmupPartialExtensions
     public static Partial<DevConfigurationWarmup> WithTriggers(this Partial<DevConfigurationWarmup> it, Func<Partial<DevConfigurationWarmupTriggers>, Partial<DevConfigurationWarmupTriggers>> partialBuilder)
         => it.AddFieldName("triggers", partialBuilder(new Partial<DevConfigurationWarmupTriggers>(it)));
     
+    public static Partial<DevConfigurationWarmup> WithTimeoutMs(this Partial<DevConfigurationWarmup> it)
+        => it.AddFieldName("timeoutMs");
+    
 }
 
