@@ -38,10 +38,10 @@ public interface RtFirstListItemContentNode
     public static RtCode RtCode(string lang, List<RtCodeBlockContentNode> children)
         => new RtCode(lang: lang, children: children);
     
-    public static RtHeading RtHeading(int level, List<RtHeadingContentNode> children, RtTextAlign textAlign)
+    public static RtHeading RtHeading(int level, List<RtHeadingContentNode> children, RtTextAlign? textAlign = null)
         => new RtHeading(level: level, children: children, textAlign: textAlign);
     
-    public static RtParagraph RtParagraph(List<RtInlineNode> children, RtTextAlign textAlign)
+    public static RtParagraph RtParagraph(List<RtInlineNode> children, RtTextAlign? textAlign = null)
         => new RtParagraph(children: children, textAlign: textAlign);
     
 }

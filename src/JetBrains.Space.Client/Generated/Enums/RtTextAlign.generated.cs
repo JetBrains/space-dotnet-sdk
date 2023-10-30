@@ -29,6 +29,7 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
+[Obsolete("RtTextAlign is deprecated, alignments are no longer supported (since 2023-10-17) (will be removed in a future version)")]
 [JsonConverter(typeof(EnumStringConverter))]
 public enum RtTextAlign
 {

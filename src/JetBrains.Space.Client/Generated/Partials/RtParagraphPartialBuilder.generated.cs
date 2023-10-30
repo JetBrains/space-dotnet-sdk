@@ -37,9 +37,11 @@ public static class RtParagraphPartialExtensions
     public static Partial<RtParagraph> WithChildren(this Partial<RtParagraph> it, Func<Partial<RtInlineNode>, Partial<RtInlineNode>> partialBuilder)
         => it.AddFieldName("children", partialBuilder(new Partial<RtInlineNode>(it)));
     
+    [Obsolete("RtTextAlign is deprecated, alignments are no longer supported (since 2023-10-17) (will be removed in a future version)")]
     public static Partial<RtParagraph> WithTextAlign(this Partial<RtParagraph> it)
         => it.AddFieldName("textAlign");
     
+    [Obsolete("RtTextAlign is deprecated, alignments are no longer supported (since 2023-10-17) (will be removed in a future version)")]
     public static Partial<RtParagraph> WithTextAlign(this Partial<RtParagraph> it, Func<Partial<RtTextAlign>, Partial<RtTextAlign>> partialBuilder)
         => it.AddFieldName("textAlign", partialBuilder(new Partial<RtTextAlign>(it)));
     

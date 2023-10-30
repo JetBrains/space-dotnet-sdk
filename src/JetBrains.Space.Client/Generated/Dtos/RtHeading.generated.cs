@@ -37,7 +37,7 @@ public sealed class RtHeading
     
     public RtHeading() { }
     
-    public RtHeading(int level, List<RtHeadingContentNode> children, RtTextAlign textAlign)
+    public RtHeading(int level, List<RtHeadingContentNode> children, RtTextAlign? textAlign = null)
     {
         Level = level;
         Children = children;
@@ -64,11 +64,11 @@ public sealed class RtHeading
         set => _children.SetValue(value);
     }
 
-    private PropertyValue<RtTextAlign> _textAlign = new PropertyValue<RtTextAlign>(nameof(RtHeading), nameof(TextAlign), "textAlign");
+    private PropertyValue<RtTextAlign?> _textAlign = new PropertyValue<RtTextAlign?>(nameof(RtHeading), nameof(TextAlign), "textAlign");
     
-    [Required]
+    [Obsolete("RtTextAlign is deprecated, alignments are no longer supported (since 2023-10-17) (will be removed in a future version)")]
     [JsonPropertyName("textAlign")]
-    public RtTextAlign TextAlign
+    public RtTextAlign? TextAlign
     {
         get => _textAlign.GetValue(InlineErrors);
         set => _textAlign.SetValue(value);

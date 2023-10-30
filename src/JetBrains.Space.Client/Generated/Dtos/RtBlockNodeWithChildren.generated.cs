@@ -41,13 +41,13 @@ public interface RtBlockNodeWithChildren
     public static RtCode RtCode(string lang, List<RtCodeBlockContentNode> children)
         => new RtCode(lang: lang, children: children);
     
-    public static RtHeading RtHeading(int level, List<RtHeadingContentNode> children, RtTextAlign textAlign)
+    public static RtHeading RtHeading(int level, List<RtHeadingContentNode> children, RtTextAlign? textAlign = null)
         => new RtHeading(level: level, children: children, textAlign: textAlign);
     
     public static RtOrderedList RtOrderedList(int startNumber, List<RtListItem> children)
         => new RtOrderedList(startNumber: startNumber, children: children);
     
-    public static RtParagraph RtParagraph(List<RtInlineNode> children, RtTextAlign textAlign)
+    public static RtParagraph RtParagraph(List<RtInlineNode> children, RtTextAlign? textAlign = null)
         => new RtParagraph(children: children, textAlign: textAlign);
     
     public static RtTable RtTable(List<RtTableRow> children)

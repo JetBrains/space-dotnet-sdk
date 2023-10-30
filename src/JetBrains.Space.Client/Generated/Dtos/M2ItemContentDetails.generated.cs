@@ -125,6 +125,9 @@ public interface M2ItemContentDetails
     public static MembershipMCExtension MembershipMCExtension()
         => new MembershipMCExtension();
     
+    public static RdWarmupM2ItemContentDetails RdWarmup(string warmupExecId, IdeType ideType, string repoName, ProjectKey projectKey, string configurationName, WarmupExecutionStatus status, string? branch = null)
+        => new RdWarmupM2ItemContentDetails(warmupExecId: warmupExecId, ideType: ideType, repoName: repoName, projectKey: projectKey, configurationName: configurationName, status: status, branch: branch);
+    
     public static StickerContentDetails StickerContentDetails(Sticker sticker, StickerPackInfo? pack = null)
         => new StickerContentDetails(sticker: sticker, pack: pack);
     

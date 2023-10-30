@@ -37,7 +37,7 @@ public sealed class RtParagraph
     
     public RtParagraph() { }
     
-    public RtParagraph(List<RtInlineNode> children, RtTextAlign textAlign)
+    public RtParagraph(List<RtInlineNode> children, RtTextAlign? textAlign = null)
     {
         Children = children;
         TextAlign = textAlign;
@@ -53,11 +53,11 @@ public sealed class RtParagraph
         set => _children.SetValue(value);
     }
 
-    private PropertyValue<RtTextAlign> _textAlign = new PropertyValue<RtTextAlign>(nameof(RtParagraph), nameof(TextAlign), "textAlign");
+    private PropertyValue<RtTextAlign?> _textAlign = new PropertyValue<RtTextAlign?>(nameof(RtParagraph), nameof(TextAlign), "textAlign");
     
-    [Required]
+    [Obsolete("RtTextAlign is deprecated, alignments are no longer supported (since 2023-10-17) (will be removed in a future version)")]
     [JsonPropertyName("textAlign")]
-    public RtTextAlign TextAlign
+    public RtTextAlign? TextAlign
     {
         get => _textAlign.GetValue(InlineErrors);
         set => _textAlign.SetValue(value);

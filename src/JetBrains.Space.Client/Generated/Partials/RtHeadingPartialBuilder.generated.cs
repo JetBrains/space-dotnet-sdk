@@ -40,9 +40,11 @@ public static class RtHeadingPartialExtensions
     public static Partial<RtHeading> WithChildren(this Partial<RtHeading> it, Func<Partial<RtHeadingContentNode>, Partial<RtHeadingContentNode>> partialBuilder)
         => it.AddFieldName("children", partialBuilder(new Partial<RtHeadingContentNode>(it)));
     
+    [Obsolete("RtTextAlign is deprecated, alignments are no longer supported (since 2023-10-17) (will be removed in a future version)")]
     public static Partial<RtHeading> WithTextAlign(this Partial<RtHeading> it)
         => it.AddFieldName("textAlign");
     
+    [Obsolete("RtTextAlign is deprecated, alignments are no longer supported (since 2023-10-17) (will be removed in a future version)")]
     public static Partial<RtHeading> WithTextAlign(this Partial<RtHeading> it, Func<Partial<RtTextAlign>, Partial<RtTextAlign>> partialBuilder)
         => it.AddFieldName("textAlign", partialBuilder(new Partial<RtTextAlign>(it)));
     
