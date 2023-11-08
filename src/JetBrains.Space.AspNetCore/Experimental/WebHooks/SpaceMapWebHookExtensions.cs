@@ -21,6 +21,13 @@ public static class SpaceMapWebHookExtensions
     /// <returns>An <see cref="IEndpointConventionBuilder"/> that can be used to further configure the webhook handler registration.</returns>
     /// <exception cref="ArgumentNullException">When <paramref name="path"/> is null or empty.</exception>
     /// <exception cref="InvalidOperationException">When <typeparamref name="TWebHookHandler"/> is not registered in the service provider.</exception>
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.Experimental("SPC102")]
+#elif NET6_0_OR_GREATER
+    [Obsolete("Space Webhook Handler is an experimental feature.", DiagnosticId = "SPC102")]
+#else
+    [Obsolete("Space Webhook Handler is an experimental feature.")]
+#endif
     public static IEndpointConventionBuilder MapSpaceWebHookHandler<TWebHookHandler>(this IEndpointRouteBuilder endpoints, string path)
         where TWebHookHandler : class, ISpaceWebHookHandler
     {

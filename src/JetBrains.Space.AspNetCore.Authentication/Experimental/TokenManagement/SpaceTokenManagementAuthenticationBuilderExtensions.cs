@@ -14,7 +14,6 @@ namespace JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement
 /// <remarks>
 /// Inspired by <a href="https://github.com/IdentityServer/IdentityServer4/tree/master/samples/Clients/src/MvcHybridAutomaticRefresh/AutomaticTokenManagement">IdentityServer4</a>.
 /// </remarks>
-[PublicAPI]
 public static class SpaceTokenManagementAuthenticationBuilderExtensions
 {
     /// <summary>
@@ -23,6 +22,13 @@ public static class SpaceTokenManagementAuthenticationBuilderExtensions
     /// <param name="builder">The <see cref="AuthenticationBuilder"/> used to register Space token management.</param>
     /// <param name="configureOptions">An <see cref="Action{T}"/> that further configures <see cref="SpaceOptions"/>.</param>
     /// <returns>A reference to this instance after the operation has completed.</returns>
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.Experimental("SPC100")]
+#elif NET6_0_OR_GREATER
+    [Obsolete("Space Token Management is an experimental feature.", DiagnosticId = "SPC100")]
+#else
+    [Obsolete("Space Token Management is an experimental feature.")]
+#endif
     public static AuthenticationBuilder AddSpaceTokenManagement(
         this AuthenticationBuilder builder, Action<SpaceTokenManagementOptions> configureOptions)
     {
@@ -35,6 +41,13 @@ public static class SpaceTokenManagementAuthenticationBuilderExtensions
     /// </summary>
     /// <param name="builder">The <see cref="AuthenticationBuilder"/> used to register Space token management.</param>
     /// <returns>A reference to this instance after the operation has completed.</returns>
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.Experimental("SPC100")]
+#elif NET6_0_OR_GREATER
+    [Obsolete("Space Token Management is an experimental feature.", DiagnosticId = "SPC100")]
+#else
+    [Obsolete("Space Token Management is an experimental feature.")]
+#endif
     public static AuthenticationBuilder AddSpaceTokenManagement(this AuthenticationBuilder builder)
     {
         builder.Services.AddHttpClient();

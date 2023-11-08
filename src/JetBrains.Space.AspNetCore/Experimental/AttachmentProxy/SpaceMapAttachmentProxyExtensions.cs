@@ -24,7 +24,14 @@ public static class SpaceMapAttachmentProxyExtensions
     /// <param name="path">The URL path to register the <see cref="SpaceAttachmentProxyMiddleware"/> on.</param>
     /// <returns>A reference to this instance after the operation has completed.</returns>
     /// <exception cref="ArgumentNullException">When <paramref name="path"/> is null or empty.</exception>
-    public static IEndpointConventionBuilder MapSpaceAttachmentProxy(this IEndpointRouteBuilder endpoints, string path) 
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.Experimental("SPC101")]
+#elif NET6_0_OR_GREATER
+    [Obsolete("Space Attachment Proxy is an experimental feature.", DiagnosticId = "SPC101")]
+#else
+    [Obsolete("Space Attachment Proxy is an experimental feature.")]
+#endif
+    public static IEndpointConventionBuilder MapSpaceAttachmentProxy(this IEndpointRouteBuilder endpoints, string path)
         => MapSpaceAttachmentProxy(endpoints, path, new AuthorizeAttribute());
 
     /// <summary>
@@ -36,6 +43,13 @@ public static class SpaceMapAttachmentProxyExtensions
     /// <param name="policyNames">A collection of policy names. If empty, the default authorization policy will be used.</param>
     /// <returns>A reference to this instance after the operation has completed.</returns>
     /// <exception cref="ArgumentNullException">When <paramref name="path"/> is null or empty; or when <paramref name="policyNames"/> is null or empty.</exception>
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.Experimental("SPC101")]
+#elif NET6_0_OR_GREATER
+    [Obsolete("Space Attachment Proxy is an experimental feature.", DiagnosticId = "SPC101")]
+#else
+    [Obsolete("Space Attachment Proxy is an experimental feature.")]
+#endif
     public static IEndpointConventionBuilder MapSpaceAttachmentProxy(
         this IEndpointRouteBuilder endpoints,
         string path, 
@@ -65,6 +79,13 @@ public static class SpaceMapAttachmentProxyExtensions
     /// <param name="authorizeData">A collection of <paramref name="authorizeData"/>. If empty, the default authorization policy will be used.</param>
     /// <returns>A reference to this instance after the operation has completed.</returns>
     /// <exception cref="ArgumentNullException">When <paramref name="path"/> is null or empty; or when <paramref name="authorizeData"/> is null or empty.</exception>
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.Experimental("SPC101")]
+#elif NET6_0_OR_GREATER
+    [Obsolete("Space Attachment Proxy is an experimental feature.", DiagnosticId = "SPC101")]
+#else
+    [Obsolete("Space Attachment Proxy is an experimental feature.")]
+#endif
     public static IEndpointConventionBuilder MapSpaceAttachmentProxy(
         this IEndpointRouteBuilder endpoints,
         string path, 

@@ -20,6 +20,13 @@ public static class SpaceAddWebHookExtensions
     /// <param name="services">The <see cref="IServiceCollection"/> to register the <typeparamref name="TWebHookHandler"/> in.</param>
     /// <typeparam name="TWebHookHandler">The <see cref="ISpaceWebHookHandler"/> that handles application webhook payloads.</typeparam>
     /// <returns>A reference to this instance after the operation has completed.</returns>
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.Experimental("SPC102")]
+#elif NET6_0_OR_GREATER
+    [Obsolete("Space Webhook Handler is an experimental feature.", DiagnosticId = "SPC102")]
+#else
+    [Obsolete("Space Webhook Handler is an experimental feature.")]
+#endif
     public static IServiceCollection AddSpaceWebHookHandler<TWebHookHandler>(this IServiceCollection services)
         where TWebHookHandler : class, ISpaceWebHookHandler
     {
@@ -33,6 +40,13 @@ public static class SpaceAddWebHookExtensions
     /// <param name="configureOptions">An <see cref="Action{T}"/> that further configures <see cref="SpaceWebHookOptions"/>.</param>
     /// <typeparam name="TWebHookHandler">The <see cref="ISpaceWebHookHandler"/> that handles application webhook payloads.</typeparam>
     /// <returns>A reference to this instance after the operation has completed.</returns>
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.Experimental("SPC102")]
+#elif NET6_0_OR_GREATER
+    [Obsolete("Space Webhook Handler is an experimental feature.", DiagnosticId = "SPC102")]
+#else
+    [Obsolete("Space Webhook Handler is an experimental feature.")]
+#endif
     public static IServiceCollection AddSpaceWebHookHandler<TWebHookHandler>(this IServiceCollection services, Action<SpaceWebHookOptions> configureOptions)
         where TWebHookHandler : class, ISpaceWebHookHandler
     {
