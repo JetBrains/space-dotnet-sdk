@@ -43,5 +43,8 @@ public static class RevisionsInReviewPartialExtensions
     public static Partial<RevisionsInReview> WithCommits(this Partial<RevisionsInReview> it, Func<Partial<GitCommitWithGraph>, Partial<GitCommitWithGraph>> partialBuilder)
         => it.AddFieldName("commits", partialBuilder(new Partial<GitCommitWithGraph>(it)));
     
+    public static Partial<RevisionsInReview> WithRead(this Partial<RevisionsInReview> it)
+        => it.AddFieldName("read");
+    
 }
 

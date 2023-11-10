@@ -34,7 +34,7 @@ public sealed class TimeTrackingItem
 {
     public TimeTrackingItem() { }
     
-    public TimeTrackingItem(string id, TDMemberProfile user, PRProject project, DateTime date, TimeSpan duration, TimeTrackingSubjectType subjectType, string subject, string? description = null)
+    public TimeTrackingItem(string id, TDMemberProfile user, PRProject project, DateTime date, TimeSpan duration, TimeTrackingSubjectType subjectType, string subject, string? description = null, bool? deleted = null)
     {
         Id = id;
         User = user;
@@ -44,6 +44,7 @@ public sealed class TimeTrackingItem
         Description = description;
         SubjectType = subjectType;
         Subject = subject;
+        IsDeleted = deleted;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(TimeTrackingItem), nameof(Id), "id");
@@ -127,6 +128,15 @@ public sealed class TimeTrackingItem
         set => _subject.SetValue(value);
     }
 
+    private PropertyValue<bool?> _deleted = new PropertyValue<bool?>(nameof(TimeTrackingItem), nameof(IsDeleted), "deleted");
+    
+    [JsonPropertyName("deleted")]
+    public bool? IsDeleted
+    {
+        get => _deleted.GetValue(InlineErrors);
+        set => _deleted.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -137,6 +147,7 @@ public sealed class TimeTrackingItem
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _subjectType.SetAccessPath(parentChainPath, validateHasBeenSet);
         _subject.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _deleted.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

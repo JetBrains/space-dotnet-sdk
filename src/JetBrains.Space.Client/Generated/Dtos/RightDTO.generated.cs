@@ -34,7 +34,7 @@ public sealed class RightDTO
 {
     public RightDTO() { }
     
-    public RightDTO(PermissionIdentifier rightCode, string name, string group, string description, string targetName, bool editable, RightStatus status, List<string> dependencies, CPrincipal? modificationAuthor = null, DateTime? modificationTimestamp = null)
+    public RightDTO(PermissionIdentifier rightCode, string name, string group, string description, string targetName, bool editable, RightStatus status, List<string> dependencies, CPrincipal? modificationAuthor = null, DateTime? modificationTimestamp = null, OptionalFeature? optionalFeature = null)
     {
         RightCode = rightCode;
         Name = name;
@@ -46,6 +46,7 @@ public sealed class RightDTO
         ModificationAuthor = modificationAuthor;
         ModificationTimestamp = modificationTimestamp;
         Dependencies = dependencies;
+        OptionalFeature = optionalFeature;
     }
     
     private PropertyValue<PermissionIdentifier> _rightCode = new PropertyValue<PermissionIdentifier>(nameof(RightDTO), nameof(RightCode), "rightCode");
@@ -147,6 +148,15 @@ public sealed class RightDTO
         set => _dependencies.SetValue(value);
     }
 
+    private PropertyValue<OptionalFeature?> _optionalFeature = new PropertyValue<OptionalFeature?>(nameof(RightDTO), nameof(OptionalFeature), "optionalFeature");
+    
+    [JsonPropertyName("optionalFeature")]
+    public OptionalFeature? OptionalFeature
+    {
+        get => _optionalFeature.GetValue(InlineErrors);
+        set => _optionalFeature.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _rightCode.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -159,6 +169,7 @@ public sealed class RightDTO
         _modificationAuthor.SetAccessPath(parentChainPath, validateHasBeenSet);
         _modificationTimestamp.SetAccessPath(parentChainPath, validateHasBeenSet);
         _dependencies.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _optionalFeature.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -85,6 +85,12 @@ public static class RdWarmupExecPartialExtensions
     public static Partial<RdWarmupExec> WithConfigurationSource(this Partial<RdWarmupExec> it, Func<Partial<RdConfigurationSource>, Partial<RdConfigurationSource>> partialBuilder)
         => it.AddFieldName("configurationSource", partialBuilder(new Partial<RdConfigurationSource>(it)));
     
+    public static Partial<RdWarmupExec> WithSizeData(this Partial<RdWarmupExec> it)
+        => it.AddFieldName("sizeData");
+    
+    public static Partial<RdWarmupExec> WithSizeData(this Partial<RdWarmupExec> it, Func<Partial<RdWarmupSizeData>, Partial<RdWarmupSizeData>> partialBuilder)
+        => it.AddFieldName("sizeData", partialBuilder(new Partial<RdWarmupSizeData>(it)));
+    
     public static Partial<RdWarmupExec> WithIsArchived(this Partial<RdWarmupExec> it)
         => it.AddFieldName("archived");
     

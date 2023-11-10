@@ -70,5 +70,11 @@ public static class RightDTOPartialExtensions
     public static Partial<RightDTO> WithDependencies(this Partial<RightDTO> it)
         => it.AddFieldName("dependencies");
     
+    public static Partial<RightDTO> WithOptionalFeature(this Partial<RightDTO> it)
+        => it.AddFieldName("optionalFeature");
+    
+    public static Partial<RightDTO> WithOptionalFeature(this Partial<RightDTO> it, Func<Partial<OptionalFeature>, Partial<OptionalFeature>> partialBuilder)
+        => it.AddFieldName("optionalFeature", partialBuilder(new Partial<OptionalFeature>(it)));
+    
 }
 

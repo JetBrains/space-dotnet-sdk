@@ -73,5 +73,11 @@ public static class SafeMergePartialExtensions
     public static Partial<SafeMerge> WithAttempts(this Partial<SafeMerge> it)
         => it.AddFieldName("attempts");
     
+    public static Partial<SafeMerge> WithSize(this Partial<SafeMerge> it)
+        => it.AddFieldName("size");
+    
+    public static Partial<SafeMerge> WithSize(this Partial<SafeMerge> it, Func<Partial<SafeMergeSize>, Partial<SafeMergeSize>> partialBuilder)
+        => it.AddFieldName("size", partialBuilder(new Partial<SafeMergeSize>(it)));
+    
 }
 

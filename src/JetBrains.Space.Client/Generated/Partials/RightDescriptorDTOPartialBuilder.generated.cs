@@ -52,5 +52,11 @@ public static class RightDescriptorDTOPartialExtensions
     public static Partial<RightDescriptorDTO> WithDependencies(this Partial<RightDescriptorDTO> it)
         => it.AddFieldName("dependencies");
     
+    public static Partial<RightDescriptorDTO> WithOptionalFeature(this Partial<RightDescriptorDTO> it)
+        => it.AddFieldName("optionalFeature");
+    
+    public static Partial<RightDescriptorDTO> WithOptionalFeature(this Partial<RightDescriptorDTO> it, Func<Partial<OptionalFeature>, Partial<OptionalFeature>> partialBuilder)
+        => it.AddFieldName("optionalFeature", partialBuilder(new Partial<OptionalFeature>(it)));
+    
 }
 

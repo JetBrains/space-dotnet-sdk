@@ -34,7 +34,7 @@ public sealed class RdWarmupExec
 {
     public RdWarmupExec() { }
     
-    public RdWarmupExec(string id, string projectId, RdWarmupVcsData vcsData, WarmupExecutionStatus status, DateTime startedAt, IdeType ideType, string ideBuild, string ideVersion, string computeTaskId, WarmupExecutionTrigger trigger, RdConfigurationSource configurationSource, bool archived, DateTime? finishedAt = null, string? ideQuality = null)
+    public RdWarmupExec(string id, string projectId, RdWarmupVcsData vcsData, WarmupExecutionStatus status, DateTime startedAt, IdeType ideType, string ideBuild, string ideVersion, string computeTaskId, WarmupExecutionTrigger trigger, RdConfigurationSource configurationSource, bool archived, DateTime? finishedAt = null, string? ideQuality = null, RdWarmupSizeData? sizeData = null)
     {
         Id = id;
         ProjectId = projectId;
@@ -49,6 +49,7 @@ public sealed class RdWarmupExec
         ComputeTaskId = computeTaskId;
         Trigger = trigger;
         ConfigurationSource = configurationSource;
+        SizeData = sizeData;
         IsArchived = archived;
     }
     
@@ -182,6 +183,15 @@ public sealed class RdWarmupExec
         set => _configurationSource.SetValue(value);
     }
 
+    private PropertyValue<RdWarmupSizeData?> _sizeData = new PropertyValue<RdWarmupSizeData?>(nameof(RdWarmupExec), nameof(SizeData), "sizeData");
+    
+    [JsonPropertyName("sizeData")]
+    public RdWarmupSizeData? SizeData
+    {
+        get => _sizeData.GetValue(InlineErrors);
+        set => _sizeData.SetValue(value);
+    }
+
     private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(RdWarmupExec), nameof(IsArchived), "archived");
     
     [Required]
@@ -207,6 +217,7 @@ public sealed class RdWarmupExec
         _computeTaskId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _trigger.SetAccessPath(parentChainPath, validateHasBeenSet);
         _configurationSource.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _sizeData.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

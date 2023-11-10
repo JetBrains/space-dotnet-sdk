@@ -58,5 +58,11 @@ public static class EventSubjectInfoDTOPartialExtensions
     public static Partial<EventSubjectInfoDTO> WithFeatureFlag(this Partial<EventSubjectInfoDTO> it)
         => it.AddFieldName("featureFlag");
     
+    public static Partial<EventSubjectInfoDTO> WithOptionalFeature(this Partial<EventSubjectInfoDTO> it)
+        => it.AddFieldName("optionalFeature");
+    
+    public static Partial<EventSubjectInfoDTO> WithOptionalFeature(this Partial<EventSubjectInfoDTO> it, Func<Partial<OptionalFeature>, Partial<OptionalFeature>> partialBuilder)
+        => it.AddFieldName("optionalFeature", partialBuilder(new Partial<OptionalFeature>(it)));
+    
 }
 

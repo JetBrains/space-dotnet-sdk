@@ -34,10 +34,11 @@ public sealed class RevisionsInReview
 {
     public RevisionsInReview() { }
     
-    public RevisionsInReview(RepositoryInReview repository, List<GitCommitWithGraph> commits)
+    public RevisionsInReview(RepositoryInReview repository, List<GitCommitWithGraph> commits, List<string>? read = null)
     {
         Repository = repository;
         Commits = commits;
+        Read = read;
     }
     
     private PropertyValue<RepositoryInReview> _repository = new PropertyValue<RepositoryInReview>(nameof(RevisionsInReview), nameof(Repository), "repository");
@@ -60,10 +61,20 @@ public sealed class RevisionsInReview
         set => _commits.SetValue(value);
     }
 
+    private PropertyValue<List<string>?> _read = new PropertyValue<List<string>?>(nameof(RevisionsInReview), nameof(Read), "read");
+    
+    [JsonPropertyName("read")]
+    public List<string>? Read
+    {
+        get => _read.GetValue(InlineErrors);
+        set => _read.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _repository.SetAccessPath(parentChainPath, validateHasBeenSet);
         _commits.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _read.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

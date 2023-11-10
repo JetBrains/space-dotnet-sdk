@@ -34,7 +34,7 @@ public sealed class RdDevConfiguration
 {
     public RdDevConfiguration() { }
     
-    public RdDevConfiguration(string id, string name, List<RepoConnectionWithBranch> repoConnections, RdDevContainer devContainer, RdDevConfigurationIde ide, string instanceTypeName, PRProject project, DevConfigurationWarmup warmup, bool archived, DevConfigurationHotPool? hotPool = null, DevConfigurationHibernation? hibernation = null, string? projectRoot = null, bool? sshEnabled = null, DevConfigurationAccessSettingsDTO? access = null)
+    public RdDevConfiguration(string id, string name, List<RepoConnectionWithBranch> repoConnections, RdDevContainer devContainer, RdDevConfigurationIde ide, string instanceTypeName, DevConfigurationInstanceType instanceType, PRProject project, DevConfigurationWarmup warmup, bool archived, DevConfigurationHotPool? hotPool = null, DevConfigurationHibernation? hibernation = null, string? projectRoot = null, bool? sshEnabled = null, DevConfigurationAccessSettingsDTO? access = null)
     {
         Id = id;
         Name = name;
@@ -42,6 +42,7 @@ public sealed class RdDevConfiguration
         DevContainer = devContainer;
         Ide = ide;
         InstanceTypeName = instanceTypeName;
+        InstanceType = instanceType;
         Project = project;
         HotPool = hotPool;
         Warmup = warmup;
@@ -110,6 +111,16 @@ public sealed class RdDevConfiguration
     {
         get => _instanceTypeName.GetValue(InlineErrors);
         set => _instanceTypeName.SetValue(value);
+    }
+
+    private PropertyValue<DevConfigurationInstanceType> _instanceType = new PropertyValue<DevConfigurationInstanceType>(nameof(RdDevConfiguration), nameof(InstanceType), "instanceType");
+    
+    [Required]
+    [JsonPropertyName("instanceType")]
+    public DevConfigurationInstanceType InstanceType
+    {
+        get => _instanceType.GetValue(InlineErrors);
+        set => _instanceType.SetValue(value);
     }
 
     private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(RdDevConfiguration), nameof(Project), "project");
@@ -195,6 +206,7 @@ public sealed class RdDevConfiguration
         _devContainer.SetAccessPath(parentChainPath, validateHasBeenSet);
         _ide.SetAccessPath(parentChainPath, validateHasBeenSet);
         _instanceTypeName.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _instanceType.SetAccessPath(parentChainPath, validateHasBeenSet);
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
         _hotPool.SetAccessPath(parentChainPath, validateHasBeenSet);
         _warmup.SetAccessPath(parentChainPath, validateHasBeenSet);

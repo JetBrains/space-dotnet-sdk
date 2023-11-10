@@ -64,5 +64,8 @@ public static class TimeTrackingItemPartialExtensions
     public static Partial<TimeTrackingItem> WithSubject(this Partial<TimeTrackingItem> it)
         => it.AddFieldName("subject");
     
+    public static Partial<TimeTrackingItem> WithIsDeleted(this Partial<TimeTrackingItem> it)
+        => it.AddFieldName("deleted");
+    
 }
 

@@ -58,6 +58,12 @@ public static class RdDevConfigurationPartialExtensions
     public static Partial<RdDevConfiguration> WithInstanceTypeName(this Partial<RdDevConfiguration> it)
         => it.AddFieldName("instanceTypeName");
     
+    public static Partial<RdDevConfiguration> WithInstanceType(this Partial<RdDevConfiguration> it)
+        => it.AddFieldName("instanceType");
+    
+    public static Partial<RdDevConfiguration> WithInstanceType(this Partial<RdDevConfiguration> it, Func<Partial<DevConfigurationInstanceType>, Partial<DevConfigurationInstanceType>> partialBuilder)
+        => it.AddFieldName("instanceType", partialBuilder(new Partial<DevConfigurationInstanceType>(it)));
+    
     public static Partial<RdDevConfiguration> WithProject(this Partial<RdDevConfiguration> it)
         => it.AddFieldName("project");
     

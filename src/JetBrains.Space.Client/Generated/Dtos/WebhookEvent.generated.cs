@@ -107,8 +107,8 @@ public interface WebhookEvent
     public static CustomEmojiUpdatedEvent CustomEmojiUpdatedEvent(string emoji, CPrincipal owner, Modification<string>? attachmentId = null, Modification<DateTime>? uploadedAt = null)
         => new CustomEmojiUpdatedEvent(emoji: emoji, owner: owner, attachmentId: attachmentId, uploadedAt: uploadedAt);
     
-    public static DeploymentWebhookEvent Deployment(KMetaMod meta, string projectKey, string targetId, string deploymentId, Modification<DeploymentStatus>? statusMod = null)
-        => new DeploymentWebhookEvent(meta: meta, projectKey: projectKey, targetId: targetId, deploymentId: deploymentId, statusMod: statusMod);
+    public static DeploymentWebhookEvent Deployment(KMetaMod meta, string projectKey, string targetId, string deploymentId, string? targetKey = null, Modification<DeploymentStatus>? statusMod = null, string? version = null, List<DeploymentCommitRef>? commitRefs = null)
+        => new DeploymentWebhookEvent(meta: meta, projectKey: projectKey, targetId: targetId, deploymentId: deploymentId, targetKey: targetKey, statusMod: statusMod, version: version, commitRefs: commitRefs);
     
     public static DocumentEditorsChangedEvent DocumentEditorsChangedEvent(KMetaMod meta, string document)
         => new DocumentEditorsChangedEvent(meta: meta, document: document);

@@ -34,7 +34,7 @@ public sealed class RightDescriptorDTO
 {
     public RightDescriptorDTO() { }
     
-    public RightDescriptorDTO(PermissionIdentifier rightCode, string name, string group, string description, string targetName, List<string> dependencies)
+    public RightDescriptorDTO(PermissionIdentifier rightCode, string name, string group, string description, string targetName, List<string> dependencies, OptionalFeature? optionalFeature = null)
     {
         RightCode = rightCode;
         Name = name;
@@ -42,6 +42,7 @@ public sealed class RightDescriptorDTO
         Description = description;
         TargetName = targetName;
         Dependencies = dependencies;
+        OptionalFeature = optionalFeature;
     }
     
     private PropertyValue<PermissionIdentifier> _rightCode = new PropertyValue<PermissionIdentifier>(nameof(RightDescriptorDTO), nameof(RightCode), "rightCode");
@@ -104,6 +105,15 @@ public sealed class RightDescriptorDTO
         set => _dependencies.SetValue(value);
     }
 
+    private PropertyValue<OptionalFeature?> _optionalFeature = new PropertyValue<OptionalFeature?>(nameof(RightDescriptorDTO), nameof(OptionalFeature), "optionalFeature");
+    
+    [JsonPropertyName("optionalFeature")]
+    public OptionalFeature? OptionalFeature
+    {
+        get => _optionalFeature.GetValue(InlineErrors);
+        set => _optionalFeature.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _rightCode.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -112,6 +122,7 @@ public sealed class RightDescriptorDTO
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _targetName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _dependencies.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _optionalFeature.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

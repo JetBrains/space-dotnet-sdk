@@ -37,13 +37,16 @@ public sealed class DeploymentWebhookEvent
     
     public DeploymentWebhookEvent() { }
     
-    public DeploymentWebhookEvent(KMetaMod meta, string projectKey, string targetId, string deploymentId, Modification<DeploymentStatus>? statusMod = null)
+    public DeploymentWebhookEvent(KMetaMod meta, string projectKey, string targetId, string deploymentId, string? targetKey = null, Modification<DeploymentStatus>? statusMod = null, string? version = null, List<DeploymentCommitRef>? commitRefs = null)
     {
         Meta = meta;
         ProjectKey = projectKey;
         TargetId = targetId;
+        TargetKey = targetKey;
         DeploymentId = deploymentId;
         StatusMod = statusMod;
+        Version = version;
+        CommitRefs = commitRefs;
     }
     
     private PropertyValue<KMetaMod> _meta = new PropertyValue<KMetaMod>(nameof(DeploymentWebhookEvent), nameof(Meta), "meta");
@@ -76,6 +79,15 @@ public sealed class DeploymentWebhookEvent
         set => _targetId.SetValue(value);
     }
 
+    private PropertyValue<string?> _targetKey = new PropertyValue<string?>(nameof(DeploymentWebhookEvent), nameof(TargetKey), "targetKey");
+    
+    [JsonPropertyName("targetKey")]
+    public string? TargetKey
+    {
+        get => _targetKey.GetValue(InlineErrors);
+        set => _targetKey.SetValue(value);
+    }
+
     private PropertyValue<string> _deploymentId = new PropertyValue<string>(nameof(DeploymentWebhookEvent), nameof(DeploymentId), "deploymentId");
     
     [Required]
@@ -95,13 +107,34 @@ public sealed class DeploymentWebhookEvent
         set => _statusMod.SetValue(value);
     }
 
+    private PropertyValue<string?> _version = new PropertyValue<string?>(nameof(DeploymentWebhookEvent), nameof(Version), "version");
+    
+    [JsonPropertyName("version")]
+    public string? Version
+    {
+        get => _version.GetValue(InlineErrors);
+        set => _version.SetValue(value);
+    }
+
+    private PropertyValue<List<DeploymentCommitRef>?> _commitRefs = new PropertyValue<List<DeploymentCommitRef>?>(nameof(DeploymentWebhookEvent), nameof(CommitRefs), "commitRefs");
+    
+    [JsonPropertyName("commitRefs")]
+    public List<DeploymentCommitRef>? CommitRefs
+    {
+        get => _commitRefs.GetValue(InlineErrors);
+        set => _commitRefs.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _meta.SetAccessPath(parentChainPath, validateHasBeenSet);
         _projectKey.SetAccessPath(parentChainPath, validateHasBeenSet);
         _targetId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _targetKey.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deploymentId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _statusMod.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _version.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commitRefs.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

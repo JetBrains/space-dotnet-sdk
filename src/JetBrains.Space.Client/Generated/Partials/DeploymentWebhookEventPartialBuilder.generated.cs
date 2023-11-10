@@ -43,11 +43,23 @@ public static class DeploymentWebhookEventPartialExtensions
     public static Partial<DeploymentWebhookEvent> WithTargetId(this Partial<DeploymentWebhookEvent> it)
         => it.AddFieldName("targetId");
     
+    public static Partial<DeploymentWebhookEvent> WithTargetKey(this Partial<DeploymentWebhookEvent> it)
+        => it.AddFieldName("targetKey");
+    
     public static Partial<DeploymentWebhookEvent> WithDeploymentId(this Partial<DeploymentWebhookEvent> it)
         => it.AddFieldName("deploymentId");
     
     public static Partial<DeploymentWebhookEvent> WithStatusMod(this Partial<DeploymentWebhookEvent> it)
         => it.AddFieldName("statusMod");
+    
+    public static Partial<DeploymentWebhookEvent> WithVersion(this Partial<DeploymentWebhookEvent> it)
+        => it.AddFieldName("version");
+    
+    public static Partial<DeploymentWebhookEvent> WithCommitRefs(this Partial<DeploymentWebhookEvent> it)
+        => it.AddFieldName("commitRefs");
+    
+    public static Partial<DeploymentWebhookEvent> WithCommitRefs(this Partial<DeploymentWebhookEvent> it, Func<Partial<DeploymentCommitRef>, Partial<DeploymentCommitRef>> partialBuilder)
+        => it.AddFieldName("commitRefs", partialBuilder(new Partial<DeploymentCommitRef>(it)));
     
 }
 

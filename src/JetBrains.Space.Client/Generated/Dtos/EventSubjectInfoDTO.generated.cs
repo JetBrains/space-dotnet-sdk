@@ -34,7 +34,7 @@ public sealed class EventSubjectInfoDTO
 {
     public EventSubjectInfoDTO() { }
     
-    public EventSubjectInfoDTO(string code, string name, string description, List<EventTypeInfoDTO> events, List<SubscriptionFilter> defaultFilters, string? parentCode = null, string? featureFlag = null)
+    public EventSubjectInfoDTO(string code, string name, string description, List<EventTypeInfoDTO> events, List<SubscriptionFilter> defaultFilters, string? parentCode = null, string? featureFlag = null, OptionalFeature? optionalFeature = null)
     {
         Code = code;
         ParentCode = parentCode;
@@ -43,6 +43,7 @@ public sealed class EventSubjectInfoDTO
         Events = events;
         DefaultFilters = defaultFilters;
         FeatureFlag = featureFlag;
+        OptionalFeature = optionalFeature;
     }
     
     private PropertyValue<string> _code = new PropertyValue<string>(nameof(EventSubjectInfoDTO), nameof(Code), "code");
@@ -113,6 +114,15 @@ public sealed class EventSubjectInfoDTO
         set => _featureFlag.SetValue(value);
     }
 
+    private PropertyValue<OptionalFeature?> _optionalFeature = new PropertyValue<OptionalFeature?>(nameof(EventSubjectInfoDTO), nameof(OptionalFeature), "optionalFeature");
+    
+    [JsonPropertyName("optionalFeature")]
+    public OptionalFeature? OptionalFeature
+    {
+        get => _optionalFeature.GetValue(InlineErrors);
+        set => _optionalFeature.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _code.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -122,6 +132,7 @@ public sealed class EventSubjectInfoDTO
         _events.SetAccessPath(parentChainPath, validateHasBeenSet);
         _defaultFilters.SetAccessPath(parentChainPath, validateHasBeenSet);
         _featureFlag.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _optionalFeature.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />
