@@ -8,8 +8,7 @@ namespace _build
     {
         public int VersionMajor { get; set; } = 1;
         public int VersionMinor { get; set; }
-        public bool IsBeta { get; set; }
-    
+
         public override object GetValue(MemberInfo member, object instance) =>
             GetFromSpace() ?? GetFromGit() ?? GetFromTime();
 
@@ -20,24 +19,24 @@ namespace _build
         VersionInfo? GetFromSpace()
         {
             var versionInfo = File.Exists("version-info.txt")
-                ? File.ReadAllText("version-info.txt")
-                : "ci";
+                ? File.ReadAllText("version-info.txt").TrimStart('v')
+                : $"{VersionMajor}.{VersionMinor}";
 
             var executionNumber = Environment.GetEnvironmentVariable("JB_SPACE_EXECUTION_NUMBER");
             var branch = Environment.GetEnvironmentVariable("JB_SPACE_GIT_BRANCH")?.Replace("refs/heads/", "").Replace("/", "-");
             var revision = Environment.GetEnvironmentVariable("JB_SPACE_GIT_REVISION");
 
-            if (!string.IsNullOrEmpty(executionNumber) && !string.IsNullOrEmpty(branch) && !string.IsNullOrEmpty(revision))
+            if (!string.IsNullOrEmpty(executionNumber) &&
+                !string.IsNullOrEmpty(branch) &&
+                !string.IsNullOrEmpty(revision))
             {
                 return new VersionInfo(
                     $"{VersionMajor}.{VersionMinor}.{executionNumber}.0",
                     $"{VersionMajor}.{VersionMinor}.{executionNumber}.0",
                     $"{VersionMajor}.{VersionMinor}.{executionNumber}.0+Branch.{branch}.Sha.{revision}.Server.{versionInfo}",
                     IsMainBranch(branch) 
-                        ? IsBeta
-                            ? $"{VersionMajor}.{VersionMinor}.0-beta.v{versionInfo}.{executionNumber}"
-                            : $"{VersionMajor}.{VersionMinor}.{executionNumber}"
-                        : $"0.1.1337-{branch}.{versionInfo}.{executionNumber}");
+                        ? $"{versionInfo}.{executionNumber}"
+                        : $"{versionInfo}-{branch}.{executionNumber}");
             }
 
             return null;

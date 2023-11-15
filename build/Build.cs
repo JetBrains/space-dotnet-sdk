@@ -1,3 +1,4 @@
+using Serilog;
 using Nuke.Common;
 using Nuke.Common.Execution;
 using Nuke.Common.IO;
@@ -30,7 +31,7 @@ namespace _build
         readonly string? NuGetOrgTargetApiKey;
     
         [Solution] readonly Solution? Solution;
-        [VersionInfo(VersionMajor = 2, VersionMinor = 0, IsBeta = true)] readonly VersionInfo? VersionInfo;
+        [VersionInfo(VersionMajor = 2, VersionMinor = 0)] readonly VersionInfo? VersionInfo;
 
         AbsolutePath SourceDirectory => RootDirectory / "src";
         AbsolutePath TestsDirectory => RootDirectory / "tests";
@@ -82,6 +83,8 @@ namespace _build
             .DependsOn(Test)
             .Executes(() =>
             {
+                Log.Information("NuGet package version: {Version}", VersionInfo.NuGetVersion);
+
                 foreach (var project in Solution.AllProjects.Where(p => p.GetProperty<bool>("GeneratePackageOnBuild")).ToList())
                 {
                     DotNetPack(_ => _
