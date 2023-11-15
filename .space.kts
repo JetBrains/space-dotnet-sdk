@@ -7,7 +7,7 @@ val buildScript = """
     chmod +x ./dotnet-install.sh
     ./dotnet-install.sh --channel 6.0
     ./dotnet-install.sh --channel 7.0
-    ./dotnet-install.sh --channel 8.0.1xx --quality preview
+    ./dotnet-install.sh --channel 8.0
     PATH=${'$'}PATH:${'$'}HOME/.dotnet:${'$'}HOME/.dotnet/tools
     dotnet --list-sdks
 

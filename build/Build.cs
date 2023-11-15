@@ -5,7 +5,6 @@ using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Utilities.Collections;
-using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 namespace _build
@@ -40,9 +39,9 @@ namespace _build
         Target Clean => _ => _
             .Executes(() =>
             {
-                SourceDirectory.GlobDirectories("**/bin", "**/obj").ForEach(DeleteDirectory);
-                TestsDirectory.GlobDirectories("**/bin", "**/obj").ForEach(DeleteDirectory);
-                EnsureCleanDirectory(ArtifactsDirectory);
+                SourceDirectory.GlobDirectories("**/bin", "**/obj").ForEach(it => it.DeleteDirectory());
+                TestsDirectory.GlobDirectories("**/bin", "**/obj").ForEach(it => it.DeleteDirectory());
+                ArtifactsDirectory.CreateOrCleanDirectory();
             });
 
         Target Restore => _ => _
