@@ -311,12 +311,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ManageCustomFieldsForTargets
         => new PermissionIdentifierManageCustomFieldsForTargets();
     
-    /// <summary>
-    /// Allows to manage the lifecycle of dev environments that the user doesn't own (users can always manage their own environments)
-    /// </summary>
-    public static PermissionIdentifier ManageDevEnvironmentsOfAllProjectMembers
-        => new PermissionIdentifierManageDevEnvironmentsOfAllProjectMembers();
-    
     public static PermissionIdentifier ManageDocuments
         => new PermissionIdentifierManageDocuments();
     
@@ -400,6 +394,12 @@ public abstract class PermissionIdentifier : IUrlParameter
     
     public static PermissionIdentifier ManageSalaryEventsForDirectReports
         => new PermissionIdentifierManageSalaryEventsForDirectReports();
+    
+    /// <summary>
+    /// Allows to manage the lifecycle of the shared dev environments that the user doesn't own (users can always manage their own environments)
+    /// </summary>
+    public static PermissionIdentifier ManageSharedDevEnvironmentsOfAllProjectMembers
+        => new PermissionIdentifierManageSharedDevEnvironmentsOfAllProjectMembers();
     
     public static PermissionIdentifier ManageStickers
         => new PermissionIdentifierManageStickers();
@@ -1446,15 +1446,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "DeployTargets.CustomFields.Edit";
     }
     
-    /// <summary>
-    /// Allows to manage the lifecycle of dev environments that the user doesn't own (users can always manage their own environments)
-    /// </summary>
-    public class PermissionIdentifierManageDevEnvironmentsOfAllProjectMembers : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Rd.Workspaces.Manage";
-    }
-    
     public class PermissionIdentifierManageDocuments : PermissionIdentifier
     {
         public override string ToString()
@@ -1609,6 +1600,15 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "HRM.Bonus.TeamLead";
+    }
+    
+    /// <summary>
+    /// Allows to manage the lifecycle of the shared dev environments that the user doesn't own (users can always manage their own environments)
+    /// </summary>
+    public class PermissionIdentifierManageSharedDevEnvironmentsOfAllProjectMembers : PermissionIdentifier
+    {
+        public override string ToString()
+            => "Rd.Workspaces.Manage";
     }
     
     public class PermissionIdentifierManageStickers : PermissionIdentifier

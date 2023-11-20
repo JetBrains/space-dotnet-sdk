@@ -46,6 +46,9 @@ public static class CodeReviewParticipantPartialExtensions
     public static Partial<CodeReviewParticipant> WithIsHasOwnedFiles(this Partial<CodeReviewParticipant> it)
         => it.AddFieldName("hasOwnedFiles");
     
+    public static Partial<CodeReviewParticipant> WithIsOwnsAllFiles(this Partial<CodeReviewParticipant> it)
+        => it.AddFieldName("ownsAllFiles");
+    
     public static Partial<CodeReviewParticipant> WithIsReviewOnlyOwnedFiles(this Partial<CodeReviewParticipant> it)
         => it.AddFieldName("reviewOnlyOwnedFiles");
     

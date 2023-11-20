@@ -739,6 +739,44 @@ public partial class ProjectClient : ISpaceClient
             
             }
         
+            public SecretClient Secrets => new SecretClient(_connection);
+            
+            public partial class SecretClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public SecretClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public SetReferenceClient SetReference => new SetReferenceClient(_connection);
+                
+                public partial class SetReferenceClient : ISpaceClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public SetReferenceClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task UpdateAsync(string stepExecId, string key, string reference, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                    {
+                        var queryParameters = new NameValueCollection();
+                        
+                        await _connection.RequestResourceAsync("PATCH", $"api/http/projects/automation/step-executions/{stepExecId}/secrets/{key}/set-reference{queryParameters.ToQueryString()}", 
+                            new ProjectsAutomationStepExecutionsForStepExecIdSecretsForKeySetReferencePatchRequest
+                            { 
+                                Reference = reference,
+                            }, requestHeaders: null, functionName: "Update", cancellationToken: cancellationToken);
+                    }
+                    
+                
+                }
+            
+            }
+        
         }
     
         public SubscriptionClient Subscriptions => new SubscriptionClient(_connection);
@@ -2920,6 +2958,84 @@ public partial class ProjectClient : ISpaceClient
                     queryParameters.Append("identities", identities.Select(it => it));
                     
                     await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/attachments{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveAttachments", cancellationToken: cancellationToken);
+                }
+                
+            
+            }
+        
+            public BranchClient Branches => new BranchClient(_connection);
+            
+            public partial class BranchClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public BranchClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Add branch links to an existing issue in a project
+                /// </summary>
+                /// <remarks>
+                /// Connect branch to issue
+                /// </remarks>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Update issues</term>
+                /// <description>Update issues that were created by other users</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+#if NET6_0_OR_GREATER
+                [Obsolete("Connect branch to issue", DiagnosticId = "SPC001")]
+#else
+                [Obsolete("Connect branch to issue")]
+#endif
+                
+                public async Task AddBranchLinksAsync(ProjectIdentifier project, IssueIdentifier issueId, string repository, List<string> branches, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/branches{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectPlanningIssuesForIssueIdBranchesPostRequest
+                        { 
+                            Repository = repository,
+                            Branches = branches,
+                        }, requestHeaders: null, functionName: "AddBranchLinks", cancellationToken: cancellationToken);
+                }
+                
+            
+                /// <summary>
+                /// Remove branch links from an existing issue in a project
+                /// </summary>
+                /// <remarks>
+                /// Connect branch to issue
+                /// </remarks>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Update issues</term>
+                /// <description>Update issues that were created by other users</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+#if NET6_0_OR_GREATER
+                [Obsolete("Connect branch to issue", DiagnosticId = "SPC001")]
+#else
+                [Obsolete("Connect branch to issue")]
+#endif
+                
+                public async Task RemoveBranchLinksAsync(ProjectIdentifier project, IssueIdentifier issueId, string repository, List<string> branchHeads, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    queryParameters.Append("repository", repository);
+                    queryParameters.Append("branchHeads", branchHeads.Select(it => it));
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/branches{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RemoveBranchLinks", cancellationToken: cancellationToken);
                 }
                 
             
@@ -6071,6 +6187,27 @@ public partial class ProjectClient : ISpaceClient
                         Name = name,
                         Folder = folder,
                     }, requestHeaders: null, functionName: "CopyDocument", cancellationToken: cancellationToken);
+            }
+            
+        
+        }
+    
+        public DeleteForeverClient DeleteForever => new DeleteForeverClient(_connection);
+        
+        public partial class DeleteForeverClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public DeleteForeverClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task DeleteDocumentForeverAsync(ProjectIdentifier project, string documentId, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                
+                await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/documents/{documentId}/delete-forever{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteDocumentForever", cancellationToken: cancellationToken);
             }
             
         

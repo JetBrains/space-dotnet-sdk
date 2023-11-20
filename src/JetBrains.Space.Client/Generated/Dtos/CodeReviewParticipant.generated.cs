@@ -34,11 +34,12 @@ public sealed class CodeReviewParticipant
 {
     public CodeReviewParticipant() { }
     
-    public CodeReviewParticipant(TDMemberProfile user, CodeReviewParticipantRole role, bool? hasOwnedFiles = null, bool? reviewOnlyOwnedFiles = null, ReviewerState? state = null, bool? isApproveSticky = null, bool? theirTurn = null, List<CodeReviewParticipantQualityGateSlot>? qualityGateSlots = null, List<CodeReviewParticipantCodeOwnerSlot>? codeOwnerSlots = null, DateTime? addedAt = null)
+    public CodeReviewParticipant(TDMemberProfile user, CodeReviewParticipantRole role, bool? hasOwnedFiles = null, bool? ownsAllFiles = null, bool? reviewOnlyOwnedFiles = null, ReviewerState? state = null, bool? isApproveSticky = null, bool? theirTurn = null, List<CodeReviewParticipantQualityGateSlot>? qualityGateSlots = null, List<CodeReviewParticipantCodeOwnerSlot>? codeOwnerSlots = null, DateTime? addedAt = null)
     {
         User = user;
         Role = role;
         IsHasOwnedFiles = hasOwnedFiles;
+        IsOwnsAllFiles = ownsAllFiles;
         IsReviewOnlyOwnedFiles = reviewOnlyOwnedFiles;
         State = state;
         IsApproveSticky = isApproveSticky;
@@ -75,6 +76,15 @@ public sealed class CodeReviewParticipant
     {
         get => _hasOwnedFiles.GetValue(InlineErrors);
         set => _hasOwnedFiles.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _ownsAllFiles = new PropertyValue<bool?>(nameof(CodeReviewParticipant), nameof(IsOwnsAllFiles), "ownsAllFiles");
+    
+    [JsonPropertyName("ownsAllFiles")]
+    public bool? IsOwnsAllFiles
+    {
+        get => _ownsAllFiles.GetValue(InlineErrors);
+        set => _ownsAllFiles.SetValue(value);
     }
 
     private PropertyValue<bool?> _reviewOnlyOwnedFiles = new PropertyValue<bool?>(nameof(CodeReviewParticipant), nameof(IsReviewOnlyOwnedFiles), "reviewOnlyOwnedFiles");
@@ -148,6 +158,7 @@ public sealed class CodeReviewParticipant
         _user.SetAccessPath(parentChainPath, validateHasBeenSet);
         _role.SetAccessPath(parentChainPath, validateHasBeenSet);
         _hasOwnedFiles.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _ownsAllFiles.SetAccessPath(parentChainPath, validateHasBeenSet);
         _reviewOnlyOwnedFiles.SetAccessPath(parentChainPath, validateHasBeenSet);
         _state.SetAccessPath(parentChainPath, validateHasBeenSet);
         _isApproveSticky.SetAccessPath(parentChainPath, validateHasBeenSet);
