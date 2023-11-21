@@ -61,7 +61,9 @@ public static class MessageSectionPartialExtensions
     /// <remarks>
     /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
     /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
     [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.", DiagnosticId = "SPC001")]
 #else
     [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.")]
@@ -76,7 +78,9 @@ public static class MessageSectionPartialExtensions
     /// <remarks>
     /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
     /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
     [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.", DiagnosticId = "SPC001")]
 #else
     [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.")]
@@ -91,7 +95,9 @@ public static class MessageSectionPartialExtensions
     /// <remarks>
     /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
     /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
     [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.", DiagnosticId = "SPC001")]
 #else
     [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.")]
@@ -106,7 +112,9 @@ public static class MessageSectionPartialExtensions
     /// <remarks>
     /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
     /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
     [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.", DiagnosticId = "SPC001")]
 #else
     [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.")]

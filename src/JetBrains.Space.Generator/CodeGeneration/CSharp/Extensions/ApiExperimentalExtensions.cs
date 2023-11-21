@@ -8,8 +8,14 @@ public static class ApiExperimentalExtensions
     public static string ToCSharpExperimental(this ApiExperimental subject)
     {
         var builder = new CSharpBuilder();
-        builder.AppendLine($"#if NET6_0_OR_GREATER");
-        
+
+
+        builder.AppendLine($"#if NET8_0_OR_GREATER");
+
+        builder.AppendLine($"[System.Diagnostics.CodeAnalysis.Experimental(\"SPC001\")]");
+
+        builder.AppendLine($"#elif NET6_0_OR_GREATER");
+
         builder.Append("[Obsolete(\"");
         if (!string.IsNullOrEmpty(subject.Message))
         {

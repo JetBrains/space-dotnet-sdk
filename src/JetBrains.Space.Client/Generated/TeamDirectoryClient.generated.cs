@@ -1716,7 +1716,9 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
         [Obsolete("Light guests", DiagnosticId = "SPC001")]
 #else
         [Obsolete("Light guests")]
@@ -1750,7 +1752,9 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
         [Obsolete("Light guests", DiagnosticId = "SPC001")]
 #else
         [Obsolete("Light guests")]
@@ -2114,7 +2118,9 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// <remarks>
             /// Grammar error corrections and text completion with Grazie
             /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+            [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
             [Obsolete("Grammar error corrections and text completion with Grazie", DiagnosticId = "SPC001")]
 #else
             [Obsolete("Grammar error corrections and text completion with Grazie")]
@@ -2148,7 +2154,9 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// <remarks>
                 /// Grammar error corrections and text completion with Grazie
                 /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+                [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
                 [Obsolete("Grammar error corrections and text completion with Grazie", DiagnosticId = "SPC001")]
 #else
                 [Obsolete("Grammar error corrections and text completion with Grazie")]
@@ -2187,7 +2195,9 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// <remarks>
                 /// Grammar error corrections and text completion with Grazie
                 /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+                [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
                 [Obsolete("Grammar error corrections and text completion with Grazie", DiagnosticId = "SPC001")]
 #else
                 [Obsolete("Grammar error corrections and text completion with Grazie")]

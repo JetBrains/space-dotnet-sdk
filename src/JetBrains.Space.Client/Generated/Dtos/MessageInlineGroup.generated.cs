@@ -29,7 +29,9 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+[System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
 [Obsolete("This part of API is not supported yet on mobile clients. Messages using it will be replaced with stubs on iOS and Android.", DiagnosticId = "SPC001")]
 #else
 [Obsolete("This part of API is not supported yet on mobile clients. Messages using it will be replaced with stubs on iOS and Android.")]

@@ -44,7 +44,9 @@ public partial class ExternalIssueClient : ISpaceClient
     /// <remarks>
     /// External issue trackers
     /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
     [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
     [Obsolete("External issue trackers")]
@@ -71,7 +73,9 @@ public partial class ExternalIssueClient : ISpaceClient
     /// <remarks>
     /// External issue trackers
     /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
     [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
     [Obsolete("External issue trackers")]
@@ -96,7 +100,9 @@ public partial class ExternalIssueClient : ISpaceClient
     /// <remarks>
     /// External issue trackers
     /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
     [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
     [Obsolete("External issue trackers")]
@@ -121,7 +127,9 @@ public partial class ExternalIssueClient : ISpaceClient
     /// <remarks>
     /// External issue trackers
     /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
     [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
     [Obsolete("External issue trackers")]
@@ -153,7 +161,9 @@ public partial class ExternalIssueClient : ISpaceClient
     /// * Update in a set of commits or code reviews in Space linked to a given external issue;
     /// * Update in a set of external issues linked to a given commit or code review in Space.
     /// </param>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
     [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
     [Obsolete("External issue trackers")]
@@ -186,7 +196,9 @@ public partial class ExternalIssueClient : ISpaceClient
         /// <remarks>
         /// External issue trackers
         /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
         [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
         [Obsolete("External issue trackers")]
@@ -208,7 +220,9 @@ public partial class ExternalIssueClient : ISpaceClient
         /// <remarks>
         /// External issue trackers
         /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
         [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
         [Obsolete("External issue trackers")]
@@ -227,7 +241,9 @@ public partial class ExternalIssueClient : ISpaceClient
         /// <remarks>
         /// External issue trackers
         /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
         [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
         [Obsolete("External issue trackers")]
@@ -272,7 +288,9 @@ public partial class ExternalIssueClient : ISpaceClient
             /// <remarks>
             /// External issue trackers
             /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+            [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
             [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
             [Obsolete("External issue trackers")]
@@ -297,7 +315,9 @@ public partial class ExternalIssueClient : ISpaceClient
             /// <remarks>
             /// External issue trackers
             /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+            [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
             [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
             [Obsolete("External issue trackers")]
@@ -332,7 +352,9 @@ public partial class ExternalIssueClient : ISpaceClient
             /// <remarks>
             /// External issue trackers
             /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+            [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
             [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
             [Obsolete("External issue trackers")]
@@ -358,7 +380,9 @@ public partial class ExternalIssueClient : ISpaceClient
             /// <remarks>
             /// External issue trackers
             /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+            [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
             [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
 #else
             [Obsolete("External issue trackers")]

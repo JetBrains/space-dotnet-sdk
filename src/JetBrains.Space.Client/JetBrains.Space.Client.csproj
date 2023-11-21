@@ -4,6 +4,8 @@
         <Description>Generated SDK client for the JetBrains Space API.</Description>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+        <NoWarn>SPC001</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>

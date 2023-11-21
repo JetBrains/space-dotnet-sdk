@@ -2989,7 +2989,9 @@ public partial class ProjectClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+                [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
                 [Obsolete("Connect branch to issue", DiagnosticId = "SPC001")]
 #else
                 [Obsolete("Connect branch to issue")]
@@ -3023,7 +3025,9 @@ public partial class ProjectClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+                [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
                 [Obsolete("Connect branch to issue", DiagnosticId = "SPC001")]
 #else
                 [Obsolete("Connect branch to issue")]
@@ -3676,7 +3680,9 @@ public partial class ProjectClient : ISpaceClient
         /// <remarks>
         /// This API is experimental
         /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
         [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
 #else
         [Obsolete("This API is experimental")]
@@ -3763,7 +3769,9 @@ public partial class ProjectClient : ISpaceClient
         /// <remarks>
         /// This API is experimental
         /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
         [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
 #else
         [Obsolete("This API is experimental")]
@@ -3816,7 +3824,9 @@ public partial class ProjectClient : ISpaceClient
         /// <remarks>
         /// This API is experimental
         /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
         [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
 #else
         [Obsolete("This API is experimental")]
@@ -5103,7 +5113,9 @@ public partial class ProjectClient : ISpaceClient
         /// <remarks>
         /// This API is experimental
         /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
         [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
 #else
         [Obsolete("This API is experimental")]
@@ -5126,7 +5138,9 @@ public partial class ProjectClient : ISpaceClient
         /// <remarks>
         /// This API is experimental
         /// </remarks>
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
+#elif NET6_0_OR_GREATER
         [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
 #else
         [Obsolete("This API is experimental")]
