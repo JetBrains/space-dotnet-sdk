@@ -56,7 +56,7 @@ public class CSharpPartialExtensionsGenerator
         {
             builder.AppendLine($"{indent}{apiField.Deprecation.ToCSharpDeprecation()}");
         }
-        else if (apiField.Experimental != null)
+        else if (apiField.Experimental != null && FeatureFlags.GenerateExperimentalAnnotations)
         {
             builder.AppendLine($"{indent}{apiField.Experimental.ToCSharpExperimental()}");
         }
@@ -83,7 +83,7 @@ public class CSharpPartialExtensionsGenerator
                 {
                     builder.AppendLine($"{indent}{apiField.Deprecation.ToCSharpDeprecation()}");
                 }
-                else if (apiField.Experimental != null)
+                else if (apiField.Experimental != null && FeatureFlags.GenerateExperimentalAnnotations)
                 {
                     builder.AppendLine($"{indent}{apiField.Experimental.ToCSharpExperimental()}");
                 }
@@ -103,7 +103,7 @@ public class CSharpPartialExtensionsGenerator
             {
                 builder.AppendLine($"{indent}{apiField.Deprecation.ToCSharpDeprecation()}");
             }
-            else if (apiField.Experimental != null)
+            else if (apiField.Experimental != null && FeatureFlags.GenerateExperimentalAnnotations)
             {
                 builder.AppendLine($"{indent}{apiField.Experimental.ToCSharpExperimental()}");
             }

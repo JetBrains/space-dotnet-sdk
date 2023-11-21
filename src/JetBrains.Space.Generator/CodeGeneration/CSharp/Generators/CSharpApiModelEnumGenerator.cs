@@ -16,7 +16,7 @@ public class CSharpApiModelEnumGenerator
         {
             builder.AppendLine($"{indent}{apiEnum.Deprecation.ToCSharpDeprecation()}");
         }
-        else if (apiEnum.Experimental != null)
+        else if (apiEnum.Experimental != null && FeatureFlags.GenerateExperimentalAnnotations)
         {
             builder.AppendLine($"{indent}{apiEnum.Experimental.ToCSharpExperimental()}");
         }

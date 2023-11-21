@@ -9,7 +9,6 @@ public static class ApiExperimentalExtensions
     {
         var builder = new CSharpBuilder();
 
-
         builder.AppendLine($"#if NET8_0_OR_GREATER");
 
         builder.AppendLine($"[System.Diagnostics.CodeAnalysis.Experimental(\"SPC001\")]");

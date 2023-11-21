@@ -614,7 +614,7 @@ public class CSharpApiModelResourceGenerator
         {
             builder.AppendLine($"{indent}{featureFlag.ToCSharpFeatureFlag()}");
         }
-        else if (apiEndpoint.Experimental != null)
+        else if (apiEndpoint.Experimental != null && FeatureFlags.GenerateExperimentalAnnotations)
         {
             builder.AppendLine($"{indent}{apiEndpoint.Experimental.ToCSharpExperimental()}");
         }
