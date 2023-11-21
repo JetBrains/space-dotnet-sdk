@@ -2989,14 +2989,6 @@ public partial class ProjectClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-#if NET8_0_OR_GREATER
-                [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-                [Obsolete("Connect branch to issue", DiagnosticId = "SPC001")]
-#else
-                [Obsolete("Connect branch to issue")]
-#endif
-                
                 public async Task AddBranchLinksAsync(ProjectIdentifier project, IssueIdentifier issueId, string repository, List<string> branches, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3025,14 +3017,6 @@ public partial class ProjectClient : ISpaceClient
                 /// </item>
                 /// </list>
                 /// </remarks>
-#if NET8_0_OR_GREATER
-                [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-                [Obsolete("Connect branch to issue", DiagnosticId = "SPC001")]
-#else
-                [Obsolete("Connect branch to issue")]
-#endif
-                
                 public async Task RemoveBranchLinksAsync(ProjectIdentifier project, IssueIdentifier issueId, string repository, List<string> branchHeads, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -3680,14 +3664,6 @@ public partial class ProjectClient : ISpaceClient
         /// <remarks>
         /// This API is experimental
         /// </remarks>
-#if NET8_0_OR_GREATER
-        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-        [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
-#else
-        [Obsolete("This API is experimental")]
-#endif
-        
         public async Task<AdditionalRepositoryInfo> GetAdditionalRepositoryInfoAsync(ProjectIdentifier project, string repository, Func<Partial<AdditionalRepositoryInfo>, Partial<AdditionalRepositoryInfo>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3769,14 +3745,6 @@ public partial class ProjectClient : ISpaceClient
         /// <remarks>
         /// This API is experimental
         /// </remarks>
-#if NET8_0_OR_GREATER
-        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-        [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
-#else
-        [Obsolete("This API is experimental")]
-#endif
-        
         public async Task<InlineDiff> GetInlineMergeDiffAsync(ProjectIdentifier project, string repository, GitEntryType entryType, bool ignoreWhitespaces = false, bool squashSimpleChanges = true, string? baseBlobId = null, string? sourceBlobId = null, string? targetBlobId = null, Func<Partial<InlineDiff>, Partial<InlineDiff>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3824,14 +3792,6 @@ public partial class ProjectClient : ISpaceClient
         /// <remarks>
         /// This API is experimental
         /// </remarks>
-#if NET8_0_OR_GREATER
-        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-        [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
-#else
-        [Obsolete("This API is experimental")]
-#endif
-        
         public async Task<List<DeclarationScope>> GetDeclarationScopesForFileAsync(ProjectIdentifier project, string repository, string filename, string blobId, Func<Partial<DeclarationScope>, Partial<DeclarationScope>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -5113,14 +5073,6 @@ public partial class ProjectClient : ISpaceClient
         /// <remarks>
         /// This API is experimental
         /// </remarks>
-#if NET8_0_OR_GREATER
-        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-        [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
-#else
-        [Obsolete("This API is experimental")]
-#endif
-        
         public async Task<Batch<CodeIssueFeedback>> GetUserFeedbackOnCodeIssuesAsync(ProjectIdentifier project, string tool, ReviewIdentifier? reviewId = null, BatchInfo? batchInfo = null, Func<Partial<Batch<CodeIssueFeedback>>, Partial<Batch<CodeIssueFeedback>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -5138,14 +5090,6 @@ public partial class ProjectClient : ISpaceClient
         /// <remarks>
         /// This API is experimental
         /// </remarks>
-#if NET8_0_OR_GREATER
-        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-        [Obsolete("This API is experimental", DiagnosticId = "SPC001")]
-#else
-        [Obsolete("This API is experimental")]
-#endif
-        
         public IAsyncEnumerable<CodeIssueFeedback> GetUserFeedbackOnCodeIssuesAsyncEnumerable(ProjectIdentifier project, string tool, ReviewIdentifier? reviewId = null, BatchInfo? batchInfo = null, Func<Partial<CodeIssueFeedback>, Partial<CodeIssueFeedback>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetUserFeedbackOnCodeIssuesAsync(project: project, tool: tool, reviewId: reviewId, cancellationToken: cancellationToken, batchInfo: new BatchInfo(batchSize: batchInfo?.BatchSize ?? 100, offset: batchInfo?.Offset), partial: builder => Partial<Batch<CodeIssueFeedback>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CodeIssueFeedback>.Default())), batchInfo?.Offset, cancellationToken);
     

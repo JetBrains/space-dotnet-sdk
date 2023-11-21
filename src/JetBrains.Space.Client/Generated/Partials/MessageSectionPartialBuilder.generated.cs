@@ -61,14 +61,6 @@ public static class MessageSectionPartialExtensions
     /// <remarks>
     /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
     /// </remarks>
-#if NET8_0_OR_GREATER
-    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.", DiagnosticId = "SPC001")]
-#else
-    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.")]
-#endif
-    
     public static Partial<MessageSection> WithStyle(this Partial<MessageSection> it)
         => it.AddFieldName("style");
     
@@ -78,14 +70,6 @@ public static class MessageSectionPartialExtensions
     /// <remarks>
     /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
     /// </remarks>
-#if NET8_0_OR_GREATER
-    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.", DiagnosticId = "SPC001")]
-#else
-    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.")]
-#endif
-    
     public static Partial<MessageSection> WithStyle(this Partial<MessageSection> it, Func<Partial<MessageStyle>, Partial<MessageStyle>> partialBuilder)
         => it.AddFieldName("style", partialBuilder(new Partial<MessageStyle>(it)));
     
@@ -95,14 +79,6 @@ public static class MessageSectionPartialExtensions
     /// <remarks>
     /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
     /// </remarks>
-#if NET8_0_OR_GREATER
-    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.", DiagnosticId = "SPC001")]
-#else
-    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.")]
-#endif
-    
     public static Partial<MessageSection> WithTextSize(this Partial<MessageSection> it)
         => it.AddFieldName("textSize");
     
@@ -112,14 +88,6 @@ public static class MessageSectionPartialExtensions
     /// <remarks>
     /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
     /// </remarks>
-#if NET8_0_OR_GREATER
-    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.", DiagnosticId = "SPC001")]
-#else
-    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.")]
-#endif
-    
     public static Partial<MessageSection> WithTextSize(this Partial<MessageSection> it, Func<Partial<MessageTextSize>, Partial<MessageTextSize>> partialBuilder)
         => it.AddFieldName("textSize", partialBuilder(new Partial<MessageTextSize>(it)));
     

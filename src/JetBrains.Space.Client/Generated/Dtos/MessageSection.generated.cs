@@ -91,14 +91,6 @@ public sealed class MessageSection
     /// <remarks>
     /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
     /// </remarks>
-#if NET8_0_OR_GREATER
-    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.", DiagnosticId = "SPC001")]
-#else
-    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.")]
-#endif
-    
     [JsonPropertyName("style")]
     public MessageStyle? Style
     {
@@ -114,14 +106,6 @@ public sealed class MessageSection
     /// <remarks>
     /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
     /// </remarks>
-#if NET8_0_OR_GREATER
-    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.", DiagnosticId = "SPC001")]
-#else
-    [Obsolete("This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.")]
-#endif
-    
     [JsonPropertyName("textSize")]
     public MessageTextSize? TextSize
     {

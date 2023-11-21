@@ -44,14 +44,6 @@ public partial class ExternalIssueClient : ISpaceClient
     /// <remarks>
     /// External issue trackers
     /// </remarks>
-#if NET8_0_OR_GREATER
-    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-    [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
-#else
-    [Obsolete("External issue trackers")]
-#endif
-    
     public async Task SetDefaultTargetIssueStatusForMergeRequestMergeAsync(ApplicationIdentifier application, ProjectIdentifier project, string issuePrefix, string? targetStatusForMergeRequestMerge = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
@@ -73,14 +65,6 @@ public partial class ExternalIssueClient : ISpaceClient
     /// <remarks>
     /// External issue trackers
     /// </remarks>
-#if NET8_0_OR_GREATER
-    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-    [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
-#else
-    [Obsolete("External issue trackers")]
-#endif
-    
     public async Task PostExternalIssueDataAsync(string issuePrefix, List<ExternalIssueDataIn> issues, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
@@ -100,14 +84,6 @@ public partial class ExternalIssueClient : ISpaceClient
     /// <remarks>
     /// External issue trackers
     /// </remarks>
-#if NET8_0_OR_GREATER
-    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-    [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
-#else
-    [Obsolete("External issue trackers")]
-#endif
-    
     public async Task ProvideAllPossibleStatusesForExternalIssuesAsync(string issuePrefix, List<ExternalIssueStatusIn> statuses, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
@@ -127,14 +103,6 @@ public partial class ExternalIssueClient : ISpaceClient
     /// <remarks>
     /// External issue trackers
     /// </remarks>
-#if NET8_0_OR_GREATER
-    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-    [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
-#else
-    [Obsolete("External issue trackers")]
-#endif
-    
     public async Task MarkExternalIssuesAsDeletedAsync(string issuePrefix, List<string> issueIds, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
@@ -161,14 +129,6 @@ public partial class ExternalIssueClient : ISpaceClient
     /// * Update in a set of commits or code reviews in Space linked to a given external issue;
     /// * Update in a set of external issues linked to a given commit or code review in Space.
     /// </param>
-#if NET8_0_OR_GREATER
-    [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-    [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
-#else
-    [Obsolete("External issue trackers")]
-#endif
-    
     public async Task<ExternalIssueEventQueueItemsBatch> GetExternalIssueEventQueueItemsAsync(int batchSize, ExternalIssueCodeLinkingEventsShape issueCodeLinkingEventsShape = ExternalIssueCodeLinkingEventsShape.Transactions, bool includeCommitChanges = false, long? fromEtag = null, Func<Partial<ExternalIssueEventQueueItemsBatch>, Partial<ExternalIssueEventQueueItemsBatch>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
@@ -196,14 +156,6 @@ public partial class ExternalIssueClient : ISpaceClient
         /// <remarks>
         /// External issue trackers
         /// </remarks>
-#if NET8_0_OR_GREATER
-        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-        [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
-#else
-        [Obsolete("External issue trackers")]
-#endif
-        
         public async Task<List<CreateExternalIssueProjectResult>> ConnectExternalIssueTrackerProjectsAsync(List<ExternalIssueTrackerProjectIn> projects, Func<Partial<CreateExternalIssueProjectResult>, Partial<CreateExternalIssueProjectResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -220,14 +172,6 @@ public partial class ExternalIssueClient : ISpaceClient
         /// <remarks>
         /// External issue trackers
         /// </remarks>
-#if NET8_0_OR_GREATER
-        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-        [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
-#else
-        [Obsolete("External issue trackers")]
-#endif
-        
         public async Task<List<ExternalIssueTrackerProjectApi>> GetAllConnectedExternalIssueTrackerProjectsAsync(ApplicationIdentifier application, Func<Partial<ExternalIssueTrackerProjectApi>, Partial<ExternalIssueTrackerProjectApi>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -241,14 +185,6 @@ public partial class ExternalIssueClient : ISpaceClient
         /// <remarks>
         /// External issue trackers
         /// </remarks>
-#if NET8_0_OR_GREATER
-        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-        [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
-#else
-        [Obsolete("External issue trackers")]
-#endif
-        
         public async Task DisconnectExternalIssueTrackerProjectAsync(string issuePrefix, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -288,14 +224,6 @@ public partial class ExternalIssueClient : ISpaceClient
             /// <remarks>
             /// External issue trackers
             /// </remarks>
-#if NET8_0_OR_GREATER
-            [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-            [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
-#else
-            [Obsolete("External issue trackers")]
-#endif
-            
             public async Task LinkCodeReviewsToExternalIssueAsync(string issuePrefix, string issueId, ProjectIdentifier project, List<ReviewIdentifier> codeReviewIds, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -315,14 +243,6 @@ public partial class ExternalIssueClient : ISpaceClient
             /// <remarks>
             /// External issue trackers
             /// </remarks>
-#if NET8_0_OR_GREATER
-            [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-            [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
-#else
-            [Obsolete("External issue trackers")]
-#endif
-            
             public async Task UnlinkCodeReviewsFromExternalIssueAsync(string issuePrefix, string issueId, ProjectIdentifier project, List<ReviewIdentifier> codeReviewIds, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -352,14 +272,6 @@ public partial class ExternalIssueClient : ISpaceClient
             /// <remarks>
             /// External issue trackers
             /// </remarks>
-#if NET8_0_OR_GREATER
-            [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-            [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
-#else
-            [Obsolete("External issue trackers")]
-#endif
-            
             public async Task LinkCommitsToExternalIssueAsync(string issuePrefix, string issueId, ProjectIdentifier project, string repository, List<string> commitIds, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -380,14 +292,6 @@ public partial class ExternalIssueClient : ISpaceClient
             /// <remarks>
             /// External issue trackers
             /// </remarks>
-#if NET8_0_OR_GREATER
-            [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-            [Obsolete("External issue trackers", DiagnosticId = "SPC001")]
-#else
-            [Obsolete("External issue trackers")]
-#endif
-            
             public async Task UnlinkCommitsFromExternalIssueAsync(string issuePrefix, string issueId, ProjectIdentifier project, string repository, List<string> commitIds, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();

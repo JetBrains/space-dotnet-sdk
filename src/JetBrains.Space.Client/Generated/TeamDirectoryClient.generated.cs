@@ -1716,14 +1716,6 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-#if NET8_0_OR_GREATER
-        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-        [Obsolete("Light guests", DiagnosticId = "SPC001")]
-#else
-        [Obsolete("Light guests")]
-#endif
-        
         public async Task<DryRunResult> ConvertOrganizationMemberIntoGuestUserAsync(ProfileIdentifier profile, bool dryrun, GuestType? guestType = null, Func<Partial<DryRunResult>, Partial<DryRunResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -1752,14 +1744,6 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-#if NET8_0_OR_GREATER
-        [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-        [Obsolete("Light guests", DiagnosticId = "SPC001")]
-#else
-        [Obsolete("Light guests")]
-#endif
-        
         public async Task<DryRunResult> ConvertGuestUserIntoOrganizationMemberAsync(ProfileIdentifier profile, bool dryrun, Func<Partial<DryRunResult>, Partial<DryRunResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -2118,14 +2102,6 @@ public partial class TeamDirectoryClient : ISpaceClient
             /// <remarks>
             /// Grammar error corrections and text completion with Grazie
             /// </remarks>
-#if NET8_0_OR_GREATER
-            [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-            [Obsolete("Grammar error corrections and text completion with Grazie", DiagnosticId = "SPC001")]
-#else
-            [Obsolete("Grammar error corrections and text completion with Grazie")]
-#endif
-            
             public async Task<List<GrammarDictionaryEntryDTO>> GetThePersonalDictionaryEntriesAsync(ProfileIdentifier profileId, GrammarDictionaryType dictionaryType, Func<Partial<GrammarDictionaryEntryDTO>, Partial<GrammarDictionaryEntryDTO>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -2154,14 +2130,6 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// <remarks>
                 /// Grammar error corrections and text completion with Grazie
                 /// </remarks>
-#if NET8_0_OR_GREATER
-                [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-                [Obsolete("Grammar error corrections and text completion with Grazie", DiagnosticId = "SPC001")]
-#else
-                [Obsolete("Grammar error corrections and text completion with Grazie")]
-#endif
-                
                 public async Task<bool> AddTheEntryToThePersonalDictionaryAsync(ProfileIdentifier profileId, GrammarDictionaryType dictionaryType, GrammarDictionaryEntryDTO entry, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
@@ -2195,14 +2163,6 @@ public partial class TeamDirectoryClient : ISpaceClient
                 /// <remarks>
                 /// Grammar error corrections and text completion with Grazie
                 /// </remarks>
-#if NET8_0_OR_GREATER
-                [System.Diagnostics.CodeAnalysis.Experimental("SPC001")]
-#elif NET6_0_OR_GREATER
-                [Obsolete("Grammar error corrections and text completion with Grazie", DiagnosticId = "SPC001")]
-#else
-                [Obsolete("Grammar error corrections and text completion with Grazie")]
-#endif
-                
                 public async Task<bool> RemoveTheEntryFromThePersonalDictionaryAsync(ProfileIdentifier profileId, GrammarDictionaryType dictionaryType, string entryValue, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
                 {
                     var queryParameters = new NameValueCollection();
