@@ -56,38 +56,30 @@ public static class MessageSectionPartialExtensions
         => it.AddFieldName("footer");
     
     /// <summary>
-    /// Section style determines the color of the left-hand side bar
+    /// Section style determines the color of the left-hand side bar.
+    /// Warning: this parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
     /// </summary>
-    /// <remarks>
-    /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
-    /// </remarks>
     public static Partial<MessageSection> WithStyle(this Partial<MessageSection> it)
         => it.AddFieldName("style");
     
     /// <summary>
-    /// Section style determines the color of the left-hand side bar
+    /// Section style determines the color of the left-hand side bar.
+    /// Warning: this parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
     /// </summary>
-    /// <remarks>
-    /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
-    /// </remarks>
     public static Partial<MessageSection> WithStyle(this Partial<MessageSection> it, Func<Partial<MessageStyle>, Partial<MessageStyle>> partialBuilder)
         => it.AddFieldName("style", partialBuilder(new Partial<MessageStyle>(it)));
     
     /// <summary>
-    /// Default text size for all the elements within the section (excluding header and footer)
+    /// Default text size for all the elements within the section (excluding header and footer).
+    /// Warning: this parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
     /// </summary>
-    /// <remarks>
-    /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
-    /// </remarks>
     public static Partial<MessageSection> WithTextSize(this Partial<MessageSection> it)
         => it.AddFieldName("textSize");
     
     /// <summary>
-    /// Default text size for all the elements within the section (excluding header and footer)
+    /// Default text size for all the elements within the section (excluding header and footer).
+    /// Warning: this parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
     /// </summary>
-    /// <remarks>
-    /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
-    /// </remarks>
     public static Partial<MessageSection> WithTextSize(this Partial<MessageSection> it, Func<Partial<MessageTextSize>, Partial<MessageTextSize>> partialBuilder)
         => it.AddFieldName("textSize", partialBuilder(new Partial<MessageTextSize>(it)));
     

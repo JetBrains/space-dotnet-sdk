@@ -39,10 +39,11 @@ public partial class RichTextClient : ISpaceClient
     }
     
     /// <summary>
-    /// Parses <a href="https://www.jetbrains.com/help/space/markdown-syntax.html">Space markdown syntax</a> into a tree presentation
+    /// Parses <a href="https://www.jetbrains.com/help/space/markdown-syntax.html">Space markdown syntax</a> into a tree presentation.
+    /// Warning: we are currently refining the hierarchy of the RtDocument, and it is likely to undergo changes in the near future. This hierarchy will be utilized in various subsystems such as documents, chats, and issues.
     /// </summary>
     /// <remarks>
-    /// We are currently refining the hierarchy of the RtDocument, and it is likely to undergo changes in the near future. This hierarchy will be utilized in various subsystems such as documents, chats, and issues.
+    /// Experimental HTTP API
     /// </remarks>
     public async Task<RtDocument> ParseMarkdownAsync(string text, string? schemaVersion = null, Func<Partial<RtDocument>, Partial<RtDocument>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {

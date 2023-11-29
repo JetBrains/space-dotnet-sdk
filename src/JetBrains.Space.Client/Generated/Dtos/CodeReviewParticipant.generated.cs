@@ -34,7 +34,7 @@ public sealed class CodeReviewParticipant
 {
     public CodeReviewParticipant() { }
     
-    public CodeReviewParticipant(TDMemberProfile user, CodeReviewParticipantRole role, bool? hasOwnedFiles = null, bool? ownsAllFiles = null, bool? reviewOnlyOwnedFiles = null, ReviewerState? state = null, bool? isApproveSticky = null, bool? theirTurn = null, List<CodeReviewParticipantQualityGateSlot>? qualityGateSlots = null, List<CodeReviewParticipantCodeOwnerSlot>? codeOwnerSlots = null, DateTime? addedAt = null)
+    public CodeReviewParticipant(TDMemberProfile user, CodeReviewParticipantRole role, bool? hasOwnedFiles = null, bool? ownsAllFiles = null, bool? reviewOnlyOwnedFiles = null, ReviewerState? state = null, bool? isApproveSticky = null, bool? theirTurn = null, List<CodeReviewParticipantQualityGateSlot>? qualityGateSlots = null, List<CodeReviewParticipantCodeOwnerSlot>? codeOwnerSlots = null, DateTime? addedAt = null, CodeReviewProgress? reviewProgress = null)
     {
         User = user;
         Role = role;
@@ -47,6 +47,7 @@ public sealed class CodeReviewParticipant
         QualityGateSlots = qualityGateSlots;
         CodeOwnerSlots = codeOwnerSlots;
         AddedAt = addedAt;
+        ReviewProgress = reviewProgress;
     }
     
     private PropertyValue<TDMemberProfile> _user = new PropertyValue<TDMemberProfile>(nameof(CodeReviewParticipant), nameof(User), "user");
@@ -153,6 +154,15 @@ public sealed class CodeReviewParticipant
         set => _addedAt.SetValue(value);
     }
 
+    private PropertyValue<CodeReviewProgress?> _reviewProgress = new PropertyValue<CodeReviewProgress?>(nameof(CodeReviewParticipant), nameof(ReviewProgress), "reviewProgress");
+    
+    [JsonPropertyName("reviewProgress")]
+    public CodeReviewProgress? ReviewProgress
+    {
+        get => _reviewProgress.GetValue(InlineErrors);
+        set => _reviewProgress.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _user.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -166,6 +176,7 @@ public sealed class CodeReviewParticipant
         _qualityGateSlots.SetAccessPath(parentChainPath, validateHasBeenSet);
         _codeOwnerSlots.SetAccessPath(parentChainPath, validateHasBeenSet);
         _addedAt.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _reviewProgress.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

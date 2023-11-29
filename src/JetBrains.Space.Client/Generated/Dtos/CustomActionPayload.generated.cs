@@ -37,11 +37,12 @@ public sealed class CustomActionPayload
     
     public CustomActionPayload() { }
     
-    public CustomActionPayload(string actionId, string clientId, string userId, string? verificationToken = null)
+    public CustomActionPayload(string actionId, string clientId, string userId, string? actionValue = null, string? verificationToken = null)
     {
         ActionId = actionId;
         ClientId = clientId;
         UserId = userId;
+        ActionValue = actionValue;
         VerificationToken = verificationToken;
     }
     
@@ -75,6 +76,15 @@ public sealed class CustomActionPayload
         set => _userId.SetValue(value);
     }
 
+    private PropertyValue<string?> _actionValue = new PropertyValue<string?>(nameof(CustomActionPayload), nameof(ActionValue), "actionValue");
+    
+    [JsonPropertyName("actionValue")]
+    public string? ActionValue
+    {
+        get => _actionValue.GetValue(InlineErrors);
+        set => _actionValue.SetValue(value);
+    }
+
     private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(CustomActionPayload), nameof(VerificationToken), "verificationToken");
     
     [Obsolete("Verification token is only sent for old applications that have the Verification Token authentication set up. New applications cannot use this authentication. (since 2022-11-16) (will be removed in a future version)")]
@@ -90,6 +100,7 @@ public sealed class CustomActionPayload
         _actionId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _userId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _actionValue.SetAccessPath(parentChainPath, validateHasBeenSet);
         _verificationToken.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

@@ -27,15 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FollowedMembersSettingsPartialBuilder;
+namespace JetBrains.Space.Client.DevConfigurationHookPartialBuilder;
 
-public static class FollowedMembersSettingsPartialExtensions
+public static class DevConfigurationHookPartialExtensions
 {
-    public static Partial<FollowedMembersSettings> WithIsEnabled(this Partial<FollowedMembersSettings> it)
-        => it.AddFieldName("enabled");
+    public static Partial<DevConfigurationHook> WithTrigger(this Partial<DevConfigurationHook> it)
+        => it.AddFieldName("trigger");
     
-    public static Partial<FollowedMembersSettings> WithMembers(this Partial<FollowedMembersSettings> it)
-        => it.AddFieldName("members");
+    public static Partial<DevConfigurationHook> WithTrigger(this Partial<DevConfigurationHook> it, Func<Partial<DevConfigurationHookTrigger>, Partial<DevConfigurationHookTrigger>> partialBuilder)
+        => it.AddFieldName("trigger", partialBuilder(new Partial<DevConfigurationHookTrigger>(it)));
+    
+    public static Partial<DevConfigurationHook> WithScript(this Partial<DevConfigurationHook> it)
+        => it.AddFieldName("script");
     
 }
 

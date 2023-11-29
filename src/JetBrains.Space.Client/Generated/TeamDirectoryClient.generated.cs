@@ -1706,9 +1706,6 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// Convert to guest profile
         /// </summary>
         /// <remarks>
-        /// Light guests
-        /// </remarks>
-        /// <remarks>
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
@@ -1733,9 +1730,6 @@ public partial class TeamDirectoryClient : ISpaceClient
         /// <summary>
         /// Convert to organization member
         /// </summary>
-        /// <remarks>
-        /// Light guests
-        /// </remarks>
         /// <remarks>
         /// Required permissions:
         /// <list type="bullet">
@@ -1913,40 +1907,6 @@ public partial class TeamDirectoryClient : ISpaceClient
                 var queryParameters = new NameValueCollection();
                 
                 await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/authentication-sessions/{owner}/{sessionId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "TerminateOwnAuthenticationSession", cancellationToken: cancellationToken);
-            }
-            
-        
-        }
-    
-        public DashboardClient Dashboards => new DashboardClient(_connection);
-        
-        public partial class DashboardClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public DashboardClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            public async Task<DashboardPreferencesRecord> GetDashboardAsync(DashboardIdentifier dashboard, Func<Partial<DashboardPreferencesRecord>, Partial<DashboardPreferencesRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<DashboardPreferencesRecord>()) : Partial<DashboardPreferencesRecord>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<DashboardPreferencesRecord>("GET", $"api/http/team-directory/profiles/dashboards/{dashboard}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetDashboard", cancellationToken: cancellationToken);
-            }
-            
-        
-            public async Task UpdateDashboardAsync(DashboardIdentifier dashboard, List<List<DashboardItemData>> data, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/dashboards/{dashboard}{queryParameters.ToQueryString()}", 
-                    new TeamDirectoryProfilesDashboardsForDashboardPatchRequest
-                    { 
-                        Data = data,
-                    }, requestHeaders: null, functionName: "UpdateDashboard", cancellationToken: cancellationToken);
             }
             
         
@@ -2346,40 +2306,6 @@ public partial class TeamDirectoryClient : ISpaceClient
                 
             
             }
-        
-        }
-    
-        public WidgetSettingClient WidgetSettings => new WidgetSettingClient(_connection);
-        
-        public partial class WidgetSettingClient : ISpaceClient
-        {
-            private readonly Connection _connection;
-            
-            public WidgetSettingClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            public async Task<WidgetSettingsRecord> GetWidgetSettingAsync(WidgetSettingsIdentifier widget, Func<Partial<WidgetSettingsRecord>, Partial<WidgetSettingsRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                queryParameters.Append("$fields", (partial != null ? partial(new Partial<WidgetSettingsRecord>()) : Partial<WidgetSettingsRecord>.Default()).ToString());
-                
-                return await _connection.RequestResourceAsync<WidgetSettingsRecord>("GET", $"api/http/team-directory/profiles/widget-settings/{widget}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetWidgetSetting", cancellationToken: cancellationToken);
-            }
-            
-        
-            public async Task UpdateWidgetSettingAsync(WidgetSettingsIdentifier widget, WidgetSettingsDTO settings, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-            {
-                var queryParameters = new NameValueCollection();
-                
-                await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/widget-settings/{widget}{queryParameters.ToQueryString()}", 
-                    new TeamDirectoryProfilesWidgetSettingsForWidgetPatchRequest
-                    { 
-                        Settings = settings,
-                    }, requestHeaders: null, functionName: "UpdateWidgetSetting", cancellationToken: cancellationToken);
-            }
-            
         
         }
     

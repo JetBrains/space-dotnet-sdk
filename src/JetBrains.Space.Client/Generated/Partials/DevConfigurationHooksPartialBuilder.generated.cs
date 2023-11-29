@@ -27,9 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.FollowedEntityDTOPartialBuilder;
+namespace JetBrains.Space.Client.DevConfigurationHooksPartialBuilder;
 
-public static class FollowedEntityDTOPartialExtensions
+public static class DevConfigurationHooksPartialExtensions
 {
+    public static Partial<DevConfigurationHooks> WithHooks(this Partial<DevConfigurationHooks> it)
+        => it.AddFieldName("hooks");
+    
+    public static Partial<DevConfigurationHooks> WithHooks(this Partial<DevConfigurationHooks> it, Func<Partial<DevConfigurationHook>, Partial<DevConfigurationHook>> partialBuilder)
+        => it.AddFieldName("hooks", partialBuilder(new Partial<DevConfigurationHook>(it)));
+    
 }
 

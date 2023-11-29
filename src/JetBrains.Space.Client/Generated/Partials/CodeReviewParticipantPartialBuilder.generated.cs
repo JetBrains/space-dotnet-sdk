@@ -83,5 +83,11 @@ public static class CodeReviewParticipantPartialExtensions
     public static Partial<CodeReviewParticipant> WithAddedAt(this Partial<CodeReviewParticipant> it)
         => it.AddFieldName("addedAt");
     
+    public static Partial<CodeReviewParticipant> WithReviewProgress(this Partial<CodeReviewParticipant> it)
+        => it.AddFieldName("reviewProgress");
+    
+    public static Partial<CodeReviewParticipant> WithReviewProgress(this Partial<CodeReviewParticipant> it, Func<Partial<CodeReviewProgress>, Partial<CodeReviewProgress>> partialBuilder)
+        => it.AddFieldName("reviewProgress", partialBuilder(new Partial<CodeReviewProgress>(it)));
+    
 }
 

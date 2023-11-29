@@ -29,41 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class FollowedMembersSettings
+public sealed class CodeReviewProgress
      : IPropagatePropertyAccessPath
 {
-    public FollowedMembersSettings() { }
+    public CodeReviewProgress() { }
     
-    public FollowedMembersSettings(bool enabled, List<string> members)
+    public CodeReviewProgress(int viewedFilesCount, int totalFilesToReviewCount)
     {
-        IsEnabled = enabled;
-        Members = members;
+        ViewedFilesCount = viewedFilesCount;
+        TotalFilesToReviewCount = totalFilesToReviewCount;
     }
     
-    private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(FollowedMembersSettings), nameof(IsEnabled), "enabled");
+    private PropertyValue<int> _viewedFilesCount = new PropertyValue<int>(nameof(CodeReviewProgress), nameof(ViewedFilesCount), "viewedFilesCount");
     
     [Required]
-    [JsonPropertyName("enabled")]
-    public bool IsEnabled
+    [JsonPropertyName("viewedFilesCount")]
+    public int ViewedFilesCount
     {
-        get => _enabled.GetValue(InlineErrors);
-        set => _enabled.SetValue(value);
+        get => _viewedFilesCount.GetValue(InlineErrors);
+        set => _viewedFilesCount.SetValue(value);
     }
 
-    private PropertyValue<List<string>> _members = new PropertyValue<List<string>>(nameof(FollowedMembersSettings), nameof(Members), "members", new List<string>());
+    private PropertyValue<int> _totalFilesToReviewCount = new PropertyValue<int>(nameof(CodeReviewProgress), nameof(TotalFilesToReviewCount), "totalFilesToReviewCount");
     
     [Required]
-    [JsonPropertyName("members")]
-    public List<string> Members
+    [JsonPropertyName("totalFilesToReviewCount")]
+    public int TotalFilesToReviewCount
     {
-        get => _members.GetValue(InlineErrors);
-        set => _members.SetValue(value);
+        get => _totalFilesToReviewCount.GetValue(InlineErrors);
+        set => _totalFilesToReviewCount.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _enabled.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _members.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _viewedFilesCount.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _totalFilesToReviewCount.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -29,14 +29,34 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public interface FollowedEntityDTO
-     : IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class DevConfigurationHooks
+     : IPropagatePropertyAccessPath
 {
-    public static FollowedEntityDTOProject Project(bool enabled, string projectId, List<FollowedEntityDTOTeam>? teams = null)
-        => new FollowedEntityDTOProject(enabled: enabled, projectId: projectId, teams: teams);
+    public DevConfigurationHooks() { }
     
-    public static FollowedEntityDTOTeam Team(bool enabled, string teamId)
-        => new FollowedEntityDTOTeam(enabled: enabled, teamId: teamId);
+    public DevConfigurationHooks(List<DevConfigurationHook> hooks)
+    {
+        Hooks = hooks;
+    }
     
+    private PropertyValue<List<DevConfigurationHook>> _hooks = new PropertyValue<List<DevConfigurationHook>>(nameof(DevConfigurationHooks), nameof(Hooks), "hooks", new List<DevConfigurationHook>());
+    
+    [Required]
+    [JsonPropertyName("hooks")]
+    public List<DevConfigurationHook> Hooks
+    {
+        get => _hooks.GetValue(InlineErrors);
+        set => _hooks.SetValue(value);
+    }
+
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _hooks.SetAccessPath(parentChainPath, validateHasBeenSet);
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

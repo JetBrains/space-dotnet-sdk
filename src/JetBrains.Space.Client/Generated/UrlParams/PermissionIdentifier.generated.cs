@@ -32,6 +32,12 @@ namespace JetBrains.Space.Client;
 [JsonConverter(typeof(UrlParameterConverter))]
 public abstract class PermissionIdentifier : IUrlParameter
 {
+    /// <summary>
+    /// Allow to access to private sites and applications
+    /// </summary>
+    public static PermissionIdentifier AccessPrivateSites
+        => new PermissionIdentifierAccessPrivateSites();
+    
     public static PermissionIdentifier AddCustomEmoji
         => new PermissionIdentifierAddCustomEmoji();
     
@@ -923,6 +929,15 @@ public abstract class PermissionIdentifier : IUrlParameter
     
     public static PermissionIdentifier WriteVisionProject
         => new PermissionIdentifierWriteVisionProject();
+    
+    /// <summary>
+    /// Allow to access to private sites and applications
+    /// </summary>
+    public class PermissionIdentifierAccessPrivateSites : PermissionIdentifier
+    {
+        public override string ToString()
+            => "Project.Hosting.AccessPrivateSites";
+    }
     
     public class PermissionIdentifierAddCustomEmoji : PermissionIdentifier
     {

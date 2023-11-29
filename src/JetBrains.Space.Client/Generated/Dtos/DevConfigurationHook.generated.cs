@@ -29,29 +29,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-internal class TeamDirectoryProfilesDashboardsForDashboardPatchRequest
+public sealed class DevConfigurationHook
      : IPropagatePropertyAccessPath
 {
-    public TeamDirectoryProfilesDashboardsForDashboardPatchRequest() { }
+    public DevConfigurationHook() { }
     
-    public TeamDirectoryProfilesDashboardsForDashboardPatchRequest(List<List<DashboardItemData>> data)
+    public DevConfigurationHook(DevConfigurationHookTrigger trigger, string script)
     {
-        Data = data;
+        Trigger = trigger;
+        Script = script;
     }
     
-    private PropertyValue<List<List<DashboardItemData>>> _data = new PropertyValue<List<List<DashboardItemData>>>(nameof(TeamDirectoryProfilesDashboardsForDashboardPatchRequest), nameof(Data), "data", new List<List<DashboardItemData>>());
+    private PropertyValue<DevConfigurationHookTrigger> _trigger = new PropertyValue<DevConfigurationHookTrigger>(nameof(DevConfigurationHook), nameof(Trigger), "trigger");
     
     [Required]
-    [JsonPropertyName("data")]
-    public List<List<DashboardItemData>> Data
+    [JsonPropertyName("trigger")]
+    public DevConfigurationHookTrigger Trigger
     {
-        get => _data.GetValue(InlineErrors);
-        set => _data.SetValue(value);
+        get => _trigger.GetValue(InlineErrors);
+        set => _trigger.SetValue(value);
     }
 
-    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    private PropertyValue<string> _script = new PropertyValue<string>(nameof(DevConfigurationHook), nameof(Script), "script");
+    
+    [Required]
+    [JsonPropertyName("script")]
+    public string Script
     {
-        _data.SetAccessPath(parentChainPath, validateHasBeenSet);
+        get => _script.GetValue(InlineErrors);
+        set => _script.SetValue(value);
+    }
+
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _trigger.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _script.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

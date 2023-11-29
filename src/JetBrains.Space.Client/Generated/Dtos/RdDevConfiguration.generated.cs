@@ -34,7 +34,7 @@ public sealed class RdDevConfiguration
 {
     public RdDevConfiguration() { }
     
-    public RdDevConfiguration(string id, string name, List<RepoConnectionWithBranch> repoConnections, RdDevContainer devContainer, RdDevConfigurationIde ide, string instanceTypeName, DevConfigurationInstanceType instanceType, PRProject project, DevConfigurationWarmup warmup, bool archived, DevConfigurationHotPool? hotPool = null, DevConfigurationHibernation? hibernation = null, string? projectRoot = null, bool? sshEnabled = null, DevConfigurationAccessSettingsDTO? access = null)
+    public RdDevConfiguration(string id, string name, List<RepoConnectionWithBranch> repoConnections, RdDevContainer devContainer, RdDevConfigurationIde ide, string instanceTypeName, DevConfigurationInstanceType instanceType, PRProject project, DevConfigurationWarmup warmup, bool archived, DevConfigurationHotPool? hotPool = null, DevConfigurationHooks? hooks = null, DevConfigurationHibernation? hibernation = null, string? projectRoot = null, bool? sshEnabled = null, DevConfigurationAccessSettingsDTO? access = null)
     {
         Id = id;
         Name = name;
@@ -46,6 +46,7 @@ public sealed class RdDevConfiguration
         Project = project;
         HotPool = hotPool;
         Warmup = warmup;
+        Hooks = hooks;
         Hibernation = hibernation;
         ProjectRoot = projectRoot;
         IsSshEnabled = sshEnabled;
@@ -152,6 +153,15 @@ public sealed class RdDevConfiguration
         set => _warmup.SetValue(value);
     }
 
+    private PropertyValue<DevConfigurationHooks?> _hooks = new PropertyValue<DevConfigurationHooks?>(nameof(RdDevConfiguration), nameof(Hooks), "hooks");
+    
+    [JsonPropertyName("hooks")]
+    public DevConfigurationHooks? Hooks
+    {
+        get => _hooks.GetValue(InlineErrors);
+        set => _hooks.SetValue(value);
+    }
+
     private PropertyValue<DevConfigurationHibernation?> _hibernation = new PropertyValue<DevConfigurationHibernation?>(nameof(RdDevConfiguration), nameof(Hibernation), "hibernation");
     
     [JsonPropertyName("hibernation")]
@@ -210,6 +220,7 @@ public sealed class RdDevConfiguration
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
         _hotPool.SetAccessPath(parentChainPath, validateHasBeenSet);
         _warmup.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _hooks.SetAccessPath(parentChainPath, validateHasBeenSet);
         _hibernation.SetAccessPath(parentChainPath, validateHasBeenSet);
         _projectRoot.SetAccessPath(parentChainPath, validateHasBeenSet);
         _sshEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);

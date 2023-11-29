@@ -86,11 +86,9 @@ public sealed class MessageSection
     private PropertyValue<MessageStyle?> _style = new PropertyValue<MessageStyle?>(nameof(MessageSection), nameof(Style), "style");
     
     /// <summary>
-    /// Section style determines the color of the left-hand side bar
+    /// Section style determines the color of the left-hand side bar.
+    /// Warning: this parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
     /// </summary>
-    /// <remarks>
-    /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
-    /// </remarks>
     [JsonPropertyName("style")]
     public MessageStyle? Style
     {
@@ -101,11 +99,9 @@ public sealed class MessageSection
     private PropertyValue<MessageTextSize?> _textSize = new PropertyValue<MessageTextSize?>(nameof(MessageSection), nameof(TextSize), "textSize");
     
     /// <summary>
-    /// Default text size for all the elements within the section (excluding header and footer)
+    /// Default text size for all the elements within the section (excluding header and footer).
+    /// Warning: this parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
     /// </summary>
-    /// <remarks>
-    /// This parameter is not supported yet on mobile clients and will be ignored on iOS and Android.
-    /// </remarks>
     [JsonPropertyName("textSize")]
     public MessageTextSize? TextSize
     {

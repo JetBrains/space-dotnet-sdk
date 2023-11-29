@@ -40,6 +40,9 @@ public static class CustomActionPayloadPartialExtensions
     public static Partial<CustomActionPayload> WithUserId(this Partial<CustomActionPayload> it)
         => it.AddFieldName("userId");
     
+    public static Partial<CustomActionPayload> WithActionValue(this Partial<CustomActionPayload> it)
+        => it.AddFieldName("actionValue");
+    
     [Obsolete("Verification token is only sent for old applications that have the Verification Token authentication set up. New applications cannot use this authentication. (since 2022-11-16) (will be removed in a future version)")]
     public static Partial<CustomActionPayload> WithVerificationToken(this Partial<CustomActionPayload> it)
         => it.AddFieldName("verificationToken");

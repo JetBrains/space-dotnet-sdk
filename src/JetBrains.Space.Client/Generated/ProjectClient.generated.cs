@@ -3662,7 +3662,7 @@ public partial class ProjectClient : ISpaceClient
         
     
         /// <remarks>
-        /// This API is experimental
+        /// Experimental HTTP API
         /// </remarks>
         public async Task<AdditionalRepositoryInfo> GetAdditionalRepositoryInfoAsync(ProjectIdentifier project, string repository, Func<Partial<AdditionalRepositoryInfo>, Partial<AdditionalRepositoryInfo>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
@@ -3743,7 +3743,7 @@ public partial class ProjectClient : ISpaceClient
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetHeadsAsync(project: project, repository: repository, pattern: pattern, isRegex: isRegex, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<BranchInfo>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<BranchInfo>.Default())), skip, cancellationToken);
     
         /// <remarks>
-        /// This API is experimental
+        /// Experimental HTTP API
         /// </remarks>
         public async Task<InlineDiff> GetInlineMergeDiffAsync(ProjectIdentifier project, string repository, GitEntryType entryType, bool ignoreWhitespaces = false, bool squashSimpleChanges = true, string? baseBlobId = null, string? sourceBlobId = null, string? targetBlobId = null, Func<Partial<InlineDiff>, Partial<InlineDiff>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
@@ -3790,7 +3790,7 @@ public partial class ProjectClient : ISpaceClient
         
     
         /// <remarks>
-        /// This API is experimental
+        /// Experimental HTTP API
         /// </remarks>
         public async Task<List<DeclarationScope>> GetDeclarationScopesForFileAsync(ProjectIdentifier project, string repository, string filename, string blobId, Func<Partial<DeclarationScope>, Partial<DeclarationScope>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
@@ -5071,7 +5071,7 @@ public partial class ProjectClient : ISpaceClient
         }
         
         /// <remarks>
-        /// This API is experimental
+        /// Code issues
         /// </remarks>
         public async Task<Batch<CodeIssueFeedback>> GetUserFeedbackOnCodeIssuesAsync(ProjectIdentifier project, string tool, ReviewIdentifier? reviewId = null, BatchInfo? batchInfo = null, Func<Partial<Batch<CodeIssueFeedback>>, Partial<Batch<CodeIssueFeedback>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
@@ -5088,7 +5088,7 @@ public partial class ProjectClient : ISpaceClient
         }
         
         /// <remarks>
-        /// This API is experimental
+        /// Code issues
         /// </remarks>
         public IAsyncEnumerable<CodeIssueFeedback> GetUserFeedbackOnCodeIssuesAsyncEnumerable(ProjectIdentifier project, string tool, ReviewIdentifier? reviewId = null, BatchInfo? batchInfo = null, Func<Partial<CodeIssueFeedback>, Partial<CodeIssueFeedback>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetUserFeedbackOnCodeIssuesAsync(project: project, tool: tool, reviewId: reviewId, cancellationToken: cancellationToken, batchInfo: new BatchInfo(batchSize: batchInfo?.BatchSize ?? 100, offset: batchInfo?.Offset), partial: builder => Partial<Batch<CodeIssueFeedback>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CodeIssueFeedback>.Default())), batchInfo?.Offset, cancellationToken);

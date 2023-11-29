@@ -41,9 +41,6 @@ public partial class ExternalIssueClient : ISpaceClient
     /// <summary>
     /// Set default status to move external issues to when linked merge request is merged in Space
     /// </summary>
-    /// <remarks>
-    /// External issue trackers
-    /// </remarks>
     public async Task SetDefaultTargetIssueStatusForMergeRequestMergeAsync(ApplicationIdentifier application, ProjectIdentifier project, string issuePrefix, string? targetStatusForMergeRequestMerge = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
@@ -62,9 +59,6 @@ public partial class ExternalIssueClient : ISpaceClient
     /// <summary>
     /// Provide information about an issue from external issue tracker
     /// </summary>
-    /// <remarks>
-    /// External issue trackers
-    /// </remarks>
     public async Task PostExternalIssueDataAsync(string issuePrefix, List<ExternalIssueDataIn> issues, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
@@ -81,9 +75,6 @@ public partial class ExternalIssueClient : ISpaceClient
     /// <summary>
     /// Provide Space with all possible statuses for external issues for a given project
     /// </summary>
-    /// <remarks>
-    /// External issue trackers
-    /// </remarks>
     public async Task ProvideAllPossibleStatusesForExternalIssuesAsync(string issuePrefix, List<ExternalIssueStatusIn> statuses, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
@@ -100,9 +91,6 @@ public partial class ExternalIssueClient : ISpaceClient
     /// <summary>
     /// Notify Space about issues that were deleted in external issue tracker
     /// </summary>
-    /// <remarks>
-    /// External issue trackers
-    /// </remarks>
     public async Task MarkExternalIssuesAsDeletedAsync(string issuePrefix, List<string> issueIds, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
@@ -119,9 +107,6 @@ public partial class ExternalIssueClient : ISpaceClient
     /// <summary>
     /// Fetch events about external issues from Space
     /// </summary>
-    /// <remarks>
-    /// External issue trackers
-    /// </remarks>
     /// <param name="issueCodeLinkingEventsShape">
     /// The shape of the events published as a result of linking external issues to commits and code reviews in Space.
     /// External issues to code linking can be reported from one of the following perspectives:
@@ -153,9 +138,6 @@ public partial class ExternalIssueClient : ISpaceClient
             _connection = connection;
         }
         
-        /// <remarks>
-        /// External issue trackers
-        /// </remarks>
         public async Task<List<CreateExternalIssueProjectResult>> ConnectExternalIssueTrackerProjectsAsync(List<ExternalIssueTrackerProjectIn> projects, Func<Partial<CreateExternalIssueProjectResult>, Partial<CreateExternalIssueProjectResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -169,9 +151,6 @@ public partial class ExternalIssueClient : ISpaceClient
         }
         
     
-        /// <remarks>
-        /// External issue trackers
-        /// </remarks>
         public async Task<List<ExternalIssueTrackerProjectApi>> GetAllConnectedExternalIssueTrackerProjectsAsync(ApplicationIdentifier application, Func<Partial<ExternalIssueTrackerProjectApi>, Partial<ExternalIssueTrackerProjectApi>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -182,9 +161,6 @@ public partial class ExternalIssueClient : ISpaceClient
         }
         
     
-        /// <remarks>
-        /// External issue trackers
-        /// </remarks>
         public async Task DisconnectExternalIssueTrackerProjectAsync(string issuePrefix, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -221,9 +197,6 @@ public partial class ExternalIssueClient : ISpaceClient
             /// <summary>
             /// Add code review links to an existing issue in a project
             /// </summary>
-            /// <remarks>
-            /// External issue trackers
-            /// </remarks>
             public async Task LinkCodeReviewsToExternalIssueAsync(string issuePrefix, string issueId, ProjectIdentifier project, List<ReviewIdentifier> codeReviewIds, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -240,9 +213,6 @@ public partial class ExternalIssueClient : ISpaceClient
             /// <summary>
             /// Remove code review links from an existing issue in a project
             /// </summary>
-            /// <remarks>
-            /// External issue trackers
-            /// </remarks>
             public async Task UnlinkCodeReviewsFromExternalIssueAsync(string issuePrefix, string issueId, ProjectIdentifier project, List<ReviewIdentifier> codeReviewIds, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -269,9 +239,6 @@ public partial class ExternalIssueClient : ISpaceClient
             /// <summary>
             /// Add commit links to an existing issue in a project
             /// </summary>
-            /// <remarks>
-            /// External issue trackers
-            /// </remarks>
             public async Task LinkCommitsToExternalIssueAsync(string issuePrefix, string issueId, ProjectIdentifier project, string repository, List<string> commitIds, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
@@ -289,9 +256,6 @@ public partial class ExternalIssueClient : ISpaceClient
             /// <summary>
             /// Remove commit links from an existing issue in a project
             /// </summary>
-            /// <remarks>
-            /// External issue trackers
-            /// </remarks>
             public async Task UnlinkCommitsFromExternalIssueAsync(string issuePrefix, string issueId, ProjectIdentifier project, string repository, List<string> commitIds, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();

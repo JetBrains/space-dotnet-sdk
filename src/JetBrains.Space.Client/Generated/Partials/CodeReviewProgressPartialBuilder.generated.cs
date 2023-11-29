@@ -27,19 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.CodeReviewProgressPartialBuilder;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum DashboardContainerType
+public static class CodeReviewProgressPartialExtensions
 {
-    [EnumMember(Value = "OLD_PERSONAL")]
-    OLDPERSONAL,
+    public static Partial<CodeReviewProgress> WithViewedFilesCount(this Partial<CodeReviewProgress> it)
+        => it.AddFieldName("viewedFilesCount");
     
-    [EnumMember(Value = "PROJECT")]
-    PROJECT,
-    
-    [EnumMember(Value = "PERSONAL")]
-    PERSONAL,
+    public static Partial<CodeReviewProgress> WithTotalFilesToReviewCount(this Partial<CodeReviewProgress> it)
+        => it.AddFieldName("totalFilesToReviewCount");
     
 }
 

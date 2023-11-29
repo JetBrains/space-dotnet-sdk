@@ -47,8 +47,8 @@ public interface ApplicationPayload
     public static CreateExternalIssueRequestPayload CreateExternalIssueRequestPayload(string spaceUserId, string clientId, string? requestId = null, string? summary = null, string? description = null, string? issuePrefix = null, string? verificationToken = null)
         => new CreateExternalIssueRequestPayload(spaceUserId: spaceUserId, clientId: clientId, requestId: requestId, summary: summary, description: description, issuePrefix: issuePrefix, verificationToken: verificationToken);
     
-    public static CustomActionPayload CustomActionPayload(string actionId, string clientId, string userId, string? verificationToken = null)
-        => new CustomActionPayload(actionId: actionId, clientId: clientId, userId: userId, verificationToken: verificationToken);
+    public static CustomActionPayload CustomActionPayload(string actionId, string clientId, string userId, string? actionValue = null, string? verificationToken = null)
+        => new CustomActionPayload(actionId: actionId, clientId: clientId, userId: userId, actionValue: actionValue, verificationToken: verificationToken);
     
     public static InitPayload InitPayload(string clientSecret, string serverUrl, string clientId, string? state = null, string? userId = null, string? verificationToken = null)
         => new InitPayload(clientSecret: clientSecret, serverUrl: serverUrl, clientId: clientId, state: state, userId: userId, verificationToken: verificationToken);
