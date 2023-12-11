@@ -72,6 +72,6 @@ public class ApiUrlParameterOptionConverterTests
         var result = reader.ReadToEnd();
             
         // Assert
-        Assert.Equal("{\"value\":\"Test\",\"className\":\"HA_UrlParameterOption.Const\",\"optionName\":\"OptionTest\",\"description\":null,\"deprecation\":null,\"experimental\":null,\"featureFlag\":null}", result);
+        Assert.Equal("{\"value\":\"Test\",\"className\":\"HA_UrlParameterOption.Const\",\"optionName\":\"OptionTest\",\"description\":null,\"deprecation\":null,\"experimental\":null,\"featureFlag\":null,\"optionalFeature\":null}", result);
     }
 }
