@@ -108,6 +108,9 @@ public static class HADtoPartialExtensions
     public static Partial<HADto> WithFeatureFlag(this Partial<HADto> it)
         => it.AddFieldName("featureFlag");
     
+    public static Partial<HADto> WithOptionalFeature(this Partial<HADto> it)
+        => it.AddFieldName("optionalFeature");
+    
     public static Partial<HADto> WithErrorsField(this Partial<HADto> it)
         => it.AddFieldName("errorsField");
     

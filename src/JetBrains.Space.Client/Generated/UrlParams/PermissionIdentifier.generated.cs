@@ -80,23 +80,14 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier AdminPackageRepositories
         => new PermissionIdentifierAdminPackageRepositories();
     
-    public static PermissionIdentifier AdminVisionProject
-        => new PermissionIdentifierAdminVisionProject();
-    
     public static PermissionIdentifier ApproveAbsences
         => new PermissionIdentifierApproveAbsences();
     
     public static PermissionIdentifier ArchiveAndRestoreDocuments
         => new PermissionIdentifierArchiveAndRestoreDocuments();
     
-    public static PermissionIdentifier AttachWorkersToAutomationComputePools
-        => new PermissionIdentifierAttachWorkersToAutomationComputePools();
-    
     public static PermissionIdentifier AuthorizeDomainsAndPatternsForAppPoweredPreviews
         => new PermissionIdentifierAuthorizeDomainsAndPatternsForAppPoweredPreviews();
-    
-    public static PermissionIdentifier BaseRightForAllBonusAppUsers
-        => new PermissionIdentifierBaseRightForAllBonusAppUsers();
     
     public static PermissionIdentifier BrowseChannels
         => new PermissionIdentifierBrowseChannels();
@@ -194,12 +185,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier DeleteVaultConnections
         => new PermissionIdentifierDeleteVaultConnections();
     
-    public static PermissionIdentifier EditBonusEvents
-        => new PermissionIdentifierEditBonusEvents();
-    
-    public static PermissionIdentifier EditBonusQuestionnaires
-        => new PermissionIdentifierEditBonusQuestionnaires();
-    
     public static PermissionIdentifier EditCodeReviews
         => new PermissionIdentifierEditCodeReviews();
     
@@ -218,14 +203,8 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier EditLocations
         => new PermissionIdentifierEditLocations();
     
-    public static PermissionIdentifier EditMemberVacationPeriods
-        => new PermissionIdentifierEditMemberVacationPeriods();
-    
     public static PermissionIdentifier EditTeamMembershipHistory
         => new PermissionIdentifierEditTeamMembershipHistory();
-    
-    public static PermissionIdentifier GrantAccessRightsToOtherMembersForBonusApp
-        => new PermissionIdentifierGrantAccessRightsToOtherMembersForBonusApp();
     
     public static PermissionIdentifier GrantPermissionsToOtherMembers
         => new PermissionIdentifierGrantPermissionsToOtherMembers();
@@ -278,12 +257,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ManageAuthenticationSessions
         => new PermissionIdentifierManageAuthenticationSessions();
     
-    public static PermissionIdentifier ManageAutomationComputePools
-        => new PermissionIdentifierManageAutomationComputePools();
-    
-    public static PermissionIdentifier ManageAutomationComputePoolsInProjects
-        => new PermissionIdentifierManageAutomationComputePoolsInProjects();
-    
     public static PermissionIdentifier ManageAutomationDiagnosticData
         => new PermissionIdentifierManageAutomationDiagnosticData();
     
@@ -298,9 +271,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     /// </summary>
     public static PermissionIdentifier ManageBoards
         => new PermissionIdentifierManageBoards();
-    
-    public static PermissionIdentifier ManageBusinessEntities
-        => new PermissionIdentifierManageBusinessEntities();
     
     public static PermissionIdentifier ManageChannels
         => new PermissionIdentifierManageChannels();
@@ -325,9 +295,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     
     public static PermissionIdentifier ManageEmoji
         => new PermissionIdentifierManageEmoji();
-    
-    public static PermissionIdentifier ManageEmployeesSalaries
-        => new PermissionIdentifierManageEmployeesSalaries();
     
     public static PermissionIdentifier ManageExternalEntityLinkPatterns
         => new PermissionIdentifierManageExternalEntityLinkPatterns();
@@ -389,17 +356,11 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ManagePermanentTokens
         => new PermissionIdentifierManagePermanentTokens();
     
-    public static PermissionIdentifier ManagePersonalTables
-        => new PermissionIdentifierManagePersonalTables();
-    
     public static PermissionIdentifier ManageProjectPermissionScheme
         => new PermissionIdentifierManageProjectPermissionScheme();
     
     public static PermissionIdentifier ManageProjectSidebarPins
         => new PermissionIdentifierManageProjectSidebarPins();
-    
-    public static PermissionIdentifier ManageSalaryEventsForDirectReports
-        => new PermissionIdentifierManageSalaryEventsForDirectReports();
     
     /// <summary>
     /// Allows to manage the lifecycle of the shared dev environments that the user doesn't own (users can always manage their own environments)
@@ -409,12 +370,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     
     public static PermissionIdentifier ManageStickers
         => new PermissionIdentifierManageStickers();
-    
-    /// <summary>
-    /// Manage tables in a project
-    /// </summary>
-    public static PermissionIdentifier ManageTables
-        => new PermissionIdentifierManageTables();
     
     /// <summary>
     /// Add, edit or remove planning tags
@@ -427,9 +382,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     
     public static PermissionIdentifier ManageTwoFactorAuthenticationAndApplicationPasswords
         => new PermissionIdentifierManageTwoFactorAuthenticationAndApplicationPasswords();
-    
-    public static PermissionIdentifier ManageVacations
-        => new PermissionIdentifierManageVacations();
     
     public static PermissionIdentifier ManageWarmUpAutomaticTriggers
         => new PermissionIdentifierManageWarmUpAutomaticTriggers();
@@ -509,17 +461,11 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier PublishSitesOrApplications
         => new PermissionIdentifierPublishSitesOrApplications();
     
-    public static PermissionIdentifier PublishVisionProject
-        => new PermissionIdentifierPublishVisionProject();
-    
     public static PermissionIdentifier ReadGitRepositories
         => new PermissionIdentifierReadGitRepositories();
     
     public static PermissionIdentifier ReadPackageRepositories
         => new PermissionIdentifierReadPackageRepositories();
-    
-    public static PermissionIdentifier ReadVisionProject
-        => new PermissionIdentifierReadVisionProject();
     
     public static PermissionIdentifier RemoveMembersOrTeamsFromParticipantList
         => new PermissionIdentifierRemoveMembersOrTeamsFromParticipantList();
@@ -551,9 +497,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier StopAutomationJobs
         => new PermissionIdentifierStopAutomationJobs();
     
-    public static PermissionIdentifier SubmitAnswerToBonusQuestionnaires
-        => new PermissionIdentifierSubmitAnswerToBonusQuestionnaires();
-    
     public static PermissionIdentifier TrackApplicationState
         => new PermissionIdentifierTrackApplicationState();
     
@@ -571,9 +514,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     
     public static PermissionIdentifier UpdateChannelSubscriptions
         => new PermissionIdentifierUpdateChannelSubscriptions();
-    
-    public static PermissionIdentifier UpdateEmployeesSalary
-        => new PermissionIdentifierUpdateEmployeesSalary();
     
     /// <summary>
     /// Update issues that were created by other users
@@ -593,9 +533,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier UpdateMeetings
         => new PermissionIdentifierUpdateMeetings();
     
-    public static PermissionIdentifier UpdateMemberBusinessEntities
-        => new PermissionIdentifierUpdateMemberBusinessEntities();
-    
     public static PermissionIdentifier UpdateMemberProfiles
         => new PermissionIdentifierUpdateMemberProfiles();
     
@@ -611,17 +548,11 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier UpdateOverdrafts
         => new PermissionIdentifierUpdateOverdrafts();
     
-    public static PermissionIdentifier UpdatePersonalTables
-        => new PermissionIdentifierUpdatePersonalTables();
-    
     public static PermissionIdentifier UpdatePositions
         => new PermissionIdentifierUpdatePositions();
     
     public static PermissionIdentifier UpdateProjectSecrets
         => new PermissionIdentifierUpdateProjectSecrets();
-    
-    public static PermissionIdentifier UpdateProjectTables
-        => new PermissionIdentifierUpdateProjectTables();
     
     public static PermissionIdentifier UpdateReactions
         => new PermissionIdentifierUpdateReactions();
@@ -659,9 +590,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ViewAndRemoveApplicationConsents
         => new PermissionIdentifierViewAndRemoveApplicationConsents();
     
-    public static PermissionIdentifier ViewAnswersToBonusQuestionnaires
-        => new PermissionIdentifierViewAnswersToBonusQuestionnaires();
-    
     /// <summary>
     /// Allow to view application logs
     /// </summary>
@@ -680,12 +608,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ViewArticles
         => new PermissionIdentifierViewArticles();
     
-    public static PermissionIdentifier ViewAtelierReport
-        => new PermissionIdentifierViewAtelierReport();
-    
-    public static PermissionIdentifier ViewAutomationComputePools
-        => new PermissionIdentifierViewAutomationComputePools();
-    
     public static PermissionIdentifier ViewAutomationDiagnosticData
         => new PermissionIdentifierViewAutomationDiagnosticData();
     
@@ -701,17 +623,8 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ViewBoards
         => new PermissionIdentifierViewBoards();
     
-    public static PermissionIdentifier ViewBonusEvents
-        => new PermissionIdentifierViewBonusEvents();
-    
-    public static PermissionIdentifier ViewBonusQuestionnaires
-        => new PermissionIdentifierViewBonusQuestionnaires();
-    
     public static PermissionIdentifier ViewBouncedEmailAddresses
         => new PermissionIdentifierViewBouncedEmailAddresses();
-    
-    public static PermissionIdentifier ViewBusinessEntities
-        => new PermissionIdentifierViewBusinessEntities();
     
     public static PermissionIdentifier ViewChannelInfo
         => new PermissionIdentifierViewChannelInfo();
@@ -764,9 +677,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ViewDocuments
         => new PermissionIdentifierViewDocuments();
     
-    public static PermissionIdentifier ViewEmployeesSalary
-        => new PermissionIdentifierViewEmployeesSalary();
-    
     public static PermissionIdentifier ViewExternalEntityLinkPatterns
         => new PermissionIdentifierViewExternalEntityLinkPatterns();
     
@@ -779,9 +689,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ViewFolderMetadataObsolete
         => new PermissionIdentifierViewFolderMetadataObsolete();
     
-    public static PermissionIdentifier ViewGoogleIntegrationStatus
-        => new PermissionIdentifierViewGoogleIntegrationStatus();
-    
     /// <summary>
     /// View issues in a project
     /// </summary>
@@ -793,9 +700,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     
     public static PermissionIdentifier ViewLanguages
         => new PermissionIdentifierViewLanguages();
-    
-    public static PermissionIdentifier ViewListOfBonusEvents
-        => new PermissionIdentifierViewListOfBonusEvents();
     
     public static PermissionIdentifier ViewLocationMapPoints
         => new PermissionIdentifierViewLocationMapPoints();
@@ -812,9 +716,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ViewMeetings
         => new PermissionIdentifierViewMeetings();
     
-    public static PermissionIdentifier ViewMemberBusinessEntities
-        => new PermissionIdentifierViewMemberBusinessEntities();
-    
     public static PermissionIdentifier ViewMemberLocations
         => new PermissionIdentifierViewMemberLocations();
     
@@ -823,12 +724,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     
     public static PermissionIdentifier ViewMemberProfiles
         => new PermissionIdentifierViewMemberProfiles();
-    
-    public static PermissionIdentifier ViewMemberVacationPeriods
-        => new PermissionIdentifierViewMemberVacationPeriods();
-    
-    public static PermissionIdentifier ViewMembershipRatioReport
-        => new PermissionIdentifierViewMembershipRatioReport();
     
     public static PermissionIdentifier ViewMemberships
         => new PermissionIdentifierViewMemberships();
@@ -856,9 +751,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     
     public static PermissionIdentifier ViewPermissionsGrantedToOtherMembers
         => new PermissionIdentifierViewPermissionsGrantedToOtherMembers();
-    
-    public static PermissionIdentifier ViewPersonalTables
-        => new PermissionIdentifierViewPersonalTables();
     
     public static PermissionIdentifier ViewPositions
         => new PermissionIdentifierViewPositions();
@@ -893,12 +785,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ViewSpentTime
         => new PermissionIdentifierViewSpentTime();
     
-    /// <summary>
-    /// View tables in a project
-    /// </summary>
-    public static PermissionIdentifier ViewTables
-        => new PermissionIdentifierViewTables();
-    
     public static PermissionIdentifier ViewTeams
         => new PermissionIdentifierViewTeams();
     
@@ -926,9 +812,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     [Obsolete("Use WritePackages (PackageRepository.Write2) instead (since 2023-07-13) (will be removed in a future version)")]
     public static PermissionIdentifier WritePackageRepositoriesObsolete
         => new PermissionIdentifierWritePackageRepositoriesObsolete();
-    
-    public static PermissionIdentifier WriteVisionProject
-        => new PermissionIdentifierWriteVisionProject();
     
     /// <summary>
     /// Allow to access to private sites and applications
@@ -1023,12 +906,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "PackageRepository.Admin";
     }
     
-    public class PermissionIdentifierAdminVisionProject : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Vision.Admin";
-    }
-    
     public class PermissionIdentifierApproveAbsences : PermissionIdentifier
     {
         public override string ToString()
@@ -1041,22 +918,10 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Documents.Archive";
     }
     
-    public class PermissionIdentifierAttachWorkersToAutomationComputePools : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Automation.ComputePools.AttacheWorkers";
-    }
-    
     public class PermissionIdentifierAuthorizeDomainsAndPatternsForAppPoweredPreviews : PermissionIdentifier
     {
         public override string ToString()
             => "Unfurl.App.Authorize";
-    }
-    
-    public class PermissionIdentifierBaseRightForAllBonusAppUsers : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.Bonus.User";
     }
     
     public class PermissionIdentifierBrowseChannels : PermissionIdentifier
@@ -1236,18 +1101,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Project.VaultConnection.Delete";
     }
     
-    public class PermissionIdentifierEditBonusEvents : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.Bonus.Events.Edit";
-    }
-    
-    public class PermissionIdentifierEditBonusQuestionnaires : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.Bonus.Questionnaires.Edit";
-    }
-    
     public class PermissionIdentifierEditCodeReviews : PermissionIdentifier
     {
         public override string ToString()
@@ -1281,22 +1134,10 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Profile.Locations.Edit";
     }
     
-    public class PermissionIdentifierEditMemberVacationPeriods : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Profile.HRM.VacationPeriods.Edit";
-    }
-    
     public class PermissionIdentifierEditTeamMembershipHistory : PermissionIdentifier
     {
         public override string ToString()
             => "Team.History.Edit";
-    }
-    
-    public class PermissionIdentifierGrantAccessRightsToOtherMembersForBonusApp : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.Bonus.Supervisor";
     }
     
     public class PermissionIdentifierGrantPermissionsToOtherMembers : PermissionIdentifier
@@ -1389,18 +1230,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Profile.AuthenticationSessions.Edit";
     }
     
-    public class PermissionIdentifierManageAutomationComputePools : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Automation.ComputePools.Admin";
-    }
-    
-    public class PermissionIdentifierManageAutomationComputePoolsInProjects : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Automation.ComputePools.AdminProject";
-    }
-    
     public class PermissionIdentifierManageAutomationDiagnosticData : PermissionIdentifier
     {
         public override string ToString()
@@ -1426,12 +1255,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Project.Planning.Boards.Manage";
-    }
-    
-    public class PermissionIdentifierManageBusinessEntities : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.BusinessEntities.Edit";
     }
     
     public class PermissionIdentifierManageChannels : PermissionIdentifier
@@ -1477,12 +1300,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Emojis.Manage";
-    }
-    
-    public class PermissionIdentifierManageEmployeesSalaries : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.Bonus.Salary.Manage";
     }
     
     public class PermissionIdentifierManageExternalEntityLinkPatterns : PermissionIdentifier
@@ -1593,12 +1410,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Profile.PermanentTokens.Edit";
     }
     
-    public class PermissionIdentifierManagePersonalTables : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Profile.Tables.Manage";
-    }
-    
     public class PermissionIdentifierManageProjectPermissionScheme : PermissionIdentifier
     {
         public override string ToString()
@@ -1609,12 +1420,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Project.ManagePins";
-    }
-    
-    public class PermissionIdentifierManageSalaryEventsForDirectReports : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.Bonus.TeamLead";
     }
     
     /// <summary>
@@ -1630,15 +1435,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Stickers.Manage";
-    }
-    
-    /// <summary>
-    /// Manage tables in a project
-    /// </summary>
-    public class PermissionIdentifierManageTables : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Project.Tables.Manage";
     }
     
     /// <summary>
@@ -1660,12 +1456,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Profile.TwoFactorAuthentication.Edit";
-    }
-    
-    public class PermissionIdentifierManageVacations : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.Vacations.Manage";
     }
     
     public class PermissionIdentifierManageWarmUpAutomaticTriggers : PermissionIdentifier
@@ -1809,12 +1599,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Project.Hosting.Publish";
     }
     
-    public class PermissionIdentifierPublishVisionProject : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Vision.Publish";
-    }
-    
     public class PermissionIdentifierReadGitRepositories : PermissionIdentifier
     {
         public override string ToString()
@@ -1825,12 +1609,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "PackageRepository.Read";
-    }
-    
-    public class PermissionIdentifierReadVisionProject : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Vision.Read";
     }
     
     public class PermissionIdentifierRemoveMembersOrTeamsFromParticipantList : PermissionIdentifier
@@ -1890,12 +1668,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Automation.Execution.Stop";
     }
     
-    public class PermissionIdentifierSubmitAnswerToBonusQuestionnaires : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.Bonus.Questionnaires.Answers.Submit";
-    }
-    
     public class PermissionIdentifierTrackApplicationState : PermissionIdentifier
     {
         public override string ToString()
@@ -1932,12 +1704,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Channel.UpdateChannelSubscriptions";
     }
     
-    public class PermissionIdentifierUpdateEmployeesSalary : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Profile.Salary.Write";
-    }
-    
     /// <summary>
     /// Update issues that were created by other users
     /// </summary>
@@ -1971,12 +1737,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Meeting.Edit";
     }
     
-    public class PermissionIdentifierUpdateMemberBusinessEntities : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Profile.HRM.BusinessEntities.Edit";
-    }
-    
     public class PermissionIdentifierUpdateMemberProfiles : PermissionIdentifier
     {
         public override string ToString()
@@ -2007,12 +1767,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Organization.UpdateOverdrafts";
     }
     
-    public class PermissionIdentifierUpdatePersonalTables : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Profile.Tables.Edit";
-    }
-    
     public class PermissionIdentifierUpdatePositions : PermissionIdentifier
     {
         public override string ToString()
@@ -2023,12 +1777,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Project.Secrets.Edit";
-    }
-    
-    public class PermissionIdentifierUpdateProjectTables : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Project.Tables.Edit";
     }
     
     public class PermissionIdentifierUpdateReactions : PermissionIdentifier
@@ -2103,12 +1851,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Profile.ApplicationConsents.Edit";
     }
     
-    public class PermissionIdentifierViewAnswersToBonusQuestionnaires : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.Bonus.Questionnaires.Answers.View";
-    }
-    
     /// <summary>
     /// Allow to view application logs
     /// </summary>
@@ -2142,18 +1884,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Article.View";
     }
     
-    public class PermissionIdentifierViewAtelierReport : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.Atelier.View";
-    }
-    
-    public class PermissionIdentifierViewAutomationComputePools : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Automation.ComputePools.View";
-    }
-    
     public class PermissionIdentifierViewAutomationDiagnosticData : PermissionIdentifier
     {
         public override string ToString()
@@ -2181,28 +1911,10 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Project.Planning.Boards.View";
     }
     
-    public class PermissionIdentifierViewBonusEvents : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.Bonus.Events.View";
-    }
-    
-    public class PermissionIdentifierViewBonusQuestionnaires : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.Bonus.Questionnaires.View";
-    }
-    
     public class PermissionIdentifierViewBouncedEmailAddresses : PermissionIdentifier
     {
         public override string ToString()
             => "Organization.ViewBouncedEmailData";
-    }
-    
-    public class PermissionIdentifierViewBusinessEntities : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.BusinessEntities.View";
     }
     
     public class PermissionIdentifierViewChannelInfo : PermissionIdentifier
@@ -2295,12 +2007,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Documents.View";
     }
     
-    public class PermissionIdentifierViewEmployeesSalary : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Profile.Salary.Read";
-    }
-    
     public class PermissionIdentifierViewExternalEntityLinkPatterns : PermissionIdentifier
     {
         public override string ToString()
@@ -2325,12 +2031,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Book.View";
     }
     
-    public class PermissionIdentifierViewGoogleIntegrationStatus : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Profile.View.GoogleAccountStatus";
-    }
-    
     /// <summary>
     /// View issues in a project
     /// </summary>
@@ -2350,12 +2050,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Profile.Languages.View";
-    }
-    
-    public class PermissionIdentifierViewListOfBonusEvents : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.Bonus.Events.List";
     }
     
     public class PermissionIdentifierViewLocationMapPoints : PermissionIdentifier
@@ -2388,12 +2082,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Meeting.View";
     }
     
-    public class PermissionIdentifierViewMemberBusinessEntities : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Profile.HRM.BusinessEntities.View";
-    }
-    
     public class PermissionIdentifierViewMemberLocations : PermissionIdentifier
     {
         public override string ToString()
@@ -2410,18 +2098,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Profile.View";
-    }
-    
-    public class PermissionIdentifierViewMemberVacationPeriods : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Profile.HRM.VacationPeriods.View";
-    }
-    
-    public class PermissionIdentifierViewMembershipRatioReport : PermissionIdentifier
-    {
-        public override string ToString()
-            => "HRM.MembershipRatioReport.View";
     }
     
     public class PermissionIdentifierViewMemberships : PermissionIdentifier
@@ -2476,12 +2152,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Permissions.View";
-    }
-    
-    public class PermissionIdentifierViewPersonalTables : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Profile.Tables.View";
     }
     
     public class PermissionIdentifierViewPositions : PermissionIdentifier
@@ -2547,15 +2217,6 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Project.TimeTracking.View";
     }
     
-    /// <summary>
-    /// View tables in a project
-    /// </summary>
-    public class PermissionIdentifierViewTables : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Project.Tables.View";
-    }
-    
     public class PermissionIdentifierViewTeams : PermissionIdentifier
     {
         public override string ToString()
@@ -2606,12 +2267,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "PackageRepository.Write";
-    }
-    
-    public class PermissionIdentifierWriteVisionProject : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Vision.Write";
     }
     
 }

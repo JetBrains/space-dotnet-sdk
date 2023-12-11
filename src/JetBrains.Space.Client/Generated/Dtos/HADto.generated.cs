@@ -34,7 +34,7 @@ public sealed class HADto
 {
     public HADto() { }
     
-    public HADto(string id, string name, List<HADtoField> fields, HierarchyRole hierarchyRole, HierarchyRole2 hierarchyRole2, List<HADto> implements, List<HADto> inheritors, bool record, HADto? extends = null, HADescription? description = null, HADeprecation? deprecation = null, HAExperimental? experimental = null, string? featureFlag = null, HAField? errorsField = null)
+    public HADto(string id, string name, List<HADtoField> fields, HierarchyRole hierarchyRole, HierarchyRole2 hierarchyRole2, List<HADto> implements, List<HADto> inheritors, bool record, HADto? extends = null, HADescription? description = null, HADeprecation? deprecation = null, HAExperimental? experimental = null, string? featureFlag = null, string? optionalFeature = null, HAField? errorsField = null)
     {
         Id = id;
         Name = name;
@@ -49,6 +49,7 @@ public sealed class HADto
         Experimental = experimental;
         IsRecord = record;
         FeatureFlag = featureFlag;
+        OptionalFeature = optionalFeature;
         ErrorsField = errorsField;
     }
     
@@ -178,6 +179,15 @@ public sealed class HADto
         set => _featureFlag.SetValue(value);
     }
 
+    private PropertyValue<string?> _optionalFeature = new PropertyValue<string?>(nameof(HADto), nameof(OptionalFeature), "optionalFeature");
+    
+    [JsonPropertyName("optionalFeature")]
+    public string? OptionalFeature
+    {
+        get => _optionalFeature.GetValue(InlineErrors);
+        set => _optionalFeature.SetValue(value);
+    }
+
     private PropertyValue<HAField?> _errorsField = new PropertyValue<HAField?>(nameof(HADto), nameof(ErrorsField), "errorsField");
     
     [JsonPropertyName("errorsField")]
@@ -202,6 +212,7 @@ public sealed class HADto
         _experimental.SetAccessPath(parentChainPath, validateHasBeenSet);
         _record.SetAccessPath(parentChainPath, validateHasBeenSet);
         _featureFlag.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _optionalFeature.SetAccessPath(parentChainPath, validateHasBeenSet);
         _errorsField.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

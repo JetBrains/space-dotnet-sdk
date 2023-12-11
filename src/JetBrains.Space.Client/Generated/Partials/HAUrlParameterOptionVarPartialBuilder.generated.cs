@@ -72,5 +72,8 @@ public static class HAUrlParameterOptionVarPartialExtensions
     public static Partial<HAUrlParameterOptionVar> WithFeatureFlag(this Partial<HAUrlParameterOptionVar> it)
         => it.AddFieldName("featureFlag");
     
+    public static Partial<HAUrlParameterOptionVar> WithOptionalFeature(this Partial<HAUrlParameterOptionVar> it)
+        => it.AddFieldName("optionalFeature");
+    
 }
 

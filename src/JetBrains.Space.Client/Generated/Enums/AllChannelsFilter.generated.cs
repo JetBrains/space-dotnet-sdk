@@ -38,5 +38,11 @@ public enum AllChannelsFilter
     [EnumMember(Value = "Subscribed")]
     Subscribed,
     
+    [EnumMember(Value = "PublicChannels")]
+    PublicChannels,
+    
+    [EnumMember(Value = "PrivateChannels")]
+    PrivateChannels,
+    
 }
 

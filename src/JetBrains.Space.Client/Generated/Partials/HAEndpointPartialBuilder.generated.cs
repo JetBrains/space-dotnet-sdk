@@ -104,5 +104,8 @@ public static class HAEndpointPartialExtensions
     public static Partial<HAEndpoint> WithFeatureFlag(this Partial<HAEndpoint> it)
         => it.AddFieldName("featureFlag");
     
+    public static Partial<HAEndpoint> WithOptionalFeature(this Partial<HAEndpoint> it)
+        => it.AddFieldName("optionalFeature");
+    
 }
 

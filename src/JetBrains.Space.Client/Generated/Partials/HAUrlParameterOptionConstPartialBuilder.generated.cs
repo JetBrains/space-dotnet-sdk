@@ -58,5 +58,8 @@ public static class HAUrlParameterOptionConstPartialExtensions
     public static Partial<HAUrlParameterOptionConst> WithFeatureFlag(this Partial<HAUrlParameterOptionConst> it)
         => it.AddFieldName("featureFlag");
     
+    public static Partial<HAUrlParameterOptionConst> WithOptionalFeature(this Partial<HAUrlParameterOptionConst> it)
+        => it.AddFieldName("optionalFeature");
+    
 }
 

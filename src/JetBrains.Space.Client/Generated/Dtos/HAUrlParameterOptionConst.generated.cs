@@ -37,7 +37,7 @@ public sealed class HAUrlParameterOptionConst
     
     public HAUrlParameterOptionConst() { }
     
-    public HAUrlParameterOptionConst(string value, string optionName, HADescription? description = null, HADeprecation? deprecation = null, HAExperimental? experimental = null, string? featureFlag = null)
+    public HAUrlParameterOptionConst(string value, string optionName, HADescription? description = null, HADeprecation? deprecation = null, HAExperimental? experimental = null, string? featureFlag = null, string? optionalFeature = null)
     {
         Value = value;
         OptionName = optionName;
@@ -45,6 +45,7 @@ public sealed class HAUrlParameterOptionConst
         Deprecation = deprecation;
         Experimental = experimental;
         FeatureFlag = featureFlag;
+        OptionalFeature = optionalFeature;
     }
     
     private PropertyValue<string> _value = new PropertyValue<string>(nameof(HAUrlParameterOptionConst), nameof(Value), "value");
@@ -103,6 +104,15 @@ public sealed class HAUrlParameterOptionConst
         set => _featureFlag.SetValue(value);
     }
 
+    private PropertyValue<string?> _optionalFeature = new PropertyValue<string?>(nameof(HAUrlParameterOptionConst), nameof(OptionalFeature), "optionalFeature");
+    
+    [JsonPropertyName("optionalFeature")]
+    public string? OptionalFeature
+    {
+        get => _optionalFeature.GetValue(InlineErrors);
+        set => _optionalFeature.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _value.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -111,6 +121,7 @@ public sealed class HAUrlParameterOptionConst
         _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
         _experimental.SetAccessPath(parentChainPath, validateHasBeenSet);
         _featureFlag.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _optionalFeature.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

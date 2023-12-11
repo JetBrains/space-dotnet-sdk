@@ -47,6 +47,9 @@ public enum OptionalFeature
     [EnumMember(Value = "PERSONAL_DOCUMENTS")]
     PERSONALDOCUMENTS,
     
+    [EnumMember(Value = "DOCUMENTS")]
+    DOCUMENTS,
+    
     [EnumMember(Value = "AUTOMATION")]
     AUTOMATION,
     

@@ -37,7 +37,7 @@ public sealed class HAUrlParameterOptionVar
     
     public HAUrlParameterOptionVar() { }
     
-    public HAUrlParameterOptionVar(HAField parameter, List<HAField> parameters, bool prefixRequired, string optionName, HADescription? description = null, HADeprecation? deprecation = null, HAExperimental? experimental = null, string? featureFlag = null)
+    public HAUrlParameterOptionVar(HAField parameter, List<HAField> parameters, bool prefixRequired, string optionName, HADescription? description = null, HADeprecation? deprecation = null, HAExperimental? experimental = null, string? featureFlag = null, string? optionalFeature = null)
     {
         Parameter = parameter;
         Parameters = parameters;
@@ -47,6 +47,7 @@ public sealed class HAUrlParameterOptionVar
         Deprecation = deprecation;
         Experimental = experimental;
         FeatureFlag = featureFlag;
+        OptionalFeature = optionalFeature;
     }
     
     private PropertyValue<HAField> _parameter = new PropertyValue<HAField>(nameof(HAUrlParameterOptionVar), nameof(Parameter), "parameter");
@@ -126,6 +127,15 @@ public sealed class HAUrlParameterOptionVar
         set => _featureFlag.SetValue(value);
     }
 
+    private PropertyValue<string?> _optionalFeature = new PropertyValue<string?>(nameof(HAUrlParameterOptionVar), nameof(OptionalFeature), "optionalFeature");
+    
+    [JsonPropertyName("optionalFeature")]
+    public string? OptionalFeature
+    {
+        get => _optionalFeature.GetValue(InlineErrors);
+        set => _optionalFeature.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _parameter.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -136,6 +146,7 @@ public sealed class HAUrlParameterOptionVar
         _deprecation.SetAccessPath(parentChainPath, validateHasBeenSet);
         _experimental.SetAccessPath(parentChainPath, validateHasBeenSet);
         _featureFlag.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _optionalFeature.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />
