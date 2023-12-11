@@ -42,6 +42,9 @@ public class ApiEndpoint
     
     [JsonPropertyName("featureFlag")]
     public string? FeatureFlag { get; set; }
+
+    [JsonPropertyName("optionalFeature")]
+    public string? OptionalFeature { get; set; }
         
     [JsonPropertyName("rights")]
     // ReSharper disable once CollectionNeverUpdated.Global

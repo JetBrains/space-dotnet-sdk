@@ -23,6 +23,9 @@ public abstract class ApiUrlParameterOption
 
     [JsonPropertyName("featureFlag")]
     public string? FeatureFlag { get; set; }
+
+    [JsonPropertyName("optionalFeature")]
+    public string? OptionalFeature { get; set; }
         
     public class Var : ApiUrlParameterOption
     {
