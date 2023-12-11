@@ -114,7 +114,7 @@ public class CSharpApiModelResourceGenerator
         
         var isResponseBatch = apiEndpoint.ResponseBody is 
             ApiFieldType.Object { Kind: ApiFieldType.Object.ObjectKind.BATCH };
-        
+
         if (isResponseBatch && apiEndpoint.ResponseBody != null)
         {
             builder.AppendLine(GenerateEnumerableMethodForBatchApiEndpoint(apiEndpoint, baseEndpointPath));
@@ -154,10 +154,10 @@ public class CSharpApiModelResourceGenerator
                 
             if (apiEndpoint.RequestBody != null)
             {
-                if (FeatureFlags.DoNotExposeRequestObjects)
+                if (apiEndpoint.RequestBody is ApiFieldType.Object requestBody && FeatureFlags.DoNotExposeRequestObjects)
                 {
                     methodParametersBuilder = methodParametersBuilder
-                        .WithParametersForApiFields(apiEndpoint.RequestBody.Fields);
+                        .WithParametersForApiFields(requestBody.Fields);
                 }
                 else
                 {
@@ -209,9 +209,9 @@ public class CSharpApiModelResourceGenerator
 
             if (apiEndpoint.RequestBody != null)
             {
-                if (FeatureFlags.DoNotExposeRequestObjects)
+                if (apiEndpoint.RequestBody is ApiFieldType.Object requestBody && FeatureFlags.DoNotExposeRequestObjects)
                 {
-                    builder.Append(", " + ConstructNewRequestObject(indent, apiEndpoint, endpointPath));
+                    builder.Append(", " + ConstructNewRequestObject(indent, apiEndpoint, requestBody, endpointPath));
                 }
                 else
                 {
@@ -240,10 +240,10 @@ public class CSharpApiModelResourceGenerator
                 
             if (apiEndpoint.RequestBody != null)
             {
-                if (FeatureFlags.DoNotExposeRequestObjects)
+                if (apiEndpoint.RequestBody is ApiFieldType.Object requestBody && FeatureFlags.DoNotExposeRequestObjects)
                 {
                     methodParametersBuilder = methodParametersBuilder
-                        .WithParametersForApiFields(apiEndpoint.RequestBody.Fields);
+                        .WithParametersForApiFields(requestBody.Fields);
                 }
                 else
                 {
@@ -316,9 +316,9 @@ public class CSharpApiModelResourceGenerator
                 
             if (apiEndpoint.RequestBody != null)
             {
-                if (FeatureFlags.DoNotExposeRequestObjects)
+                if (apiEndpoint.RequestBody is ApiFieldType.Object requestBody && FeatureFlags.DoNotExposeRequestObjects)
                 {
-                    builder.Append(", " + ConstructNewRequestObject(indent, apiEndpoint, endpointPath));
+                    builder.Append(", " + ConstructNewRequestObject(indent, apiEndpoint, requestBody, endpointPath));
                 }
                 else
                 {
@@ -348,19 +348,20 @@ public class CSharpApiModelResourceGenerator
         return builder.ToString();
     }
 
-    private string ConstructNewRequestObject(Indent indent, ApiEndpoint apiEndpoint, string endpointPath)
+    private string ConstructNewRequestObject(Indent indent, ApiEndpoint apiEndpoint, ApiFieldType.Object requestBody, string endpointPath)
     {
+        var typeNameForDto = apiEndpoint.ToCSharpRequestBodyClassName(endpointPath)!;
+
         var builder = new CSharpBuilder();
 
         builder.AppendLine();
         indent.Increment();
-            
-        builder.AppendLine($"{indent}new {apiEndpoint.ToCSharpRequestBodyClassName(endpointPath)!}");
+
+        builder.AppendLine($"{indent}new {typeNameForDto}");
         builder.AppendLine($"{indent}{{ ");
         indent.Increment();
-            
-        var typeNameForDto = apiEndpoint.ToCSharpRequestBodyClassName(endpointPath);
-        foreach (var field in apiEndpoint.RequestBody!.Fields)
+
+        foreach (var field in requestBody.Fields)
         {
             if (field.Type.IsCSharpReferenceType())
             {
@@ -381,30 +382,32 @@ public class CSharpApiModelResourceGenerator
 
     private string GenerateEnumerableMethodForBatchApiEndpoint(ApiEndpoint apiEndpoint, string baseEndpointPath)
     {
+        var requestBodyObject = apiEndpoint.RequestBody as ApiFieldType.Object;
+
         var indent = new Indent();
         var builder = new CSharpBuilder();
-            
+
         var endpointPath = (baseEndpointPath + "/" + apiEndpoint.Path.Segments.ToPath()).TrimEnd('/');
 
         var methodNameForEndpoint = apiEndpoint.ToCSharpMethodName();
-            
+
         var batchDataType = ((ApiFieldType.Object)apiEndpoint.ResponseBody!).GetBatchDataType()!;
 
         var hasSkipParameter = apiEndpoint.Parameters.Any(it => it.Field.Name == "$skip") ||
-                               apiEndpoint.RequestBody?.Fields.Any(it => it.Name == "skip") == true;
-        var hasBatchInfoParameter = apiEndpoint.RequestBody?.Fields.Any(it => it.Name == "batchInfo") == true;
+                               requestBodyObject?.Fields.Any(it => it.Name == "skip") == true;
+        var hasBatchInfoParameter = requestBodyObject?.Fields.Any(it => it.Name == "batchInfo") == true;
 
         if (apiEndpoint.ResponseBody != null && (hasSkipParameter || hasBatchInfoParameter))
         {
             var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
                 .WithParametersForApiParameters(apiEndpoint.Parameters);
-                
+
             if (apiEndpoint.RequestBody != null)
             {
-                if (FeatureFlags.DoNotExposeRequestObjects)
+                if (requestBodyObject != null && FeatureFlags.DoNotExposeRequestObjects)
                 {
                     methodParametersBuilder = methodParametersBuilder
-                        .WithParametersForApiFields(apiEndpoint.RequestBody.Fields);
+                        .WithParametersForApiFields(requestBodyObject.Fields);
                 }
                 else
                 {
@@ -496,6 +499,8 @@ public class CSharpApiModelResourceGenerator
 
     private string GenerateEnumerableMethodForSyncBatchApiEndpoint(ApiEndpoint apiEndpoint, string baseEndpointPath)
     {
+        var requestBodyObject = apiEndpoint.RequestBody as ApiFieldType.Object;
+
         var indent = new Indent();
         var builder = new StringBuilder();
 
@@ -512,10 +517,10 @@ public class CSharpApiModelResourceGenerator
 
             if (apiEndpoint.RequestBody != null)
             {
-                if (FeatureFlags.DoNotExposeRequestObjects)
+                if (requestBodyObject != null && FeatureFlags.DoNotExposeRequestObjects)
                 {
                     methodParametersBuilder = methodParametersBuilder
-                        .WithParametersForApiFields(apiEndpoint.RequestBody.Fields);
+                        .WithParametersForApiFields(requestBodyObject.Fields);
                 }
                 else
                 {

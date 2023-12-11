@@ -38,7 +38,7 @@ public abstract class ApiFieldType
         public ApiFieldType ValueType { get; set; } = default!;
     }
         
-    public class Object : ApiFieldType
+    public class Object : ApiFieldType, IApiRequestPayload
     {
         [JsonPropertyName("fields")]
         public List<ApiField> Fields { get; set; } = new();

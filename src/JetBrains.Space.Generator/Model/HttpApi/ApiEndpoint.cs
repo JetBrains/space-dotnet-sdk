@@ -3,6 +3,7 @@ using JetBrains.Space.Generator.Model.HttpApi.Converters;
 
 namespace JetBrains.Space.Generator.Model.HttpApi;
 
+// ReSharper disable once InconsistentNaming
 public class ApiEndpoint
 {
     [JsonPropertyName("resource")]
@@ -21,8 +22,8 @@ public class ApiEndpoint
     public List<ApiParameter> Parameters { get; set; } = new();
         
     [JsonPropertyName("requestBody")]
-    [JsonConverter(typeof(ApiFieldTypeConverter))]
-    public ApiFieldType.Object? RequestBody { get; set; }
+    [JsonConverter(typeof(ApiRequestPayloadConverter))]
+    public IApiRequestPayload? RequestBody { get; set; }
         
     [JsonPropertyName("responseBody")]
     [JsonConverter(typeof(ApiFieldTypeConverter))]

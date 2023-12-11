@@ -110,7 +110,8 @@ public class BearerTokenConnection
                 {
                     Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
                 },
-                Content = new StringContent(JsonSerializer.Serialize(payload, JsonSerializerOptions), Encoding.UTF8, "application/json")
+                Content = payload as HttpContent ?? new StringContent(
+                    JsonSerializer.Serialize(payload, JsonSerializerOptions), Encoding.UTF8, "application/json")
             }
             .WithClientAndSdkHeaders(SdkInfo.Version)
             .WithHeaders(requestHeaders);
@@ -127,7 +128,8 @@ public class BearerTokenConnection
                 {
                     Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
                 },
-                Content = new StringContent(JsonSerializer.Serialize(payload, JsonSerializerOptions), Encoding.UTF8, "application/json")
+                Content = payload as HttpContent ?? new StringContent(
+                    JsonSerializer.Serialize(payload, JsonSerializerOptions), Encoding.UTF8, "application/json")
             }
             .WithClientAndSdkHeaders(SdkInfo.Version)
             .WithHeaders(requestHeaders);

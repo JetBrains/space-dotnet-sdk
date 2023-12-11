@@ -6,15 +6,18 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions;
 
 public static class ApiEndpointExtensions
 {
+    private const string HttpContentClassName = "HttpContent";
     private const string RequestBodyClassNameSuffix = "Request";
-    
+
     public static string ToCSharpMethodName(this ApiEndpoint subject) => 
         CSharpIdentifier.ForClassOrNamespace(subject.FunctionName ?? subject.DisplayName);
 
     public static string? ToCSharpRequestBodyClassName(this ApiEndpoint subject, string endpointPath)
     {
-        if (subject.RequestBody is not { Kind: ApiFieldType.Object.ObjectKind.REQUEST_BODY }) return null;
-            
+        if (subject.RequestBody is ApiRawRequestPayload) return HttpContentClassName;
+
+        if (subject.RequestBody is not ApiFieldType.Object { Kind: ApiFieldType.Object.ObjectKind.REQUEST_BODY }) return null;
+
         return CSharpIdentifier.ForClassOrNamespace(endpointPath)
                + subject.Method.ToHttpMethod().ToLowerInvariant().ToUppercaseFirst()
                + RequestBodyClassNameSuffix;

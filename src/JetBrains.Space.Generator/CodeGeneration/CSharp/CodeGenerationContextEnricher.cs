@@ -21,7 +21,7 @@ public static class CodeGenerationContextEnricher
                 
             foreach (var apiEndpoint in apiResource.Endpoints)
             {
-                if (apiEndpoint.RequestBody is { Kind: ApiFieldType.Object.ObjectKind.REQUEST_BODY })
+                if (apiEndpoint.RequestBody is ApiFieldType.Object { Kind: ApiFieldType.Object.ObjectKind.REQUEST_BODY } requestBody)
                 {
                     // Endpoint path
                     var endpointPath = (resourcePath + "/" + apiEndpoint.Path.Segments.ToPath()).TrimEnd('/');
@@ -37,7 +37,7 @@ public static class CodeGenerationContextEnricher
                         {
                             Id = classIdForRequestBody,
                             Name = typeNameForRequestBody,
-                            Fields = apiEndpoint.RequestBody.Fields.Select(it => new ApiDtoField { Field = it }).ToList()
+                            Fields = requestBody.Fields.Select(it => new ApiDtoField { Field = it }).ToList()
                         };
         
                         context.AddDto(classIdForRequestBody, requestBodyClass, isRequestBodyDto: true);
