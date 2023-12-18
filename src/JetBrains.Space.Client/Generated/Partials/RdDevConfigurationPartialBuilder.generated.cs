@@ -109,5 +109,11 @@ public static class RdDevConfigurationPartialExtensions
     public static Partial<RdDevConfiguration> WithIsArchived(this Partial<RdDevConfiguration> it)
         => it.AddFieldName("archived");
     
+    public static Partial<RdDevConfiguration> WithCloudPolicy(this Partial<RdDevConfiguration> it)
+        => it.AddFieldName("cloudPolicy");
+    
+    public static Partial<RdDevConfiguration> WithCloudPolicy(this Partial<RdDevConfiguration> it, Func<Partial<DevConfigurationCloudPolicy>, Partial<DevConfigurationCloudPolicy>> partialBuilder)
+        => it.AddFieldName("cloudPolicy", partialBuilder(new Partial<DevConfigurationCloudPolicy>(it)));
+    
 }
 

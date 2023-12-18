@@ -29,26 +29,34 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum OptionalFeature
+public sealed class DevConfigurationCloudPolicy
+     : IPropagatePropertyAccessPath
 {
-    [EnumMember(Value = "UNKNOWN")]
-    UNKNOWN,
+    public DevConfigurationCloudPolicy() { }
     
-    [EnumMember(Value = "ADVANCED_TEAM_DIRECTORY")]
-    ADVANCEDTEAMDIRECTORY,
+    public DevConfigurationCloudPolicy(string cloudPolicy)
+    {
+        CloudPolicy = cloudPolicy;
+    }
     
-    [EnumMember(Value = "BLOGS")]
-    BLOGS,
+    private PropertyValue<string> _cloudPolicy = new PropertyValue<string>(nameof(DevConfigurationCloudPolicy), nameof(CloudPolicy), "cloudPolicy");
     
-    [EnumMember(Value = "CALENDARS")]
-    CALENDARS,
+    [Required]
+    [JsonPropertyName("cloudPolicy")]
+    public string CloudPolicy
+    {
+        get => _cloudPolicy.GetValue(InlineErrors);
+        set => _cloudPolicy.SetValue(value);
+    }
+
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _cloudPolicy.SetAccessPath(parentChainPath, validateHasBeenSet);
+    }
     
-    [EnumMember(Value = "PERSONAL_DOCUMENTS")]
-    PERSONALDOCUMENTS,
-    
-    [EnumMember(Value = "AUTOMATION")]
-    AUTOMATION,
-    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

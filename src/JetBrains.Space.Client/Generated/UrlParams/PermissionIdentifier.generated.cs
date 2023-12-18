@@ -225,10 +225,10 @@ public abstract class PermissionIdentifier : IUrlParameter
         => new PermissionIdentifierImportMessagesObsolete();
     
     /// <summary>
-    /// Allows to join dev environments from hot pool and become their owner
+    /// Allows to join dev environments from standby pool and become their owner
     /// </summary>
-    public static PermissionIdentifier JoinDevEnvironmentsFromHotPool
-        => new PermissionIdentifierJoinDevEnvironmentsFromHotPool();
+    public static PermissionIdentifier JoinDevEnvironmentsFromStandbyPool
+        => new PermissionIdentifierJoinDevEnvironmentsFromStandbyPool();
     
     public static PermissionIdentifier ListApplicationCommands
         => new PermissionIdentifierListApplicationCommands();
@@ -1174,9 +1174,9 @@ public abstract class PermissionIdentifier : IUrlParameter
     }
     
     /// <summary>
-    /// Allows to join dev environments from hot pool and become their owner
+    /// Allows to join dev environments from standby pool and become their owner
     /// </summary>
-    public class PermissionIdentifierJoinDevEnvironmentsFromHotPool : PermissionIdentifier
+    public class PermissionIdentifierJoinDevEnvironmentsFromStandbyPool : PermissionIdentifier
     {
         public override string ToString()
             => "Rd.Workspaces.Unattended.Join";

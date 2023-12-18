@@ -61,5 +61,11 @@ public static class AllChannelsListEntryPartialExtensions
     public static Partial<AllChannelsListEntry> WithIsArchived(this Partial<AllChannelsListEntry> it)
         => it.AddFieldName("archived");
     
+    public static Partial<AllChannelsListEntry> WithTotalMessages(this Partial<AllChannelsListEntry> it)
+        => it.AddFieldName("totalMessages");
+    
+    public static Partial<AllChannelsListEntry> WithLastMessageTime(this Partial<AllChannelsListEntry> it)
+        => it.AddFieldName("lastMessageTime");
+    
 }
 

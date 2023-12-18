@@ -34,7 +34,7 @@ public sealed class AllChannelsListEntry
 {
     public AllChannelsListEntry() { }
     
-    public AllChannelsListEntry(string channelId, string name, string description, M2Access access, DateTime created, int subscribers, bool subscribed, bool archived, string? icon = null)
+    public AllChannelsListEntry(string channelId, string name, string description, M2Access access, DateTime created, int subscribers, bool subscribed, bool archived, string? icon = null, int? totalMessages = null, DateTime? lastMessageTime = null)
     {
         ChannelId = channelId;
         Name = name;
@@ -45,6 +45,8 @@ public sealed class AllChannelsListEntry
         Subscribers = subscribers;
         IsSubscribed = subscribed;
         IsArchived = archived;
+        TotalMessages = totalMessages;
+        LastMessageTime = lastMessageTime;
     }
     
     private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(AllChannelsListEntry), nameof(ChannelId), "channelId");
@@ -137,6 +139,25 @@ public sealed class AllChannelsListEntry
         set => _archived.SetValue(value);
     }
 
+    private PropertyValue<int?> _totalMessages = new PropertyValue<int?>(nameof(AllChannelsListEntry), nameof(TotalMessages), "totalMessages");
+    
+    [JsonPropertyName("totalMessages")]
+    public int? TotalMessages
+    {
+        get => _totalMessages.GetValue(InlineErrors);
+        set => _totalMessages.SetValue(value);
+    }
+
+    private PropertyValue<DateTime?> _lastMessageTime = new PropertyValue<DateTime?>(nameof(AllChannelsListEntry), nameof(LastMessageTime), "lastMessageTime");
+    
+    [JsonPropertyName("lastMessageTime")]
+    [JsonConverter(typeof(SpaceDateTimeConverter))]
+    public DateTime? LastMessageTime
+    {
+        get => _lastMessageTime.GetValue(InlineErrors);
+        set => _lastMessageTime.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _channelId.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -148,6 +169,8 @@ public sealed class AllChannelsListEntry
         _subscribers.SetAccessPath(parentChainPath, validateHasBeenSet);
         _subscribed.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _totalMessages.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _lastMessageTime.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

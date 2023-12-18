@@ -27,28 +27,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.DevConfigurationCloudPolicyPartialBuilder;
 
-[JsonConverter(typeof(EnumStringConverter))]
-public enum OptionalFeature
+public static class DevConfigurationCloudPolicyPartialExtensions
 {
-    [EnumMember(Value = "UNKNOWN")]
-    UNKNOWN,
-    
-    [EnumMember(Value = "ADVANCED_TEAM_DIRECTORY")]
-    ADVANCEDTEAMDIRECTORY,
-    
-    [EnumMember(Value = "BLOGS")]
-    BLOGS,
-    
-    [EnumMember(Value = "CALENDARS")]
-    CALENDARS,
-    
-    [EnumMember(Value = "PERSONAL_DOCUMENTS")]
-    PERSONALDOCUMENTS,
-    
-    [EnumMember(Value = "AUTOMATION")]
-    AUTOMATION,
+    public static Partial<DevConfigurationCloudPolicy> WithCloudPolicy(this Partial<DevConfigurationCloudPolicy> it)
+        => it.AddFieldName("cloudPolicy");
     
 }
 

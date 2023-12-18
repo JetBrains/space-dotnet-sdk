@@ -34,7 +34,7 @@ public sealed class ContainerImageConfig
 {
     public ContainerImageConfig() { }
     
-    public ContainerImageConfig(string? userName = null, List<string>? ports = null, List<string>? volumes = null, List<string>? env = null, string? workingDir = null, string? entryPoint = null, string? cmd = null, List<string>? labels = null)
+    public ContainerImageConfig(string? userName = null, List<string>? ports = null, List<string>? volumes = null, List<string>? env = null, string? workingDir = null, string? entryPoint = null, string? cmd = null, string? healthcheck = null, List<string>? labels = null)
     {
         UserName = userName;
         Ports = ports;
@@ -43,6 +43,7 @@ public sealed class ContainerImageConfig
         WorkingDir = workingDir;
         EntryPoint = entryPoint;
         Cmd = cmd;
+        Healthcheck = healthcheck;
         Labels = labels;
     }
     
@@ -109,6 +110,15 @@ public sealed class ContainerImageConfig
         set => _cmd.SetValue(value);
     }
 
+    private PropertyValue<string?> _healthcheck = new PropertyValue<string?>(nameof(ContainerImageConfig), nameof(Healthcheck), "healthcheck");
+    
+    [JsonPropertyName("healthcheck")]
+    public string? Healthcheck
+    {
+        get => _healthcheck.GetValue(InlineErrors);
+        set => _healthcheck.SetValue(value);
+    }
+
     private PropertyValue<List<string>?> _labels = new PropertyValue<List<string>?>(nameof(ContainerImageConfig), nameof(Labels), "labels");
     
     [JsonPropertyName("labels")]
@@ -127,6 +137,7 @@ public sealed class ContainerImageConfig
         _workingDir.SetAccessPath(parentChainPath, validateHasBeenSet);
         _entryPoint.SetAccessPath(parentChainPath, validateHasBeenSet);
         _cmd.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _healthcheck.SetAccessPath(parentChainPath, validateHasBeenSet);
         _labels.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

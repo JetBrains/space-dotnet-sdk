@@ -52,6 +52,9 @@ public static class ContainerImageConfigPartialExtensions
     public static Partial<ContainerImageConfig> WithCmd(this Partial<ContainerImageConfig> it)
         => it.AddFieldName("cmd");
     
+    public static Partial<ContainerImageConfig> WithHealthcheck(this Partial<ContainerImageConfig> it)
+        => it.AddFieldName("healthcheck");
+    
     public static Partial<ContainerImageConfig> WithLabels(this Partial<ContainerImageConfig> it)
         => it.AddFieldName("labels");
     
