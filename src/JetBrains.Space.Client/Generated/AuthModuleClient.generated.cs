@@ -474,7 +474,10 @@ public partial class AuthModuleClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/reset{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ResetPassword", cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/reset{queryParameters.ToQueryString()}", 
+                new AuthModulesForIdLoginsForIdentifierResetPostRequest
+                { 
+                }, requestHeaders: null, functionName: "ResetPassword", cancellationToken: cancellationToken);
         }
         
     

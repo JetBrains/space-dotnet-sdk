@@ -92,9 +92,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier BrowseChannels
         => new PermissionIdentifierBrowseChannels();
     
-    public static PermissionIdentifier ChangeBackgroundImagesForOrganization
-        => new PermissionIdentifierChangeBackgroundImagesForOrganization();
-    
     public static PermissionIdentifier ConnectToFleetWorkspaces
         => new PermissionIdentifierConnectToFleetWorkspaces();
     
@@ -569,9 +566,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier UpdateWorkingHours
         => new PermissionIdentifierUpdateWorkingHours();
     
-    public static PermissionIdentifier UseCalls
-        => new PermissionIdentifierUseCalls();
-    
     public static PermissionIdentifier ViewAbsenceApprovals
         => new PermissionIdentifierViewAbsenceApprovals();
     
@@ -928,12 +922,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Chat.BrowseChannels";
-    }
-    
-    public class PermissionIdentifierChangeBackgroundImagesForOrganization : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Telekom.CustomBackgrounds.Change";
     }
     
     public class PermissionIdentifierConnectToFleetWorkspaces : PermissionIdentifier
@@ -1807,12 +1795,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Profile.WorkingDays.Edit";
-    }
-    
-    public class PermissionIdentifierUseCalls : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Telekom.CallSession.Create";
     }
     
     public class PermissionIdentifierViewAbsenceApprovals : PermissionIdentifier

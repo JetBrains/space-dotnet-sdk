@@ -37,18 +37,18 @@ public sealed class HATypeUrlParam
     
     public HATypeUrlParam() { }
     
-    public HATypeUrlParam(HAUrlParameter urlParam, bool nullable, List<string> tags)
+    public HATypeUrlParam(HAIdentifier urlParam, bool nullable, List<string> tags)
     {
         UrlParam = urlParam;
         IsNullable = nullable;
         Tags = tags;
     }
     
-    private PropertyValue<HAUrlParameter> _urlParam = new PropertyValue<HAUrlParameter>(nameof(HATypeUrlParam), nameof(UrlParam), "urlParam");
+    private PropertyValue<HAIdentifier> _urlParam = new PropertyValue<HAIdentifier>(nameof(HATypeUrlParam), nameof(UrlParam), "urlParam");
     
     [Required]
     [JsonPropertyName("urlParam")]
-    public HAUrlParameter UrlParam
+    public HAIdentifier UrlParam
     {
         get => _urlParam.GetValue(InlineErrors);
         set => _urlParam.SetValue(value);

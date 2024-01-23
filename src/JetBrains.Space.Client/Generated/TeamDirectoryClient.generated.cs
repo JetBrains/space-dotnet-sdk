@@ -752,7 +752,10 @@ public partial class TeamDirectoryClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<TDLocation>("POST", $"api/http/team-directory/locations/{id}/restore{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RestoreLocation", cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<TeamDirectoryLocationsForIdRestorePostRequest, TDLocation>("POST", $"api/http/team-directory/locations/{id}/restore{queryParameters.ToQueryString()}", 
+                new TeamDirectoryLocationsForIdRestorePostRequest
+                { 
+                }, requestHeaders: null, functionName: "RestoreLocation", cancellationToken: cancellationToken);
         }
         
     
@@ -1791,7 +1794,10 @@ public partial class TeamDirectoryClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<TDMemberProfile>("PATCH", $"api/http/team-directory/profiles/{profile}/restore{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RestoreSuspendedUserProfile", cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileRestorePatchRequest, TDMemberProfile>("PATCH", $"api/http/team-directory/profiles/{profile}/restore{queryParameters.ToQueryString()}", 
+                new TeamDirectoryProfilesForProfileRestorePatchRequest
+                { 
+                }, requestHeaders: null, functionName: "RestoreSuspendedUserProfile", cancellationToken: cancellationToken);
         }
         
     
@@ -2559,7 +2565,10 @@ public partial class TeamDirectoryClient : ISpaceClient
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<TwoFactorAuthenticationSecret>()) : Partial<TwoFactorAuthenticationSecret>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<TwoFactorAuthenticationSecret>("POST", $"api/http/team-directory/profiles/{profile}/2-fa/totp{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "SetUpTotpTwoFactorAuthentication", cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfile2FaTotpPostRequest, TwoFactorAuthenticationSecret>("POST", $"api/http/team-directory/profiles/{profile}/2-fa/totp{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfile2FaTotpPostRequest
+                        { 
+                        }, requestHeaders: null, functionName: "SetUpTotpTwoFactorAuthentication", cancellationToken: cancellationToken);
                 }
                 
             
@@ -3009,7 +3018,10 @@ public partial class TeamDirectoryClient : ISpaceClient
                     {
                         var queryParameters = new NameValueCollection();
                         
-                        await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/documents/folders/{folder}/introduction/{documentId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "AddFolderIntroduction", cancellationToken: cancellationToken);
+                        await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/documents/folders/{folder}/introduction/{documentId}{queryParameters.ToQueryString()}", 
+                            new TeamDirectoryProfilesForProfileDocumentsFoldersForFolderIntroductionForDocumentIdPatchRequest
+                            { 
+                            }, requestHeaders: null, functionName: "AddFolderIntroduction", cancellationToken: cancellationToken);
                     }
                     
                 
@@ -3240,7 +3252,10 @@ public partial class TeamDirectoryClient : ISpaceClient
                     var queryParameters = new NameValueCollection();
                     queryParameters.Append("$fields", (partial != null ? partial(new Partial<Document>()) : Partial<Document>.Default()).ToString());
                     
-                    return await _connection.RequestResourceAsync<Document>("PATCH", $"api/http/team-directory/profiles/{profile}/documents/{documentId}/unarchive{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "UnarchiveDocument", cancellationToken: cancellationToken);
+                    return await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileDocumentsForDocumentIdUnarchivePatchRequest, Document>("PATCH", $"api/http/team-directory/profiles/{profile}/documents/{documentId}/unarchive{queryParameters.ToQueryString()}", 
+                        new TeamDirectoryProfilesForProfileDocumentsForDocumentIdUnarchivePatchRequest
+                        { 
+                        }, requestHeaders: null, functionName: "UnarchiveDocument", cancellationToken: cancellationToken);
                 }
                 
             
@@ -3905,7 +3920,10 @@ public partial class TeamDirectoryClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<TDRole>("POST", $"api/http/team-directory/roles/{id}/restore{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RestoreRole", cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<TeamDirectoryRolesForIdRestorePostRequest, TDRole>("POST", $"api/http/team-directory/roles/{id}/restore{queryParameters.ToQueryString()}", 
+                new TeamDirectoryRolesForIdRestorePostRequest
+                { 
+                }, requestHeaders: null, functionName: "RestoreRole", cancellationToken: cancellationToken);
         }
         
     
@@ -4095,7 +4113,10 @@ public partial class TeamDirectoryClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/team-directory/teams/{id}/cancel-disbanding{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "CancelTeamDisbanding", cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/team-directory/teams/{id}/cancel-disbanding{queryParameters.ToQueryString()}", 
+                new TeamDirectoryTeamsForIdCancelDisbandingPostRequest
+                { 
+                }, requestHeaders: null, functionName: "CancelTeamDisbanding", cancellationToken: cancellationToken);
         }
         
     
@@ -4115,7 +4136,10 @@ public partial class TeamDirectoryClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<TDTeam>("POST", $"api/http/team-directory/teams/{id}/restore{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RestoreTeam", cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<TeamDirectoryTeamsForIdRestorePostRequest, TDTeam>("POST", $"api/http/team-directory/teams/{id}/restore{queryParameters.ToQueryString()}", 
+                new TeamDirectoryTeamsForIdRestorePostRequest
+                { 
+                }, requestHeaders: null, functionName: "RestoreTeam", cancellationToken: cancellationToken);
         }
         
     

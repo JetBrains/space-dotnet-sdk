@@ -110,7 +110,10 @@ public partial class ApplicationClient : ISpaceClient
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("POST", $"api/http/applications/report-application-as-healthy{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ReportApplicationAsHealthy", cancellationToken: cancellationToken);
+        await _connection.RequestResourceAsync("POST", $"api/http/applications/report-application-as-healthy{queryParameters.ToQueryString()}", 
+            new ApplicationsReportApplicationAsHealthyPostRequest
+            { 
+            }, requestHeaders: null, functionName: "ReportApplicationAsHealthy", cancellationToken: cancellationToken);
     }
     
 
@@ -132,7 +135,10 @@ public partial class ApplicationClient : ISpaceClient
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/force-remove{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ForceRemoveApplication", cancellationToken: cancellationToken);
+        await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/force-remove{queryParameters.ToQueryString()}", 
+            new ApplicationsForApplicationForceRemovePostRequest
+            { 
+            }, requestHeaders: null, functionName: "ForceRemoveApplication", cancellationToken: cancellationToken);
     }
     
 
@@ -148,7 +154,10 @@ public partial class ApplicationClient : ISpaceClient
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/restore{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RestoreApplication", cancellationToken: cancellationToken);
+        await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/restore{queryParameters.ToQueryString()}", 
+            new ApplicationsForApplicationRestorePostRequest
+            { 
+            }, requestHeaders: null, functionName: "RestoreApplication", cancellationToken: cancellationToken);
     }
     
 
@@ -889,7 +898,10 @@ public partial class ApplicationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/client-secret/regenerate{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RegenerateAppSecret", cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/client-secret/regenerate{queryParameters.ToQueryString()}", 
+                new ApplicationsForApplicationClientSecretRegeneratePostRequest
+                { 
+                }, requestHeaders: null, functionName: "RegenerateAppSecret", cancellationToken: cancellationToken);
         }
         
     
@@ -1164,7 +1176,10 @@ public partial class ApplicationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/signing-key/regenerate{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RegenerateSigningKey", cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/signing-key/regenerate{queryParameters.ToQueryString()}", 
+                new ApplicationsForApplicationSigningKeyRegeneratePostRequest
+                { 
+                }, requestHeaders: null, functionName: "RegenerateSigningKey", cancellationToken: cancellationToken);
         }
         
     
@@ -1534,7 +1549,10 @@ public partial class ApplicationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/verification-token/regenerate{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RegenerateVerificationToken", cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/verification-token/regenerate{queryParameters.ToQueryString()}", 
+                new ApplicationsForApplicationVerificationTokenRegeneratePostRequest
+                { 
+                }, requestHeaders: null, functionName: "RegenerateVerificationToken", cancellationToken: cancellationToken);
         }
         
     
@@ -1615,7 +1633,10 @@ public partial class ApplicationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/webhooks/{webhookId}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "PostWebhook", cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/webhooks/{webhookId}{queryParameters.ToQueryString()}", 
+                new ApplicationsForApplicationWebhooksForWebhookIdPostRequest
+                { 
+                }, requestHeaders: null, functionName: "PostWebhook", cancellationToken: cancellationToken);
         }
         
     
@@ -1795,7 +1816,10 @@ public partial class ApplicationClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/webhooks/{webhookId}/signing-key/regenerate{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "Regenerate", cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/webhooks/{webhookId}/signing-key/regenerate{queryParameters.ToQueryString()}", 
+                    new ApplicationsForApplicationWebhooksForWebhookIdSigningKeyRegeneratePostRequest
+                    { 
+                    }, requestHeaders: null, functionName: "Regenerate", cancellationToken: cancellationToken);
             }
             
         
@@ -1860,7 +1884,10 @@ public partial class ApplicationClient : ISpaceClient
             {
                 var queryParameters = new NameValueCollection();
                 
-                await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions/{subscriptionId}/request-missing-rights{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RequestMissingRights", cancellationToken: cancellationToken);
+                await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/webhooks/{webhookId}/subscriptions/{subscriptionId}/request-missing-rights{queryParameters.ToQueryString()}", 
+                    new ApplicationsForApplicationWebhooksForWebhookIdSubscriptionsForSubscriptionIdRequestMissingRightsPostRequest
+                    { 
+                    }, requestHeaders: null, functionName: "RequestMissingRights", cancellationToken: cancellationToken);
             }
             
         

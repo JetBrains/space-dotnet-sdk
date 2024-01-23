@@ -38,9 +38,6 @@ public interface InlineUnfurlDetails
     public static AutomationJobUnfurlDetails AutomationJobUnfurlDetails(string jobId, string jobName, PRProject projectRef, string repoName, JobExecutionDisplayStatus? jobExecutionDisplayStatusFilter = null, JobTriggerType? jobTriggerFilter = null, Branch? branch = null)
         => new AutomationJobUnfurlDetails(jobId: jobId, jobName: jobName, projectRef: projectRef, repoName: repoName, jobExecutionDisplayStatusFilter: jobExecutionDisplayStatusFilter, jobTriggerFilter: jobTriggerFilter, branch: branch);
     
-    public static CallSessionUnfurlDetails CallSessionUnfurlDetails(CallSession session)
-        => new CallSessionUnfurlDetails(session: session);
-    
     public static DocumentHistoryUnfurlDetails DocumentHistoryUnfurlDetails(string document, string title, DateTime? version2 = null, DateTime? base2 = null, DateTime? preview2 = null)
         => new DocumentHistoryUnfurlDetails(document: document, title: title, version2: version2, base2: base2, preview2: preview2);
     

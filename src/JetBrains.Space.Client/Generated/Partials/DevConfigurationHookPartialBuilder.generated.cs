@@ -40,5 +40,8 @@ public static class DevConfigurationHookPartialExtensions
     public static Partial<DevConfigurationHook> WithScript(this Partial<DevConfigurationHook> it)
         => it.AddFieldName("script");
     
+    public static Partial<DevConfigurationHook> WithTimeoutMs(this Partial<DevConfigurationHook> it)
+        => it.AddFieldName("timeoutMs");
+    
 }
 

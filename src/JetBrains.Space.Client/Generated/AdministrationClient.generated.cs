@@ -65,7 +65,10 @@ public partial class AdministrationClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<SupportProfileDTO>()) : Partial<SupportProfileDTO>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<SupportProfileDTO>("POST", $"api/http/administration/support{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "CreateSupport", cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<AdministrationSupportPostRequest, SupportProfileDTO>("POST", $"api/http/administration/support{queryParameters.ToQueryString()}", 
+                new AdministrationSupportPostRequest
+                { 
+                }, requestHeaders: null, functionName: "CreateSupport", cancellationToken: cancellationToken);
         }
         
     

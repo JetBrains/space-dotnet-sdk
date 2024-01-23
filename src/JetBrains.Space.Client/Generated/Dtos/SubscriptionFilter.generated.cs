@@ -74,8 +74,8 @@ public interface SubscriptionFilter
     public static ProjectCommonSubscriptionFilter ProjectCommon(PRProject? project = null)
         => new ProjectCommonSubscriptionFilter(project: project);
     
-    public static RdWarmupSubscriptionFilter RdWarmup(PRProject? project = null, string? repositoryName = null, List<string>? branchSpec = null)
-        => new RdWarmupSubscriptionFilter(project: project, repositoryName: repositoryName, branchSpec: branchSpec);
+    public static RdWarmupSubscriptionFilter RdWarmup(PRProject? project = null, string? repositoryName = null, List<string>? branchSpec = null, RdDevConfiguration? devConf = null)
+        => new RdWarmupSubscriptionFilter(project: project, repositoryName: repositoryName, branchSpec: branchSpec, devConf: devConf);
     
     public static RepoCommitsSubscriptionFilter RepoCommits(string repository, RepoCommitsSubscriptionFilterSpec spec, PRProject? project = null)
         => new RepoCommitsSubscriptionFilter(repository: repository, spec: spec, project: project);

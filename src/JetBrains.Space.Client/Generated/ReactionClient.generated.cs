@@ -59,7 +59,10 @@ public partial class ReactionClient : ISpaceClient
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("POST", $"api/http/reactions/{item}/{emoji}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "AddReaction", cancellationToken: cancellationToken);
+        await _connection.RequestResourceAsync("POST", $"api/http/reactions/{item}/{emoji}{queryParameters.ToQueryString()}", 
+            new ReactionsForItemForEmojiPostRequest
+            { 
+            }, requestHeaders: null, functionName: "AddReaction", cancellationToken: cancellationToken);
     }
     
 

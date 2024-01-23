@@ -46,8 +46,8 @@ public static class HAModelPartialExtensions
     public static Partial<HAModel> WithUrlParams(this Partial<HAModel> it)
         => it.AddFieldName("urlParams");
     
-    public static Partial<HAModel> WithUrlParams(this Partial<HAModel> it, Func<Partial<HAUrlParameter>, Partial<HAUrlParameter>> partialBuilder)
-        => it.AddFieldName("urlParams", partialBuilder(new Partial<HAUrlParameter>(it)));
+    public static Partial<HAModel> WithUrlParams(this Partial<HAModel> it, Func<Partial<HAIdentifier>, Partial<HAIdentifier>> partialBuilder)
+        => it.AddFieldName("urlParams", partialBuilder(new Partial<HAIdentifier>(it)));
     
     public static Partial<HAModel> WithResources(this Partial<HAModel> it)
         => it.AddFieldName("resources");

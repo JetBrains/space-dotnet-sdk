@@ -144,7 +144,10 @@ public partial class CustomFieldClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/archive{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ArchiveCustomField", cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/archive{queryParameters.ToQueryString()}", 
+                new CustomFieldsV2ForEntityTypeFieldsForCustomFieldArchivePostRequest
+                { 
+                }, requestHeaders: null, functionName: "ArchiveCustomField", cancellationToken: cancellationToken);
         }
         
     
@@ -152,7 +155,10 @@ public partial class CustomFieldClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/restore{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RestoreCustomField", cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/custom-fields-v2/{entityType}/fields/{customField}/restore{queryParameters.ToQueryString()}", 
+                new CustomFieldsV2ForEntityTypeFieldsForCustomFieldRestorePostRequest
+                { 
+                }, requestHeaders: null, functionName: "RestoreCustomField", cancellationToken: cancellationToken);
         }
         
     

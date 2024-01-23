@@ -34,8 +34,8 @@ public static class HATypeUrlParamPartialExtensions
     public static Partial<HATypeUrlParam> WithUrlParam(this Partial<HATypeUrlParam> it)
         => it.AddFieldName("urlParam");
     
-    public static Partial<HATypeUrlParam> WithUrlParam(this Partial<HATypeUrlParam> it, Func<Partial<HAUrlParameter>, Partial<HAUrlParameter>> partialBuilder)
-        => it.AddFieldName("urlParam", partialBuilder(new Partial<HAUrlParameter>(it)));
+    public static Partial<HATypeUrlParam> WithUrlParam(this Partial<HATypeUrlParam> it, Func<Partial<HAIdentifier>, Partial<HAIdentifier>> partialBuilder)
+        => it.AddFieldName("urlParam", partialBuilder(new Partial<HAIdentifier>(it)));
     
     public static Partial<HATypeUrlParam> WithIsNullable(this Partial<HATypeUrlParam> it)
         => it.AddFieldName("nullable");

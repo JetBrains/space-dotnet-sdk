@@ -38,9 +38,6 @@ public interface AttachmentUnfurlDetails
     public static AutomationJobUnfurlDetails AutomationJobUnfurlDetails(string jobId, string jobName, PRProject projectRef, string repoName, JobExecutionDisplayStatus? jobExecutionDisplayStatusFilter = null, JobTriggerType? jobTriggerFilter = null, Branch? branch = null)
         => new AutomationJobUnfurlDetails(jobId: jobId, jobName: jobName, projectRef: projectRef, repoName: repoName, jobExecutionDisplayStatusFilter: jobExecutionDisplayStatusFilter, jobTriggerFilter: jobTriggerFilter, branch: branch);
     
-    public static CallSessionUnfurlDetails CallSessionUnfurlDetails(CallSession session)
-        => new CallSessionUnfurlDetails(session: session);
-    
     public static ChannelItemSnapshot ChannelItemSnapshot(string id, string text, CPrincipal author, DateTime created, long time, string? channelId = null, M2ItemContentDetails? details = null, List<AttachmentInfo>? attachments = null, List<EntityMention>? mentions = null, ChannelItemSnapshot? projectedItem = null)
         => new ChannelItemSnapshot(id: id, text: text, author: author, created: created, time: time, channelId: channelId, details: details, attachments: attachments, mentions: mentions, projectedItem: projectedItem);
     

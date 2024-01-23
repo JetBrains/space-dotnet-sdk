@@ -134,8 +134,5 @@ public interface M2ItemContentDetails
     public static TeamAddedItemDetails TeamAddedItemDetails(TDTeam team)
         => new TeamAddedItemDetails(team: team);
     
-    public static VideoCallChannelItemContent VideoCallChannelItemContent(CallSession session)
-        => new VideoCallChannelItemContent(session: session);
-    
 }
 

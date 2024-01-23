@@ -34,7 +34,7 @@ public sealed class HAEndpoint
 {
     public HAEndpoint() { }
     
-    public HAEndpoint(HAResource resource, HAMethod method, List<HAParameter> parameters, HAPath path, string displayName, string functionName, HATypeObject? requestBody = null, HAType? responseBody = null, string? doc = null, HADescription? description = null, HADeprecation? deprecation = null, HAExperimental? experimental = null, List<HARight>? rights = null, string? featureFlag = null, string? optionalFeature = null)
+    public HAEndpoint(HAResource resource, HAMethod method, List<HAParameter> parameters, HAPath path, string displayName, string functionName, HARequestPayloadType? requestBody = null, HAType? responseBody = null, string? doc = null, HADescription? description = null, HADeprecation? deprecation = null, HAExperimental? experimental = null, List<HARight>? rights = null, string? featureFlag = null, string? optionalFeature = null)
     {
         Resource = resource;
         Method = method;
@@ -83,10 +83,10 @@ public sealed class HAEndpoint
         set => _parameters.SetValue(value);
     }
 
-    private PropertyValue<HATypeObject?> _requestBody = new PropertyValue<HATypeObject?>(nameof(HAEndpoint), nameof(RequestBody), "requestBody");
+    private PropertyValue<HARequestPayloadType?> _requestBody = new PropertyValue<HARequestPayloadType?>(nameof(HAEndpoint), nameof(RequestBody), "requestBody");
     
     [JsonPropertyName("requestBody")]
-    public HATypeObject? RequestBody
+    public HARequestPayloadType? RequestBody
     {
         get => _requestBody.GetValue(InlineErrors);
         set => _requestBody.SetValue(value);

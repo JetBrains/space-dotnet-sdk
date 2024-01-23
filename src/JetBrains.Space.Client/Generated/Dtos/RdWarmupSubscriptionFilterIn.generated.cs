@@ -37,11 +37,12 @@ public sealed class RdWarmupSubscriptionFilterIn
     
     public RdWarmupSubscriptionFilterIn() { }
     
-    public RdWarmupSubscriptionFilterIn(string project, string? repositoryName = null, List<string>? branchSpec = null)
+    public RdWarmupSubscriptionFilterIn(string project, string? repositoryName = null, List<string>? branchSpec = null, string? devConfId = null)
     {
         Project = project;
         RepositoryName = repositoryName;
         BranchSpec = branchSpec;
+        DevConfId = devConfId;
     }
     
     private PropertyValue<string> _project = new PropertyValue<string>(nameof(RdWarmupSubscriptionFilterIn), nameof(Project), "project");
@@ -72,11 +73,21 @@ public sealed class RdWarmupSubscriptionFilterIn
         set => _branchSpec.SetValue(value);
     }
 
+    private PropertyValue<string?> _devConfId = new PropertyValue<string?>(nameof(RdWarmupSubscriptionFilterIn), nameof(DevConfId), "devConfId");
+    
+    [JsonPropertyName("devConfId")]
+    public string? DevConfId
+    {
+        get => _devConfId.GetValue(InlineErrors);
+        set => _devConfId.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _project.SetAccessPath(parentChainPath, validateHasBeenSet);
         _repositoryName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _branchSpec.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _devConfId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -57,7 +57,7 @@ public class HAType
     public static HATypeRef Ref(HADto dto, bool nullable, List<string> tags)
         => new HATypeRef(dto: dto, nullable: nullable, tags: tags);
     
-    public static HATypeUrlParam UrlParam(HAUrlParameter urlParam, bool nullable, List<string> tags)
+    public static HATypeUrlParam UrlParam(HAIdentifier urlParam, bool nullable, List<string> tags)
         => new HATypeUrlParam(urlParam: urlParam, nullable: nullable, tags: tags);
     
     public HAType() { }

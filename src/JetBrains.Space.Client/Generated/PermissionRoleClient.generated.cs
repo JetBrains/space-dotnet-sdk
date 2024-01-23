@@ -120,7 +120,10 @@ public partial class PermissionRoleClient : ISpaceClient
     {
         var queryParameters = new NameValueCollection();
         
-        await _connection.RequestResourceAsync("POST", $"api/http/permission-roles/{roleId}/reset-role-permissions-to-default{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ResetRolePermissionsToDefault", cancellationToken: cancellationToken);
+        await _connection.RequestResourceAsync("POST", $"api/http/permission-roles/{roleId}/reset-role-permissions-to-default{queryParameters.ToQueryString()}", 
+            new PermissionRolesForRoleIdResetRolePermissionsToDefaultPostRequest
+            { 
+            }, requestHeaders: null, functionName: "ResetRolePermissionsToDefault", cancellationToken: cancellationToken);
     }
     
 
@@ -372,7 +375,10 @@ public partial class PermissionRoleClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/permission-roles/{roleId}/profiles/{profile}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "AddRoleMember", cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/permission-roles/{roleId}/profiles/{profile}{queryParameters.ToQueryString()}", 
+                new PermissionRolesForRoleIdProfilesForProfilePostRequest
+                { 
+                }, requestHeaders: null, functionName: "AddRoleMember", cancellationToken: cancellationToken);
         }
         
     
@@ -461,7 +467,10 @@ public partial class PermissionRoleClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/permission-roles/{roleId}/teams/{team}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "AddRoleTeam", cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/permission-roles/{roleId}/teams/{team}{queryParameters.ToQueryString()}", 
+                new PermissionRolesForRoleIdTeamsForTeamPostRequest
+                { 
+                }, requestHeaders: null, functionName: "AddRoleTeam", cancellationToken: cancellationToken);
         }
         
     

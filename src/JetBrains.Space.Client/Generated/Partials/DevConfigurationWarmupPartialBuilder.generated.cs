@@ -46,5 +46,8 @@ public static class DevConfigurationWarmupPartialExtensions
     public static Partial<DevConfigurationWarmup> WithTimeoutMs(this Partial<DevConfigurationWarmup> it)
         => it.AddFieldName("timeoutMs");
     
+    public static Partial<DevConfigurationWarmup> WithIsIncrementalBuild(this Partial<DevConfigurationWarmup> it)
+        => it.AddFieldName("incrementalBuild");
+    
 }
 

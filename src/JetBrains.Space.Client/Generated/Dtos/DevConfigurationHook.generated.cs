@@ -34,10 +34,11 @@ public sealed class DevConfigurationHook
 {
     public DevConfigurationHook() { }
     
-    public DevConfigurationHook(DevConfigurationHookTrigger trigger, string script)
+    public DevConfigurationHook(DevConfigurationHookTrigger trigger, string script, long timeoutMs)
     {
         Trigger = trigger;
         Script = script;
+        TimeoutMs = timeoutMs;
     }
     
     private PropertyValue<DevConfigurationHookTrigger> _trigger = new PropertyValue<DevConfigurationHookTrigger>(nameof(DevConfigurationHook), nameof(Trigger), "trigger");
@@ -60,10 +61,21 @@ public sealed class DevConfigurationHook
         set => _script.SetValue(value);
     }
 
+    private PropertyValue<long> _timeoutMs = new PropertyValue<long>(nameof(DevConfigurationHook), nameof(TimeoutMs), "timeoutMs");
+    
+    [Required]
+    [JsonPropertyName("timeoutMs")]
+    public long TimeoutMs
+    {
+        get => _timeoutMs.GetValue(InlineErrors);
+        set => _timeoutMs.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _trigger.SetAccessPath(parentChainPath, validateHasBeenSet);
         _script.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _timeoutMs.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

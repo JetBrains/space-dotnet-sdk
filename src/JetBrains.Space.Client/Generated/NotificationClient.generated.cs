@@ -102,7 +102,10 @@ public partial class NotificationClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/notifications/channel-subscriptions/{id}/request-missing-rights{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RequestMissingRights", cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/notifications/channel-subscriptions/{id}/request-missing-rights{queryParameters.ToQueryString()}", 
+                new NotificationsChannelSubscriptionsForIdRequestMissingRightsPostRequest
+                { 
+                }, requestHeaders: null, functionName: "RequestMissingRights", cancellationToken: cancellationToken);
         }
         
     

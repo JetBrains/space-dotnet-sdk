@@ -32,8 +32,17 @@ namespace JetBrains.Space.Client;
 [JsonConverter(typeof(EnumStringConverter))]
 public enum DevConfigurationHookTrigger
 {
+    [EnumMember(Value = "AFTER_CONTAINER_CREATED")]
+    AFTERCONTAINERCREATED,
+    
     [EnumMember(Value = "AFTER_USER_ASSIGNED")]
     AFTERUSERASSIGNED,
+    
+    [EnumMember(Value = "AFTER_CONTAINER_ACTIVATED")]
+    AFTERCONTAINERACTIVATED,
+    
+    [EnumMember(Value = "BEFORE_CONTAINER_STOP")]
+    BEFORECONTAINERSTOP,
     
 }
 

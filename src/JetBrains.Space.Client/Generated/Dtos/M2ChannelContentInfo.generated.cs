@@ -56,9 +56,6 @@ public interface M2ChannelContentInfo
     public static M2ChannelContentArticle M2ChannelContentArticle(ArticleRecord article, ArticleContentRecord articleContent, ArticleDetailsRecord? details = null, ArticleChannelRecord? channel = null)
         => new M2ChannelContentArticle(article: article, articleContent: articleContent, details: details, channel: channel);
     
-    public static M2ChannelContentCallDiscussion M2ChannelContentCallDiscussion(CallSession session)
-        => new M2ChannelContentCallDiscussion(session: session);
-    
     public static M2ChannelContentCodeDiscussion M2ChannelContentCodeDiscussion(string codeDiscussionId, ChannelSpecificDefaults notificationDefaults, CodeDiscussionRecord? codeDiscussion = null)
         => new M2ChannelContentCodeDiscussion(codeDiscussionId: codeDiscussionId, notificationDefaults: notificationDefaults, codeDiscussion: codeDiscussion);
     

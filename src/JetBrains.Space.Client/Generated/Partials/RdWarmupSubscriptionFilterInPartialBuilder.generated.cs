@@ -40,5 +40,8 @@ public static class RdWarmupSubscriptionFilterInPartialExtensions
     public static Partial<RdWarmupSubscriptionFilterIn> WithBranchSpec(this Partial<RdWarmupSubscriptionFilterIn> it)
         => it.AddFieldName("branchSpec");
     
+    public static Partial<RdWarmupSubscriptionFilterIn> WithDevConfId(this Partial<RdWarmupSubscriptionFilterIn> it)
+        => it.AddFieldName("devConfId");
+    
 }
 

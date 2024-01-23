@@ -52,8 +52,8 @@ public static class HAEndpointPartialExtensions
     public static Partial<HAEndpoint> WithRequestBody(this Partial<HAEndpoint> it)
         => it.AddFieldName("requestBody");
     
-    public static Partial<HAEndpoint> WithRequestBody(this Partial<HAEndpoint> it, Func<Partial<HATypeObject>, Partial<HATypeObject>> partialBuilder)
-        => it.AddFieldName("requestBody", partialBuilder(new Partial<HATypeObject>(it)));
+    public static Partial<HAEndpoint> WithRequestBody(this Partial<HAEndpoint> it, Func<Partial<HARequestPayloadType>, Partial<HARequestPayloadType>> partialBuilder)
+        => it.AddFieldName("requestBody", partialBuilder(new Partial<HARequestPayloadType>(it)));
     
     public static Partial<HAEndpoint> WithResponseBody(this Partial<HAEndpoint> it)
         => it.AddFieldName("responseBody");

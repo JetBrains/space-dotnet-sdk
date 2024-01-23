@@ -30,7 +30,7 @@ using JetBrains.Space.Common.Types;
 namespace JetBrains.Space.Client;
 
 public sealed class HATypeObject
-     : HAType, IClassNameConvertible, IPropagatePropertyAccessPath
+     : HAType, HARequestPayloadType, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
     public override string? ClassName => "HA_Type.Object";

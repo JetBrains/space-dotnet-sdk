@@ -34,12 +34,13 @@ public sealed class DevConfigurationWarmup
 {
     public DevConfigurationWarmup() { }
     
-    public DevConfigurationWarmup(bool indexing, List<DevConfigurationWarmupTriggers> triggers, long timeoutMs, string? script = null)
+    public DevConfigurationWarmup(bool indexing, List<DevConfigurationWarmupTriggers> triggers, long timeoutMs, bool incrementalBuild, string? script = null)
     {
         IsIndexing = indexing;
         Script = script;
         Triggers = triggers;
         TimeoutMs = timeoutMs;
+        IsIncrementalBuild = incrementalBuild;
     }
     
     private PropertyValue<bool> _indexing = new PropertyValue<bool>(nameof(DevConfigurationWarmup), nameof(IsIndexing), "indexing");
@@ -81,12 +82,23 @@ public sealed class DevConfigurationWarmup
         set => _timeoutMs.SetValue(value);
     }
 
+    private PropertyValue<bool> _incrementalBuild = new PropertyValue<bool>(nameof(DevConfigurationWarmup), nameof(IsIncrementalBuild), "incrementalBuild");
+    
+    [Required]
+    [JsonPropertyName("incrementalBuild")]
+    public bool IsIncrementalBuild
+    {
+        get => _incrementalBuild.GetValue(InlineErrors);
+        set => _incrementalBuild.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _indexing.SetAccessPath(parentChainPath, validateHasBeenSet);
         _script.SetAccessPath(parentChainPath, validateHasBeenSet);
         _triggers.SetAccessPath(parentChainPath, validateHasBeenSet);
         _timeoutMs.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _incrementalBuild.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -43,5 +43,11 @@ public static class RdWarmupSubscriptionFilterPartialExtensions
     public static Partial<RdWarmupSubscriptionFilter> WithBranchSpec(this Partial<RdWarmupSubscriptionFilter> it)
         => it.AddFieldName("branchSpec");
     
+    public static Partial<RdWarmupSubscriptionFilter> WithDevConf(this Partial<RdWarmupSubscriptionFilter> it)
+        => it.AddFieldName("devConf");
+    
+    public static Partial<RdWarmupSubscriptionFilter> WithDevConf(this Partial<RdWarmupSubscriptionFilter> it, Func<Partial<RdDevConfiguration>, Partial<RdDevConfiguration>> partialBuilder)
+        => it.AddFieldName("devConf", partialBuilder(new Partial<RdDevConfiguration>(it)));
+    
 }
 

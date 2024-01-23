@@ -34,7 +34,7 @@ public sealed class HAModel
 {
     public HAModel() { }
     
-    public HAModel(List<HADto> dto, List<HAEnum> enums, List<HAUrlParameter> urlParams, List<HAResource> resources, List<HAResource> allResources, List<HAMenuId> menuIds, List<HAFeatureFlag>? featureFlags = null)
+    public HAModel(List<HADto> dto, List<HAEnum> enums, List<HAIdentifier> urlParams, List<HAResource> resources, List<HAResource> allResources, List<HAMenuId> menuIds, List<HAFeatureFlag>? featureFlags = null)
     {
         Dto = dto;
         Enums = enums;
@@ -65,11 +65,11 @@ public sealed class HAModel
         set => _enums.SetValue(value);
     }
 
-    private PropertyValue<List<HAUrlParameter>> _urlParams = new PropertyValue<List<HAUrlParameter>>(nameof(HAModel), nameof(UrlParams), "urlParams", new List<HAUrlParameter>());
+    private PropertyValue<List<HAIdentifier>> _urlParams = new PropertyValue<List<HAIdentifier>>(nameof(HAModel), nameof(UrlParams), "urlParams", new List<HAIdentifier>());
     
     [Required]
     [JsonPropertyName("urlParams")]
-    public List<HAUrlParameter> UrlParams
+    public List<HAIdentifier> UrlParams
     {
         get => _urlParams.GetValue(InlineErrors);
         set => _urlParams.SetValue(value);

@@ -119,7 +119,10 @@ public partial class ChatClient : ISpaceClient
         {
             var queryParameters = new NameValueCollection();
             
-            await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channel}/restore-archived{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "RestoreArchivedChannel", cancellationToken: cancellationToken);
+            await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channel}/restore-archived{queryParameters.ToQueryString()}", 
+                new ChatsChannelsForChannelRestoreArchivedPostRequest
+                { 
+                }, requestHeaders: null, functionName: "RestoreArchivedChannel", cancellationToken: cancellationToken);
         }
         
     
