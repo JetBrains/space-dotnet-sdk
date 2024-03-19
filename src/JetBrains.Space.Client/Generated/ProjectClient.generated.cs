@@ -3543,7 +3543,7 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
-        public async Task<GitCherryPickResult> CherryPickCommitAsync(ProjectIdentifier project, string repository, string commit, string targetBranch, Func<Partial<GitCherryPickResult>, Partial<GitCherryPickResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<GitCherryPickResult> CherryPickCommitAsync(ProjectIdentifier project, string repository, string commit, string targetBranch, string? commitMessage = null, Func<Partial<GitCherryPickResult>, Partial<GitCherryPickResult>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitCherryPickResult>()) : Partial<GitCherryPickResult>.Default()).ToString());
@@ -3553,6 +3553,7 @@ public partial class ProjectClient : ISpaceClient
                 { 
                     Commit = commit,
                     TargetBranch = targetBranch,
+                    CommitMessage = commitMessage,
                 }, requestHeaders: null, functionName: "CherryPickCommit", cancellationToken: cancellationToken);
         }
         
@@ -3807,17 +3808,27 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
-        /// <remarks>
-        /// Experimental HTTP API
-        /// </remarks>
-        public async Task<List<DeclarationScope>> GetDeclarationScopesForFileAsync(ProjectIdentifier project, string repository, string filename, string blobId, Func<Partial<DeclarationScope>, Partial<DeclarationScope>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        /// <summary>
+        /// Extracts head prefix and branch. `path` can contain a branch name or a revision, following by file path.
+        /// </summary>
+        public async Task<Pair<string, BranchInfo>> ParseHeadPrefixAsync(string project, string repository, string path, Func<Partial<Pair<string, BranchInfo>>, Partial<Pair<string, BranchInfo>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
-            queryParameters.Append("filename", filename);
-            queryParameters.Append("blobId", blobId);
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<DeclarationScope>()) : Partial<DeclarationScope>.Default()).ToString());
+            queryParameters.Append("path", path);
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Pair<string, BranchInfo>>()) : Partial<Pair<string, BranchInfo>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<List<DeclarationScope>>("GET", $"api/http/projects/{project}/repositories/{repository}/scopes{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetDeclarationScopesForFile", cancellationToken: cancellationToken);
+            return await _connection.RequestResourceAsync<Pair<string, BranchInfo>>("GET", $"api/http/projects/{project}/repositories/{repository}/parse-head-prefix{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ParseHeadPrefix", cancellationToken: cancellationToken);
+        }
+        
+    
+        public async Task<FileContent> GetFileTextContentAsync(ProjectIdentifier project, string repository, string commit, string path, Func<Partial<FileContent>, Partial<FileContent>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("commit", commit);
+            queryParameters.Append("path", path);
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<FileContent>()) : Partial<FileContent>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<FileContent>("GET", $"api/http/projects/{project}/repositories/{repository}/text-content{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetFileTextContent", cancellationToken: cancellationToken);
         }
         
     
@@ -5088,28 +5099,17 @@ public partial class ProjectClient : ISpaceClient
             _connection = connection;
         }
         
-        /// <remarks>
-        /// Code issues
-        /// </remarks>
-        public async Task<Batch<CodeIssueFeedback>> GetUserFeedbackOnCodeIssuesAsync(ProjectIdentifier project, string tool, ReviewIdentifier? reviewId = null, BatchInfo? batchInfo = null, Func<Partial<Batch<CodeIssueFeedback>>, Partial<Batch<CodeIssueFeedback>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task RunAIInspectionsAsync(ProjectIdentifier project, ReviewIdentifier review, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
-            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<CodeIssueFeedback>>()) : Partial<Batch<CodeIssueFeedback>>.Default()).ToString());
             
-            return await _connection.RequestResourceAsync<ProjectsForProjectCodeReviewsCodeIssuesFeedbackPostRequest, Batch<CodeIssueFeedback>>("POST", $"api/http/projects/{project}/code-reviews/code-issues-feedback{queryParameters.ToQueryString()}", 
-                new ProjectsForProjectCodeReviewsCodeIssuesFeedbackPostRequest
+            await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/code-reviews/ai-inspections{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectCodeReviewsAiInspectionsPostRequest
                 { 
-                    ReviewId = reviewId,
-                    Tool = tool,
-                    BatchInfo = batchInfo,
-                }, requestHeaders: null, functionName: "GetUserFeedbackOnCodeIssues", cancellationToken: cancellationToken);
+                    Review = review,
+                }, requestHeaders: null, functionName: "RunAIInspections", cancellationToken: cancellationToken);
         }
         
-        /// <remarks>
-        /// Code issues
-        /// </remarks>
-        public IAsyncEnumerable<CodeIssueFeedback> GetUserFeedbackOnCodeIssuesAsyncEnumerable(ProjectIdentifier project, string tool, ReviewIdentifier? reviewId = null, BatchInfo? batchInfo = null, Func<Partial<CodeIssueFeedback>, Partial<CodeIssueFeedback>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetUserFeedbackOnCodeIssuesAsync(project: project, tool: tool, reviewId: reviewId, cancellationToken: cancellationToken, batchInfo: new BatchInfo(batchSize: batchInfo?.BatchSize ?? 100, offset: batchInfo?.Offset), partial: builder => Partial<Batch<CodeIssueFeedback>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CodeIssueFeedback>.Default())), batchInfo?.Offset, cancellationToken);
     
         /// <remarks>
         /// Required permissions:
@@ -5366,6 +5366,12 @@ public partial class ProjectClient : ISpaceClient
         /// <item>
         /// <term>Edit code reviews</term>
         /// </item>
+        /// <item>
+        /// <term>Delete code reviews</term>
+        /// </item>
+        /// <item>
+        /// <term>View code reviews</term>
+        /// </item>
         /// </list>
         /// </remarks>
         public async Task EditReviewStateAsync(ProjectIdentifier project, ReviewIdentifier reviewId, CodeReviewState state, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
@@ -5397,6 +5403,47 @@ public partial class ProjectClient : ISpaceClient
                 { 
                     Title = title,
                 }, requestHeaders: null, functionName: "EditReviewTitle", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task AcceptChangesAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool forever, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PUT", $"api/http/projects/{project}/code-reviews/{reviewId}/accept-changes{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectCodeReviewsForReviewIdAcceptChangesPutRequest
+                { 
+                    IsForever = forever,
+                }, requestHeaders: null, functionName: "AcceptChanges", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task ChangeAuthorStateAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool theirTurn, bool submitPendingMessages = true, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PUT", $"api/http/projects/{project}/code-reviews/{reviewId}/change-author-state{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectCodeReviewsForReviewIdChangeAuthorStatePutRequest
+                { 
+                    IsTheirTurn = theirTurn,
+                    IsSubmitPendingMessages = submitPendingMessages,
+                }, requestHeaders: null, functionName: "ChangeAuthorState", cancellationToken: cancellationToken);
         }
         
     
@@ -5449,6 +5496,44 @@ public partial class ProjectClient : ISpaceClient
                     IsSquash = squash,
                     SquashedCommitMessage = squashedCommitMessage,
                 }, requestHeaders: null, functionName: "RebaseMergeRequest", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task ResumeReviewAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PUT", $"api/http/projects/{project}/code-reviews/{reviewId}/resume-review{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectCodeReviewsForReviewIdResumeReviewPutRequest
+                { 
+                }, requestHeaders: null, functionName: "ResumeReview", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task WaitAuthorReplyAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("PUT", $"api/http/projects/{project}/code-reviews/{reviewId}/wait-author-reply{queryParameters.ToQueryString()}", 
+                new ProjectsForProjectCodeReviewsForReviewIdWaitAuthorReplyPutRequest
+                { 
+                }, requestHeaders: null, functionName: "WaitAuthorReply", cancellationToken: cancellationToken);
         }
         
     
@@ -5775,9 +5860,6 @@ public partial class ProjectClient : ISpaceClient
                 _connection = connection;
             }
             
-            /// <remarks>
-            /// Code issues
-            /// </remarks>
             public async Task UploadSarifReportAsync(ProjectIdentifier project, ReviewIdentifier reviewId, string commitId, HttpContent data, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();

@@ -34,10 +34,11 @@ internal class ProjectsForProjectRepositoriesForRepositoryCherryPickCommitPostRe
 {
     public ProjectsForProjectRepositoriesForRepositoryCherryPickCommitPostRequest() { }
     
-    public ProjectsForProjectRepositoriesForRepositoryCherryPickCommitPostRequest(string commit, string targetBranch)
+    public ProjectsForProjectRepositoriesForRepositoryCherryPickCommitPostRequest(string commit, string targetBranch, string? commitMessage = null)
     {
         Commit = commit;
         TargetBranch = targetBranch;
+        CommitMessage = commitMessage;
     }
     
     private PropertyValue<string> _commit = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryCherryPickCommitPostRequest), nameof(Commit), "commit");
@@ -60,10 +61,23 @@ internal class ProjectsForProjectRepositoriesForRepositoryCherryPickCommitPostRe
         set => _targetBranch.SetValue(value);
     }
 
+    private PropertyValue<string?> _commitMessage = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryCherryPickCommitPostRequest), nameof(CommitMessage), "commitMessage");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("commitMessage")]
+    public string? CommitMessage
+    {
+        get => _commitMessage.GetValue(InlineErrors);
+        set => _commitMessage.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _commit.SetAccessPath(parentChainPath, validateHasBeenSet);
         _targetBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _commitMessage.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

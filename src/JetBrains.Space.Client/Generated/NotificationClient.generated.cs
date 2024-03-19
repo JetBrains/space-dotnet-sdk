@@ -41,9 +41,10 @@ public partial class NotificationClient : ISpaceClient
     /// <summary>
     /// List all subscription subjects
     /// </summary>
-    public async Task<List<EventSubjectInfoDTO>> GetAllNotificationsAsync(Func<Partial<EventSubjectInfoDTO>, Partial<EventSubjectInfoDTO>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    public async Task<List<EventSubjectInfoDTO>> GetAllNotificationsAsync(bool? forSlack = false, Func<Partial<EventSubjectInfoDTO>, Partial<EventSubjectInfoDTO>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
+        if (forSlack != null) queryParameters.Append("forSlack", forSlack?.ToString("l"));
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<EventSubjectInfoDTO>()) : Partial<EventSubjectInfoDTO>.Default()).ToString());
         
         return await _connection.RequestResourceAsync<List<EventSubjectInfoDTO>>("GET", $"api/http/notifications{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllNotifications", cancellationToken: cancellationToken);
@@ -453,7 +454,7 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<PrivateFeed> UpdatePrivateFeedAsync(string id, string? name = null, string? icon = null, PrivateFeedColor? color = null, Func<Partial<PrivateFeed>, Partial<PrivateFeed>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<PrivateFeed> UpdatePrivateFeedAsync(string id, string? name = null, string? icon = null, PrivateFeedColor? color = null, string? slackWebhook = null, string? slackChannel = null, Func<Partial<PrivateFeed>, Partial<PrivateFeed>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<PrivateFeed>()) : Partial<PrivateFeed>.Default()).ToString());
@@ -464,6 +465,8 @@ public partial class NotificationClient : ISpaceClient
                     Name = name,
                     Icon = icon,
                     Color = color,
+                    SlackWebhook = slackWebhook,
+                    SlackChannel = slackChannel,
                 }, requestHeaders: null, functionName: "UpdatePrivateFeed", cancellationToken: cancellationToken);
         }
         
@@ -484,6 +487,36 @@ public partial class NotificationClient : ISpaceClient
             var queryParameters = new NameValueCollection();
             
             await _connection.RequestResourceAsync("DELETE", $"api/http/notifications/private-feeds/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeletePrivateFeed", cancellationToken: cancellationToken);
+        }
+        
+    
+    }
+
+    public SlackClient Slack => new SlackClient(_connection);
+    
+    public partial class SlackClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public SlackClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <summary>
+        /// Install Slack incoming webhook URL to Space for posting notifications
+        /// </summary>
+        public async Task InstallIncomingWebhookAsync(string slackChannel, string webhookUrl, string? spaceUserId = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/notifications/slack/install-incoming-webhook{queryParameters.ToQueryString()}", 
+                new NotificationsSlackInstallIncomingWebhookPostRequest
+                { 
+                    SlackChannel = slackChannel,
+                    WebhookUrl = webhookUrl,
+                    SpaceUserId = spaceUserId,
+                }, requestHeaders: null, functionName: "InstallIncomingWebhook", cancellationToken: cancellationToken);
         }
         
     

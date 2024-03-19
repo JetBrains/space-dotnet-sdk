@@ -77,5 +77,8 @@ public interface SubscriptionFilterIn
     public static RepoHeadsSubscriptionFilterIn RepoHeads(string repository, string? project = null)
         => new RepoHeadsSubscriptionFilterIn(repository: repository, project: project);
     
+    public static RepoPushSubscriptionFilterIn RepoPush(string repository, RepoCommitsSubscriptionFilterSpec spec, string? project = null)
+        => new RepoPushSubscriptionFilterIn(repository: repository, spec: spec, project: project);
+    
 }
 

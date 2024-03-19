@@ -38,6 +38,9 @@ public interface ApplicationMetadata
     public static AutomationServiceMetadata AutomationServiceMetadata(PRProject project)
         => new AutomationServiceMetadata(project: project);
     
+    public static FeaturedIntegrationAppMetadata FeaturedIntegrationAppMetadata(FeaturedIntegrationType type, AppConnectionStatus? connectionStatus = null, AppUninstallationStatus? uninstallationStatus = null, DateTime? uninstallationStartedAt = null)
+        => new FeaturedIntegrationAppMetadata(type: type, connectionStatus: connectionStatus, uninstallationStatus: uninstallationStatus, uninstallationStartedAt: uninstallationStartedAt);
+    
     public static MarketplaceAppMetadata MarketplaceAppMetadata(string marketplaceAppId, string lastSentServerUrl, AppConnectionStatus connectionStatus, AppUninstallationStatus? uninstallationStatus = null, DateTime? uninstallationStartedAt = null)
         => new MarketplaceAppMetadata(marketplaceAppId: marketplaceAppId, lastSentServerUrl: lastSentServerUrl, connectionStatus: connectionStatus, uninstallationStatus: uninstallationStatus, uninstallationStartedAt: uninstallationStartedAt);
     

@@ -155,6 +155,9 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier DeleteApplications
         => new PermissionIdentifierDeleteApplications();
     
+    public static PermissionIdentifier DeleteCodeReviews
+        => new PermissionIdentifierDeleteCodeReviews();
+    
     public static PermissionIdentifier DeleteDocumentsForever
         => new PermissionIdentifierDeleteDocumentsForever();
     
@@ -278,11 +281,23 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier ManageChecklists
         => new PermissionIdentifierManageChecklists();
     
+    /// <summary>
+    /// Allows to edit cloud policies for dev environment
+    /// </summary>
+    public static PermissionIdentifier ManageCloudPolicy
+        => new PermissionIdentifierManageCloudPolicy();
+    
     public static PermissionIdentifier ManageCustomFields
         => new PermissionIdentifierManageCustomFields();
     
     public static PermissionIdentifier ManageCustomFieldsForTargets
         => new PermissionIdentifierManageCustomFieldsForTargets();
+    
+    /// <summary>
+    /// Allows to manage the lifecycle of the dev environments that the user doesn't own (users can always manage their own environments)
+    /// </summary>
+    public static PermissionIdentifier ManageDevEnvironmentsOfAllProjectMembers
+        => new PermissionIdentifierManageDevEnvironmentsOfAllProjectMembers();
     
     public static PermissionIdentifier ManageDocuments
         => new PermissionIdentifierManageDocuments();
@@ -358,12 +373,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     
     public static PermissionIdentifier ManageProjectSidebarPins
         => new PermissionIdentifierManageProjectSidebarPins();
-    
-    /// <summary>
-    /// Allows to manage the lifecycle of the shared dev environments that the user doesn't own (users can always manage their own environments)
-    /// </summary>
-    public static PermissionIdentifier ManageSharedDevEnvironmentsOfAllProjectMembers
-        => new PermissionIdentifierManageSharedDevEnvironmentsOfAllProjectMembers();
     
     public static PermissionIdentifier ManageStickers
         => new PermissionIdentifierManageStickers();
@@ -560,6 +569,9 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier UpdateTeams
         => new PermissionIdentifierUpdateTeams();
     
+    public static PermissionIdentifier UpdateTeamsDescription
+        => new PermissionIdentifierUpdateTeamsDescription();
+    
     public static PermissionIdentifier UpdateToDos
         => new PermissionIdentifierUpdateToDos();
     
@@ -625,6 +637,12 @@ public abstract class PermissionIdentifier : IUrlParameter
     
     public static PermissionIdentifier ViewChannelParticipants
         => new PermissionIdentifierViewChannelParticipants();
+    
+    /// <summary>
+    /// Allows to view cloud policies for dev environment
+    /// </summary>
+    public static PermissionIdentifier ViewCloudPolicy
+        => new PermissionIdentifierViewCloudPolicy();
     
     public static PermissionIdentifier ViewCodeReviewChannelParticipants
         => new PermissionIdentifierViewCodeReviewChannelParticipants();
@@ -1041,6 +1059,12 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Applications.Delete";
     }
     
+    public class PermissionIdentifierDeleteCodeReviews : PermissionIdentifier
+    {
+        public override string ToString()
+            => "Project.CodeReview.Delete";
+    }
+    
     public class PermissionIdentifierDeleteDocumentsForever : PermissionIdentifier
     {
         public override string ToString()
@@ -1260,6 +1284,15 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Project.Planning.Manage";
     }
     
+    /// <summary>
+    /// Allows to edit cloud policies for dev environment
+    /// </summary>
+    public class PermissionIdentifierManageCloudPolicy : PermissionIdentifier
+    {
+        public override string ToString()
+            => "Rd.CloudPolicy.edit";
+    }
+    
     public class PermissionIdentifierManageCustomFields : PermissionIdentifier
     {
         public override string ToString()
@@ -1270,6 +1303,15 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "DeployTargets.CustomFields.Edit";
+    }
+    
+    /// <summary>
+    /// Allows to manage the lifecycle of the dev environments that the user doesn't own (users can always manage their own environments)
+    /// </summary>
+    public class PermissionIdentifierManageDevEnvironmentsOfAllProjectMembers : PermissionIdentifier
+    {
+        public override string ToString()
+            => "Rd.Workspaces.Manage";
     }
     
     public class PermissionIdentifierManageDocuments : PermissionIdentifier
@@ -1408,15 +1450,6 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Project.ManagePins";
-    }
-    
-    /// <summary>
-    /// Allows to manage the lifecycle of the shared dev environments that the user doesn't own (users can always manage their own environments)
-    /// </summary>
-    public class PermissionIdentifierManageSharedDevEnvironmentsOfAllProjectMembers : PermissionIdentifier
-    {
-        public override string ToString()
-            => "Rd.Workspaces.Manage";
     }
     
     public class PermissionIdentifierManageStickers : PermissionIdentifier
@@ -1785,6 +1818,12 @@ public abstract class PermissionIdentifier : IUrlParameter
             => "Team.Edit";
     }
     
+    public class PermissionIdentifierUpdateTeamsDescription : PermissionIdentifier
+    {
+        public override string ToString()
+            => "Team.Description.Edit";
+    }
+    
     public class PermissionIdentifierUpdateToDos : PermissionIdentifier
     {
         public override string ToString()
@@ -1909,6 +1948,15 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Channel.ViewChannelParticipants";
+    }
+    
+    /// <summary>
+    /// Allows to view cloud policies for dev environment
+    /// </summary>
+    public class PermissionIdentifierViewCloudPolicy : PermissionIdentifier
+    {
+        public override string ToString()
+            => "Rd.CloudPolicy.view";
     }
     
     public class PermissionIdentifierViewCodeReviewChannelParticipants : PermissionIdentifier

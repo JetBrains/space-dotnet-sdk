@@ -173,6 +173,9 @@ public interface WebhookEvent
     public static SRepoHeadsWebhookEvent SRepoHeads(ProjectKey projectKey, string repository, RepoChanges changes)
         => new SRepoHeadsWebhookEvent(projectKey: projectKey, repository: repository, changes: changes);
     
+    public static SRepoPushWebhookEvent SRepoPush(ProjectKey projectKey, string repository, string head, bool created, bool deleted, bool forced, bool hasMoreCommits, string? oldCommitId = null, string? newCommitId = null, List<GitCommitInfo>? commits = null)
+        => new SRepoPushWebhookEvent(projectKey: projectKey, repository: repository, head: head, created: created, deleted: deleted, forced: forced, hasMoreCommits: hasMoreCommits, oldCommitId: oldCommitId, newCommitId: newCommitId, commits: commits);
+    
     public static TeamEvent TeamEvent(KMetaMod meta, TDTeam team)
         => new TeamEvent(meta: meta, team: team);
     

@@ -34,11 +34,13 @@ internal class NotificationsPrivateFeedsForIdPatchRequest
 {
     public NotificationsPrivateFeedsForIdPatchRequest() { }
     
-    public NotificationsPrivateFeedsForIdPatchRequest(string? name = null, string? icon = null, PrivateFeedColor? color = null)
+    public NotificationsPrivateFeedsForIdPatchRequest(string? name = null, string? icon = null, PrivateFeedColor? color = null, string? slackWebhook = null, string? slackChannel = null)
     {
         Name = name;
         Icon = icon;
         Color = color;
+        SlackWebhook = slackWebhook;
+        SlackChannel = slackChannel;
     }
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(NotificationsPrivateFeedsForIdPatchRequest), nameof(Name), "name");
@@ -77,11 +79,37 @@ internal class NotificationsPrivateFeedsForIdPatchRequest
         set => _color.SetValue(value);
     }
 
+    private PropertyValue<string?> _slackWebhook = new PropertyValue<string?>(nameof(NotificationsPrivateFeedsForIdPatchRequest), nameof(SlackWebhook), "slackWebhook");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("slackWebhook")]
+    public string? SlackWebhook
+    {
+        get => _slackWebhook.GetValue(InlineErrors);
+        set => _slackWebhook.SetValue(value);
+    }
+
+    private PropertyValue<string?> _slackChannel = new PropertyValue<string?>(nameof(NotificationsPrivateFeedsForIdPatchRequest), nameof(SlackChannel), "slackChannel");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("slackChannel")]
+    public string? SlackChannel
+    {
+        get => _slackChannel.GetValue(InlineErrors);
+        set => _slackChannel.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _icon.SetAccessPath(parentChainPath, validateHasBeenSet);
         _color.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _slackWebhook.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _slackChannel.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -50,5 +50,8 @@ public enum OptionalFeature
     [EnumMember(Value = "AUTOMATION")]
     AUTOMATION,
     
+    [EnumMember(Value = "PLANNING")]
+    PLANNING,
+    
 }
 

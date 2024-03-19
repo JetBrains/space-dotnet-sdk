@@ -83,5 +83,8 @@ public interface SubscriptionFilter
     public static RepoHeadsSubscriptionFilter RepoHeads(string repository, PRProject? project = null)
         => new RepoHeadsSubscriptionFilter(repository: repository, project: project);
     
+    public static RepoPushSubscriptionFilter RepoPush(string repository, RepoCommitsSubscriptionFilterSpec spec, PRProject? project = null)
+        => new RepoPushSubscriptionFilter(repository: repository, spec: spec, project: project);
+    
 }
 

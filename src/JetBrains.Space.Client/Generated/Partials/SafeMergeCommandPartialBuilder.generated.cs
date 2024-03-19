@@ -27,15 +27,9 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.DeclarationScopeReferencedIdentifierPartialBuilder;
+namespace JetBrains.Space.Client.SafeMergeCommandPartialBuilder;
 
-public static class DeclarationScopeReferencedIdentifierPartialExtensions
+public static class SafeMergeCommandPartialExtensions
 {
-    public static Partial<DeclarationScopeReferencedIdentifier> WithName(this Partial<DeclarationScopeReferencedIdentifier> it)
-        => it.AddFieldName("name");
-    
-    public static Partial<DeclarationScopeReferencedIdentifier> WithLineNumbers(this Partial<DeclarationScopeReferencedIdentifier> it)
-        => it.AddFieldName("lineNumbers");
-    
 }
 

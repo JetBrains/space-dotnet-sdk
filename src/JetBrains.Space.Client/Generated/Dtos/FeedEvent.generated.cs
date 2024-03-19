@@ -32,8 +32,8 @@ namespace JetBrains.Space.Client;
 public interface FeedEvent
      : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    public static CodeAnalysisCompletedFeedEvent CodeAnalysisCompleted(ProjectKey projectKey, int reviewNumber, string revision, string revisionLink, string toolName, List<MergeRequestCodeIssueStatsForLevel> issuesCountByLevel)
-        => new CodeAnalysisCompletedFeedEvent(projectKey: projectKey, reviewNumber: reviewNumber, revision: revision, revisionLink: revisionLink, toolName: toolName, issuesCountByLevel: issuesCountByLevel);
+    public static CodeAnalysisCompletedFeedEvent CodeAnalysisCompleted(ProjectKey projectKey, int reviewNumber, string revision, string toolName, List<MergeRequestCodeIssueStatsForLevel> issuesCountByLevel, string? revisionLink = null)
+        => new CodeAnalysisCompletedFeedEvent(projectKey: projectKey, reviewNumber: reviewNumber, revision: revision, toolName: toolName, issuesCountByLevel: issuesCountByLevel, revisionLink: revisionLink);
     
     public static CodeDiscussionAddedFeedEvent CodeDiscussionAdded(CodeDiscussionRecord codeDiscussion, CodeReviewRecord codeReview)
         => new CodeDiscussionAddedFeedEvent(codeDiscussion: codeDiscussion, codeReview: codeReview);

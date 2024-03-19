@@ -82,5 +82,8 @@ public static class GitCommitInfoPartialExtensions
     public static Partial<GitCommitInfo> WithIsCommitterIsSpace(this Partial<GitCommitInfo> it)
         => it.AddFieldName("committerIsSpace");
     
+    public static Partial<GitCommitInfo> WithTreeId(this Partial<GitCommitInfo> it)
+        => it.AddFieldName("treeId");
+    
 }
 

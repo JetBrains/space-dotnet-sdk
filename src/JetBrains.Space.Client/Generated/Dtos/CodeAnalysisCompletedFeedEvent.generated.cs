@@ -37,7 +37,7 @@ public sealed class CodeAnalysisCompletedFeedEvent
     
     public CodeAnalysisCompletedFeedEvent() { }
     
-    public CodeAnalysisCompletedFeedEvent(ProjectKey projectKey, int reviewNumber, string revision, string revisionLink, string toolName, List<MergeRequestCodeIssueStatsForLevel> issuesCountByLevel)
+    public CodeAnalysisCompletedFeedEvent(ProjectKey projectKey, int reviewNumber, string revision, string toolName, List<MergeRequestCodeIssueStatsForLevel> issuesCountByLevel, string? revisionLink = null)
     {
         ProjectKey = projectKey;
         ReviewNumber = reviewNumber;
@@ -77,11 +77,10 @@ public sealed class CodeAnalysisCompletedFeedEvent
         set => _revision.SetValue(value);
     }
 
-    private PropertyValue<string> _revisionLink = new PropertyValue<string>(nameof(CodeAnalysisCompletedFeedEvent), nameof(RevisionLink), "revisionLink");
+    private PropertyValue<string?> _revisionLink = new PropertyValue<string?>(nameof(CodeAnalysisCompletedFeedEvent), nameof(RevisionLink), "revisionLink");
     
-    [Required]
     [JsonPropertyName("revisionLink")]
-    public string RevisionLink
+    public string? RevisionLink
     {
         get => _revisionLink.GetValue(InlineErrors);
         set => _revisionLink.SetValue(value);

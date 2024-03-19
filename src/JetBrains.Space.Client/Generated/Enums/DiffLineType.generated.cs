@@ -41,12 +41,6 @@ public enum DiffLineType
     [EnumMember(Value = "MODIFIED")]
     MODIFIED,
     
-    [EnumMember(Value = "FILTERED_ADDED")]
-    FILTEREDADDED,
-    
-    [EnumMember(Value = "FILTERED_DELETED")]
-    FILTEREDDELETED,
-    
     [EnumMember(Value = "FILTERED")]
     FILTERED,
     
@@ -58,6 +52,12 @@ public enum DiffLineType
     
     [EnumMember(Value = "CONFLICT_NEW")]
     CONFLICTNEW,
+    
+    [EnumMember(Value = "FILTERED_ADDED")]
+    FILTEREDADDED,
+    
+    [EnumMember(Value = "FILTERED_DELETED")]
+    FILTEREDDELETED,
     
 }
 

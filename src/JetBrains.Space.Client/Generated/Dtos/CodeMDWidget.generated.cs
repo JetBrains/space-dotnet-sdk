@@ -29,41 +29,53 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class DeclarationScopeReferencedIdentifier
+public sealed class CodeMDWidget
      : IPropagatePropertyAccessPath
 {
-    public DeclarationScopeReferencedIdentifier() { }
+    public CodeMDWidget() { }
     
-    public DeclarationScopeReferencedIdentifier(string name, List<int> lineNumbers)
+    public CodeMDWidget(int startLine, int linesCount, string mdText)
     {
-        Name = name;
-        LineNumbers = lineNumbers;
+        StartLine = startLine;
+        LinesCount = linesCount;
+        MdText = mdText;
     }
     
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(DeclarationScopeReferencedIdentifier), nameof(Name), "name");
+    private PropertyValue<int> _startLine = new PropertyValue<int>(nameof(CodeMDWidget), nameof(StartLine), "startLine");
     
     [Required]
-    [JsonPropertyName("name")]
-    public string Name
+    [JsonPropertyName("startLine")]
+    public int StartLine
     {
-        get => _name.GetValue(InlineErrors);
-        set => _name.SetValue(value);
+        get => _startLine.GetValue(InlineErrors);
+        set => _startLine.SetValue(value);
     }
 
-    private PropertyValue<List<int>> _lineNumbers = new PropertyValue<List<int>>(nameof(DeclarationScopeReferencedIdentifier), nameof(LineNumbers), "lineNumbers", new List<int>());
+    private PropertyValue<int> _linesCount = new PropertyValue<int>(nameof(CodeMDWidget), nameof(LinesCount), "linesCount");
     
     [Required]
-    [JsonPropertyName("lineNumbers")]
-    public List<int> LineNumbers
+    [JsonPropertyName("linesCount")]
+    public int LinesCount
     {
-        get => _lineNumbers.GetValue(InlineErrors);
-        set => _lineNumbers.SetValue(value);
+        get => _linesCount.GetValue(InlineErrors);
+        set => _linesCount.SetValue(value);
+    }
+
+    private PropertyValue<string> _mdText = new PropertyValue<string>(nameof(CodeMDWidget), nameof(MdText), "mdText");
+    
+    [Required]
+    [JsonPropertyName("mdText")]
+    public string MdText
+    {
+        get => _mdText.GetValue(InlineErrors);
+        set => _mdText.SetValue(value);
     }
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
-        _name.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _lineNumbers.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _startLine.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _linesCount.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mdText.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

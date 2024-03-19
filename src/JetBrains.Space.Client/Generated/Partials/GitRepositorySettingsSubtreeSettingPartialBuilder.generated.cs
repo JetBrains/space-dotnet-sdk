@@ -46,5 +46,11 @@ public static class GitRepositorySettingsSubtreeSettingPartialExtensions
     public static Partial<GitRepositorySettingsSubtreeSetting> WithRemotePath(this Partial<GitRepositorySettingsSubtreeSetting> it)
         => it.AddFieldName("remotePath");
     
+    public static Partial<GitRepositorySettingsSubtreeSetting> WithDirection(this Partial<GitRepositorySettingsSubtreeSetting> it)
+        => it.AddFieldName("direction");
+    
+    public static Partial<GitRepositorySettingsSubtreeSetting> WithDirection(this Partial<GitRepositorySettingsSubtreeSetting> it, Func<Partial<GitRepositorySettingsSubtreeDirection>, Partial<GitRepositorySettingsSubtreeDirection>> partialBuilder)
+        => it.AddFieldName("direction", partialBuilder(new Partial<GitRepositorySettingsSubtreeDirection>(it)));
+    
 }
 

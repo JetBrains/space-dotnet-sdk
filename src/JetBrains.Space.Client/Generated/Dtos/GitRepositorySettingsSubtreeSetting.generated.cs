@@ -34,13 +34,14 @@ public sealed class GitRepositorySettingsSubtreeSetting
 {
     public GitRepositorySettingsSubtreeSetting() { }
     
-    public GitRepositorySettingsSubtreeSetting(string localBranch, string localPath, string remoteRepo, string remoteBranch, string? remotePath = null)
+    public GitRepositorySettingsSubtreeSetting(string localBranch, string localPath, string remoteRepo, string remoteBranch, string? remotePath = null, GitRepositorySettingsSubtreeDirection? direction = null)
     {
         LocalBranch = localBranch;
         LocalPath = localPath;
         RemoteRepo = remoteRepo;
         RemoteBranch = remoteBranch;
         RemotePath = remotePath;
+        Direction = direction;
     }
     
     private PropertyValue<string> _localBranch = new PropertyValue<string>(nameof(GitRepositorySettingsSubtreeSetting), nameof(LocalBranch), "localBranch");
@@ -92,6 +93,15 @@ public sealed class GitRepositorySettingsSubtreeSetting
         set => _remotePath.SetValue(value);
     }
 
+    private PropertyValue<GitRepositorySettingsSubtreeDirection?> _direction = new PropertyValue<GitRepositorySettingsSubtreeDirection?>(nameof(GitRepositorySettingsSubtreeSetting), nameof(Direction), "direction");
+    
+    [JsonPropertyName("direction")]
+    public GitRepositorySettingsSubtreeDirection? Direction
+    {
+        get => _direction.GetValue(InlineErrors);
+        set => _direction.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _localBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -99,6 +109,7 @@ public sealed class GitRepositorySettingsSubtreeSetting
         _remoteRepo.SetAccessPath(parentChainPath, validateHasBeenSet);
         _remoteBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
         _remotePath.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _direction.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

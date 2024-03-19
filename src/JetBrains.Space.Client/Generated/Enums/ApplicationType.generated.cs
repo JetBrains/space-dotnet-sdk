@@ -41,5 +41,8 @@ public enum ApplicationType
     [EnumMember(Value = "MarketplaceApp")]
     MarketplaceApp,
     
+    [EnumMember(Value = "FeaturedIntegration")]
+    FeaturedIntegration,
+    
 }
 

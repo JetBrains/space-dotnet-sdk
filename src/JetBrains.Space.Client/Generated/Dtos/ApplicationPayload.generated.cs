@@ -74,6 +74,9 @@ public interface ApplicationPayload
     public static RefreshTokenPayload RefreshTokenPayload(string refreshToken, PermissionScope scope, string clientId, string userId, string? verificationToken = null)
         => new RefreshTokenPayload(refreshToken: refreshToken, scope: scope, clientId: clientId, userId: userId, verificationToken: verificationToken);
     
+    public static SafeMergeCommandPayload SafeMergeCommandPayload(string clientId, SafeMergeCommand command, string? verificationToken = null)
+        => new SafeMergeCommandPayload(clientId: clientId, command: command, verificationToken: verificationToken);
+    
     public static UnfurlActionPayload UnfurlActionPayload(string actionId, string actionValue, string link, ApplicationUnfurlContext context, string clientId, string userId, string? verificationToken = null)
         => new UnfurlActionPayload(actionId: actionId, actionValue: actionValue, link: link, context: context, clientId: clientId, userId: userId, verificationToken: verificationToken);
     

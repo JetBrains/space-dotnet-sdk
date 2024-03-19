@@ -47,7 +47,7 @@ public partial class RdClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<Batch<RdWarmupExec>> GetAvailableWarmupExecutionsAsync(ProjectIdentifier projectIdentifier, string repositoryName, ConfigVisibility visibility = ConfigVisibility.Shared, string? skip = null, int? top = 100, string? branch = null, string? ideTypeId = null, List<WarmupExecutionStatus>? statuses = null, Func<Partial<Batch<RdWarmupExec>>, Partial<Batch<RdWarmupExec>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    public async Task<Batch<RdWarmupExec>> GetAvailableWarmupExecutionsAsync(ProjectIdentifier projectIdentifier, string repositoryName, ConfigVisibility visibility = ConfigVisibility.Shared, string? skip = null, int? top = 100, string? branch = null, string? ideTypeId = null, List<WarmupExecutionStatus>? statuses = null, string? devConfigId = null, Func<Partial<Batch<RdWarmupExec>>, Partial<Batch<RdWarmupExec>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         if (skip != null) queryParameters.Append("$skip", skip);
@@ -58,6 +58,7 @@ public partial class RdClient : ISpaceClient
         if (ideTypeId != null) queryParameters.Append("ideTypeId", ideTypeId);
         if (statuses != null) queryParameters.Append("statuses", statuses.Select(it => it.ToEnumString()));
         queryParameters.Append("visibility", visibility.ToEnumString());
+        if (devConfigId != null) queryParameters.Append("devConfigId", devConfigId);
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<RdWarmupExec>>()) : Partial<Batch<RdWarmupExec>>.Default()).ToString());
         
         return await _connection.RequestResourceAsync<Batch<RdWarmupExec>>("GET", $"api/http/rd/warmups{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAvailableWarmupExecutions", cancellationToken: cancellationToken);
@@ -72,8 +73,8 @@ public partial class RdClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public IAsyncEnumerable<RdWarmupExec> GetAvailableWarmupExecutionsAsyncEnumerable(ProjectIdentifier projectIdentifier, string repositoryName, ConfigVisibility visibility = ConfigVisibility.Shared, string? skip = null, int? top = 100, string? branch = null, string? ideTypeId = null, List<WarmupExecutionStatus>? statuses = null, Func<Partial<RdWarmupExec>, Partial<RdWarmupExec>>? partial = null, CancellationToken cancellationToken = default)
-        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAvailableWarmupExecutionsAsync(projectIdentifier: projectIdentifier, repositoryName: repositoryName, visibility: visibility, top: top, branch: branch, ideTypeId: ideTypeId, statuses: statuses, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<RdWarmupExec>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<RdWarmupExec>.Default())), skip, cancellationToken);
+    public IAsyncEnumerable<RdWarmupExec> GetAvailableWarmupExecutionsAsyncEnumerable(ProjectIdentifier projectIdentifier, string repositoryName, ConfigVisibility visibility = ConfigVisibility.Shared, string? skip = null, int? top = 100, string? branch = null, string? ideTypeId = null, List<WarmupExecutionStatus>? statuses = null, string? devConfigId = null, Func<Partial<RdWarmupExec>, Partial<RdWarmupExec>>? partial = null, CancellationToken cancellationToken = default)
+        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAvailableWarmupExecutionsAsync(projectIdentifier: projectIdentifier, repositoryName: repositoryName, visibility: visibility, top: top, branch: branch, ideTypeId: ideTypeId, statuses: statuses, devConfigId: devConfigId, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<RdWarmupExec>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<RdWarmupExec>.Default())), skip, cancellationToken);
 
 }
 

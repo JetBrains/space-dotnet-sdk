@@ -34,18 +34,17 @@ public sealed class DevConfigurationHook
 {
     public DevConfigurationHook() { }
     
-    public DevConfigurationHook(DevConfigurationHookTrigger trigger, string script, long timeoutMs)
+    public DevConfigurationHook(string script, long timeoutMs, DevConfigurationHookTrigger? trigger = null)
     {
         Trigger = trigger;
         Script = script;
         TimeoutMs = timeoutMs;
     }
     
-    private PropertyValue<DevConfigurationHookTrigger> _trigger = new PropertyValue<DevConfigurationHookTrigger>(nameof(DevConfigurationHook), nameof(Trigger), "trigger");
+    private PropertyValue<DevConfigurationHookTrigger?> _trigger = new PropertyValue<DevConfigurationHookTrigger?>(nameof(DevConfigurationHook), nameof(Trigger), "trigger");
     
-    [Required]
     [JsonPropertyName("trigger")]
-    public DevConfigurationHookTrigger Trigger
+    public DevConfigurationHookTrigger? Trigger
     {
         get => _trigger.GetValue(InlineErrors);
         set => _trigger.SetValue(value);

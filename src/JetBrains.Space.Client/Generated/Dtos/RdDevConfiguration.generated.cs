@@ -34,7 +34,7 @@ public sealed class RdDevConfiguration
 {
     public RdDevConfiguration() { }
     
-    public RdDevConfiguration(string id, string name, List<RepoConnectionWithBranch> repoConnections, RdDevContainer devContainer, RdDevConfigurationIde ide, string instanceTypeName, DevConfigurationInstanceType instanceType, PRProject project, DevConfigurationWarmup warmup, bool archived, DevConfigurationHotPool? hotPool = null, DevConfigurationHooks? hooks = null, DevConfigurationHibernation? hibernation = null, string? projectRoot = null, bool? sshEnabled = null, DevConfigurationAccessSettingsDTO? access = null, DevConfigurationCloudPolicy? cloudPolicy = null)
+    public RdDevConfiguration(string id, string name, List<RepoConnectionWithBranch> repoConnections, RdDevContainer devContainer, RdDevConfigurationIde ide, string instanceTypeName, DevConfigurationInstanceType instanceType, PRProject project, DevConfigurationWarmup warmup, bool archived, DevConfigurationHotPool? hotPool = null, DevConfigurationHooks? hooks = null, DevConfigurationHibernation? hibernation = null, string? projectRoot = null, bool? sshEnabled = null, DevConfigurationAccessSettingsDTO? access = null, DevConfigurationCloudPolicy? cloudPolicy = null, string? authorId = null)
     {
         Id = id;
         Name = name;
@@ -53,6 +53,7 @@ public sealed class RdDevConfiguration
         Access = access;
         IsArchived = archived;
         CloudPolicy = cloudPolicy;
+        AuthorId = authorId;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(RdDevConfiguration), nameof(Id), "id");
@@ -218,6 +219,15 @@ public sealed class RdDevConfiguration
         set => _cloudPolicy.SetValue(value);
     }
 
+    private PropertyValue<string?> _authorId = new PropertyValue<string?>(nameof(RdDevConfiguration), nameof(AuthorId), "authorId");
+    
+    [JsonPropertyName("authorId")]
+    public string? AuthorId
+    {
+        get => _authorId.GetValue(InlineErrors);
+        set => _authorId.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -237,6 +247,7 @@ public sealed class RdDevConfiguration
         _access.SetAccessPath(parentChainPath, validateHasBeenSet);
         _archived.SetAccessPath(parentChainPath, validateHasBeenSet);
         _cloudPolicy.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _authorId.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

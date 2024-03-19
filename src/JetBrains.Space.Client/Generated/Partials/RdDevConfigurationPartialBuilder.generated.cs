@@ -115,5 +115,8 @@ public static class RdDevConfigurationPartialExtensions
     public static Partial<RdDevConfiguration> WithCloudPolicy(this Partial<RdDevConfiguration> it, Func<Partial<DevConfigurationCloudPolicy>, Partial<DevConfigurationCloudPolicy>> partialBuilder)
         => it.AddFieldName("cloudPolicy", partialBuilder(new Partial<DevConfigurationCloudPolicy>(it)));
     
+    public static Partial<RdDevConfiguration> WithAuthorId(this Partial<RdDevConfiguration> it)
+        => it.AddFieldName("authorId");
+    
 }
 
