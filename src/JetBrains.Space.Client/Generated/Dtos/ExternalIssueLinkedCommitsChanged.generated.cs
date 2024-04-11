@@ -37,10 +37,11 @@ public sealed class ExternalIssueLinkedCommitsChanged
     
     public ExternalIssueLinkedCommitsChanged() { }
     
-    public ExternalIssueLinkedCommitsChanged(string issuePrefix, string issueId, List<ExternalIssueLinkedCommitsForRepo> repositories)
+    public ExternalIssueLinkedCommitsChanged(string issuePrefix, string issueId, PRProject project, List<ExternalIssueLinkedCommitsForRepo> repositories)
     {
         IssuePrefix = issuePrefix;
         IssueId = issueId;
+        Project = project;
         Repositories = repositories;
     }
     
@@ -64,6 +65,16 @@ public sealed class ExternalIssueLinkedCommitsChanged
         set => _issueId.SetValue(value);
     }
 
+    private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(ExternalIssueLinkedCommitsChanged), nameof(Project), "project");
+    
+    [Required]
+    [JsonPropertyName("project")]
+    public PRProject Project
+    {
+        get => _project.GetValue(InlineErrors);
+        set => _project.SetValue(value);
+    }
+
     private PropertyValue<List<ExternalIssueLinkedCommitsForRepo>> _repositories = new PropertyValue<List<ExternalIssueLinkedCommitsForRepo>>(nameof(ExternalIssueLinkedCommitsChanged), nameof(Repositories), "repositories", new List<ExternalIssueLinkedCommitsForRepo>());
     
     [Required]
@@ -78,6 +89,7 @@ public sealed class ExternalIssueLinkedCommitsChanged
     {
         _issuePrefix.SetAccessPath(parentChainPath, validateHasBeenSet);
         _issueId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _project.SetAccessPath(parentChainPath, validateHasBeenSet);
         _repositories.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

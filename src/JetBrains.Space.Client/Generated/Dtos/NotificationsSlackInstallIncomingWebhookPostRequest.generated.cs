@@ -34,13 +34,24 @@ internal class NotificationsSlackInstallIncomingWebhookPostRequest
 {
     public NotificationsSlackInstallIncomingWebhookPostRequest() { }
     
-    public NotificationsSlackInstallIncomingWebhookPostRequest(string slackChannel, string webhookUrl, string? spaceUserId = null)
+    public NotificationsSlackInstallIncomingWebhookPostRequest(SlackTeamIn slackTeam, string slackChannel, string webhookUrl, string? spaceUserId = null)
     {
+        SlackTeam = slackTeam;
         SlackChannel = slackChannel;
         WebhookUrl = webhookUrl;
         SpaceUserId = spaceUserId;
     }
     
+    private PropertyValue<SlackTeamIn> _slackTeam = new PropertyValue<SlackTeamIn>(nameof(NotificationsSlackInstallIncomingWebhookPostRequest), nameof(SlackTeam), "slackTeam");
+    
+    [Required]
+    [JsonPropertyName("slackTeam")]
+    public SlackTeamIn SlackTeam
+    {
+        get => _slackTeam.GetValue(InlineErrors);
+        set => _slackTeam.SetValue(value);
+    }
+
     private PropertyValue<string> _slackChannel = new PropertyValue<string>(nameof(NotificationsSlackInstallIncomingWebhookPostRequest), nameof(SlackChannel), "slackChannel");
     
     [Required]
@@ -75,6 +86,7 @@ internal class NotificationsSlackInstallIncomingWebhookPostRequest
 
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
+        _slackTeam.SetAccessPath(parentChainPath, validateHasBeenSet);
         _slackChannel.SetAccessPath(parentChainPath, validateHasBeenSet);
         _webhookUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
         _spaceUserId.SetAccessPath(parentChainPath, validateHasBeenSet);

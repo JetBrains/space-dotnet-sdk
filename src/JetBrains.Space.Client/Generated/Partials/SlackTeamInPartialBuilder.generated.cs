@@ -27,16 +27,18 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client;
+namespace JetBrains.Space.Client.SlackTeamInPartialBuilder;
 
-public static class SdkInfo
+public static class SlackTeamInPartialExtensions
 {
-    /// <summary>
-    /// Version of the JetBrains Space SDK for .NET.
-    /// </summary>
-    /// <remarks>
-    /// The version is derived from the deployed Space organization that was used to generate the SDK.
-    /// </remarks>
-    public const string Version = "2024.2.0-DEV.179910";
+    public static Partial<SlackTeamIn> WithDomain(this Partial<SlackTeamIn> it)
+        => it.AddFieldName("domain");
+    
+    public static Partial<SlackTeamIn> WithIconUrl(this Partial<SlackTeamIn> it)
+        => it.AddFieldName("iconUrl");
+    
+    public static Partial<SlackTeamIn> WithName(this Partial<SlackTeamIn> it)
+        => it.AddFieldName("name");
+    
 }
 

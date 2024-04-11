@@ -34,8 +34,26 @@ internal class NotificationsChannelSubscriptionsForIdRequestMissingRightsPostReq
 {
     public NotificationsChannelSubscriptionsForIdRequestMissingRightsPostRequest() { }
     
+    public NotificationsChannelSubscriptionsForIdRequestMissingRightsPostRequest(bool? onlyAddMissingRights = false)
+    {
+        IsOnlyAddMissingRights = onlyAddMissingRights;
+    }
+    
+    private PropertyValue<bool?> _onlyAddMissingRights = new PropertyValue<bool?>(nameof(NotificationsChannelSubscriptionsForIdRequestMissingRightsPostRequest), nameof(IsOnlyAddMissingRights), "onlyAddMissingRights");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("onlyAddMissingRights")]
+    public bool? IsOnlyAddMissingRights
+    {
+        get => _onlyAddMissingRights.GetValue(InlineErrors);
+        set => _onlyAddMissingRights.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
+        _onlyAddMissingRights.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

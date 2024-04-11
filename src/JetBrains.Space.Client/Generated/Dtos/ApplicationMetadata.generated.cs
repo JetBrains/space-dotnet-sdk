@@ -44,6 +44,9 @@ public interface ApplicationMetadata
     public static MarketplaceAppMetadata MarketplaceAppMetadata(string marketplaceAppId, string lastSentServerUrl, AppConnectionStatus connectionStatus, AppUninstallationStatus? uninstallationStatus = null, DateTime? uninstallationStartedAt = null)
         => new MarketplaceAppMetadata(marketplaceAppId: marketplaceAppId, lastSentServerUrl: lastSentServerUrl, connectionStatus: connectionStatus, uninstallationStatus: uninstallationStatus, uninstallationStartedAt: uninstallationStartedAt);
     
+    public static SlackNotificationsAppMetadata SlackNotificationsAppMetadata(string slackTeamName, string slackDomain, string? iconUrl = null)
+        => new SlackNotificationsAppMetadata(slackTeamName: slackTeamName, slackDomain: slackDomain, iconUrl: iconUrl);
+    
     public static SubscriptionMetadata SubscriptionMetadata(M2ChannelRecord channel, string subscription, string subscriptionName)
         => new SubscriptionMetadata(channel: channel, subscription: subscription, subscriptionName: subscriptionName);
     

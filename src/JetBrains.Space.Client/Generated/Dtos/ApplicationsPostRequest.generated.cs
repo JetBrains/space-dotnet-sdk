@@ -34,7 +34,7 @@ internal class ApplicationsPostRequest
 {
     public ApplicationsPostRequest() { }
     
-    public ApplicationsPostRequest(string name, string? description = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? email = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = true, bool? codeFlowEnabled = false, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? publicClientsAllowed = null, bool? implicitFlowEnabled = false, string? implicitFlowRedirectURIs = null, string? endpointUri = null, bool? endpointSslVerification = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? connectToSpace = false, string? state = null)
+    public ApplicationsPostRequest(string name, string? description = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? email = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = true, bool? codeFlowEnabled = false, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? publicClientsAllowed = null, bool? implicitFlowEnabled = false, string? implicitFlowRedirectURIs = null, string? endpointUri = null, bool? endpointSslVerification = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? connectToSpace = false, string? state = null, FeaturedIntegrationType? featuredIntegrationType = null)
     {
         Name = name;
         Description = description;
@@ -61,6 +61,7 @@ internal class ApplicationsPostRequest
         BearerAuthToken = bearerAuthToken;
         IsConnectToSpace = connectToSpace;
         State = state;
+        FeaturedIntegrationType = featuredIntegrationType;
     }
     
     private PropertyValue<string> _name = new PropertyValue<string>(nameof(ApplicationsPostRequest), nameof(Name), "name");
@@ -426,6 +427,21 @@ internal class ApplicationsPostRequest
         set => _state.SetValue(value);
     }
 
+    private PropertyValue<FeaturedIntegrationType?> _featuredIntegrationType = new PropertyValue<FeaturedIntegrationType?>(nameof(ApplicationsPostRequest), nameof(FeaturedIntegrationType), "featuredIntegrationType");
+    
+    /// <summary>
+    /// This application implements one of the featured integration types built into Space
+    /// </summary>
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("featuredIntegrationType")]
+    public FeaturedIntegrationType? FeaturedIntegrationType
+    {
+        get => _featuredIntegrationType.GetValue(InlineErrors);
+        set => _featuredIntegrationType.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -453,6 +469,7 @@ internal class ApplicationsPostRequest
         _bearerAuthToken.SetAccessPath(parentChainPath, validateHasBeenSet);
         _connectToSpace.SetAccessPath(parentChainPath, validateHasBeenSet);
         _state.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _featuredIntegrationType.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

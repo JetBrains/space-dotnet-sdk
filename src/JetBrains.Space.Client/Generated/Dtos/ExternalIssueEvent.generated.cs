@@ -41,8 +41,8 @@ public interface ExternalIssueEvent
     public static ExternalIssueLinkedCodeReviewsChanged ExternalIssueLinkedCodeReviewsChanged(string issuePrefix, string issueId, List<CodeReviewRecord> reviews)
         => new ExternalIssueLinkedCodeReviewsChanged(issuePrefix: issuePrefix, issueId: issueId, reviews: reviews);
     
-    public static ExternalIssueLinkedCommitsChanged ExternalIssueLinkedCommitsChanged(string issuePrefix, string issueId, List<ExternalIssueLinkedCommitsForRepo> repositories)
-        => new ExternalIssueLinkedCommitsChanged(issuePrefix: issuePrefix, issueId: issueId, repositories: repositories);
+    public static ExternalIssueLinkedCommitsChanged ExternalIssueLinkedCommitsChanged(string issuePrefix, string issueId, PRProject project, List<ExternalIssueLinkedCommitsForRepo> repositories)
+        => new ExternalIssueLinkedCommitsChanged(issuePrefix: issuePrefix, issueId: issueId, project: project, repositories: repositories);
     
     public static IssueCodeReviewLinkRemoved IssueCodeReviewLinkRemoved(CodeReviewRecord review, string issuePrefix, string issueId)
         => new IssueCodeReviewLinkRemoved(review: review, issuePrefix: issuePrefix, issueId: issueId);

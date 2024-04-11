@@ -27,18 +27,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.SlackTeamPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class SlackTeamPartialExtensions
+internal class NotificationsSlackAddSlackTeamPostRequest
+     : IPropagatePropertyAccessPath
 {
-    public static Partial<SlackTeam> WithDomain(this Partial<SlackTeam> it)
-        => it.AddFieldName("domain");
+    public NotificationsSlackAddSlackTeamPostRequest() { }
     
-    public static Partial<SlackTeam> WithIconUrl(this Partial<SlackTeam> it)
-        => it.AddFieldName("iconUrl");
+    public NotificationsSlackAddSlackTeamPostRequest(SlackTeamIn team)
+    {
+        Team = team;
+    }
     
-    public static Partial<SlackTeam> WithName(this Partial<SlackTeam> it)
-        => it.AddFieldName("name");
+    private PropertyValue<SlackTeamIn> _team = new PropertyValue<SlackTeamIn>(nameof(NotificationsSlackAddSlackTeamPostRequest), nameof(Team), "team");
     
+    [Required]
+    [JsonPropertyName("team")]
+    public SlackTeamIn Team
+    {
+        get => _team.GetValue(InlineErrors);
+        set => _team.SetValue(value);
+    }
+
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _team.SetAccessPath(parentChainPath, validateHasBeenSet);
+    }
+    
+    /// <inheritdoc />
+    [JsonPropertyName("$errors")]
+    public List<ApiInlineError> InlineErrors { get; set; } = new();
+
 }
 

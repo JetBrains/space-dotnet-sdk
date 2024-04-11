@@ -99,13 +99,14 @@ public partial class NotificationClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task RequestMissingRightsAsync(string id, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task RequestMissingRightsAsync(string id, bool? onlyAddMissingRights = false, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
             await _connection.RequestResourceAsync("POST", $"api/http/notifications/channel-subscriptions/{id}/request-missing-rights{queryParameters.ToQueryString()}", 
                 new NotificationsChannelSubscriptionsForIdRequestMissingRightsPostRequest
                 { 
+                    IsOnlyAddMissingRights = onlyAddMissingRights,
                 }, requestHeaders: null, functionName: "RequestMissingRights", cancellationToken: cancellationToken);
         }
         
@@ -504,15 +505,31 @@ public partial class NotificationClient : ISpaceClient
         }
         
         /// <summary>
+        /// Connect Slack team to the Space organization
+        /// </summary>
+        public async Task AddSlackTeamAsync(SlackTeamIn team, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/notifications/slack/add-slack-team{queryParameters.ToQueryString()}", 
+                new NotificationsSlackAddSlackTeamPostRequest
+                { 
+                    Team = team,
+                }, requestHeaders: null, functionName: "AddSlackTeam", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <summary>
         /// Install Slack incoming webhook URL to Space for posting notifications
         /// </summary>
-        public async Task InstallIncomingWebhookAsync(string slackChannel, string webhookUrl, string? spaceUserId = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task InstallIncomingWebhookAsync(SlackTeamIn slackTeam, string slackChannel, string webhookUrl, string? spaceUserId = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             
             await _connection.RequestResourceAsync("POST", $"api/http/notifications/slack/install-incoming-webhook{queryParameters.ToQueryString()}", 
                 new NotificationsSlackInstallIncomingWebhookPostRequest
                 { 
+                    SlackTeam = slackTeam,
                     SlackChannel = slackChannel,
                     WebhookUrl = webhookUrl,
                     SpaceUserId = spaceUserId,

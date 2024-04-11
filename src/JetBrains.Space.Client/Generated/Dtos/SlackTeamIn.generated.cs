@@ -29,19 +29,19 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class SlackTeam
+public sealed class SlackTeamIn
      : IPropagatePropertyAccessPath
 {
-    public SlackTeam() { }
+    public SlackTeamIn() { }
     
-    public SlackTeam(string domain, string name, string? iconUrl = null)
+    public SlackTeamIn(string domain, string name, string? iconUrl = null)
     {
         Domain = domain;
         IconUrl = iconUrl;
         Name = name;
     }
     
-    private PropertyValue<string> _domain = new PropertyValue<string>(nameof(SlackTeam), nameof(Domain), "domain");
+    private PropertyValue<string> _domain = new PropertyValue<string>(nameof(SlackTeamIn), nameof(Domain), "domain");
     
     [Required]
     [JsonPropertyName("domain")]
@@ -51,7 +51,7 @@ public sealed class SlackTeam
         set => _domain.SetValue(value);
     }
 
-    private PropertyValue<string?> _iconUrl = new PropertyValue<string?>(nameof(SlackTeam), nameof(IconUrl), "iconUrl");
+    private PropertyValue<string?> _iconUrl = new PropertyValue<string?>(nameof(SlackTeamIn), nameof(IconUrl), "iconUrl");
     
     [JsonPropertyName("iconUrl")]
     public string? IconUrl
@@ -60,7 +60,7 @@ public sealed class SlackTeam
         set => _iconUrl.SetValue(value);
     }
 
-    private PropertyValue<string> _name = new PropertyValue<string>(nameof(SlackTeam), nameof(Name), "name");
+    private PropertyValue<string> _name = new PropertyValue<string>(nameof(SlackTeamIn), nameof(Name), "name");
     
     [Required]
     [JsonPropertyName("name")]

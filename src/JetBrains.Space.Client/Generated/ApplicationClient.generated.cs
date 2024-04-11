@@ -51,7 +51,7 @@ public partial class ApplicationClient : ISpaceClient
     /// </item>
     /// </list>
     /// </remarks>
-    public async Task<ESApp> CreateApplicationAsync(string name, string? description = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? email = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = true, bool? codeFlowEnabled = false, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? publicClientsAllowed = null, bool? implicitFlowEnabled = false, string? implicitFlowRedirectURIs = null, string? endpointUri = null, bool? endpointSslVerification = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? connectToSpace = false, string? state = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+    public async Task<ESApp> CreateApplicationAsync(string name, string? description = null, string? pictureAttachmentId = null, string? defaultExternalPicture = null, string? email = null, string? clientId = null, string? clientSecret = null, bool? clientCredentialsFlowEnabled = true, bool? codeFlowEnabled = false, string? codeFlowRedirectURIs = null, bool? pkceRequired = null, bool? publicClientsAllowed = null, bool? implicitFlowEnabled = false, string? implicitFlowRedirectURIs = null, string? endpointUri = null, bool? endpointSslVerification = null, EndpointAuthCreate? appLevelAuth = null, string? sslKeystoreAuth = null, bool? hasSigningKey = null, bool? hasPublicKeySignature = null, string? basicAuthUsername = null, string? basicAuthPassword = null, string? bearerAuthToken = null, bool? connectToSpace = false, string? state = null, FeaturedIntegrationType? featuredIntegrationType = null, Func<Partial<ESApp>, Partial<ESApp>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
     {
         var queryParameters = new NameValueCollection();
         queryParameters.Append("$fields", (partial != null ? partial(new Partial<ESApp>()) : Partial<ESApp>.Default()).ToString());
@@ -84,6 +84,7 @@ public partial class ApplicationClient : ISpaceClient
                 BearerAuthToken = bearerAuthToken,
                 IsConnectToSpace = connectToSpace,
                 State = state,
+                FeaturedIntegrationType = featuredIntegrationType,
             }, requestHeaders: null, functionName: "CreateApplication", cancellationToken: cancellationToken);
     }
     
