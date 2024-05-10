@@ -27,24 +27,24 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RepositoryMirrorOptionsPartialBuilder;
+namespace JetBrains.Space.Client.SafeMergeLiveStatusDTOPartialBuilder;
 
-public static class RepositoryMirrorOptionsPartialExtensions
+public static class SafeMergeLiveStatusDTOPartialExtensions
 {
-    public static Partial<RepositoryMirrorOptions> WithIsSyncPeriodically(this Partial<RepositoryMirrorOptions> it)
-        => it.AddFieldName("syncPeriodically");
+    public static Partial<SafeMergeLiveStatusDTO> WithIsDryRun(this Partial<SafeMergeLiveStatusDTO> it)
+        => it.AddFieldName("dryRun");
     
-    public static Partial<RepositoryMirrorOptions> WithIsSyncOnFetch(this Partial<RepositoryMirrorOptions> it)
-        => it.AddFieldName("syncOnFetch");
+    public static Partial<SafeMergeLiveStatusDTO> WithState(this Partial<SafeMergeLiveStatusDTO> it)
+        => it.AddFieldName("state");
     
-    public static Partial<RepositoryMirrorOptions> WithIsAllowPush(this Partial<RepositoryMirrorOptions> it)
-        => it.AddFieldName("allowPush");
+    public static Partial<SafeMergeLiveStatusDTO> WithState(this Partial<SafeMergeLiveStatusDTO> it, Func<Partial<SafeMergeState>, Partial<SafeMergeState>> partialBuilder)
+        => it.AddFieldName("state", partialBuilder(new Partial<SafeMergeState>(it)));
     
-    public static Partial<RepositoryMirrorOptions> WithIsAllowAtomicPush(this Partial<RepositoryMirrorOptions> it)
-        => it.AddFieldName("allowAtomicPush");
+    public static Partial<SafeMergeLiveStatusDTO> WithAttempt(this Partial<SafeMergeLiveStatusDTO> it)
+        => it.AddFieldName("attempt");
     
-    public static Partial<RepositoryMirrorOptions> WithIsMirrorPullRequest(this Partial<RepositoryMirrorOptions> it)
-        => it.AddFieldName("mirrorPullRequest");
+    public static Partial<SafeMergeLiveStatusDTO> WithTotalAttempts(this Partial<SafeMergeLiveStatusDTO> it)
+        => it.AddFieldName("totalAttempts");
     
 }
 

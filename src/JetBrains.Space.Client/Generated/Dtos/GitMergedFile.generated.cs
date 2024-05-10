@@ -34,7 +34,7 @@ public sealed class GitMergedFile
 {
     public GitMergedFile() { }
     
-    public GitMergedFile(string name, GitEntryType entryType, bool conflicting, string? oldName = null, string? baseId = null, string? sourceId = null, string? targetId = null, GitDiffSize? diffSize = null, GitFileProperties? properties = null)
+    public GitMergedFile(string name, GitEntryType entryType, bool conflicting, string? oldName = null, string? baseId = null, string? sourceId = null, string? targetId = null, GitDiffSize? diffSize = null, GitFileProperties? properties = null, GitFileProperties? oldProperties = null)
     {
         Name = name;
         OldName = oldName;
@@ -45,6 +45,7 @@ public sealed class GitMergedFile
         EntryType = entryType;
         IsConflicting = conflicting;
         Properties = properties;
+        OldProperties = oldProperties;
     }
     
     private PropertyValue<string> _name = new PropertyValue<string>(nameof(GitMergedFile), nameof(Name), "name");
@@ -131,6 +132,15 @@ public sealed class GitMergedFile
         set => _properties.SetValue(value);
     }
 
+    private PropertyValue<GitFileProperties?> _oldProperties = new PropertyValue<GitFileProperties?>(nameof(GitMergedFile), nameof(OldProperties), "oldProperties");
+    
+    [JsonPropertyName("oldProperties")]
+    public GitFileProperties? OldProperties
+    {
+        get => _oldProperties.GetValue(InlineErrors);
+        set => _oldProperties.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -142,6 +152,7 @@ public sealed class GitMergedFile
         _entryType.SetAccessPath(parentChainPath, validateHasBeenSet);
         _conflicting.SetAccessPath(parentChainPath, validateHasBeenSet);
         _properties.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _oldProperties.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

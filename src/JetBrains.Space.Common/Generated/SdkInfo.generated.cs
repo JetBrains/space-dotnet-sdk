@@ -37,6 +37,6 @@ public static class SdkInfo
     /// <remarks>
     /// The version is derived from the deployed Space organization that was used to generate the SDK.
     /// </remarks>
-    public const string Version = "2024.2.0-DEV.179910";
+    public const string Version = "2024.2.0-DEV.181140";
 }
 

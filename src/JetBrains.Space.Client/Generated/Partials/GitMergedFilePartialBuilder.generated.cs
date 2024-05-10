@@ -67,5 +67,11 @@ public static class GitMergedFilePartialExtensions
     public static Partial<GitMergedFile> WithProperties(this Partial<GitMergedFile> it, Func<Partial<GitFileProperties>, Partial<GitFileProperties>> partialBuilder)
         => it.AddFieldName("properties", partialBuilder(new Partial<GitFileProperties>(it)));
     
+    public static Partial<GitMergedFile> WithOldProperties(this Partial<GitMergedFile> it)
+        => it.AddFieldName("oldProperties");
+    
+    public static Partial<GitMergedFile> WithOldProperties(this Partial<GitMergedFile> it, Func<Partial<GitFileProperties>, Partial<GitFileProperties>> partialBuilder)
+        => it.AddFieldName("oldProperties", partialBuilder(new Partial<GitFileProperties>(it)));
+    
 }
 

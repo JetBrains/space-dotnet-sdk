@@ -70,6 +70,9 @@ public static class GitRepositorySettingsMirrorSettingsPartialExtensions
     public static Partial<GitRepositorySettingsMirrorSettings> WithIsFetchBeforeGitCall(this Partial<GitRepositorySettingsMirrorSettings> it)
         => it.AddFieldName("fetchBeforeGitCall");
     
+    public static Partial<GitRepositorySettingsMirrorSettings> WithIsAllowPush(this Partial<GitRepositorySettingsMirrorSettings> it)
+        => it.AddFieldName("allowPush");
+    
     public static Partial<GitRepositorySettingsMirrorSettings> WithIsAllowAtomicPush(this Partial<GitRepositorySettingsMirrorSettings> it)
         => it.AddFieldName("allowAtomicPush");
     

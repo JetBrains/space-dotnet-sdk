@@ -128,6 +128,9 @@ public interface M2ItemContentDetails
     public static RdWarmupM2ItemContentDetails RdWarmup(string warmupExecId, IdeType ideType, string repoName, ProjectKey projectKey, string configurationName, WarmupExecutionStatus status, string? branch = null)
         => new RdWarmupM2ItemContentDetails(warmupExecId: warmupExecId, ideType: ideType, repoName: repoName, projectKey: projectKey, configurationName: configurationName, status: status, branch: branch);
     
+    public static SafeMergeLiveStatusDTO SafeMergeLiveStatusDTO(bool dryRun, SafeMergeState? state = null, int? attempt = null, int? totalAttempts = null)
+        => new SafeMergeLiveStatusDTO(dryRun: dryRun, state: state, attempt: attempt, totalAttempts: totalAttempts);
+    
     public static StickerContentDetails StickerContentDetails(Sticker sticker, StickerPackInfo? pack = null)
         => new StickerContentDetails(sticker: sticker, pack: pack);
     

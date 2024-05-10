@@ -55,6 +55,12 @@ public static class GitRepositorySettingsProtectedBranchPartialExtensions
     public static Partial<GitRepositorySettingsProtectedBranch> WithQualityGate(this Partial<GitRepositorySettingsProtectedBranch> it, Func<Partial<GitRepositorySettingsQualityGate>, Partial<GitRepositorySettingsQualityGate>> partialBuilder)
         => it.AddFieldName("qualityGate", partialBuilder(new Partial<GitRepositorySettingsQualityGate>(it)));
     
+    public static Partial<GitRepositorySettingsProtectedBranch> WithMergeOptions(this Partial<GitRepositorySettingsProtectedBranch> it)
+        => it.AddFieldName("mergeOptions");
+    
+    public static Partial<GitRepositorySettingsProtectedBranch> WithMergeOptions(this Partial<GitRepositorySettingsProtectedBranch> it, Func<Partial<GitRepositorySettingsMergeOptions>, Partial<GitRepositorySettingsMergeOptions>> partialBuilder)
+        => it.AddFieldName("mergeOptions", partialBuilder(new Partial<GitRepositorySettingsMergeOptions>(it)));
+    
     public static Partial<GitRepositorySettingsProtectedBranch> WithSafeMerge(this Partial<GitRepositorySettingsProtectedBranch> it)
         => it.AddFieldName("safeMerge");
     

@@ -34,7 +34,7 @@ public sealed class GitRepositorySettingsProtectedBranch
 {
     public GitRepositorySettingsProtectedBranch() { }
     
-    public GitRepositorySettingsProtectedBranch(List<string> pattern, bool? regex = null, List<string>? allowCreate = null, List<string>? allowPush = null, List<string>? allowDelete = null, List<string>? allowForcePush = null, GitRepositorySettingsQualityGate? qualityGate = null, GitRepositorySettingsSafeMerge? safeMerge = null, bool? linearHistory = null)
+    public GitRepositorySettingsProtectedBranch(List<string> pattern, bool? regex = null, List<string>? allowCreate = null, List<string>? allowPush = null, List<string>? allowDelete = null, List<string>? allowForcePush = null, GitRepositorySettingsQualityGate? qualityGate = null, GitRepositorySettingsMergeOptions? mergeOptions = null, GitRepositorySettingsSafeMerge? safeMerge = null, bool? linearHistory = null)
     {
         Pattern = pattern;
         IsRegex = regex;
@@ -43,6 +43,7 @@ public sealed class GitRepositorySettingsProtectedBranch
         AllowDelete = allowDelete;
         AllowForcePush = allowForcePush;
         QualityGate = qualityGate;
+        MergeOptions = mergeOptions;
         SafeMerge = safeMerge;
         IsLinearHistory = linearHistory;
     }
@@ -111,6 +112,15 @@ public sealed class GitRepositorySettingsProtectedBranch
         set => _qualityGate.SetValue(value);
     }
 
+    private PropertyValue<GitRepositorySettingsMergeOptions?> _mergeOptions = new PropertyValue<GitRepositorySettingsMergeOptions?>(nameof(GitRepositorySettingsProtectedBranch), nameof(MergeOptions), "mergeOptions");
+    
+    [JsonPropertyName("mergeOptions")]
+    public GitRepositorySettingsMergeOptions? MergeOptions
+    {
+        get => _mergeOptions.GetValue(InlineErrors);
+        set => _mergeOptions.SetValue(value);
+    }
+
     private PropertyValue<GitRepositorySettingsSafeMerge?> _safeMerge = new PropertyValue<GitRepositorySettingsSafeMerge?>(nameof(GitRepositorySettingsProtectedBranch), nameof(SafeMerge), "safeMerge");
     
     [JsonPropertyName("safeMerge")]
@@ -138,6 +148,7 @@ public sealed class GitRepositorySettingsProtectedBranch
         _allowDelete.SetAccessPath(parentChainPath, validateHasBeenSet);
         _allowForcePush.SetAccessPath(parentChainPath, validateHasBeenSet);
         _qualityGate.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mergeOptions.SetAccessPath(parentChainPath, validateHasBeenSet);
         _safeMerge.SetAccessPath(parentChainPath, validateHasBeenSet);
         _linearHistory.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

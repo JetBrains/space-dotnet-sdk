@@ -27,24 +27,19 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.RepositoryMirrorOptionsPartialBuilder;
+namespace JetBrains.Space.Client;
 
-public static class RepositoryMirrorOptionsPartialExtensions
+[JsonConverter(typeof(EnumStringConverter))]
+public enum GitRepositorySettingsMergeOptionsMergeMessageOption
 {
-    public static Partial<RepositoryMirrorOptions> WithIsSyncPeriodically(this Partial<RepositoryMirrorOptions> it)
-        => it.AddFieldName("syncPeriodically");
+    [EnumMember(Value = "DEFAULT")]
+    DEFAULT,
     
-    public static Partial<RepositoryMirrorOptions> WithIsSyncOnFetch(this Partial<RepositoryMirrorOptions> it)
-        => it.AddFieldName("syncOnFetch");
+    [EnumMember(Value = "TITLE")]
+    TITLE,
     
-    public static Partial<RepositoryMirrorOptions> WithIsAllowPush(this Partial<RepositoryMirrorOptions> it)
-        => it.AddFieldName("allowPush");
-    
-    public static Partial<RepositoryMirrorOptions> WithIsAllowAtomicPush(this Partial<RepositoryMirrorOptions> it)
-        => it.AddFieldName("allowAtomicPush");
-    
-    public static Partial<RepositoryMirrorOptions> WithIsMirrorPullRequest(this Partial<RepositoryMirrorOptions> it)
-        => it.AddFieldName("mirrorPullRequest");
+    [EnumMember(Value = "TITLE_AND_DESCRIPTION")]
+    TITLEANDDESCRIPTION,
     
 }
 
