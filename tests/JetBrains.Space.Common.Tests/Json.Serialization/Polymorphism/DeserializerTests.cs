@@ -90,4 +90,16 @@ public class DeserializerTests
             }
         }
     }
+
+    [Fact]
+    public void CanDeserializeCodeReviewParticipantWebhookEvent()
+    {
+        // https://github.com/JetBrains/space-dotnet-sdk/issues/13
+        var inputJsonString = "{\n  \"className\": \"WebhookRequestPayload\",\n  \"clientId\": \"019c8bb3-6848-4e95-b74d-abb2fddbaa99\",\n  \"payload\": {\n    \"className\": \"CodeReviewParticipantWebhookEvent\",\n    \"isMergeRequest\": true,\n    \"meta\": {\n      \"method\": \"Updated\",\n      \"principal\": {\n        \"details\": {\n          \"className\": \"CUserPrincipalDetails\",\n          \"user\": {\n            \"id\": \"4TUpet38n3Ow\"\n          }\n        },\n        \"name\": \"p.empl\"\n      },\n      \"timestamp\": {\n        \"iso\": \"2024-05-10T19:14:16.438Z\",\n        \"timestamp\": 1715368456438\n      }\n    },\n    \"participant\": {\n      \"id\": \"4TUpet38n3Ow\"\n    },\n    \"review\": {\n      \"className\": \"MergeRequestRecord\",\n      \"id\": \"13E9bi0xGPvU\"\n    },\n    \"reviewerState\": {\n      \"new\": \"Accepted\",\n      \"old\": null\n    },\n    \"theirTurn\": {\n      \"new\": false,\n      \"old\": null\n    }\n  },\n  \"verificationToken\": null,\n  \"webhookId\": \"4N1tlq2Yszxp\"\n}";
+
+        var result = JsonSerializer.Deserialize(inputJsonString, typeof(WebhookRequestPayload), Defaults.CreateSerializerOptions());
+
+        Assert.NotNull(result);
+        Assert.IsType<WebhookRequestPayload>(result);
+    }
 }

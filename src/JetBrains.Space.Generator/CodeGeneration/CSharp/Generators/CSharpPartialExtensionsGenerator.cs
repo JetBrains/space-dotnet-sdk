@@ -200,6 +200,10 @@ public class CSharpPartialExtensionsGenerator
                     var sb = new CSharpBuilder();
                     sb.Append("Modification<");
                     sb.Append(GenerateCSharpTypeFrom(apiFieldTypeObject.Fields[0].Type));
+                    if (apiFieldTypeObject.Nullable)
+                    {
+                        sb.Append("?");
+                    }
                     sb.Append(">");
                     return sb.ToString();
                 }

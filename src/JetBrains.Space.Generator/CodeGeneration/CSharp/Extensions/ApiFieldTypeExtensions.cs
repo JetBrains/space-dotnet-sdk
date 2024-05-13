@@ -135,6 +135,10 @@ public static class ApiFieldTypeExtensions
                     var sb = new CSharpBuilder();
                     sb.Append("Modification<");
                     sb.Append(ToCSharpType(apiFieldTypeObject.Fields[0].Type, context));
+                    if (apiFieldTypeObject.Nullable)
+                    {
+                        sb.Append("?");
+                    }
                     sb.Append(">");
                     return sb.ToString();
                 }

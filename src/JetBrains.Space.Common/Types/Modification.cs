@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using JetBrains.Annotations;
 
@@ -15,16 +14,14 @@ public class Modification<T>
     /// <summary>
     /// Get/set the old value of the element.
     /// </summary>
-    [Required]
     [JsonPropertyName("old")]
-    public T Old { get; set; } = default!;
+    public T? Old { get; set; }
         
     /// <summary>
     /// Get/set the new value of the element.
     /// </summary>
-    [Required]
     [JsonPropertyName("new")]
-    public T New { get; set; } = default!;
+    public T? New { get; set; }
 
     /// <inheritdoc />
     public void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
