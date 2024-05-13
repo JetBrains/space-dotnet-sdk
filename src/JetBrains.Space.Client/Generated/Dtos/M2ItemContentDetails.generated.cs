@@ -59,7 +59,7 @@ public interface M2ItemContentDetails
     public static M2AbsenceItemDeletedContent M2AbsenceItemDeletedContent(AbsenceRecord absence, TDMemberProfile? by = null)
         => new M2AbsenceItemDeletedContent(absence: absence, by: by);
     
-    public static M2AbsenceItemUpdatedContent M2AbsenceItemUpdatedContent(AbsenceRecord absence, Modification<AbsenceReasonRecord>? reason = null, Modification<string>? description = null, Modification<DateTime>? since = null, Modification<DateTime>? till = null, TDMemberProfile? by = null)
+    public static M2AbsenceItemUpdatedContent M2AbsenceItemUpdatedContent(AbsenceRecord absence, Modification<AbsenceReasonRecord?>? reason = null, Modification<string?>? description = null, Modification<DateTime?>? since = null, Modification<DateTime?>? till = null, TDMemberProfile? by = null)
         => new M2AbsenceItemUpdatedContent(absence: absence, reason: reason, description: description, since: since, till: till, by: by);
     
     public static M2ChannelArchivedItemDetails M2ChannelArchivedItemDetails()

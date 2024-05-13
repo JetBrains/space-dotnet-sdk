@@ -37,7 +37,7 @@ public sealed class CodeReviewDiscussionWebhookEvent
     
     public CodeReviewDiscussionWebhookEvent() { }
     
-    public CodeReviewDiscussionWebhookEvent(CodeReviewRecord review, CodeReviewDiscussion discussion, KMetaMod? meta = null, Modification<bool>? resolved = null)
+    public CodeReviewDiscussionWebhookEvent(CodeReviewRecord review, CodeReviewDiscussion discussion, KMetaMod? meta = null, Modification<bool?>? resolved = null)
     {
         Meta = meta;
         Review = review;
@@ -74,10 +74,10 @@ public sealed class CodeReviewDiscussionWebhookEvent
         set => _discussion.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _resolved = new PropertyValue<Modification<bool>?>(nameof(CodeReviewDiscussionWebhookEvent), nameof(Resolved), "resolved");
+    private PropertyValue<Modification<bool?>?> _resolved = new PropertyValue<Modification<bool?>?>(nameof(CodeReviewDiscussionWebhookEvent), nameof(Resolved), "resolved");
     
     [JsonPropertyName("resolved")]
-    public Modification<bool>? Resolved
+    public Modification<bool?>? Resolved
     {
         get => _resolved.GetValue(InlineErrors);
         set => _resolved.SetValue(value);

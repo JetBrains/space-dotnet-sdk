@@ -37,7 +37,7 @@ public sealed class CodeReviewUpdatedWebhookEvent
     
     public CodeReviewUpdatedWebhookEvent() { }
     
-    public CodeReviewUpdatedWebhookEvent(KMetaMod meta, CodeReviewRecord? review = null, Modification<string>? titleMod = null, Modification<string>? descriptionMod = null, Modification<string>? targetBranchMod = null)
+    public CodeReviewUpdatedWebhookEvent(KMetaMod meta, CodeReviewRecord? review = null, Modification<string?>? titleMod = null, Modification<string?>? descriptionMod = null, Modification<string?>? targetBranchMod = null)
     {
         Meta = meta;
         Review = review;
@@ -65,28 +65,28 @@ public sealed class CodeReviewUpdatedWebhookEvent
         set => _review.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _titleMod = new PropertyValue<Modification<string>?>(nameof(CodeReviewUpdatedWebhookEvent), nameof(TitleMod), "titleMod");
+    private PropertyValue<Modification<string?>?> _titleMod = new PropertyValue<Modification<string?>?>(nameof(CodeReviewUpdatedWebhookEvent), nameof(TitleMod), "titleMod");
     
     [JsonPropertyName("titleMod")]
-    public Modification<string>? TitleMod
+    public Modification<string?>? TitleMod
     {
         get => _titleMod.GetValue(InlineErrors);
         set => _titleMod.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _descriptionMod = new PropertyValue<Modification<string>?>(nameof(CodeReviewUpdatedWebhookEvent), nameof(DescriptionMod), "descriptionMod");
+    private PropertyValue<Modification<string?>?> _descriptionMod = new PropertyValue<Modification<string?>?>(nameof(CodeReviewUpdatedWebhookEvent), nameof(DescriptionMod), "descriptionMod");
     
     [JsonPropertyName("descriptionMod")]
-    public Modification<string>? DescriptionMod
+    public Modification<string?>? DescriptionMod
     {
         get => _descriptionMod.GetValue(InlineErrors);
         set => _descriptionMod.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _targetBranchMod = new PropertyValue<Modification<string>?>(nameof(CodeReviewUpdatedWebhookEvent), nameof(TargetBranchMod), "targetBranchMod");
+    private PropertyValue<Modification<string?>?> _targetBranchMod = new PropertyValue<Modification<string?>?>(nameof(CodeReviewUpdatedWebhookEvent), nameof(TargetBranchMod), "targetBranchMod");
     
     [JsonPropertyName("targetBranchMod")]
-    public Modification<string>? TargetBranchMod
+    public Modification<string?>? TargetBranchMod
     {
         get => _targetBranchMod.GetValue(InlineErrors);
         set => _targetBranchMod.SetValue(value);

@@ -37,7 +37,7 @@ public sealed class BlogWebhookEvent
     
     public BlogWebhookEvent() { }
     
-    public BlogWebhookEvent(KMetaMod meta, ArticleRecord article, bool textChanged, string? action = null, Modification<TDMemberProfile>? author = null, Modification<DateTime>? created = null, Modification<string>? title = null, Modification<bool>? unpublished = null, Modification<List<TDTeam>>? teams = null, Modification<List<TDLocation>>? locations = null, Modification<long>? externalEntityInfo = null)
+    public BlogWebhookEvent(KMetaMod meta, ArticleRecord article, bool textChanged, string? action = null, Modification<TDMemberProfile?>? author = null, Modification<DateTime?>? created = null, Modification<string?>? title = null, Modification<bool?>? unpublished = null, Modification<List<TDTeam>?>? teams = null, Modification<List<TDLocation>?>? locations = null, Modification<long?>? externalEntityInfo = null)
     {
         Meta = meta;
         Article = article;
@@ -81,28 +81,28 @@ public sealed class BlogWebhookEvent
         set => _action.SetValue(value);
     }
 
-    private PropertyValue<Modification<TDMemberProfile>?> _author = new PropertyValue<Modification<TDMemberProfile>?>(nameof(BlogWebhookEvent), nameof(Author), "author");
+    private PropertyValue<Modification<TDMemberProfile?>?> _author = new PropertyValue<Modification<TDMemberProfile?>?>(nameof(BlogWebhookEvent), nameof(Author), "author");
     
     [JsonPropertyName("author")]
-    public Modification<TDMemberProfile>? Author
+    public Modification<TDMemberProfile?>? Author
     {
         get => _author.GetValue(InlineErrors);
         set => _author.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _created = new PropertyValue<Modification<DateTime>?>(nameof(BlogWebhookEvent), nameof(Created), "created");
+    private PropertyValue<Modification<DateTime?>?> _created = new PropertyValue<Modification<DateTime?>?>(nameof(BlogWebhookEvent), nameof(Created), "created");
     
     [JsonPropertyName("created")]
-    public Modification<DateTime>? Created
+    public Modification<DateTime?>? Created
     {
         get => _created.GetValue(InlineErrors);
         set => _created.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _title = new PropertyValue<Modification<string>?>(nameof(BlogWebhookEvent), nameof(Title), "title");
+    private PropertyValue<Modification<string?>?> _title = new PropertyValue<Modification<string?>?>(nameof(BlogWebhookEvent), nameof(Title), "title");
     
     [JsonPropertyName("title")]
-    public Modification<string>? Title
+    public Modification<string?>? Title
     {
         get => _title.GetValue(InlineErrors);
         set => _title.SetValue(value);
@@ -118,37 +118,37 @@ public sealed class BlogWebhookEvent
         set => _textChanged.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _unpublished = new PropertyValue<Modification<bool>?>(nameof(BlogWebhookEvent), nameof(Unpublished), "unpublished");
+    private PropertyValue<Modification<bool?>?> _unpublished = new PropertyValue<Modification<bool?>?>(nameof(BlogWebhookEvent), nameof(Unpublished), "unpublished");
     
     [JsonPropertyName("unpublished")]
-    public Modification<bool>? Unpublished
+    public Modification<bool?>? Unpublished
     {
         get => _unpublished.GetValue(InlineErrors);
         set => _unpublished.SetValue(value);
     }
 
-    private PropertyValue<Modification<List<TDTeam>>?> _teams = new PropertyValue<Modification<List<TDTeam>>?>(nameof(BlogWebhookEvent), nameof(Teams), "teams");
+    private PropertyValue<Modification<List<TDTeam>?>?> _teams = new PropertyValue<Modification<List<TDTeam>?>?>(nameof(BlogWebhookEvent), nameof(Teams), "teams");
     
     [JsonPropertyName("teams")]
-    public Modification<List<TDTeam>>? Teams
+    public Modification<List<TDTeam>?>? Teams
     {
         get => _teams.GetValue(InlineErrors);
         set => _teams.SetValue(value);
     }
 
-    private PropertyValue<Modification<List<TDLocation>>?> _locations = new PropertyValue<Modification<List<TDLocation>>?>(nameof(BlogWebhookEvent), nameof(Locations), "locations");
+    private PropertyValue<Modification<List<TDLocation>?>?> _locations = new PropertyValue<Modification<List<TDLocation>?>?>(nameof(BlogWebhookEvent), nameof(Locations), "locations");
     
     [JsonPropertyName("locations")]
-    public Modification<List<TDLocation>>? Locations
+    public Modification<List<TDLocation>?>? Locations
     {
         get => _locations.GetValue(InlineErrors);
         set => _locations.SetValue(value);
     }
 
-    private PropertyValue<Modification<long>?> _externalEntityInfo = new PropertyValue<Modification<long>?>(nameof(BlogWebhookEvent), nameof(ExternalEntityInfo), "externalEntityInfo");
+    private PropertyValue<Modification<long?>?> _externalEntityInfo = new PropertyValue<Modification<long?>?>(nameof(BlogWebhookEvent), nameof(ExternalEntityInfo), "externalEntityInfo");
     
     [JsonPropertyName("externalEntityInfo")]
-    public Modification<long>? ExternalEntityInfo
+    public Modification<long?>? ExternalEntityInfo
     {
         get => _externalEntityInfo.GetValue(InlineErrors);
         set => _externalEntityInfo.SetValue(value);

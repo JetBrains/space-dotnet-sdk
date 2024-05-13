@@ -37,7 +37,7 @@ public sealed class CodeReviewParticipantWebhookEvent
     
     public CodeReviewParticipantWebhookEvent() { }
     
-    public CodeReviewParticipantWebhookEvent(CodeReviewRecord review, bool isMergeRequest, TDMemberProfile participant, KMetaMod? meta = null, Modification<ReviewerState>? reviewerState = null, Modification<bool>? theirTurn = null)
+    public CodeReviewParticipantWebhookEvent(CodeReviewRecord review, bool isMergeRequest, TDMemberProfile participant, KMetaMod? meta = null, Modification<ReviewerState?>? reviewerState = null, Modification<bool?>? theirTurn = null)
     {
         Meta = meta;
         Review = review;
@@ -86,19 +86,19 @@ public sealed class CodeReviewParticipantWebhookEvent
         set => _participant.SetValue(value);
     }
 
-    private PropertyValue<Modification<ReviewerState>?> _reviewerState = new PropertyValue<Modification<ReviewerState>?>(nameof(CodeReviewParticipantWebhookEvent), nameof(ReviewerState), "reviewerState");
+    private PropertyValue<Modification<ReviewerState?>?> _reviewerState = new PropertyValue<Modification<ReviewerState?>?>(nameof(CodeReviewParticipantWebhookEvent), nameof(ReviewerState), "reviewerState");
     
     [JsonPropertyName("reviewerState")]
-    public Modification<ReviewerState>? ReviewerState
+    public Modification<ReviewerState?>? ReviewerState
     {
         get => _reviewerState.GetValue(InlineErrors);
         set => _reviewerState.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _theirTurn = new PropertyValue<Modification<bool>?>(nameof(CodeReviewParticipantWebhookEvent), nameof(TheirTurn), "theirTurn");
+    private PropertyValue<Modification<bool?>?> _theirTurn = new PropertyValue<Modification<bool?>?>(nameof(CodeReviewParticipantWebhookEvent), nameof(TheirTurn), "theirTurn");
     
     [JsonPropertyName("theirTurn")]
-    public Modification<bool>? TheirTurn
+    public Modification<bool?>? TheirTurn
     {
         get => _theirTurn.GetValue(InlineErrors);
         set => _theirTurn.SetValue(value);

@@ -37,7 +37,7 @@ public sealed class CustomEmojiUpdatedEvent
     
     public CustomEmojiUpdatedEvent() { }
     
-    public CustomEmojiUpdatedEvent(string emoji, CPrincipal owner, Modification<string>? attachmentId = null, Modification<DateTime>? uploadedAt = null)
+    public CustomEmojiUpdatedEvent(string emoji, CPrincipal owner, Modification<string?>? attachmentId = null, Modification<DateTime?>? uploadedAt = null)
     {
         Emoji = emoji;
         Owner = owner;
@@ -65,19 +65,19 @@ public sealed class CustomEmojiUpdatedEvent
         set => _owner.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _attachmentId = new PropertyValue<Modification<string>?>(nameof(CustomEmojiUpdatedEvent), nameof(AttachmentId), "attachmentId");
+    private PropertyValue<Modification<string?>?> _attachmentId = new PropertyValue<Modification<string?>?>(nameof(CustomEmojiUpdatedEvent), nameof(AttachmentId), "attachmentId");
     
     [JsonPropertyName("attachmentId")]
-    public Modification<string>? AttachmentId
+    public Modification<string?>? AttachmentId
     {
         get => _attachmentId.GetValue(InlineErrors);
         set => _attachmentId.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _uploadedAt = new PropertyValue<Modification<DateTime>?>(nameof(CustomEmojiUpdatedEvent), nameof(UploadedAt), "uploadedAt");
+    private PropertyValue<Modification<DateTime?>?> _uploadedAt = new PropertyValue<Modification<DateTime?>?>(nameof(CustomEmojiUpdatedEvent), nameof(UploadedAt), "uploadedAt");
     
     [JsonPropertyName("uploadedAt")]
-    public Modification<DateTime>? UploadedAt
+    public Modification<DateTime?>? UploadedAt
     {
         get => _uploadedAt.GetValue(InlineErrors);
         set => _uploadedAt.SetValue(value);

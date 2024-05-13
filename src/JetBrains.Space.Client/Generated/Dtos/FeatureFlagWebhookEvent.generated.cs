@@ -37,7 +37,7 @@ public sealed class FeatureFlagWebhookEvent
     
     public FeatureFlagWebhookEvent() { }
     
-    public FeatureFlagWebhookEvent(KMetaMod meta, string name, int? issueNumber = null, Modification<bool>? enabledForAll = null, Modification<bool>? selfManageable = null, List<TDTeam>? addedTeams = null, List<TDTeam>? addedProfiles = null, List<TDMemberProfile>? removedTeams = null, List<TDMemberProfile>? removedProfiles = null)
+    public FeatureFlagWebhookEvent(KMetaMod meta, string name, int? issueNumber = null, Modification<bool?>? enabledForAll = null, Modification<bool?>? selfManageable = null, List<TDTeam>? addedTeams = null, List<TDTeam>? addedProfiles = null, List<TDMemberProfile>? removedTeams = null, List<TDMemberProfile>? removedProfiles = null)
     {
         Meta = meta;
         Name = name;
@@ -79,19 +79,19 @@ public sealed class FeatureFlagWebhookEvent
         set => _issueNumber.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _enabledForAll = new PropertyValue<Modification<bool>?>(nameof(FeatureFlagWebhookEvent), nameof(EnabledForAll), "enabledForAll");
+    private PropertyValue<Modification<bool?>?> _enabledForAll = new PropertyValue<Modification<bool?>?>(nameof(FeatureFlagWebhookEvent), nameof(EnabledForAll), "enabledForAll");
     
     [JsonPropertyName("enabledForAll")]
-    public Modification<bool>? EnabledForAll
+    public Modification<bool?>? EnabledForAll
     {
         get => _enabledForAll.GetValue(InlineErrors);
         set => _enabledForAll.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _selfManageable = new PropertyValue<Modification<bool>?>(nameof(FeatureFlagWebhookEvent), nameof(SelfManageable), "selfManageable");
+    private PropertyValue<Modification<bool?>?> _selfManageable = new PropertyValue<Modification<bool?>?>(nameof(FeatureFlagWebhookEvent), nameof(SelfManageable), "selfManageable");
     
     [JsonPropertyName("selfManageable")]
-    public Modification<bool>? SelfManageable
+    public Modification<bool?>? SelfManageable
     {
         get => _selfManageable.GetValue(InlineErrors);
         set => _selfManageable.SetValue(value);

@@ -37,7 +37,7 @@ public sealed class ApplicationWebhookEvent
     
     public ApplicationWebhookEvent() { }
     
-    public ApplicationWebhookEvent(KMetaMod meta, ESApp application, bool clientIdChanged, bool clientSecretChanged, bool verificationTokenChanged, bool signingKeyChanged, Modification<string>? name = null, Modification<TDMemberProfile>? owner = null, Modification<bool>? archived = null, Modification<string>? endpointURI = null)
+    public ApplicationWebhookEvent(KMetaMod meta, ESApp application, bool clientIdChanged, bool clientSecretChanged, bool verificationTokenChanged, bool signingKeyChanged, Modification<string?>? name = null, Modification<TDMemberProfile?>? owner = null, Modification<bool?>? archived = null, Modification<string?>? endpointURI = null)
     {
         Meta = meta;
         Application = application;
@@ -71,37 +71,37 @@ public sealed class ApplicationWebhookEvent
         set => _application.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _name = new PropertyValue<Modification<string>?>(nameof(ApplicationWebhookEvent), nameof(Name), "name");
+    private PropertyValue<Modification<string?>?> _name = new PropertyValue<Modification<string?>?>(nameof(ApplicationWebhookEvent), nameof(Name), "name");
     
     [JsonPropertyName("name")]
-    public Modification<string>? Name
+    public Modification<string?>? Name
     {
         get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<Modification<TDMemberProfile>?> _owner = new PropertyValue<Modification<TDMemberProfile>?>(nameof(ApplicationWebhookEvent), nameof(Owner), "owner");
+    private PropertyValue<Modification<TDMemberProfile?>?> _owner = new PropertyValue<Modification<TDMemberProfile?>?>(nameof(ApplicationWebhookEvent), nameof(Owner), "owner");
     
     [JsonPropertyName("owner")]
-    public Modification<TDMemberProfile>? Owner
+    public Modification<TDMemberProfile?>? Owner
     {
         get => _owner.GetValue(InlineErrors);
         set => _owner.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _archived = new PropertyValue<Modification<bool>?>(nameof(ApplicationWebhookEvent), nameof(Archived), "archived");
+    private PropertyValue<Modification<bool?>?> _archived = new PropertyValue<Modification<bool?>?>(nameof(ApplicationWebhookEvent), nameof(Archived), "archived");
     
     [JsonPropertyName("archived")]
-    public Modification<bool>? Archived
+    public Modification<bool?>? Archived
     {
         get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _endpointURI = new PropertyValue<Modification<string>?>(nameof(ApplicationWebhookEvent), nameof(EndpointURI), "endpointURI");
+    private PropertyValue<Modification<string?>?> _endpointURI = new PropertyValue<Modification<string?>?>(nameof(ApplicationWebhookEvent), nameof(EndpointURI), "endpointURI");
     
     [JsonPropertyName("endpointURI")]
-    public Modification<string>? EndpointURI
+    public Modification<string?>? EndpointURI
     {
         get => _endpointURI.GetValue(InlineErrors);
         set => _endpointURI.SetValue(value);

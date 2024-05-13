@@ -37,7 +37,7 @@ public sealed class AbsenceWebhookEvent
     
     public AbsenceWebhookEvent() { }
     
-    public AbsenceWebhookEvent(KMetaMod meta, AbsenceRecord absence, TDMemberProfile member, Modification<string>? icon = null, Modification<AbsenceReasonRecord>? reason = null, Modification<string>? description = null, Modification<DateTime>? since = null, Modification<DateTime>? till = null, Modification<TDLocation>? location = null, Modification<bool>? available = null)
+    public AbsenceWebhookEvent(KMetaMod meta, AbsenceRecord absence, TDMemberProfile member, Modification<string?>? icon = null, Modification<AbsenceReasonRecord?>? reason = null, Modification<string?>? description = null, Modification<DateTime?>? since = null, Modification<DateTime?>? till = null, Modification<TDLocation?>? location = null, Modification<bool?>? available = null)
     {
         Meta = meta;
         Absence = absence;
@@ -81,64 +81,64 @@ public sealed class AbsenceWebhookEvent
         set => _member.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _icon = new PropertyValue<Modification<string>?>(nameof(AbsenceWebhookEvent), nameof(Icon), "icon");
+    private PropertyValue<Modification<string?>?> _icon = new PropertyValue<Modification<string?>?>(nameof(AbsenceWebhookEvent), nameof(Icon), "icon");
     
     [JsonPropertyName("icon")]
-    public Modification<string>? Icon
+    public Modification<string?>? Icon
     {
         get => _icon.GetValue(InlineErrors);
         set => _icon.SetValue(value);
     }
 
-    private PropertyValue<Modification<AbsenceReasonRecord>?> _reason = new PropertyValue<Modification<AbsenceReasonRecord>?>(nameof(AbsenceWebhookEvent), nameof(Reason), "reason");
+    private PropertyValue<Modification<AbsenceReasonRecord?>?> _reason = new PropertyValue<Modification<AbsenceReasonRecord?>?>(nameof(AbsenceWebhookEvent), nameof(Reason), "reason");
     
     [JsonPropertyName("reason")]
-    public Modification<AbsenceReasonRecord>? Reason
+    public Modification<AbsenceReasonRecord?>? Reason
     {
         get => _reason.GetValue(InlineErrors);
         set => _reason.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _description = new PropertyValue<Modification<string>?>(nameof(AbsenceWebhookEvent), nameof(Description), "description");
+    private PropertyValue<Modification<string?>?> _description = new PropertyValue<Modification<string?>?>(nameof(AbsenceWebhookEvent), nameof(Description), "description");
     
     [JsonPropertyName("description")]
-    public Modification<string>? Description
+    public Modification<string?>? Description
     {
         get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _since = new PropertyValue<Modification<DateTime>?>(nameof(AbsenceWebhookEvent), nameof(Since), "since");
+    private PropertyValue<Modification<DateTime?>?> _since = new PropertyValue<Modification<DateTime?>?>(nameof(AbsenceWebhookEvent), nameof(Since), "since");
     
     [JsonPropertyName("since")]
-    public Modification<DateTime>? Since
+    public Modification<DateTime?>? Since
     {
         get => _since.GetValue(InlineErrors);
         set => _since.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _till = new PropertyValue<Modification<DateTime>?>(nameof(AbsenceWebhookEvent), nameof(Till), "till");
+    private PropertyValue<Modification<DateTime?>?> _till = new PropertyValue<Modification<DateTime?>?>(nameof(AbsenceWebhookEvent), nameof(Till), "till");
     
     [JsonPropertyName("till")]
-    public Modification<DateTime>? Till
+    public Modification<DateTime?>? Till
     {
         get => _till.GetValue(InlineErrors);
         set => _till.SetValue(value);
     }
 
-    private PropertyValue<Modification<TDLocation>?> _location = new PropertyValue<Modification<TDLocation>?>(nameof(AbsenceWebhookEvent), nameof(Location), "location");
+    private PropertyValue<Modification<TDLocation?>?> _location = new PropertyValue<Modification<TDLocation?>?>(nameof(AbsenceWebhookEvent), nameof(Location), "location");
     
     [JsonPropertyName("location")]
-    public Modification<TDLocation>? Location
+    public Modification<TDLocation?>? Location
     {
         get => _location.GetValue(InlineErrors);
         set => _location.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _available = new PropertyValue<Modification<bool>?>(nameof(AbsenceWebhookEvent), nameof(Available), "available");
+    private PropertyValue<Modification<bool?>?> _available = new PropertyValue<Modification<bool?>?>(nameof(AbsenceWebhookEvent), nameof(Available), "available");
     
     [JsonPropertyName("available")]
-    public Modification<bool>? Available
+    public Modification<bool?>? Available
     {
         get => _available.GetValue(InlineErrors);
         set => _available.SetValue(value);

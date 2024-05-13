@@ -37,7 +37,7 @@ public sealed class DeploymentWebhookEvent
     
     public DeploymentWebhookEvent() { }
     
-    public DeploymentWebhookEvent(KMetaMod meta, string projectKey, string targetId, string deploymentId, string? targetKey = null, Modification<DeploymentStatus>? statusMod = null, string? version = null, List<DeploymentCommitRef>? commitRefs = null)
+    public DeploymentWebhookEvent(KMetaMod meta, string projectKey, string targetId, string deploymentId, string? targetKey = null, Modification<DeploymentStatus?>? statusMod = null, string? version = null, List<DeploymentCommitRef>? commitRefs = null)
     {
         Meta = meta;
         ProjectKey = projectKey;
@@ -98,10 +98,10 @@ public sealed class DeploymentWebhookEvent
         set => _deploymentId.SetValue(value);
     }
 
-    private PropertyValue<Modification<DeploymentStatus>?> _statusMod = new PropertyValue<Modification<DeploymentStatus>?>(nameof(DeploymentWebhookEvent), nameof(StatusMod), "statusMod");
+    private PropertyValue<Modification<DeploymentStatus?>?> _statusMod = new PropertyValue<Modification<DeploymentStatus?>?>(nameof(DeploymentWebhookEvent), nameof(StatusMod), "statusMod");
     
     [JsonPropertyName("statusMod")]
-    public Modification<DeploymentStatus>? StatusMod
+    public Modification<DeploymentStatus?>? StatusMod
     {
         get => _statusMod.GetValue(InlineErrors);
         set => _statusMod.SetValue(value);

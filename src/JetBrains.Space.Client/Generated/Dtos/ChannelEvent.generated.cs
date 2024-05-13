@@ -37,7 +37,7 @@ public sealed class ChannelEvent
     
     public ChannelEvent() { }
     
-    public ChannelEvent(KMetaMod meta, M2ChannelRecord channel, Modification<string>? name = null, Modification<string>? description = null, Modification<string>? icon = null, bool? restored = null, bool? archived = null)
+    public ChannelEvent(KMetaMod meta, M2ChannelRecord channel, Modification<string?>? name = null, Modification<string?>? description = null, Modification<string?>? icon = null, bool? restored = null, bool? archived = null)
     {
         Meta = meta;
         Channel = channel;
@@ -68,28 +68,28 @@ public sealed class ChannelEvent
         set => _channel.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _name = new PropertyValue<Modification<string>?>(nameof(ChannelEvent), nameof(Name), "name");
+    private PropertyValue<Modification<string?>?> _name = new PropertyValue<Modification<string?>?>(nameof(ChannelEvent), nameof(Name), "name");
     
     [JsonPropertyName("name")]
-    public Modification<string>? Name
+    public Modification<string?>? Name
     {
         get => _name.GetValue(InlineErrors);
         set => _name.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _description = new PropertyValue<Modification<string>?>(nameof(ChannelEvent), nameof(Description), "description");
+    private PropertyValue<Modification<string?>?> _description = new PropertyValue<Modification<string?>?>(nameof(ChannelEvent), nameof(Description), "description");
     
     [JsonPropertyName("description")]
-    public Modification<string>? Description
+    public Modification<string?>? Description
     {
         get => _description.GetValue(InlineErrors);
         set => _description.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _icon = new PropertyValue<Modification<string>?>(nameof(ChannelEvent), nameof(Icon), "icon");
+    private PropertyValue<Modification<string?>?> _icon = new PropertyValue<Modification<string?>?>(nameof(ChannelEvent), nameof(Icon), "icon");
     
     [JsonPropertyName("icon")]
-    public Modification<string>? Icon
+    public Modification<string?>? Icon
     {
         get => _icon.GetValue(InlineErrors);
         set => _icon.SetValue(value);

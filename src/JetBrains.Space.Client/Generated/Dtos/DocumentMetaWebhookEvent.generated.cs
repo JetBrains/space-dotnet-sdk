@@ -37,7 +37,7 @@ public sealed class DocumentMetaWebhookEvent
     
     public DocumentMetaWebhookEvent() { }
     
-    public DocumentMetaWebhookEvent(KMetaMod meta, string document, Modification<bool>? deleted = null, Modification<bool>? published = null)
+    public DocumentMetaWebhookEvent(KMetaMod meta, string document, Modification<bool?>? deleted = null, Modification<bool?>? published = null)
     {
         Meta = meta;
         Document = document;
@@ -65,19 +65,19 @@ public sealed class DocumentMetaWebhookEvent
         set => _document.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _deleted = new PropertyValue<Modification<bool>?>(nameof(DocumentMetaWebhookEvent), nameof(Deleted), "deleted");
+    private PropertyValue<Modification<bool?>?> _deleted = new PropertyValue<Modification<bool?>?>(nameof(DocumentMetaWebhookEvent), nameof(Deleted), "deleted");
     
     [JsonPropertyName("deleted")]
-    public Modification<bool>? Deleted
+    public Modification<bool?>? Deleted
     {
         get => _deleted.GetValue(InlineErrors);
         set => _deleted.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _published = new PropertyValue<Modification<bool>?>(nameof(DocumentMetaWebhookEvent), nameof(Published), "published");
+    private PropertyValue<Modification<bool?>?> _published = new PropertyValue<Modification<bool?>?>(nameof(DocumentMetaWebhookEvent), nameof(Published), "published");
     
     [JsonPropertyName("published")]
-    public Modification<bool>? Published
+    public Modification<bool?>? Published
     {
         get => _published.GetValue(InlineErrors);
         set => _published.SetValue(value);

@@ -34,7 +34,7 @@ public sealed class IssueWebhookCustomFieldUpdate
 {
     public IssueWebhookCustomFieldUpdate() { }
     
-    public IssueWebhookCustomFieldUpdate(CustomField customField, Modification<CFValue>? mod = null)
+    public IssueWebhookCustomFieldUpdate(CustomField customField, Modification<CFValue?>? mod = null)
     {
         CustomField = customField;
         Mod = mod;
@@ -50,10 +50,10 @@ public sealed class IssueWebhookCustomFieldUpdate
         set => _customField.SetValue(value);
     }
 
-    private PropertyValue<Modification<CFValue>?> _mod = new PropertyValue<Modification<CFValue>?>(nameof(IssueWebhookCustomFieldUpdate), nameof(Mod), "mod");
+    private PropertyValue<Modification<CFValue?>?> _mod = new PropertyValue<Modification<CFValue?>?>(nameof(IssueWebhookCustomFieldUpdate), nameof(Mod), "mod");
     
     [JsonPropertyName("mod")]
-    public Modification<CFValue>? Mod
+    public Modification<CFValue?>? Mod
     {
         get => _mod.GetValue(InlineErrors);
         set => _mod.SetValue(value);

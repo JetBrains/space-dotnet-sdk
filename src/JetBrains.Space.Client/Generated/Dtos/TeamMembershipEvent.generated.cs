@@ -37,7 +37,7 @@ public sealed class TeamMembershipEvent
     
     public TeamMembershipEvent() { }
     
-    public TeamMembershipEvent(KMetaMod meta, TDMembership membership, Modification<TDTeam>? team = null, Modification<TDRole>? role = null, Modification<bool>? lead = null, Modification<TDMemberProfile>? manager = null, Modification<DateTime>? since = null, Modification<DateTime>? till = null, Modification<bool>? deleted = null, Modification<TDMemberProfile>? approvedBy = null)
+    public TeamMembershipEvent(KMetaMod meta, TDMembership membership, Modification<TDTeam?>? team = null, Modification<TDRole?>? role = null, Modification<bool?>? lead = null, Modification<TDMemberProfile?>? manager = null, Modification<DateTime?>? since = null, Modification<DateTime?>? till = null, Modification<bool?>? deleted = null, Modification<TDMemberProfile?>? approvedBy = null)
     {
         Meta = meta;
         Membership = membership;
@@ -71,73 +71,73 @@ public sealed class TeamMembershipEvent
         set => _membership.SetValue(value);
     }
 
-    private PropertyValue<Modification<TDTeam>?> _team = new PropertyValue<Modification<TDTeam>?>(nameof(TeamMembershipEvent), nameof(Team), "team");
+    private PropertyValue<Modification<TDTeam?>?> _team = new PropertyValue<Modification<TDTeam?>?>(nameof(TeamMembershipEvent), nameof(Team), "team");
     
     [JsonPropertyName("team")]
-    public Modification<TDTeam>? Team
+    public Modification<TDTeam?>? Team
     {
         get => _team.GetValue(InlineErrors);
         set => _team.SetValue(value);
     }
 
-    private PropertyValue<Modification<TDRole>?> _role = new PropertyValue<Modification<TDRole>?>(nameof(TeamMembershipEvent), nameof(Role), "role");
+    private PropertyValue<Modification<TDRole?>?> _role = new PropertyValue<Modification<TDRole?>?>(nameof(TeamMembershipEvent), nameof(Role), "role");
     
     [JsonPropertyName("role")]
-    public Modification<TDRole>? Role
+    public Modification<TDRole?>? Role
     {
         get => _role.GetValue(InlineErrors);
         set => _role.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _lead = new PropertyValue<Modification<bool>?>(nameof(TeamMembershipEvent), nameof(Lead), "lead");
+    private PropertyValue<Modification<bool?>?> _lead = new PropertyValue<Modification<bool?>?>(nameof(TeamMembershipEvent), nameof(Lead), "lead");
     
     [JsonPropertyName("lead")]
-    public Modification<bool>? Lead
+    public Modification<bool?>? Lead
     {
         get => _lead.GetValue(InlineErrors);
         set => _lead.SetValue(value);
     }
 
-    private PropertyValue<Modification<TDMemberProfile>?> _manager = new PropertyValue<Modification<TDMemberProfile>?>(nameof(TeamMembershipEvent), nameof(Manager), "manager");
+    private PropertyValue<Modification<TDMemberProfile?>?> _manager = new PropertyValue<Modification<TDMemberProfile?>?>(nameof(TeamMembershipEvent), nameof(Manager), "manager");
     
     [JsonPropertyName("manager")]
-    public Modification<TDMemberProfile>? Manager
+    public Modification<TDMemberProfile?>? Manager
     {
         get => _manager.GetValue(InlineErrors);
         set => _manager.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _since = new PropertyValue<Modification<DateTime>?>(nameof(TeamMembershipEvent), nameof(Since), "since");
+    private PropertyValue<Modification<DateTime?>?> _since = new PropertyValue<Modification<DateTime?>?>(nameof(TeamMembershipEvent), nameof(Since), "since");
     
     [JsonPropertyName("since")]
-    public Modification<DateTime>? Since
+    public Modification<DateTime?>? Since
     {
         get => _since.GetValue(InlineErrors);
         set => _since.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _till = new PropertyValue<Modification<DateTime>?>(nameof(TeamMembershipEvent), nameof(Till), "till");
+    private PropertyValue<Modification<DateTime?>?> _till = new PropertyValue<Modification<DateTime?>?>(nameof(TeamMembershipEvent), nameof(Till), "till");
     
     [JsonPropertyName("till")]
-    public Modification<DateTime>? Till
+    public Modification<DateTime?>? Till
     {
         get => _till.GetValue(InlineErrors);
         set => _till.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _deleted = new PropertyValue<Modification<bool>?>(nameof(TeamMembershipEvent), nameof(Deleted), "deleted");
+    private PropertyValue<Modification<bool?>?> _deleted = new PropertyValue<Modification<bool?>?>(nameof(TeamMembershipEvent), nameof(Deleted), "deleted");
     
     [JsonPropertyName("deleted")]
-    public Modification<bool>? Deleted
+    public Modification<bool?>? Deleted
     {
         get => _deleted.GetValue(InlineErrors);
         set => _deleted.SetValue(value);
     }
 
-    private PropertyValue<Modification<TDMemberProfile>?> _approvedBy = new PropertyValue<Modification<TDMemberProfile>?>(nameof(TeamMembershipEvent), nameof(ApprovedBy), "approvedBy");
+    private PropertyValue<Modification<TDMemberProfile?>?> _approvedBy = new PropertyValue<Modification<TDMemberProfile?>?>(nameof(TeamMembershipEvent), nameof(ApprovedBy), "approvedBy");
     
     [JsonPropertyName("approvedBy")]
-    public Modification<TDMemberProfile>? ApprovedBy
+    public Modification<TDMemberProfile?>? ApprovedBy
     {
         get => _approvedBy.GetValue(InlineErrors);
         set => _approvedBy.SetValue(value);

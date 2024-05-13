@@ -37,7 +37,7 @@ public sealed class ChatMessageUpdatedEvent
     
     public ChatMessageUpdatedEvent() { }
     
-    public ChatMessageUpdatedEvent(string channelId, ChannelItemRecord message, string? threadId = null, Modification<DateTime>? edited = null, Modification<bool>? pinned = null)
+    public ChatMessageUpdatedEvent(string channelId, ChannelItemRecord message, string? threadId = null, Modification<DateTime?>? edited = null, Modification<bool?>? pinned = null)
     {
         ChannelId = channelId;
         ThreadId = threadId;
@@ -75,19 +75,19 @@ public sealed class ChatMessageUpdatedEvent
         set => _message.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _edited = new PropertyValue<Modification<DateTime>?>(nameof(ChatMessageUpdatedEvent), nameof(Edited), "edited");
+    private PropertyValue<Modification<DateTime?>?> _edited = new PropertyValue<Modification<DateTime?>?>(nameof(ChatMessageUpdatedEvent), nameof(Edited), "edited");
     
     [JsonPropertyName("edited")]
-    public Modification<DateTime>? Edited
+    public Modification<DateTime?>? Edited
     {
         get => _edited.GetValue(InlineErrors);
         set => _edited.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _pinned = new PropertyValue<Modification<bool>?>(nameof(ChatMessageUpdatedEvent), nameof(Pinned), "pinned");
+    private PropertyValue<Modification<bool?>?> _pinned = new PropertyValue<Modification<bool?>?>(nameof(ChatMessageUpdatedEvent), nameof(Pinned), "pinned");
     
     [JsonPropertyName("pinned")]
-    public Modification<bool>? Pinned
+    public Modification<bool?>? Pinned
     {
         get => _pinned.GetValue(InlineErrors);
         set => _pinned.SetValue(value);

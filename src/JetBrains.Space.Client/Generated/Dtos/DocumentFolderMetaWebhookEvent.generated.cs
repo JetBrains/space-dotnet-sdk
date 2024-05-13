@@ -37,7 +37,7 @@ public sealed class DocumentFolderMetaWebhookEvent
     
     public DocumentFolderMetaWebhookEvent() { }
     
-    public DocumentFolderMetaWebhookEvent(KMetaMod meta, string folder, Modification<bool>? archived = null)
+    public DocumentFolderMetaWebhookEvent(KMetaMod meta, string folder, Modification<bool?>? archived = null)
     {
         Meta = meta;
         Folder = folder;
@@ -64,10 +64,10 @@ public sealed class DocumentFolderMetaWebhookEvent
         set => _folder.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _archived = new PropertyValue<Modification<bool>?>(nameof(DocumentFolderMetaWebhookEvent), nameof(Archived), "archived");
+    private PropertyValue<Modification<bool?>?> _archived = new PropertyValue<Modification<bool?>?>(nameof(DocumentFolderMetaWebhookEvent), nameof(Archived), "archived");
     
     [JsonPropertyName("archived")]
-    public Modification<bool>? Archived
+    public Modification<bool?>? Archived
     {
         get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);

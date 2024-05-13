@@ -37,7 +37,7 @@ public sealed class BusinessEntityRelationEvent
     
     public BusinessEntityRelationEvent() { }
     
-    public BusinessEntityRelationEvent(KMetaMod meta, string relation, string entity, TDMemberProfile member, Modification<DateTime>? since = null, Modification<DateTime>? till = null, Modification<bool>? archived = null)
+    public BusinessEntityRelationEvent(KMetaMod meta, string relation, string entity, TDMemberProfile member, Modification<DateTime?>? since = null, Modification<DateTime?>? till = null, Modification<bool?>? archived = null)
     {
         Meta = meta;
         Relation = relation;
@@ -88,28 +88,28 @@ public sealed class BusinessEntityRelationEvent
         set => _member.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _since = new PropertyValue<Modification<DateTime>?>(nameof(BusinessEntityRelationEvent), nameof(Since), "since");
+    private PropertyValue<Modification<DateTime?>?> _since = new PropertyValue<Modification<DateTime?>?>(nameof(BusinessEntityRelationEvent), nameof(Since), "since");
     
     [JsonPropertyName("since")]
-    public Modification<DateTime>? Since
+    public Modification<DateTime?>? Since
     {
         get => _since.GetValue(InlineErrors);
         set => _since.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _till = new PropertyValue<Modification<DateTime>?>(nameof(BusinessEntityRelationEvent), nameof(Till), "till");
+    private PropertyValue<Modification<DateTime?>?> _till = new PropertyValue<Modification<DateTime?>?>(nameof(BusinessEntityRelationEvent), nameof(Till), "till");
     
     [JsonPropertyName("till")]
-    public Modification<DateTime>? Till
+    public Modification<DateTime?>? Till
     {
         get => _till.GetValue(InlineErrors);
         set => _till.SetValue(value);
     }
 
-    private PropertyValue<Modification<bool>?> _archived = new PropertyValue<Modification<bool>?>(nameof(BusinessEntityRelationEvent), nameof(Archived), "archived");
+    private PropertyValue<Modification<bool?>?> _archived = new PropertyValue<Modification<bool?>?>(nameof(BusinessEntityRelationEvent), nameof(Archived), "archived");
     
     [JsonPropertyName("archived")]
-    public Modification<bool>? Archived
+    public Modification<bool?>? Archived
     {
         get => _archived.GetValue(InlineErrors);
         set => _archived.SetValue(value);

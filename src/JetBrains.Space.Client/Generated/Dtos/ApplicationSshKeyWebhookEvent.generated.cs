@@ -37,7 +37,7 @@ public sealed class ApplicationSshKeyWebhookEvent
     
     public ApplicationSshKeyWebhookEvent() { }
     
-    public ApplicationSshKeyWebhookEvent(KMetaMod meta, ESApp application, Modification<string>? fingerprint = null, Modification<string>? comment = null)
+    public ApplicationSshKeyWebhookEvent(KMetaMod meta, ESApp application, Modification<string?>? fingerprint = null, Modification<string?>? comment = null)
     {
         Meta = meta;
         Application = application;
@@ -65,19 +65,19 @@ public sealed class ApplicationSshKeyWebhookEvent
         set => _application.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _fingerprint = new PropertyValue<Modification<string>?>(nameof(ApplicationSshKeyWebhookEvent), nameof(Fingerprint), "fingerprint");
+    private PropertyValue<Modification<string?>?> _fingerprint = new PropertyValue<Modification<string?>?>(nameof(ApplicationSshKeyWebhookEvent), nameof(Fingerprint), "fingerprint");
     
     [JsonPropertyName("fingerprint")]
-    public Modification<string>? Fingerprint
+    public Modification<string?>? Fingerprint
     {
         get => _fingerprint.GetValue(InlineErrors);
         set => _fingerprint.SetValue(value);
     }
 
-    private PropertyValue<Modification<string>?> _comment = new PropertyValue<Modification<string>?>(nameof(ApplicationSshKeyWebhookEvent), nameof(Comment), "comment");
+    private PropertyValue<Modification<string?>?> _comment = new PropertyValue<Modification<string?>?>(nameof(ApplicationSshKeyWebhookEvent), nameof(Comment), "comment");
     
     [JsonPropertyName("comment")]
-    public Modification<string>? Comment
+    public Modification<string?>? Comment
     {
         get => _comment.GetValue(InlineErrors);
         set => _comment.SetValue(value);

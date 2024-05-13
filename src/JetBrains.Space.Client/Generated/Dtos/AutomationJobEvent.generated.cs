@@ -37,7 +37,7 @@ public sealed class AutomationJobEvent
     
     public AutomationJobEvent() { }
     
-    public AutomationJobEvent(KMetaMod meta, string executionId, PRProject project, string repositoryName, string jobName, long executionNumber, JobExecutionTrigger trigger, DateTime triggerTime, Modification<JobExecutionStatus>? status = null, Modification<List<FailureConditionType>>? failureReasons = null, Modification<CPrincipal>? stoppedBy = null, Modification<DateTime>? startTime = null, Modification<DateTime>? endTime = null, List<GitCheckout>? repositories = null)
+    public AutomationJobEvent(KMetaMod meta, string executionId, PRProject project, string repositoryName, string jobName, long executionNumber, JobExecutionTrigger trigger, DateTime triggerTime, Modification<JobExecutionStatus?>? status = null, Modification<List<FailureConditionType>?>? failureReasons = null, Modification<CPrincipal?>? stoppedBy = null, Modification<DateTime?>? startTime = null, Modification<DateTime?>? endTime = null, List<GitCheckout>? repositories = null)
     {
         Meta = meta;
         ExecutionId = executionId;
@@ -136,46 +136,46 @@ public sealed class AutomationJobEvent
         set => _triggerTime.SetValue(value);
     }
 
-    private PropertyValue<Modification<JobExecutionStatus>?> _status = new PropertyValue<Modification<JobExecutionStatus>?>(nameof(AutomationJobEvent), nameof(Status), "status");
+    private PropertyValue<Modification<JobExecutionStatus?>?> _status = new PropertyValue<Modification<JobExecutionStatus?>?>(nameof(AutomationJobEvent), nameof(Status), "status");
     
     [JsonPropertyName("status")]
-    public Modification<JobExecutionStatus>? Status
+    public Modification<JobExecutionStatus?>? Status
     {
         get => _status.GetValue(InlineErrors);
         set => _status.SetValue(value);
     }
 
-    private PropertyValue<Modification<List<FailureConditionType>>?> _failureReasons = new PropertyValue<Modification<List<FailureConditionType>>?>(nameof(AutomationJobEvent), nameof(FailureReasons), "failureReasons");
+    private PropertyValue<Modification<List<FailureConditionType>?>?> _failureReasons = new PropertyValue<Modification<List<FailureConditionType>?>?>(nameof(AutomationJobEvent), nameof(FailureReasons), "failureReasons");
     
     [JsonPropertyName("failureReasons")]
-    public Modification<List<FailureConditionType>>? FailureReasons
+    public Modification<List<FailureConditionType>?>? FailureReasons
     {
         get => _failureReasons.GetValue(InlineErrors);
         set => _failureReasons.SetValue(value);
     }
 
-    private PropertyValue<Modification<CPrincipal>?> _stoppedBy = new PropertyValue<Modification<CPrincipal>?>(nameof(AutomationJobEvent), nameof(StoppedBy), "stoppedBy");
+    private PropertyValue<Modification<CPrincipal?>?> _stoppedBy = new PropertyValue<Modification<CPrincipal?>?>(nameof(AutomationJobEvent), nameof(StoppedBy), "stoppedBy");
     
     [JsonPropertyName("stoppedBy")]
-    public Modification<CPrincipal>? StoppedBy
+    public Modification<CPrincipal?>? StoppedBy
     {
         get => _stoppedBy.GetValue(InlineErrors);
         set => _stoppedBy.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _startTime = new PropertyValue<Modification<DateTime>?>(nameof(AutomationJobEvent), nameof(StartTime), "startTime");
+    private PropertyValue<Modification<DateTime?>?> _startTime = new PropertyValue<Modification<DateTime?>?>(nameof(AutomationJobEvent), nameof(StartTime), "startTime");
     
     [JsonPropertyName("startTime")]
-    public Modification<DateTime>? StartTime
+    public Modification<DateTime?>? StartTime
     {
         get => _startTime.GetValue(InlineErrors);
         set => _startTime.SetValue(value);
     }
 
-    private PropertyValue<Modification<DateTime>?> _endTime = new PropertyValue<Modification<DateTime>?>(nameof(AutomationJobEvent), nameof(EndTime), "endTime");
+    private PropertyValue<Modification<DateTime?>?> _endTime = new PropertyValue<Modification<DateTime?>?>(nameof(AutomationJobEvent), nameof(EndTime), "endTime");
     
     [JsonPropertyName("endTime")]
-    public Modification<DateTime>? EndTime
+    public Modification<DateTime?>? EndTime
     {
         get => _endTime.GetValue(InlineErrors);
         set => _endTime.SetValue(value);
