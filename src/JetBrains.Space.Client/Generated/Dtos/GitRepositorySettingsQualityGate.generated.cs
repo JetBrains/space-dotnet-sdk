@@ -34,10 +34,11 @@ public sealed class GitRepositorySettingsQualityGate
 {
     public GitRepositorySettingsQualityGate() { }
     
-    public GitRepositorySettingsQualityGate(List<string>? allowMergeFor = null, List<string>? allowBypassFor = null, List<string>? externalStatus = null, List<string>? automationJobs = null, List<GitRepositorySettingsQualityGateApproval>? approvals = null, bool? codeOwnersApproval = null, bool? allowSelfApproval = null)
+    public GitRepositorySettingsQualityGate(List<string>? allowMergeFor = null, List<string>? allowBypassFor = null, List<GitRepositorySettingsExternalStatus>? externalStatusEx = null, List<string>? externalStatus = null, List<string>? automationJobs = null, List<GitRepositorySettingsQualityGateApproval>? approvals = null, bool? codeOwnersApproval = null, bool? allowSelfApproval = null)
     {
         AllowMergeFor = allowMergeFor;
         AllowBypassFor = allowBypassFor;
+        ExternalStatusEx = externalStatusEx;
         ExternalStatus = externalStatus;
         AutomationJobs = automationJobs;
         Approvals = approvals;
@@ -61,6 +62,15 @@ public sealed class GitRepositorySettingsQualityGate
     {
         get => _allowBypassFor.GetValue(InlineErrors);
         set => _allowBypassFor.SetValue(value);
+    }
+
+    private PropertyValue<List<GitRepositorySettingsExternalStatus>?> _externalStatusEx = new PropertyValue<List<GitRepositorySettingsExternalStatus>?>(nameof(GitRepositorySettingsQualityGate), nameof(ExternalStatusEx), "externalStatusEx");
+    
+    [JsonPropertyName("externalStatusEx")]
+    public List<GitRepositorySettingsExternalStatus>? ExternalStatusEx
+    {
+        get => _externalStatusEx.GetValue(InlineErrors);
+        set => _externalStatusEx.SetValue(value);
     }
 
     private PropertyValue<List<string>?> _externalStatus = new PropertyValue<List<string>?>(nameof(GitRepositorySettingsQualityGate), nameof(ExternalStatus), "externalStatus");
@@ -112,6 +122,7 @@ public sealed class GitRepositorySettingsQualityGate
     {
         _allowMergeFor.SetAccessPath(parentChainPath, validateHasBeenSet);
         _allowBypassFor.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _externalStatusEx.SetAccessPath(parentChainPath, validateHasBeenSet);
         _externalStatus.SetAccessPath(parentChainPath, validateHasBeenSet);
         _automationJobs.SetAccessPath(parentChainPath, validateHasBeenSet);
         _approvals.SetAccessPath(parentChainPath, validateHasBeenSet);

@@ -34,13 +34,10 @@ public sealed class ApplicationUnfurlPattern
 {
     public ApplicationUnfurlPattern() { }
     
-    public ApplicationUnfurlPattern(string prefix, string linkReplacement, RightStatus status, CPrincipal? modificationAuthor = null, DateTime? modificationTimestamp = null)
+    public ApplicationUnfurlPattern(string prefix, string linkReplacement)
     {
         Prefix = prefix;
         LinkReplacement = linkReplacement;
-        Status = status;
-        ModificationAuthor = modificationAuthor;
-        ModificationTimestamp = modificationTimestamp;
     }
     
     private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(ApplicationUnfurlPattern), nameof(Prefix), "prefix");
@@ -71,42 +68,10 @@ public sealed class ApplicationUnfurlPattern
         set => _linkReplacement.SetValue(value);
     }
 
-    private PropertyValue<RightStatus> _status = new PropertyValue<RightStatus>(nameof(ApplicationUnfurlPattern), nameof(Status), "status");
-    
-    [Required]
-    [JsonPropertyName("status")]
-    public RightStatus Status
-    {
-        get => _status.GetValue(InlineErrors);
-        set => _status.SetValue(value);
-    }
-
-    private PropertyValue<CPrincipal?> _modificationAuthor = new PropertyValue<CPrincipal?>(nameof(ApplicationUnfurlPattern), nameof(ModificationAuthor), "modificationAuthor");
-    
-    [JsonPropertyName("modificationAuthor")]
-    public CPrincipal? ModificationAuthor
-    {
-        get => _modificationAuthor.GetValue(InlineErrors);
-        set => _modificationAuthor.SetValue(value);
-    }
-
-    private PropertyValue<DateTime?> _modificationTimestamp = new PropertyValue<DateTime?>(nameof(ApplicationUnfurlPattern), nameof(ModificationTimestamp), "modificationTimestamp");
-    
-    [JsonPropertyName("modificationTimestamp")]
-    [JsonConverter(typeof(SpaceDateTimeConverter))]
-    public DateTime? ModificationTimestamp
-    {
-        get => _modificationTimestamp.GetValue(InlineErrors);
-        set => _modificationTimestamp.SetValue(value);
-    }
-
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _prefix.SetAccessPath(parentChainPath, validateHasBeenSet);
         _linkReplacement.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _modificationAuthor.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _modificationTimestamp.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

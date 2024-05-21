@@ -3849,6 +3849,42 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
+        public BranchClient Branches => new BranchClient(_connection);
+        
+        public partial class BranchClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public BranchClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<Batch<BranchDetails>> GetAllBranchesAsync(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<BranchDetails>>, Partial<Batch<BranchDetails>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                if (skip != null) queryParameters.Append("$skip", skip);
+                if (top != null) queryParameters.Append("$top", top?.ToString());
+                if (query != null) queryParameters.Append("query", query);
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<BranchDetails>>()) : Partial<Batch<BranchDetails>>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<Batch<BranchDetails>>("GET", $"api/http/projects/{project}/repositories/{repository}/branches{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllBranches", cancellationToken: cancellationToken);
+            }
+            
+            public IAsyncEnumerable<BranchDetails> GetAllBranchesAsyncEnumerable(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<BranchDetails>, Partial<BranchDetails>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllBranchesAsync(project: project, repository: repository, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<BranchDetails>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<BranchDetails>.Default())), skip, cancellationToken);
+        
+            public async Task<BranchDetails> GetBranchAsync(ProjectIdentifier project, string repository, string branchHead, Func<Partial<BranchDetails>, Partial<BranchDetails>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            {
+                var queryParameters = new NameValueCollection();
+                queryParameters.Append("$fields", (partial != null ? partial(new Partial<BranchDetails>()) : Partial<BranchDetails>.Default()).ToString());
+                
+                return await _connection.RequestResourceAsync<BranchDetails>("GET", $"api/http/projects/{project}/repositories/{repository}/branches/{branchHead}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetBranch", cancellationToken: cancellationToken);
+            }
+            
+        
+        }
+    
         public DefaultBranchClient DefaultBranch => new DefaultBranchClient(_connection);
         
         public partial class DefaultBranchClient : ISpaceClient

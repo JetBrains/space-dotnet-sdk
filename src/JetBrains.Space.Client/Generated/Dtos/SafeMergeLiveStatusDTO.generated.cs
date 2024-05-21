@@ -37,12 +37,13 @@ public sealed class SafeMergeLiveStatusDTO
     
     public SafeMergeLiveStatusDTO() { }
     
-    public SafeMergeLiveStatusDTO(bool dryRun, SafeMergeState? state = null, int? attempt = null, int? totalAttempts = null)
+    public SafeMergeLiveStatusDTO(bool dryRun, SafeMergeState? state = null, int? attempt = null, int? totalAttempts = null, bool? canRetry = null)
     {
         IsDryRun = dryRun;
         State = state;
         Attempt = attempt;
         TotalAttempts = totalAttempts;
+        CanRetry = canRetry;
     }
     
     private PropertyValue<bool> _dryRun = new PropertyValue<bool>(nameof(SafeMergeLiveStatusDTO), nameof(IsDryRun), "dryRun");
@@ -82,12 +83,22 @@ public sealed class SafeMergeLiveStatusDTO
         set => _totalAttempts.SetValue(value);
     }
 
+    private PropertyValue<bool?> _canRetry = new PropertyValue<bool?>(nameof(SafeMergeLiveStatusDTO), nameof(CanRetry), "canRetry");
+    
+    [JsonPropertyName("canRetry")]
+    public bool? CanRetry
+    {
+        get => _canRetry.GetValue(InlineErrors);
+        set => _canRetry.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _dryRun.SetAccessPath(parentChainPath, validateHasBeenSet);
         _state.SetAccessPath(parentChainPath, validateHasBeenSet);
         _attempt.SetAccessPath(parentChainPath, validateHasBeenSet);
         _totalAttempts.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _canRetry.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

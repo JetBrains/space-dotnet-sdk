@@ -34,13 +34,14 @@ public sealed class MergeSelectOptions
 {
     public MergeSelectOptions() { }
     
-    public MergeSelectOptions(MergeSelectOptionsOperation operation, GitMergeMode mergeMode, GitRebaseMode rebaseMode, GitSquashMode squashMode, string squashCommitMessage, bool deleteSourceBranch, List<TargetStatusForLinkedIssue> targetStatusesForLinkedIssues)
+    public MergeSelectOptions(MergeSelectOptionsOperation operation, GitMergeMode mergeMode, GitRebaseMode rebaseMode, GitSquashMode squashMode, string squashCommitMessage, bool deleteSourceBranch, List<TargetStatusForLinkedIssue> targetStatusesForLinkedIssues, bool? keepSquashCommitMessage = null)
     {
         Operation = operation;
         MergeMode = mergeMode;
         RebaseMode = rebaseMode;
         SquashMode = squashMode;
         SquashCommitMessage = squashCommitMessage;
+        IsKeepSquashCommitMessage = keepSquashCommitMessage;
         IsDeleteSourceBranch = deleteSourceBranch;
         TargetStatusesForLinkedIssues = targetStatusesForLinkedIssues;
     }
@@ -95,6 +96,15 @@ public sealed class MergeSelectOptions
         set => _squashCommitMessage.SetValue(value);
     }
 
+    private PropertyValue<bool?> _keepSquashCommitMessage = new PropertyValue<bool?>(nameof(MergeSelectOptions), nameof(IsKeepSquashCommitMessage), "keepSquashCommitMessage");
+    
+    [JsonPropertyName("keepSquashCommitMessage")]
+    public bool? IsKeepSquashCommitMessage
+    {
+        get => _keepSquashCommitMessage.GetValue(InlineErrors);
+        set => _keepSquashCommitMessage.SetValue(value);
+    }
+
     private PropertyValue<bool> _deleteSourceBranch = new PropertyValue<bool>(nameof(MergeSelectOptions), nameof(IsDeleteSourceBranch), "deleteSourceBranch");
     
     [Required]
@@ -122,6 +132,7 @@ public sealed class MergeSelectOptions
         _rebaseMode.SetAccessPath(parentChainPath, validateHasBeenSet);
         _squashMode.SetAccessPath(parentChainPath, validateHasBeenSet);
         _squashCommitMessage.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _keepSquashCommitMessage.SetAccessPath(parentChainPath, validateHasBeenSet);
         _deleteSourceBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
         _targetStatusesForLinkedIssues.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

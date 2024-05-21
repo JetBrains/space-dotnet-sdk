@@ -1425,30 +1425,6 @@ public partial class ApplicationClient : ISpaceClient
         }
         
         /// <summary>
-        /// Authorize domains for unfurling by the application
-        /// </summary>
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Authorize domains and patterns for app-powered previews</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task AuthorizeUnfurledDomainsAsync(ApplicationIdentifier application, List<string> domains, bool approve, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            
-            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/unfurl-domains/authorize{queryParameters.ToQueryString()}", 
-                new ApplicationsForApplicationUnfurlDomainsAuthorizePostRequest
-                { 
-                    Domains = domains,
-                    IsApprove = approve,
-                }, requestHeaders: null, functionName: "AuthorizeUnfurledDomains", cancellationToken: cancellationToken);
-        }
-        
-    
-        /// <summary>
         /// List domains for unfurling by the application
         /// </summary>
         /// <remarks>
@@ -1481,30 +1457,6 @@ public partial class ApplicationClient : ISpaceClient
             _connection = connection;
         }
         
-        /// <summary>
-        /// Authorize patterns for unfurling by the application
-        /// </summary>
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Authorize domains and patterns for app-powered previews</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task AuthorizeUnfurledPatternsAsync(ApplicationIdentifier application, List<string> patterns, bool approve, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
-        {
-            var queryParameters = new NameValueCollection();
-            
-            await _connection.RequestResourceAsync("POST", $"api/http/applications/{application}/unfurl-patterns/authorize{queryParameters.ToQueryString()}", 
-                new ApplicationsForApplicationUnfurlPatternsAuthorizePostRequest
-                { 
-                    Patterns = patterns,
-                    IsApprove = approve,
-                }, requestHeaders: null, functionName: "AuthorizeUnfurledPatterns", cancellationToken: cancellationToken);
-        }
-        
-    
         /// <summary>
         /// List patterns for unfurling by the application
         /// </summary>

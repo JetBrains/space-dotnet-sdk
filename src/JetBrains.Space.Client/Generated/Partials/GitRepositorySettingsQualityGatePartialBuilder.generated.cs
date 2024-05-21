@@ -37,6 +37,12 @@ public static class GitRepositorySettingsQualityGatePartialExtensions
     public static Partial<GitRepositorySettingsQualityGate> WithAllowBypassFor(this Partial<GitRepositorySettingsQualityGate> it)
         => it.AddFieldName("allowBypassFor");
     
+    public static Partial<GitRepositorySettingsQualityGate> WithExternalStatusEx(this Partial<GitRepositorySettingsQualityGate> it)
+        => it.AddFieldName("externalStatusEx");
+    
+    public static Partial<GitRepositorySettingsQualityGate> WithExternalStatusEx(this Partial<GitRepositorySettingsQualityGate> it, Func<Partial<GitRepositorySettingsExternalStatus>, Partial<GitRepositorySettingsExternalStatus>> partialBuilder)
+        => it.AddFieldName("externalStatusEx", partialBuilder(new Partial<GitRepositorySettingsExternalStatus>(it)));
+    
     public static Partial<GitRepositorySettingsQualityGate> WithExternalStatus(this Partial<GitRepositorySettingsQualityGate> it)
         => it.AddFieldName("externalStatus");
     

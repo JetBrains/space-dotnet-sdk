@@ -27,12 +27,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationUnfurlTargetDomainPartialBuilder;
+namespace JetBrains.Space.Client.BranchStatsPartialBuilder;
 
-public static class ApplicationUnfurlTargetDomainPartialExtensions
+public static class BranchStatsPartialExtensions
 {
-    public static Partial<ApplicationUnfurlTargetDomain> WithDomain(this Partial<ApplicationUnfurlTargetDomain> it)
-        => it.AddFieldName("domain");
+    public static Partial<BranchStats> WithAhead(this Partial<BranchStats> it)
+        => it.AddFieldName("ahead");
+    
+    public static Partial<BranchStats> WithIsBehind(this Partial<BranchStats> it)
+        => it.AddFieldName("isBehind");
     
 }
 

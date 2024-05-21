@@ -46,5 +46,8 @@ public static class SafeMergeLiveStatusDTOPartialExtensions
     public static Partial<SafeMergeLiveStatusDTO> WithTotalAttempts(this Partial<SafeMergeLiveStatusDTO> it)
         => it.AddFieldName("totalAttempts");
     
+    public static Partial<SafeMergeLiveStatusDTO> WithCanRetry(this Partial<SafeMergeLiveStatusDTO> it)
+        => it.AddFieldName("canRetry");
+    
 }
 

@@ -27,9 +27,21 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.ApplicationUnfurlTargetPartialBuilder;
+namespace JetBrains.Space.Client.GitRepositorySettingsExternalStatusPartialBuilder;
 
-public static class ApplicationUnfurlTargetPartialExtensions
+public static class GitRepositorySettingsExternalStatusPartialExtensions
 {
+    public static Partial<GitRepositorySettingsExternalStatus> WithServiceName(this Partial<GitRepositorySettingsExternalStatus> it)
+        => it.AddFieldName("serviceName");
+    
+    public static Partial<GitRepositorySettingsExternalStatus> WithTaskId(this Partial<GitRepositorySettingsExternalStatus> it)
+        => it.AddFieldName("taskId");
+    
+    public static Partial<GitRepositorySettingsExternalStatus> WithTaskName(this Partial<GitRepositorySettingsExternalStatus> it)
+        => it.AddFieldName("taskName");
+    
+    public static Partial<GitRepositorySettingsExternalStatus> WithPathSpec(this Partial<GitRepositorySettingsExternalStatus> it)
+        => it.AddFieldName("pathSpec");
+    
 }
 

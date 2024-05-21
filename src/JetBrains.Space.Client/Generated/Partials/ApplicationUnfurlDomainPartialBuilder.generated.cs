@@ -34,20 +34,5 @@ public static class ApplicationUnfurlDomainPartialExtensions
     public static Partial<ApplicationUnfurlDomain> WithDomain(this Partial<ApplicationUnfurlDomain> it)
         => it.AddFieldName("domain");
     
-    public static Partial<ApplicationUnfurlDomain> WithStatus(this Partial<ApplicationUnfurlDomain> it)
-        => it.AddFieldName("status");
-    
-    public static Partial<ApplicationUnfurlDomain> WithStatus(this Partial<ApplicationUnfurlDomain> it, Func<Partial<RightStatus>, Partial<RightStatus>> partialBuilder)
-        => it.AddFieldName("status", partialBuilder(new Partial<RightStatus>(it)));
-    
-    public static Partial<ApplicationUnfurlDomain> WithModificationAuthor(this Partial<ApplicationUnfurlDomain> it)
-        => it.AddFieldName("modificationAuthor");
-    
-    public static Partial<ApplicationUnfurlDomain> WithModificationAuthor(this Partial<ApplicationUnfurlDomain> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
-        => it.AddFieldName("modificationAuthor", partialBuilder(new Partial<CPrincipal>(it)));
-    
-    public static Partial<ApplicationUnfurlDomain> WithModificationTimestamp(this Partial<ApplicationUnfurlDomain> it)
-        => it.AddFieldName("modificationTimestamp");
-    
 }
 

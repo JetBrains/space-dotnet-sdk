@@ -34,12 +34,9 @@ public sealed class ApplicationUnfurlDomain
 {
     public ApplicationUnfurlDomain() { }
     
-    public ApplicationUnfurlDomain(string domain, RightStatus status, CPrincipal? modificationAuthor = null, DateTime? modificationTimestamp = null)
+    public ApplicationUnfurlDomain(string domain)
     {
         Domain = domain;
-        Status = status;
-        ModificationAuthor = modificationAuthor;
-        ModificationTimestamp = modificationTimestamp;
     }
     
     private PropertyValue<string> _domain = new PropertyValue<string>(nameof(ApplicationUnfurlDomain), nameof(Domain), "domain");
@@ -52,41 +49,9 @@ public sealed class ApplicationUnfurlDomain
         set => _domain.SetValue(value);
     }
 
-    private PropertyValue<RightStatus> _status = new PropertyValue<RightStatus>(nameof(ApplicationUnfurlDomain), nameof(Status), "status");
-    
-    [Required]
-    [JsonPropertyName("status")]
-    public RightStatus Status
-    {
-        get => _status.GetValue(InlineErrors);
-        set => _status.SetValue(value);
-    }
-
-    private PropertyValue<CPrincipal?> _modificationAuthor = new PropertyValue<CPrincipal?>(nameof(ApplicationUnfurlDomain), nameof(ModificationAuthor), "modificationAuthor");
-    
-    [JsonPropertyName("modificationAuthor")]
-    public CPrincipal? ModificationAuthor
-    {
-        get => _modificationAuthor.GetValue(InlineErrors);
-        set => _modificationAuthor.SetValue(value);
-    }
-
-    private PropertyValue<DateTime?> _modificationTimestamp = new PropertyValue<DateTime?>(nameof(ApplicationUnfurlDomain), nameof(ModificationTimestamp), "modificationTimestamp");
-    
-    [JsonPropertyName("modificationTimestamp")]
-    [JsonConverter(typeof(SpaceDateTimeConverter))]
-    public DateTime? ModificationTimestamp
-    {
-        get => _modificationTimestamp.GetValue(InlineErrors);
-        set => _modificationTimestamp.SetValue(value);
-    }
-
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _domain.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _status.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _modificationAuthor.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _modificationTimestamp.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -29,32 +29,40 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public sealed class ApplicationUnfurlTargetPattern
-     : ApplicationUnfurlTarget, IClassNameConvertible, IPropagatePropertyAccessPath
+public sealed class BranchStats
+     : IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public override string? ClassName => "ApplicationUnfurlTarget.Pattern";
+    public BranchStats() { }
     
-    public ApplicationUnfurlTargetPattern() { }
-    
-    public ApplicationUnfurlTargetPattern(string pattern)
+    public BranchStats(int ahead, bool? isBehind = null)
     {
-        Pattern = pattern;
+        Ahead = ahead;
+        IsBehind = isBehind;
     }
     
-    private PropertyValue<string> _pattern = new PropertyValue<string>(nameof(ApplicationUnfurlTargetPattern), nameof(Pattern), "pattern");
+    private PropertyValue<int> _ahead = new PropertyValue<int>(nameof(BranchStats), nameof(Ahead), "ahead");
     
     [Required]
-    [JsonPropertyName("pattern")]
-    public string Pattern
+    [JsonPropertyName("ahead")]
+    public int Ahead
     {
-        get => _pattern.GetValue(InlineErrors);
-        set => _pattern.SetValue(value);
+        get => _ahead.GetValue(InlineErrors);
+        set => _ahead.SetValue(value);
     }
 
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    private PropertyValue<bool?> _isBehind = new PropertyValue<bool?>(nameof(BranchStats), nameof(IsBehind), "isBehind");
+    
+    [JsonPropertyName("isBehind")]
+    public bool? IsBehind
     {
-        _pattern.SetAccessPath(parentChainPath, validateHasBeenSet);
+        get => _isBehind.GetValue(InlineErrors);
+        set => _isBehind.SetValue(value);
+    }
+
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    {
+        _ahead.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _isBehind.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

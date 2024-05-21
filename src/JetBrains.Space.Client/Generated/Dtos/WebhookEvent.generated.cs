@@ -50,9 +50,6 @@ public interface WebhookEvent
     public static ApplicationUnfurlQueueItemsCreatedEvent ApplicationUnfurlQueueItemsCreatedEvent()
         => new ApplicationUnfurlQueueItemsCreatedEvent();
     
-    public static ApplicationUnfurlTargetWebhookEvent ApplicationUnfurlTarget(KMetaMod meta, ESApp application, ApplicationUnfurlTarget target)
-        => new ApplicationUnfurlTargetWebhookEvent(meta: meta, application: application, target: target);
-    
     public static ApplicationWebhookEvent Application(KMetaMod meta, ESApp application, bool clientIdChanged, bool clientSecretChanged, bool verificationTokenChanged, bool signingKeyChanged, Modification<string?>? name = null, Modification<TDMemberProfile?>? owner = null, Modification<bool?>? archived = null, Modification<string?>? endpointURI = null)
         => new ApplicationWebhookEvent(meta: meta, application: application, clientIdChanged: clientIdChanged, clientSecretChanged: clientSecretChanged, verificationTokenChanged: verificationTokenChanged, signingKeyChanged: signingKeyChanged, name: name, owner: owner, archived: archived, endpointURI: endpointURI);
     

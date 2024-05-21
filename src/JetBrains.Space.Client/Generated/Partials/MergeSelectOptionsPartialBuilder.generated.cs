@@ -58,6 +58,9 @@ public static class MergeSelectOptionsPartialExtensions
     public static Partial<MergeSelectOptions> WithSquashCommitMessage(this Partial<MergeSelectOptions> it)
         => it.AddFieldName("squashCommitMessage");
     
+    public static Partial<MergeSelectOptions> WithIsKeepSquashCommitMessage(this Partial<MergeSelectOptions> it)
+        => it.AddFieldName("keepSquashCommitMessage");
+    
     public static Partial<MergeSelectOptions> WithIsDeleteSourceBranch(this Partial<MergeSelectOptions> it)
         => it.AddFieldName("deleteSourceBranch");
     
