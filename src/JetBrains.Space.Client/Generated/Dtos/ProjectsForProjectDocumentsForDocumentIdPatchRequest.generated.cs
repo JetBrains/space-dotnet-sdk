@@ -34,11 +34,12 @@ internal class ProjectsForProjectDocumentsForDocumentIdPatchRequest
 {
     public ProjectsForProjectDocumentsForDocumentIdPatchRequest() { }
     
-    public ProjectsForProjectDocumentsForDocumentIdPatchRequest(string? name = null, DocumentBodyUpdateIn? updateIn = null, PublicationDetailsIn? publicationDetailsIn = null)
+    public ProjectsForProjectDocumentsForDocumentIdPatchRequest(string? name = null, DocumentBodyUpdateIn? updateIn = null, PublicationDetailsIn? publicationDetailsIn = null, string? redirectUrl = null)
     {
         Name = name;
         UpdateIn = updateIn;
         PublicationDetailsIn = publicationDetailsIn;
+        RedirectUrl = redirectUrl;
     }
     
     private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectDocumentsForDocumentIdPatchRequest), nameof(Name), "name");
@@ -77,11 +78,27 @@ internal class ProjectsForProjectDocumentsForDocumentIdPatchRequest
         set => _publicationDetailsIn.SetValue(value);
     }
 
+    private PropertyValue<string?> _redirectUrl = new PropertyValue<string?>(nameof(ProjectsForProjectDocumentsForDocumentIdPatchRequest), nameof(RedirectUrl), "redirectUrl");
+    
+    /// <remarks>
+    /// Redirect URL for migrated documents
+    /// </remarks>
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("redirectUrl")]
+    public string? RedirectUrl
+    {
+        get => _redirectUrl.GetValue(InlineErrors);
+        set => _redirectUrl.SetValue(value);
+    }
+
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);
         _updateIn.SetAccessPath(parentChainPath, validateHasBeenSet);
         _publicationDetailsIn.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _redirectUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

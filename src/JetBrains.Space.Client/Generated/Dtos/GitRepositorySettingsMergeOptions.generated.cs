@@ -34,9 +34,10 @@ public sealed class GitRepositorySettingsMergeOptions
 {
     public GitRepositorySettingsMergeOptions() { }
     
-    public GitRepositorySettingsMergeOptions(bool? allowMerge = null, GitRepositorySettingsMergeOptionsMergeMessageOption? mergeMessageOption = null, bool? allowRebase = null, bool? allowSquash = null, GitRepositorySettingsMergeOptionsSquashMessageOption? squashMessageOption = null)
+    public GitRepositorySettingsMergeOptions(bool? allowMerge = null, bool? allowFFMerge = null, GitRepositorySettingsMergeOptionsMergeMessageOption? mergeMessageOption = null, bool? allowRebase = null, bool? allowSquash = null, GitRepositorySettingsMergeOptionsSquashMessageOption? squashMessageOption = null)
     {
         IsAllowMerge = allowMerge;
+        IsAllowFFMerge = allowFFMerge;
         MergeMessageOption = mergeMessageOption;
         IsAllowRebase = allowRebase;
         IsAllowSquash = allowSquash;
@@ -50,6 +51,15 @@ public sealed class GitRepositorySettingsMergeOptions
     {
         get => _allowMerge.GetValue(InlineErrors);
         set => _allowMerge.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _allowFFMerge = new PropertyValue<bool?>(nameof(GitRepositorySettingsMergeOptions), nameof(IsAllowFFMerge), "allowFFMerge");
+    
+    [JsonPropertyName("allowFFMerge")]
+    public bool? IsAllowFFMerge
+    {
+        get => _allowFFMerge.GetValue(InlineErrors);
+        set => _allowFFMerge.SetValue(value);
     }
 
     private PropertyValue<GitRepositorySettingsMergeOptionsMergeMessageOption?> _mergeMessageOption = new PropertyValue<GitRepositorySettingsMergeOptionsMergeMessageOption?>(nameof(GitRepositorySettingsMergeOptions), nameof(MergeMessageOption), "mergeMessageOption");
@@ -91,6 +101,7 @@ public sealed class GitRepositorySettingsMergeOptions
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _allowMerge.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _allowFFMerge.SetAccessPath(parentChainPath, validateHasBeenSet);
         _mergeMessageOption.SetAccessPath(parentChainPath, validateHasBeenSet);
         _allowRebase.SetAccessPath(parentChainPath, validateHasBeenSet);
         _allowSquash.SetAccessPath(parentChainPath, validateHasBeenSet);

@@ -35,5 +35,17 @@ public interface CodeReviewMenuItemVisibilityFilterApi
     public static CodeReviewEditableByMe CodeReviewEditableByMe()
         => new CodeReviewEditableByMe();
     
+    public static CodeReviewInRepository CodeReviewInRepository(string repository)
+        => new CodeReviewInRepository(repository: repository);
+    
+    public static CodeReviewIsOpened CodeReviewIsOpened()
+        => new CodeReviewIsOpened();
+    
+    public static CodeReviewIsReadyToMerge CodeReviewIsReadyToMerge()
+        => new CodeReviewIsReadyToMerge();
+    
+    public static CodeReviewOfType CodeReviewOfType(ReviewType type)
+        => new CodeReviewOfType(type: type);
+    
 }
 

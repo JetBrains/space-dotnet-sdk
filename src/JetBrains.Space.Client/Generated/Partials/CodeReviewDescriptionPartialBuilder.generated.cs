@@ -40,5 +40,11 @@ public static class CodeReviewDescriptionPartialExtensions
     public static Partial<CodeReviewDescription> WithUnfurls(this Partial<CodeReviewDescription> it, Func<Partial<Attachment>, Partial<Attachment>> partialBuilder)
         => it.AddFieldName("unfurls", partialBuilder(new Partial<Attachment>(it)));
     
+    public static Partial<CodeReviewDescription> WithAttachments(this Partial<CodeReviewDescription> it)
+        => it.AddFieldName("attachments");
+    
+    public static Partial<CodeReviewDescription> WithAttachments(this Partial<CodeReviewDescription> it, Func<Partial<Attachment>, Partial<Attachment>> partialBuilder)
+        => it.AddFieldName("attachments", partialBuilder(new Partial<Attachment>(it)));
+    
 }
 

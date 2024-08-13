@@ -40,6 +40,12 @@ public static class MenuActionPayloadPartialExtensions
     public static Partial<MenuActionPayload> WithContext(this Partial<MenuActionPayload> it, Func<Partial<MenuActionContext>, Partial<MenuActionContext>> partialBuilder)
         => it.AddFieldName("context", partialBuilder(new Partial<MenuActionContext>(it)));
     
+    public static Partial<MenuActionPayload> WithParameterValues(this Partial<MenuActionPayload> it)
+        => it.AddFieldName("parameterValues");
+    
+    public static Partial<MenuActionPayload> WithParameterValues(this Partial<MenuActionPayload> it, Func<Partial<ExtensionActionFormParameterValue>, Partial<ExtensionActionFormParameterValue>> partialBuilder)
+        => it.AddFieldName("parameterValues", partialBuilder(new Partial<ExtensionActionFormParameterValue>(it)));
+    
     public static Partial<MenuActionPayload> WithClientId(this Partial<MenuActionPayload> it)
         => it.AddFieldName("clientId");
     

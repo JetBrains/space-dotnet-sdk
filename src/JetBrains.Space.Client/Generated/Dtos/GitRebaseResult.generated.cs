@@ -34,11 +34,12 @@ public sealed class GitRebaseResult
 {
     public GitRebaseResult() { }
     
-    public GitRebaseResult(bool success, string message, List<string> resultCommitIds)
+    public GitRebaseResult(bool success, string message, List<string> resultCommitIds, List<GitUpdatedHead>? updatedHeads = null)
     {
         IsSuccess = success;
         Message = message;
         ResultCommitIds = resultCommitIds;
+        UpdatedHeads = updatedHeads;
     }
     
     private PropertyValue<bool> _success = new PropertyValue<bool>(nameof(GitRebaseResult), nameof(IsSuccess), "success");
@@ -71,11 +72,21 @@ public sealed class GitRebaseResult
         set => _resultCommitIds.SetValue(value);
     }
 
+    private PropertyValue<List<GitUpdatedHead>?> _updatedHeads = new PropertyValue<List<GitUpdatedHead>?>(nameof(GitRebaseResult), nameof(UpdatedHeads), "updatedHeads");
+    
+    [JsonPropertyName("updatedHeads")]
+    public List<GitUpdatedHead>? UpdatedHeads
+    {
+        get => _updatedHeads.GetValue(InlineErrors);
+        set => _updatedHeads.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _success.SetAccessPath(parentChainPath, validateHasBeenSet);
         _message.SetAccessPath(parentChainPath, validateHasBeenSet);
         _resultCommitIds.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _updatedHeads.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

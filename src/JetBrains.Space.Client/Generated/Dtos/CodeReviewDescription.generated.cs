@@ -34,10 +34,11 @@ public sealed class CodeReviewDescription
 {
     public CodeReviewDescription() { }
     
-    public CodeReviewDescription(string text, List<Attachment> unfurls)
+    public CodeReviewDescription(string text, List<Attachment> unfurls, List<Attachment>? attachments = null)
     {
         Text = text;
         Unfurls = unfurls;
+        Attachments = attachments;
     }
     
     private PropertyValue<string> _text = new PropertyValue<string>(nameof(CodeReviewDescription), nameof(Text), "text");
@@ -60,10 +61,20 @@ public sealed class CodeReviewDescription
         set => _unfurls.SetValue(value);
     }
 
+    private PropertyValue<List<Attachment>?> _attachments = new PropertyValue<List<Attachment>?>(nameof(CodeReviewDescription), nameof(Attachments), "attachments");
+    
+    [JsonPropertyName("attachments")]
+    public List<Attachment>? Attachments
+    {
+        get => _attachments.GetValue(InlineErrors);
+        set => _attachments.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _text.SetAccessPath(parentChainPath, validateHasBeenSet);
         _unfurls.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

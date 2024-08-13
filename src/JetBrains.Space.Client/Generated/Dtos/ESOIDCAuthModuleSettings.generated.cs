@@ -33,7 +33,7 @@ public sealed class ESOIDCAuthModuleSettings
      : ESOAuth2AuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "ES_OIDCAuthModuleSettings";
+    public  string? ClassName => "ES_OIDCAuthModuleSettings";
     
     public ESOIDCAuthModuleSettings() { }
     
@@ -160,7 +160,7 @@ public sealed class ESOIDCAuthModuleSettings
         set => _registerNewUserRules.SetValue(value);
     }
 
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _clientSecret.SetAccessPath(parentChainPath, validateHasBeenSet);

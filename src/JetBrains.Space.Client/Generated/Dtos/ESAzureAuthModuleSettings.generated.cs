@@ -33,7 +33,7 @@ public sealed class ESAzureAuthModuleSettings
      : ESOAuth2AuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "ES_AzureAuthModuleSettings";
+    public  string? ClassName => "ES_AzureAuthModuleSettings";
     
     public ESAzureAuthModuleSettings() { }
     
@@ -106,7 +106,7 @@ public sealed class ESAzureAuthModuleSettings
         set => _registerNewUserRules.SetValue(value);
     }
 
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _tenantId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);

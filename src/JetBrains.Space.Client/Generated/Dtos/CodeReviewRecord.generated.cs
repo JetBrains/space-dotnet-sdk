@@ -39,8 +39,8 @@ public abstract class CodeReviewRecord
     public static CommitSetReviewRecord CommitSetReviewRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, bool? canBeReopened = null, TDMemberProfile? createdBy = null, long? timestamp = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, string? feedChannelId = null, bool? readOnly = null)
         => new CommitSetReviewRecord(project: project, projectId: projectId, number: number, title: title, state: state, createdAt: createdAt, canBeReopened: canBeReopened, createdBy: createdBy, timestamp: timestamp, turnBased: turnBased, feedChannel: feedChannel, feedChannelId: feedChannelId, readOnly: readOnly);
     
-    public static MergeRequestRecord MergeRequestRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, long? timestamp = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, string? feedChannelId = null, bool? readOnly = null, ExternalCodeReviewLink? externalLink = null)
-        => new MergeRequestRecord(project: project, projectId: projectId, number: number, title: title, state: state, createdAt: createdAt, branchPairs: branchPairs, canBeReopened: canBeReopened, createdBy: createdBy, timestamp: timestamp, turnBased: turnBased, feedChannel: feedChannel, feedChannelId: feedChannelId, readOnly: readOnly, externalLink: externalLink);
+    public static MergeRequestRecord MergeRequestRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, long? timestamp = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, string? feedChannelId = null, MergeRequestBranchPair? branchPair = null, bool? readOnly = null, ExternalCodeReviewLink? externalLink = null)
+        => new MergeRequestRecord(project: project, projectId: projectId, number: number, title: title, state: state, createdAt: createdAt, branchPairs: branchPairs, canBeReopened: canBeReopened, createdBy: createdBy, timestamp: timestamp, turnBased: turnBased, feedChannel: feedChannel, feedChannelId: feedChannelId, branchPair: branchPair, readOnly: readOnly, externalLink: externalLink);
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewRecord), nameof(Id), "id");
     
@@ -50,6 +50,15 @@ public abstract class CodeReviewRecord
     {
         get => _id.GetValue(InlineErrors);
         set => _id.SetValue(value);
+    }
+
+    private PropertyValue<List<Attachment>?> _attachments = new PropertyValue<List<Attachment>?>(nameof(CodeReviewRecord), nameof(Attachments), "attachments");
+    
+    [JsonPropertyName("attachments")]
+    public List<Attachment>? Attachments
+    {
+        get => _attachments.GetValue(InlineErrors);
+        set => _attachments.SetValue(value);
     }
 
     private PropertyValue<List<CodeReviewParticipantRecord>> _authors = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Authors), "authors", new List<CodeReviewParticipantRecord>());
@@ -165,6 +174,7 @@ public abstract class CodeReviewRecord
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _attachments.SetAccessPath(parentChainPath, validateHasBeenSet);
         _authors.SetAccessPath(parentChainPath, validateHasBeenSet);
         _commits.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);

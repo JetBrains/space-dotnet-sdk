@@ -33,7 +33,7 @@ public sealed class ESGithubAuthModuleSettings
      : ESOAuth2AuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "ES_GithubAuthModuleSettings";
+    public  string? ClassName => "ES_GithubAuthModuleSettings";
     
     public ESGithubAuthModuleSettings() { }
     
@@ -106,7 +106,7 @@ public sealed class ESGithubAuthModuleSettings
         set => _registerNewUserRules.SetValue(value);
     }
 
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _githubUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
         _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);

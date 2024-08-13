@@ -38,8 +38,8 @@ public abstract class ContextMenuItemUiExtensionApi
     public static ChatMessageMenuItemUiExtensionApi ChatMessageMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<ChatMessageMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
         => new ChatMessageMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
     
-    public static CodeReviewMenuItemUiExtensionApi CodeReviewMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<CodeReviewMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
-        => new CodeReviewMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);
+    public static CodeReviewMenuItemUiExtensionApi CodeReviewMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<CodeReviewMenuItemVisibilityFilterApi> visibilityFilters, string? description = null, ExtensionActionParametersForm? parametersForm = null, ExtensionActionPlacement? actionPlacement = null)
+        => new CodeReviewMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description, parametersForm: parametersForm, actionPlacement: actionPlacement);
     
     public static DocumentFolderMenuItemUiExtensionApi DocumentFolderMenuItemUiExtensionApi(string displayName, string menuItemUniqueCode, List<DocumentFolderMenuItemVisibilityFilterApi> visibilityFilters, string? description = null)
         => new DocumentFolderMenuItemUiExtensionApi(displayName: displayName, menuItemUniqueCode: menuItemUniqueCode, visibilityFilters: visibilityFilters, description: description);

@@ -34,7 +34,7 @@ internal class ChatsMessagesSendMessagePostRequest
 {
     public ChatsMessagesSendMessagePostRequest() { }
     
-    public ChatsMessagesSendMessagePostRequest(ChatMessage content, ChannelIdentifier? channel = null, List<AttachmentIn>? attachments = null, bool? unfurlLinks = null, string? externalId = null, bool? resolveNames = null, bool? pending = null, MessageRecipient? recipient = null)
+    public ChatsMessagesSendMessagePostRequest(ChatMessage content, ChannelIdentifier? channel = null, List<AttachmentIn>? attachments = null, bool? unfurlLinks = null, string? externalId = null, bool? resolveNames = null, bool? pending = null, bool? silent = null, MessageRecipient? recipient = null)
     {
         Channel = channel;
         Content = content;
@@ -43,6 +43,7 @@ internal class ChatsMessagesSendMessagePostRequest
         ExternalId = externalId;
         IsResolveNames = resolveNames;
         IsPending = pending;
+        IsSilent = silent;
         Recipient = recipient;
     }
     
@@ -128,6 +129,18 @@ internal class ChatsMessagesSendMessagePostRequest
         set => _pending.SetValue(value);
     }
 
+    private PropertyValue<bool?> _silent = new PropertyValue<bool?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(IsSilent), "silent");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("silent")]
+    public bool? IsSilent
+    {
+        get => _silent.GetValue(InlineErrors);
+        set => _silent.SetValue(value);
+    }
+
     private PropertyValue<MessageRecipient?> _recipient = new PropertyValue<MessageRecipient?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Recipient), "recipient");
     
 #if NET6_0_OR_GREATER
@@ -150,6 +163,7 @@ internal class ChatsMessagesSendMessagePostRequest
         _externalId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _resolveNames.SetAccessPath(parentChainPath, validateHasBeenSet);
         _pending.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _silent.SetAccessPath(parentChainPath, validateHasBeenSet);
         _recipient.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     

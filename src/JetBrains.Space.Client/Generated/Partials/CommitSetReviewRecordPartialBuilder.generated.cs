@@ -85,6 +85,12 @@ public static class CommitSetReviewRecordPartialExtensions
     public static Partial<CommitSetReviewRecord> WithIsReadOnly(this Partial<CommitSetReviewRecord> it)
         => it.AddFieldName("readOnly");
     
+    public static Partial<CommitSetReviewRecord> WithAttachments(this Partial<CommitSetReviewRecord> it)
+        => it.AddFieldName("attachments");
+    
+    public static Partial<CommitSetReviewRecord> WithAttachments(this Partial<CommitSetReviewRecord> it, Func<Partial<Attachment>, Partial<Attachment>> partialBuilder)
+        => it.AddFieldName("attachments", partialBuilder(new Partial<Attachment>(it)));
+    
     [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<CommitSetReviewRecord> WithAuthors(this Partial<CommitSetReviewRecord> it)
         => it.AddFieldName("authors");

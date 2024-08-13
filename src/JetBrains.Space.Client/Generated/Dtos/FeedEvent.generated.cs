@@ -56,8 +56,8 @@ public interface FeedEvent
     public static ReviewCompletionStateChangedEvent ReviewCompletionStateChangedEvent(ReviewerState state)
         => new ReviewCompletionStateChangedEvent(state: state);
     
-    public static ReviewCreatedEvent ReviewCreatedEvent(string projectKey, string reviewId, int reviewNumber, ReviewType reviewType, List<TDMemberProfile> descriptionEditedByProfileIds, CodeReviewDescription? description = null, List<UnfurlDetailsCommit>? commits = null)
-        => new ReviewCreatedEvent(projectKey: projectKey, reviewId: reviewId, reviewNumber: reviewNumber, reviewType: reviewType, descriptionEditedByProfileIds: descriptionEditedByProfileIds, description: description, commits: commits);
+    public static ReviewCreatedEvent ReviewCreatedEvent(string projectKey, string reviewId, int reviewNumber, ReviewType reviewType, List<TDMemberProfile> descriptionEditedByProfileIds, CodeReviewDescription? description = null, List<UnfurlDetailsCommit>? commits = null, bool? compact = null)
+        => new ReviewCreatedEvent(projectKey: projectKey, reviewId: reviewId, reviewNumber: reviewNumber, reviewType: reviewType, descriptionEditedByProfileIds: descriptionEditedByProfileIds, description: description, commits: commits, compact: compact);
     
     public static ReviewRevisionsChangedEvent ReviewRevisionsChangedEvent(List<RepositoryCommitRecord> commits, ReviewRevisionsChangedType changeType, string? projectKey = null, CodeReviewRecord? review = null)
         => new ReviewRevisionsChangedEvent(commits: commits, changeType: changeType, projectKey: projectKey, review: review);

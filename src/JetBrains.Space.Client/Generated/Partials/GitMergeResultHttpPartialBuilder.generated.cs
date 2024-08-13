@@ -40,5 +40,11 @@ public static class GitMergeResultHttpPartialExtensions
     public static Partial<GitMergeResultHttp> WithResultCommitId(this Partial<GitMergeResultHttp> it)
         => it.AddFieldName("resultCommitId");
     
+    public static Partial<GitMergeResultHttp> WithUpdatedHeads(this Partial<GitMergeResultHttp> it)
+        => it.AddFieldName("updatedHeads");
+    
+    public static Partial<GitMergeResultHttp> WithUpdatedHeads(this Partial<GitMergeResultHttp> it, Func<Partial<GitUpdatedHead>, Partial<GitUpdatedHead>> partialBuilder)
+        => it.AddFieldName("updatedHeads", partialBuilder(new Partial<GitUpdatedHead>(it)));
+    
 }
 

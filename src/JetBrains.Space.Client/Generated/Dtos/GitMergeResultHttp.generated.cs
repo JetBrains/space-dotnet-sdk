@@ -34,10 +34,11 @@ public sealed class GitMergeResultHttp
 {
     public GitMergeResultHttp() { }
     
-    public GitMergeResultHttp(GitMergeStatusHttp status, string? resultCommitId = null)
+    public GitMergeResultHttp(GitMergeStatusHttp status, string? resultCommitId = null, List<GitUpdatedHead>? updatedHeads = null)
     {
         Status = status;
         ResultCommitId = resultCommitId;
+        UpdatedHeads = updatedHeads;
     }
     
     private PropertyValue<GitMergeStatusHttp> _status = new PropertyValue<GitMergeStatusHttp>(nameof(GitMergeResultHttp), nameof(Status), "status");
@@ -59,10 +60,20 @@ public sealed class GitMergeResultHttp
         set => _resultCommitId.SetValue(value);
     }
 
+    private PropertyValue<List<GitUpdatedHead>?> _updatedHeads = new PropertyValue<List<GitUpdatedHead>?>(nameof(GitMergeResultHttp), nameof(UpdatedHeads), "updatedHeads");
+    
+    [JsonPropertyName("updatedHeads")]
+    public List<GitUpdatedHead>? UpdatedHeads
+    {
+        get => _updatedHeads.GetValue(InlineErrors);
+        set => _updatedHeads.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _status.SetAccessPath(parentChainPath, validateHasBeenSet);
         _resultCommitId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _updatedHeads.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

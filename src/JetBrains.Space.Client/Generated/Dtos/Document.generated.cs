@@ -34,7 +34,7 @@ public sealed class Document
 {
     public Document() { }
     
-    public Document(string id, string title, string alias, bool archived, DateTime modified, DocumentBodyInfo documentBody, PublicationDetails? publicationDetails = null, DocumentFolder? folderRef = null, DocumentBodyType? bodyType = null, DocumentBodyInfo? bodyInfo = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null, DocumentHttpBody? body = null)
+    public Document(string id, string title, string alias, bool archived, DateTime modified, DocumentBodyInfo documentBody, PublicationDetails? publicationDetails = null, DocumentFolder? folderRef = null, DocumentBodyType? bodyType = null, DocumentBodyInfo? bodyInfo = null, CPrincipal? archivedBy = null, DateTime? archivedAt = null, CPrincipal? createdBy = null, DateTime? created = null, CPrincipal? modifiedBy = null, string? redirectUrl = null, DocumentHttpBody? body = null)
     {
         Id = id;
         Title = title;
@@ -50,6 +50,7 @@ public sealed class Document
         Created = created;
         ModifiedBy = modifiedBy;
         Modified = modified;
+        RedirectUrl = redirectUrl;
         Body = body;
         DocumentBody = documentBody;
     }
@@ -188,6 +189,15 @@ public sealed class Document
         set => _modified.SetValue(value);
     }
 
+    private PropertyValue<string?> _redirectUrl = new PropertyValue<string?>(nameof(Document), nameof(RedirectUrl), "redirectUrl");
+    
+    [JsonPropertyName("redirectUrl")]
+    public string? RedirectUrl
+    {
+        get => _redirectUrl.GetValue(InlineErrors);
+        set => _redirectUrl.SetValue(value);
+    }
+
     private PropertyValue<DocumentHttpBody?> _body = new PropertyValue<DocumentHttpBody?>(nameof(Document), nameof(Body), "body");
     
     [JsonPropertyName("body")]
@@ -224,6 +234,7 @@ public sealed class Document
         _created.SetAccessPath(parentChainPath, validateHasBeenSet);
         _modifiedBy.SetAccessPath(parentChainPath, validateHasBeenSet);
         _modified.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _redirectUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
         _body.SetAccessPath(parentChainPath, validateHasBeenSet);
         _documentBody.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

@@ -94,6 +94,9 @@ public static class DocumentPartialExtensions
     public static Partial<Document> WithModified(this Partial<Document> it)
         => it.AddFieldName("modified");
     
+    public static Partial<Document> WithRedirectUrl(this Partial<Document> it)
+        => it.AddFieldName("redirectUrl");
+    
     public static Partial<Document> WithBody(this Partial<Document> it)
         => it.AddFieldName("body");
     

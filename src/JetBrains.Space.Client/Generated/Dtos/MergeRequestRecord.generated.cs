@@ -37,7 +37,7 @@ public sealed class MergeRequestRecord
     
     public MergeRequestRecord() { }
     
-    public MergeRequestRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, long? timestamp = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, string? feedChannelId = null, bool? readOnly = null, ExternalCodeReviewLink? externalLink = null)
+    public MergeRequestRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, long? timestamp = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null, string? feedChannelId = null, MergeRequestBranchPair? branchPair = null, bool? readOnly = null, ExternalCodeReviewLink? externalLink = null)
     {
         Project = project;
         ProjectId = projectId;
@@ -51,6 +51,7 @@ public sealed class MergeRequestRecord
         IsTurnBased = turnBased;
         FeedChannel = feedChannel;
         FeedChannelId = feedChannelId;
+        BranchPair = branchPair;
         BranchPairs = branchPairs;
         IsReadOnly = readOnly;
         ExternalLink = externalLink;
@@ -170,9 +171,19 @@ public sealed class MergeRequestRecord
         set => _feedChannelId.SetValue(value);
     }
 
+    private PropertyValue<MergeRequestBranchPair?> _branchPair = new PropertyValue<MergeRequestBranchPair?>(nameof(MergeRequestRecord), nameof(BranchPair), "branchPair");
+    
+    [JsonPropertyName("branchPair")]
+    public MergeRequestBranchPair? BranchPair
+    {
+        get => _branchPair.GetValue(InlineErrors);
+        set => _branchPair.SetValue(value);
+    }
+
     private PropertyValue<List<MergeRequestBranchPair>> _branchPairs = new PropertyValue<List<MergeRequestBranchPair>>(nameof(MergeRequestRecord), nameof(BranchPairs), "branchPairs", new List<MergeRequestBranchPair>());
     
     [Required]
+    [Obsolete("Use branchPair instead (since 2024-07-03)")]
     [JsonPropertyName("branchPairs")]
     public List<MergeRequestBranchPair> BranchPairs
     {
@@ -212,6 +223,7 @@ public sealed class MergeRequestRecord
         _turnBased.SetAccessPath(parentChainPath, validateHasBeenSet);
         _feedChannel.SetAccessPath(parentChainPath, validateHasBeenSet);
         _feedChannelId.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _branchPair.SetAccessPath(parentChainPath, validateHasBeenSet);
         _branchPairs.SetAccessPath(parentChainPath, validateHasBeenSet);
         _readOnly.SetAccessPath(parentChainPath, validateHasBeenSet);
         _externalLink.SetAccessPath(parentChainPath, validateHasBeenSet);

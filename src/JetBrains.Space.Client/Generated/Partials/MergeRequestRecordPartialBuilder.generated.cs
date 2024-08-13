@@ -82,9 +82,17 @@ public static class MergeRequestRecordPartialExtensions
     public static Partial<MergeRequestRecord> WithFeedChannelId(this Partial<MergeRequestRecord> it)
         => it.AddFieldName("feedChannelId");
     
+    public static Partial<MergeRequestRecord> WithBranchPair(this Partial<MergeRequestRecord> it)
+        => it.AddFieldName("branchPair");
+    
+    public static Partial<MergeRequestRecord> WithBranchPair(this Partial<MergeRequestRecord> it, Func<Partial<MergeRequestBranchPair>, Partial<MergeRequestBranchPair>> partialBuilder)
+        => it.AddFieldName("branchPair", partialBuilder(new Partial<MergeRequestBranchPair>(it)));
+    
+    [Obsolete("Use branchPair instead (since 2024-07-03)")]
     public static Partial<MergeRequestRecord> WithBranchPairs(this Partial<MergeRequestRecord> it)
         => it.AddFieldName("branchPairs");
     
+    [Obsolete("Use branchPair instead (since 2024-07-03)")]
     public static Partial<MergeRequestRecord> WithBranchPairs(this Partial<MergeRequestRecord> it, Func<Partial<MergeRequestBranchPair>, Partial<MergeRequestBranchPair>> partialBuilder)
         => it.AddFieldName("branchPairs", partialBuilder(new Partial<MergeRequestBranchPair>(it)));
     
@@ -96,6 +104,12 @@ public static class MergeRequestRecordPartialExtensions
     
     public static Partial<MergeRequestRecord> WithExternalLink(this Partial<MergeRequestRecord> it, Func<Partial<ExternalCodeReviewLink>, Partial<ExternalCodeReviewLink>> partialBuilder)
         => it.AddFieldName("externalLink", partialBuilder(new Partial<ExternalCodeReviewLink>(it)));
+    
+    public static Partial<MergeRequestRecord> WithAttachments(this Partial<MergeRequestRecord> it)
+        => it.AddFieldName("attachments");
+    
+    public static Partial<MergeRequestRecord> WithAttachments(this Partial<MergeRequestRecord> it, Func<Partial<Attachment>, Partial<Attachment>> partialBuilder)
+        => it.AddFieldName("attachments", partialBuilder(new Partial<Attachment>(it)));
     
     [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<MergeRequestRecord> WithAuthors(this Partial<MergeRequestRecord> it)

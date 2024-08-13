@@ -34,6 +34,9 @@ public static class GitRepositorySettingsMergeOptionsPartialExtensions
     public static Partial<GitRepositorySettingsMergeOptions> WithIsAllowMerge(this Partial<GitRepositorySettingsMergeOptions> it)
         => it.AddFieldName("allowMerge");
     
+    public static Partial<GitRepositorySettingsMergeOptions> WithIsAllowFFMerge(this Partial<GitRepositorySettingsMergeOptions> it)
+        => it.AddFieldName("allowFFMerge");
+    
     public static Partial<GitRepositorySettingsMergeOptions> WithMergeMessageOption(this Partial<GitRepositorySettingsMergeOptions> it)
         => it.AddFieldName("mergeMessageOption");
     

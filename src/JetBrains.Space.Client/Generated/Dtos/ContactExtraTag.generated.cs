@@ -34,7 +34,7 @@ public sealed class ContactExtraTag
 {
     public ContactExtraTag() { }
     
-    public ContactExtraTag(string primary, string secondary, string? issueStatus = null, string? issueStatusColor = null, string? issueStatusId = null, int? issueNumber = null, string? issueTitle = null, ProjectKey? projectKey = null, string? projectName = null, string? projectId = null, CPrincipal? assignee = null, ThreadContactsRecord? contactThreads = null, List<BasicThreadContactsRecord>? basicContactThreads = null, string? reviewState = null, bool? mergeRequestBranchMerged = null, bool? isMergeRequest = null, int? reviewNumber = null, string? reviewParticipantRole = null, string? reviewerState = null, bool? reviewTheirTurn = null, string? targetMergeRequestBranchHead = null)
+    public ContactExtraTag(string primary, string secondary, string? issueStatus = null, string? issueStatusColor = null, string? issueStatusId = null, int? issueNumber = null, string? issueTitle = null, ProjectKey? projectKey = null, string? projectName = null, string? projectId = null, CPrincipal? assignee = null, string? reviewState = null, bool? mergeRequestBranchMerged = null, bool? isMergeRequest = null, int? reviewNumber = null, string? reviewParticipantRole = null, string? reviewerState = null, bool? reviewTheirTurn = null, string? targetMergeRequestBranchHead = null)
     {
         Primary = primary;
         Secondary = secondary;
@@ -47,8 +47,6 @@ public sealed class ContactExtraTag
         ProjectName = projectName;
         ProjectId = projectId;
         Assignee = assignee;
-        ContactThreads = contactThreads;
-        BasicContactThreads = basicContactThreads;
         ReviewState = reviewState;
         IsMergeRequestBranchMerged = mergeRequestBranchMerged;
         IsMergeRequest = isMergeRequest;
@@ -160,24 +158,6 @@ public sealed class ContactExtraTag
         set => _assignee.SetValue(value);
     }
 
-    private PropertyValue<ThreadContactsRecord?> _contactThreads = new PropertyValue<ThreadContactsRecord?>(nameof(ContactExtraTag), nameof(ContactThreads), "contactThreads");
-    
-    [JsonPropertyName("contactThreads")]
-    public ThreadContactsRecord? ContactThreads
-    {
-        get => _contactThreads.GetValue(InlineErrors);
-        set => _contactThreads.SetValue(value);
-    }
-
-    private PropertyValue<List<BasicThreadContactsRecord>?> _basicContactThreads = new PropertyValue<List<BasicThreadContactsRecord>?>(nameof(ContactExtraTag), nameof(BasicContactThreads), "basicContactThreads");
-    
-    [JsonPropertyName("basicContactThreads")]
-    public List<BasicThreadContactsRecord>? BasicContactThreads
-    {
-        get => _basicContactThreads.GetValue(InlineErrors);
-        set => _basicContactThreads.SetValue(value);
-    }
-
     private PropertyValue<string?> _reviewState = new PropertyValue<string?>(nameof(ContactExtraTag), nameof(ReviewState), "reviewState");
     
     [JsonPropertyName("reviewState")]
@@ -263,8 +243,6 @@ public sealed class ContactExtraTag
         _projectName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _projectId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _assignee.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _contactThreads.SetAccessPath(parentChainPath, validateHasBeenSet);
-        _basicContactThreads.SetAccessPath(parentChainPath, validateHasBeenSet);
         _reviewState.SetAccessPath(parentChainPath, validateHasBeenSet);
         _mergeRequestBranchMerged.SetAccessPath(parentChainPath, validateHasBeenSet);
         _isMergeRequest.SetAccessPath(parentChainPath, validateHasBeenSet);

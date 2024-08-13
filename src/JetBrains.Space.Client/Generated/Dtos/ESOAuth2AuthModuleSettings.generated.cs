@@ -29,12 +29,9 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public abstract class ESOAuth2AuthModuleSettings
+public interface ESOAuth2AuthModuleSettings
      : ESFederatedAuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public override string? ClassName => "ES_OAuth2AuthModuleSettings";
-    
     public static ESAzureAuthModuleSettings ESAzureAuthModuleSettings(string tenantId, string clientId, string clientSecret, bool registerNewUsers, bool emailVerified, List<AzureRegisterNewUserRule>? registerNewUserRules = null)
         => new ESAzureAuthModuleSettings(tenantId: tenantId, clientId: clientId, clientSecret: clientSecret, registerNewUsers: registerNewUsers, emailVerified: emailVerified, registerNewUserRules: registerNewUserRules);
     
@@ -44,19 +41,11 @@ public abstract class ESOAuth2AuthModuleSettings
     public static ESGoogleAuthModuleSettings ESGoogleAuthModuleSettings(string clientId, string clientSecret, bool registerNewUsers, List<string> domains, List<GoogleRegisterNewUserRule>? registerNewUserRules = null)
         => new ESGoogleAuthModuleSettings(clientId: clientId, clientSecret: clientSecret, registerNewUsers: registerNewUsers, domains: domains, registerNewUserRules: registerNewUserRules);
     
-    public static ESHubAuthModuleSettings ESHubAuthModuleSettings(string hubUrl, string clientId, string clientSecret, bool? registerNewUsers = null, string? orgAuthProviderName = null, List<string>? groups = null, List<HubRegisterNewUserRule>? registerNewUserRules = null)
+    public static ESHubAuthModuleSettings ESHubAuthModuleSettings(string hubUrl, string clientId, string clientSecret, bool registerNewUsers, string? orgAuthProviderName = null, List<string>? groups = null, List<HubRegisterNewUserRule>? registerNewUserRules = null)
         => new ESHubAuthModuleSettings(hubUrl: hubUrl, clientId: clientId, clientSecret: clientSecret, registerNewUsers: registerNewUsers, orgAuthProviderName: orgAuthProviderName, groups: groups, registerNewUserRules: registerNewUserRules);
     
     public static ESOIDCAuthModuleSettings ESOIDCAuthModuleSettings(string clientId, string clientSecret, bool registerNewUsers, string issuer, string authorizationEndpoint, string tokenEndpoint, string tokenKeysEndpoint, string userInfoEndpoint, List<string> domains, string? discoveryUrl = null, List<OidcRegisterNewUserRule>? registerNewUserRules = null)
         => new ESOIDCAuthModuleSettings(clientId: clientId, clientSecret: clientSecret, registerNewUsers: registerNewUsers, issuer: issuer, authorizationEndpoint: authorizationEndpoint, tokenEndpoint: tokenEndpoint, tokenKeysEndpoint: tokenKeysEndpoint, userInfoEndpoint: userInfoEndpoint, domains: domains, discoveryUrl: discoveryUrl, registerNewUserRules: registerNewUserRules);
     
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-    }
-    
-    /// <inheritdoc />
-    [JsonPropertyName("$errors")]
-    public List<ApiInlineError> InlineErrors { get; set; } = new();
-
 }
 

@@ -37,12 +37,14 @@ public sealed class CodeReviewMenuItemUiExtensionIn
     
     public CodeReviewMenuItemUiExtensionIn() { }
     
-    public CodeReviewMenuItemUiExtensionIn(string displayName, string menuItemUniqueCode, List<CodeReviewMenuItemVisibilityFilterIn> visibilityFilters, string? description = null)
+    public CodeReviewMenuItemUiExtensionIn(string displayName, string menuItemUniqueCode, List<CodeReviewMenuItemVisibilityFilterIn> visibilityFilters, string? description = null, ExtensionActionParametersForm? parametersForm = null, ExtensionActionPlacement? actionPlacement = null)
     {
         DisplayName = displayName;
         Description = description;
         MenuItemUniqueCode = menuItemUniqueCode;
         VisibilityFilters = visibilityFilters;
+        ParametersForm = parametersForm;
+        ActionPlacement = actionPlacement;
     }
     
     private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(CodeReviewMenuItemUiExtensionIn), nameof(DisplayName), "displayName");
@@ -84,12 +86,32 @@ public sealed class CodeReviewMenuItemUiExtensionIn
         set => _visibilityFilters.SetValue(value);
     }
 
+    private PropertyValue<ExtensionActionParametersForm?> _parametersForm = new PropertyValue<ExtensionActionParametersForm?>(nameof(CodeReviewMenuItemUiExtensionIn), nameof(ParametersForm), "parametersForm");
+    
+    [JsonPropertyName("parametersForm")]
+    public ExtensionActionParametersForm? ParametersForm
+    {
+        get => _parametersForm.GetValue(InlineErrors);
+        set => _parametersForm.SetValue(value);
+    }
+
+    private PropertyValue<ExtensionActionPlacement?> _actionPlacement = new PropertyValue<ExtensionActionPlacement?>(nameof(CodeReviewMenuItemUiExtensionIn), nameof(ActionPlacement), "actionPlacement");
+    
+    [JsonPropertyName("actionPlacement")]
+    public ExtensionActionPlacement? ActionPlacement
+    {
+        get => _actionPlacement.GetValue(InlineErrors);
+        set => _actionPlacement.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _displayName.SetAccessPath(parentChainPath, validateHasBeenSet);
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _menuItemUniqueCode.SetAccessPath(parentChainPath, validateHasBeenSet);
         _visibilityFilters.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _parametersForm.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _actionPlacement.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

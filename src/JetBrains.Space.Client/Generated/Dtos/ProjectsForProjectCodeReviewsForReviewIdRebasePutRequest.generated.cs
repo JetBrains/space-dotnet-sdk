@@ -34,10 +34,11 @@ internal class ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest
 {
     public ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest() { }
     
-    public ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest(bool deleteSourceBranch, GitRebaseMode rebaseMode, bool squash, string? squashedCommitMessage = null)
+    public ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest(bool deleteSourceBranch, GitRebaseMode rebaseMode, GitSquashMode? squashMode = null, bool? squash = null, string? squashedCommitMessage = null)
     {
         IsDeleteSourceBranch = deleteSourceBranch;
         RebaseMode = rebaseMode;
+        SquashMode = squashMode;
         IsSquash = squash;
         SquashedCommitMessage = squashedCommitMessage;
     }
@@ -62,11 +63,26 @@ internal class ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest
         set => _rebaseMode.SetValue(value);
     }
 
-    private PropertyValue<bool> _squash = new PropertyValue<bool>(nameof(ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest), nameof(IsSquash), "squash");
+    private PropertyValue<GitSquashMode?> _squashMode = new PropertyValue<GitSquashMode?>(nameof(ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest), nameof(SquashMode), "squashMode");
     
-    [Required]
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("squashMode")]
+    public GitSquashMode? SquashMode
+    {
+        get => _squashMode.GetValue(InlineErrors);
+        set => _squashMode.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _squash = new PropertyValue<bool?>(nameof(ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest), nameof(IsSquash), "squash");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [Obsolete("Use squashMode for precise squash control (since 2024-07-22)")]
     [JsonPropertyName("squash")]
-    public bool IsSquash
+    public bool? IsSquash
     {
         get => _squash.GetValue(InlineErrors);
         set => _squash.SetValue(value);
@@ -88,6 +104,7 @@ internal class ProjectsForProjectCodeReviewsForReviewIdRebasePutRequest
     {
         _deleteSourceBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
         _rebaseMode.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _squashMode.SetAccessPath(parentChainPath, validateHasBeenSet);
         _squash.SetAccessPath(parentChainPath, validateHasBeenSet);
         _squashedCommitMessage.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

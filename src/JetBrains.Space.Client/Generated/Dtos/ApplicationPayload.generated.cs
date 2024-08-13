@@ -56,8 +56,8 @@ public interface ApplicationPayload
     public static ListCommandsPayload ListCommandsPayload(string clientId, string? userId = null, string? verificationToken = null)
         => new ListCommandsPayload(clientId: clientId, userId: userId, verificationToken: verificationToken);
     
-    public static MenuActionPayload MenuActionPayload(string menuItemUniqueCode, string clientId, string userId, MenuActionContext? context = null, string? verificationToken = null)
-        => new MenuActionPayload(menuItemUniqueCode: menuItemUniqueCode, clientId: clientId, userId: userId, context: context, verificationToken: verificationToken);
+    public static MenuActionPayload MenuActionPayload(string menuItemUniqueCode, string clientId, string userId, MenuActionContext? context = null, List<ExtensionActionFormParameterValue>? parameterValues = null, string? verificationToken = null)
+        => new MenuActionPayload(menuItemUniqueCode: menuItemUniqueCode, clientId: clientId, userId: userId, context: context, parameterValues: parameterValues, verificationToken: verificationToken);
     
     public static MessageActionPayload MessageActionPayload(string actionId, string actionValue, MessageContext message, string clientId, string userId, string? verificationToken = null)
         => new MessageActionPayload(actionId: actionId, actionValue: actionValue, message: message, clientId: clientId, userId: userId, verificationToken: verificationToken);

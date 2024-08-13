@@ -188,6 +188,35 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
+        public async Task<Batch<ChatContactRecord>> ListDirectMessageChannelsAndConversationsAsync(string? skip = null, int? top = 100, Func<Partial<Batch<ChatContactRecord>>, Partial<Batch<ChatContactRecord>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            if (skip != null) queryParameters.Append("$skip", skip);
+            if (top != null) queryParameters.Append("$top", top?.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<ChatContactRecord>>()) : Partial<Batch<ChatContactRecord>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<Batch<ChatContactRecord>>("GET", $"api/http/chats/channels/private-channels{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ListDirectMessageChannelsAndConversations", cancellationToken: cancellationToken);
+        }
+        
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View channel info</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public IAsyncEnumerable<ChatContactRecord> ListDirectMessageChannelsAndConversationsAsyncEnumerable(string? skip = null, int? top = 100, Func<Partial<ChatContactRecord>, Partial<ChatContactRecord>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListDirectMessageChannelsAndConversationsAsync(top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ChatContactRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ChatContactRecord>.Default())), skip, cancellationToken);
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View channel info</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<M2ChannelRecord> GetChannelAsync(ChannelIdentifier channel, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -998,7 +1027,7 @@ public partial class ChatClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<ChannelItemRecord> SendMessageAsync(ChatMessage content, ChannelIdentifier? channel = null, List<AttachmentIn>? attachments = null, bool? unfurlLinks = null, string? externalId = null, bool? resolveNames = null, bool? pending = null, MessageRecipient? recipient = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<ChannelItemRecord> SendMessageAsync(ChatMessage content, ChannelIdentifier? channel = null, List<AttachmentIn>? attachments = null, bool? unfurlLinks = null, string? externalId = null, bool? resolveNames = null, bool? pending = null, bool? silent = null, MessageRecipient? recipient = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<ChannelItemRecord>()) : Partial<ChannelItemRecord>.Default()).ToString());
@@ -1013,6 +1042,7 @@ public partial class ChatClient : ISpaceClient
                     ExternalId = externalId,
                     IsResolveNames = resolveNames,
                     IsPending = pending,
+                    IsSilent = silent,
                     Recipient = recipient,
                 }, requestHeaders: null, functionName: "SendMessage", cancellationToken: cancellationToken);
         }

@@ -33,7 +33,7 @@ public sealed class ESHiddenAuthModuleSettings
      : ESAuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "ES_HiddenAuthModuleSettings";
+    public  string? ClassName => "ES_HiddenAuthModuleSettings";
     
     public ESHiddenAuthModuleSettings() { }
     
@@ -61,7 +61,7 @@ public sealed class ESHiddenAuthModuleSettings
         set => _federatedModule.SetValue(value);
     }
 
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _passwordModule.SetAccessPath(parentChainPath, validateHasBeenSet);
         _federatedModule.SetAccessPath(parentChainPath, validateHasBeenSet);

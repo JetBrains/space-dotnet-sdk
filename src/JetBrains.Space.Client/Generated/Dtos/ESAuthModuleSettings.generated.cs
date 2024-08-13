@@ -29,23 +29,11 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-[JsonConverter(typeof(ClassNameDtoTypeConverter))]
-public abstract class ESAuthModuleSettings
+public interface ESAuthModuleSettings
      : IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public virtual string? ClassName => "ES_AuthModuleSettings";
-    
     public static ESHiddenAuthModuleSettings ESHiddenAuthModuleSettings(bool? passwordModule = null, bool? federatedModule = null)
         => new ESHiddenAuthModuleSettings(passwordModule: passwordModule, federatedModule: federatedModule);
     
-    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-    }
-    
-    /// <inheritdoc />
-    [JsonPropertyName("$errors")]
-    public List<ApiInlineError> InlineErrors { get; set; } = new();
-
 }
 

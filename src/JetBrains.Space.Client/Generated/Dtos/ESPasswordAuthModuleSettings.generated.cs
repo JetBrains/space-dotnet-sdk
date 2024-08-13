@@ -29,16 +29,17 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
+[JsonConverter(typeof(ClassNameDtoTypeConverter))]
 public abstract class ESPasswordAuthModuleSettings
      : ESAuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "ES_PasswordAuthModuleSettings";
+    public virtual string? ClassName => "ES_PasswordAuthModuleSettings";
     
     public static ESBuiltinAuthModuleSettings ESBuiltinAuthModuleSettings(PasswordStrength passwordStrengthPolicy, List<string>? domains = null)
         => new ESBuiltinAuthModuleSettings(passwordStrengthPolicy: passwordStrengthPolicy, domains: domains);
     
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
     }
     

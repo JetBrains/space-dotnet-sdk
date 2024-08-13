@@ -29,22 +29,11 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client;
 
-public abstract class ESFederatedAuthModuleSettings
+public interface ESFederatedAuthModuleSettings
      : ESAuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
-    [JsonPropertyName("className")]
-    public override string? ClassName => "ES_FederatedAuthModuleSettings";
-    
     public static ESSamlAuthModuleSettings ESSamlAuthModuleSettings(string idpUrl, string idpEntityId, string idpCertificateSHA256, string spEntityId, bool registerNewUsers, ESSamlAttributeNames attributeNames, SSLKeystore? sslKeystore = null, string? contactProfileId = null, List<SamlRegisterNewUserRule>? registerNewUserRules = null)
         => new ESSamlAuthModuleSettings(idpUrl: idpUrl, idpEntityId: idpEntityId, idpCertificateSHA256: idpCertificateSHA256, spEntityId: spEntityId, registerNewUsers: registerNewUsers, attributeNames: attributeNames, sslKeystore: sslKeystore, contactProfileId: contactProfileId, registerNewUserRules: registerNewUserRules);
     
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
-    {
-    }
-    
-    /// <inheritdoc />
-    [JsonPropertyName("$errors")]
-    public List<ApiInlineError> InlineErrors { get; set; } = new();
-
 }
 

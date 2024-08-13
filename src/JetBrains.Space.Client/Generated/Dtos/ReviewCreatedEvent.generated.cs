@@ -37,7 +37,7 @@ public sealed class ReviewCreatedEvent
     
     public ReviewCreatedEvent() { }
     
-    public ReviewCreatedEvent(string projectKey, string reviewId, int reviewNumber, ReviewType reviewType, List<TDMemberProfile> descriptionEditedByProfileIds, CodeReviewDescription? description = null, List<UnfurlDetailsCommit>? commits = null)
+    public ReviewCreatedEvent(string projectKey, string reviewId, int reviewNumber, ReviewType reviewType, List<TDMemberProfile> descriptionEditedByProfileIds, CodeReviewDescription? description = null, List<UnfurlDetailsCommit>? commits = null, bool? compact = null)
     {
         ProjectKey = projectKey;
         ReviewId = reviewId;
@@ -46,6 +46,7 @@ public sealed class ReviewCreatedEvent
         Description = description;
         DescriptionEditedByProfileIds = descriptionEditedByProfileIds;
         Commits = commits;
+        IsCompact = compact;
     }
     
     private PropertyValue<string> _projectKey = new PropertyValue<string>(nameof(ReviewCreatedEvent), nameof(ProjectKey), "projectKey");
@@ -116,6 +117,15 @@ public sealed class ReviewCreatedEvent
         set => _commits.SetValue(value);
     }
 
+    private PropertyValue<bool?> _compact = new PropertyValue<bool?>(nameof(ReviewCreatedEvent), nameof(IsCompact), "compact");
+    
+    [JsonPropertyName("compact")]
+    public bool? IsCompact
+    {
+        get => _compact.GetValue(InlineErrors);
+        set => _compact.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _projectKey.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -125,6 +135,7 @@ public sealed class ReviewCreatedEvent
         _description.SetAccessPath(parentChainPath, validateHasBeenSet);
         _descriptionEditedByProfileIds.SetAccessPath(parentChainPath, validateHasBeenSet);
         _commits.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _compact.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

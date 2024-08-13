@@ -46,5 +46,17 @@ public static class CodeReviewMenuItemUiExtensionApiPartialExtensions
     public static Partial<CodeReviewMenuItemUiExtensionApi> WithVisibilityFilters(this Partial<CodeReviewMenuItemUiExtensionApi> it, Func<Partial<CodeReviewMenuItemVisibilityFilterApi>, Partial<CodeReviewMenuItemVisibilityFilterApi>> partialBuilder)
         => it.AddFieldName("visibilityFilters", partialBuilder(new Partial<CodeReviewMenuItemVisibilityFilterApi>(it)));
     
+    public static Partial<CodeReviewMenuItemUiExtensionApi> WithParametersForm(this Partial<CodeReviewMenuItemUiExtensionApi> it)
+        => it.AddFieldName("parametersForm");
+    
+    public static Partial<CodeReviewMenuItemUiExtensionApi> WithParametersForm(this Partial<CodeReviewMenuItemUiExtensionApi> it, Func<Partial<ExtensionActionParametersForm>, Partial<ExtensionActionParametersForm>> partialBuilder)
+        => it.AddFieldName("parametersForm", partialBuilder(new Partial<ExtensionActionParametersForm>(it)));
+    
+    public static Partial<CodeReviewMenuItemUiExtensionApi> WithActionPlacement(this Partial<CodeReviewMenuItemUiExtensionApi> it)
+        => it.AddFieldName("actionPlacement");
+    
+    public static Partial<CodeReviewMenuItemUiExtensionApi> WithActionPlacement(this Partial<CodeReviewMenuItemUiExtensionApi> it, Func<Partial<ExtensionActionPlacement>, Partial<ExtensionActionPlacement>> partialBuilder)
+        => it.AddFieldName("actionPlacement", partialBuilder(new Partial<ExtensionActionPlacement>(it)));
+    
 }
 

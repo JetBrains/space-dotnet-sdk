@@ -64,5 +64,8 @@ public static class ReviewCreatedEventPartialExtensions
     public static Partial<ReviewCreatedEvent> WithCommits(this Partial<ReviewCreatedEvent> it, Func<Partial<UnfurlDetailsCommit>, Partial<UnfurlDetailsCommit>> partialBuilder)
         => it.AddFieldName("commits", partialBuilder(new Partial<UnfurlDetailsCommit>(it)));
     
+    public static Partial<ReviewCreatedEvent> WithIsCompact(this Partial<ReviewCreatedEvent> it)
+        => it.AddFieldName("compact");
+    
 }
 

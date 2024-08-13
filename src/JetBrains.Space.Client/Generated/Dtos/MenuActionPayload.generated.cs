@@ -37,10 +37,11 @@ public sealed class MenuActionPayload
     
     public MenuActionPayload() { }
     
-    public MenuActionPayload(string menuItemUniqueCode, string clientId, string userId, MenuActionContext? context = null, string? verificationToken = null)
+    public MenuActionPayload(string menuItemUniqueCode, string clientId, string userId, MenuActionContext? context = null, List<ExtensionActionFormParameterValue>? parameterValues = null, string? verificationToken = null)
     {
         MenuItemUniqueCode = menuItemUniqueCode;
         Context = context;
+        ParameterValues = parameterValues;
         ClientId = clientId;
         UserId = userId;
         VerificationToken = verificationToken;
@@ -63,6 +64,15 @@ public sealed class MenuActionPayload
     {
         get => _context.GetValue(InlineErrors);
         set => _context.SetValue(value);
+    }
+
+    private PropertyValue<List<ExtensionActionFormParameterValue>?> _parameterValues = new PropertyValue<List<ExtensionActionFormParameterValue>?>(nameof(MenuActionPayload), nameof(ParameterValues), "parameterValues");
+    
+    [JsonPropertyName("parameterValues")]
+    public List<ExtensionActionFormParameterValue>? ParameterValues
+    {
+        get => _parameterValues.GetValue(InlineErrors);
+        set => _parameterValues.SetValue(value);
     }
 
     private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(MenuActionPayload), nameof(ClientId), "clientId");
@@ -99,6 +109,7 @@ public sealed class MenuActionPayload
     {
         _menuItemUniqueCode.SetAccessPath(parentChainPath, validateHasBeenSet);
         _context.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _parameterValues.SetAccessPath(parentChainPath, validateHasBeenSet);
         _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _userId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _verificationToken.SetAccessPath(parentChainPath, validateHasBeenSet);

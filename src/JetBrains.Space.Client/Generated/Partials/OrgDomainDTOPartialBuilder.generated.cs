@@ -40,5 +40,8 @@ public static class OrgDomainDTOPartialExtensions
     public static Partial<OrgDomainDTO> WithOrgUrl(this Partial<OrgDomainDTO> it)
         => it.AddFieldName("orgUrl");
     
+    public static Partial<OrgDomainDTO> WithCodeOrgUrl(this Partial<OrgDomainDTO> it)
+        => it.AddFieldName("codeOrgUrl");
+    
 }
 

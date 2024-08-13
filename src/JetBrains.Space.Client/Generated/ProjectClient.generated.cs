@@ -3454,6 +3454,15 @@ public partial class ProjectClient : ISpaceClient
             _connection = connection;
         }
         
+        public async Task<RepositoryInProjectDTO> ResolveRepositoryNameAndTheProjectKeyToWhichThisRepositoryIsAttachedAsync(string url, Func<Partial<RepositoryInProjectDTO>, Partial<RepositoryInProjectDTO>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<RepositoryInProjectDTO>()) : Partial<RepositoryInProjectDTO>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<RepositoryInProjectDTO>("GET", $"api/http/projects/repositories/{url}/resolve{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ResolveRepositoryNameAndTheProjectKeyToWhichThisRepositoryIsAttached", cancellationToken: cancellationToken);
+        }
+        
+    
         public FindClient Find => new FindClient(_connection);
         
         public partial class FindClient : ISpaceClient
@@ -3729,6 +3738,20 @@ public partial class ProjectClient : ISpaceClient
         public IAsyncEnumerable<GitCommitInfo> CommitsAsyncEnumerable(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => CommitsAsync(project: project, repository: repository, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<GitCommitInfo>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<GitCommitInfo>.Default())), skip, cancellationToken);
     
+        /// <remarks>
+        /// APIs for AI indices service
+        /// </remarks>
+        public async Task<List<CodeEmbeddingMatch>> FindSimilarCodeSnippetsAsync(ProjectIdentifier project, string repository, string query, string? recipe = null, Func<Partial<CodeEmbeddingMatch>, Partial<CodeEmbeddingMatch>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("query", query);
+            if (recipe != null) queryParameters.Append("recipe", recipe);
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<CodeEmbeddingMatch>()) : Partial<CodeEmbeddingMatch>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<CodeEmbeddingMatch>>("GET", $"api/http/projects/{project}/repositories/{repository}/embeddings-code-search{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "FindSimilarCodeSnippets", cancellationToken: cancellationToken);
+        }
+        
+    
         public async Task<List<GitFile>> FilesAsync(ProjectIdentifier project, string repository, string commit, string path, Func<Partial<GitFile>, Partial<GitFile>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
@@ -3737,6 +3760,32 @@ public partial class ProjectClient : ISpaceClient
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitFile>()) : Partial<GitFile>.Default()).ToString());
             
             return await _connection.RequestResourceAsync<List<GitFile>>("GET", $"api/http/projects/{project}/repositories/{repository}/files{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "Files", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// APIs for AI indices service
+        /// </remarks>
+        public async Task<GitCommitInfo> GetCommitByIdAsync(ProjectIdentifier project, string repository, string commit, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("commit", commit);
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitCommitInfo>()) : Partial<GitCommitInfo>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<GitCommitInfo>("GET", $"api/http/projects/{project}/repositories/{repository}/get-commit{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetCommitById", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// APIs for AI indices service
+        /// </remarks>
+        public async Task<string> GetFileTextContentByBlobidAsync(ProjectIdentifier project, string repository, string blobId, int fileSizeLimit, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("blobId", blobId);
+            queryParameters.Append("fileSizeLimit", fileSizeLimit.ToString());
+            
+            return await _connection.RequestResourceAsync<string>("GET", $"api/http/projects/{project}/repositories/{repository}/get-text-content{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetFileTextContentByBlobid", cancellationToken: cancellationToken);
         }
         
     
@@ -3776,6 +3825,19 @@ public partial class ProjectClient : ISpaceClient
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<InlineDiff>()) : Partial<InlineDiff>.Default()).ToString());
             
             return await _connection.RequestResourceAsync<InlineDiff>("GET", $"api/http/projects/{project}/repositories/{repository}/inline-merge-diff{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetInlineMergeDiff", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// APIs for AI indices service
+        /// </remarks>
+        public async Task<List<GitFile>> ListDirectoryByTreeidAsync(ProjectIdentifier project, string repository, string treeId, Func<Partial<GitFile>, Partial<GitFile>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("treeId", treeId);
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitFile>()) : Partial<GitFile>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<GitFile>>("GET", $"api/http/projects/{project}/repositories/{repository}/list-directory{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ListDirectoryByTreeid", cancellationToken: cancellationToken);
         }
         
     
@@ -5519,7 +5581,7 @@ public partial class ProjectClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<GitRebaseResultHttp> RebaseMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, GitRebaseMode rebaseMode, bool squash, string? squashedCommitMessage = null, Func<Partial<GitRebaseResultHttp>, Partial<GitRebaseResultHttp>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<GitRebaseResultHttp> RebaseMergeRequestAsync(ProjectIdentifier project, ReviewIdentifier reviewId, bool deleteSourceBranch, GitRebaseMode rebaseMode, GitSquashMode? squashMode = null, bool? squash = null, string? squashedCommitMessage = null, Func<Partial<GitRebaseResultHttp>, Partial<GitRebaseResultHttp>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitRebaseResultHttp>()) : Partial<GitRebaseResultHttp>.Default()).ToString());
@@ -5529,6 +5591,7 @@ public partial class ProjectClient : ISpaceClient
                 { 
                     IsDeleteSourceBranch = deleteSourceBranch,
                     RebaseMode = rebaseMode,
+                    SquashMode = squashMode,
                     IsSquash = squash,
                     SquashedCommitMessage = squashedCommitMessage,
                 }, requestHeaders: null, functionName: "RebaseMergeRequest", cancellationToken: cancellationToken);
@@ -5995,7 +6058,7 @@ public partial class ProjectClient : ISpaceClient
         }
         
     
-        public async Task<Document> UpdateDocumentAsync(ProjectIdentifier project, string documentId, string? name = null, DocumentBodyUpdateIn? updateIn = null, PublicationDetailsIn? publicationDetailsIn = null, Func<Partial<Document>, Partial<Document>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<Document> UpdateDocumentAsync(ProjectIdentifier project, string documentId, string? name = null, DocumentBodyUpdateIn? updateIn = null, PublicationDetailsIn? publicationDetailsIn = null, string? redirectUrl = null, Func<Partial<Document>, Partial<Document>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Document>()) : Partial<Document>.Default()).ToString());
@@ -6006,6 +6069,7 @@ public partial class ProjectClient : ISpaceClient
                     Name = name,
                     UpdateIn = updateIn,
                     PublicationDetailsIn = publicationDetailsIn,
+                    RedirectUrl = redirectUrl,
                 }, requestHeaders: null, functionName: "UpdateDocument", cancellationToken: cancellationToken);
         }
         

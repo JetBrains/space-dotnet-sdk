@@ -70,18 +70,6 @@ public static class ContactExtraTagPartialExtensions
     public static Partial<ContactExtraTag> WithAssignee(this Partial<ContactExtraTag> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
         => it.AddFieldName("assignee", partialBuilder(new Partial<CPrincipal>(it)));
     
-    public static Partial<ContactExtraTag> WithContactThreads(this Partial<ContactExtraTag> it)
-        => it.AddFieldName("contactThreads");
-    
-    public static Partial<ContactExtraTag> WithContactThreads(this Partial<ContactExtraTag> it, Func<Partial<ThreadContactsRecord>, Partial<ThreadContactsRecord>> partialBuilder)
-        => it.AddFieldName("contactThreads", partialBuilder(new Partial<ThreadContactsRecord>(it)));
-    
-    public static Partial<ContactExtraTag> WithBasicContactThreads(this Partial<ContactExtraTag> it)
-        => it.AddFieldName("basicContactThreads");
-    
-    public static Partial<ContactExtraTag> WithBasicContactThreads(this Partial<ContactExtraTag> it, Func<Partial<BasicThreadContactsRecord>, Partial<BasicThreadContactsRecord>> partialBuilder)
-        => it.AddFieldName("basicContactThreads", partialBuilder(new Partial<BasicThreadContactsRecord>(it)));
-    
     public static Partial<ContactExtraTag> WithReviewState(this Partial<ContactExtraTag> it)
         => it.AddFieldName("reviewState");
     

@@ -33,7 +33,7 @@ public sealed class ESSamlAuthModuleSettings
      : ESFederatedAuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "ES_SamlAuthModuleSettings";
+    public  string? ClassName => "ES_SamlAuthModuleSettings";
     
     public ESSamlAuthModuleSettings() { }
     
@@ -137,7 +137,7 @@ public sealed class ESSamlAuthModuleSettings
         set => _registerNewUserRules.SetValue(value);
     }
 
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _idpUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
         _idpEntityId.SetAccessPath(parentChainPath, validateHasBeenSet);

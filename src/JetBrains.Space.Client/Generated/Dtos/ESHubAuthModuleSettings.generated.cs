@@ -33,11 +33,11 @@ public sealed class ESHubAuthModuleSettings
      : ESOAuth2AuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "ES_HubAuthModuleSettings";
+    public  string? ClassName => "ES_HubAuthModuleSettings";
     
     public ESHubAuthModuleSettings() { }
     
-    public ESHubAuthModuleSettings(string hubUrl, string clientId, string clientSecret, bool? registerNewUsers = null, string? orgAuthProviderName = null, List<string>? groups = null, List<HubRegisterNewUserRule>? registerNewUserRules = null)
+    public ESHubAuthModuleSettings(string hubUrl, string clientId, string clientSecret, bool registerNewUsers, string? orgAuthProviderName = null, List<string>? groups = null, List<HubRegisterNewUserRule>? registerNewUserRules = null)
     {
         HubUrl = hubUrl;
         ClientId = clientId;
@@ -78,10 +78,11 @@ public sealed class ESHubAuthModuleSettings
         set => _clientSecret.SetValue(value);
     }
 
-    private PropertyValue<bool?> _registerNewUsers = new PropertyValue<bool?>(nameof(ESHubAuthModuleSettings), nameof(IsRegisterNewUsers), "registerNewUsers");
+    private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESHubAuthModuleSettings), nameof(IsRegisterNewUsers), "registerNewUsers");
     
+    [Required]
     [JsonPropertyName("registerNewUsers")]
-    public bool? IsRegisterNewUsers
+    public bool IsRegisterNewUsers
     {
         get => _registerNewUsers.GetValue(InlineErrors);
         set => _registerNewUsers.SetValue(value);
@@ -114,7 +115,7 @@ public sealed class ESHubAuthModuleSettings
         set => _registerNewUserRules.SetValue(value);
     }
 
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _hubUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
         _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);

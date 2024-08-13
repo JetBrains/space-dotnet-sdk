@@ -40,5 +40,11 @@ public static class GitRebaseResultPartialExtensions
     public static Partial<GitRebaseResult> WithResultCommitIds(this Partial<GitRebaseResult> it)
         => it.AddFieldName("resultCommitIds");
     
+    public static Partial<GitRebaseResult> WithUpdatedHeads(this Partial<GitRebaseResult> it)
+        => it.AddFieldName("updatedHeads");
+    
+    public static Partial<GitRebaseResult> WithUpdatedHeads(this Partial<GitRebaseResult> it, Func<Partial<GitUpdatedHead>, Partial<GitUpdatedHead>> partialBuilder)
+        => it.AddFieldName("updatedHeads", partialBuilder(new Partial<GitUpdatedHead>(it)));
+    
 }
 

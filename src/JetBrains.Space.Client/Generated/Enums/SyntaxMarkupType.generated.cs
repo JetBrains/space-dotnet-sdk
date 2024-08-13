@@ -74,6 +74,9 @@ public enum SyntaxMarkupType
     [EnumMember(Value = "ANNOTATION")]
     ANNOTATION,
     
+    [EnumMember(Value = "INLINE_ANNOTATION")]
+    INLINEANNOTATION,
+    
     [EnumMember(Value = "PREPROCESSOR_ANNOTATION")]
     PREPROCESSORANNOTATION,
     

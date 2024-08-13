@@ -43,5 +43,11 @@ public static class GitMergeBranchResultPartialExtensions
     public static Partial<GitMergeBranchResult> WithResultCommitId(this Partial<GitMergeBranchResult> it)
         => it.AddFieldName("resultCommitId");
     
+    public static Partial<GitMergeBranchResult> WithUpdatedHeads(this Partial<GitMergeBranchResult> it)
+        => it.AddFieldName("updatedHeads");
+    
+    public static Partial<GitMergeBranchResult> WithUpdatedHeads(this Partial<GitMergeBranchResult> it, Func<Partial<GitUpdatedHead>, Partial<GitUpdatedHead>> partialBuilder)
+        => it.AddFieldName("updatedHeads", partialBuilder(new Partial<GitUpdatedHead>(it)));
+    
 }
 

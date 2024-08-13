@@ -33,7 +33,7 @@ public sealed class ESGoogleAuthModuleSettings
      : ESOAuth2AuthModuleSettings, IClassNameConvertible, IPropagatePropertyAccessPath
 {
     [JsonPropertyName("className")]
-    public override string? ClassName => "ES_GoogleAuthModuleSettings";
+    public  string? ClassName => "ES_GoogleAuthModuleSettings";
     
     public ESGoogleAuthModuleSettings() { }
     
@@ -95,7 +95,7 @@ public sealed class ESGoogleAuthModuleSettings
         set => _registerNewUserRules.SetValue(value);
     }
 
-    public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
+    public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _clientId.SetAccessPath(parentChainPath, validateHasBeenSet);
         _clientSecret.SetAccessPath(parentChainPath, validateHasBeenSet);

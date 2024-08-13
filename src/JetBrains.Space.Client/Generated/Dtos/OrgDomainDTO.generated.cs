@@ -34,11 +34,12 @@ public sealed class OrgDomainDTO
 {
     public OrgDomainDTO() { }
     
-    public OrgDomainDTO(string domain, string orgUrl, DateTime? expireAt = null)
+    public OrgDomainDTO(string domain, string orgUrl, DateTime? expireAt = null, string? codeOrgUrl = null)
     {
         Domain = domain;
         ExpireAt = expireAt;
         OrgUrl = orgUrl;
+        CodeOrgUrl = codeOrgUrl;
     }
     
     private PropertyValue<string> _domain = new PropertyValue<string>(nameof(OrgDomainDTO), nameof(Domain), "domain");
@@ -71,11 +72,21 @@ public sealed class OrgDomainDTO
         set => _orgUrl.SetValue(value);
     }
 
+    private PropertyValue<string?> _codeOrgUrl = new PropertyValue<string?>(nameof(OrgDomainDTO), nameof(CodeOrgUrl), "codeOrgUrl");
+    
+    [JsonPropertyName("codeOrgUrl")]
+    public string? CodeOrgUrl
+    {
+        get => _codeOrgUrl.GetValue(InlineErrors);
+        set => _codeOrgUrl.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _domain.SetAccessPath(parentChainPath, validateHasBeenSet);
         _expireAt.SetAccessPath(parentChainPath, validateHasBeenSet);
         _orgUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _codeOrgUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -34,9 +34,10 @@ public sealed class GitRebaseResultHttp
 {
     public GitRebaseResultHttp() { }
     
-    public GitRebaseResultHttp(List<string> resultCommitIds)
+    public GitRebaseResultHttp(List<string> resultCommitIds, List<GitUpdatedHead>? updatedHeads = null)
     {
         ResultCommitIds = resultCommitIds;
+        UpdatedHeads = updatedHeads;
     }
     
     private PropertyValue<List<string>> _resultCommitIds = new PropertyValue<List<string>>(nameof(GitRebaseResultHttp), nameof(ResultCommitIds), "resultCommitIds", new List<string>());
@@ -49,9 +50,19 @@ public sealed class GitRebaseResultHttp
         set => _resultCommitIds.SetValue(value);
     }
 
+    private PropertyValue<List<GitUpdatedHead>?> _updatedHeads = new PropertyValue<List<GitUpdatedHead>?>(nameof(GitRebaseResultHttp), nameof(UpdatedHeads), "updatedHeads");
+    
+    [JsonPropertyName("updatedHeads")]
+    public List<GitUpdatedHead>? UpdatedHeads
+    {
+        get => _updatedHeads.GetValue(InlineErrors);
+        set => _updatedHeads.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _resultCommitIds.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _updatedHeads.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -34,6 +34,12 @@ public static class CodeReviewRecordPartialExtensions
     public static Partial<CodeReviewRecord> WithId(this Partial<CodeReviewRecord> it)
         => it.AddFieldName("id");
     
+    public static Partial<CodeReviewRecord> WithAttachments(this Partial<CodeReviewRecord> it)
+        => it.AddFieldName("attachments");
+    
+    public static Partial<CodeReviewRecord> WithAttachments(this Partial<CodeReviewRecord> it, Func<Partial<Attachment>, Partial<Attachment>> partialBuilder)
+        => it.AddFieldName("attachments", partialBuilder(new Partial<Attachment>(it)));
+    
     [Obsolete("Use participants (since 2020-11-03) (will be removed in a future version)")]
     public static Partial<CodeReviewRecord> WithAuthors(this Partial<CodeReviewRecord> it)
         => it.AddFieldName("authors");
