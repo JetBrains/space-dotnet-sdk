@@ -34,11 +34,12 @@ public sealed class TDProfileEmail
 {
     public TDProfileEmail() { }
     
-    public TDProfileEmail(string id, string email, bool? blocked = null)
+    public TDProfileEmail(string id, string email, bool? blocked = null, bool? verified = null)
     {
         Id = id;
         Email = email;
         IsBlocked = blocked;
+        IsVerified = verified;
     }
     
     private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDProfileEmail), nameof(Id), "id");
@@ -70,11 +71,21 @@ public sealed class TDProfileEmail
         set => _blocked.SetValue(value);
     }
 
+    private PropertyValue<bool?> _verified = new PropertyValue<bool?>(nameof(TDProfileEmail), nameof(IsVerified), "verified");
+    
+    [JsonPropertyName("verified")]
+    public bool? IsVerified
+    {
+        get => _verified.GetValue(InlineErrors);
+        set => _verified.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _id.SetAccessPath(parentChainPath, validateHasBeenSet);
         _email.SetAccessPath(parentChainPath, validateHasBeenSet);
         _blocked.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _verified.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

@@ -40,5 +40,8 @@ public static class ESFileRepositorySettingsPartialExtensions
     public static Partial<ESFileRepositorySettings> WithIsImmutablePackageVersions(this Partial<ESFileRepositorySettings> it)
         => it.AddFieldName("immutablePackageVersions");
     
+    public static Partial<ESFileRepositorySettings> WithIsWritePermissionForCachingArtifacts(this Partial<ESFileRepositorySettings> it)
+        => it.AddFieldName("writePermissionForCachingArtifacts");
+    
 }
 

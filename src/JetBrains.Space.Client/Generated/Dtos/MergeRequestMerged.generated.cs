@@ -37,10 +37,12 @@ public sealed class MergeRequestMerged
     
     public MergeRequestMerged() { }
     
-    public MergeRequestMerged(string sourceBranch, string targetBranch)
+    public MergeRequestMerged(string sourceBranch, string targetBranch, bool? isSourceBranchDeleted = null, bool? mergeDetected = null)
     {
         SourceBranch = sourceBranch;
         TargetBranch = targetBranch;
+        IsSourceBranchDeleted = isSourceBranchDeleted;
+        IsMergeDetected = mergeDetected;
     }
     
     private PropertyValue<string> _sourceBranch = new PropertyValue<string>(nameof(MergeRequestMerged), nameof(SourceBranch), "sourceBranch");
@@ -63,10 +65,30 @@ public sealed class MergeRequestMerged
         set => _targetBranch.SetValue(value);
     }
 
+    private PropertyValue<bool?> _isSourceBranchDeleted = new PropertyValue<bool?>(nameof(MergeRequestMerged), nameof(IsSourceBranchDeleted), "isSourceBranchDeleted");
+    
+    [JsonPropertyName("isSourceBranchDeleted")]
+    public bool? IsSourceBranchDeleted
+    {
+        get => _isSourceBranchDeleted.GetValue(InlineErrors);
+        set => _isSourceBranchDeleted.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _mergeDetected = new PropertyValue<bool?>(nameof(MergeRequestMerged), nameof(IsMergeDetected), "mergeDetected");
+    
+    [JsonPropertyName("mergeDetected")]
+    public bool? IsMergeDetected
+    {
+        get => _mergeDetected.GetValue(InlineErrors);
+        set => _mergeDetected.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _sourceBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
         _targetBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _isSourceBranchDeleted.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mergeDetected.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

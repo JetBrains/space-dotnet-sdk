@@ -40,5 +40,8 @@ public static class ESPythonPackageIndexSettingsPartialExtensions
     public static Partial<ESPythonPackageIndexSettings> WithIsImmutablePackageVersions(this Partial<ESPythonPackageIndexSettings> it)
         => it.AddFieldName("immutablePackageVersions");
     
+    public static Partial<ESPythonPackageIndexSettings> WithIsWritePermissionForCachingArtifacts(this Partial<ESPythonPackageIndexSettings> it)
+        => it.AddFieldName("writePermissionForCachingArtifacts");
+    
 }
 

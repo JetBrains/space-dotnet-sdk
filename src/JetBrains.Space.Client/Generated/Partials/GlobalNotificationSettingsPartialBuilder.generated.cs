@@ -40,6 +40,9 @@ public static class GlobalNotificationSettingsPartialExtensions
     public static Partial<GlobalNotificationSettings> WithNotificationEmail(this Partial<GlobalNotificationSettings> it, Func<Partial<TDProfileEmail>, Partial<TDProfileEmail>> partialBuilder)
         => it.AddFieldName("notificationEmail", partialBuilder(new Partial<TDProfileEmail>(it)));
     
+    public static Partial<GlobalNotificationSettings> WithIsSlackNotificationsEnabled(this Partial<GlobalNotificationSettings> it)
+        => it.AddFieldName("slackNotificationsEnabled");
+    
     public static Partial<GlobalNotificationSettings> WithIsPushNotificationEnabled(this Partial<GlobalNotificationSettings> it)
         => it.AddFieldName("pushNotificationEnabled");
     

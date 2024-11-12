@@ -32,6 +32,9 @@ namespace JetBrains.Space.Client;
 [JsonConverter(typeof(UrlParameterConverter))]
 public abstract class PermissionContextIdentifier : IUrlParameter
 {
+    public static PermissionContextIdentifier AiAgentTask(string taskId)
+        => new AiAgentTaskPermissionContextIdentifier(taskId);
+    
     public static PermissionContextIdentifier Channel(string channel)
         => new ChannelPermissionContextIdentifier(channel);
     
@@ -43,6 +46,31 @@ public abstract class PermissionContextIdentifier : IUrlParameter
     
     public static PermissionContextIdentifier Project(ProjectIdentifier project)
         => new ProjectPermissionContextIdentifier(project);
+    
+    public class AiAgentTaskPermissionContextIdentifier : PermissionContextIdentifier
+    {
+        [Required]
+        [JsonPropertyName("taskId")]
+#if NET6_0_OR_GREATER
+        public string TaskId { get; init; }
+#else
+        public string TaskId { get; set; }
+#endif
+        
+#if !NET6_0_OR_GREATER
+#pragma warning disable CS8618
+        public AiAgentTaskPermissionContextIdentifier() { }
+#pragma warning restore CS8618
+#endif
+        
+        public AiAgentTaskPermissionContextIdentifier(string taskId)
+        {
+            TaskId = taskId;
+        }
+        
+        public override string ToString()
+            => $"taskId:{TaskId}";
+    }
     
     public class ChannelPermissionContextIdentifier : PermissionContextIdentifier
     {

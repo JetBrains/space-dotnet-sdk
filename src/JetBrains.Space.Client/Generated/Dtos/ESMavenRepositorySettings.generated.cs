@@ -37,12 +37,13 @@ public sealed class ESMavenRepositorySettings
     
     public ESMavenRepositorySettings() { }
     
-    public ESMavenRepositorySettings(bool enableSnapshots, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null, bool? checkVulnerabilities = null)
+    public ESMavenRepositorySettings(bool enableSnapshots, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null, bool? checkVulnerabilities = null, bool? writePermissionForCachingArtifacts = null)
     {
         IsEnableSnapshots = enableSnapshots;
         RetentionPolicyParams = retentionPolicyParams;
         IsImmutablePackageVersions = immutablePackageVersions;
         IsCheckVulnerabilities = checkVulnerabilities;
+        IsWritePermissionForCachingArtifacts = writePermissionForCachingArtifacts;
     }
     
     private PropertyValue<bool> _enableSnapshots = new PropertyValue<bool>(nameof(ESMavenRepositorySettings), nameof(IsEnableSnapshots), "enableSnapshots");
@@ -82,12 +83,22 @@ public sealed class ESMavenRepositorySettings
         set => _checkVulnerabilities.SetValue(value);
     }
 
+    private PropertyValue<bool?> _writePermissionForCachingArtifacts = new PropertyValue<bool?>(nameof(ESMavenRepositorySettings), nameof(IsWritePermissionForCachingArtifacts), "writePermissionForCachingArtifacts");
+    
+    [JsonPropertyName("writePermissionForCachingArtifacts")]
+    public bool? IsWritePermissionForCachingArtifacts
+    {
+        get => _writePermissionForCachingArtifacts.GetValue(InlineErrors);
+        set => _writePermissionForCachingArtifacts.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _enableSnapshots.SetAccessPath(parentChainPath, validateHasBeenSet);
         _retentionPolicyParams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _immutablePackageVersions.SetAccessPath(parentChainPath, validateHasBeenSet);
         _checkVulnerabilities.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _writePermissionForCachingArtifacts.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

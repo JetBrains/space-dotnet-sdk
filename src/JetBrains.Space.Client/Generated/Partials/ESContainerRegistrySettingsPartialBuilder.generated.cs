@@ -43,5 +43,8 @@ public static class ESContainerRegistrySettingsPartialExtensions
     public static Partial<ESContainerRegistrySettings> WithIsImmutablePackageVersions(this Partial<ESContainerRegistrySettings> it)
         => it.AddFieldName("immutablePackageVersions");
     
+    public static Partial<ESContainerRegistrySettings> WithIsWritePermissionForCachingArtifacts(this Partial<ESContainerRegistrySettings> it)
+        => it.AddFieldName("writePermissionForCachingArtifacts");
+    
 }
 

@@ -44,14 +44,14 @@ public interface CompactFeedEvent
     public static BranchDeleted BranchDeleted(string branchName)
         => new BranchDeleted(branchName: branchName);
     
-    public static MergeRequestClosed MergeRequestClosed(bool isMerged, string sourceBranch, bool sourceBranchDeleted, string targetBranch, bool targetBranchDeleted)
-        => new MergeRequestClosed(isMerged: isMerged, sourceBranch: sourceBranch, sourceBranchDeleted: sourceBranchDeleted, targetBranch: targetBranch, targetBranchDeleted: targetBranchDeleted);
+    public static MergeRequestClosed MergeRequestClosed(bool isMerged, string sourceBranch, bool sourceBranchDeleted, string targetBranch, bool targetBranchDeleted, bool? mergeDetected = null)
+        => new MergeRequestClosed(isMerged: isMerged, sourceBranch: sourceBranch, sourceBranchDeleted: sourceBranchDeleted, targetBranch: targetBranch, targetBranchDeleted: targetBranchDeleted, mergeDetected: mergeDetected);
     
     public static MergeRequestDescriptionChanged MergeRequestDescriptionChanged(bool isUpdated)
         => new MergeRequestDescriptionChanged(isUpdated: isUpdated);
     
-    public static MergeRequestMerged MergeRequestMerged(string sourceBranch, string targetBranch)
-        => new MergeRequestMerged(sourceBranch: sourceBranch, targetBranch: targetBranch);
+    public static MergeRequestMerged MergeRequestMerged(string sourceBranch, string targetBranch, bool? isSourceBranchDeleted = null, bool? mergeDetected = null)
+        => new MergeRequestMerged(sourceBranch: sourceBranch, targetBranch: targetBranch, isSourceBranchDeleted: isSourceBranchDeleted, mergeDetected: mergeDetected);
     
     public static MergeRequestStateChanged MergeRequestStateChanged(CodeReviewState state)
         => new MergeRequestStateChanged(state: state);

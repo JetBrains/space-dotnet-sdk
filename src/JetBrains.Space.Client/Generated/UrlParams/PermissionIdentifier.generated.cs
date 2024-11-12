@@ -533,6 +533,9 @@ public abstract class PermissionIdentifier : IUrlParameter
     public static PermissionIdentifier UpdateLocations
         => new PermissionIdentifierUpdateLocations();
     
+    public static PermissionIdentifier UpdateMatterhornTaskStatus
+        => new PermissionIdentifierUpdateMatterhornTaskStatus();
+    
     public static PermissionIdentifier UpdateMeetingRsvpStatus
         => new PermissionIdentifierUpdateMeetingRsvpStatus();
     
@@ -1744,6 +1747,12 @@ public abstract class PermissionIdentifier : IUrlParameter
     {
         public override string ToString()
             => "Locations.Edit";
+    }
+    
+    public class PermissionIdentifierUpdateMatterhornTaskStatus : PermissionIdentifier
+    {
+        public override string ToString()
+            => "Project.Matterhorn.TaskStatus.Update";
     }
     
     public class PermissionIdentifierUpdateMeetingRsvpStatus : PermissionIdentifier

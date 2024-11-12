@@ -40,5 +40,8 @@ public static class ESCratesRegistrySettingsPartialExtensions
     public static Partial<ESCratesRegistrySettings> WithIsImmutablePackageVersions(this Partial<ESCratesRegistrySettings> it)
         => it.AddFieldName("immutablePackageVersions");
     
+    public static Partial<ESCratesRegistrySettings> WithIsWritePermissionForCachingArtifacts(this Partial<ESCratesRegistrySettings> it)
+        => it.AddFieldName("writePermissionForCachingArtifacts");
+    
 }
 

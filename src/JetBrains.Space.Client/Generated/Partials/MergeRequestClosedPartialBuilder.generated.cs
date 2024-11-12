@@ -46,5 +46,8 @@ public static class MergeRequestClosedPartialExtensions
     public static Partial<MergeRequestClosed> WithIsTargetBranchDeleted(this Partial<MergeRequestClosed> it)
         => it.AddFieldName("targetBranchDeleted");
     
+    public static Partial<MergeRequestClosed> WithIsMergeDetected(this Partial<MergeRequestClosed> it)
+        => it.AddFieldName("mergeDetected");
+    
 }
 

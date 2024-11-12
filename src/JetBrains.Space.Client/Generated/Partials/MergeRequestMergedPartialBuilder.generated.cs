@@ -37,5 +37,11 @@ public static class MergeRequestMergedPartialExtensions
     public static Partial<MergeRequestMerged> WithTargetBranch(this Partial<MergeRequestMerged> it)
         => it.AddFieldName("targetBranch");
     
+    public static Partial<MergeRequestMerged> WithIsSourceBranchDeleted(this Partial<MergeRequestMerged> it)
+        => it.AddFieldName("isSourceBranchDeleted");
+    
+    public static Partial<MergeRequestMerged> WithIsMergeDetected(this Partial<MergeRequestMerged> it)
+        => it.AddFieldName("mergeDetected");
+    
 }
 

@@ -46,5 +46,8 @@ public static class ESMavenRepositorySettingsPartialExtensions
     public static Partial<ESMavenRepositorySettings> WithIsCheckVulnerabilities(this Partial<ESMavenRepositorySettings> it)
         => it.AddFieldName("checkVulnerabilities");
     
+    public static Partial<ESMavenRepositorySettings> WithIsWritePermissionForCachingArtifacts(this Partial<ESMavenRepositorySettings> it)
+        => it.AddFieldName("writePermissionForCachingArtifacts");
+    
 }
 

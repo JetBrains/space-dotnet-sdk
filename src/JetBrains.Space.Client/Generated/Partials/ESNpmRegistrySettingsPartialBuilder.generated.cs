@@ -43,5 +43,8 @@ public static class ESNpmRegistrySettingsPartialExtensions
     public static Partial<ESNpmRegistrySettings> WithIsCheckVulnerabilities(this Partial<ESNpmRegistrySettings> it)
         => it.AddFieldName("checkVulnerabilities");
     
+    public static Partial<ESNpmRegistrySettings> WithIsWritePermissionForCachingArtifacts(this Partial<ESNpmRegistrySettings> it)
+        => it.AddFieldName("writePermissionForCachingArtifacts");
+    
 }
 

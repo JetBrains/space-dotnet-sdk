@@ -345,6 +345,67 @@ public partial class ProjectClient : ISpaceClient
     }
     
 
+    public AiAgentClient AiAgents => new AiAgentClient(_connection);
+    
+    public partial class AiAgentClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public AiAgentClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <remarks>
+        /// Support for AI Agents solving issues on code repositories
+        /// </remarks>
+        public async Task CancelTaskAsync(string taskId, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            await _connection.RequestResourceAsync("POST", $"api/http/projects/ai-agents/cancel-task{queryParameters.ToQueryString()}", 
+                new ProjectsAiAgentsCancelTaskPostRequest
+                { 
+                    TaskId = taskId,
+                }, requestHeaders: null, functionName: "CancelTask", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// Support for AI Agents solving issues on code repositories
+        /// </remarks>
+        public async Task<string> CreateGenericTaskAsync(ProjectIdentifier project, string repository, string taskDescription, AiAgentType agentType, string? llmProfileId = null, AiAgentTaskSettings? settings = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            
+            return await _connection.RequestResourceAsync<ProjectsAiAgentsCreateGenericTaskPostRequest, string>("POST", $"api/http/projects/ai-agents/create-generic-task{queryParameters.ToQueryString()}", 
+                new ProjectsAiAgentsCreateGenericTaskPostRequest
+                { 
+                    Project = project,
+                    Repository = repository,
+                    TaskDescription = taskDescription,
+                    AgentType = agentType,
+                    LlmProfileId = llmProfileId,
+                    Settings = settings,
+                }, requestHeaders: null, functionName: "CreateGenericTask", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <remarks>
+        /// Support for AI Agents solving issues on code repositories
+        /// </remarks>
+        public async Task<AiAgentTask> GetTaskAsync(string id, Func<Partial<AiAgentTask>, Partial<AiAgentTask>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("id", id);
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<AiAgentTask>()) : Partial<AiAgentTask>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<AiAgentTask>("GET", $"api/http/projects/ai-agents/task{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetTask", cancellationToken: cancellationToken);
+        }
+        
+    
+    }
+
     public AutomationClient Automation => new AutomationClient(_connection);
     
     public partial class AutomationClient : ISpaceClient
@@ -3738,6 +3799,24 @@ public partial class ProjectClient : ISpaceClient
         public IAsyncEnumerable<GitCommitInfo> CommitsAsyncEnumerable(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => CommitsAsync(project: project, repository: repository, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<GitCommitInfo>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<GitCommitInfo>.Default())), skip, cancellationToken);
     
+        /// <param name="skip">
+        /// Bytes to skip from file begin
+        /// </param>
+        /// <param name="limit">
+        /// Max number of bytes to return
+        /// </param>
+        public async Task<FileContentPart> GetFileContentAsync(ProjectIdentifier project, string repository, string blobId, int skip, int limit, Func<Partial<FileContentPart>, Partial<FileContentPart>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("blobId", blobId);
+            queryParameters.Append("skip", skip.ToString());
+            queryParameters.Append("limit", limit.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<FileContentPart>()) : Partial<FileContentPart>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<FileContentPart>("GET", $"api/http/projects/{project}/repositories/{repository}/content{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetFileContent", cancellationToken: cancellationToken);
+        }
+        
+    
         /// <remarks>
         /// APIs for AI indices service
         /// </remarks>
@@ -3762,6 +3841,21 @@ public partial class ProjectClient : ISpaceClient
             return await _connection.RequestResourceAsync<List<GitFile>>("GET", $"api/http/projects/{project}/repositories/{repository}/files{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "Files", cancellationToken: cancellationToken);
         }
         
+    
+        public async Task<Batch<GitFile>> FindFilesAsync(string project, string repository, string pattern, string? commit = null, string? skip = null, int? top = 100, Func<Partial<Batch<GitFile>>, Partial<Batch<GitFile>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            if (commit != null) queryParameters.Append("commit", commit);
+            queryParameters.Append("pattern", pattern);
+            if (skip != null) queryParameters.Append("$skip", skip);
+            if (top != null) queryParameters.Append("$top", top?.ToString());
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<GitFile>>()) : Partial<Batch<GitFile>>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<Batch<GitFile>>("GET", $"api/http/projects/{project}/repositories/{repository}/find-files{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "FindFiles", cancellationToken: cancellationToken);
+        }
+        
+        public IAsyncEnumerable<GitFile> FindFilesAsyncEnumerable(string project, string repository, string pattern, string? commit = null, string? skip = null, int? top = 100, Func<Partial<GitFile>, Partial<GitFile>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => FindFilesAsync(project: project, repository: repository, pattern: pattern, commit: commit, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<GitFile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<GitFile>.Default())), skip, cancellationToken);
     
         /// <remarks>
         /// APIs for AI indices service
@@ -3944,6 +4038,71 @@ public partial class ProjectClient : ISpaceClient
                 return await _connection.RequestResourceAsync<BranchDetails>("GET", $"api/http/projects/{project}/repositories/{repository}/branches/{branchHead}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetBranch", cancellationToken: cancellationToken);
             }
             
+        
+        }
+    
+        public CodeCanvaClient CodeCanvas => new CodeCanvaClient(_connection);
+        
+        public partial class CodeCanvaClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public CodeCanvaClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public EnvironmentClient Environments => new EnvironmentClient(_connection);
+            
+            public partial class EnvironmentClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public EnvironmentClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <remarks>
+                /// Code Canvas Integration
+                /// </remarks>
+                public async Task<string> CreateEnvironmentAsync(ProjectIdentifier project, string repository, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    return await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryCodeCanvasEnvironmentsPostRequest, string>("POST", $"api/http/projects/{project}/repositories/{repository}/code-canvas/environments{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectRepositoriesForRepositoryCodeCanvasEnvironmentsPostRequest
+                        { 
+                        }, requestHeaders: null, functionName: "CreateEnvironment", cancellationToken: cancellationToken);
+                }
+                
+            
+                /// <remarks>
+                /// Code Canvas Integration
+                /// </remarks>
+                public async Task HibernateEnvironmentAsync(ProjectIdentifier project, string repository, string id, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/code-canvas/environments/{id}/hibernate{queryParameters.ToQueryString()}", 
+                        new ProjectsForProjectRepositoriesForRepositoryCodeCanvasEnvironmentsForIdHibernatePostRequest
+                        { 
+                        }, requestHeaders: null, functionName: "HibernateEnvironment", cancellationToken: cancellationToken);
+                }
+                
+            
+                /// <remarks>
+                /// Code Canvas Integration
+                /// </remarks>
+                public async Task DeleteEnvironmentAsync(ProjectIdentifier project, string repository, string id, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+                {
+                    var queryParameters = new NameValueCollection();
+                    
+                    await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/repositories/{repository}/code-canvas/environments/{id}{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "DeleteEnvironment", cancellationToken: cancellationToken);
+                }
+                
+            
+            }
         
         }
     
@@ -5186,6 +5345,153 @@ public partial class ProjectClient : ISpaceClient
     
     }
 
+    public CodeIndexClient CodeIndex => new CodeIndexClient(_connection);
+    
+    public partial class CodeIndexClient : ISpaceClient
+    {
+        private readonly Connection _connection;
+        
+        public CodeIndexClient(Connection connection)
+        {
+            _connection = connection;
+        }
+        
+        /// <summary>
+        /// Get all keys in given index
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Read Git repositories</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<List<string>> AllKeysAsync(ProjectIdentifier project, string repository, string indexId, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("repository", repository);
+            queryParameters.Append("indexId", indexId);
+            
+            return await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/projects/{project}/code-index/all-keys{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "AllKeys", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Download serialized file stub
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Read Git repositories</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<List<LanguageCodeIndexFileStub>> GetFileStubsByHashAsync(ProjectIdentifier project, string repository, string stubId, List<int> fileIdHashes, Func<Partial<LanguageCodeIndexFileStub>, Partial<LanguageCodeIndexFileStub>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("repository", repository);
+            queryParameters.Append("stubId", stubId);
+            queryParameters.Append("fileIdHashes", fileIdHashes.Select(it => it.ToString()));
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<LanguageCodeIndexFileStub>()) : Partial<LanguageCodeIndexFileStub>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<LanguageCodeIndexFileStub>>("GET", $"api/http/projects/{project}/code-index/file-stubs-by-hash{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetFileStubsByHash", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Download serialized file stub
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Read Git repositories</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<LanguageCodeIndexFileStub> GetFileStubsByIdAsync(ProjectIdentifier project, string repository, string stubId, string fileId, Func<Partial<LanguageCodeIndexFileStub>, Partial<LanguageCodeIndexFileStub>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("repository", repository);
+            queryParameters.Append("stubId", stubId);
+            queryParameters.Append("fileId", fileId);
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<LanguageCodeIndexFileStub>()) : Partial<LanguageCodeIndexFileStub>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<LanguageCodeIndexFileStub>("GET", $"api/http/projects/{project}/code-index/file-stubs-by-id{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetFileStubsById", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Get file id for path in revision
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Read Git repositories</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<string> GetFileIdAsync(ProjectIdentifier project, string repository, string commit, string filePath, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("repository", repository);
+            queryParameters.Append("commit", commit);
+            queryParameters.Append("filePath", filePath);
+            
+            return await _connection.RequestResourceAsync<string>("GET", $"api/http/projects/{project}/code-index/get-file-id{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetFileId", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Resolve file id to path in revision
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Read Git repositories</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<List<GitFile>> ResolveFileIdAsync(ProjectIdentifier project, string repository, string commit, string fileId, Func<Partial<GitFile>, Partial<GitFile>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("repository", repository);
+            queryParameters.Append("commit", commit);
+            queryParameters.Append("fileId", fileId);
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<GitFile>()) : Partial<GitFile>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<List<GitFile>>("GET", $"api/http/projects/{project}/code-index/resolve-file-id{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "ResolveFileId", cancellationToken: cancellationToken);
+        }
+        
+    
+        /// <summary>
+        /// Download serialized SHTable for given revision and index name
+        /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Read Git repositories</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<string> GetIndexSHTableAsync(ProjectIdentifier project, string repository, string commit, string indexId, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("repository", repository);
+            queryParameters.Append("commit", commit);
+            queryParameters.Append("indexId", indexId);
+            
+            return await _connection.RequestResourceAsync<string>("GET", $"api/http/projects/{project}/code-index/shtable{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetIndexSHTable", cancellationToken: cancellationToken);
+        }
+        
+    
+    }
+
     public CodeReviewClient CodeReviews => new CodeReviewClient(_connection);
     
     public partial class CodeReviewClient : ISpaceClient
@@ -5268,7 +5574,7 @@ public partial class ProjectClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<Batch<CodeReviewWithCount>> GetAllCodeReviewsAsync(ProjectIdentifier project, ReviewSorting sort = ReviewSorting.CreatedAtAsc, string? skip = null, int? top = 100, CodeReviewStateFilter? state = CodeReviewStateFilter.Opened, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, string? repository = null, Func<Partial<Batch<CodeReviewWithCount>>, Partial<Batch<CodeReviewWithCount>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        public async Task<Batch<CodeReviewWithCount>> GetAllCodeReviewsAsync(ProjectIdentifier project, ReviewSorting sort = ReviewSorting.CreatedAtAsc, string? skip = null, int? top = 100, CodeReviewStateFilter? state = CodeReviewStateFilter.Opened, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, string? repository = null, string? sourceBranch = null, string? targetBranch = null, Func<Partial<Batch<CodeReviewWithCount>>, Partial<Batch<CodeReviewWithCount>>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
         {
             var queryParameters = new NameValueCollection();
             if (skip != null) queryParameters.Append("$skip", skip);
@@ -5282,6 +5588,8 @@ public partial class ProjectClient : ISpaceClient
             if (reviewer != null) queryParameters.Append("reviewer", reviewer?.ToString());
             queryParameters.Append("type", type.ToEnumString());
             if (repository != null) queryParameters.Append("repository", repository);
+            if (sourceBranch != null) queryParameters.Append("sourceBranch", sourceBranch);
+            if (targetBranch != null) queryParameters.Append("targetBranch", targetBranch);
             queryParameters.Append("$fields", (partial != null ? partial(new Partial<Batch<CodeReviewWithCount>>()) : Partial<Batch<CodeReviewWithCount>>.Default()).ToString());
             
             return await _connection.RequestResourceAsync<Batch<CodeReviewWithCount>>("GET", $"api/http/projects/{project}/code-reviews{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetAllCodeReviews", cancellationToken: cancellationToken);
@@ -5295,8 +5603,8 @@ public partial class ProjectClient : ISpaceClient
         /// </item>
         /// </list>
         /// </remarks>
-        public IAsyncEnumerable<CodeReviewWithCount> GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier project, ReviewSorting sort = ReviewSorting.CreatedAtAsc, string? skip = null, int? top = 100, CodeReviewStateFilter? state = CodeReviewStateFilter.Opened, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, string? repository = null, Func<Partial<CodeReviewWithCount>, Partial<CodeReviewWithCount>>? partial = null, CancellationToken cancellationToken = default)
-            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllCodeReviewsAsync(project: project, sort: sort, top: top, state: state, text: text, author: author, from: from, to: to, reviewer: reviewer, type: type, repository: repository, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<CodeReviewWithCount>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CodeReviewWithCount>.Default())), skip, cancellationToken);
+        public IAsyncEnumerable<CodeReviewWithCount> GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier project, ReviewSorting sort = ReviewSorting.CreatedAtAsc, string? skip = null, int? top = 100, CodeReviewStateFilter? state = CodeReviewStateFilter.Opened, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, string? repository = null, string? sourceBranch = null, string? targetBranch = null, Func<Partial<CodeReviewWithCount>, Partial<CodeReviewWithCount>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllCodeReviewsAsync(project: project, sort: sort, top: top, state: state, text: text, author: author, from: from, to: to, reviewer: reviewer, type: type, repository: repository, sourceBranch: sourceBranch, targetBranch: targetBranch, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<CodeReviewWithCount>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CodeReviewWithCount>.Default())), skip, cancellationToken);
     
         /// <remarks>
         /// Required permissions:
@@ -5401,6 +5709,23 @@ public partial class ProjectClient : ISpaceClient
         /// </remarks>
         public IAsyncEnumerable<GitMergedFile> GetTheMergeRequestFilesAsyncEnumerable(ProjectIdentifier project, ReviewIdentifier reviewId, string? skip = null, int? top = 100, Func<Partial<GitMergedFile>, Partial<GitMergedFile>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetTheMergeRequestFilesAsync(project: project, reviewId: reviewId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<GitMergedFile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<GitMergedFile>.Default())), skip, cancellationToken);
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>View code reviews</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task<MergeRequestStatus> GetMergeRequestStatusAsync(ProjectIdentifier project, ReviewIdentifier reviewId, Func<Partial<MergeRequestStatus>, Partial<MergeRequestStatus>>? partial = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+        {
+            var queryParameters = new NameValueCollection();
+            queryParameters.Append("$fields", (partial != null ? partial(new Partial<MergeRequestStatus>()) : Partial<MergeRequestStatus>.Default()).ToString());
+            
+            return await _connection.RequestResourceAsync<MergeRequestStatus>("GET", $"api/http/projects/{project}/code-reviews/{reviewId}/status{queryParameters.ToQueryString()}", requestHeaders: null, functionName: "GetMergeRequestStatus", cancellationToken: cancellationToken);
+        }
+        
     
         /// <remarks>
         /// Required permissions:

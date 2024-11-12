@@ -3481,7 +3481,7 @@ public partial class TeamDirectoryClient : ISpaceClient
             }
             
         
-            public async Task SetSpaceGlobalNotificationSettingsForAProfileAsync(ProfileIdentifier profile, bool? emailNotificationsEnabled = null, string? notificationEmail = null, bool? pushNotificationEnabled = null, int? desktopInactivityTimeout = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
+            public async Task SetSpaceGlobalNotificationSettingsForAProfileAsync(ProfileIdentifier profile, bool? emailNotificationsEnabled = null, string? notificationEmail = null, bool? slackNotificationsEnabled = null, bool? pushNotificationEnabled = null, int? desktopInactivityTimeout = null, Dictionary<string, string>? requestHeaders = null, CancellationToken cancellationToken = default)
             {
                 var queryParameters = new NameValueCollection();
                 
@@ -3490,6 +3490,7 @@ public partial class TeamDirectoryClient : ISpaceClient
                     { 
                         IsEmailNotificationsEnabled = emailNotificationsEnabled,
                         NotificationEmail = notificationEmail,
+                        IsSlackNotificationsEnabled = slackNotificationsEnabled,
                         IsPushNotificationEnabled = pushNotificationEnabled,
                         DesktopInactivityTimeout = desktopInactivityTimeout,
                     }, requestHeaders: null, functionName: "SetSpaceGlobalNotificationSettingsForAProfile", cancellationToken: cancellationToken);

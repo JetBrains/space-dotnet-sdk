@@ -37,10 +37,11 @@ public sealed class ESDartRepositorySettings
     
     public ESDartRepositorySettings() { }
     
-    public ESDartRepositorySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
+    public ESDartRepositorySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null, bool? writePermissionForCachingArtifacts = null)
     {
         RetentionPolicyParams = retentionPolicyParams;
         IsImmutablePackageVersions = immutablePackageVersions;
+        IsWritePermissionForCachingArtifacts = writePermissionForCachingArtifacts;
     }
     
     private PropertyValue<RetentionPolicyParams?> _retentionPolicyParams = new PropertyValue<RetentionPolicyParams?>(nameof(ESDartRepositorySettings), nameof(RetentionPolicyParams), "retentionPolicyParams");
@@ -61,10 +62,20 @@ public sealed class ESDartRepositorySettings
         set => _immutablePackageVersions.SetValue(value);
     }
 
+    private PropertyValue<bool?> _writePermissionForCachingArtifacts = new PropertyValue<bool?>(nameof(ESDartRepositorySettings), nameof(IsWritePermissionForCachingArtifacts), "writePermissionForCachingArtifacts");
+    
+    [JsonPropertyName("writePermissionForCachingArtifacts")]
+    public bool? IsWritePermissionForCachingArtifacts
+    {
+        get => _writePermissionForCachingArtifacts.GetValue(InlineErrors);
+        set => _writePermissionForCachingArtifacts.SetValue(value);
+    }
+
     public override void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _retentionPolicyParams.SetAccessPath(parentChainPath, validateHasBeenSet);
         _immutablePackageVersions.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _writePermissionForCachingArtifacts.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

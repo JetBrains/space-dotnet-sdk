@@ -34,10 +34,11 @@ internal class TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest
 {
     public TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest() { }
     
-    public TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest(bool? emailNotificationsEnabled = null, string? notificationEmail = null, bool? pushNotificationEnabled = null, int? desktopInactivityTimeout = null)
+    public TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest(bool? emailNotificationsEnabled = null, string? notificationEmail = null, bool? slackNotificationsEnabled = null, bool? pushNotificationEnabled = null, int? desktopInactivityTimeout = null)
     {
         IsEmailNotificationsEnabled = emailNotificationsEnabled;
         NotificationEmail = notificationEmail;
+        IsSlackNotificationsEnabled = slackNotificationsEnabled;
         IsPushNotificationEnabled = pushNotificationEnabled;
         DesktopInactivityTimeout = desktopInactivityTimeout;
     }
@@ -64,6 +65,18 @@ internal class TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest
     {
         get => _notificationEmail.GetValue(InlineErrors);
         set => _notificationEmail.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _slackNotificationsEnabled = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest), nameof(IsSlackNotificationsEnabled), "slackNotificationsEnabled");
+    
+#if NET6_0_OR_GREATER
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+#endif
+    [JsonPropertyName("slackNotificationsEnabled")]
+    public bool? IsSlackNotificationsEnabled
+    {
+        get => _slackNotificationsEnabled.GetValue(InlineErrors);
+        set => _slackNotificationsEnabled.SetValue(value);
     }
 
     private PropertyValue<bool?> _pushNotificationEnabled = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest), nameof(IsPushNotificationEnabled), "pushNotificationEnabled");
@@ -94,6 +107,7 @@ internal class TeamDirectoryProfilesForProfileNotificationSettingsPatchRequest
     {
         _emailNotificationsEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _notificationEmail.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _slackNotificationsEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _pushNotificationEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _desktopInactivityTimeout.SetAccessPath(parentChainPath, validateHasBeenSet);
     }

@@ -39,29 +39,29 @@ public abstract class ESPackageRepositorySettings
     public static ESComposerRepositorySettings ESComposerRepositorySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
         => new ESComposerRepositorySettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
     
-    public static ESContainerRegistrySettings ESContainerRegistrySettings(bool immutableTags, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
-        => new ESContainerRegistrySettings(immutableTags: immutableTags, retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
+    public static ESContainerRegistrySettings ESContainerRegistrySettings(bool immutableTags, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null, bool? writePermissionForCachingArtifacts = null)
+        => new ESContainerRegistrySettings(immutableTags: immutableTags, retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions, writePermissionForCachingArtifacts: writePermissionForCachingArtifacts);
     
-    public static ESCratesRegistrySettings ESCratesRegistrySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
-        => new ESCratesRegistrySettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
+    public static ESCratesRegistrySettings ESCratesRegistrySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null, bool? writePermissionForCachingArtifacts = null)
+        => new ESCratesRegistrySettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions, writePermissionForCachingArtifacts: writePermissionForCachingArtifacts);
     
-    public static ESDartRepositorySettings ESDartRepositorySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
-        => new ESDartRepositorySettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
+    public static ESDartRepositorySettings ESDartRepositorySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null, bool? writePermissionForCachingArtifacts = null)
+        => new ESDartRepositorySettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions, writePermissionForCachingArtifacts: writePermissionForCachingArtifacts);
     
-    public static ESFileRepositorySettings ESFileRepositorySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
-        => new ESFileRepositorySettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
+    public static ESFileRepositorySettings ESFileRepositorySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null, bool? writePermissionForCachingArtifacts = null)
+        => new ESFileRepositorySettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions, writePermissionForCachingArtifacts: writePermissionForCachingArtifacts);
     
-    public static ESMavenRepositorySettings ESMavenRepositorySettings(bool enableSnapshots, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null, bool? checkVulnerabilities = null)
-        => new ESMavenRepositorySettings(enableSnapshots: enableSnapshots, retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions, checkVulnerabilities: checkVulnerabilities);
+    public static ESMavenRepositorySettings ESMavenRepositorySettings(bool enableSnapshots, RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null, bool? checkVulnerabilities = null, bool? writePermissionForCachingArtifacts = null)
+        => new ESMavenRepositorySettings(enableSnapshots: enableSnapshots, retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions, checkVulnerabilities: checkVulnerabilities, writePermissionForCachingArtifacts: writePermissionForCachingArtifacts);
     
-    public static ESNpmRegistrySettings ESNpmRegistrySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null, bool? checkVulnerabilities = null)
-        => new ESNpmRegistrySettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions, checkVulnerabilities: checkVulnerabilities);
+    public static ESNpmRegistrySettings ESNpmRegistrySettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null, bool? checkVulnerabilities = null, bool? writePermissionForCachingArtifacts = null)
+        => new ESNpmRegistrySettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions, checkVulnerabilities: checkVulnerabilities, writePermissionForCachingArtifacts: writePermissionForCachingArtifacts);
     
     public static ESNuGetFeedSettings ESNuGetFeedSettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null, bool? checkVulnerabilities = null)
         => new ESNuGetFeedSettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions, checkVulnerabilities: checkVulnerabilities);
     
-    public static ESPythonPackageIndexSettings ESPythonPackageIndexSettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null)
-        => new ESPythonPackageIndexSettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions);
+    public static ESPythonPackageIndexSettings ESPythonPackageIndexSettings(RetentionPolicyParams? retentionPolicyParams = null, bool? immutablePackageVersions = null, bool? writePermissionForCachingArtifacts = null)
+        => new ESPythonPackageIndexSettings(retentionPolicyParams: retentionPolicyParams, immutablePackageVersions: immutablePackageVersions, writePermissionForCachingArtifacts: writePermissionForCachingArtifacts);
     
     public virtual void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {

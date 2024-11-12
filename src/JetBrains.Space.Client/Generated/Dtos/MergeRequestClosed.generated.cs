@@ -37,13 +37,14 @@ public sealed class MergeRequestClosed
     
     public MergeRequestClosed() { }
     
-    public MergeRequestClosed(bool isMerged, string sourceBranch, bool sourceBranchDeleted, string targetBranch, bool targetBranchDeleted)
+    public MergeRequestClosed(bool isMerged, string sourceBranch, bool sourceBranchDeleted, string targetBranch, bool targetBranchDeleted, bool? mergeDetected = null)
     {
         IsMerged = isMerged;
         SourceBranch = sourceBranch;
         IsSourceBranchDeleted = sourceBranchDeleted;
         TargetBranch = targetBranch;
         IsTargetBranchDeleted = targetBranchDeleted;
+        IsMergeDetected = mergeDetected;
     }
     
     private PropertyValue<bool> _isMerged = new PropertyValue<bool>(nameof(MergeRequestClosed), nameof(IsMerged), "isMerged");
@@ -96,6 +97,15 @@ public sealed class MergeRequestClosed
         set => _targetBranchDeleted.SetValue(value);
     }
 
+    private PropertyValue<bool?> _mergeDetected = new PropertyValue<bool?>(nameof(MergeRequestClosed), nameof(IsMergeDetected), "mergeDetected");
+    
+    [JsonPropertyName("mergeDetected")]
+    public bool? IsMergeDetected
+    {
+        get => _mergeDetected.GetValue(InlineErrors);
+        set => _mergeDetected.SetValue(value);
+    }
+
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
         _isMerged.SetAccessPath(parentChainPath, validateHasBeenSet);
@@ -103,6 +113,7 @@ public sealed class MergeRequestClosed
         _sourceBranchDeleted.SetAccessPath(parentChainPath, validateHasBeenSet);
         _targetBranch.SetAccessPath(parentChainPath, validateHasBeenSet);
         _targetBranchDeleted.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _mergeDetected.SetAccessPath(parentChainPath, validateHasBeenSet);
     }
     
     /// <inheritdoc />

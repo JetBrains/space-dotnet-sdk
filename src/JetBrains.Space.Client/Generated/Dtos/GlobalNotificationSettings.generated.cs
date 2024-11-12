@@ -34,10 +34,11 @@ public sealed class GlobalNotificationSettings
 {
     public GlobalNotificationSettings() { }
     
-    public GlobalNotificationSettings(bool emailNotificationsEnabled, bool pushNotificationEnabled, bool multiClientEnabled, TDProfileEmail? notificationEmail = null, int? desktopInactivityTimeout = null)
+    public GlobalNotificationSettings(bool emailNotificationsEnabled, bool pushNotificationEnabled, bool multiClientEnabled, TDProfileEmail? notificationEmail = null, bool? slackNotificationsEnabled = null, int? desktopInactivityTimeout = null)
     {
         IsEmailNotificationsEnabled = emailNotificationsEnabled;
         NotificationEmail = notificationEmail;
+        IsSlackNotificationsEnabled = slackNotificationsEnabled;
         IsPushNotificationEnabled = pushNotificationEnabled;
         DesktopInactivityTimeout = desktopInactivityTimeout;
         IsMultiClientEnabled = multiClientEnabled;
@@ -60,6 +61,15 @@ public sealed class GlobalNotificationSettings
     {
         get => _notificationEmail.GetValue(InlineErrors);
         set => _notificationEmail.SetValue(value);
+    }
+
+    private PropertyValue<bool?> _slackNotificationsEnabled = new PropertyValue<bool?>(nameof(GlobalNotificationSettings), nameof(IsSlackNotificationsEnabled), "slackNotificationsEnabled");
+    
+    [JsonPropertyName("slackNotificationsEnabled")]
+    public bool? IsSlackNotificationsEnabled
+    {
+        get => _slackNotificationsEnabled.GetValue(InlineErrors);
+        set => _slackNotificationsEnabled.SetValue(value);
     }
 
     private PropertyValue<bool> _pushNotificationEnabled = new PropertyValue<bool>(nameof(GlobalNotificationSettings), nameof(IsPushNotificationEnabled), "pushNotificationEnabled");
@@ -95,6 +105,7 @@ public sealed class GlobalNotificationSettings
     {
         _emailNotificationsEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _notificationEmail.SetAccessPath(parentChainPath, validateHasBeenSet);
+        _slackNotificationsEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _pushNotificationEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);
         _desktopInactivityTimeout.SetAccessPath(parentChainPath, validateHasBeenSet);
         _multiClientEnabled.SetAccessPath(parentChainPath, validateHasBeenSet);

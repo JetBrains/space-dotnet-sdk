@@ -131,6 +131,9 @@ public interface M2ItemContentDetails
     public static SafeMergeLiveStatusDTO SafeMergeLiveStatusDTO(bool dryRun, SafeMergeState? state = null, int? attempt = null, int? totalAttempts = null, bool? canRetry = null)
         => new SafeMergeLiveStatusDTO(dryRun: dryRun, state: state, attempt: attempt, totalAttempts: totalAttempts, canRetry: canRetry);
     
+    public static SafeMergeLiveStatusWithAttemptsDTO SafeMergeLiveStatusWithAttemptsDTO(bool dryRun, int? totalAttempts = null, List<SafeMergeAttemptLiveStatusDTO>? attempts = null, string? cancellationReason = null, List<AttachmentInfo>? attachments = null)
+        => new SafeMergeLiveStatusWithAttemptsDTO(dryRun: dryRun, totalAttempts: totalAttempts, attempts: attempts, cancellationReason: cancellationReason, attachments: attachments);
+    
     public static StickerContentDetails StickerContentDetails(Sticker sticker, StickerPackInfo? pack = null)
         => new StickerContentDetails(sticker: sticker, pack: pack);
     

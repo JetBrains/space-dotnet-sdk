@@ -34,13 +34,23 @@ public sealed class SlackTeamIn
 {
     public SlackTeamIn() { }
     
-    public SlackTeamIn(string domain, string name, string? iconUrl = null)
+    public SlackTeamIn(string domain, string name, string? id = null, string? iconUrl = null)
     {
+        Id = id;
         Domain = domain;
         IconUrl = iconUrl;
         Name = name;
     }
     
+    private PropertyValue<string?> _id = new PropertyValue<string?>(nameof(SlackTeamIn), nameof(Id), "id");
+    
+    [JsonPropertyName("id")]
+    public string? Id
+    {
+        get => _id.GetValue(InlineErrors);
+        set => _id.SetValue(value);
+    }
+
     private PropertyValue<string> _domain = new PropertyValue<string>(nameof(SlackTeamIn), nameof(Domain), "domain");
     
     [Required]
@@ -72,6 +82,7 @@ public sealed class SlackTeamIn
 
     public  void SetAccessPath(string parentChainPath, bool validateHasBeenSet)
     {
+        _id.SetAccessPath(parentChainPath, validateHasBeenSet);
         _domain.SetAccessPath(parentChainPath, validateHasBeenSet);
         _iconUrl.SetAccessPath(parentChainPath, validateHasBeenSet);
         _name.SetAccessPath(parentChainPath, validateHasBeenSet);

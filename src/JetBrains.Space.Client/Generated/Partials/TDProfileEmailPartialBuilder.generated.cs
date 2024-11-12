@@ -40,5 +40,8 @@ public static class TDProfileEmailPartialExtensions
     public static Partial<TDProfileEmail> WithIsBlocked(this Partial<TDProfileEmail> it)
         => it.AddFieldName("blocked");
     
+    public static Partial<TDProfileEmail> WithIsVerified(this Partial<TDProfileEmail> it)
+        => it.AddFieldName("verified");
+    
 }
 

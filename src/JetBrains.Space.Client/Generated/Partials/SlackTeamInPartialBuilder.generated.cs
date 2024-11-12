@@ -31,6 +31,9 @@ namespace JetBrains.Space.Client.SlackTeamInPartialBuilder;
 
 public static class SlackTeamInPartialExtensions
 {
+    public static Partial<SlackTeamIn> WithId(this Partial<SlackTeamIn> it)
+        => it.AddFieldName("id");
+    
     public static Partial<SlackTeamIn> WithDomain(this Partial<SlackTeamIn> it)
         => it.AddFieldName("domain");
     

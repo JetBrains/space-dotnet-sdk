@@ -40,5 +40,8 @@ public static class ESDartRepositorySettingsPartialExtensions
     public static Partial<ESDartRepositorySettings> WithIsImmutablePackageVersions(this Partial<ESDartRepositorySettings> it)
         => it.AddFieldName("immutablePackageVersions");
     
+    public static Partial<ESDartRepositorySettings> WithIsWritePermissionForCachingArtifacts(this Partial<ESDartRepositorySettings> it)
+        => it.AddFieldName("writePermissionForCachingArtifacts");
+    
 }
 
